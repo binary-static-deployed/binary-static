@@ -48,6 +48,7 @@
     "src/javascript/binary/components/date_picker/selected_dates.js",
     "src/javascript/binary/components/time_picker.js",
     "src/javascript/binary/components/trackjs_onerror.js",
+    "src/javascript/binary/endpoint.js",
     "src/javascript/binary/highchartws.js",
     "src/javascript/binary/livechart.js",
     "src/javascript/binary/livechart/config.js",
