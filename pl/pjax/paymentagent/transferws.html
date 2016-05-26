@@ -46,7 +46,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <div id="pa_transfer_done" class="invisible">
         <p id="confirm-msg" class="invisible"></p>
         <p>
-            <a class="button" href="/user/statementws">
+            <a class="button" href="/pl/user/statementws.html">
                 <span class="button">Zobacz swój wyciąg</span>
             </a>
         </p>
@@ -57,7 +57,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <a href="/cashier?l=EN">Wpłata</a>
     </div>
 
-    <div id="paymentagent_transfer">
+    <div id="virtual_error" class="invisible">
+        <p class="center notice-msg">Ta funkcja nie jest dostępna dla kont z wirtualnymi pieniędzmi.</p>
+    </div>
+
+    <div id="not_pa_error" class="invisible">
+        <p class="center notice-msg">This feature is only relevant to payment agent accounts.</p>
+    </div>
+
+    <div id="paymentagent_transfer" class="invisible">
         <p>W formularzu poniżej wpisz login i kwotę, którą chcesz przekazać swojemu Klientowi:</p>
         <table class="kv-pairs">
             <tr>
@@ -103,7 +111,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </div>
 
     <br>
-    <div id="paymentagent_transfer_notes">
+    <div id="paymentagent_transfer_notes" class="invisible">
         <div>Notes:</div>
         <ul>
             <li>Nie pobieramy żadnych opłat za przelewy środków.</li>

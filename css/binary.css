@@ -5167,12 +5167,15 @@ div.kineticjs-content {
   }
 }
 
-.open-positions .grd-grid-4:not(:first-child) {
+.open-positions .eq:not(:first-child) {
   border: 1px dashed #d9d9d9;
   border-width: 0 0 0 1px;
 }
-.open-positions .grd-grid-4:nth-child(3n+1) {
+.open-positions .eq:nth-child(3n+1) {
   border-width: 0;
+}
+.open-positions .one-line {
+  margin-bottom: 35px;
 }
 .open-positions .grd-grid-3 {
   text-align: center;
@@ -5189,15 +5192,18 @@ div.kineticjs-content {
   padding-left: 10px;
   padding-right: 10px;
 }
-.open-positions .title-section {
-  height: 2.5em;
+.open-positions .nowrap {
+  white-space: nowrap;
 }
-.open-positions .paragraph-section {
-  height: 10em;
-  overflow: visible;
+.open-positions .eq {
+  padding: 10px;
+  width: 30%;
 }
-.open-positions .top-margin {
-  margin-top: 40px;
+.open-positions .eqWrap {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 
 .job-details .grd-grid-3 .grd-grid-12 {
@@ -5213,24 +5219,27 @@ div.kineticjs-content {
   width: 80%;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 800px) {
+  .open-positions .eq {
+    width: 45%;
+  }
+  .open-positions .eq:nth-child(3n+1) {
+    border-width: 0 0 0 1px;
+  }
+  .open-positions .eq:nth-child(2n+1) {
+    border-width: 0;
+  }
   .open-positions .grd-grid-phablet-6 {
     border-width: 0 !important;
   }
   .open-positions .grd-grid-phablet-6:nth-child(even) {
     border-width: 0 0 0 1px !important;
   }
-  .open-positions .grd-grid-phablet-6.first, .open-positions .top-margin {
-    margin-top: 20px;
-  }
-  .open-positions .grd-grid-phablet-6.first .title-section {
-    height: 1.4em;
-  }
-  .open-positions .paragraph-section {
-    height: 9em;
-  }
 }
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 460px) {
+  .open-positions .eq {
+    width: 100%;
+  }
   .open-positions .grd-grid-mobile-12:not(:first-child) {
     padding-top: 20px;
     margin-top: auto !important;
@@ -5240,15 +5249,6 @@ div.kineticjs-content {
   }
   .open-positions img.responsive {
     width: 40%;
-  }
-  .open-positions .title-section {
-    height: 1em;
-  }
-  .open-positions .paragraph-section {
-    height: auto;
-  }
-  .open-positions .top-margin {
-    margin-top: auto;
   }
 }
 /* static pages */

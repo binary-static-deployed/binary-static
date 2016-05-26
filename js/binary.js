@@ -68436,12 +68436,14 @@ texts_json['ZH_TW'] = {"QBE_INSURANCE_GROUP_LIMITED":"昆士蘭聯保保險有�
  */
 
 function getAppId() {
-  return localStorage.getItem('app_id') ? localStorage.getItem('app_id') :
+  return localStorage.getItem('config.app_id') ? localStorage.getItem('config.app_id') :
                /staging\.binary\.com/i.test(window.location.hostname) ? '1098' : '1';
 }
 
 function getSocketURL() {
-  return localStorage.getItem('server_url') ? 'wss://' + localStorage.getItem('server_url') + '/websockets/v3' : 'wss://ws.binaryws.com/websockets/v3';
+    var server_url = localStorage.getItem('config.server_url');
+    if(!server_url) server_url = (/staging\.binary\.com/i.test(window.location.hostname) ? 'www2' : 'ws') + '.binaryws.com';
+    return 'wss://' + server_url + '/websockets/v3';
 }
 ;/**
  * Synopsis
@@ -69066,7 +69068,7 @@ var User = function() {
     this.email   =  $.cookie('email');
     var loginid_list = $.cookie('loginid_list');
 
-    if(this.loginid === null || typeof this.loginid === "undefined") {
+    if(!this.loginid || !loginid_list) {
         this.is_logged_in = false;
     } else {
         this.is_logged_in = true;
@@ -69216,7 +69218,7 @@ Client.prototype = {
     response_authorize: function(response) {
         page.client.set_storage_value('session_start', parseInt(moment().valueOf() / 1000));
         TUser.set(response.authorize);
-        if(!$.cookie('email')) this.set_cookie('email', response.authorize.email, window.location.host);
+        if(!$.cookie('email')) this.set_cookie('email', response.authorize.email);
         this.set_storage_value('is_virtual', TUser.get().is_virtual);
         this.check_storage_values();
         page.contents.activate_by_client_type();
@@ -69295,7 +69297,7 @@ Client.prototype = {
         // set local storage
         GTM.set_newaccount_flag();
         localStorage.setItem('active_loginid', loginid);
-        window.location.href = page.url.url_for('trading');
+        window.location.href = page.url.default_redirect_url();
     }
 };
 
@@ -69432,7 +69434,7 @@ URL.prototype = {
         return params;
     },
     default_redirect_url: function() {
-        return this.url_for('trading');
+        return this.url_for(page.language() === 'JA' ? 'jptrading' : 'trading');
     },
 };
 
@@ -70654,7 +70656,8 @@ InScriptStore.prototype = {
 var CookieStorage = function (cookie_name, cookie_domain) {
     this.initialized = false;
     this.cookie_name = cookie_name;
-    this.domain = cookie_domain || (/\.github\.io/i.test(window.location.hostname) ? window.location.hostname : '.' + document.domain.split('.').slice(-2).join('.'));
+    var hostname = window.location.hostname;
+    this.domain = cookie_domain || (/\.binary\.com/i.test(hostname) ? '.' + hostname.split('.').slice(-2).join('.') : hostname);
     this.expires = new Date('Thu, 1 Jan 2037 12:00:00 GMT');
     this.value = {};
 };
@@ -71277,16 +71280,18 @@ if (typeof trackJs !== 'undefined') trackJs.configure(window._trackJs);
 ;pjax_config_page("endpoint", function(){
     return {
         onLoad: function() {
+          $('#server_url').val(getSocketURL().split('/')[2]);
+          $('#app_id').val(getAppId());
           $('#new_endpoint').on('click', function () {
             var server_url = $('#server_url').val(),
                 app_id = $('#app_id').val();
-            if (Trim(server_url) !== '') localStorage.setItem('server_url', server_url);
-            if (Trim(app_id) !== '') localStorage.setItem('app_id', app_id);
+            if (Trim(server_url) !== '') localStorage.setItem('config.server_url', server_url);
+            if (Trim(app_id) !== '') localStorage.setItem('config.app_id', app_id);
             window.location.reload();
           });
           $('#reset_endpoint').on('click', function () {
-            localStorage.removeItem('server_url');
-            localStorage.removeItem('app_id');
+            localStorage.removeItem('config.server_url');
+            localStorage.removeItem('config.app_id');
             window.location.reload();
           });
         }
@@ -71449,7 +71454,7 @@ if (typeof trackJs !== 'undefined') trackJs.configure(window._trackJs);
            id: chartOptions.id || chartOptions.value,
            label: {text: chartOptions.label || '', x: chartOptions.text_left ? -15 : 5},
            color: chartOptions.color || '#e98024',
-           zIndex: 4,
+           zIndex: 2,
            width: chartOptions.width || 2,
            dashStyle: chartOptions.dashStyle || 'Solid'
         });
@@ -71473,7 +71478,7 @@ if (typeof trackJs !== 'undefined') trackJs.configure(window._trackJs);
           value: chartOptions.value,
           label: {text: chartOptions.label, align: 'center'},
           color: chartOptions.color || 'green',
-          zIndex: 4,
+          zIndex: 1,
           width: 2,
           dashStyle: chartOptions.dashStyle || 'Solid'
         });
@@ -78408,8 +78413,7 @@ ClientForm.prototype = {
         var redirect_url;
         try {
             var tokens  = storeTokens(),
-                loginid = $.cookie('loginid'),
-                cookie_domain;
+                loginid = $.cookie('loginid');
 
             if(!$.cookie('loginid')) { // redirected to another domain (e.g. github.io) so those cookie are not accessible here
                 var loginids = Object.keys(tokens);
@@ -78418,12 +78422,11 @@ ClientForm.prototype = {
                     loginid_list += (loginid_list ? '+' : '') + id + ':' + (/^V/i.test(id) ? 'V' : 'R') + ':E'; // since there is not any data source to check, so assume all are enabled, disabled accounts will be handled on authorize
                 });
                 loginid = loginids[0];
-                cookie_domain = window.location.hostname;
                 // set cookies
-                page.client.set_cookie('loginid'     , loginid     , cookie_domain);
-                page.client.set_cookie('loginid_list', loginid_list, cookie_domain);
+                page.client.set_cookie('loginid'     , loginid);
+                page.client.set_cookie('loginid_list', loginid_list);
             }
-            page.client.set_cookie('login', tokens[loginid], cookie_domain);
+            page.client.set_cookie('login', tokens[loginid]);
 
             // set flags
             sessionStorage.setItem('check_tnc', '1');
@@ -78457,7 +78460,7 @@ ClientForm.prototype = {
 
     var storeTokens = function() {
         // Parse hash for loginids and tokens returned by OAuth
-        var hash = window.location.hash.substr(1).split('&');
+        var hash = (/acct1/i.test(window.location.hash) ? window.location.hash : window.location.search).substr(1).split('&'); // to maintain compatibility till backend change released
         var tokens = {};
         for(var i = 0; i < hash.length; i += 2) {
             var loginid = getHashValue(hash[i], 'acct');
@@ -79162,7 +79165,7 @@ pjax_config_page_require_auth("settingsws", function() {
     };
 
     var redirectBack = function() {
-        window.location.href = redirectUrl || page.url.url_for('trading');
+        window.location.href = redirectUrl || page.url.default_redirect_url();
     };
 
     var apiResponse = function(response) {
@@ -80010,6 +80013,10 @@ pjax_config_page('/terms-and-conditions', function() {
               window.location.href = page.url.url_for('terms-and-conditions-jp');
             } else if (page.language() === 'EN' && /jp/.test(window.location.pathname)) {
               window.location.href = page.url.url_for('terms-and-conditions');
+            }
+            var selected_tab = page.url.params_hash().selected_tab;
+            if(selected_tab) {
+              $('li#' + selected_tab + ' a').click();
             }
             var year = document.getElementsByClassName('currentYear');
             for (i = 0; i < year.length; i++){
@@ -85879,6 +85886,10 @@ WSTickDisplay.updateChart = function(data, contract) {
 	var trading_page = 0;
 
 	var onLoad = function(){
+        if(page.language() === 'JA' && /\/trading\.html/i.test(window.location.pathname)) {
+            window.location.href = page.url.url_for('jptrading');
+            return;
+        }
 		trading_page = 1;
 		if(sessionStorage.getItem('currencies')){
 			displayCurrencies();
@@ -86116,7 +86127,7 @@ function BinarySocketClass() {
                 } else if (type === 'payout_currencies' && response.echo_req.hasOwnProperty('passthrough') && response.echo_req.passthrough.handler === 'page.client') {
                     page.client.response_payout_currencies(response);
                 } else if (type === 'get_settings') {
-                    if(!$.cookie('residence') && response.get_settings.country_code) page.client.set_cookie('residence', response.get_settings.country_code, window.location.host);
+                    if(!$.cookie('residence') && response.get_settings.country_code) page.client.set_cookie('residence', response.get_settings.country_code);
                     GTM.event_handler(response.get_settings);
                     page.client.set_storage_value('tnc_status', response.get_settings.client_tnc_status || '-');
                     if (!localStorage.getItem('risk_classification')) page.client.check_tnc();
@@ -88898,10 +88909,15 @@ pjax_config_page_require_auth("user/assessmentws", function() {
             browser = "Internet Explorer";
             verOffset = /(msie)/i.test(userAgent) ? userAgent.indexOf("MSIE") : verOffset;
             verOffset = /(trident)/i.test(userAgent) ? userAgent.indexOf("Trident") : verOffset;
-            ver = userAgent.substring(verOffset+13).split(" ")[0].split(":")[1].split(")")[0];
+            if (userAgent.substring(verOffset+13).split(" ")[0].indexOf(':') != -1) {
+              ver = userAgent.substring(verOffset+13).split(" ")[0].split(":")[1].split(")")[0];
+            }
         } else if ((verOffset = userAgent.indexOf("Edge")) != -1) {
             browser = "Edge";
             ver = userAgent.substring(verOffset).split("/")[1].split(" ")[0];
+            if (ver.indexOf(';') != -1) {
+              ver = ver.split(';')[0];
+            }
         } else if ((verOffset = userAgent.indexOf("OPR")) != -1){
             browser = "Opera";
             ver = userAgent.substring(verOffset+4).split(" ")[0];
@@ -89370,7 +89386,8 @@ pjax_config_page_require_auth("user/assessmentws", function() {
     };
 
     var login_url = function() {
-        return 'https://oauth.binary.com/oauth2/authorize?app_id=' + getAppId() + '&l=' + page.language();
+        return localStorage.getItem('config.server_url') && /qa/.test(localStorage.getItem('config.server_url')) ? 'https://www.' + localStorage.getItem('config.server_url').split('.')[1] + '.com/oauth2/authorize?app_id=' + getAppId() + '&l=' + page.language() :
+                                                           'https://oauth.binary.com/oauth2/authorize?app_id=' + getAppId() + '&l=' + page.language();
     };
 
     var is_login_pages = function() {
@@ -89472,7 +89489,28 @@ pjax_config_page_require_auth("user/assessmentws", function() {
     };
 }());
 ;var PaymentAgentTransfer = (function () {
-    var hiddenClass = 'invisible';
+    var hiddenClass = 'invisible',
+        paymentagent;
+
+    function init_variable() {
+      paymentagent = false;
+    }
+
+    function handleResponse(response) {
+      var type = response.msg_type;
+      if (type === 'get_settings') {
+        error_if_not_pa(response);
+      }
+
+      if (type === 'authorize' && paymentagent) {
+          PaymentAgentTransfer.init(true);
+      }
+
+      if (type === 'paymentagent_transfer' && paymentagent){
+          PaymentAgentTransfer.paymentAgentTransferHandler(response);
+      }
+    }
+
     function paymentAgentTransferHandler(response) {
         var req = response.echo_req;
 
@@ -89521,6 +89559,7 @@ pjax_config_page_require_auth("user/assessmentws", function() {
         } else {
             $('#no_balance_error').addClass(hiddenClass);
             $pa_form.removeClass(hiddenClass);
+            $('#paymentagent_transfer_notes').removeClass('invisible');
         }
 
         PaymentAgentTransferUI.updateFormView(currency);
@@ -89605,8 +89644,33 @@ pjax_config_page_require_auth("user/assessmentws", function() {
         });
     }
 
+    function error_if_virtual() {
+      if (page.client.is_virtual()) {
+        $('#virtual_error').removeClass('invisible');
+        return true;
+      }
+      return false;
+    }
+
+    function error_if_not_pa(response) {
+      if (response.get_settings.hasOwnProperty('is_authenticated_payment_agent') && response.get_settings.is_authenticated_payment_agent === 0) {
+        $('#not_pa_error').removeClass('invisible');
+        return;
+      } else if (error_if_virtual()) {
+        return;
+      } else if (response.get_settings.is_authenticated_payment_agent) {
+        $('#paymentagent_transfer').removeClass('invisible');
+        $('#paymentagent_transfer_notes').removeClass('invisible');
+        paymentagent = true;
+        PaymentAgentTransfer.init(true);
+        return;
+      }
+    }
+
     return {
         init: init,
+        init_variable: init_variable,
+        handleResponse: handleResponse,
         paymentAgentTransferHandler: paymentAgentTransferHandler
     };
 }());
@@ -89694,25 +89758,19 @@ pjax_config_page_require_auth("user/assessmentws", function() {
                     var response = JSON.parse(msg.data);
 
                     if (response) {
-                        var type = response.msg_type;
-                        if (type === 'authorize') {
-                            PaymentAgentTransfer.init(true);
-                        }
-
-                        if (type === 'paymentagent_transfer'){
-                            PaymentAgentTransfer.paymentAgentTransferHandler(response);
-                        }
+                        PaymentAgentTransfer.handleResponse(response);
                     }
                 }
             });
             Content.populate();
-
+            PaymentAgentTransfer.init_variable();
             if (TUser.get().email) {
                 PaymentAgentTransfer.init();
             }
         }
     };
-});;
+});
+;
 
 pjax_config_page_require_auth("user/profit_table", function(){
     return {

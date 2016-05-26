@@ -46,7 +46,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <div id="pa_transfer_done" class="invisible">
         <p id="confirm-msg" class="invisible"></p>
         <p>
-            <a class="button" href="/user/statementws">
+            <a class="button" href="/de/user/statementws.html">
                 <span class="button">Ihre Abrechnung ansehen</span>
             </a>
         </p>
@@ -57,7 +57,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <a href="/cashier?l=EN">Einzahlung</a>
     </div>
 
-    <div id="paymentagent_transfer">
+    <div id="virtual_error" class="invisible">
+        <p class="center notice-msg">Diese Funktion ist für virtuelle Geldkonten nicht relevant</p>
+    </div>
+
+    <div id="not_pa_error" class="invisible">
+        <p class="center notice-msg">This feature is only relevant to payment agent accounts.</p>
+    </div>
+
+    <div id="paymentagent_transfer" class="invisible">
         <p>Bitte tragen Sie im nachfolgenden Formular die Login ID und den Betrag ein, den Sie Ihrem Kunden überweisen möchten:</p>
         <table class="kv-pairs">
             <tr>
@@ -103,7 +111,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </div>
 
     <br>
-    <div id="paymentagent_transfer_notes">
+    <div id="paymentagent_transfer_notes" class="invisible">
         <div>Notes:</div>
         <ul>
             <li>Unsere Site berechnet keine Überweisungsgebühren.</li>

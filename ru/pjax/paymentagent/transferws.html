@@ -46,7 +46,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <div id="pa_transfer_done" class="invisible">
         <p id="confirm-msg" class="invisible"></p>
         <p>
-            <a class="button" href="/user/statementws">
+            <a class="button" href="/ru/user/statementws.html">
                 <span class="button">Смотрите свою историю счета</span>
             </a>
         </p>
@@ -57,7 +57,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <a href="/cashier?l=EN">Пополнение</a>
     </div>
 
-    <div id="paymentagent_transfer">
+    <div id="virtual_error" class="invisible">
+        <p class="center notice-msg">Данная функция недоступна на демо-счетах.</p>
+    </div>
+
+    <div id="not_pa_error" class="invisible">
+        <p class="center notice-msg">This feature is only relevant to payment agent accounts.</p>
+    </div>
+
+    <div id="paymentagent_transfer" class="invisible">
         <p>Просим указать логин и сумму, которую Вы желаете перевести Клиенту, в форме ниже:</p>
         <table class="kv-pairs">
             <tr>
@@ -103,7 +111,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </div>
 
     <br>
-    <div id="paymentagent_transfer_notes">
+    <div id="paymentagent_transfer_notes" class="invisible">
         <div>Notes:</div>
         <ul>
             <li>Наш сайт не берёт комиссий за перевод.</li>
