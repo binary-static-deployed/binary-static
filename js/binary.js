@@ -68975,6 +68975,13 @@ var clock_started = false;
 var GTM = (function() {
     "use strict";
 
+    var gtm_applicable = function() {
+      if (getAppId() === '1' && getSocketURL() === 'wss://ws.binaryws.com/websockets/v3') {
+        return true;
+      }
+      return false;
+    };
+
     var gtm_data_layer_info = function(data) {
         var data_layer_info = {
             language  : page.language(),
@@ -68999,6 +69006,7 @@ var GTM = (function() {
     };
 
     var push_data_layer = function(data) {
+        if (!gtm_applicable) return;
         if(!(/logged_inws/i).test(window.location.pathname)) {
             var info = gtm_data_layer_info(data && typeof(data) === 'object' ? data : null);
             dataLayer[0] = info.data;
@@ -69013,6 +69021,7 @@ var GTM = (function() {
     };
 
     var event_handler = function(get_settings) {
+        if (!gtm_applicable) return;
         var is_login      = localStorage.getItem('GTM_login')      === '1',
             is_newaccount = localStorage.getItem('GTM_newaccount') === '1';
         if(!is_login && !is_newaccount) {
@@ -69048,10 +69057,12 @@ var GTM = (function() {
     };
 
     var set_login_flag = function() {
+        if (!gtm_applicable) return;
         localStorage.setItem('GTM_login', '1');
     };
 
     var set_newaccount_flag = function() {
+        if (!gtm_applicable) return;
         localStorage.setItem('GTM_newaccount', '1');
     };
 
@@ -71624,7 +71635,7 @@ if (typeof trackJs !== 'undefined') trackJs.configure(window._trackJs);
       if (!update) {
         init_once();
       }
-      if (!chart && !chart_subscribed) {
+      if (!chart && !history_send) {
         request_data(update || '');
       } else if (entry_tick_time && chart) {
         select_entry_tick_barrier();
@@ -71674,7 +71685,6 @@ if (typeof trackJs !== 'undefined') trackJs.configure(window._trackJs);
     }
 
     if(!is_expired && !sell_spot_time && parseInt(window.time._i)/1000 < end_time && !chart_subscribed) {
-        chart_subscribed = true;
         request.subscribe = 1;
     }
 
@@ -71696,6 +71706,7 @@ if (typeof trackJs !== 'undefined') trackJs.configure(window._trackJs);
       show_error('', text.localize('Waiting for entry tick.'));
     } else if (!history_send){
       history_send = true;
+      if (request.subscribe) chart_subscribed = true;
       socketSend(request);
     }
     return;
@@ -79298,7 +79309,7 @@ pjax_config_page_require_auth("cashier/forwardws", function() {
                     } else {
                       var cashier_type = ForwardWS.getCashierType();
                       if (cashier_type === 'withdraw') {
-                        BinarySocket.send({'verify_email': page.user.email, 'type': 'payment_withdraw'});
+                        BinarySocket.send({'verify_email': TUser.get().email, 'type': 'payment_withdraw'});
                         document.getElementById('deposit-withdraw-message').innerHTML = text.localize('For added security, please check your email to retrieve the verification token.');
                         $('#withdraw-form').show();
                       } else if (cashier_type === 'deposit') {
@@ -87184,7 +87195,7 @@ pjax_config_page("payment_agent_listws", function() {
         $ddlAgents.empty();
         var paList = response.paymentagent_list.list;
         if(paList.length > 0) {
-            BinarySocket.send({verify_email:page.user.email, type:'paymentagent_withdraw'});
+            BinarySocket.send({verify_email: TUser.get().email, type:'paymentagent_withdraw'});
             insertListOption($ddlAgents, text.localize('Please select a payment agent'), '');
             for(var i = 0; i < paList.length; i++){
                 insertListOption($ddlAgents, paList[i].name, paList[i].paymentagent_loginid);
@@ -88579,10 +88590,10 @@ function showPasswordError(password) {
     };
 
     var submitForm = function(){
-        $('#submit').attr('disabled', 'disabled');
         if(!validateForm()){
             return;
         }
+        $('#submit').attr('disabled', 'disabled');
         var data = {'set_financial_assessment' : 1};
         showLoadingImg();
         $('#assessment_form select').each(function(){
@@ -89506,7 +89517,7 @@ pjax_config_page_require_auth("user/assessmentws", function() {
           PaymentAgentTransfer.init(true);
       }
 
-      if (type === 'paymentagent_transfer' && paymentagent){
+      if (type === 'paymentagent_transfer'){
           PaymentAgentTransfer.paymentAgentTransferHandler(response);
       }
     }
@@ -91556,7 +91567,7 @@ var ProfitTableUI = (function(){
             user_sold  = contract.sell_spot_time && contract.sell_spot_time < contract.date_expiry,
             is_ended   = contract.is_expired || contract.is_sold || user_sold;
 
-        if(contract.high_barrier) {
+        if(contract.barrier_count > 1) {
             containerSetText('trade_details_barrier'    , contract.high_barrier , '', true);
             containerSetText('trade_details_barrier_low', contract.low_barrier  , '', true);
         } else if(contract.barrier) {
@@ -91668,8 +91679,8 @@ var ProfitTableUI = (function(){
                     normalRow('End Time',       '', 'trade_details_end_date') +
                     normalRow('Remaining Time', '', 'trade_details_live_remaining') +
                     normalRow('Entry Spot',     '', 'trade_details_entry_spot') +
-                    normalRow(contract.high_barrier ? 'High Barrier' : 'Barrier', '', 'trade_details_barrier'    , true) +
-                    (contract.low_barrier ? normalRow('Low Barrier',              '', 'trade_details_barrier_low', true) : '') +
+                    normalRow(contract.barrier_count > 1 ? 'High Barrier' : 'Barrier', '', 'trade_details_barrier'    , true) +
+                    (contract.barrier_count > 1 ? normalRow('Low Barrier',             '', 'trade_details_barrier_low', true) : '') +
                     normalRow('Purchase Price', '', 'trade_details_purchase_price') +
                 '<tr><th colspan="2" id="trade_details_current_title">' + text.localize('Current') + '</th></tr>' +
                     normalRow('Spot',           'trade_details_spot_label'    , 'trade_details_current_spot') +
