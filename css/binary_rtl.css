@@ -5523,9 +5523,12 @@ div.kineticjs-content {
 }
 #trading_socket_container #contract_prices_container .price_container .contract_purchase {
   margin-bottom: 6px;
+  width: 90%;
+  display: inline-flex;
 }
 #trading_socket_container #contract_prices_container .price_container .contract_purchase .purchase_button {
   cursor: pointer;
+  width: 100%;
 }
 #trading_socket_container #contract_form_content {
   padding: 0 10px;
@@ -5680,19 +5683,23 @@ div.kineticjs-content {
 #trading_socket_container #contract_prices_container .contract_error {
   background-color: #fef1cf;
 }
-#trading_socket_container #contract_prices_container .contract_amount, #trading_socket_container #contract_prices_container .contract_description {
-  padding: 10px 5px 10px 10px;
+#trading_socket_container #contract_prices_container .contract_amount, #trading_socket_container #contract_prices_container .contract_payout, #trading_socket_container #contract_prices_container .payout, #trading_socket_container #contract_prices_container .stake {
+  padding: 3px;
   line-height: 1.5;
   font-size: 90%;
   flex: 1 0 auto;
   display: flex;
   align-items: center;
-  justify-content: center;
 }
-#trading_socket_container #contract_prices_container .contract_amount {
+#trading_socket_container #contract_prices_container .stake, #trading_socket_container #contract_prices_container .payout {
+  padding: 0;
+  justify-content: flex-end;
+}
+#trading_socket_container #contract_prices_container .contract_amount, #trading_socket_container #contract_prices_container .contract_payout {
   font-weight: bold;
   font-size: 1.1rem;
   border-radius: 5px;
+  justify-content: center;
 }
 #trading_socket_container #expiry_type_duration {
   flex-wrap: wrap;
@@ -5724,7 +5731,9 @@ div.kineticjs-content {
 #trading_socket_container #contract_prices_container .price_container .price_wrapper {
   text-align: center;
   align-items: center;
-  width: 230px;
+  width: 100%;
+  justify-content: flex-start;
+  padding-left: 30px;
 }
 #trading_socket_container #contract_prices_container .price_container .price_wrapper.small {
   width: 95px;
@@ -5740,9 +5749,25 @@ div.kineticjs-content {
 }
 #trading_socket_container #contract_prices_container .price_container .price_wrapper .amount_wrapper {
   float: left;
+  width: 100%;
 }
-#trading_socket_container #contract_prices_container .price_container .price_wrapper .contract_amount {
+#trading_socket_container #contract_prices_container .price_container .price_wrapper .amount_wrapper .amount_wrapper_div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   margin-bottom: 10px;
+}
+#trading_socket_container #contract_prices_container .price_container .price_wrapper .amount_wrapper .amount_wrapper_div div {
+  flex-grow: 1;
+}
+#trading_socket_container #contract_prices_container .price_container .price_wrapper .amount_wrapper .amount_wrapper_div .stake_wrapper {
+  margin-left: 20px;
+}
+#trading_socket_container #contract_prices_container .price_container .price_wrapper .amount_wrapper .amount_wrapper_div .payout_wrapper {
+  margin-right: 20px;
+}
+#trading_socket_container #contract_prices_container .price_container .price_wrapper .contract_amount, #trading_socket_container #contract_prices_container .price_container .price_wrapper .contract_payout, #trading_socket_container #contract_prices_container .price_container .price_wrapper .stake, #trading_socket_container #contract_prices_container .price_container .price_wrapper .payout {
+  display: inline-flex;
 }
 #trading_socket_container #period_row, #trading_socket_container #jbarrier_row, #trading_socket_container #jhigh_barrier_row, #trading_socket_container #jlow_barrier_row {
   display: none;
@@ -5997,6 +6022,9 @@ div.kineticjs-content {
   #trading_socket_container #contract_form_content #duration_amount {
     margin-bottom: 5px;
   }
+  #trading_socket_container .contract_purchase {
+    width: 70% !important;
+  }
 }
 @media all and (max-width: 640px) {
   #trading_socket_container #contract_market_form_container {
@@ -6038,6 +6066,9 @@ div.kineticjs-content {
   }
   #trading_socket_container #contract_prices_container .price_wrapper.small {
     width: auto;
+  }
+  #trading_socket_container #contract_prices_container .price_wrapper .amount_wrapper {
+    width: 70%;
   }
   #trading_socket_container #contract_prices_container .row {
     flex-direction: column;
