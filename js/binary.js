@@ -68801,6 +68801,7 @@ SubMarket.prototype = {
 
     var that = {
         init: function (_menu_containers) {
+            if (/trading/.test(window.location.pathname)) return;
             _menu_containers.filter(':not(.follow-default)').delegate('.tm-a,.tm-a-2', 'click', function (event) {
                 event.preventDefault();
 
@@ -71570,7 +71571,7 @@ if (typeof trackJs !== 'undefined') trackJs.configure(window._trackJs);
                   show_error('missing');
                   return;
                 }
-                for (i = 0; i < response.candles.length; i++) {
+                for (i = 1; i < response.candles.length; i++) {
                     if (entry_tick_time && response.candles[i] && parseInt(response.candles[i].epoch) <= parseInt(entry_tick_time) && response.candles[i+1].epoch > parseInt(entry_tick_time)) {
                         // set the chart to display from the candle before entry_tick_time
                         min_point = parseInt(response.candles[i-1].epoch);
@@ -81182,49 +81183,13 @@ var TradingAnalysis = (function() {
         if (formName === 'matchdiff') {
           formName = 'digits';
         }
-        contentId.innerHTML =
-          '<div class="content-tab-container page-section">' +
-            '<div class="tab-menu">' +
-              '<div class="tab-menu-wrap grd-container">' +
-                '<ul id="betsBottomPage" class="tm-ul">' +
-                  '<li id="tab_portfolio" class="tm-li invisible first">' +
-                    '<a href="#tab_portfolio" class="tm-a first">' + text.localize('Portfolio') + '</a>' +
-                  '</li>' +
-                  '<li id="tab_graph" class="tm-li first">' +
-                    '<a href="#tab_graph" class="tm-a first">' + text.localize('Chart') + '</a>' +
-                  '</li>' +
-                  '<li id="tab_explanation" class="tm-li active">' +
-                    '<a href="' + page.url.url_for('trade/bet_explanation', 'underlying_symbol=' + $('#underlying').val() +
-                    '&form_name=' + formName) +
-                    '" class="tm-a">' + text.localize('Explanation') + '</a>' +
-                  '</li>' +
-                  '<li id="tab_last_digit" class="invisible tm-li">' +
-                    '<a href="#" class="tm-a">' +
-                    text.localize('Last Digit Stats') + '</a>' +
-                  '</li>' +
-                  '<li id="tab_japan_info" class="invisible tm-li last">' +
-                    '<a href="#" class="tm-a">' + text.localize('Prices') + '</a>' +
-                  '</li>' +
-                '</ul>' +
-              '</div>' +
-            '</div>' +
-            '<div class="tab-content grd-container">' +
-              '<div class="tab-content-wrapper" id="bet_bottom_content">' +
-                '<div id="tab_portfolio-content" class="toggle-content invisible "></div>' +
-                '<div id="tab_graph-content" class="toggle-content invisible">' +
-                  '<div id="trade_live_chart"></div>' +
-                '</div>' +
-                '<div id="tab_explanation-content" class="toggle-content selectedTab"></div>' +
-                '<div id="tab_last_digit-content" class="toggle-content invisible "></div>' +
-                '<div id="tab_japan_info-content" class="toggle-content invisible "></div>' +
-              '</div>' +
-            '</div>' +
-          '</div>';
+        $('#tab_explanation a').attr('href',  page.url.url_for('trade/bet_explanation', 'underlying_symbol=' + $('#underlying').val() + '&form_name=' + formName));
         if (formName === 'digits' || formName === 'overunder' || formName === 'evenodd') {
             $('#tab_last_digit').removeClass("invisible");
+        } else {
+          $('#tab_last_digit').addClass("invisible");
         }
         sessionStorage.setItem('currentAnalysisTab', getActiveTab());
-        bindAnalysisTabEvent();
         loadAnalysisTab();
     };
 
@@ -81440,7 +81405,8 @@ var TradingAnalysis = (function() {
         tab_portfolio: function() {
             return tab_portfolio;
         },
-        getActiveTab: getActiveTab
+        getActiveTab: getActiveTab,
+        bindAnalysisTabEvent: bindAnalysisTabEvent
     };
 
 })();
@@ -82755,41 +82721,28 @@ function addComma(num){
 function showHighchart(){
   Content.populate();
 
-  // avoid rendering again if it already exists
-  if(document.getElementById('trade_live_chart').hasChildNodes()) {
-    return;
-  }
-  var div = document.createElement('div');
-  div.className = 'grd-grid-12 chart_div';
   if (window.chartAllowed) {
-    div.innerHTML = '<table width="600px" align="center"><tr id="highchart_duration"><td width="25%">' +
-                    Content.localize().textDuration + ':</td><td width="25%"><select id="time_period"><option value="1t" selected="selected">1 ' +
-                    Content.localize().textTickResultLabel.toLowerCase() + '</option><option value="1m">1 ' + text.localize("minute").toLowerCase() +
-                    '</option><option value="2m">2 ' + Content.localize().textDurationMinutes.toLowerCase() + '</option><option value="3m">3 ' +
-                    Content.localize().textDurationMinutes.toLowerCase() +'</option><option value="5m">5 ' + Content.localize().textDurationMinutes.toLowerCase() +
-                    '</option><option value="10m">10 ' + Content.localize().textDurationMinutes.toLowerCase() + '</option><option value="15m">15 ' +
-                    Content.localize().textDurationMinutes.toLowerCase() +'</option><option value="30m">30 ' + Content.localize().textDurationMinutes.toLowerCase() +
-                    '</option><option value="1h">1 ' + text.localize('hour').toLowerCase() + '</option><option value="2h">2 ' +
-                    Content.localize().textDurationHours.toLowerCase() +'</option><option value="4h">4 ' + Content.localize().textDurationHours.toLowerCase() +
-                    '</option><option value="8h">8 ' + Content.localize().textDurationHours.toLowerCase() + '</option><option value="1d">1 ' +
-                    text.localize('day').toLowerCase() +'</option></select></td></td></tr><tr align="center"><td colspan="4">' +
-                    '<iframe src="" width="100%" height="630" id="chart_frame" style="overflow-y : hidden;" scrolling="no"></iframe></td></tr></table>';
-    document.getElementById('trade_live_chart').appendChild(div);
-    document.getElementById('time_period').addEventListener("change", function() {
-      chartFrameSource();
-    });
     chartFrameSource();
   } else {
-    div.innerHTML = '<p class="error-msg">' + text.localize('Chart is not available for this underlying.') + '</p>';
-    document.getElementById('trade_live_chart').appendChild(div);
+    document.getElementById('chart_frame').src = '';
+    $('#trade_live_chart').hide();
+    $('#chart-error').text(text.localize('Chart is not available for this underlying.'))
+                     .show();
     return;
   }
 }
 
 function chartFrameSource() {
-  if ($('#tab_graph').hasClass('active')) {
-      document.getElementById('chart_frame').src = 'https://webtrader.binary.com?affiliates=true&instrument=' + document.getElementById('underlying').value + '&timePeriod=' + document.getElementById('time_period').value + '&gtm=true';
+  if ($('#tab_graph').hasClass('active') && (sessionStorage.getItem('old_underlying') !== sessionStorage.getItem('underlying') || $('#chart_frame').attr('src') === '')) {
+      setChartSource();
+      sessionStorage.setItem('old_underlying', document.getElementById('underlying').value);
   }
+  $('#chart-error').hide();
+  $('#trade_live_chart').show();
+}
+
+function setChartSource() {
+  document.getElementById('chart_frame').src = 'https://webtrader.binary.com?affiliates=true&instrument=' + document.getElementById('underlying').value + '&timePeriod=' + document.getElementById('time_period').value + '&gtm=true';
 }
 
 function isJapanTrading(){
@@ -83957,6 +83910,7 @@ var TradingEvents = (function () {
             Defaults.remove('formname');
             Defaults.remove('underlying');
             processMarket(1);
+            chartFrameSource();
         };
 
         if (marketNavElement) {
@@ -84005,6 +83959,7 @@ var TradingEvents = (function () {
         if (underlyingElement) {
             underlyingElement.addEventListener('change', function(e) {
                 if (e.target) {
+                    chartFrameSource();
                     showFormOverlay();
                     showPriceOverlay();
                     if(e.target.selectedIndex < 0) {
@@ -84026,7 +83981,6 @@ var TradingEvents = (function () {
                     // get ticks for current underlying
                     Tick.request(underlying);
                     displayTooltip(Defaults.get('market'), underlying);
-                    chartFrameSource();
                 }
             });
             if (isJapanTrading()) {
@@ -85893,67 +85847,96 @@ WSTickDisplay.updateChart = function(data, contract) {
     }
 };
 ;var TradePage = (function(){
-	
-	var trading_page = 0;
 
-	var onLoad = function(){
-        if(page.language() === 'JA' && /\/trading\.html/i.test(window.location.pathname)) {
-            window.location.href = page.url.url_for('jptrading');
-            return;
-        }
-		trading_page = 1;
-		if(sessionStorage.getItem('currencies')){
-			displayCurrencies();
-		}		
-		BinarySocket.init({
-			onmessage: function(msg){
-				Message.process(msg);
-			},
-			onclose: function(){
-				processMarketUnderlying();
-			}
-		});
-		Price.clearFormId();
-		TradingEvents.init();
-		Content.populate();
-		
-		if(sessionStorage.getItem('currencies')){
-			displayCurrencies();
-			Symbols.getSymbols(1);
-		}
-		else {
-			BinarySocket.send({ payout_currencies: 1 });
-		}
-		
-		if (document.getElementById('websocket_form')) {
-		    addEventListenerForm();
-		}
+  var trading_page = 0;
 
-		// Walktrough Guide
-		Guide.init({
-			script : 'trading'
-		});
-	};
+  var onLoad = function(){
+    if(page.language() === 'JA' && /\/trading\.html/i.test(window.location.pathname)) {
+        window.location.href = page.url.url_for('jptrading');
+        return;
+    }
+    trading_page = 1;
+    if(sessionStorage.getItem('currencies')){
+      displayCurrencies();
+    }
+    BinarySocket.init({
+      onmessage: function(msg){
+        Message.process(msg);
+      },
+      onclose: function(){
+        processMarketUnderlying();
+      }
+    });
+    Price.clearFormId();
+    TradingEvents.init();
+    Content.populate();
 
-	var reload = function() {
-		sessionStorage.removeItem('underlying');
-		window.location.reload();
-	};
+    if(sessionStorage.getItem('currencies')){
+      displayCurrencies();
+      Symbols.getSymbols(1);
+    }
+    else {
+      BinarySocket.send({ payout_currencies: 1 });
+    }
 
-	var onUnload = function(){
-		trading_page = 0;
-		forgetTradingStreams();
-		BinarySocket.clear();
-		Defaults.clear();
-	};
+    if (document.getElementById('websocket_form')) {
+        addEventListenerForm();
+    }
 
-	return {
-		onLoad: onLoad,
-		reload: reload,
-		onUnload : onUnload,
-		is_trading_page: function(){return trading_page;}
-	};
-})();;var TUser = (function () {
+    // Walktrough Guide
+    Guide.init({
+      script : 'trading'
+    });
+    TradingAnalysis.bindAnalysisTabEvent();
+    $('#tab_portfolio a').text(text.localize('Portfolio'));
+    $('#tab_graph a').text(text.localize('Chart'));
+    $('#tab_explanation a').text(text.localize('Explanation'));
+    $('#tab_last_digit a').text(text.localize('Last Digit Stats'));
+    $('#tab_japan_info a').text(text.localize('Prices'));
+    handleChart();
+  };
+
+  var handleChart = function() {
+    $('#time_duration').text(Content.localize().textDuration + ':');
+    $('#time_period option[value="1t"]').text('1 ' + Content.localize().textTickResultLabel.toLowerCase());
+    $('#time_period option[value="1m"]').text('1 ' + text.localize("minute").toLowerCase());
+    $('#time_period option[value="2m"]').text('2 ' + Content.localize().textDurationMinutes.toLowerCase());
+    $('#time_period option[value="3m"]').text('3 ' + Content.localize().textDurationMinutes.toLowerCase());
+    $('#time_period option[value="5m"]').text('5 ' + Content.localize().textDurationMinutes.toLowerCase());
+    $('#time_period option[value="10m"]').text('10 ' + Content.localize().textDurationMinutes.toLowerCase());
+    $('#time_period option[value="15m"]').text('15 ' + Content.localize().textDurationMinutes.toLowerCase());
+    $('#time_period option[value="30m"]').text('30 ' + Content.localize().textDurationMinutes.toLowerCase());
+    $('#time_period option[value="1h"]').text('1 ' + text.localize('hour').toLowerCase());
+    $('#time_period option[value="2h"]').text('2 ' + Content.localize().textDurationHours.toLowerCase());
+    $('#time_period option[value="4h"]').text('4 ' + Content.localize().textDurationHours.toLowerCase());
+    $('#time_period option[value="8h"]').text('8 ' + Content.localize().textDurationHours.toLowerCase());
+    $('#time_period option[value="1d"]').text('1 ' + text.localize('day').toLowerCase());
+
+    document.getElementById('time_period').addEventListener("change", function() {
+      setChartSource();
+    });
+  };
+
+  var reload = function() {
+    sessionStorage.removeItem('underlying');
+    window.location.reload();
+  };
+
+  var onUnload = function(){
+    trading_page = 0;
+    forgetTradingStreams();
+    BinarySocket.clear();
+    Defaults.clear();
+  };
+
+  return {
+    onLoad: onLoad,
+    reload: reload,
+    onUnload : onUnload,
+    is_trading_page: function(){return trading_page;}
+  };
+})();
+;var TUser = (function () {
     var data = {};
     return {
         set: function(a){ data = a; },
@@ -91329,6 +91312,8 @@ var ProfitTableUI = (function(){
         tickForgotten,
         candleForgotten,
         candleForgottenSent,
+        corporateActionEvent,
+        corporateActionSent,
         chartUpdated;
     var $Container,
         $loading,
@@ -91339,24 +91324,26 @@ var ProfitTableUI = (function(){
         hiddenClass;
 
     var init = function(button) {
-        btnView             = button;
-        contractID          = $(btnView).attr('contract_id');
-        contractType        = '';
-        contract            = {};
-        history             = {};
-        proposal            = {};
-        isSold              = false;
-        isSellClicked       = false;
-        chartStarted        = false;
-        tickForgotten       = false;
-        candleForgotten     = false;
-        candleForgottenSent = false;
-        chartUpdated        = false;
-        $Container          = '';
-        popupboxID          = 'inpage_popup_content_box';
-        wrapperID           = 'sell_content_wrapper';
-        winStatusID         = 'contract_win_status';
-        hiddenClass         = 'hidden';
+        btnView              = button;
+        contractID           = $(btnView).attr('contract_id');
+        contractType         = '';
+        contract             = {};
+        history              = {};
+        proposal             = {};
+        isSold               = false;
+        isSellClicked        = false;
+        chartStarted         = false;
+        tickForgotten        = false;
+        candleForgotten      = false;
+        candleForgottenSent  = false;
+        chartUpdated         = false;
+        corporateActionEvent = false;
+        corporateActionSent  = false;
+        $Container           = '';
+        popupboxID           = 'inpage_popup_content_box';
+        wrapperID            = 'sell_content_wrapper';
+        winStatusID          = 'contract_win_status';
+        hiddenClass          = 'hidden';
 
         if (btnView) {
             ViewPopupUI.disable_button($(btnView));
@@ -91386,6 +91373,12 @@ var ProfitTableUI = (function(){
             if (!document.getElementById(wrapperID)) return;
             ViewPopupWS[contractType + 'Update']();
             return;
+        }
+
+        // ----- Corporate Action -----
+        if (contract.has_corporate_actions && !corporateActionSent) {
+            corporateActionSent = true;
+            getCorporateActions();
         }
 
         // ----- Tick -----
@@ -91589,11 +91582,11 @@ var ProfitTableUI = (function(){
             containerSetText('trade_details_entry_spot', '-');
             containerSetText('trade_details_message'   , text.localize('Contract is not started yet'));
         }
-        else{
+        else {
             if(contract.entry_spot > 0) {
                 containerSetText('trade_details_entry_spot', contract.entry_spot);
             }
-            containerSetText('trade_details_message', contract.validation_error || '&nbsp;');
+            containerSetText('trade_details_message', contract.validation_error ? contract.validation_error : corporateActionEvent ? '* ' + text.localize('This contract was affected by a Corporate Action event.') : '&nbsp;');
         }
 
         if(!chartStarted) {
@@ -91665,14 +91658,73 @@ var ProfitTableUI = (function(){
         // showWinLossStatus(is_win);
     };
 
+    var addColorAndClass = function($tabToShow, $tabToHide, $contentToShow, $contentToHide) {
+      $tabToShow.attr('style', 'background: #f2f2f2;');
+      $tabToHide.attr('style', 'background: #c2c2c2;');
+      $contentToHide.addClass('invisible');
+      $contentToShow.removeClass('invisible');
+    };
+
+    var showCorporateAction = function() {
+      var $contractInformationTab = $('#contract_information_tab'),
+          $contractInformationContent = $('#contract_information_content');
+
+      $contractInformationTab.removeAttr('colspan');
+      $('#contract_tabs').append('<th id="corporate_action_tab">' + text.localize('Corporate Action') + '</th>');
+
+      var $corporateActionTab = $('#corporate_action_tab'),
+          $corporateActionContent = $('#corporate_action_content');
+      var $barrierChange = $('#barrier_change'),
+          $barrierChangeContent = $('#barrier_change_content');
+
+      $corporateActionTab.attr('style', 'background: #c2c2c2;');
+      $('#sell_details_table').draggable({disabled:true});
+
+      $corporateActionTab.on('click', function() {
+        addColorAndClass($corporateActionTab, $contractInformationTab, $corporateActionContent, $contractInformationContent);
+        $barrierChange.removeClass('invisible');
+        $barrierChangeContent.removeClass('invisible');
+      });
+      $contractInformationTab.on('click', function() {
+        $barrierChange.addClass('invisible');
+        $barrierChangeContent.addClass('invisible');
+        addColorAndClass($contractInformationTab, $corporateActionTab, $contractInformationContent, $corporateActionContent);
+      });
+    };
+
+    var populateCorporateAction = function(corporateAction) {
+      for (var i = 0; i < corporateAction.get_corporate_actions.actions.length; i++) {
+        $('#corporate_action_content').append(
+          normalRow(corporateAction.get_corporate_actions.actions[i].display_date, '', '', '', corporateAction.get_corporate_actions.actions[i].type + ' (' + corporateAction.get_corporate_actions.actions[i].value + '-' + text.localize('for') + '-1)')
+        );
+      }
+      var originalBarriers, adjustedBarriers;
+      if (contract.original_barrier) {
+        originalBarriers = normalRow(text.localize('Original Barrier'), '', '', '', contract.original_barrier);
+      } else if (contract.original_high_barrier) {
+        originalBarriers = normalRow(text.localize('Original High Barrier'), '', '', '', contract.original_high_barrier) +
+                           normalRow(text.localize('Original Low Barrier'), '', '', '', contract.original_low_barrier);
+      }
+      if (contract.barrier) {
+        adjustedBarriers = normalRow(text.localize('Adjusted Barrier'), '', '', '', contract.barrier);
+      } else if (contract.high_barrier) {
+        adjustedBarriers = normalRow(text.localize('Adjusted High Barrier'), '', '', '', contract.high_barrier) +
+                           normalRow(text.localize('Adjusted Low Barrier'), '', '', '', contract.low_barrier);
+      }
+      $('#barrier_change_content').append(
+        originalBarriers +
+        adjustedBarriers
+      );
+    };
+
     var normalMakeTemplate = function() {
         $Container = $('<div/>').append($('<div/>', {id: wrapperID}));
         $Container.prepend($('<div/>', {id: 'sell_bet_desc', class: 'popup_bet_desc drag-handle', text: contract.longcode}));
-        var $sections = $('<div/>').append($('<div id="sell_details_chart_wrapper" class="grd-grid-8 grd-grid-mobile-12"></div><div id="sell_details_table" class="grd-grid-4 grd-grid-mobile-12 drag-handle"></div>'));
+        var $sections = $('<div/>').append($('<div id="sell_details_chart_wrapper" class="grd-grid-8 grd-grid-mobile-12"></div><div id="sell_details_table" class="grd-grid-4 grd-grid-mobile-12"></div>'));
 
         $sections.find('#sell_details_table').append($(
             '<table>' +
-                '<tr><th colspan="2">' + text.localize('Contract Information') + '</th></tr>' +
+                '<tr id="contract_tabs"><th colspan="2" id="contract_information_tab">' + text.localize('Contract Information') + '</th></tr><tbody id="contract_information_content">' +
                     normalRow('Contract ID',    '', 'trade_details_contract_id') +
                     normalRow('Reference ID',   '', 'trade_details_ref_id') +
                     normalRow('Start Time',     '', 'trade_details_start_date') +
@@ -91682,6 +91734,9 @@ var ProfitTableUI = (function(){
                     normalRow(contract.barrier_count > 1 ? 'High Barrier' : 'Barrier', '', 'trade_details_barrier'    , true) +
                     (contract.barrier_count > 1 ? normalRow('Low Barrier',             '', 'trade_details_barrier_low', true) : '') +
                     normalRow('Purchase Price', '', 'trade_details_purchase_price') +
+                '</tbody><tbody id="corporate_action_content" class="invisible"></tbody>' +
+                '<th colspan="2" id="barrier_change" class="invisible">' + text.localize('Barrier Change') + '</th>' +
+                '<tbody id="barrier_change_content" class="invisible"></tbody>' +
                 '<tr><th colspan="2" id="trade_details_current_title">' + text.localize('Current') + '</th></tr>' +
                     normalRow('Spot',           'trade_details_spot_label'    , 'trade_details_current_spot') +
                     normalRow('Spot Time',      'trade_details_spottime_label', 'trade_details_current_date') +
@@ -91702,13 +91757,12 @@ var ProfitTableUI = (function(){
             .append($sections.html())
             .append($('<div/>', {id: 'errMsg', class: 'notice-msg ' + hiddenClass}));
 
-        ViewPopupUI.show_inpage_popup('<div class="' + popupboxID + '">' + $Container.html() + '</div>', '', '#sell_bet_desc, #sell_details_table');
-
+        ViewPopupUI.show_inpage_popup('<div class="' + popupboxID + '">' + $Container.html() + '</div>', '', '#sell_bet_desc');
         return $('#' + wrapperID);
     };
 
-    var normalRow = function(label, label_id, value_id, isHidden) {
-        return '<tr' + (isHidden ? ' class="' + hiddenClass + '"' : '') + '><td' + (label_id ? ' id="' + label_id + '"' : '') + '>' + text.localize(label) + '</td><td' + (value_id ? ' id="' + value_id + '"' : '') + '></td></tr>';
+    var normalRow = function(label, label_id, value_id, isHidden, value) {
+        return '<tr' + (isHidden ? ' class="' + hiddenClass + '"' : '') + '><td' + (label_id ? ' id="' + label_id + '"' : '') + '>' + text.localize(label) + '</td><td' + (value_id ? ' id="' + value_id + '"' : '') + '>' + (value ? value : '') + '</td></tr>';
     };
 
     var normalSetVisibleRow = function(child_id, isVisible) {
@@ -91770,7 +91824,7 @@ var ProfitTableUI = (function(){
             $('<div/>', {id: wrapperID})
                 .append($('<div/>', {class: msgClass, html: text.localize(message)}))
         );
-        ViewPopupUI.show_inpage_popup('<div class="' + popupboxID + '">' + $con.html() + '</div>', 'message_popup', '#sell_bet_desc, #sell_content_wrapper');
+        ViewPopupUI.show_inpage_popup('<div class="' + popupboxID + '">' + $con.html() + '</div>', 'message_popup', '#sell_bet_desc');
     };
 
     var showErrorPopup = function(response, message) {
@@ -91828,6 +91882,17 @@ var ProfitTableUI = (function(){
             if (option === 'no-subscribe') delete req.subscribe;
             socketSend(req);
         }
+    };
+
+    // ----- Corporate Action -----
+    var getCorporateActions = function() {
+      var end_time = (window.time._i/1000).toFixed(0) < contract.date_expiry ? (window.time._i/1000).toFixed(0) : contract.date_expiry;
+      socketSend({
+        "get_corporate_actions": "1",
+        "symbol": contract.underlying,
+        "start": contract.date_start,
+        "end": end_time
+      });
     };
 
     // ----- Sell Expired -----
@@ -91991,6 +92056,14 @@ var ProfitTableUI = (function(){
                       if (contract.entry_tick_time) {
                         chartStarted = true;
                       }
+                    }
+                    break;
+                case 'get_corporate_actions':
+                    if (Object.keys(response.get_corporate_actions).length > 0) {
+                      corporateActionEvent = true;
+                      containerSetText('trade_details_message', contract.validation_error ? contract.validation_error : corporateActionEvent ? '* ' + text.localize('This contract was affected by a Corporate Action event.') : '&nbsp;');
+                      populateCorporateAction(response);
+                      showCorporateAction();
                     }
                     break;
                 default:

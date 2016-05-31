@@ -2876,6 +2876,7 @@ a.close:hover {
 .inpage_popup_container_ws .inpage_popup_content_box #sell_details_table th {
   line-height: 24px;
   border-bottom-color: #c2c2c2;
+  cursor: pointer;
 }
 .inpage_popup_container_ws .inpage_popup_content_box #sell_details_table td {
   border-bottom-width: 1px;
