@@ -82608,14 +82608,19 @@ function displayTooltip(market, symbol){
     'use strict';
     var tip = document.getElementById('symbol_tip'),
         guide = document.getElementById('guideBtn'),
-        app = document.getElementById('androidApp');
+        app = document.getElementById('androidApp'),
+        appstore = document.getElementById('appstore');
     if (market.match(/^volidx/) || symbol.match(/^R/) || market.match(/^random_index/) || market.match(/^random_daily/)){
+        if (guide) guide.hide();
         tip.show();
         tip.setAttribute('target', page.url.url_for('/get-started/volidx-markets'));
         app.show();
+        appstore.show();
     } else {
       app.hide();
+      appstore.hide();
       tip.hide();
+      if (guide) guide.show();
     }
     if (market.match(/^otc_index/) || symbol.match(/^OTC_/) || market.match(/otc_stock/) || markets.by_symbol(symbol).submarket.name.match(/otc_stock/)){
         tip.show();
@@ -84516,18 +84521,10 @@ var Price = (function() {
         form_id = 0;
 
     var createProposal = function(typeOfContract) {
-        var proposal;
-        if (page.user.is_logged_in) {
-          proposal = {
-            proposal: 1,
-            subscribe: 1
-          };
-        } else {
-          proposal = {
-            price_stream: 1,
-            subscribe: 1
-          };
-        }
+        var proposal = {
+          proposal: 1,
+          subscribe: 1
+        };
         var underlying = document.getElementById('underlying'),
             submarket = document.getElementById('submarket'),
             contractType = typeOfContract,
@@ -84717,13 +84714,14 @@ var Price = (function() {
                     }
                 }
 
-                extraInfo['longcode'] = extraInfo['longcode'].replace(/[\d\,]+\.\d\d/, function(x) {
-                    return '<b>' + x + '</b>';
-                });
-
-                description.setAttribute('title', extraInfo['longcode']);
-            } else {
-                description.setAttribute('title', extraInfo['longcode']);
+                if (extraInfo['longcode'] && window.innerWidth > 500) {
+                  extraInfo['longcode'] = extraInfo['longcode'].replace(/[\d\,]+\.\d\d/, function(x) {
+                      return '<b>' + x + '</b>';
+                  });
+                  description.setAttribute('title', extraInfo['longcode']);
+                } else {
+                  description.removeAttribute('title');
+                }
             }
 
             error.show();
@@ -84748,12 +84746,13 @@ var Price = (function() {
                 }
             }
 
-            if (proposal && proposal['longcode']) {
+            if (proposal && proposal['longcode'] && window.innerWidth > 500) {
                 proposal['longcode'] = proposal['longcode'].replace(/[\d\,]+\.\d\d/, function(x) {
                     return '<b>' + x + '</b>';
                 });
-                description.removeAttribute('title');
                 description.setAttribute('title', proposal['longcode']);
+            } else {
+              description.removeAttribute('title');
             }
 
             purchase.show();

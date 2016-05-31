@@ -5219,24 +5219,37 @@ div.kineticjs-content {
   float: left;
 }
 
-#androidApp {
+#app-container {
+  text-align: center;
+}
+
+#androidApp, #appstore {
   width: 100px;
   height: 30px;
   display: inline-block;
-  background: url("../images/pages/trade/google-play-badge.png") no-repeat;
-  background-size: 100px 30px;
   position: relative;
 }
 
+#appstore {
+  background: url("../images/pages/applications/appstore.svg") 0 0/100px 30px no-repeat;
+  margin-left: 10px;
+}
+
+#androidApp {
+  background: url("../images/pages/trade/google-play-badge.png") 0 0/100px 30px no-repeat;
+}
+
 /* trading page */
-#trading_socket_container #androidApp {
+#trading_socket_container #androidApp, #trading_socket_container #appstore {
   float: left;
 }
 @media (max-width: 768px) {
   #trading_socket_container #androidApp {
+    margin-left: 10px;
+  }
+  #trading_socket_container #appstore, #trading_socket_container #androidApp {
     margin: 0 auto;
     padding-bottom: 10px;
-    display: block;
     float: none;
   }
 }
