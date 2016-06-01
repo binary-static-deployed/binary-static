@@ -44,6 +44,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <thead>
           <tr class="flex-tr">
             <th class="ref flex-tr-child">参照番号</th>
+            <th class="payout flex-tr-child">ペイアウト</th>
             <th class="details flex-tr-child">トレード詳細情報</th>
             <th class="purchase flex-tr-child">購入</th>
             <th class="indicative flex-tr-child">気配</th>
@@ -55,6 +56,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <tbody id="portfolio-dynamic">
           <tr class="flex-tr" data-contract_id="!contract_id!">
             <td class="ref flex-tr-child">!transaction_id!</td>
+            <td class="payout flex-tr-child">!currency! <strong>!payout!</strong></td>
             <td class="details flex-tr-child">!longcode!</td>
             <td class="purchase flex-tr-child">!currency! <strong>!buy_price!</strong></td>
             <td class="indicative flex-tr-child">!currency! <strong class="indicative_price"></strong></td>
@@ -64,7 +66,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
         <tfoot>
           <tr class="flex-tr">
-            <th class="ref flex-tr-child" colspan="2">&nbsp;</th>
+            <th class="ref flex-tr-child" colspan="3">&nbsp;</th>
             <th class="cost flex-tr-child" id="cost-of-open-positions"></th>
             <th class="value flex-tr-child" id="value-of-open-positions" colspan="2"></th>
           </tr>

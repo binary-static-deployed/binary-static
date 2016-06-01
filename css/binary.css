@@ -4783,7 +4783,7 @@ a.dynamic, span.dynamic, div.dynamic, p.dynamic, button.dynamic, table.dynamic {
 #portfolio td {
   padding: 10px 10px;
 }
-#portfolio td.indicative, #portfolio td.purchase {
+#portfolio td.indicative, #portfolio td.purchase, #portfolio .payout {
   white-space: nowrap;
 }
 #portfolio td.indicative.no_resale {
@@ -4805,7 +4805,7 @@ a.dynamic, span.dynamic, div.dynamic, p.dynamic, button.dynamic, table.dynamic {
   text-align: left !important;
 }
 @media screen and (max-width: 480px) {
-  #portfolio .details {
+  #portfolio .details, #portfolio .payout {
     display: none;
   }
 }
