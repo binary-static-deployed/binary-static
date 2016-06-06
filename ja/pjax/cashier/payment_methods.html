@@ -19,17 +19,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <div class="grd-grid-12">
         <h1>ご利用できるお支払い方法</h1></br>
     </div>
+    <div class="grd-grid-12 invisible">
+      <p class="notice-msg by_client_type client_real with_login_cookies"></p>
+    </div>
     <div class="grd-grid-12">
         <div id="payment_method_suggestions grd-row-padding" class='center-aligned'>
             <p>
-                <a href="/ja/home.html" class="button by_client_type client_logged_out pjaxload">
+                <a href="/ja/home.html" class="button by_client_type client_logged_out invisible pjaxload">
                 <span>今すぐ口座開設</span>
                 </a>
-                <a href="/ja/cashier/forwardws.html#deposit" class="button button_large by_client_type client_real with_login_cookies">
+                <a href="/ja/cashier/forwardws.html#deposit" class="button button_large by_client_type client_real with_login_cookies invisible">
                 <span>入金</span>
                 </a>
-                <a href="/ja/cashier/forwardws.html#withdraw" class="button by_client_type client_real with_login_cookies">
-                    <span>出金</span>
+                <a href="/ja/cashier/forwardws.html#withdraw" class="button by_client_type client_real with_login_cookies invisible">
+                    <span class="withdraw">出金</span>
                 </a>
             </p>
         </div>

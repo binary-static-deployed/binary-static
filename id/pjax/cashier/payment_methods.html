@@ -19,17 +19,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <div class="grd-grid-12">
         <h1>Metode pembayaran yang tersedia</h1></br>
     </div>
+    <div class="grd-grid-12 invisible">
+      <p class="notice-msg by_client_type client_real with_login_cookies"></p>
+    </div>
     <div class="grd-grid-12">
         <div id="payment_method_suggestions grd-row-padding" class='center-aligned'>
             <p>
-                <a href="/id/home.html" class="button by_client_type client_logged_out pjaxload">
+                <a href="/id/home.html" class="button by_client_type client_logged_out invisible pjaxload">
                 <span>Daftar akun sekarang</span>
                 </a>
-                <a href="/id/cashier/forwardws.html#deposit" class="button button_large by_client_type client_real with_login_cookies">
+                <a href="/id/cashier/forwardws.html#deposit" class="button button_large by_client_type client_real with_login_cookies invisible">
                 <span>Deposit</span>
                 </a>
-                <a href="/id/cashier/forwardws.html#withdraw" class="button by_client_type client_real with_login_cookies">
-                    <span>Pencairan</span>
+                <a href="/id/cashier/forwardws.html#withdraw" class="button by_client_type client_real with_login_cookies invisible">
+                    <span class="withdraw">Pencairan</span>
                 </a>
             </p>
         </div>
