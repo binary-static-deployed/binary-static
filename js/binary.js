@@ -78868,14 +78868,14 @@ var Price = (function() {
 
     var createProposal = function(typeOfContract) {
         var proposal;
-        if (page.user.is_logged_in) {
+        if (page.client.is_virtual()) {
           proposal = {
-            proposal: 1,
+            price_stream: 1,
             subscribe: 1
           };
         } else {
           proposal = {
-            price_stream: 1,
+            proposal: 1,
             subscribe: 1
           };
         }
