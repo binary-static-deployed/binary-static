@@ -1,0 +1,94 @@
+<div class='account_transferws-content' id='content'>
+  <noscript>
+  <iframe src='//www.googletagmanager.com/ns.html?id=GTM-MZWFF7' height='0' width='0' style='display:none;visibility:hidden;'></iframe>
+</noscript>
+<script data-cfasync='false'>
+(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MZWFF7');
+</script>
+
+  <div id='page_info' style='display: none;'>
+  <title>Przeniesienie konta | Binary.com</title>
+  <div id='content_class'>account_transferws-content</div>
+  </div>
+
+  <div class='grd-container'>
+    <div class='grd-row-padding'></div>
+<div class='grd-grid-12 invisible' id='success_form'>
+  <h1>Przeniesienie konta</h1>
+  <br />
+  <p>Przelew środków z konta został zrealizowany. Twoje nowe saldo wynosi:</p>
+  <div class='grd-row-padding table-body'>
+    <div class='grd-grid-1'></div>
+    <div class='grd-grid-2'>
+      <span id='loginid_1'></span>
+    </div>
+    <div class='grd-grid-5'>
+      <span id='balance_1'></span>
+    </div>
+  </div>
+  <div class='grd-row-padding table-body'>
+    <div class='grd-grid-1'></div>
+    <div class='grd-grid-2'>
+      <span id='loginid_2'></span>
+    </div>
+    <div class='grd-grid-5'>
+      <span id='balance_2'></span>
+    </div>
+  </div>
+</div>
+<div class='errorbox rbox invisible' id='client_message'>
+  <div class='rbox-wrap'>
+    <div class='grd-grid-12 rbox-content' id='client_message_content'>
+      <p class='center notice-msg'>
+        Przelew środków z konta jest niemożliwy.
+        <a class='pjaxload' href='/pl/cashier/forwardws.html#deposit'>wpłata</a>
+        na swoje konto.
+      </p>
+    </div>
+  </div>
+</div>
+<form class='invisible' id='account_transfer'>
+  <h1>Przeniesienie konta</h1>
+  <br />
+  <fieldset>
+    <div class='grd-grid-12 grd-parent grd-row-padding'>
+      <div class='form_label grd-grid-3'>
+        <label for='transfer'>Przelew</label>
+      </div>
+      <div class='grd-grid-9'>
+        <select id='transfer_account_transfer' name='transfer'></select>
+        <p class='errorfield' id='erroraccount_transfer'></p>
+      </div>
+    </div>
+    <div class='grd-grid-12 grd-parent grd-row-padding'>
+      <div class='form_label grd-grid-3'>
+        <label id='transfer_amount' for='amount'>Kwota</label>
+      </div>
+      <div class='grd-grid-9 grd-parent'>
+        <div class='form_label grd-grid-1'>
+          <label id='currencyType'></label>
+        </div>
+        <div class='grd-grid-11'>
+          <input id='acc_transfer_amount' type='text' name='amount' placeholder='Kwota' />
+          <p class='errorfield' id='invalid_amount'></p>
+        </div>
+      </div>
+    </div>
+    <div class='grd-grid-12 grd-parent grd-row-padding'></div>
+    <div class='grd-grid-12 grd-parent grd-row-padding'>
+      <div class='grd-grid-4'></div>
+      <div class='grd-grid-8'>
+        <span class='button'>
+          <button class='button' id='acc_transfer_submit' name='submit' type='submit'>Przelew</button>
+        </span>
+      </div>
+    </div>
+  </fieldset>
+</form>
+
+  </div>
+</div>

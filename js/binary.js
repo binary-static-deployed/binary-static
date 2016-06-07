@@ -68445,230 +68445,114 @@ function getSocketURL() {
     if(!server_url) server_url = (/staging\.binary\.com/i.test(window.location.hostname) ? 'www2' : 'ws') + '.binaryws.com';
     return 'wss://' + server_url + '/websockets/v3';
 }
-;/**
- * Synopsis
- *
- * var p = new InPagePopup({content: 'popup content'});
- * p.attach('button.open-popup');
- * // and now $('button.open-popup').get(0).inpage_poup is a reference to p
- *
- */
-var InPagePopup = function(conf) {
-    if (!conf) conf = {};
-    if (typeof conf != 'object') {
-        conf = {content: conf};
-    }
-    this.element = null;
-    this._container = null;
-    this.width = conf.width || null;
-    this.close_on_escape = typeof conf.close_on_escape == 'undefined' ? true : conf.close_on_escape;
-    this.draggable = typeof conf.draggable == 'undefined' ? true : conf.draggable;
-    this.drag_handle = conf.drag_handle || '.drag-handle';
-    this.ajax_conf = conf.ajax_conf || null;
-    this._content = conf.content || '';
-};
+;var LoggedInHandler = (function() {
+    "use strict";
 
-/**
- * Update the configuations of the pipup, change the width,
- * set draggable or not, etc.
- */
-InPagePopup.prototype.config = function(conf) {
-    if (conf.width) this.width = conf.width;
-    if (typeof conf.close_on_escape != 'undefined') this.close_on_escape = !!conf.close_on_escape;
-    if (typeof conf.draggable != 'undefined') this.draggable = !!conf.draggable;
-    if (conf.drag_handle) this.drag_handle = conf.drag_handle;
-    if (conf.ajax_conf) this.ajax_conf = conf.ajax_conf;
-};
+    var init = function() {
+        parent.window['is_logging_in'] = 1; // this flag is used in base.js to prevent auto-reloading this page
+        var redirect_url;
+        try {
+            var tokens  = storeTokens(),
+                loginid = $.cookie('loginid');
 
-/**
- * Get or set the contens of the popup.
- *
- * @param new_content: set the new content
- */
-InPagePopup.prototype.content = function(new_content) {
-    var me = this;
-    if (typeof new_content == 'undefined') {
-        if (this._container) {
-            return $('.inpage_popup_content', me._container).html();
-        }
-        return this._content;
-    }
-    if (this._container) {
-        $('.inpage_popup_content', me._container).html(_new_content);
-    } else {
-        this._content = new_content;
-    }
-    return this;
-};
+            if(!$.cookie('loginid')) { // redirected to another domain (e.g. github.io) so those cookie are not accessible here
+                var loginids = Object.keys(tokens);
+                var loginid_list = '';
+                loginids.map(function(id) {
+                    loginid_list += (loginid_list ? '+' : '') + id + ':' + (/^V/i.test(id) ? 'V' : 'R') + ':E'; // since there is not any data source to check, so assume all are enabled, disabled accounts will be handled on authorize
+                });
+                loginid = loginids[0];
+                // set cookies
+                page.client.set_cookie('loginid'     , loginid);
+                page.client.set_cookie('loginid_list', loginid_list);
+            }
+            page.client.set_cookie('login', tokens[loginid]);
 
-/**
- * Finds the contents of the popup from the specified element.
- */
-InPagePopup.prototype.find_element_popup_content = function(element) {
-    if (!element) throw new Error("failed to detect element contents. no element specified");
-    var jqel = $(element);
-    var num = jqel.length;
-    for (i = 0; i < num; i++) {
-        var el = jqel.get(i);
-        var elid = $(el).attr('id');
-        if (elid) {
-            var content_id = elid + '-content';
-            var contents = $('.inpage_popup_content#' + content_id);
-            if (contents.length) {
-                return contents.first();
+            // set flags
+            sessionStorage.setItem('check_tnc', '1');
+            if (!$('body').hasClass('BlueTopBack')) localStorage.setItem('risk_classification', 'check');
+            GTM.set_login_flag();
+
+            // redirect url
+            redirect_url = sessionStorage.getItem('redirect_url');
+            sessionStorage.removeItem('redirect_url');
+        } catch(e) {console.log('storage is not supported');}
+
+        // redirect back
+        var set_default = true;
+        if(redirect_url) {
+            var do_not_redirect = ['reset_passwordws', 'lost_passwordws', 'change_passwordws', 'home'];
+            var reg = new RegExp(do_not_redirect.join('|'), 'i');
+            if(!reg.test(redirect_url) && page.url.url_for('') !== redirect_url) {
+                set_default = false;
             }
         }
-    }
-    return null;
-};
-
-InPagePopup.prototype._ajax_request = function(callback, errback) {
-    conf = {};
-    if (this.ajax_conf) conf = (typeof this.ajax_conf == 'function') ? this.ajax_conf() : this.ajax_conf;
-    if (typeof conf != 'object') conf = {url : conf};
-    if (callback) conf.success = callback;
-    if (errback) conf.error = errback;
-    $.ajax(conf);
-    return this;
-};
-
-/**
- * fetch contents of the inpage popup via AJAX.
- * Paramters passed to callbacks are standard jQuery params, with the popup object itself in the end.
- *
- * @param show: show the popup after data is fetched or not.
- * @param before_show: callback to be called before showing the popup. used for processing server response.
- *                     If this method returns a string it is considered as the new contents of the popup.
- *                     If it returns false or throws an error, the popup is not going to be shown.
- * @param after_show: callback to be called after showing the popup.
- * @param errback: errback to be called when errors occurred fetching data
- */
-InPagePopup.prototype.fetch_remote_content = function(show, before_show, after_show, errback) {
-    var me = this;
-    if (!errback) {
-        errback = function(jqxhr, txt_status, err) {
-            throw new Error("Failed to fetch contents of the popup: " + err);
-        };
-    }
-    var run_callbacks = function (data, txt_status, jqxhr) {
-        if (before_show) {
-            data = before_show(data, txt_status, jqxhr, me);
-            if (!data) return false;
+        if(set_default) {
+            redirect_url = page.url.default_redirect_url();
+            var lang_cookie = $.cookie('language');
+            if(lang_cookie && lang_cookie !== page.language()) {
+                redirect_url = redirect_url.replace(new RegExp('\/' + page.language() + '\/', 'i'), '/' + lang_cookie.toLowerCase() + '/');
+            }
         }
-        me.content(data);
-        if (show !== false) me.show();
-        if (after_show) after_show(data, txt_status, jqxhr, me);
+        document.getElementById('loading_link').setAttribute('href', redirect_url);
+        window.location.href = redirect_url;
     };
-    this._ajax_request(run_callbacks, errback);
-    return this;
-};
 
-/**
- * Initialize the container, set the contents and return it.
- */
-InPagePopup.prototype._init_container = function() {
-    this.close();
-    var me = this;
-    var container = $('<div class="inpage_popup_container"><a class="close">x</a></div>');
-    var content = this.element ? this.find_element_popup_content(this.element) : null;
-    var jq_content = content ? content.clone() : null;
-    if (!jq_content) jq_content = $('<div class="inpage_popup_content">' + this._content + '</div>');
-    container.append(jq_content);
-    container.hide();
-    jq_content.show().removeClass('invisible');
-    $(document.body).append(container);
-    if (me.width) container.width(me.width);
-    this._container = container;
-    container.find('.close').on('click', function() { me.close(); });
-    if (this.close_on_escape) {
-        $(document).on('keydown', function(e) {
-            if (e.which == 27) me.close();
-        });
-    }
-    if (this.draggable) {
-        handle = this.drag_handle;
-        drag_opts = {};
-        if ( $(handle, container).length ) {
-            drag_opts['handle'] = handle;
+    var storeTokens = function() {
+        // Parse hash for loginids and tokens returned by OAuth
+        var hash = (/acct1/i.test(window.location.hash) ? window.location.hash : window.location.search).substr(1).split('&'); // to maintain compatibility till backend change released
+        var tokens = {};
+        for(var i = 0; i < hash.length; i += 2) {
+            var loginid = getHashValue(hash[i], 'acct');
+            var token = getHashValue(hash[i+1], 'token');
+            if(loginid && token) {
+                tokens[loginid] = token;
+            }
         }
-        container.draggable(drag_opts);
-    }
-    this.reposition();
-    return container;
-};
-
-/**
- * Reposition the popup on the screen. by default uses the center of the screen.
- */
-InPagePopup.prototype.reposition = function(x, y) {
-    if (this._container) {
-        var win_ = $(window);
-        var container = this._container;
-        if (typeof x == 'undefined') {
-            x = Math.max(Math.floor((win_.width() - container.width()) / 2), 50) + win_.scrollLeft();
+        if(Object.keys(tokens).length > 0) {
+            page.client.set_storage_value('tokens', JSON.stringify(tokens));
         }
-        if (typeof y == 'undefined') {
-            y = Math.max(Math.floor((win_.height() - container.height()) / 2), 50) + win_.scrollTop();
+        return tokens;
+    };
+
+    var getHashValue = function(source, key) {
+        var match = new RegExp('^' + key);
+        return source && source.length > 0 ? (match.test(source.split('=')[0]) ? source.split('=')[1] : '') : '';
+    };
+
+    return {
+        init: init,
+    };
+}());
+;var Login = (function() {
+    "use strict";
+
+    var redirect_to_login = function() {
+        if (!page.client.is_logged_in && !is_login_pages()) {
+            try {
+                sessionStorage.setItem('redirect_url', window.location.href);
+            } catch(e) {
+                alert('The website needs features which are not enabled on private mode browsing. Please use normal mode.');
+            }
+            window.location.href = this.login_url();
         }
-        this._container.offset({left: x, top: y});
-    }
-    return this;
-};
+    };
 
-/**
- * Return the container of the popup.
- */
-InPagePopup.prototype.container = function() {
-    if (!this._container) this._init_container();
-    return this._container;
-};
+    var login_url = function() {
+        return localStorage.getItem('config.server_url') && /qa/.test(localStorage.getItem('config.server_url')) ? 'https://www.' + localStorage.getItem('config.server_url').split('.')[1] + '.com/oauth2/authorize?app_id=' + getAppId() + '&l=' + page.language() :
+                                                           'https://oauth.binary.com/oauth2/authorize?app_id=' + getAppId() + '&l=' + page.language();
+    };
 
-InPagePopup.prototype.show = function() {
-    this.container().show();
-    return this;
-};
+    var is_login_pages = function() {
+        return /logged_inws|oauth2/.test(document.URL);
+    };
 
-InPagePopup.prototype.close = function() {
-    if (this._container) {
-        this._container.hide().remove();
-    }
-    this._container = null;
-    return this;
-};
-
-/**
- * Attaches the inpage popup to the specified element.
- *
- * each element would have a new property of 'inpage_popup' which
- * will reference to this same popup.
- *
- * @param element: any jQuery selector, or DOM or jquery object
- */
-InPagePopup.prototype.attach = function(element) {
-    var me = this;
-    this.detach();
-    var jqel = $(element);
-    if (!jqel.length) {
-        throw new Error("Failed to attach inpage popup. no such element exists for: " + element);
-    }
-    this.element = jqel;
-    this.element.on('click', function(e) { e.preventDefault(); me.show(); });
-    jqel.each( function () { this.inpage_popup = me; });
-    return this;
-};
-
-/**
- * Detach the popup from element.
- */
-InPagePopup.prototype.detach = function() {
-    var me = this;
-    if (this.element) {
-        this.element.off('click');
-        this.element.each( function () { this.inpage_popup = null; } );
-    }
-    this.element = null;
-    return this;
-};
+    return {
+        redirect_to_login: redirect_to_login,
+        is_login_pages   : is_login_pages,
+        login_url        : login_url,
+    };
+}());
 ;var Markets = function(markets, market_symbols) { 
     this.all = [];
     var market_count = markets.length;
@@ -69472,7 +69356,7 @@ Menu.prototype = {
                 this.show_main_menu();
             }
         } else {
-            var is_mojo_page = /^\/$|\/login|\/home|\/ad|\/open-source-projects|\/bulk-trader-facility|\/partners|\/payment-agent|\/about-us|\/group-information|\/group-history|\/careers|\/contact|\/terms-and-conditions|\/terms-and-conditions-jp|\/responsible-trading|\/us_patents|\/lost_password|\/realws|\/virtualws|\/open-positions|\/job-details|\/user-testing|\/japanws|\/maltainvestws|\/reset_passwordws|\/supported-browsers$/.test(window.location.pathname);
+            var is_mojo_page = /^\/$|\/login|\/home|\/ad|\/open-source-projects|\/partners|\/payment-agent|\/about-us|\/group-information|\/group-history|\/careers|\/contact|\/terms-and-conditions|\/terms-and-conditions-jp|\/responsible-trading|\/us_patents|\/lost_password|\/realws|\/virtualws|\/open-positions|\/job-details|\/user-testing|\/japanws|\/maltainvestws|\/reset_passwordws|\/supported-browsers$/.test(window.location.pathname);
             if(!is_mojo_page) {
                 trading.addClass('active');
                 this.show_main_menu();
@@ -69734,8 +69618,14 @@ Header.prototype = {
         that.server_time_at_response = ((start_timestamp * 1000) + (that.client_time_at_response - pass));
         var update_time = function() {
             window.time = moment(that.server_time_at_response + moment().valueOf() - that.client_time_at_response).utc();
-            clock.html(window.time.format("YYYY-MM-DD HH:mm") + ' GMT');
-            showLocalTimeOnHover('#gmt-clock');
+            var curr = localStorage.getItem('client.currencies');
+            var timeStr = window.time.format("YYYY-MM-DD HH:mm") + ' GMT';
+            if(curr === 'JPY'){
+                clock.html(toJapanTimeIfNeeded(timeStr, 1));
+            } else {
+                clock.html(timeStr);
+                showLocalTimeOnHover('#gmt-clock');
+            }
             window.HeaderTimeUpdateTimeOutRef = setTimeout(update_time, 1000);
         };
         update_time();
@@ -70105,7 +69995,6 @@ Page.prototype = {
         } else {
             LocalStore.set('reality_check.ack', 0);
         }
-        $('#current_width').val(get_container_width());//This should probably not be here.
         if(!getCookieItem('language')) {
             var cookie = new CookieStorage('language');
             cookie.write(this.language());
@@ -70215,181 +70104,6 @@ Page.prototype = {
         window.location.reload();
     },
 };
-;/* ************************************************************
-Created: 20060120
-Author:  Steve Moitozo <god at zilla dot us> -- geekwisdom.com
-Description: This is a quick and dirty password quality meter
-     written in JavaScript so that the password does
-     not pass over the network.
-License: MIT License (see below)
-Modified: 20060620 - added MIT License
-Modified: 20061111 - corrected regex for letters and numbers
-                     Thanks to Zack Smith -- zacksmithdesign.com
----------------------------------------------------------------
-Copyright (c) 2006 Steve Moitozo <god at zilla dot us>
-Permission is hereby granted, free of charge, to any person
-obtaining a copy of this software and associated documentation
-files (the "Software"), to deal in the Software without
-restriction, including without limitation the rights to use,
-copy, modify, merge, publish, distribute, sublicense, and/or
-sell copies of the Software, and to permit persons to whom the
-Software is furnished to do so, subject to the following
-conditions:
-   The above copyright notice and this permission notice shall
-be included in all copies or substantial portions of the
-Software.
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY
-KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
-WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE
-AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
-HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
-WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE
-OR OTHER DEALINGS IN THE SOFTWARE.
----------------------------------------------------------------
-Password Strength Factors and Weightings
-password length:
-level 0 (3 point): less than 4 characters
-level 1 (6 points): between 5 and 7 characters
-level 2 (12 points): between 8 and 15 characters
-level 3 (18 points): 16 or more characters
-letters:
-level 0 (0 points): no letters
-level 1 (5 points): all letters are lower case
-level 2 (7 points): letters are mixed case
-numbers:
-level 0 (0 points): no numbers exist
-level 1 (5 points): one number exists
-level 1 (7 points): 3 or more numbers exists
-special characters:
-level 0 (0 points): no special characters
-level 1 (5 points): one special character exists
-level 2 (10 points): more than one special character exists
-combinatons:
-level 0 (1 points): letters and numbers exist
-level 1 (1 points): mixed case letters
-level 1 (2 points): letters, numbers and special characters
-          exist
-level 1 (2 points): mixed case letters, numbers and special
-          characters exist
-NOTE: Because I suck at regex the code might need work
-NOTE: Instead of putting out all the logging information,
-    the score, and the verdict it would be nicer to stretch
-    a graphic as a method of presenting a visual strength
-    guage.
-************************************************************ */
-function testPassword(passwd)
-{
-    var intScore   = 0;
-    var strVerdict = "weak";
-    var strLog     = "";
-
-    // PASSWORD LENGTH
-    if (passwd.length<5)                         // length 4 or less
-    {
-      intScore = (intScore+3);
-      strLog   = strLog + "3 points for length (" + passwd.length + ")\n";
-    }
-    else if (passwd.length>4 && passwd.length<8) // length between 5 and 7
-    {
-      intScore = (intScore+6);
-      strLog   = strLog + "6 points for length (" + passwd.length + ")\n";
-    }
-    else if (passwd.length>7 && passwd.length<16)// length between 8 and 15
-    {
-      intScore = (intScore+12);
-      strLog   = strLog + "12 points for length (" + passwd.length + ")\n";
-    }
-    else if (passwd.length>15)                    // length 16 or more
-    {
-      intScore = (intScore+18);
-      strLog   = strLog + "18 point for length (" + passwd.length + ")\n";
-    }
-
-
-    // LETTERS (Not exactly implemented as dictacted above because of my limited understanding of Regex)
-    if (passwd.match(/[a-z]/))                              // [verified] at least one lower case letter
-    {
-      intScore = (intScore+1);
-      strLog   = strLog + "1 point for at least one lower case char\n";
-    }
-
-    if (passwd.match(/[A-Z]/))                              // [verified] at least one upper case letter
-    {
-      intScore = (intScore+5);
-      strLog   = strLog + "5 points for at least one upper case char\n";
-    }
-
-    // NUMBERS
-    if (passwd.match(/\d+/))                                 // [verified] at least one number
-    {
-      intScore = (intScore+5);
-      strLog   = strLog + "5 points for at least one number\n";
-    }
-
-    if (passwd.match(/(.*[0-9].*[0-9].*[0-9])/))             // [verified] at least three numbers
-    {
-      intScore = (intScore+5);
-      strLog   = strLog + "5 points for at least three numbers\n";
-    }
-
-
-    // SPECIAL CHAR
-    if (passwd.match(/.[!,@,#,$,%,^,&,*,?,_,~]/))            // [verified] at least one special character
-    {
-      intScore = (intScore+5);
-      strLog   = strLog + "5 points for at least one special char\n";
-    }
-
-                   // [verified] at least two special characters
-    if (passwd.match(/(.*[!,@,#,$,%,^,&,*,?,_,~].*[!,@,#,$,%,^,&,*,?,_,~])/))
-    {
-      intScore = (intScore+5);
-      strLog   = strLog + "5 points for at least two special chars\n";
-    }
-
-
-    // COMBOS
-    if (passwd.match(/([a-z].*[A-Z])|([A-Z].*[a-z])/))        // [verified] both upper and lower case
-    {
-      intScore = (intScore+2);
-      strLog   = strLog + "2 combo points for upper and lower letters\n";
-    }
-
-    if (passwd.match(/([a-zA-Z])/) && passwd.match(/([0-9])/)) // [verified] both letters and numbers
-    {
-      intScore = (intScore+2);
-      strLog   = strLog + "2 combo points for letters and numbers\n";
-    }
-
-                  // [verified] letters, numbers, and special characters
-    if (passwd.match(/([a-zA-Z0-9].*[!,@,#,$,%,^,&,*,?,_,~])|([!,@,#,$,%,^,&,*,?,_,~].*[a-zA-Z0-9])/))
-    {
-      intScore = (intScore+2);
-      strLog   = strLog + "2 combo points for letters, numbers and special chars\n";
-    }
-
-
-    if(intScore < 10)
-    {
-       strVerdict = text.localize("Password is weak");
-    }
-    else if (intScore > 9 && intScore < 20)
-    {
-       strVerdict = text.localize("Password is moderate");
-    }
-    else if (intScore > 19)
-    {
-       strVerdict = text.localize("Password is strong");
-    }
-    else
-    {
-       strVerdict = text.localize("Password is very strong");
-    }
-
-  var array = [intScore, strVerdict];
-  return array;
-}
 ;//For object shape coherence we create named objects to be inserted into the queue.
 var URLPjaxQueueElement = function(exec_function, url) {
     this.method = exec_function;
@@ -70555,64 +70269,9 @@ var pjax_config_page_require_auth = function(url, exec) {
     };
     pjax_config_page(url, newExecFn);
 };
-;var SpotLight = function (){
-    var that = {};
 
-    that.spot_light_box = function () {
-        var spot_light_box = $('#spot-light-box');
-        if (!spot_light_box.size())
-        {
-            spot_light_box = $('<div id="spot-light-box" class="invisible"></div>').appendTo('body');
-        }
-
-        return spot_light_box;
-    };
-
-    that.cover_page = function () {
-        var transparent_cover = $('#transparent-cover');
-        if (!transparent_cover.size())
-        {
-            transparent_cover = $('<div id="transparent-cover"></div>').appendTo('body');
-        }
-
-        transparent_cover.removeClass('invisible');
-    };
-    that.uncover_page = function () {
-        $('#transparent-cover').addClass('invisible');
-    };
-
-    that.show = function () {
-        that.spot_light_box().removeClass('invisible');
-        that.cover_page();
-        that.activate_buttons();
-    };
-    that.hide = function () {
-        that.spot_light_box().addClass('invisible');
-        that.uncover_page();
-    };
-
-    that.set_content = function (content) {
-        that.spot_light_box().get(0).innerHTML = content;
-    };
-
-    that.attach_click_event = function (selector, event) {
-        that.spot_light_box().delegate(selector, 'click', event);
-    };
-
-    that.activate_buttons = function() {
-        $('.close_button').on('click', function (event) {
-            $(this).parents('.rbox-shadow-popup').toggleClass('invisible');
-            $('#transparent-cover').toggleClass('invisible');
-        });
-
-        $('.no_button').on('click', function (event) {
-            $(this).parents('.rbox-shadow-popup').toggleClass('invisible');
-            $('#transparent-cover').toggleClass('invisible');
-        });
-    };
-
-    return that;
-}();
+init_pjax(); //Pjax-standalone will wait for on load event before attaching.
+$(function() { onLoad.fire(); });
 ;var isStorageSupported = function(storage) {
     if(typeof storage === 'undefined') {
         return false;
@@ -70723,6 +70382,269 @@ Localizable.prototype = {
         return this.texts[index] || text;
     }
 };
+;//////////////////////////////////////////////////////////////////
+// Purpose: Write loading image to a container for ajax request
+// Parameters:
+// 1) container - a jQuery object
+//////////////////////////////////////////////////////////////////
+function showLoadingImage(container)
+{
+    var image_link = page.settings.get('image_link');
+
+    container.empty().append('<div id="std_loading_img"><p>'+text.localize('loading...')+'</p><img src="'+image_link['hourglass']+'" /></div>');
+}
+
+/**
+ * Returns the highest z-index in the page.
+ * Accepts a jquery style selector to only check those elements,
+ * uses all container tags by default
+ * If no element found, returns null.
+ *
+ * @param selector: a jquery style selector for target elements
+ * @return int|null
+ */
+function get_highest_zindex(selector) {
+    if (!selector) {
+        selector = 'div,p,area,nav,section,header,canvas,aside,span';
+    }
+    var all = [];
+    var _store_zindex = function () {
+        if ($(this).is(':visible')) {
+            var z = $(this).css("z-index");
+            if ( !isNaN(z) ) {
+                all.push(z);
+            }
+        }
+    };
+    $(selector).each(_store_zindex);
+
+    return all.length ? Math.max.apply(Math, all) : null;
+}
+
+/**
+ * Gets a DOM or jQuery element and reads its data attributes
+ * and return an object of data stored in element attributes.
+ * This is used where we store some data as element attributes.
+ * Excludes commont HTML attributes from the element.
+ *
+ * @param element: DOM|jQuery element
+ * @return object
+ */
+function element_data_attrs(element) {
+    if (element && element instanceof jQuery) {
+        element = element.get().pop();
+    }
+    if (!element || !element.attributes) {
+        console.log(element);
+        throw new Error("Can not get data attributes from none element parameter");
+    }
+    var data = {};
+    var attrs = element.attributes;
+    if (attrs.length) {
+        var attr_blacklist = ['id', 'class', 'name', 'style', 'href', 'src', 'title', 'onclick'];
+        for (var i = 0; i < attrs.length; i++) {
+            var attr = attrs[i];
+            if (attr_blacklist.indexOf(attr.name.toLowerCase()) > -1) continue;
+            data[attr.name] = attr.value;
+        }
+    }
+    return data;
+}
+
+/**
+ * Converts a snake_cased string to a camelCased string.
+ * The first character case not changed unless requested.
+ *
+ * @param snake: snake_cased string
+ * @param lower_case_first_char: boolean to force the first char to be lower cased
+ * @param chars: string of chars to be considered a separator (default is _ and -)
+ */
+function snake_case_to_camel_case(snake, lower_case_first_char, chars) {
+    chars = chars || '_-';
+    var _upper2ndchar = function (m) { return m[1].toUpperCase(); };
+    var regex = new RegExp('[' + chars + ']([a-zA-Z])', 'g');
+    var camel = snake.replace(regex, _upper2ndchar);
+    camel.replace('_', '');
+    if (lower_case_first_char) {
+        camel = camel[0].toLowerCase() + camel.substr(1);
+    }
+    return camel;
+}
+
+/**
+ * attaches a datepicker to the specified element
+ * This is a thin wrapper for datepicker, helps to keep a unique site-wide
+ * default configurations for the datepicker.
+ *
+ * @param element any jquery selector or DOM/jQuery object to attach the datepicker to
+ * @param config custom configurations for the datepicker
+ */
+function attach_date_picker(element, conf) {
+    var k,
+        target = $(element);
+    if (!target || !target.length) return false;
+    var today = new Date();
+    var next_year = new Date();
+    next_year.setDate(today.getDate() + 365);
+    var options = {
+        dateFormat: 'yy-mm-dd',
+        maxDate: next_year,
+    };
+    for (k in conf) if (conf.hasOwnProperty(k)) {
+        options[k] = conf[k];
+    }
+    return target.datepicker(options);
+}
+
+/**
+ * attaches a timepicker to the specified element.
+ * This is a thin wrapper for timepicker, helps to keep a unique site-wide
+ * default configurations for the timepicker.
+ *
+ * @param element any jquery selector or DOM/jQuery object to attach the timepicker to
+ * @param config custom configurations for the timepicker
+ */
+function attach_time_picker(element, conf) {
+    var attr, k, target = $(element);
+    if (!target || !target.length) return false;
+    var opts = {
+        timeSeparator: ':',
+        showLeadingZero: true,
+        howMinutesLeadingZero: true,
+        hourText: text.localize("Hour"),
+        minuteText: text.localize("Minute"),
+        minTime: {},
+        maxTime: {},
+    };
+    var data_attrs = element_data_attrs(target);
+    var regex = /^time\:(.+)/;
+    for (attr in data_attrs) if (data_attrs.hasOwnProperty(attr)) {
+        var matched = attr.match(regex);
+        if (matched) {
+            var data = data_attrs[attr];
+            var opt_name = matched[1].trim();
+            if (data == 'true') {
+                data = true;
+            } else if (data == 'false') {
+                data = false;
+            }
+            opt_name = snake_case_to_camel_case(opt_name, true).toLowerCase();
+            switch (opt_name) {
+                case 'mintimehour':
+                    opts.minTime.hour = data;
+                    break;
+                case 'mintimeminute':
+                    opts.minTime.minute = data;
+                    break;
+                case 'maxtimehour':
+                    opts.maxTime.hour = data;
+                    break;
+                case 'maxtimeminute':
+                    opts.maxTime.minute = data;
+                    break;
+            }
+        }
+    }
+    for (k in conf) if (conf.hasOwnProperty(k)) {
+        opts[k] = conf[k];
+    }
+    return target.timepicker(opts);
+}
+
+/**
+ * in a jquery UI tabs object, finds out whitch tab is marked to be the
+ * active tab by default.
+ *
+ * The default active tab is selected based on CSS classes of tab list items.
+ *
+ * @param element any jquery selector or DOM/jquery object that contains a jquery UI tab UL
+ * @return int the index of active list item or 0 if none of the items were
+ * marked as active.
+ */
+function find_active_jqtab(el) {
+    var jqel = $(el);
+    var ul = jqel.children('ul');
+    if (!ul) throw new Error("Invalid parameter. element is not a jquery UI tab container");
+    ul = ul.filter(":first");
+    var items = ul.children('li');
+    for (var i = 0; i < items.length; i++) {
+        if ($(items[i]).hasClass('active')) {
+            return i;
+        }
+    }
+    return 0;
+}
+
+/**
+ * attaches tabs to the specified element selector
+ *
+ * @param element any jquery selector or DOM/jQuery object
+ */
+function attach_tabs(element) {
+    var targets = $(element);
+    targets.each(function () {
+        var jqel = $(this);
+        var conf = {};
+        var active = 0;
+        try {
+            active = find_active_jqtab(jqel);
+        } catch (e) {
+            console.log(e);
+            console.log(jqel);
+        }
+        if (active) {
+            conf['active'] = active;
+            $('li.active', jqel).removeClass('active');
+        }
+        jqel.tabs(conf);
+    });
+    return targets;
+}
+
+function showLocalTimeOnHover(s) {
+    var selector = s || '.date';
+
+    $(selector).each(function(idx, ele) {
+        var gmtTimeStr = ele.innerHTML.replace('\n', ' ');
+
+        var localTime = moment.utc(gmtTimeStr, 'YYYY-MM-DD HH:mm:ss').local();
+        if (!localTime.isValid()) {
+            return;
+        }
+
+        var localTimeStr = localTime.format('YYYY-MM-DD HH:mm:ss ZZ');
+
+        var timeToShow = localTimeStr.replace(' ', '\n');
+        var tooltip = $('<span></span>', { class: 'tooltip-content', text: timeToShow });
+        $(ele)
+            .children('.tooltip-content')
+            .remove();
+        $(ele).append(tooltip);
+    });
+}
+
+function toJapanTimeIfNeeded(gmtTimeStr, showTimeZone){
+    var curr = localStorage.getItem('client.currencies');
+
+    var japanTimeStr = gmtTimeStr;
+
+    if(curr === 'JPY'){
+        var japanTime;
+        if(typeof gmtTimeStr === 'number'){
+            japanTime = moment.utc(gmtTimeStr*1000);
+        } else {
+            japanTime = moment.utc(gmtTimeStr, 'YYYY-MM-DD HH:mm:ss');
+        }
+        
+        if (!japanTime.isValid()) {
+            return;
+        }
+
+        japanTimeStr = japanTime.zone("+09:00").format('YYYY-MM-DD HH:mm:ss' + (showTimeZone ? ' ZZ' : ''));
+    }
+
+    return japanTimeStr;
+}
 ;// for IE (before 10) we use a jquery plugin called jQuery.XDomainRequest. Explained here,
 //http://stackoverflow.com/questions/11487216/cors-with-jquery-and-xdomainrequest-in-ie8-9
 //
@@ -70908,7 +70830,6 @@ onLoad.queue(function () {
 onLoad.queue(function () {
     attach_date_picker('.has-date-picker');
     attach_time_picker('.has-time-picker');
-    attach_inpage_popup('.has-inpage-popup');
     attach_tabs('.has-tabs');
 });
 
@@ -70968,6 +70889,1679 @@ $(document).ready(function () {
     }
   }
 });
+
+var client_form;
+onLoad.queue(function() {
+    client_form = new ClientForm({valid_loginids: page.settings.get('valid_loginids')});
+});
+
+var ClientForm = function(init_params) {
+    this.valid_loginids =  new RegExp("^(" + init_params['valid_loginids'] + ")[0-9]+$", "i");
+};
+
+ClientForm.prototype = {
+    is_loginid_valid: function(login_id) {
+        if (login_id.length > 0) {
+            login_id = login_id.toUpperCase();
+            return this.valid_loginids.test(login_id);
+        }
+
+        return true;
+    }
+};
+
+var TUser = (function () {
+    var data = {};
+    return {
+        set: function(a){ data = a; },
+        get: function(){ return data; }
+    };
+})();
+
+/*
+ * Make sure data js is loaded before this
+ * else website will not work properly
+ * objects texts_json, markets_list, markets_json
+ * should be available
+ */
+
+// make texts object as Localizable
+var texts = {};
+for (var key in texts_json) {
+    if (texts_json.hasOwnProperty(key)) {
+        texts[key] = new Localizable(texts_json[key]);
+    }
+}
+
+// make markets object
+var markets = new Markets(markets_list, markets_json);
+;var Button = (function(){
+    "use strict";
+    function createBinaryStyledButton(){
+        var span = $("<span></span>", {class: "button"});
+        var button = $("<button></button>", {class: "button"});
+        span.append(button);
+
+        return span;
+    }
+
+    return {
+        createBinaryStyledButton: createBinaryStyledButton
+    };
+}());
+;var PasswordMeter = (function(){
+    'use strict';
+
+    /**
+     * attach password meter to DOM
+     * @param $container       container for password meter, can be a p or div
+     * @param id               optional id for meter element
+     */
+    function attach($container) {
+        if (isIE()) return;
+        var $meter = $('<meter></meter>', {id: 'password-meter', min: 0, max: 50, high: 20, low: 10, optimum: 50});
+        $container
+            .append($meter);
+    }
+
+    /**
+     * Update password meter
+     * @param $container        container for password meter, can be a p or div
+     * @param newPW
+     */
+    function updateMeter($container, newPW) {
+        var pwStrength = testPassword(newPW);
+        var pwStrengthScore = pwStrength[0];
+
+        $container.children('meter').val(pwStrengthScore);
+    }
+
+    return {
+        attach: attach,
+        updateMeter: updateMeter
+    };
+}());
+;var Table = (function(){
+    "use strict";
+    /***
+     *
+     * @param {Array[]} data ordered data to pump into table body
+     * @param {Object} metadata object containing metadata of table
+     * @param {String[]} metadata.cols cols of table
+     * @param {String} metadata.id table id
+     * @param {String[]} [metadata.tableClass] class used in html
+     * @param {String[]} [header] string to be used as Header in table, if not stated then table will not have Header
+     * @param {String[]} [footer] string to be used as footer, to have empty footer, simply use an empty element in array
+     * eg. ["", "halo", ""] will have 3 elements in footer, 2 of them being empty
+     */
+    function createFlexTable(body, metadata, header, footer){
+
+        var tableClasses = (metadata.tableClass) ? metadata.tableClass + " flex-table" : "flex-table";
+
+        var $tableContainer = $("<div></div>", {class: "flex-table-container"});
+        var $table = $("<table></table>", {class: tableClasses, id: metadata.id});
+        var $body = createFlexTableTopGroup(body, metadata.cols, "body");
+
+        if (header) {
+            var $header = createFlexTableTopGroup([header], metadata.cols, "header");
+            $header.appendTo($table);
+        }
+
+        $body.appendTo($table);
+
+        if (footer) {
+            var $footer = createFlexTableTopGroup([footer], metadata.cols, "footer");
+            $footer.appendTo($table);
+        }
+
+        $table.appendTo($tableContainer);
+
+        return $tableContainer;
+    }
+
+    /***
+     *
+     * @param {object[][]} data header strings
+     * @param {String[]} metadata cols name
+     * @param {"header"\"footer"|"body"} opt optional arg to specify which type of element to create, default to header
+     */
+    function createFlexTableTopGroup(data, metadata, opt){
+
+        var $outer = function(){
+            switch (opt) {
+                case "body":
+                    return $("<tbody></tbody>");
+                case "footer":
+                    return $("<tfoot></tfoot>");
+                default :
+                    return $("<thead></thead>");
+            }
+        }();
+
+        for (var i = 0 ; i < data.length ; i++){
+            var innerType = (opt === "body") ? "data" : "header";
+            var $tr = createFlexTableRow(data[i], metadata, innerType);
+            $tr.appendTo($outer);
+        }
+
+        return $outer;
+    }
+
+    /***
+     *
+     * @param {object[]} data
+     * @param {String[]} metadata cols name
+     * @param {"header"|"data"} opt optional, default to "header"
+     */
+    function createFlexTableRow(data, metadata, opt){
+        if (data.length !== metadata.length) {
+            throw new Error("metadata and data does not match");
+        }
+
+        var isData = (opt === "data");
+
+        var $tr = $("<tr></tr>", {class: "flex-tr"});
+        for (var i = 0 ; i < data.length ; i++){
+            var className = metadata[i].toLowerCase().replace(/\s/g, "-") + " flex-tr-child";
+            var rowElement = (isData) ?
+                $("<td></td>", {class: className, text: data[i]}) :
+                $("<th></th>", {class: className, text: data[i]});
+            rowElement.appendTo($tr);
+        }
+
+        return $tr;
+    }
+
+    function clearTableBody(id){
+        var tbody = document.querySelector("#" + id +">tbody");
+        while (tbody && tbody.firstElementChild){
+            tbody.removeChild(tbody.firstElementChild);
+        }
+    }
+
+    /***
+     *
+     * @param {String} id table id
+     * @param {Object[]} data array of data to be transform to row
+     * @param {Function} rowGenerator takes in one arg, and convert it into row to be append to table body
+     */
+    function appendTableBody(id, data, rowGenerator){
+        var tbody = document.querySelector("#" + id +">tbody");
+        var docFrag = document.createDocumentFragment();
+        data.map(function(ele){
+            var row = rowGenerator(ele);
+            docFrag.appendChild(row);
+        });
+
+        tbody.appendChild(docFrag);
+    }
+
+    /***
+     *
+     * @param {String} id table id
+     * @param {Object[]} data array of data to be transform to row
+     * @param {Function} rowGenerator takes in one arg, and convert it into row to be append to table body
+     */
+    function overwriteTableBody(id, data, rowGenerator){
+        clearTableBody(id);
+        appendTableBody(id, data, rowGenerator);
+    }
+
+    return {
+        createFlexTable: createFlexTable,
+        createFlexTableRow: createFlexTableRow,
+        overwriteTableBody: overwriteTableBody,
+        clearTableBody: clearTableBody,
+        appendTableBody: appendTableBody
+    };
+}());
+;var CommonData = (function(){
+    function getCookieItem(sKey) {
+        if (!sKey) { return null; }
+        return decodeURIComponent(document.cookie.replace(new RegExp("(?:(?:^|.*;)\\s*" + encodeURIComponent(sKey).replace(/[\-\.\+\*]/g, "\\$&") + "\\s*\\=\\s*([^;]*).*$)|^.*$"), "$1")) || null;
+    }
+    
+    //because getCookieItem('login') is confusing and does not looks like we are getting API token
+    function getApiToken(){
+        return getCookieItem("login");
+    }
+
+    return {
+        getCookieItem: getCookieItem,
+        getApiToken: getApiToken
+    };
+}());;function onlyNumericOnKeypress(ev) {
+    var key = ev.keyCode;
+    var char = String.fromCharCode(ev.which);
+    if(
+        (char === '.' && ev.target.value.indexOf(char) >= 0) ||
+        (!/[0-9\.]/.test(char) && [8, 37, 39, 46].indexOf(key) < 0) || // delete, backspace, arrow keys
+        /['%]/.test(char)) { // similarity to arrows key code in some browsers
+
+        ev.returnValue = false;
+        ev.preventDefault();
+    }
+}
+;var sidebar_scroll = function(elm_selector) {
+    elm_selector.on('click', '#sidebar-nav li', function() {
+        var clicked_li = $(this);
+        $.scrollTo($('.section:eq(' + clicked_li.index() + ')'), 500);
+        return false;
+    }).addClass('unbind_later');
+
+    if (elm_selector.size()) {
+        // grab the initial top offset of the navigation
+        var selector = elm_selector.find('.sidebar');
+        var width = selector.width();
+        var sticky_navigation_offset_top = selector.offset().top;
+        // With thanks:
+        // http://www.backslash.gr/content/blog/webdevelopment/6-navigation-menu-that-stays-on-top-with-jquery
+
+        // our function that decides weather the navigation bar should have "fixed" css position or not.
+        var sticky_navigation = function() {
+            var scroll_top = $(window).scrollTop(); // our current vertical position from the top
+
+            // if we've scrolled more than the navigation, change its position to fixed to stick to top,
+            // otherwise change it back to relative
+            if (scroll_top > sticky_navigation_offset_top && scroll_top + selector[0].offsetHeight < document.getElementById('footer').offsetTop) {
+                selector.css({'position': 'fixed', 'top': 0, 'width': width});
+            } else if (scroll_top + selector[0].offsetHeight > document.getElementById('footer').offsetTop) {
+                selector.css({'position': 'absolute', 'bottom': document.getElementById('footer').offsetHeight + 'px', 'top': '', 'width': width});
+            } else {
+                selector.css({'position': 'relative'});
+            }
+        };
+
+        //run our function on load
+        sticky_navigation();
+
+        var sidebar_nav = selector.find('#sidebar-nav');
+        var length = elm_selector.find('.section').length;
+        $(window).on('scroll', function() {
+            // and run it again every time you scroll
+            sticky_navigation();
+
+            for (var i = 0; i < length; i++) {
+                if ($(window).scrollTop() === 0 || $(this).scrollTop() >= $('.section:eq(' + i + ')').offset().top - 5) {
+                    sidebar_nav.find('li').removeClass('selected');
+
+                    if ($(window).scrollTop() === 0) {
+                        // We're at the top of the screen, so highlight first nav item
+                        sidebar_nav.find('li:first-child').addClass('selected');
+                    } else if ($(window).scrollTop() + $(window).height() >= $(document).height()) {
+                        // We're at bottom of screen so highlight last nav item.
+                        sidebar_nav.find('li:last-child').addClass('selected');
+                    } else {
+                        sidebar_nav.find('li:eq(' + i + ')').addClass('selected');
+                    }
+                }
+            }
+        });
+    }
+};
+
+var get_started_behaviour = function() {
+    // Get Started behaviour:
+
+    var update_active_subsection = function(to_show) {
+        var fragment;
+        var subsection = $('.subsection');
+        subsection.addClass('hidden');
+        to_show.removeClass('hidden');
+        var nav_back = $('.subsection-navigation .back');
+        var nav_next = $('.subsection-navigation .next');
+
+        if (to_show.hasClass('first')) {
+            nav_back.addClass('disabled');
+            nav_next.removeClass('disabled');
+        } else if (to_show.hasClass('last')) {
+            nav_back.removeClass('disabled');
+            nav_next.addClass('disabled');
+        } else {
+            nav_back.removeClass('disabled');
+            nav_next.removeClass('disabled');
+        }
+
+        fragment = to_show.find('a[name]').attr('name').slice(0, -8);
+        document.location.hash = fragment;
+
+        return false;
+    };
+
+    var to_show;
+    var nav = $('.get-started').find('.subsection-navigation');
+    var fragment;
+    var len = nav.length;
+
+    if (len) {
+        nav.on('click', 'a', function() {
+            var button = $(this);
+            if (button.hasClass('disabled')) {
+                return false;
+            }
+            var now_showing = $('.subsection:not(.hidden)');
+            var show = button.hasClass('next') ? now_showing.next('.subsection') : now_showing.prev('.subsection');
+            return update_active_subsection(show);
+        });
+
+        fragment = (location.href.split('#'))[1];
+        to_show = fragment ? $('a[name=' + fragment + '-section]').parent().parent('.subsection') : $('.subsection.first');
+        update_active_subsection(to_show);
+    }
+    select_nav_element();
+};
+
+var select_nav_element = function() {
+  var $navLink = $('.nav li a');
+  var $navList = $('.nav li');
+  $navList.removeClass('selected');
+  for (i = 0; i < $navLink.length; i++) {
+    if ($navLink[i].href.match(window.location.pathname)) {
+      document.getElementsByClassName('nav')[0].getElementsByTagName('li')[i].setAttribute('class', 'selected');
+      break;
+    }
+  }
+  return;
+};
+
+var Charts = function(charts) {
+    window.open(charts, 'DetWin', 'width=580,height=710,scrollbars=yes,location=no,status=no,menubar=no');
+};
+
+var email_rot13 = function(str) {
+    return str.replace(/[a-zA-Z]/g, function(c){return String.fromCharCode((c<="Z"?90:122)>=(c=c.charCodeAt(0)+13)?c:c-26);});
+};
+
+var display_cs_contacts = function () {
+    $('.contact-content').on("change", '#cs_telephone_number', function () {
+        var val = $(this).val();
+        $('#display_cs_telephone').text(val);
+    });
+    $('#cs_contact_eaddress').html(email_rot13("<n uers=\"znvygb:fhccbeg@ovanel.pbz\" ery=\"absbyybj\">fhccbeg@ovanel.pbz</n>"));
+};
+
+var change_chat_icon = function () {
+  // desk.com change icon - crude way
+  var len = $('#live-chat-icon').length;
+  if( len > 0 ) {
+      var timer = null;
+      var updateIcon =  function () {
+          var image_link = page.settings.get('image_link');
+          var desk_widget = $('.a-desk-widget');
+          var image_str = desk_widget.css('background-image');
+          if(image_str) {
+              desk_widget.css({
+                  'background-image': 'url("' + image_link['livechaticon'] + '")',
+                  'background-size': 'contain',
+                  'min-width': 50,
+                  'min-height': 50,
+                  'width': 'auto'
+              });
+              desk_widget.hover(function() {
+                  $(this).css({
+                      'background': 'url("' + image_link['livechaticon'] + '") no-repeat scroll 0 0',
+                      'background-size': 'contain',
+                  });
+              });
+
+              if(image_str.match(/live-chat-icon/g)){
+                  clearInterval(timer);
+              }
+          }
+      };
+      timer = setInterval(updateIcon, 500);
+  }
+};
+
+var render_desk_widget = function() {
+       new DESK.Widget({
+                version: 1,
+                site: 'binary.desk.com',
+                port: '80',
+                type: 'chat',
+                id: 'live-chat-icon',
+                displayMode: 0,  //0 for popup, 1 for lightbox
+                features: {
+                        offerAlways: true,
+                        offerAgentsOnline: false,
+                        offerRoutingAgentsAvailable: false,
+                        offerEmailIfChatUnavailable: false
+                },
+                fields: {
+                        ticket: {
+                                // desc: &#x27;&#x27;,
+                // labels_new: &#x27;&#x27;,
+                // priority: &#x27;&#x27;,
+                // subject: &#x27;&#x27;,
+                // custom_loginid: &#x27;&#x27;
+                        },
+                        interaction: {
+                                // email: &#x27;&#x27;,
+                // name: &#x27;&#x27;
+                        },
+                        chat: {
+                                //subject: ''
+                        },
+                        customer: {
+                                // company: &#x27;&#x27;,
+                // desc: &#x27;&#x27;,
+                // first_name: &#x27;&#x27;,
+                // last_name: &#x27;&#x27;,
+                // locale_code: &#x27;&#x27;,
+                // title: &#x27;&#x27;,
+                // custom_loginid: &#x27;&#x27;
+                        }
+                }
+        }).render();
+};
+
+var show_live_chat_icon = function() {
+    if(typeof DESK === 'undefined') {
+        loadCSS("https://d3jyn100am7dxp.cloudfront.net/assets/widget_embed_191.cssgz?1367387331");
+        loadJS("https://d3jyn100am7dxp.cloudfront.net/assets/widget_embed_libraries_191.jsgz?1367387332");
+    }
+
+
+    var desk_load = setInterval(function() {
+        if(typeof DESK !== "undefined") {
+            render_desk_widget();
+            change_chat_icon();
+            clearInterval(desk_load);
+        }
+    }, 80);
+};
+
+var display_career_email = function() {
+    $("#hr_contact_eaddress").html(email_rot13("<n uers=\"znvygb:ue@ovanel.pbz\" ery=\"absbyybj\">ue@ovanel.pbz</n>"));
+};
+
+function check_login_hide_signup() {
+    if (page.client.is_logged_in) {
+        $('#verify-email-form').remove();
+        $('.break').attr('style', 'margin-bottom:1em');
+    }
+}
+
+function hide_if_logged_in() {
+    if (page.client.is_logged_in) {
+        $('.client_logged_out').remove();
+    }
+}
+
+// use function to generate elements and append them
+// e.g. element is select and element to append is option
+function appendTextValueChild(element, text, value, disabled){
+    var option = document.createElement("option");
+    option.text = text;
+    option.value = value;
+    if (disabled === 'disabled') {
+      option.setAttribute('disabled', disabled);
+    }
+    element.appendChild(option);
+    return;
+}
+
+// append numbers to a drop down menu, eg 1-30
+function dropDownNumbers(select, startNum, endNum) {
+    select.appendChild(document.createElement("option"));
+
+    for (i = startNum; i <= endNum; i++){
+        var option = document.createElement("option");
+        option.text = i;
+        option.value = i;
+        select.appendChild(option);
+    }
+    return;
+
+}
+
+function dropDownMonths(select, startNum, endNum) {
+    var months = [
+        text.localize("Jan"),
+        text.localize("Feb"),
+        text.localize("Mar"),
+        text.localize("Apr"),
+        text.localize("May"),
+        text.localize("Jun"),
+        text.localize("Jul"),
+        text.localize("Aug"),
+        text.localize("Sep"),
+        text.localize("Oct"),
+        text.localize("Nov"),
+        text.localize("Dec")
+    ];
+    select.appendChild(document.createElement("option"));
+    for (i = startNum; i <= endNum; i++){
+        var option = document.createElement("option");
+        if (i <= '9') {
+            option.value = '0' + i;
+        } else {
+            option.value = i;
+        }
+        for (j = i; j <= i; j++) {
+            option.text = months[j-1];
+        }
+        select.appendChild(option);
+    }
+    return;
+}
+
+function generateBirthDate(country){
+    var days    = document.getElementById('dobdd'),
+        months  = document.getElementById('dobmm'),
+        year    = document.getElementById('dobyy');
+
+    if (document.getElementById('dobdd').length > 1) return;
+
+    //days
+    dropDownNumbers(days, 1, 31);
+    //months
+    dropDownMonths(months, 1, 12);
+    var currentYear = new Date().getFullYear();
+    var startYear = currentYear - 100;
+    var endYear = currentYear - 17;
+    //years
+    dropDownNumbers(year, startYear, endYear);
+    if ((country && country === 'jp') || page.language().toLowerCase() === 'ja') {
+      days.options[0].innerHTML = text.localize('Day');
+      months.options[0].innerHTML = text.localize('Month');
+      year.options[0].innerHTML = text.localize('Year');
+    }
+    return;
+}
+
+function isValidDate(day, month, year){
+    // Assume not leap year by default (note zero index for Jan)
+    var daysInMonth = [31,28,31,30,31,30,31,31,30,31,30,31];
+
+    // If evenly divisible by 4 and not evenly divisible by 100,
+    // or is evenly divisible by 400, then a leap year
+    if ( ((year % 4 === 0) && (year % 100 !== 0)) || (year % 400 === 0) ) {
+        daysInMonth[1] = 29;
+    }
+    return day <= daysInMonth[--month];
+}
+
+function handle_residence_state_ws(){
+  BinarySocket.init({
+    onmessage: function(msg){
+      var select;
+      var response = JSON.parse(msg.data);
+      if (response) {
+        var type = response.msg_type;
+        var country;
+        var residenceDisabled = $('#residence-disabled');
+        if (type === 'get_settings') {
+          country = response.get_settings.country_code;
+          if (country && country !== null) {
+            page.client.residence = country;
+            generateBirthDate(country);
+            generateState();
+            if (/maltainvestws/.test(window.location.pathname)) {
+              var settings = response.get_settings;
+              var title = document.getElementById('title'),
+                  fname = document.getElementById('fname'),
+                  lname = document.getElementById('lname'),
+                  dobdd = document.getElementById('dobdd'),
+                  dobmm = document.getElementById('dobmm'),
+                  dobyy = document.getElementById('dobyy');
+              var inputs = document.getElementsByClassName('input-disabled');
+              if (settings.salutation) {
+                title.value = settings.salutation;
+                fname.value = settings.first_name;
+                lname.value = settings.last_name;
+                var day = moment.utc(settings.date_of_birth * 1000).format('DD');
+                dobdd.value = /^0/.test(day) ? day.replace('0','') : day;
+                dobmm.value = moment.utc(settings.date_of_birth * 1000).format('MM');
+                dobyy.value = moment.utc(settings.date_of_birth * 1000).format('YYYY');
+                for (i = 0; i < inputs.length; i++) {
+                    inputs[i].disabled = true;
+                }
+                document.getElementById('address1').value = settings.address_line_1;
+                document.getElementById('address2').value = settings.address_line_2;
+                document.getElementById('address-town').value = settings.address_city;
+                window.state = settings.address_state;
+                document.getElementById('address-postcode').value = settings.address_postcode;
+                document.getElementById('tel').value = settings.phone;
+              } else {
+                for (i = 0; i < inputs.length; i++) {
+                    inputs[i].disabled = false;
+                }
+              }
+            }
+            return;
+          } else if (document.getElementById('move-residence-here')) {
+            var residenceForm = $('#residence-form');
+            $('#real-form').hide();
+            residenceDisabled.insertAfter('#move-residence-here');
+            $('#error-residence').insertAfter('#residence-disabled');
+            residenceDisabled.removeAttr('disabled');
+            residenceForm.show();
+            residenceForm.submit(function(evt) {
+              evt.preventDefault();
+              if (Validate.fieldNotEmpty(residenceDisabled.val(), document.getElementById('error-residence'))) {
+                page.client.residence = residenceDisabled.val();
+                BinarySocket.send({set_settings:1, residence:page.client.residence});
+              }
+              return;
+            });
+            return;
+          }
+        } else if (type === 'set_settings') {
+          var errorElement = document.getElementById('error-residence');
+          if (response.hasOwnProperty('error')) {
+            if (response.error.message) {
+              errorElement.innerHTML = response.error.message;
+              errorElement.setAttribute('style', 'display:block');
+            }
+            return;
+          } else {
+            errorElement.setAttribute('style', 'display:none');
+            BinarySocket.send({landing_company: page.client.residence});
+            return;
+          }
+        } else if (type === 'landing_company') {
+          $.cookie('residence', page.client.residence, {domain: '.' + document.domain.split('.').slice(-2).join('.'), path: '/'});
+          if (response.landing_company.hasOwnProperty('financial_company') && !response.landing_company.hasOwnProperty('gaming_company') && response.landing_company.financial_company.shortcode === 'maltainvest') {
+            window.location.href = page.url.url_for('new_account/maltainvestws');
+            return;
+          } else if (response.landing_company.hasOwnProperty('financial_company') && !response.landing_company.hasOwnProperty('gaming_company') && response.landing_company.financial_company.shortcode === 'japan') {
+            window.location.href = page.url.url_for('new_account/japanws');
+            return;
+          } else if (!$('#real-form').is(':visible')) {
+            $('#residence-form').hide();
+            residenceDisabled.insertAfter('#move-residence-back');
+            $('#error-residence').insertAfter('#residence-disabled');
+            residenceDisabled.attr('disabled', 'disabled');
+            $('#real-form').show();
+            generateBirthDate(country);
+            generateState();
+            return;
+          }
+        } else if (type === 'states_list'){
+          select = document.getElementById('address-state');
+          var states_list = response.states_list;
+          if (states_list.length > 0){
+            for (i = 0; i < states_list.length; i++) {
+                appendTextValueChild(select, states_list[i].text, states_list[i].value);
+            }
+            select.parentNode.parentNode.setAttribute('style', 'display:block');
+            if (window.state) {
+              select.value = window.state;
+            }
+          }
+          return;
+        } else if (type === 'residence_list'){
+          select = document.getElementById('residence-disabled') || document.getElementById('residence');
+          var phoneElement   = document.getElementById('tel'),
+              residenceValue = page.client.residence,
+              residence_list = response.residence_list;
+          if (residence_list.length > 0){
+            for (i = 0; i < residence_list.length; i++) {
+              if (residence_list[i].disabled  && select) {
+                appendTextValueChild(select, residence_list[i].text, residence_list[i].value, 'disabled');
+              } else if (select) {
+                appendTextValueChild(select, residence_list[i].text, residence_list[i].value);
+              }
+              if (phoneElement && phoneElement.value === '' && residence_list[i].phone_idd && residenceValue === residence_list[i].value){
+                phoneElement.value = '+' + residence_list[i].phone_idd;
+              }
+            }
+            if (residenceValue && select){
+                select.value = residenceValue;
+            }
+            if (document.getElementById('virtual-form')) {
+                BinarySocket.send({website_status:1});
+            }
+          }
+          return;
+        } else if (type === 'website_status') {
+          var status  = response.website_status;
+          if (status && status.clients_country) {
+            var clientCountry = $('#residence option[value="' + status.clients_country + '"]');
+            if (!clientCountry.attr('disabled')) {
+                clientCountry.attr('selected', 'selected');
+            }
+          }
+          return;
+        }
+      }
+    }
+  });
+}
+
+function generateState() {
+    var state = document.getElementById('address-state');
+    appendTextValueChild(state, Content.localize().textSelect, '');
+    if (page.client.residence !== "") {
+      BinarySocket.send({ states_list: page.client.residence });
+    }
+    return;
+}
+
+// returns true if internet explorer browser
+function isIE() {
+  return /(msie|trident|edge)/i.test(window.navigator.userAgent) && !window.opera;
+}
+
+// trim leading and trailing white space
+function Trim(str){
+  while(str.charAt(0) == (" ") ){str = str.substring(1);}
+  while(str.charAt(str.length-1) ==" " ){str = str.substring(0,str.length-1);}
+  return str;
+}
+
+function limitLanguage(lang) {
+  if (page.language() !== lang && !Login.is_login_pages()) {
+    window.location.href = page.url_for_language(lang);
+  }
+  if (document.getElementById('language_select')) {
+    $('#language_select').remove();
+    $('#gmt-clock').removeClass();
+    $('#gmt-clock').addClass('grd-grid-6 grd-grid-mobile-12');
+    $('#contact-us').removeClass();
+    $('#contact-us').addClass('grd-grid-6 grd-hide-mobile');
+  }
+}
+
+function checkClientsCountry() {
+  var clients_country = localStorage.getItem('clients_country');
+  if (clients_country) {
+    var str;
+    if (clients_country === 'jp') {
+      limitLanguage('JA');
+    } else if (clients_country === 'id') {
+      limitLanguage('ID');
+    } else {
+      $('#language_select').show();
+    }
+  } else {
+    BinarySocket.init();
+    BinarySocket.send({"website_status" : "1"});
+  }
+}
+
+if (page.language() === 'ID') {
+  change_blog_link('id');
+}
+
+function change_blog_link(lang) {
+  var regex = new RegExp(lang);
+  if (!regex.test($('.blog a').attr('href'))) {
+    $('.blog a').attr('href', $('.blog a').attr('href') + '/' + lang + '/');
+  }
+}
+
+$(function() {
+    $( "#accordion" ).accordion({
+      heightStyle: "content",
+      collapsible: true,
+      active: false
+    });
+});
+
+var $buoop = {
+  vs: {i:10, f:39, o:30, s:5, c:39},
+  l: page.language().toLowerCase(),
+  url: 'https://whatbrowser.org/'
+};
+function $buo_f(){
+ var e = document.createElement("script");
+ e.src = "//browser-update.org/update.min.js";
+ document.body.appendChild(e);
+}
+try {
+  document.addEventListener("DOMContentLoaded", $buo_f,false);
+} catch(e) {
+  window.attachEvent("onload", $buo_f);
+}
+;/*
+ *  This is developed to simplify the usage of enjoyhint (https://github.com/xbsoftware/enjoyhint) 
+ *
+ *  How to Implement in a page:
+ *  1. Add the button element to the template: <div id="guideBtn"></div>
+ *  2. Add the js initialization call, having the customized parameters: Guide.init({script : 'trading'});
+ *  3. Add the script data to getScript() method
+ */
+
+var Guide = (function() {
+	var opt,
+		cookieName,
+		btnNext,
+		btnFinish;
+
+	var init = function(options) {
+		opt = {
+			script	       : '',      // the script name in scripts
+			autoStart      : false,   // false: start by button click
+			guideBtnID     : '#guideBtn',
+			btnText        : text.localize('Walkthrough Guide'),  // guide start button's text
+			blink_class    : 'highlight',
+			blink_inDelay  : 1000,
+			blink_outDelay : 1000,
+			blink_interval : 3000,    // 0: continous blinking (blink_inDelay + blink_outDelay)
+			blink_count    : 0        // 0: infinite
+		};
+        $.extend(true, opt, options);
+
+        cookieName = 'hide_guide';
+		btnNext    = {className: "button", html: '<span>' + text.localize('Next') + '</span>'};
+		btnFinish  = {className: "button btnFinish", html: '<span>' + text.localize('Finish') + '</span>'};
+
+		if($(opt.guideBtnID).length === 0) {
+			console.warn('Could not find the button placeholder: <div id="' + opt.guideBtnID + '"></div>');
+			return;
+		}
+
+		if(opt.script.length === 0) {
+			console.warn('"script" name should be specified');
+			return;
+		}
+
+		if(isDisabled()) {
+			$(opt.guideBtnID).remove();
+			return;
+		}
+
+		makeButton();
+	};
+
+	/*
+	 *  do not show the guide button if its close (X) has been clicked before
+	 */
+	var isDisabled = function() {
+		var disabled = $.cookie(cookieName);
+		return !!disabled && $.inArray(opt.script, disabled.split(',')) >= 0;
+	};
+
+	/*
+	 *  handle the guide button appearance using a cookie for all scripts
+	 */
+	var setDisabled = function() {
+		if(!isDisabled()) {
+			var disabled = $.cookie(cookieName);
+			$.cookie(cookieName, (!disabled ? opt.script : disabled + ',' + opt.script));
+		}
+	};
+
+	/*
+	 *  generate the button's html
+	 */
+	var makeButton = function() {
+		if($(opt.guideBtnID).children().length > 0) {
+			return;
+		}
+
+		$(opt.guideBtnID)
+			.addClass('grd-hide-mobile pulser')
+			.append($('<span/>', {class: 'close', text: 'X'}))
+			.append($('<strong/>'));
+		$(opt.guideBtnID + ' strong').html('<span></span>' + opt.btnText);
+
+		setEvents();
+	};
+
+	/*
+	 *  both buttons' click event
+	 */
+	var setEvents = function() {
+		$(opt.guideBtnID + ' strong').click(function(e){
+			var enjoyhint_instance = null;
+			enjoyhint_instance = new EnjoyHint({});
+			enjoyhint_instance.setScript(getScript(opt.script));
+			enjoyhint_instance.runScript();
+		});
+		
+		if(opt.autoStart) {
+			$(opt.guideBtnID).click();
+		}
+
+		// Hide button
+		$(opt.guideBtnID + ' span.close').click(function(){
+			setDisabled();
+			$(opt.guideBtnID).remove();
+		});
+	};
+
+	/*
+	 *  each page's script
+	 */
+	var getScript = function(scriptName) {
+		if(scriptName === 'trading') {
+			return [
+				{
+					selector    : '#contract_markets',
+					description : '<h1>' + text.localize('Step') + ' 1</h1>' + 
+									text.localize('Select your market'),
+					event_type  : 'next',
+					nextButton  : btnNext
+				},
+				{
+					selector    : '#underlying',
+					description : '<h1>' + text.localize('Step') + ' 2</h1>' + 
+									text.localize('Select your underlying asset'),
+					event_type  : 'next',
+					nextButton  : btnNext
+				},
+				{
+					selector    : '#contract_form_name_nav',
+					description : '<h1>' + text.localize('Step') + ' 3</h1>' +
+									text.localize('Select your trade type'),
+					event_type  : 'next',
+					nextButton  : btnNext
+				},
+				{
+					selector    : '#websocket_form',
+					description : '<h1>' + text.localize('Step') + ' 4</h1>' + 
+									text.localize('Adjust trade parameters'),
+					event_type  : 'next',
+					nextButton  : btnNext
+				},
+				{
+					selector    : '#contracts_list',
+					description : '<h1>' + text.localize('Step') + ' 5</h1>' + 
+									text.localize('Predict the direction<br />and purchase'),
+					event_type  : 'next',
+					nextButton  : btnFinish
+				}
+			];
+		}
+	};
+
+
+	return {
+		init: init
+	};
+})();
+;/* ************************************************************
+Created: 20060120
+Author:  Steve Moitozo <god at zilla dot us> -- geekwisdom.com
+Description: This is a quick and dirty password quality meter
+     written in JavaScript so that the password does
+     not pass over the network.
+License: MIT License (see below)
+Modified: 20060620 - added MIT License
+Modified: 20061111 - corrected regex for letters and numbers
+                     Thanks to Zack Smith -- zacksmithdesign.com
+---------------------------------------------------------------
+Copyright (c) 2006 Steve Moitozo <god at zilla dot us>
+Permission is hereby granted, free of charge, to any person
+obtaining a copy of this software and associated documentation
+files (the "Software"), to deal in the Software without
+restriction, including without limitation the rights to use,
+copy, modify, merge, publish, distribute, sublicense, and/or
+sell copies of the Software, and to permit persons to whom the
+Software is furnished to do so, subject to the following
+conditions:
+   The above copyright notice and this permission notice shall
+be included in all copies or substantial portions of the
+Software.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY
+KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE
+AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE
+OR OTHER DEALINGS IN THE SOFTWARE.
+---------------------------------------------------------------
+Password Strength Factors and Weightings
+password length:
+level 0 (3 point): less than 4 characters
+level 1 (6 points): between 5 and 7 characters
+level 2 (12 points): between 8 and 15 characters
+level 3 (18 points): 16 or more characters
+letters:
+level 0 (0 points): no letters
+level 1 (5 points): all letters are lower case
+level 2 (7 points): letters are mixed case
+numbers:
+level 0 (0 points): no numbers exist
+level 1 (5 points): one number exists
+level 1 (7 points): 3 or more numbers exists
+special characters:
+level 0 (0 points): no special characters
+level 1 (5 points): one special character exists
+level 2 (10 points): more than one special character exists
+combinatons:
+level 0 (1 points): letters and numbers exist
+level 1 (1 points): mixed case letters
+level 1 (2 points): letters, numbers and special characters
+          exist
+level 1 (2 points): mixed case letters, numbers and special
+          characters exist
+NOTE: Because I suck at regex the code might need work
+NOTE: Instead of putting out all the logging information,
+    the score, and the verdict it would be nicer to stretch
+    a graphic as a method of presenting a visual strength
+    guage.
+************************************************************ */
+function testPassword(passwd)
+{
+    var intScore   = 0;
+    var strVerdict = "weak";
+    var strLog     = "";
+
+    // PASSWORD LENGTH
+    if (passwd.length<5)                         // length 4 or less
+    {
+      intScore = (intScore+3);
+      strLog   = strLog + "3 points for length (" + passwd.length + ")\n";
+    }
+    else if (passwd.length>4 && passwd.length<8) // length between 5 and 7
+    {
+      intScore = (intScore+6);
+      strLog   = strLog + "6 points for length (" + passwd.length + ")\n";
+    }
+    else if (passwd.length>7 && passwd.length<16)// length between 8 and 15
+    {
+      intScore = (intScore+12);
+      strLog   = strLog + "12 points for length (" + passwd.length + ")\n";
+    }
+    else if (passwd.length>15)                    // length 16 or more
+    {
+      intScore = (intScore+18);
+      strLog   = strLog + "18 point for length (" + passwd.length + ")\n";
+    }
+
+
+    // LETTERS (Not exactly implemented as dictacted above because of my limited understanding of Regex)
+    if (passwd.match(/[a-z]/))                              // [verified] at least one lower case letter
+    {
+      intScore = (intScore+1);
+      strLog   = strLog + "1 point for at least one lower case char\n";
+    }
+
+    if (passwd.match(/[A-Z]/))                              // [verified] at least one upper case letter
+    {
+      intScore = (intScore+5);
+      strLog   = strLog + "5 points for at least one upper case char\n";
+    }
+
+    // NUMBERS
+    if (passwd.match(/\d+/))                                 // [verified] at least one number
+    {
+      intScore = (intScore+5);
+      strLog   = strLog + "5 points for at least one number\n";
+    }
+
+    if (passwd.match(/(.*[0-9].*[0-9].*[0-9])/))             // [verified] at least three numbers
+    {
+      intScore = (intScore+5);
+      strLog   = strLog + "5 points for at least three numbers\n";
+    }
+
+
+    // SPECIAL CHAR
+    if (passwd.match(/.[!,@,#,$,%,^,&,*,?,_,~]/))            // [verified] at least one special character
+    {
+      intScore = (intScore+5);
+      strLog   = strLog + "5 points for at least one special char\n";
+    }
+
+                   // [verified] at least two special characters
+    if (passwd.match(/(.*[!,@,#,$,%,^,&,*,?,_,~].*[!,@,#,$,%,^,&,*,?,_,~])/))
+    {
+      intScore = (intScore+5);
+      strLog   = strLog + "5 points for at least two special chars\n";
+    }
+
+
+    // COMBOS
+    if (passwd.match(/([a-z].*[A-Z])|([A-Z].*[a-z])/))        // [verified] both upper and lower case
+    {
+      intScore = (intScore+2);
+      strLog   = strLog + "2 combo points for upper and lower letters\n";
+    }
+
+    if (passwd.match(/([a-zA-Z])/) && passwd.match(/([0-9])/)) // [verified] both letters and numbers
+    {
+      intScore = (intScore+2);
+      strLog   = strLog + "2 combo points for letters and numbers\n";
+    }
+
+                  // [verified] letters, numbers, and special characters
+    if (passwd.match(/([a-zA-Z0-9].*[!,@,#,$,%,^,&,*,?,_,~])|([!,@,#,$,%,^,&,*,?,_,~].*[a-zA-Z0-9])/))
+    {
+      intScore = (intScore+2);
+      strLog   = strLog + "2 combo points for letters, numbers and special chars\n";
+    }
+
+
+    if(intScore < 10)
+    {
+       strVerdict = text.localize("Password is weak");
+    }
+    else if (intScore > 9 && intScore < 20)
+    {
+       strVerdict = text.localize("Password is moderate");
+    }
+    else if (intScore > 19)
+    {
+       strVerdict = text.localize("Password is strong");
+    }
+    else
+    {
+       strVerdict = text.localize("Password is very strong");
+    }
+
+  var array = [intScore, strVerdict];
+  return array;
+}
+;RiskClassification = (function() {
+  'use strict';
+
+  var financial_assessment_url = page.url.url_for('user/settings/assessmentws');
+
+  var renderRiskClassificationPopUp = function () {
+      if (window.location.pathname === '/user/settings/assessmentws') {
+        window.location.href = page.url.url_for('user/my_accountws');
+        return;
+      }
+      $.ajax({
+          url: financial_assessment_url,
+          dataType: 'html',
+          method: 'GET',
+          success: function(riskClassificationText) {
+              if (riskClassificationText.includes('assessment_form')) {
+                  var payload = $(riskClassificationText);
+                  showRiskClassificationPopUp(payload.find('#assessment_form'));
+                  FinancialAssessmentws.LocalizeText();
+                  $('#risk_classification #assessment_form').removeClass('invisible')
+                                      .attr('style', 'text-align: left;');
+                  $('#risk_classification #high_risk_classification').removeClass('invisible');
+                  $('#risk_classification #heading_risk').removeClass('invisible');
+                  $("#risk_classification #assessment_form").on("submit",function(event) {
+                      event.preventDefault();
+                      FinancialAssessmentws.submitForm();
+                      return false;
+                  });
+              }
+          },
+          error: function(xhr) {
+              return;
+          }
+      });
+      $("#risk_classification #assessment_form").on("submit",function(event) {
+          event.preventDefault();
+          FinancialAssessmentws.submitForm();
+          return false;
+      });
+  };
+
+  var showRiskClassificationPopUp = function (content) {
+    if ($('#risk_classification').length > 0) {
+        return;
+    }
+    var lightboxDiv = $("<div id='risk_classification' class='lightbox'></div>");
+
+    var wrapper = $('<div></div>');
+    wrapper = wrapper.append(content);
+    wrapper = $('<div></div>').append(wrapper);
+    wrapper.appendTo(lightboxDiv);
+    lightboxDiv.appendTo('body');
+  };
+
+  var cleanup = function () {
+    localStorage.removeItem('risk_classification');
+    localStorage.removeItem('risk_classification.response');
+    $('#risk_classification').remove();
+    if (sessionStorage.getItem('check_tnc')) {
+      page.client.check_tnc();
+    }
+  };
+
+  return {
+    renderRiskClassificationPopUp: renderRiskClassificationPopUp,
+    cleanup: cleanup
+  };
+}());
+;var SessionDurationLimit = (function() {
+    'use strict';
+
+    var warning;
+
+    var init = function() {
+        clearTimeout(window.TimeOut_SessionLimitWarning);
+        clearTimeout(window.TimeOut_SessionLimitLogout);
+        $('#session_limit').remove();
+
+        warning = 10; // seconds before limit to display the warning message
+
+        var limit    = page.client.get_storage_value('session_duration_limit') * 1,
+            now      = parseInt(moment().valueOf() / 1000),
+            start    = page.client.get_storage_value('session_start') * 1,
+            remained = limit + start - now;
+        if(remained < 0) remained = warning;
+
+        window.TimeOut_SessionLimitWarning = setTimeout(displayWarning, (remained - warning) * 1000);
+        window.TimeOut_SessionLimitLogout  = setTimeout(page.client.send_logout_request, remained * 1000);
+    };
+
+    var exclusionResponseHandler = function(response) {
+        if (response.hasOwnProperty('error') || !response.hasOwnProperty('get_self_exclusion')) {
+            return;
+        }
+
+        var limit = response.get_self_exclusion.session_duration_limit * 60;
+        if(isNaN(limit) || limit <= 0) return;
+
+        page.client.set_storage_value('session_duration_limit', limit);
+        window.addEventListener('storage', init, false);
+
+        init();
+    };
+
+    var realityStorageEventHandler = function(e) {
+        if (e.key === 'client.session_start' || e.key === 'client.session_duration_limit') {
+            init();
+        }
+    };
+
+    var displayWarning = function() {
+        $('body').append(
+            $("<div id='session_limit' class='lightbox'><div><div><div class='limit_message'>" +
+                text.localize('Your session duration limit will end in [_1] seconds.').replace('[_1]', warning) +
+                "</div></div></div></div>")
+        );
+        $('#session_limit').click(function(){$(this).remove();});
+    };
+
+    return {
+        exclusionResponseHandler: exclusionResponseHandler,
+    };
+}());
+;var StringUtil = (function(){
+    function toTitleCase(str){
+        return str.replace(/\w[^\s\/\\]*/g, function(txt){
+            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+        });
+    }
+
+    function dateToStringWithoutTime(date){
+        return [date.getDate(), date.getMonth()+1, date.getFullYear()].join("/");
+    }
+
+    //Time should be in SECOND !!!
+    function timeStampToDateString(time){
+        var dateObj = new Date(time * 1000);
+        var momentObj = moment.utc(dateObj);
+        return momentObj.format("YYYY-MM-DD");
+    }
+
+    //Time should be in SECOND !!!
+    function timeStampToTimeString(time){
+        var dateObj = new Date(time * 1000);
+        var momentObj = moment.utc(dateObj);
+        return momentObj.format("HH:mm:ss");
+    }
+
+    //Time should be in SECOND !!!
+    function timeStampToDateTimeString(time){
+        var dateObj = new Date(time * 1000);
+        var momentObj = moment.utc(dateObj);
+        return momentObj.toString();
+    }
+
+    return {
+        toTitleCase: toTitleCase,
+        dateToStringWithoutTime: dateToStringWithoutTime,
+        unixTimeToDateString: timeStampToDateString,
+        unixTimeToTimeString: timeStampToTimeString,
+        unixTimeToDateTimeString: timeStampToDateTimeString
+    };
+}());
+;var ValidAccountOpening = (function(){
+  var redirectCookie = function() {
+    if (page.client.show_login_if_logout(true)) {
+        return;
+    }
+    if (!page.client.is_virtual()) {
+      window.location.href = page.url.url_for('user/my_accountws');
+      return;
+    }
+    for (i = 0; i < page.user.loginid_array.length; i++){
+      if (page.user.loginid_array[i].real === true){
+        window.location.href = page.url.url_for('user/my_accountws');
+        return;
+      }
+    }
+  };
+  var handler = function(response, message) {
+    if (response.error) {
+      var errorMessage = response.error.message;
+      if (response.error.code === 'show risk disclaimer' && document.getElementById('financial-form')) {
+        $('#financial-form').addClass('hidden');
+        $('#financial-risk').removeClass('hidden');
+        return;
+      }
+      if (document.getElementById('real-form')) {
+        $('#real-form').remove();
+      } else if (document.getElementById('japan-form')) {
+        $('#japan-form').remove();
+      } else if (document.getElementById('financial-form')) {
+        $('#financial-form').remove();
+        $('#financial-risk').remove();
+      }
+      var error = document.getElementsByClassName('notice-msg')[0];
+      error.innerHTML = (response.msg_type === 'sanity_check') ? text.localize('There was some invalid character in an input field.') : errorMessage;
+      error.parentNode.parentNode.parentNode.setAttribute('style', 'display:block');
+      return;
+    } else if (getCookieItem('residence') === 'jp') {
+      window.location.href = page.url.url_for('new_account/knowledge_testws');
+      $('#topbar-msg').children('a').addClass('invisible');
+    } else {     // jp account require more steps to have real account
+      page.client.process_new_account(getCookieItem('email'), message.client_id, message.oauth_token, false);
+    }
+  };
+  var letters, numbers, space, hyphen, period, apost;
+
+  var initializeValues = function() {
+    letters = Content.localize().textLetters;
+    numbers = Content.localize().textNumbers;
+    space   = Content.localize().textSpace;
+    hyphen  = Content.localize().textHyphen;
+    period  = Content.localize().textPeriod;
+    apost   = Content.localize().textApost;
+  };
+
+  var checkFname = function(fname, errorFname) {
+    if (Trim(fname.value).length < 2) {
+      errorFname.innerHTML = Content.errorMessage('min', '2');
+      Validate.displayErrorMessage(errorFname);
+      window.accountErrorCounter++;
+    } else if (!/^[a-zA-Z\s-.']+$/.test(fname.value)){
+      initializeValues();
+      errorFname.innerHTML = Content.errorMessage('reg', [letters, space, hyphen, period, apost]);
+      Validate.displayErrorMessage(errorFname);
+      window.accountErrorCounter++;
+    }
+    return;
+  };
+  var checkLname = function(lname, errorLname) {
+    if (Trim(lname.value).length < 2) {
+      errorLname.innerHTML = Content.errorMessage('min', '2');
+      Validate.displayErrorMessage(errorLname);
+      window.accountErrorCounter++;
+    } else if (!/^[a-zA-Z\s-.']+$/.test(lname.value)){
+      initializeValues();
+      errorLname.innerHTML = Content.errorMessage('reg', [letters, space, hyphen, period, apost]);
+      Validate.displayErrorMessage(errorLname);
+      window.accountErrorCounter++;
+    }
+    return;
+  };
+  var checkDate = function(dobdd, dobmm, dobyy, errorDob) {
+    if (!isValidDate(dobdd.value, dobmm.value, dobyy.value) || dobdd.value === '' || dobmm.value === '' || dobyy.value === '') {
+      errorDob.innerHTML = Content.localize().textErrorBirthdate;
+      Validate.displayErrorMessage(errorDob);
+      window.accountErrorCounter++;
+    }
+    return;
+  };
+  var checkPostcode = function(postcode, errorPostcode) {
+    if (postcode.value !== '' && !/^[a-zA-Z\d-]+$/.test(postcode.value)){
+      initializeValues();
+      errorPostcode.innerHTML = Content.errorMessage('reg', [letters, numbers, hyphen]);
+      Validate.displayErrorMessage(errorPostcode);
+      window.accountErrorCounter++;
+    }
+    return;
+  };
+  var checkTel = function(tel, errorTel) {
+    if (tel.value.replace(/\+| /g,'').length < 6) {
+      errorTel.innerHTML = Content.errorMessage('min', 6);
+      Validate.displayErrorMessage(errorTel);
+      window.accountErrorCounter++;
+    } else if (!/^\+?[0-9\s]{6,35}$/.test(tel.value)){
+      initializeValues();
+      errorTel.innerHTML = Content.errorMessage('reg', [numbers, space]);
+      Validate.displayErrorMessage(errorTel);
+      window.accountErrorCounter++;
+    }
+    return;
+  };
+  var checkAnswer = function(answer, errorAnswer) {
+    if (answer.value.length < 4) {
+      errorAnswer.innerHTML = Content.errorMessage('min', 4);
+      Validate.displayErrorMessage(errorAnswer);
+      window.accountErrorCounter++;
+    }
+    return;
+  };
+  return {
+    redirectCookie: redirectCookie,
+    handler: handler,
+    checkFname: checkFname,
+    checkLname: checkLname,
+    checkDate: checkDate,
+    checkPostcode: checkPostcode,
+    checkTel: checkTel,
+    checkAnswer: checkAnswer
+  };
+}());
+;var Validate = (function(){
+  var errorCounter = 0;
+
+  //give DOM element of error to display
+  function displayErrorMessage(error){
+    error.setAttribute('style', 'display:block');
+  }
+
+  //give DOM element or error to hide
+  function hideErrorMessage(error){
+    error.setAttribute('style', 'display:none');
+    var errorMessage = $('.error-message-password');
+    if (errorMessage){
+      errorMessage.remove();
+    }
+  }
+
+  function handleError(error, text){
+    var par = document.createElement('p'),
+        re = new RegExp(text),
+        allText = '';
+    par.className = 'error-message-password';
+    var parClass = $('.' + par.className);
+    if (parClass.length > 1) {
+      for (i = 0; i < parClass.length; i++){
+        allText = allText + parClass[i].textContent;
+      }
+      if (!re.test(allText)){
+        par.innerHTML = par.innerHTML + ' ' + text;
+      }
+    } else {
+      par.innerHTML = text;
+    }
+    error.appendChild(par);
+    displayErrorMessage(error);
+  }
+
+  //check validity of token
+  function validateToken(token) {
+    if (token.length == 48) {
+      return true;
+    }
+    return false;
+  }
+
+  //give error message for invalid email, needs DOM element of error and value of email
+  function errorMessageEmail(email, error) {
+    if (email === "") {
+      error.textContent = Content.errorMessage('req');
+      displayErrorMessage(error);
+      return true;
+    } else if (!validateEmail(email)) {
+      error.textContent = Content.errorMessage('valid', text.localize('email address'));
+      displayErrorMessage(error);
+      return true;
+    }
+    hideErrorMessage(error);
+    return false;
+  }
+
+  //give error message for invalid verification token, needs DOM element of error and value of verification token
+  function errorMessageToken(token, error) {
+    if (token === "") {
+      error.textContent = Content.errorMessage('req');
+      displayErrorMessage(error);
+      return true;
+    } else if (!validateToken(token)) {
+      error.textContent = Content.errorMessage('valid', text.localize('verification token'));
+      displayErrorMessage(error);
+      return true;
+    }
+    hideErrorMessage(error);
+    return false;
+  }
+
+  function passwordNotEmpty(password, error){
+    if (!/^.+$/.test(password)) {
+      handleError(error, Content.errorMessage('req'));
+      return errorCounter++;
+    }
+    return true;
+  }
+
+  function fieldNotEmpty(field, error){
+    if (!/^.+$/.test(field)) {
+      error.textContent = Content.errorMessage('req');
+      displayErrorMessage(error);
+      return errorCounter++;
+    }
+    return true;
+  }
+
+  function passwordMatching(password, rPassword, rError){
+    if (password !== rPassword) {
+      rError.textContent = Content.localize().textPasswordsNotMatching;
+      displayErrorMessage(rError);
+      return errorCounter++;
+    }
+    return true;
+  }
+
+  function passwordLength(password, error){
+    if (password.length < 6 || password.length > 25) {
+      handleError(error, Content.errorMessage('range', '6-25'));
+      return errorCounter++;
+    }
+    return true;
+  }
+
+  function passwordChars(password, error){
+    if (/[0-9]+/.test(password) && /[A-Z]+/.test(password) && /[a-z]+/.test(password)) {
+      return true;
+    }
+    handleError(error, text.localize('Password should have lower and uppercase letters with numbers.'));
+    return errorCounter++;
+  }
+
+  function passwordValid(password, error){
+    if (!/^[!-~]+$/.test(password)) {
+      handleError(error, Content.errorMessage('valid', Content.localize().textPassword));
+      return errorCounter++;
+    }
+    return true;
+  }
+
+  function passwordStrong(password, error){
+    var tooltipPassword = document.getElementById('tooltip-password');
+    tooltipPassword.setAttribute('style', 'display:none');
+    if (testPassword(password)[0] < 20) {
+      displayErrorMessage(error);
+      return errorCounter++;
+    }
+    return true;
+  }
+
+  //give error message for invalid password, needs value of password, repeat of password, and DOM element of error
+  /**
+   *
+   * @param password      password
+   * @param rPassword     confirm password
+   * @param error         dom to show error for password (not jquery!)
+   * @param rError        dom to show error for confirm password (not jquery!)
+   * @returns {boolean}
+     */
+  function errorMessagePassword(password, rPassword, error, rError) {
+    hideErrorMessage(error);
+    hideErrorMessage(rError);
+    errorCounter = 0;
+
+    if (passwordNotEmpty(password, error) === true){
+      passwordLength(password, error);
+      passwordChars(password, error);
+      passwordValid(password, error);
+      if (fieldNotEmpty(rPassword, rError) === true){
+        passwordMatching(password, rPassword, rError);
+      }
+    } else {
+      fieldNotEmpty(rPassword, rError);
+    }
+
+    if (errorCounter === 0){
+      return true;
+    }
+    return false;
+  }
+
+  function errorMessageResidence(residence, error) {
+    hideErrorMessage(error);
+    if (residence === ""){
+      error.textContent = Content.errorMessage('req');
+      displayErrorMessage(error);
+      return true;
+    }
+    return false;
+  }
+
+  return {
+    displayErrorMessage: displayErrorMessage,
+    hideErrorMessage: hideErrorMessage,
+    errorMessageEmail: errorMessageEmail,
+    errorMessagePassword: errorMessagePassword,
+    fieldNotEmpty: fieldNotEmpty,
+    errorMessageResidence: errorMessageResidence,
+    errorMessageToken: errorMessageToken
+  };
+}());
+
+function validateEmail(mail) {
+  if (/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,63}$/.test(mail)){
+    return true;
+  }
+  return false;
+}
+
+function passwordValid(password) {
+  if (password.length > 25) {
+    return false;
+  }
+
+  var r = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,25}$/;
+  return r.test(password);
+}
+
+/**
+ * Use this if you want to separate validation logic with UI
+ * Use Validate.errorMessagePassword if you want to handle UI with validation together
+ * @param password      password
+ * @returns {Array}     array of error message, can be empty
+ */
+function showPasswordError(password) {
+  var errMsgs = [];
+  if (password.length < 6 || password.length > 25) {
+    errMsgs.push(Content.errorMessage('range', '6-25'));
+  }
+
+  var hasUpperLowerDigitRegex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])/;
+  if (!hasUpperLowerDigitRegex.test(password)) {
+    errMsgs.push(text.localize('Password should have lower and uppercase letters with numbers.'));
+  }
+
+  return errMsgs;
+}
 ;DatePicker = function(component_id, select_type) {
     this.component_id = component_id;
     this.select_type = (typeof select_type === "undefined") ? "date" : select_type;
@@ -71292,6 +72886,20 @@ TimePicker.prototype = {
 
 // if Track:js is already loaded, we need to initialize it
 if (typeof trackJs !== 'undefined') trackJs.configure(window._trackJs);
+;pjax_config_page("applications", function(){
+    return {
+        onLoad: function() {
+          Content.populate();
+          if (page.client.residence === 'jp' || page.language().toLowerCase() === 'ja') {
+            $('.applications-page').empty()
+                                   .append('<p class="notice-msg">' + Content.localize().textFeatureUnavailable + '</p>')
+                                   .removeClass('invisible');
+          } else {
+            $('.applications-page').removeClass('invisible');
+          }
+        }
+    };
+});
 ;pjax_config_page("endpoint", function(){
     return {
         onLoad: function() {
@@ -71315,6 +72923,2617 @@ if (typeof trackJs !== 'undefined') trackJs.configure(window._trackJs);
         }
     };
 });
+;pjax_config_page('/get-started-jp', function() {
+    return {
+        onLoad: function() {
+          if (page.language().toLowerCase() !== 'ja') {
+            window.location.href = page.url.url_for('get-started');
+          }
+          var tab = window.location.hash;
+          if (tab && tab !== '') {
+            $('#index').hide();
+            $('.sidebar-left ul li.' + tab.slice(1, tab.length)).addClass('selected');
+            showSelectedTab();
+          }
+          function showSelectedTab() {
+            var updatedTab = window.location.hash;
+            $('.contents div').hide();
+            if (updatedTab && updatedTab !== '') {
+              if ($('#index').is(":visible")) $('#index').hide();
+              $('.contents div[id=content-' + updatedTab.slice(1, updatedTab.length) + ']').show();
+              $('.contents div[id=content-' + updatedTab.slice(1, updatedTab.length) + '] div').show();
+              $('.sidebar-left ul li').removeClass('selected');
+              $('.sidebar-left ul li.' + updatedTab.slice(1, updatedTab.length)).addClass('selected');
+              $('.contents').show();
+            }
+            else {
+              $('.contents').hide();
+              $('.sidebar-left ul li').removeClass('selected');
+              $('#index').show();
+            }
+          }
+          $(window).on('hashchange', function(){
+            showSelectedTab();
+          });
+          $('.sidebar-left ul li').click(function(e) {
+            $('.sidebar-left ul li').removeClass('selected');
+            $(this).addClass('selected');
+          });
+        }
+    };
+});
+;pjax_config_page('/open-positions', function() {
+  return {
+      onLoad: function() {
+        if (document.getElementById('Information_Technology')) {
+          if (page.url.location.hash) {
+              $.scrollTo($(page.url.location.hash));
+          }
+        }
+      }
+  };
+});
+pjax_config_page('/open-positions/job-details', function() {
+    return {
+        onLoad: function() {
+          var dept = page.url.params_hash().dept,
+              sidebarListItem = $('#sidebar-nav li');
+          function showSelectedDiv() {
+            $('.sections div').hide();
+            $('.sections div[id=' + dept + '-' + page.url.location.hash.substring(1) + ']').show();
+            $('.title-sections').html($('.sidebar li[class="selected"]').text());
+            if (dept === 'Information_Technology' && page.url.location.hash.substring(1) === 'section-three') {
+              $('.senior_perl_message').removeClass('invisible');
+            } else if (!$('.senior_perl_message').hasClass('invisible')) {
+              $('.senior_perl_message').addClass('invisible');
+            }
+          }
+          $(window).on('hashchange', function(){
+            showSelectedDiv();
+          });
+          $('.job-details').find('#title').html(text.localize(dept.replace(/_/g, ' ')));
+          var deptImage = $('.dept-image'),
+              sourceImage = deptImage.attr('src').replace('Information_Technology', dept);
+          deptImage.attr('src', sourceImage)
+                   .show();
+          var deptContent = $('#content-' + dept + ' div');
+          var section,
+              sections = ['section-one', 'section-two', 'section-three', 'section-four', 'section-five', 'section-six', 'section-seven', 'section-eight'];
+          sidebarListItem.slice(deptContent.length).hide();
+          for (i = 0; i < deptContent.length; i++) {
+              section = $('#' + dept + '-' + sections[i]);
+              section.insertAfter('.sections div:last-child');
+              if (section.attr('class')) {
+                $('#sidebar-nav a[href="#' + sections[i] + '"]').html(text.localize(section.attr('class').replace(/_/g, ' ')));
+              }
+          }
+          $('.sidebar').show();
+          if ($('.sidebar li:visible').length === 1) {
+            $('.sidebar').hide();
+          }
+          $('#' + page.url.location.hash.substring(9)).addClass('selected');
+          showSelectedDiv();
+          $('#back-button').attr('href', page.url.url_for('open-positions') + '#' + dept);
+          sidebarListItem.click(function(e) {
+            sidebarListItem.removeClass('selected');
+            $(this).addClass('selected');
+          });
+        }
+    };
+});
+;pjax_config_page('/\?.+|/home', function() {
+    return {
+        onLoad: function() {
+            if(/^(\/|\/home)$/i.test(window.location.pathname)) {
+                page.client.redirect_if_login();
+            }
+            check_login_hide_signup();
+            submit_email();
+        }
+    };
+});
+
+pjax_config_page('/why-us', function() {
+    return {
+        onLoad: function() {
+            var whyus = $('.why-us');
+            sidebar_scroll(whyus);
+            hide_if_logged_in();
+        },
+        onUnload: function() {
+            $(window).off('scroll');
+        }
+    };
+});
+
+pjax_config_page('/volidx-markets', function() {
+    return {
+        onLoad: function() {
+            if (page.url.location.hash !== "") {
+              $('a[href="' + page.url.location.hash + '"]').click();
+            }
+        },
+        onUnload: function() {
+            $(window).off('scroll');
+        }
+    };
+});
+
+pjax_config_page('/open-source-projects', function() {
+    return {
+        onLoad: function() {
+            sidebar_scroll($('.open-source-projects'));
+        },
+        onUnload: function() {
+            $(window).off('scroll');
+        }
+    };
+});
+
+pjax_config_page('/payment-agent', function() {
+    return {
+        onLoad: function() {
+            sidebar_scroll($('.payment-agent'));
+        },
+        onUnload: function() {
+            $(window).off('scroll');
+        }
+    };
+});
+
+pjax_config_page('/get-started', function() {
+    return {
+        onLoad: function() {
+            if (!/jp/.test(window.location.pathname) && page.language().toLowerCase() === 'ja') {
+              window.location.href = page.url.url_for('get-started-jp');
+            }
+            get_started_behaviour();
+        },
+        onUnload: function() {
+            $(window).off('scroll');
+        },
+    };
+});
+
+pjax_config_page('/contact', function() {
+    return {
+        onLoad: function() {
+            display_cs_contacts();
+            show_live_chat_icon();
+        },
+    };
+});
+
+pjax_config_page('/careers', function() {
+    return {
+        onLoad: function() {
+            display_career_email();
+        },
+    };
+});
+
+pjax_config_page('/terms-and-conditions', function() {
+    return {
+        onLoad: function() {
+            if (page.language() === 'JA' && /^jp/.test(window.location.pathname)) {
+              window.location.href = page.url.url_for('terms-and-conditions-jp');
+            } else if (page.language() === 'EN' && /jp/.test(window.location.pathname)) {
+              window.location.href = page.url.url_for('terms-and-conditions');
+            }
+            var selected_tab = page.url.params_hash().selected_tab;
+            if(selected_tab) {
+              $('li#' + selected_tab + ' a').click();
+            }
+            var year = document.getElementsByClassName('currentYear');
+            for (i = 0; i < year.length; i++){
+              year[i].innerHTML = new Date().getFullYear();
+            }
+        },
+    };
+});
+
+pjax_config_page('\/login|\/loginid_switch', function() {
+    return {
+        onLoad: function() {
+            if(!$('body').hasClass('BlueTopBack')) {
+                window.location.href = Login.login_url();
+            }
+        }
+    };
+});
+
+pjax_config_page('/(jp)?trading', function () {
+    return {
+        onLoad: function(){TradePage.onLoad();},
+        onUnload: function(){TradePage.onUnload();}
+    };
+});
+
+var hide_payment_agents = function() {
+    var language = page.language();
+    if(language == 'JA') {
+        $('.payment_agent_methods').addClass('invisible');
+    }
+};
+
+onLoad.queue_for_url(hide_payment_agents, 'cashier');
+;var account_transferws = (function(){
+    "use strict";
+    var $form ;
+    var account_from , account_to ;
+    var currType,account_bal;
+    var availableCurr= [] ;
+    var payoutCurr = [];
+
+    var init = function(){
+        if(page.client.redirect_if_is_virtual()) {
+            return;
+        }
+
+        $form = $('#account_transfer');
+        account_bal = 0;
+
+        BinarySocket.send({ "transfer_between_accounts": "1","req_id" : 4 });
+
+        $form.find("button").on("click", function(e){
+            e.preventDefault();
+            e.stopPropagation();
+
+            if(validateForm() === false){
+                return false;
+            }
+
+            var amt = $form.find("#acc_transfer_amount").val();
+            BinarySocket.send({
+                        "transfer_between_accounts": "1",
+                        "account_from": account_from,
+                        "account_to": account_to,
+                        "currency": currType,
+                        "amount": amt
+            });
+
+        });
+
+        $form.find("#transfer_account_transfer").on("change",function(){
+
+           $form.find("#invalid_amount").text("");
+           set_account_from_to();
+
+           BinarySocket.send({"payout_currencies": "1"});
+
+        });
+    };
+    var set_account_from_to = function(){
+
+        var accounts = $("#transfer_account_transfer option:selected").text();
+        var matches = accounts
+                        .split('(')
+                        .filter(function(v){
+                            return v.indexOf(')') > -1;})
+                        .map( function(value) {
+                            return value.split(')')[0];
+                    });
+
+        account_from = matches[0];
+        account_to = matches[1];
+
+        $.each(availableCurr,function(index,value){
+            if(value.account == account_from){
+                currType = value.currency;
+                account_bal = value.balance;
+            }
+        });
+
+        $form.find("#currencyType").html(currType);
+    };
+    var validateForm =function(){
+
+        var amt = $form.find("#acc_transfer_amount").val();
+        var isValid = true;
+
+        if(amt.length <=0 ){
+            $form.find("#invalid_amount").text(text.localize("Invalid amount. Minimum transfer amount is 0.10, and up to 2 decimal places."));
+            isValid = false;
+        }
+
+        return isValid;
+    };
+
+    var apiResponse = function(response){
+        var type = response.msg_type;
+        if (type === "authorize") {
+            init();
+        }
+        else if (type === "transfer_between_accounts" || (type === "error" && "transfer_between_accounts" in response.echo_req)) {
+           responseMessage(response);
+        }
+        else if(type === "payout_currencies" || (type === "error" && "payout_currencies" in response.echo_req)) {
+            responseMessage(response);
+        }
+    };
+
+    var responseMessage = function(response) {
+        var resvalue ;
+        if("error" in response) {
+                if("message" in response.error) {
+
+                    if($('#transfer_account_transfer option').length > 0 ){
+                        $form.removeClass('invisible');
+                        $form.find("#invalid_amount").text(text.localize(response.error.message));
+                    }
+                    else{
+                        $("#client_message").removeClass('invisible');
+                        $("#client_message p").html(text.localize(response.error.message));
+                        $("#success_form").addClass('invisible');
+                        $form.addClass('invisible');
+
+                    }
+                    return false;
+                }
+
+                return false;
+        }
+        else if("payout_currencies" in response){
+
+            payoutCurr = response.payout_currencies;
+        }
+        else if ("transfer_between_accounts" in response){
+
+            if(response.req_id === 5){
+
+                $.each(response.accounts,function(key,value){
+                    $form.addClass('invisible');
+                    $("#success_form").removeClass('invisible');
+                    $("#client_message").addClass('invisible');
+
+                    if(value.loginid == account_from){
+                        $("#loginid_1").html(value.loginid);
+                        $("#balance_1").html(value.balance);
+                    }
+                    else if(value.loginid == account_to){
+                        $("#loginid_2").html(value.loginid);
+                        $("#balance_2").html(value.balance);
+
+                    }
+                });
+            }
+            else if(response.req_id === 4){
+                $form.removeClass('invisible');
+                var secondacct, firstacct,str,optionValue;
+                var selectedIndex = -1;
+
+                $.each(response.accounts, function(index,value){
+                    var currObj = {};
+
+                    if($.isEmptyObject(firstacct))
+                    {
+                        firstacct = value.loginid;
+                        currObj.account = value.loginid;
+                        currObj.currency = value.currency;
+                        currObj.balance = value.balance;
+
+                        if(value.balance > 0 && selectedIndex < 0)
+                        {
+                            selectedIndex = index;
+                        }
+
+                        availableCurr.push(currObj);
+                    }
+                    else
+                    {
+                        secondacct = value.loginid;
+                        str = text.localize("from account (" + firstacct + ") to account (" + secondacct + ")");
+                        optionValue = firstacct + "_to_" + secondacct;
+                        $form.find("#transfer_account_transfer")
+                             .append($("<option></option>")
+                             .attr("value",optionValue)
+                             .text(str));
+                        str = text.localize("from account (" + secondacct + ") to account (" + firstacct + ")");
+                        optionValue = secondacct + "_to_" + firstacct;
+                        $form.find("#transfer_account_transfer")
+                             .append($("<option></option>")
+                             .attr("value",optionValue)
+                             .text(str));
+
+                        currObj.account = value.loginid;
+                        currObj.currency = value.currency;
+                        currObj.balance = value.balance;
+
+                        availableCurr.push(currObj);
+
+                        firstacct = {};
+
+                        if(selectedIndex < 0 && value.balance){
+                            selectedIndex =  index;
+                        }
+                    }
+
+                    if(($.isEmptyObject(firstacct) === false) && ($.isEmptyObject(secondacct) === false))
+                    {
+                        str = text.localize("from account (" + secondacct + ") to account (" + firstacct + ")");
+                        optionValue = secondacct + "_to_" + firstacct;
+                        $form.find("#transfer_account_transfer")
+                                 .append($("<option></option>")
+                                 .attr("value",optionValue)
+                                 .text(str));
+                    }
+                    secondacct = {};
+
+                    if(value.balance <= 0){
+                        $form.find("#transfer_account_transfer option:last").remove();
+                    }
+                    else{
+                        if(selectedIndex < 0 ){
+                            selectedIndex =  index;
+                        }
+                    }
+
+
+                });
+
+                for(var i = 0; i < selectedIndex; i++){
+                    $form.find("#transfer_account_transfer option").eq(i).remove();
+                }
+
+                if(selectedIndex >=0){
+                    $form.find("#transfer_account_transfer option").eq(selectedIndex).attr('selected', 'selected');
+                }
+
+
+                set_account_from_to();
+
+                if((account_bal <=0) && (response.accounts.length > 1) ){
+                    $("#client_message").removeClass('invisible');
+                    $("#success_form").addClass('invisible');
+                    $form.addClass('invisible');
+                    return false;
+                }
+                else if(account_to === undefined || account_from === undefined || $.isEmptyObject(account_to))
+                {
+                    $("#client_message").removeClass('invisible');
+                    $("#client_message p").html(text.localize("The account transfer is unavailable for your account."));
+                    $("#success_form").addClass('invisible');
+                    $form.addClass('invisible');
+                    return false;
+                }
+
+                BinarySocket.send({"payout_currencies": "1"});
+            }
+            else{
+                BinarySocket.send({
+                    "transfer_between_accounts": "1",
+                    "req_id" : 5
+                });
+
+            }
+        }
+
+    };
+
+    return {
+        init : init,
+        apiResponse : apiResponse
+    };
+
+})();
+
+pjax_config_page_require_auth("account/account_transferws", function() {
+    return {
+        onLoad: function() {
+            BinarySocket.init({
+                onmessage: function(msg){
+                    var response = JSON.parse(msg.data);
+                    if (response) {
+                        account_transferws.apiResponse(response);
+                    }
+                }
+            });
+
+            if(TUser.get().hasOwnProperty('is_virtual')) {
+                account_transferws.init();
+            }
+        }
+    };
+});
+;var Cashier = (function() {
+    "use strict";
+
+    var show_error = function(error) {
+      $('.withdraw').parent().addClass('button-disabled')
+                             .removeAttr('href');
+      $('.notice-msg').html(error)
+                      .parent().removeClass('invisible');
+    };
+
+    var lock_withdrawal = function(withdrawal_locked) {
+      if (withdrawal_locked === 'locked') {
+        show_error(text.localize('Withdrawal is locked, please [_1] for more information.')
+                       .replace('[_1]', '<a href="' + page.url.url_for('/contact') + '">' +
+                                        text.localize('contact us') + '</a>'));
+      }
+    };
+
+    return {
+        lock_withdrawal: lock_withdrawal
+    };
+}());
+
+pjax_config_page("/cashier", function(){
+    return {
+        onLoad: function() {
+          if (!/\/cashier\.html/.test(window.location.pathname) || !page.client.is_logged_in) {
+            return;
+          } else if (sessionStorage.getItem('withdrawal_locked') === 'locked') {
+            Cashier.lock_withdrawal('locked');
+          } else if (!sessionStorage.getItem('withdrawal_locked')) {
+            BinarySocket.send({"get_account_status": "1", "passthrough":{"dispatch_to":"Cashier"}});
+          }
+        }
+    };
+});
+
+pjax_config_page("/cashier/payment_methods", function(){
+    return {
+        onLoad: function() {
+          if (!page.client.is_logged_in || page.client.is_virtual()) {
+            return;
+          } else if (sessionStorage.getItem('withdrawal_locked') === 'locked') {
+            Cashier.lock_withdrawal('locked');
+          } else if (!sessionStorage.getItem('withdrawal_locked')) {
+            BinarySocket.send({"get_account_status": "1", "passthrough":{"dispatch_to":"Cashier"}});
+          }
+        }
+    };
+});
+;var ForwardWS = (function() {
+  function init() {
+    Content.populate();
+    var verification_error = document.getElementById('verification-error');
+    $('#submit-currency').click(function() {
+      $('#submit-currency').attr('disabled', 'disabled');
+      BinarySocket.send({"set_account_currency": $('#select-currency').val()});
+    });
+    $('#submit-verification').click(function() {
+      var verification_token = document.getElementById('verification-token').value;
+      if (!Validate.errorMessageToken(verification_token, verification_error)) {
+        $('#submit-verification').attr('disabled', 'disabled');
+        getCashierURL(verification_token);
+      }
+    });
+    $('#submit-ukgc-funds-protection').click(function() {
+      $('#submit-ukgc-funds-protection').attr('disabled', 'disabled');
+      BinarySocket.send({"tnc_approval": 1, "ukgc_funds_protection": 1});
+    });
+  }
+  function getCashierType() {
+    var cashier_type;
+    if (/withdraw/.test(window.location.hash)) {
+      cashier_type = 'withdraw';
+      document.getElementById('deposit-withdraw-heading').innerHTML = 'Withdraw';
+    } else if (/deposit/.test(window.location.hash)) {
+      cashier_type = 'deposit';
+      document.getElementById('deposit-withdraw-heading').innerHTML = 'Deposit';
+    }
+    return cashier_type;
+  }
+  function getCashierURL(verification_token) {
+    var req = {'cashier':getCashierType()};
+    if (verification_token) req.verification_code = verification_token;
+    BinarySocket.send(req);
+  }
+  function hideAll() {
+    $('#withdraw-form').hide();
+    $('#currency-form').hide();
+    $('#ukgc-funds-protection').hide();
+    $('#deposit-withdraw-error').hide();
+  }
+  function showError(error) {
+    hideAll();
+    document.getElementById('deposit-withdraw-error').innerHTML = error || text.localize('Sorry, an error occurred while processing your request.');
+    $('#deposit-withdraw-error').show();
+  }
+  function lock_withdrawal(withdrawal_locked) {
+    if (withdrawal_locked === 'locked') {
+      showError(text.localize('Withdrawal is locked, please [_1] for more information.')
+                    .replace('[_1]', '<a href="' + page.url.url_for('/contact') + '">' +
+                                     text.localize('contact us') + '</a>'));
+    } else {
+      BinarySocket.send({"cashier_password": "1"});
+    }
+  }
+  return {
+    init: init,
+    getCashierType: getCashierType,
+    getCashierURL: getCashierURL,
+    hideAll: hideAll,
+    showError: showError,
+    lock_withdrawal: lock_withdrawal
+  };
+})();
+
+pjax_config_page_require_auth("cashier/forwardws", function() {
+    return {
+        onLoad: function() {
+          function check_virtual() {
+            if (page.client.is_virtual()) {
+              ForwardWS.showError(text.localize('This feature is not relevant to virtual-money accounts.'));
+            }
+            return page.client.is_virtual();
+          }
+          if (!check_virtual()) {
+            BinarySocket.init({
+              onmessage: function(msg){
+                var response = JSON.parse(msg.data);
+                if (response && !check_virtual()) {
+                  var type = response.msg_type;
+                  var error = response.error;
+                  if (type === 'cashier_password' && !error){
+                    ForwardWS.init();
+                    if (response.cashier_password === 1) {
+                      document.getElementById('deposit-withdraw-message').innerHTML = text.localize('Your cashier is locked as per your request - to unlock it, please click [_1]here')
+                                                                                          .replace('[_1]', '<a href="' + page.url.url_for('user/settings/securityws') + '">') + '.</a>';
+                    } else {
+                      var cashier_type = ForwardWS.getCashierType();
+                      if (cashier_type === 'withdraw') {
+                        BinarySocket.send({'verify_email': TUser.get().email, 'type': 'payment_withdraw'});
+                        document.getElementById('deposit-withdraw-message').innerHTML = text.localize('For added security, please check your email to retrieve the verification token.');
+                        $('#withdraw-form').show();
+                      } else if (cashier_type === 'deposit') {
+                        if (TUser.get().currency !== "") {
+                          ForwardWS.getCashierURL();
+                        } else {
+                          document.getElementById('deposit-withdraw-message').innerHTML = text.localize('Please choose which currency you would like to transact in.');
+                          $('#currency-form').show();
+                        }
+                      }
+                    }
+                  } else if (type === 'cashier_password' && error) {
+                    ForwardWS.showError(error.message);
+                  } else if (type === 'cashier' && !error) {
+                    ForwardWS.hideAll();
+                    document.getElementById('deposit-withdraw-message').innerHTML = '';
+                    $('#deposit-withdraw-iframe-container iframe').attr('src', response.cashier);
+                    $('#deposit-withdraw-iframe-container').show();
+                  } else if (type === 'cashier' && error) {
+                    ForwardWS.hideAll();
+                    document.getElementById('deposit-withdraw-message').innerHTML = '';
+                    if (error.code && error.code === 'ASK_TNC_APPROVAL') {
+                      window.location.href = page.url.url_for('user/tnc_approvalws');
+                    } else if (error.code && error.code === 'ASK_FIX_ADDRESS') {
+                      document.getElementById('deposit-withdraw-message').innerHTML = text.localize('There was a problem validating your personal details. Please fix the fields [_1]here')
+                                                                                          .replace('[_1]', '<a href="' + page.url.url_for('user/settings/detailsws') + '">') + '.</a> ' +
+                                                                                          text.localize('If you need assistance feel free to contact our [_1]Customer Support')
+                                                                                          .replace('[_1]', '<a href="' + page.url.url_for('contact') + '">') + '.</a>';
+                    } else if (error.code && error.code === 'ASK_UK_FUNDS_PROTECTION') {
+                      $('#ukgc-funds-protection').show();
+                    } else if (error.code && error.code === 'ASK_AUTHENTICATE') {
+                      document.getElementById('deposit-withdraw-message').innerHTML = text.localize('Your account is not fully authenticated. Please visit the <a href="[_1]">authentication</a> page for more information.')
+                                                                                          .replace('[_1]', page.url.url_for('user/authenticatews'));
+                    } else {
+                        ForwardWS.showError(error.message);
+                    }
+                  } else if (type === 'set_account_currency' && !error) {
+                    ForwardWS.getCashierURL();
+                  } else if (type === 'set_account_currency' && error) {
+                    ForwardWS.showError(error.message);
+                  } else if (type === 'tnc_approval' && !error) {
+                    ForwardWS.getCashierURL();
+                  } else if (type === 'tnc_approval' && error) {
+                    ForwardWS.showError(error.message);
+                  }
+                }
+              }
+            });
+            if (sessionStorage.getItem('withdrawal_locked') === 'locked' && /withdraw/.test(window.location.hash)) {
+              ForwardWS.lock_withdrawal('locked');
+            } else if (!sessionStorage.getItem('withdrawal_locked') && /withdraw/.test(window.location.hash)) {
+              BinarySocket.send({"get_account_status": "1", "passthrough":{"dispatch_to":"ForwardWS"}});
+            } else {
+              BinarySocket.send({"cashier_password": "1"});
+            }
+          }
+        }
+    };
+});
+;var PaymentAgentListWS = (function() {
+    "use strict";
+
+    var hiddenClass,
+        ddlCountriesID,
+        $paListContainer;
+
+    var residence,
+        agentTemplate;
+
+
+    var init = function() {
+        hiddenClass = 'hidden';
+        ddlCountriesID = '#target_country';
+        $paListContainer = $('#pa_list');
+        agentTemplate = $paListContainer.find('#accordion').html();
+
+        residence = $.cookie('residence');
+        if(!residence || residence.length === 0) {
+            residence = '00'; // just to get a list of payment agent Countries
+        }
+
+        sendRequest(residence, true);
+    };
+
+    var sendRequest = function(country, isList) {
+        BinarySocket.send({
+            "paymentagent_list": country ? country : $(ddlCountriesID).val(), 
+            "passthrough": isList ? {"countries_list": "1"} : {}
+        });
+    };
+
+    var responseHandler = function(response) {
+        if(response.echo_req.passthrough && response.echo_req.passthrough.countries_list === '1') {
+            populateCountriesList(response);
+        }
+        else {
+            populateAgentsList(response.paymentagent_list.list);
+        }
+    };
+
+    // --------------------------
+    // ----- Countries List -----
+    // --------------------------
+    var populateCountriesList = function(response) {
+        var $ddlCountries = $(ddlCountriesID);
+        $ddlCountries.empty();
+
+        var cList = response.paymentagent_list.available_countries;
+        if(cList.length === 0) {
+            $ddlCountries.parent().addClass(hiddenClass);
+            showEmptyListMsg();
+            return;
+        }
+
+        var requestedCountry = response.echo_req.paymentagent_list;
+        var found = false;
+        cList.map(function(country) {
+            if(country === requestedCountry) {
+                found = true;
+            }
+            insertListOption($ddlCountries, country[1], country[0]);
+        });
+
+        if(found) {
+            $ddlCountries.val(requestedCountry);
+            populateAgentsList(response.paymentagent_list.list);
+        }
+        else {
+            sendRequest();
+        }
+
+        $ddlCountries.change(function() {
+            sendRequest();
+        });
+    };
+
+    var insertListOption = function($ddlObject, itemText, itemValue) {
+        $ddlObject.append($('<option/>', {value: itemValue, text: itemText}));
+    };
+
+    // -----------------------
+    // ----- Agents List -----
+    // -----------------------
+    var populateAgentsList = function(list) {
+        if(!list || list.length === 0) {
+            showEmptyListMsg();
+            return;
+        }
+
+        showLoadingImage($paListContainer);
+
+        var $accordion = $('<div/>', {id: 'accordion'});
+
+        list.map(function(agent){
+            var supported_banks = '';
+            if(agent.supported_banks && agent.supported_banks.length > 0) {
+                var banks = agent.supported_banks.split(',');
+                banks.map(function(bank){
+                    supported_banks += bank.length === 0 ? 
+                        '' :
+                        '<img src="' + page.url.url_for_static('images/pages/payment_agent/banks/' + bank.toLowerCase() + '.png') + '" alt="' + bank + '" title="' + bank + '" />';
+                });
+            }
+        
+            $accordion.append(
+                agentTemplate
+                    .replace(/%name/g                   , agent.name)
+                    .replace(/%summary/g                , agent.summary)
+                    .replace(/%deposit_commission/g     , agent.deposit_commission)
+                    .replace(/%withdrawal_commission/g  , agent.withdrawal_commission)
+                    .replace(/%url/g                    , agent.url)
+                    .replace(/%email/g                  , agent.email)
+                    .replace(/%telephone/g              , agent.telephone)
+                    .replace(/%further_information/g    , agent.further_information)
+                    .replace(/%supported_banks/g        , supported_banks)
+            );
+        });
+
+        $paListContainer.empty().append($accordion);
+
+        $('#accordion').accordion({
+            heightStyle : 'content',
+            collapsible : true,
+            active      : false
+        });
+    };
+
+    var showEmptyListMsg = function() {
+        $('#no_paymentagent').removeClass(hiddenClass);
+    };
+
+    return {
+        init: init,
+        responseHandler: responseHandler
+    };
+}());
+
+
+
+pjax_config_page("payment_agent_listws", function() {
+    return {
+        onLoad: function() {
+            BinarySocket.init({
+                onmessage: function(msg) {
+                    var response = JSON.parse(msg.data);
+                    if (response) {
+                        if (response.msg_type === "paymentagent_list") {
+                            PaymentAgentListWS.responseHandler(response);
+                        }
+                    }
+                    else {
+                        console.log('some error occured');
+                    }
+                }
+            });
+
+            Content.populate();
+            PaymentAgentListWS.init();
+        }
+    };
+});
+;var PaymentAgentWithdrawWS = (function() {
+    "use strict";
+
+    var containerID,
+        viewIDs,
+        fieldIDs,
+        errorClass,
+        $views;
+
+    var formData,
+        isValid;
+
+    var withdrawCurrency,
+        minAmount,
+        maxAmount;
+
+    var init = function() {
+        containerID = '#paymentagent_withdrawal';
+        $views      = $(containerID + ' .viewItem');
+        errorClass  = 'errorfield';
+        viewIDs = {
+            error   : '#viewError',
+            success : '#viewSuccess',
+            confirm : '#viewConfirm',
+            form    : '#viewForm'
+        };
+        fieldIDs = {
+            verificationCode : '#verification-code',
+            ddlAgents        : '#ddlAgents',
+            txtAmount        : '#txtAmount',
+            txtDesc          : '#txtDescription'
+        };
+        withdrawCurrency = 'USD';
+        minAmount = 10;
+        maxAmount = 2000;
+
+        $views.addClass('hidden');
+
+        if(page.client.is_virtual()) { // Virtual Account
+            showPageError(text.localize('You are not authorized for withdrawal via payment agent.'));
+            return false;
+        }
+
+        var residence = $.cookie('residence');
+
+        if (sessionStorage.getItem('withdrawal_locked') === 'unlocked') {
+          BinarySocket.send({"paymentagent_list": residence});
+        } else if (sessionStorage.getItem('withdrawal_locked') === 'locked') {
+          lock_withdrawal('locked');
+        }
+
+        $(viewIDs.form + ' button').click(function(e){
+            e.preventDefault();
+            e.stopPropagation();
+            formData = formValidate();
+            if(!formData) {
+                return false;
+            }
+            else {
+                withdrawRequest(true);
+            }
+        });
+    };
+
+    // -----------------------
+    // ----- Agents List -----
+    // -----------------------
+    var populateAgentsList = function(response) {
+        var $ddlAgents = $(fieldIDs.ddlAgents);
+        $ddlAgents.empty();
+        var paList = response.paymentagent_list.list;
+        if(paList.length > 0) {
+            BinarySocket.send({verify_email: TUser.get().email, type:'paymentagent_withdraw'});
+            insertListOption($ddlAgents, text.localize('Please select a payment agent'), '');
+            for(var i = 0; i < paList.length; i++){
+                insertListOption($ddlAgents, paList[i].name, paList[i].paymentagent_loginid);
+            }
+            setActiveView(viewIDs.form);
+        }
+        else {
+            showPageError(text.localize('The Payment Agent facility is currently not available in your country.'));
+        }
+    };
+
+    var insertListOption = function($ddlObject, itemText, itemValue) {
+        $ddlObject.append($('<option/>', {value: itemValue, text: itemText}));
+    };
+
+    // ----------------------------
+    // ----- Form Validations -----
+    // ----------------------------
+    var formValidate = function() {
+        clearError();
+        isValid = true;
+
+        var agent  = $(fieldIDs.ddlAgents).val(),
+            amount = $(fieldIDs.txtAmount).val().trim(),
+            desc   = $(fieldIDs.txtDesc).val().trim(),
+            token  = $(fieldIDs.verificationCode).val().trim();
+
+        var letters = Content.localize().textLetters,
+            numbers = Content.localize().textNumbers,
+            space   = Content.localize().textSpace,
+            period  = Content.localize().textPeriod,
+            comma   = Content.localize().textComma;
+
+        // Payment Agent
+        isRequiredError(fieldIDs.ddlAgents);
+
+        // verification token
+        if(!isRequiredError(fieldIDs.verificationCode)){
+          if (token.length !== 48) {
+            showError(fieldIDs.verificationCode, Content.errorMessage('valid', text.localize('verification token')));
+          }
+        }
+
+        // Amount
+        if(!isRequiredError(fieldIDs.txtAmount)){
+            if(!(/^\d+(\.\d+)?$/).test(amount) || !$.isNumeric(amount)) {
+                showError(fieldIDs.txtAmount, Content.errorMessage('reg', [numbers]));
+            }
+            else if(!(/^\d+(\.\d{1,2})?$/).test(amount)) {
+                showError(fieldIDs.txtAmount, text.localize('Only 2 decimal points are allowed.'));
+            }
+            else if(amount < minAmount) {
+                showError(fieldIDs.txtAmount, text.localize('Invalid amount, minimum is') + ' ' + withdrawCurrency + ' ' + minAmount);
+            }
+            else if(amount > maxAmount) {
+                showError(fieldIDs.txtAmount, text.localize('Invalid amount, maximum is') + ' ' + withdrawCurrency + ' ' + maxAmount);
+            }
+        }
+
+        // Description
+        if(!(/^[a-zA-Z0-9\s\.\,\-']*$/).test(desc)) {
+            showError(fieldIDs.txtDesc, Content.errorMessage('reg', [letters, numbers, space, period, comma, '- \'']));
+        }
+
+        if(isValid) {
+            return {
+                agent             : agent,
+                agentname         : $(fieldIDs.ddlAgents + ' option:selected').text(),
+                currency          : withdrawCurrency,
+                amount            : amount,
+                desc              : desc,
+                verificationCode : token
+            };
+        }
+        else {
+            return false;
+        }
+    };
+
+    var isRequiredError = function(fieldID) {
+        if(!$(fieldID).val() || !(/.+/).test($(fieldID).val().trim())){
+            showError(fieldID, Content.errorMessage('req'));
+            return true;
+        } else {
+            return false;
+        }
+    };
+
+    var isCountError = function(fieldID, min, max) {
+        var fieldValue = $(fieldID).val().trim();
+        if((fieldValue.length > 0 && fieldValue.length < min) || fieldValue.length > max) {
+            showError(fieldID, Content.errorMessage('range', '(' + min + '-' + max + ')'));
+            return true;
+        } else {
+            return false;
+        }
+    };
+
+    // ----------------------------
+    // ----- Withdraw Process -----
+    // ----------------------------
+    var withdrawRequest = function(isDryRun) {
+        var dry_run = isDryRun ? 1 : 0;
+        BinarySocket.send({
+            "paymentagent_withdraw" : 1,
+            "paymentagent_loginid"  : formData.agent,
+            "currency"              : formData.currency,
+            "amount"                : formData.amount,
+            "description"           : formData.desc,
+            "dry_run"               : dry_run,
+            "verification_code"     : formData.verificationCode
+        });
+    };
+
+    var withdrawResponse = function(response) {
+        var responseCode = response.paymentagent_withdraw;
+        switch(responseCode){
+            case 2: // dry_run success: showing the confirmation page
+                setActiveView(viewIDs.confirm);
+
+                $('#lblAgentName').text(formData.agentname);
+                $('#lblCurrency').text(formData.currency);
+                $('#lblAmount').text(formData.amount);
+
+                $(viewIDs.confirm + ' #btnConfirm').click(function(){
+                    withdrawRequest(false);
+                });
+                $(viewIDs.confirm + ' #btnBack').click(function(){
+                    setActiveView(viewIDs.form);
+                });
+                break;
+
+            case 1: // withdrawal success
+                setActiveView(viewIDs.success);
+                $('#successMessage').css('display', '')
+                    .attr('class', 'success-msg')
+                    .html(
+                        '<ul class="checked"><li>' +
+                        text.localize('Your request to withdraw [_1] [_2] from your account [_3] to Payment Agent [_4] account has been successfully processed.')
+                            .replace('[_1]', formData.currency)
+                            .replace('[_2]', formData.amount)
+                            .replace('[_3]', $.cookie('loginid'))
+                            .replace('[_4]', formData.agentname) +
+                        '</li></ul>'
+                    );
+                break;
+
+            default: // error
+                if(response.echo_req.dry_run === 1) {
+                    setActiveView(viewIDs.form);
+                    $('#formMessage').css('display', '')
+                        .attr('class', errorClass)
+                        .html(response.error.message);
+                } else if (response.error.code === 'InvalidToken') {
+                    showPageError(Content.localize().textClickHereToRestart.replace('[_1]', page.url.url_for('paymentagent/withdrawws')));
+                } else {
+                    showPageError(response.error.message);
+                }
+                break;
+        }
+    };
+
+    // -----------------------------
+    // ----- Message Functions -----
+    // -----------------------------
+    var showPageError = function(errMsg, noticeMsg) {
+        setActiveView(viewIDs.error);
+        $(viewIDs.error + ' > p').html(errMsg);
+        if (noticeMsg) {
+          $(viewIDs.error).append($('<p/>', {html: noticeMsg}));
+        }
+    };
+
+    var showError = function(fieldID, errMsg) {
+        $(fieldID).parent().append($('<p/>', {class: errorClass, text: errMsg}));
+        isValid = false;
+    };
+
+    var clearError = function(fieldID) {
+        $(fieldID ? fieldID : viewIDs.form + ' .' + errorClass).remove();
+    };
+
+    // ----- View Control -----
+    var setActiveView = function(viewID) {
+        $views.addClass('hidden');
+        $(viewID).removeClass('hidden');
+    };
+
+    var lock_withdrawal = function(withdrawal_locked) {
+      if (withdrawal_locked === 'locked') {
+        showPageError(text.localize('Withdrawal is locked, please [_1] for more information.')
+                          .replace('[_1]', '<a href="' + page.url.url_for('/contact') + '">' +
+                                            text.localize('contact us') + '</a>'));
+      } else if (!page.client.is_virtual()) {
+        BinarySocket.send({"paymentagent_list": $.cookie('residence')});
+      }
+    };
+
+    return {
+        init: init,
+        populateAgentsList: populateAgentsList,
+        withdrawResponse: withdrawResponse,
+        lock_withdrawal: lock_withdrawal
+    };
+}());
+
+
+
+pjax_config_page_require_auth("paymentagent/withdrawws", function() {
+    return {
+        onLoad: function() {
+            BinarySocket.init({
+                onmessage: function(msg) {
+                    var response = JSON.parse(msg.data);
+                    if (response) {
+                        var type = response.msg_type;
+                        switch(type){
+                            case "authorize":
+                                PaymentAgentWithdrawWS.init();
+                                break;
+                            case "paymentagent_list":
+                                PaymentAgentWithdrawWS.populateAgentsList(response);
+                                break;
+                            case "paymentagent_withdraw":
+                                PaymentAgentWithdrawWS.withdrawResponse(response);
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                    else {
+                        console.log('some error occured');
+                    }
+                }
+            });
+
+            Content.populate();
+            if(TUser.get().hasOwnProperty('is_virtual') || sessionStorage.getItem('withdrawal_locked') === 'locked') {
+                PaymentAgentWithdrawWS.init();
+            } else if (!sessionStorage.getItem('withdrawal_locked')) {
+              BinarySocket.send({"get_account_status": "1", "passthrough":{"dispatch_to":"PaymentAgentWithdrawWS"}});
+            }
+        }
+    };
+});
+;var AssetIndexWS = (function() {
+    "use strict";
+
+    var $container,
+        $tabs,
+        $contents;
+    
+    var activeSymbols,
+        assetIndex,
+        marketColumns,
+        idx;
+
+    var init = function() {
+        $container = $('#asset-index');
+        showLoadingImage($container);
+        marketColumns = {};
+        activeSymbols = null;
+        assetIndex = null;
+        // index of items in asset_index response
+        idx = {
+            symbol: 0,
+            displayName: 1,
+            cells : 2,
+                cellName: 0,
+                cellDisplayName: 1,
+                cellFrom: 2,
+                cellTo  : 3,
+            symInfo: 3,
+            values : 4
+        };
+
+        var $args = {
+            active_symbols: "brief"
+        };
+        if (isJapanTrading()) {
+            $args['landing_company'] = "japan";
+        }
+
+        BinarySocket.send($args);
+        BinarySocket.send({"asset_index": 1});
+    };
+
+    var getActiveSymbols = function(response) {
+        activeSymbols = response.active_symbols;
+        if(assetIndex) {
+            populateTable();
+        }
+    };
+
+    var getAssetIndex = function(response) {
+        assetIndex = response.asset_index;
+        if(activeSymbols) {
+            populateTable();
+        }
+    };
+
+    // Search and Remove (to decrease the next search count)
+    var getSymbolInfo = function(qSymbol) {
+        return activeSymbols.filter(function(sy, id) {
+            if(sy.symbol === qSymbol) {
+                activeSymbols.splice(id, 1);
+                return true;
+            }
+        });
+    };
+
+    /*
+     * This method generates headers for all tables of each market
+     * should include headers existed in all assets of each market and its submarkets
+     */
+    var organizeData = function() {
+        for(var i = 0; i < assetIndex.length; i++) {
+            var assetItem = assetIndex[i];
+            var symbolInfo = getSymbolInfo(assetItem[idx.symbol])[0];
+            if(!symbolInfo) {
+                continue;
+            }
+            var market = symbolInfo.market;
+
+            assetItem.push(symbolInfo);
+
+            // Generate market columns to use in all this market's submarket tables
+            if(!(market in marketColumns)) {
+                marketColumns[market] = {
+                    header : [''],
+                    columns: ['']
+                };
+            }
+
+            var assetCells = assetItem[idx.cells],
+                values = {};
+            for(var j = 0; j < assetCells.length; j++) {
+                var col  = assetCells[j][idx.cellName];
+                
+                values[col] = assetCells[j][idx.cellFrom] + ' - ' + assetCells[j][idx.cellTo];
+                
+                var marketCols = marketColumns[market];
+                if($.inArray(col, marketCols.columns) === -1) {
+                    marketCols.header.push(text.localize(assetCells[j][idx.cellDisplayName]));
+                    marketCols.columns.push(col);
+                }
+            }
+            assetItem.push(values);
+        }
+    };
+
+    var populateTable = function() {
+        $('#errorMsg').addClass('hidden');
+        organizeData();
+
+        var isJapan = page.language().toLowerCase() === 'ja';
+        
+        $tabs = $('<ul/>', {class: isJapan ? 'hidden' : ''});
+        $contents = $('<div/>');
+
+        for(var i = 0; i < assetIndex.length; i++) {
+            var assetItem  = assetIndex[i];
+            var symbolInfo = assetItem[idx.symInfo];
+            if(!symbolInfo) {
+                continue;
+            }
+
+            // just show "Major Pairs" when the language is JA
+            if(isJapan && symbolInfo.submarket !== 'major_pairs') {
+                continue;
+            }            
+
+            var $submarketTable = getSubmarketTable(assetItem, symbolInfo);
+            $submarketTable.find('tbody').append(createSubmarketTableRow(assetItem, symbolInfo));
+        }
+
+        $container
+            .empty()
+            .append($tabs)
+            .append($('<div/>', {class: 'grd-row-padding'}))
+            .append($contents.children());
+
+        $container.tabs('destroy').tabs();
+    };
+
+    var getSubmarketTable = function(assetItem, symbolInfo) {
+        var marketID    = 'market-'    + symbolInfo.market;
+        var submarketID = 'submarket-' + symbolInfo.submarket;
+        
+        var $table = $contents.find('#' + submarketID);
+        if($table.length === 0) {
+            // Create the table for this submarket
+            var $market = $contents.find('#' + marketID);
+            if($market.length === 0) {
+                // Create the market and tab elements
+                $market = $('<div/>', {id: marketID});
+                $tabs.append($('<li/>').append($('<a/>', {href: '#' + marketID, text: symbolInfo.market_display_name, id: 'outline'})));
+            }
+            $table = createEmptyTable(assetItem, symbolInfo, submarketID);
+            $market.append($table);
+            $contents.append($market);
+        }
+
+        return $table;
+    };
+
+    var createSubmarketTableRow = function(assetItem, symbolInfo) {
+        var cells   = [symbolInfo.display_name],
+            columns = ["asset"];
+
+        var marketCols = marketColumns[symbolInfo.market],
+            assetCells = assetItem[idx.values];
+        for(var i = 1; i < marketCols.columns.length; i++) {
+            var prop = marketCols.columns[i];
+            if(prop.length > 0) {
+                cells.push(prop in assetCells ? assetCells[prop] : '--');
+                columns.push(prop);
+            }
+        }
+
+        return Table.createFlexTableRow(cells, columns, "data");
+    };
+
+    var createEmptyTable = function(assetItem, symbolInfo, submarketID) {
+        var market = symbolInfo.market;
+
+        var metadata = {
+            id: submarketID,
+            cols: marketColumns[market].columns
+        };
+
+        var $submarketTable = Table.createFlexTable([], metadata, marketColumns[market].header);
+        
+        var $submarketHeader = $('<tr/>', {class: 'flex-tr'})
+            .append($('<th/>', {class: 'flex-tr-child submarket-name', colspan: marketColumns[market].columns.length, text: symbolInfo.submarket_display_name}));
+        $submarketTable.find('thead').prepend($submarketHeader);
+
+        return $submarketTable;
+    };
+
+
+    return {
+        init: init,
+        getAssetIndex: getAssetIndex,
+        getActiveSymbols: getActiveSymbols
+    };
+}());
+
+
+
+pjax_config_page("asset_indexws", function() {
+    return {
+        onLoad: function() {
+            BinarySocket.init({
+                onmessage: function(msg) {
+                    var response = JSON.parse(msg.data);
+                    if (response) {
+                        if (response.msg_type === "asset_index") {
+                            AssetIndexWS.getAssetIndex(response);
+                        }
+                        else if (response.msg_type === "active_symbols") {
+                            AssetIndexWS.getActiveSymbols(response);
+                        }
+                    }
+                }
+            });
+
+            Content.populate();
+            AssetIndexWS.init();
+        }
+    };
+});
+;var MarketTimesWS = (function() {
+    "use strict";
+
+    var $date,
+        $container;
+
+    var columns,
+        activeSymbols, 
+        tradingTimes;
+
+
+    var init = function() {
+        $date      = $('#trading-date');
+        $container = $('#trading-times');
+        columns    = ['Asset', 'Opens', 'Closes', 'Settles', 'UpcomingEvents'];
+        activeSymbols = null;
+        tradingTimes = null;
+        showLoadingImage($container);
+        BinarySocket.send({"active_symbols": "brief"});
+        sendRequest('today');
+
+        $date.val(moment.utc(new Date()).format('YYYY-MM-DD'));
+        $date.datepicker({minDate: 0, maxDate: '+1y', dateFormat: 'yy-mm-dd', autoSize: true});
+        $date.change(function() {
+            $container.empty();
+            showLoadingImage($container);
+            sendRequest();
+        });
+    };
+
+    var sendRequest = function(date) {
+        tradingTimes = null;
+        BinarySocket.send({"trading_times": (date ? date : $date.val())});
+    };
+
+    var getActiveSymbols = function(response) {
+        activeSymbols = response.active_symbols;
+        if(tradingTimes) {
+            populateTable();
+        }
+    };
+
+    var getTradingTimes = function(response) {
+        tradingTimes = response.trading_times;
+        if(activeSymbols) {
+            populateTable();
+        }
+    };
+
+    var populateTable = function() {
+        $('#errorMsg').addClass('hidden');
+
+        var isJapanTrading = page.language().toLowerCase() === 'ja';
+
+        var markets = tradingTimes.markets;
+
+        var $ul = $('<ul/>', {class: isJapanTrading ? 'hidden' : ''});
+        var $contents = $('<div/>');
+
+        for(var m = 0; m < markets.length; m++) {
+            var tabID = 'market_' + (m + 1);
+
+            // tabs
+            if(!isJapanTrading) {
+                $ul.append($('<li/>').append($('<a/>', {href: '#' + tabID, text: markets[m].name, id: 'outline'})));
+            }
+
+            // contents
+            var $market = $('<div/>', {id: tabID});
+            $market.append(createMarketTables(markets[m], isJapanTrading));
+            $contents.append($market);
+        }
+
+        $container
+            .empty()
+            .append($ul)
+            .append($('<div/>', {class: 'grd-row-padding'}))
+            .append($contents.children());
+
+        $container.tabs('destroy').tabs();
+    };
+
+    var createMarketTables = function(market, isJapanTrading) {
+        var $marketTables = $('<div/>');
+
+        // submarkets of this market
+        var submarkets = market.submarkets;
+        for(var s = 0; s < submarkets.length; s++) {
+            // just show "Major Pairs" when the language is JA
+            if(isJapanTrading) {
+                var symbolInfo = symbolSearch(submarkets[s].name);
+                if(symbolInfo.length > 0 && symbolInfo[0].submarket !== 'major_pairs') {
+                    continue;
+                }
+            }
+
+            // submarket table
+            var $submarketTable = createEmptyTable(market.name + '-' + s);
+
+            // submarket name
+            $submarketTable.find('thead').prepend(createSubmarketHeader(submarkets[s].name));
+
+            // symbols of this submarket
+            var symbols = submarkets[s].symbols;
+            for(var sy = 0; sy < symbols.length; sy++) {
+                $submarketTable.find('tbody').append(createSubmarketTableRow(market.name, submarkets[s].name, symbols[sy]));
+            }
+
+            $marketTables.append($submarketTable);
+        }
+
+        return $marketTables;
+    };
+
+    var createSubmarketHeader = function(submarketName) {
+        return $('<tr/>', {class: 'flex-tr'})
+            .append($('<th/>', {class: 'flex-tr-child submarket-name', colspan: columns.length, text: submarketName}));
+    };
+
+    var createSubmarketTableRow = function(marketName, submarketName, symbol) {
+        var $tableRow = Table.createFlexTableRow(
+            [
+                symbol.name,
+                '', // Opens
+                '', // Closes
+                symbol.times.settlement,
+                ''  // UpcomingEvents
+            ], 
+            columns, 
+            "data"
+        );
+
+        $tableRow.children('.opens').html(symbol.times.open.join('<br />'));
+        $tableRow.children('.closes').html(symbol.times.close.join('<br />'));
+        $tableRow.children('.upcomingevents').html(createEventsText(symbol.events));
+
+        return $tableRow;
+    };
+
+    var symbolSearch = function(submarketname) {
+        return activeSymbols.filter(function(sy) {
+            return sy.submarket_display_name === submarketname;
+        });
+    };
+
+    var createEventsText = function(events) {
+        var result = '';
+        for(var i = 0; i < events.length; i++) {
+            result += (i > 0 ? '<br />' : '') + events[i].descrip + ': ' + events[i].dates;
+        }
+        return result.length > 0 ? result : '--';
+    };
+
+    var createEmptyTable = function(tableID) {
+        var header = [
+            Content.localize().textAsset,
+            Content.localize().textOpens,
+            Content.localize().textCloses,
+            Content.localize().textSettles,
+            Content.localize().textUpcomingEvents
+        ];
+
+        var metadata = {
+            id: tableID,
+            cols: columns
+        };
+
+        return Table.createFlexTable([], metadata, header);
+    };
+
+
+    return {
+        init: init,
+        getTradingTimes : getTradingTimes,
+        getActiveSymbols: getActiveSymbols
+    };
+}());
+
+
+
+pjax_config_page("market_timesws", function() {
+    return {
+        onLoad: function() {
+            BinarySocket.init({
+                onmessage: function(msg) {
+                    var response = JSON.parse(msg.data);
+                    if (response) {
+                        if (response.msg_type === "trading_times") {
+                            MarketTimesWS.getTradingTimes(response);
+                        }
+                        else if (response.msg_type === "active_symbols") {
+                            MarketTimesWS.getActiveSymbols(response);
+                        }
+                    }
+                }
+            });
+
+            Content.populate();
+            MarketTimesWS.init();
+        }
+    };
+});
+;/*
+ * It provides a abstraction layer over native javascript Websocket.
+ *
+ * Provide additional functionality like if connection is close, open
+ * it again and process the buffered requests
+ *
+ *
+ * Usage:
+ *
+ * `BinarySocket.init()` to initiate the connection
+ * `BinarySocket.send({contracts_for : 1})` to send message to server
+ */
+function BinarySocketClass() {
+    'use strict';
+
+    var binarySocket,
+        bufferedSends = [],
+        manualClosed = false,
+        events = {},
+        authorized = false,
+        timeouts = {},
+        req_number = 0,
+        socketUrl = getSocketURL() + '?app_id=' + getAppId() + (page.language() ? '&l=' + page.language() : '');
+
+    var clearTimeouts = function(){
+        for(var k in timeouts){
+            if(timeouts.hasOwnProperty(k)){
+                clearTimeout(timeouts[k]);
+                delete timeouts[k];
+            }
+        }
+    };
+
+    var status = function () {
+        return binarySocket && binarySocket.readyState;
+    };
+
+    var isReady = function () {
+        return binarySocket && binarySocket.readyState === 1;
+    };
+
+    var isClose = function () {
+        return !binarySocket || binarySocket.readyState === 2 || binarySocket.readyState === 3;
+    };
+
+    var sendBufferedSends = function () {
+        while (bufferedSends.length > 0) {
+            binarySocket.send(JSON.stringify(bufferedSends.shift()));
+        }
+    };
+
+    var send = function(data) {
+        if (isClose()) {
+            bufferedSends.push(data);
+            init(1);
+        } else if (isReady()) {
+            if(!data.hasOwnProperty('passthrough') && !data.hasOwnProperty('verify_email')){
+                data.passthrough = {};
+            }
+            // temporary check
+            if((data.contracts_for || data.proposal || data.price_stream) && !data.passthrough.hasOwnProperty('dispatch_to')){
+                data.passthrough.req_number = ++req_number;
+                timeouts[req_number] = setTimeout(function(){
+                    if(typeof reloadPage === 'function' && data.contracts_for){
+                        alert("The server didn't respond to the request:\n\n"+JSON.stringify(data)+"\n\n");
+                        reloadPage();
+                    }
+                    else{
+                        $('.price_container').hide();
+                    }
+                }, 60*1000);
+            }
+
+            binarySocket.send(JSON.stringify(data));
+        } else {
+            bufferedSends.push(data);
+        }
+    };
+
+    var init = function (es) {
+        if(!es){
+            events = {};
+        }
+        if(typeof es === 'object'){
+            bufferedSends = [];
+            manualClosed = false;
+            events = es;
+            clearTimeouts();
+        }
+
+        if(isClose()){
+            binarySocket = new WebSocket(socketUrl);
+        }
+
+        binarySocket.onopen = function (){
+            var loginToken = getCookieItem('login');
+            if(loginToken && !authorized) {
+                binarySocket.send(JSON.stringify({authorize: loginToken}));
+            }
+            else {
+                sendBufferedSends();
+            }
+
+            if(typeof events.onopen === 'function'){
+                events.onopen();
+            }
+
+            if(isReady()=== true){
+                if(!Login.is_login_pages()) {
+                    page.header.validate_cookies();
+                }
+                if (clock_started === false) {
+                    page.header.start_clock_ws();
+                }
+            }
+        };
+
+        binarySocket.onmessage = function (msg){
+            var response = JSON.parse(msg.data);
+            if (response) {
+                if(response.hasOwnProperty('echo_req') && response.echo_req.hasOwnProperty('passthrough')) {
+                    var passthrough = response.echo_req.passthrough;
+                    if(passthrough.hasOwnProperty('req_number')) {
+                        clearInterval(timeouts[response.echo_req.passthrough.req_number]);
+                        delete timeouts[response.echo_req.passthrough.req_number];
+                    }
+                    else if (passthrough.hasOwnProperty('dispatch_to')) {
+                      if (passthrough.dispatch_to === 'ViewPopupWS') {
+                        ViewPopupWS.dispatch(response);
+                      } else if (passthrough.dispatch_to === 'ViewChartWS') {
+                        Highchart.dispatch(response);
+                      } else if (passthrough.dispatch_to === 'ViewTickDisplayWS') {
+                        WSTickDisplay.dispatch(response);
+                      }
+                    }
+                }
+                var type = response.msg_type;
+                if (type === 'authorize') {
+                    if(response.hasOwnProperty('error')) {
+                        var isActiveTab = sessionStorage.getItem('active_tab') === '1';
+                        if(response.error.code === 'SelfExclusion' && isActiveTab) {
+                            sessionStorage.removeItem('active_tab');
+                            alert(response.error.message);
+                        }
+                        LocalStore.set('reality_check.ack', 0);
+                        page.client.send_logout_request(isActiveTab);
+                    }
+                    else {
+                        authorized = true;
+                        if(typeof events.onauth === 'function'){
+                            events.onauth();
+                        }
+                        if(!Login.is_login_pages()) {
+                            page.client.response_authorize(response);
+                            send({balance:1, subscribe: 1});
+                            send({landing_company_details: TUser.get().landing_company_name});
+                            send({get_settings: 1});
+                            if(!page.client.is_virtual()) {
+                                send({get_self_exclusion: 1});
+                            }
+                        }
+                        sendBufferedSends();
+                    }
+                } else if (type === 'balance') {
+                    ViewBalanceUI.updateBalances(response);
+                } else if (type === 'time') {
+                    page.header.time_counter(response);
+                } else if (type === 'logout') {
+                    localStorage.removeItem('jp_test_allowed');
+                    RealityCheckData.clear();
+                    page.header.do_logout(response);
+                } else if (type === 'landing_company_details') {
+                    page.client.response_landing_company_details(response);
+                    BinarySocket.send({reality_check: 1, passthrough: { for: 'init_rc' }});
+                } else if (type === 'get_self_exclusion') {
+                    SessionDurationLimit.exclusionResponseHandler(response);
+                } else if (type === 'payout_currencies' && response.echo_req.hasOwnProperty('passthrough') && response.echo_req.passthrough.handler === 'page.client') {
+                    page.client.response_payout_currencies(response);
+                } else if (type === 'get_settings') {
+                    if(!$.cookie('residence') && response.get_settings.country_code) page.client.set_cookie('residence', response.get_settings.country_code);
+                    GTM.event_handler(response.get_settings);
+                    page.client.set_storage_value('tnc_status', response.get_settings.client_tnc_status || '-');
+                    if (!localStorage.getItem('risk_classification')) page.client.check_tnc();
+                    var jpStatus = response.get_settings.jp_account_status;
+                    if (jpStatus) {
+                        switch (jpStatus.status) {
+                            case 'jp_knowledge_test_pending': localStorage.setItem('jp_test_allowed', 1);
+                                break;
+                            case 'jp_knowledge_test_fail':
+                                if (Date.now() >= (jpStatus.next_test_epoch * 1000)) {
+                                    localStorage.setItem('jp_test_allowed', 1);
+                                } else {
+                                    localStorage.setItem('jp_test_allowed', 0);
+                                }
+                                break;
+                            default: localStorage.setItem('jp_test_allowed', 0);
+                        }
+
+                        KnowledgeTest.showKnowledgeTestTopBarIfValid(jpStatus);
+                    } else {
+                        localStorage.removeItem('jp_test_allowed');
+                    }
+                } else if (type === 'website_status') {
+                    if(!response.hasOwnProperty('error')) {
+                        LocalStore.set('website.tnc_version', response.website_status.terms_conditions_version);
+                        if (!localStorage.getItem('risk_classification')) page.client.check_tnc();
+                    }
+                  if (response.website_status.clients_country) {
+                    localStorage.setItem('clients_country', response.website_status.clients_country);
+                    if (!$('body').hasClass('BlueTopBack')) {
+                      checkClientsCountry();
+                    }
+                  }
+                } else if (type === 'reality_check') {
+                    if (response.echo_req.passthrough.for === 'init_rc') {
+                        var currentData = TUser.get();
+                        var addedLoginTime = Object.assign({logintime: response.reality_check.start_time}, currentData);
+                        TUser.set(addedLoginTime);
+                        RealityCheck.init();
+                    } else {
+                        RealityCheck.realityCheckWSHandler(response);
+                    }
+                } else if (type === 'get_account_status') {
+                  if (response.get_account_status.risk_classification === 'high' && page.header.qualify_for_risk_classification()) {
+                    send({get_financial_assessment: 1});
+                  } else {
+                    localStorage.removeItem('risk_classification');
+                  }
+                  var withdrawal_locked, i;
+                  for (i = 0; i < response.get_account_status.status.length; i++) {
+                    if (response.get_account_status.status[i] === 'withdrawal_locked') {
+                      withdrawal_locked = 'locked';
+                      break;
+                    }
+                  }
+                  if (response.echo_req.hasOwnProperty('passthrough') && response.echo_req.passthrough.hasOwnProperty('dispatch_to')) {
+                    if (response.echo_req.passthrough.dispatch_to === 'ForwardWS') {
+                        ForwardWS.lock_withdrawal(withdrawal_locked || 'unlocked');
+                    } else if (response.echo_req.passthrough.dispatch_to === 'Cashier') {
+                        Cashier.lock_withdrawal(withdrawal_locked || 'unlocked');
+                    } else if (response.echo_req.passthrough.dispatch_to === 'PaymentAgentWithdrawWS') {
+                      PaymentAgentWithdrawWS.lock_withdrawal(withdrawal_locked || 'unlocked');
+                    }
+                  }
+                  sessionStorage.setItem('withdrawal_locked', withdrawal_locked || 'unlocked');
+                  localStorage.setItem('risk_classification.response', response.get_account_status.risk_classification);
+                } else if (type === 'get_financial_assessment' && !response.hasOwnProperty('error')) {
+                  if (Object.keys(response.get_financial_assessment).length === 0) {
+                    if (page.header.qualify_for_risk_classification() && localStorage.getItem('risk_classification.response') === 'high') {
+                      localStorage.setItem('risk_classification', 'high');
+                      page.header.check_risk_classification();
+                    }
+                  } else if ((localStorage.getItem('reality_check.ack') === '1' || !localStorage.getItem('reality_check.interval')) && localStorage.getItem('risk_classification') !== 'high') {
+                    localStorage.removeItem('risk_classification');
+                    localStorage.removeItem('risk_classification.response');
+                    page.client.check_tnc();
+                  }
+                }
+                if (response.hasOwnProperty('error')) {
+                    if(response.error && response.error.code) {
+                      if (response.error.code === 'RateLimit') {
+                        $('#ratelimit-error-message')
+                            .css('display', 'block')
+                            .on('click', '#ratelimit-refresh-link', function () {
+                                window.location.reload();
+                            });
+                      } else if (response.error.code === 'InvalidToken' &&
+                          type !== 'reset_password' &&
+                          type !== 'new_account_virtual' &&
+                          type !== 'paymentagent_withdraw' &&
+                          type !== 'cashier') {
+                            page.client.send_logout_request();
+                      }
+                    }
+                }
+                if(typeof events.onmessage === 'function'){
+                    events.onmessage(msg);
+                }
+            }
+        };
+
+        binarySocket.onclose = function (e) {
+            authorized = false;
+            clearTimeouts();
+
+            if(!manualClosed){
+                init(1);
+            }
+            if(typeof events.onclose === 'function'){
+                events.onclose();
+            }
+        };
+
+        binarySocket.onerror = function (error) {
+            console.log('socket error', error);
+        };
+    };
+
+    var close = function () {
+        manualClosed = true;
+        bufferedSends = [];
+        events = {};
+        if (binarySocket) {
+            binarySocket.close();
+        }
+    };
+
+    var clear = function(){
+        bufferedSends = [];
+        manualClosed = false;
+        events = {};
+    };
+
+    return {
+        init: init,
+        send: send,
+        close: close,
+        socket: function () { return binarySocket; },
+        clear: clear,
+        clearTimeouts: clearTimeouts
+    };
+
+}
+
+var BinarySocket = new BinarySocketClass();
+;/*
+ * This file contains the code related to loading of trading page bottom analysis
+ * content. It will contain jquery so as to compatible with old code and less rewrite
+ *
+ * Please note that this will be removed in near future
+ */
+
+/*
+ * This function is called whenever we change market, form
+ * or underlying to load bet analysis for that particular event
+ */
+
+var TradingAnalysis = (function() {
+    var trading_digit_info, tab_japan_info;
+
+    var requestTradeAnalysis = function() {
+        var contentId = document.getElementById('trading_bottom_content');
+        var formName = isJapanTrading() ? $('input[type="radio"][name="market_menu"]:checked').val() : $('#contract_form_name_nav').find('.a-active').attr('id');
+        if (formName === 'matchdiff') {
+          formName = 'digits';
+        }
+        $('#tab_explanation a').attr('href',  page.url.url_for('trade/bet_explanation', 'underlying_symbol=' + $('#underlying').val() + '&form_name=' + formName));
+        if (formName === 'digits' || formName === 'overunder' || formName === 'evenodd') {
+            $('#tab_last_digit').removeClass("invisible");
+        } else {
+          $('#tab_last_digit').addClass("invisible");
+        }
+        sessionStorage.setItem('currentAnalysisTab', getActiveTab());
+        loadAnalysisTab();
+    };
+
+    /*
+     * This function bind event to link elements of bottom content
+     * navigation
+     */
+    var bindAnalysisTabEvent = function() {
+        'use strict';
+        var analysisNavElement = document.querySelector('#trading_bottom_content #betsBottomPage');
+        if (analysisNavElement) {
+            analysisNavElement.addEventListener('click', function(e) {
+                if (e.target && e.target.nodeName === 'A') {
+                    e.preventDefault();
+
+                    var clickedLink = e.target,
+                        clickedElement = clickedLink.parentElement,
+                        isTabActive = clickedElement.classList.contains('active');
+
+                    sessionStorage.setItem('currentAnalysisTab', clickedElement.id);
+
+                    if (!isTabActive) {
+                        loadAnalysisTab();
+                    }
+                }
+            });
+        }
+    };
+
+    /*
+     * This function handles all the functionality on how to load
+     * tab according to current paramerted
+     */
+    var loadAnalysisTab = function() {
+        'use strict';
+        var currentTab = getActiveTab(),
+            currentLink = document.querySelector('#' + currentTab + ' a'),
+            contentId = document.getElementById(currentTab + '-content');
+
+        var analysisNavElement = document.querySelector('#trading_bottom_content #betsBottomPage');
+        toggleActiveNavMenuElement(analysisNavElement, currentLink.parentElement);
+        toggleActiveAnalysisTabs();
+
+        tab_japan_info = new JapanInfo();
+        JapanPortfolio.init();
+
+        if(currentTab === 'tab_portfolio'){
+            JapanPortfolio.show();
+        } else if (currentTab === 'tab_japan_info') {
+            tab_japan_info.show();
+        } else {
+            JapanPortfolio.hide();
+            tab_japan_info.hide();
+            if (currentTab === 'tab_graph') {
+              showHighchart();
+            } else {
+                if (currentTab == 'tab_last_digit') {
+                    var underlying = $('[name=underlying] option:selected').val() || $('#underlying option:selected').val();
+                    var tick = $('[name=tick_count]').val() || 100;
+                    trading_digit_info = TradingAnalysis.tab_last_digitws;
+                    var request = JSON.parse('{"ticks_history":"'+ underlying +'",'+
+                                              '"end": "latest",'+
+                                              '"count": '+ tick +','+
+                                              '"req_id": 1}');
+                    BinarySocket.send(request);
+                } else{
+                    var url = currentLink.getAttribute('href') ;
+                    $.ajax({
+                        method: 'GET',
+                        url: url,
+                    })
+                    .done(function(data) {
+                        contentId.innerHTML = data;
+                        if(currentTab === 'tab_explanation') {
+                            showExplanation(currentLink.href);
+                        } else if (currentTab == 'tab_last_digit') {
+                            trading_digit_info = new DigitInfo();
+                            trading_digit_info.on_latest();
+                            trading_digit_info.show_chart(sessionStorage.getItem('underlying'));
+                        }
+
+                    });
+                }
+            }
+        }
+
+    };
+
+    /*
+     * function to toggle the active element for analysis menu
+     */
+    var toggleActiveAnalysisTabs = function() {
+        'use strict';
+        var currentTab = getActiveTab(),
+            analysisContainer = document.getElementById('bet_bottom_content');
+
+        if (analysisContainer) {
+            trading_digit_info = undefined;
+            var childElements = analysisContainer.children,
+                currentTabElement = document.getElementById(currentTab + '-content'),
+                classes = currentTabElement.classList;
+
+            for (var i = 0, len = childElements.length; i < len; i++) {
+                childElements[i].classList.remove('selectedTab');
+                childElements[i].classList.add('invisible');
+            }
+
+            classes.add('selectedTab');
+            classes.remove('invisible');
+        }
+    };
+
+    /*
+     * get the current active tab if its visible i.e allowed for current parameters
+     */
+    var getActiveTab = function() {
+        var selectedTab = sessionStorage.getItem('currentAnalysisTab') || (isJapanTrading() ? 'tab_portfolio' : window.chartAllowed ? 'tab_graph' : 'tab_explanation'),
+            selectedElement = document.getElementById(selectedTab);
+
+        if (selectedElement && selectedElement.classList.contains('invisible') &&
+            !(selectedTab === 'tab_portfolio' && JapanPortfolio.isActive())) {
+            selectedTab = window.chartAllowed ? 'tab_graph' : 'tab_explanation';
+            sessionStorage.setItem('currentAnalysisTab', selectedTab);
+        }
+
+        return selectedTab;
+    };
+
+    /*
+     * handle the display of proper explanation based on parameters
+     */
+    var showExplanation = function(href) {
+        var options = new URL(href).params_hash();
+        var form_name    = options.form_name || 'risefall',
+            show_image   = options.show_image   ? options.show_image   > 0 : true,
+            show_winning = options.show_winning ? options.show_winning > 0 : true,
+            show_explain = true,
+            hidden_class = 'invisible',
+            $Container   = $('#tab_explanation-content');
+
+        if(show_winning) {
+            $Container.find('#explanation_winning, #winning_' + form_name).removeClass(hidden_class);
+        }
+
+        if(show_explain) {
+            $Container.find('#explanation_explain, #explain_' + form_name).removeClass(hidden_class);
+        }
+
+        var images = {
+            risefall : {
+                image1: 'rise-fall-1.svg',
+                image2: 'rise-fall-2.svg',
+            },
+            higherlower : {
+                image1: 'higher-lower-1.svg',
+                image2: 'higher-lower-2.svg',
+            },
+            touchnotouch : {
+                image1: 'touch-notouch-1.svg',
+                image2: 'touch-notouch-2.svg',
+            },
+            endsinout : {
+                image1: 'in-out-1.svg',
+                image2: 'in-out-2.svg',
+            },
+            staysinout : {
+                image1: 'in-out-3.svg',
+                image2: 'in-out-4.svg',
+            },
+            updown : {
+                image1: 'up-down-1.svg',
+                image2: 'up-down-2.svg',
+            },
+            spreads : {
+                image1: 'spreads-1.svg',
+                image2: 'spreads-2.svg',
+            },
+            evenodd : {
+                image1: 'evenodd-1.svg',
+                image2: 'evenodd-2.svg',
+            },
+            overunder : {
+                image1: 'overunder-1.svg',
+                image2: 'overunder-2.svg',
+            },
+        };
+
+        if(show_image && images.hasOwnProperty(form_name)) {
+            var image_path = page.url.url_for_static('images/pages/trade-explanation/');
+            $Container.find('#explanation_image_1').attr('src', image_path + images[form_name].image1);
+            $Container.find('#explanation_image_2').attr('src', image_path + images[form_name].image2);
+            $Container.find('#explanation_image').removeClass(hidden_class);
+        }
+    };
+
+    return {
+        request: requestTradeAnalysis,
+        digit_info: function() {
+            return trading_digit_info;
+        },
+        // Should be removed with legacy trading.
+        set_digit_info: function(obj) {
+            trading_digit_info = obj;
+        },
+        japan_info: function() {
+            return tab_japan_info;
+        },
+        tab_portfolio: function() {
+            return tab_portfolio;
+        },
+        getActiveTab: getActiveTab,
+        bindAnalysisTabEvent: bindAnalysisTabEvent
+    };
+
+})();
+;/*
+ * Handles barrier processing and display
+ *
+ * It process `Contract.barriers` and display them if its applicable
+ * for current `Contract.form()
+ */
+
+var Barriers = (function () {
+    'use strict';
+
+    var isBarrierUpdated = false;
+
+    var display = function (barrierCategory) {
+        var barriers = Contract.barriers()[Defaults.get('underlying')],
+            formName = Contract.form();
+
+        if (barriers && formName && Defaults.get('formname')!=='risefall') {
+            var barrier = barriers[formName];
+            if(barrier) {
+                var unit = document.getElementById('duration_units'),
+                    end_time = document.getElementById('expiry_date'),
+                    currentTick = Tick.quote(),
+                    indicativeBarrierTooltip = document.getElementById('indicative_barrier_tooltip'),
+                    indicativeHighBarrierTooltip = document.getElementById('indicative_high_barrier_tooltip'),
+                    indicativeLowBarrierTooltip = document.getElementById('indicative_low_barrier_tooltip'),
+                    decimalPlaces = countDecimalPlaces(currentTick);
+
+                if (barrier.count === 1) {
+                    document.getElementById('high_barrier_row').style.display = 'none';
+                    document.getElementById('low_barrier_row').style.display = 'none';
+                    document.getElementById('barrier_row').setAttribute('style', '');
+
+                    var defaults_barrier = Defaults.get('barrier');
+                    var barrier_def = defaults_barrier && !isNaN(defaults_barrier) ? defaults_barrier : barrier['barrier'];
+                    var elm = document.getElementById('barrier'),
+                        tooltip = document.getElementById('barrier_tooltip'),
+                        span = document.getElementById('barrier_span');
+                    if ((unit && unit.value === 'd') || (end_time && moment(end_time.value).isAfter(moment(),'day'))) {
+                        if (currentTick && !isNaN(currentTick) && String(barrier_def).match(/^[+-]/)) {
+                            elm.value = (parseFloat(currentTick) + parseFloat(barrier_def)).toFixed(decimalPlaces);
+                            elm.textContent = (parseFloat(currentTick) + parseFloat(barrier_def)).toFixed(decimalPlaces);
+                        } else {
+                            elm.value = parseFloat(barrier_def);
+                            elm.textContent = parseFloat(barrier_def);
+                        }
+                        tooltip.style.display = 'none';
+                        span.style.display = 'inherit';
+                        // no need to display indicative barrier in case of absolute barrier
+                        indicativeBarrierTooltip.textContent = '';
+                    } else {
+                        elm.value = barrier_def;
+                        elm.textContent = barrier_def;
+                        span.style.display = 'none';
+                        tooltip.style.display = 'inherit';
+                        if (currentTick && !isNaN(currentTick)) {
+                            indicativeBarrierTooltip.textContent = (parseFloat(currentTick) + parseFloat(barrier_def)).toFixed(decimalPlaces);
+                        } else {
+                            indicativeBarrierTooltip.textContent = '';
+                        }
+                    }
+                    Defaults.set('barrier', elm.value);
+                    Defaults.remove('barrier_high', 'barrier_low');
+                    return;
+                } else if (barrier.count === 2) {
+                    document.getElementById('barrier_row').style.display = 'none';
+                    document.getElementById('high_barrier_row').setAttribute('style', '');
+                    document.getElementById('low_barrier_row').setAttribute('style', '');
+
+                    var high_elm = document.getElementById('barrier_high'),
+                        low_elm = document.getElementById('barrier_low'),
+                        high_tooltip = document.getElementById('barrier_high_tooltip'),
+                        high_span = document.getElementById('barrier_high_span'),
+                        low_tooltip = document.getElementById('barrier_low_tooltip'),
+                        low_span = document.getElementById('barrier_low_span');
+
+                    var defaults_barrier_high = Defaults.get('barrier_high'), defaults_barrier_low = Defaults.get('barrier_low');
+                    var barrier_high = defaults_barrier_high && !isNaN(defaults_barrier_high) ? defaults_barrier_high : barrier['barrier'],
+                        barrier_low  = defaults_barrier_low  && !isNaN(defaults_barrier_low)  ? defaults_barrier_low  : barrier['barrier1'];
+                    if (unit && unit.value === 'd') {
+                        if (currentTick && !isNaN(currentTick) && String(barrier_high).match(/^[+-]/)) {
+                            high_elm.value = (parseFloat(currentTick) + parseFloat(barrier_high)).toFixed(decimalPlaces);
+                            high_elm.textContent = (parseFloat(currentTick) + parseFloat(barrier_high)).toFixed(decimalPlaces);
+
+                            low_elm.value = (parseFloat(currentTick) + parseFloat(barrier_low)).toFixed(decimalPlaces);
+                            low_elm.textContent = (parseFloat(currentTick) + parseFloat(barrier_low)).toFixed(decimalPlaces);
+                        } else {
+                            high_elm.value = parseFloat(barrier_high);
+                            high_elm.textContent = parseFloat(barrier_high);
+
+                            low_elm.value = parseFloat(barrier_low);
+                            low_elm.textContent = parseFloat(barrier_low);
+                        }
+
+                        high_tooltip.style.display = 'none';
+                        high_span.style.display = 'inherit';
+                        low_tooltip.style.display = 'none';
+                        low_span.style.display = 'inherit';
+
+                        indicativeHighBarrierTooltip.textContent = '';
+                        indicativeLowBarrierTooltip.textContent = '';
+                    } else {
+                        high_elm.value = barrier_high;
+                        high_elm.textContent = barrier_high;
+
+                        low_elm.value = barrier_low;
+                        low_elm.textContent = barrier_low;
+
+                        high_span.style.display = 'none';
+                        high_tooltip.style.display = 'inherit';
+                        low_span.style.display = 'none';
+                        low_tooltip.style.display = 'inherit';
+
+                        if (currentTick && !isNaN(currentTick)) {
+                            indicativeHighBarrierTooltip.textContent = (parseFloat(currentTick) + parseFloat(barrier_high)).toFixed(decimalPlaces);
+                            indicativeLowBarrierTooltip.textContent = (parseFloat(currentTick) + parseFloat(barrier_low)).toFixed(decimalPlaces);
+                        } else {
+                            indicativeHighBarrierTooltip.textContent = '';
+                            indicativeLowBarrierTooltip.textContent = '';
+                        }
+                    }
+                    Defaults.set('barrier_high', high_elm.value);
+                    Defaults.set('barrier_low', low_elm.value);
+                    Defaults.remove('barrier');
+                    return;
+                }
+            }
+        }
+
+        var elements = document.getElementsByClassName('barrier_class');
+        for (var i = 0; i < elements.length; i++){
+            elements[i].style.display = 'none';
+        }
+        Defaults.remove('barrier', 'barrier_high', 'barrier_low');
+    };
+
+    return {
+        display: display,
+        isBarrierUpdated: function () { return isBarrierUpdated; },
+        setBarrierUpdate: function (flag) {
+            isBarrierUpdated = flag;
+        }
+    };
+})();
+;TradingAnalysis.DigitInfoWS = function() {
+    this.chart_config = {
+        chart: {
+                renderTo:'last_digit_histo',
+                defaultSeriesType:'column',
+                backgroundColor:'#eee',
+                borderWidth:1,
+                borderColor:'#ccc',
+                plotBackgroundColor:'#fff',
+                plotBorderWidth:1,
+                plotBorderColor:'#ccc',
+                height:225 // This is "unresponsive", but so is leaving it empty where it goes to 400px.
+        },
+        title:{text:''},
+        credits:{enabled:false},
+        exporting:{enabled:false},
+        legend:{
+            enabled:false
+        },
+        tooltip:{
+            borderWidth:1,
+            formatter:function() {
+                var that = this;
+                var total = $("select[name='tick_count']").val();
+                var percentage = that.y/total*100;
+                return '<b>Digit:</b> '+ that.x +'<br/>'+
+                '<b>Percentage:</b> '+ percentage.toFixed(1) + " %";
+            }
+        },
+        plotOptions:{
+            column:{
+                shadow:false,
+                borderWidth:0.5,
+                borderColor:'#666',
+                pointPadding:0,
+                groupPadding:0.0,
+                color: '#e1f0fb',
+            },
+            series: {
+                dataLabels: {
+                    enabled: true,
+                    style: {
+                        textShadow: false,
+                    },
+                    formatter: function() {
+                        var total = $("select[name='tick_count']").val();
+                        var percentage = this.point.y/total*100;
+                        return percentage.toFixed(2) + ' %';
+                    },
+                },
+            },
+        },
+        xAxis:{
+            categories: ['0','1','2','3','4','5','6','7','8','9'],
+            lineWidth:0,
+            lineColor:'#999',
+            tickLength:10,
+            tickColor:'#ccc',
+        },
+        yAxis:{
+            title:{text:''},
+            maxPadding:0,
+            gridLineColor:'#e9e9e9',
+            tickWidth:1,
+            tickLength:3,
+            tickColor:'#ccc',
+            lineColor:'#ccc',
+            endOnTick:true,
+            opposite: false,
+            labels: {
+                align: 'left',
+                x: 0,
+                enabled: false,
+                formatter: function() {
+                    var total = $("select[name='tick_count']").val();
+                    var percentage = parseInt(this.value/total*100);
+                    return percentage + " %";
+                },
+            },
+        },
+    };
+
+    this.spots = [];
+    this.stream_id = null;
+    // To avoid too many greens and reds
+    this.prev_min_index = -1;
+    this.prev_max_index = -1;
+};
+
+TradingAnalysis.DigitInfoWS.prototype = {
+    add_content: function(underlying){
+        var domain = document.domain.split('.').slice(-2).join('.'),
+            underlyings =[];
+        var symbols = Symbols.getAllSymbols();
+        i=0;
+        for(var key in symbols){
+            if(/^(R_|RD)/.test(key)){
+                underlyings[i++] = key;
+            }
+        }
+        underlyings = underlyings.sort();
+        var elem = '<select class="smallfont" name="underlying">';
+        for(i=0;i<underlyings.length;i++){
+            elem = elem + '<option value="'+underlyings[i]+'">'+text.localize(symbols[underlyings[i]])+'</option>';
+        }
+        elem = elem + '</select>';
+        var contentId = document.getElementById('tab_last_digit-content'),
+            content = '<div class="grd-parent">'+
+                        '<div id="last_digit_histo_form" class="grd-grid-8 grd-grid-mobile-12 grd-centered">'+
+                        '<form class=smallfont action="#" method="post">'+
+                        '<div class="grd-grid-6 grd-grid-mobile-12">'+ text.localize('Select market')+' : ' + elem +' </div>'+
+                        '<div class="grd-grid-6 grd-grid-mobile-12">'+ text.localize('Number of ticks')+' : <select class="smallfont" name="tick_count"><option value="25">25</option><option value="50">50</option><option selected="selected" value="100">100</option><option value="500">500</option><option value="1000">1000</option></select></div>'+
+                        '</form>'+
+                        '</div>'+
+                        '<div id="last_digit_histo" class="grd-grid-8 grd-grid-mobile-12 grd-centered"></div>'+
+                        '<div id="last_digit_title" class="grd-hide">'+ (domain.charAt(0).toUpperCase() + domain.slice(1)) + ' - ' + text.localize('Last digit stats for the latest [_1] ticks on [_2]') +'</div>'+
+                        '</div>';
+        contentId.innerHTML = content;
+        $('[name=underlying]').val(underlying);
+
+    },
+    on_latest: function() {
+        var that = this;
+        var tab = $('#tab_last_digit-content');
+        var form = tab.find('form:first');
+        form.on('submit', function(event) {
+            event.preventDefault();
+            return false;
+        }).addClass('unbind_later');
+
+        var get_latest = function() {
+            var symbol = $('[name=underlying] option:selected').val();
+            var request = JSON.parse('{"ticks_history":"'+ symbol +'",'+
+                                        '"end": "latest",'+
+                                        '"count": '+ $('[name=tick_count]', form).val() +','+
+                                        '"req_id": 2}');
+            if(that.chart.series[0].name !== symbol){
+                if($('#underlying option:selected').val() != $('[name=underlying]', form).val()){
+                    request['subscribe'] = 1;
+                    request['style'] = "ticks";
+                }
+                if(that.stream_id !== null ){
+                    BinarySocket.send(JSON.parse('{"forget": "'+ that.stream_id +'"}'));
+                    that.stream_id = null;
+                }
+            }
+            BinarySocket.send(request);
+        };
+        $('[name=underlying]', form).on('change',  get_latest ).addClass('unbind_later');
+        $('[name=tick_count]', form).on('change',  get_latest ).addClass('unbind_later');
+    },
+    show_chart: function(underlying, spots) {
+        if(typeof spots === 'undefined' || spots.length <= 0){
+            console.log("Unexpected error occured in the charts.");
+            return;
+        }
+        var dec = spots[0].split('.')[1].length;
+        for(i=0;i<spots.length;i++){
+            var val = parseFloat(spots[i]).toFixed(dec);
+            spots[i]=val.substr(val.length-1);
+        }
+        this.spots = spots;
+        if(this.chart &&  $('#last_digit_histo').html()){
+            this.chart.xAxis[0].update({
+                title:{
+                    text: $('#last_digit_title').html().replace('[_2]', $('[name=underlying] option:selected').text()).replace('[_1]',spots.length),
+                }
+            }, true);
+            this.chart.series[0].name = underlying;
+        }
+        else{
+            this.add_content(underlying);
+            this.chart_config.xAxis.title = {
+                text: $('#last_digit_title').html().replace('[_2]', $('[name=underlying] option:selected').text()).replace('[_1]',spots.length),
+            };
+            this.chart = new Highcharts.Chart(this.chart_config);
+            this.chart.addSeries({name : underlying, data: []});
+            this.on_latest();
+            this.stream_id = null;
+        }
+        this.update();
+    },
+    update: function(symbol, latest_spot) {
+        if(typeof this.chart === "undefined") {
+            return;
+        }
+
+        var series = this.chart.series[0]; // Where we put the final data.
+        if (series.name != symbol) {
+            latest_spot = undefined; // This simplifies the logic a bit later.
+        }
+
+        if (typeof latest_spot !== "undefined") { // This is a bit later. :D
+            this.spots.unshift(latest_spot.slice(-1)); // Only last digit matters
+            this.spots.pop();
+        }
+
+        // Always recompute and draw, even if theres no new data.
+        // This is especially useful on first reuqest, but maybe in other ways.
+        var filtered_spots = [];
+        var digit = 10,
+            filterFunc = function (el) { return el == digit; };
+        var min_max_counter = [];
+        while(digit--) {
+            var val = this.spots.filter(filterFunc).length;
+            filtered_spots[digit] = val;
+            if (typeof min_max_counter[val] === 'undefined') {
+                min_max_counter[val] = 0;
+            }
+            min_max_counter[val]++;
+        }
+        var min = Math.min.apply(null, filtered_spots);
+        var max = Math.max.apply(null, filtered_spots);
+        var min_index = filtered_spots.indexOf(min);
+        var max_index = filtered_spots.indexOf(max);
+        // changing color
+        if (min_max_counter[min] >= 1) {
+            filtered_spots[min_index] = {y: min, color: '#CC0000'};
+            if(this.prev_min_index === -1){
+                this.prev_min_index = min_index;
+            } else if(this.prev_min_index != min_index){
+                if(typeof(filtered_spots[this.prev_min_index]) === 'object'){
+                    filtered_spots[this.prev_min_index] = {y: filtered_spots[this.prev_min_index].y, color: '#e1f0fb'};
+                } else
+                    filtered_spots[this.prev_min_index] = {y: filtered_spots[this.prev_min_index], color: '#e1f0fb'};
+                this.prev_min_index = min_index;
+            }
+        }
+
+        if (min_max_counter[max] >= 1) {
+            filtered_spots[max_index] = {y: max, color: '#2E8836'};
+            if(this.prev_max_index === -1){
+                this.prev_max_index = max_index;
+            } else if(this.prev_max_index != max_index){
+                if(typeof(filtered_spots[this.prev_max_index]) === 'object'){
+                    filtered_spots[this.prev_max_index] = {y: filtered_spots[this.prev_max_index].y, color: '#e1f0fb'};
+                } else
+                    filtered_spots[this.prev_max_index] = {y: filtered_spots[this.prev_max_index], color: '#e1f0fb'};
+                this.prev_max_index = max_index;
+            }
+        }
+        return series.setData(filtered_spots);
+    },
+    show_tab: function() {
+        var tab_last_digit = $('#tab_last_digit');
+        MenuContent.show_tab(tab_last_digit);
+        var saved_anaysis_tab = SessionStore.get('bet_page.selected_analysis_tab');
+        if(saved_anaysis_tab == 'tab_last_digit') {
+            MenuContent.trigger({
+                'tab_id': saved_anaysis_tab
+            });
+        }
+    },
+    hide_tab: function() {
+        var tab_last_digit = $('#tab_last_digit');
+        MenuContent.hide_tab(tab_last_digit);
+        if(typeof this.chart !== "undefined") {
+            this.chart.destroy();
+        }
+        this.chart = undefined;
+        this.spots = [];
+    },
+    update_chart: function(tick){
+        if(tick.req_id === 2){
+            if(this.chart.series[0].name === tick.tick.symbol){
+                this.stream_id = tick.tick.id || null;
+                this.update(tick.tick.symbol, tick.tick.quote);
+            } else{
+                BinarySocket.send(JSON.parse('{"forget":"'+tick.tick.id+'"}'));
+            }
+        } else{
+            if(!this.stream_id){
+                this.update(tick.tick.symbol, tick.tick.quote);
+            }
+        }
+    }
+};
+
+TradingAnalysis.tab_last_digitws = new TradingAnalysis.DigitInfoWS();
 ;var Highchart = (function() {
   var chart, options, chart_forget, responseID, contract, contract_ended, contracts_for_send, history_send, entry_tick_barrier_drawn, initialized, chart_delayed, chart_subscribed, request, min_point, max_point, start_time, purchase_time, now_time, end_time, entry_tick_time, is_sold, sell_time, sell_spot_time, is_expired, exit_tick_time, exit_time;
   function init_once() {
@@ -71957,9928 +76176,6 @@ if (typeof trackJs !== 'undefined') trackJs.configure(window._trackJs);
     dispatch     : dispatch
   };
 }());
-;var live_chart;
-var chart_closed;
-var ticks_array = [];
-
-
-function updateLiveChart(config) {
-    if (live_chart) {
-        if (!chart_closed) {
-            live_chart.close_chart();
-        }
-        live_chart = null;
-    }
-
-    if (config.resolution == 'tick') {
-        live_chart = new LiveChartTick(config);
-    } else {
-        live_chart = new LiveChartOHLC(config);
-    }
-    live_chart.show_chart();
-    chart_closed = false;
-}
-
-var LiveChart = function(config) {
-    //Required for inheritence.
-    if (!config) return;
-
-    this.config = config;
-    this.shift = false;
-    if (!config.trade_visualization) {
-        this.on_duration_change();
-        this.highlight_duration();
-    }
-};
-
-LiveChart.prototype = {
-    show_chart: function() {
-        $('.notice').hide();
-        this.chart = new Highcharts.StockChart(this.chart_params());
-        this.chart.showLoading();
-    },
-    close_chart: function() {
-        $(".live_charts_stream_button").off('click');
-        if (this.ev) {
-            this.ev.close();
-        }
-
-        if (!chart_closed && live_chart) {
-            if (this.chart) {
-                this.chart.destroy();
-            }
-            chart_closed = true;
-            live_chart = null;
-        }
-    },
-    add_indicator: function(indicator) {
-        this.config.add_indicator(indicator);
-        indicator.paint(this);
-    },
-    remove_indicator: function(name) {
-        var indicator = this.config.remove_indicator(name);
-        if(indicator) {
-            indicator.remove(this);
-        }
-    },
-    exporting_menu: function() {
-        var $self = this;
-        var menuItems = [];
-
-        var defaultOptions = Highcharts.getOptions();
-        var defaultMenu = defaultOptions.exporting.buttons.contextButton.menuItems;
-        for (var i=0; i<defaultMenu.length; i++) {
-            menuItems.push(defaultMenu[i]);
-        }
-
-        return menuItems;
-    },
-    connect_to_stream: function() {
-        var $self = this;
-        var url = window.location.protocol + "//" + this.config.streaming_server;
-        var end = this.config.to ? "/" + this.config.to : "";
-        url += "/stream/ticks/" + this.config.symbol.symbol + "/" + this.config.from + end + "?adjust_start_time=1&with_trades=" + this.config.with_trades;
-        if (this.config.resolution != 'tick') {
-            url += "&ohlc=" + this.config.resolution;
-        }
-        this.ev = new EventSource(url, { withCredentials: true });
-        this.ev.onmessage = function(msg) {
-            $self.process_message(msg);
-        };
-        this.ev.onerror = function() { $self.ev.close(); };
-    },
-    process_contract: function(trade) {
-        if (!this.tradeSeries) {
-            this.tradeSeries = this.chart.addSeries({
-                name: "Contracts",
-                type: "flags",
-                data: [],
-                onSeries: 'primary_series',
-                shape: "circlepin",
-                includeInCSVExport: false,
-            }, false, false);
-        }
-        var epoch = 1000 * parseInt(trade.start_time);
-        var text = "Contract ID: " + trade.buy_id + "<br>" + trade.long_code;
-        var color = "white";
-        if (trade.is_sold) {
-            if (trade.won) {
-                text += "<br>Result: Won";
-                color = "green";
-            } else {
-                text += "<br>Result: Lost";
-                color = "red";
-            }
-        }
-        var cpoint = {
-            x: epoch,
-            title: "C",
-            fillColor: color,
-            text: text
-        };
-        this.tradeSeries.addPoint(cpoint, false, false, false);
-    },
-    chart_params: function() {
-        var $self = this;
-        var chart_params = {
-            chart: {
-                height: this.config.renderHeight,
-                renderTo: this.config.renderTo,
-                events: {
-                    load: function() { $self.connect_to_stream(); }
-                }
-            },
-            credits: {
-                enabled: false
-            },
-            exporting: {
-                buttons: {
-                    contextButton: {
-                        menuItems: this.exporting_menu()
-                    }
-                },
-                enabled: true
-            },
-            plotOptions: {
-                series: {
-                    dataGrouping: {
-                        dateTimeLabelFormats: {
-                            millisecond: ['%A, %b %e, %H:%M:%S.%L GMT', '%A, %b %e, %H:%M:%S.%L', '-%H:%M:%S.%L GMT'],
-                            second: ['%A, %b %e, %H:%M:%S GMT', '%A, %b %e, %H:%M:%S', '-%H:%M:%S GMT'],
-                            minute: ['%A, %b %e, %H:%M GMT', '%A, %b %e, %H:%M', '-%H:%M GMT'],
-                            hour: ['%A, %b %e, %H:%M GMT', '%A, %b %e, %H:%M', '-%H:%M GMT'],
-                            day: ['%A, %b %e, %Y', '%A, %b %e', '-%A, %b %e, %Y'],
-                            week: ['Week from %A, %b %e, %Y', '%A, %b %e', '-%A, %b %e, %Y'],
-                            month: ['%B %Y', '%B', '-%B %Y'],
-                            year: ['%Y', '%Y', '-%Y']
-                        },
-                        turboThreshold: 3000
-                    },
-                    marker: {
-                        enabled: this.config.with_markers,
-                        radius: 2,
-                    },
-                },
-                candlestick: {
-                    turboThreshold: 4000
-                }
-            },
-            xAxis: {
-                type: 'datetime',
-                min: this.config.from * 1000,
-            },
-            yAxis: {
-                opposite: false,
-                labels: {
-                    align: 'left',
-                    x: 0,
-                    formatter: function() { return this.value; }
-                },
-                title: {
-                    text: null
-                }
-            },
-            rangeSelector: {
-                enabled: false,
-            },
-            title: {
-                text: this.config.symbol.translated_display_name(),
-            },
-        };
-
-        if (this.config.with_marker) {
-            chart_params.plotOptions.line = {marker: {enabled: true}};
-        }
-
-        this.configure_series(chart_params);
-        return chart_params;
-    },
-    process_message: function(message) {
-        var data = JSON.parse(message.data);
-        if (data.error) {
-            this.ev.close();
-            return;
-        }
-        if (data.notice) {
-            $("#" + data.notice + "_notice").show();
-            return;
-        }
-        if (!(data[0] instanceof Array)) {
-            data = [ data ];
-        }
-
-        var data_length = data.length;
-        for (var i = 0; i < data_length; i++) {
-            this.process_data(data[i]);
-        }
-
-        if (data_length > 0 && this.spot) {
-            this.config.repaint_indicators(this);
-            this.chart.redraw();
-            if (!this.navigator_initialized) {
-                this.navigator_initialized = true;
-                var xData = this.chart.series[0].xData;
-                var xDataLen = xData.length;
-                if (xDataLen) {
-                    this.chart.xAxis[0].setExtremes(xData[0], xData[xDataLen - 1], true, false);
-                }
-            }
-            this.chart.hideLoading();
-            this.shift = this.config.shift == 1 ? true : false;
-        }
-    },
-    highlight_duration: function() {
-        $('#live_chart_duration').find('.live_charts_stream_button').each( function () {
-            $(this).find('span').removeClass('current');
-        });
-
-         $('#live_chart_duration li[data-live=' + this.config.live + '] span').addClass('current');
-    },
-    on_duration_change: function() {
-        var that = this;
-        $(".live_charts_stream_button").on('click', function() {
-            that.config.update({
-                live: $(this).data("live"),
-                update_url: 1
-            });
-            that.highlight_duration();
-            updateLiveChart(that.config); //Will cause this object to unload.
-            var duration_changed = jQuery.Event( "duration_change", { target: this, config: that.config } );
-            $('#live_chart_duration').trigger(duration_changed);
-        });
-    }
-};
-
-function LiveChartTick(params) {
-    LiveChart.call(this, params);
-}
-
-LiveChartTick.prototype = new LiveChart();
-
-LiveChartTick.prototype.constructor = LiveChartTick;
-LiveChartTick.prototype.configure_series = function(chart_params) {
-        chart_params.chart.type = 'line';
-
-        chart_params.xAxis.labels = { format: "{value:%H:%M:%S}" };
-        chart_params.series = [{
-            name: this.config.symbol.translated_display_name(),
-            data: [],
-            dataGrouping: {
-                enabled: false
-            },
-            id: 'primary_series',
-            tooltip: {
-                xDateFormat: "%A, %b %e, %H:%M:%S GMT"
-            },
-            type: 'line'
-        }];
-};
-
-LiveChartTick.prototype.process_data = function(point) {
-    if (point[0] == 'tick') {
-        var tick = {
-            epoch: parseInt(point[1]),
-            quote: parseFloat(point[2])
-        };
-
-        if (!this.chart) return;
-        if (!this.chart.series) return;
-
-        this.chart.series[0].addPoint(
-            [tick.epoch * 1000, tick.quote], false, this.shift, false
-        );
-        this.spot = tick.quote;
-        // for tick trade charting purposes
-        if (tick.epoch > this.config.contract_start_time && ticks_array.length < this.config.how_many_ticks) {
-                ticks_array.push(tick);
-        }
-    } else if (point[0] == 'contract') {
-        this.process_contract(point[1]);
-    }
-};
-
-
-function LiveChartOHLC(params) {
-    LiveChart.call(this, params);
-    this.candlestick = {};
-    this.candlestick.period = this.config.resolution_seconds() * 1000;
-}
-
-LiveChartOHLC.prototype = new LiveChart();
-LiveChartOHLC.prototype.constructor = LiveChartOHLC;
-
-LiveChartOHLC.prototype.configure_series = function(chart_params) {
-    chart_params.chart.type = 'candlestick';
-    chart_params.series = [{
-        name: this.config.symbol.translated_display_name(),
-        data: [],
-        color: 'red',
-        upColor: 'green',
-        id: 'primary_series',
-        type: 'candlestick',
-    }];
-};
-
-LiveChartOHLC.prototype.process_data = function(point) {
-    var type = point.shift();
-    if (type == 'ohlc') {
-        this.process_ohlc(point);
-    } else if (type == 'tick') {
-        if (this.accept_ticks) {
-                this.process_tick(point);
-        }
-    } else if (type == 'corp_action') {
-        this.process_corp_action(point);
-    } else if (type == 'contract') {
-        this.process_contract(point[0]);
-    }
-};
-
-LiveChartOHLC.prototype.process_corp_action = function(action) {
-    if (!this.flagSeries) {
-        this.flagSeries = this.chart.addSeries({
-            name: "Events",
-            type: "flags",
-            data: [],
-            shape: "flag"
-        }, false, false);
-    }
-
-    var epoch = 1000 * parseInt(action[0].epoch);
-    var text = action[0].description;
-    var point = {
-        x: epoch,
-        title: "CA",
-        text: text
-    };
-
-    this.flagSeries.addPoint(point, false, false, false);
-};
-
-LiveChartOHLC.prototype.process_ohlc = function(ohlc) {
-    var epoch = parseInt(ohlc[0]);
-    if (!this.chart) return;
-    if (!this.chart.series) return;
-    var ohlc_pt = {
-        x:     epoch * 1000,
-        open:  parseFloat(ohlc[1]),
-        y:     parseFloat(ohlc[1]),
-        high:  parseFloat(ohlc[2]),
-        low:   parseFloat(ohlc[3]),
-        close: parseFloat(ohlc[4])
-    };
-    this.chart.series[0].addPoint(ohlc_pt, false, false, false);
-    this.spot = ohlc_pt.close;
-    this.accept_ticks = true;
-};
-
-LiveChartOHLC.prototype.process_tick = function(tickInput) {
-    var tick = {
-        epoch: parseInt(tickInput[0]) * 1000,
-        quote: parseFloat(tickInput[1]),
-        squote: tickInput[1]
-    };
-    this.spot = tick.quote;
-
-    if (!this.chart) return;
-    if (!this.chart.series) return;
-
-    var data = this.chart.series[0].options.data;
-    if (data.length > 0 && data[data.length - 1].x > (tick.epoch - this.candlestick.period)) {
-        var last_ohlc = data[data.length - 1];
-        if (tick.quote != last_ohlc.close) {
-            last_ohlc.close = tick.quote;
-            if (last_ohlc.low > tick.quote)
-                last_ohlc.low = tick.quote;
-            if (last_ohlc.high < tick.quote)
-                last_ohlc.high = tick.quote;
-
-            this.chart.series[0].isDirty = true;
-            this.chart.series[0].isDirtyData = true;
-        }
-    } else {
-        /* add new Candlestick */
-        var ohlc = {
-            x:     tick.epoch,
-            open:  tick.quote,
-            y:     tick.quote,
-            high:  tick.quote,
-            low:   tick.quote,
-            close: tick.quote
-        };
-        this.chart.series[0].addPoint(ohlc, false, false, false);
-    }
-};
-;var LiveChartConfig = function(params) {
-    params = params || {};
-    this.renderTo = params['renderTo'] || 'live_chart_div';
-    this.renderHeight = params['renderHeight'] || 450;
-    this.shift = typeof params['shift'] !== 'undefined' ? params['shift'] : 1;
-    this.with_trades = typeof params['with_trades'] !== 'undefined' ? params['with_trades'] : 1;
-    this.streaming_server = page.settings.get('streaming_server');
-    this.with_marker = typeof params['with_marker'] !== 'undefined' ? params['with_marker'] : 0;
-    this.force_tick = typeof params['force_tick'] !== 'undefined' ? params['force_tick'] : 0;
-
-    this.indicators = [];
-    this.resolutions = {
-        'tick': {seconds: 0, interval: 3600},
-        '1m': {seconds: 60, interval: 86400},
-        '5m': {seconds: 300, interval: 7*86400},
-        '30m': {seconds: 1800, interval: 31*86400},
-        '1h': {seconds: 3600, interval: 62*86400},
-        '8h': {seconds: 8*3600, interval: 183*86400},
-        '1d': {seconds: 86400, interval: 366*3*86400}
-    };
-    this.resolution = 'tick';
-    this.with_markers = typeof params['with_markers'] !== 'undefined' ? params['with_markers'] : false;
-
-    var res,
-        symbol,
-        hash = window.location.hash;
-
-    res = hash.match(/^#([A-Za-z0-9_]+):(10min|1h|1d|1w|1m|3m|1y)$/);
-    if (res) {
-        symbol = markets.by_symbol(res[1]);
-        if (symbol) {
-            this.symbol = symbol.underlying;
-            this.market = symbol.market;
-            this.live = res[2];
-        }
-    } else {
-        res = hash.match(/^#([A-Za-z0-9_]+):([0-9]+)-([0-9]+)$/);
-        if (res) {
-            symbol = markets.by_symbol(res[1]);
-            if (symbol) {
-                this.symbol = symbol.underlying;
-                this.market = symbol.market;
-                this.from = parseInt(res[2]);
-                this.to = parseInt(res[3]);
-                this.resolution = this.best_resolution(this.from, this.to);
-            }
-        } else {
-            symbol = markets.by_symbol(params['symbol']) || markets.by_symbol(LocalStore.get('live_chart.symbol')) || markets.by_symbol('frxAUDJPY');
-            this.symbol = symbol.underlying;
-            this.market = symbol.market;
-            var from = params['from'] || LocalStore.get('live_chart.from');
-            var to = params['to'] || LocalStore.get('live_chart.to');
-            if (from && to && from != 'null' && to != 'null') {
-                this.from = from;
-                this.to = to;
-                this.resolution = this.best_resolution(this.from, this.to);
-            } else {
-                this.live = params['live'] || LocalStore.get('live_chart.live') || '10min';
-            }
-        }
-    }
-
-    if (this.live) {
-        this.from = this.calculate_from(this.live);
-        this.resolution = this.best_resolution(this.from, new Date().getTime()/1000);
-    }
-};
-
-LiveChartConfig.prototype = {
-    add_indicator: function(indicator) {
-        this.indicators.push(indicator);
-    },
-    remove_indicator: function(name) {
-        var deleted_indicator;
-        var indicator = this.indicators.length;
-        while(indicator--) {
-            if(this.indicators[indicator].name == name) {
-                deleted_indicator = this.indicators[indicator];
-                this.indicators.splice(indicator, 1);
-            }
-        }
-        return deleted_indicator;
-    },
-    has_indicator: function(name) {
-        var indicator = this.indicators.length;
-        while(indicator--) {
-            if(this.indicators[indicator].name == name) {
-                return true;
-            }
-        }
-        return false;
-    },
-    repaint_indicators: function(chart) {
-        var indicator = this.indicators.length;
-        while(indicator--) {
-            this.indicators[indicator].repaint(chart);
-        }
-    },
-    calculate_from: function(len) {
-        var now = new Date();
-        var epoch = Math.floor(now.getTime() / 1000);
-        var units = { min: 60, h: 3600, d: 86400, w: 86400 * 7, m: 86400 * 31, y: 86400 * 366 };
-        var res = len.match(/^([0-9]+)([hdwmy]|min)$/);
-        
-        return res ? epoch - parseInt(res[1]) * units[res[2]] : undefined;
-    },
-    update: function(opts) {
-        if (opts.interval) {
-            var from = parseInt(opts.interval.from.getTime() / 1000);
-            var to = parseInt(opts.interval.to.getTime() / 1000);
-            var length = to - from;
-            this.resolution = this.best_resolution(from, to);
-            delete opts.interval;
-            this.from = from;
-            this.to = to;
-            delete this.live;
-        }
-        if (opts.live) {
-            delete this.to;
-            LocalStore.remove('live_chart.to');
-            LocalStore.remove('live_chart.from');
-            this.from = this.calculate_from(opts.live);
-            this.live = opts.live;
-            LocalStore.set('live_chart.live', opts.live);
-            this.resolution = this.best_resolution(this.from, new Date().getTime()/1000);
-        }
-        if (opts.symbol) {
-            var symbol = markets.by_symbol(opts.symbol);
-            if(symbol) {
-                this.symbol = symbol.underlying;
-                this.market = symbol.market;
-                LocalStore.set('live_chart.symbol', symbol.symbol);
-            }
-        }
-
-        if(opts.update_url) {
-            var hash = "#";
-
-            if (this.from && this.to) {
-                hash += this.symbol.symbol + ":" + this.from + "-" + this.to;
-            } else {
-                hash += this.symbol.symbol + ":" + this.live;
-            }
-
-            var url = window.location.pathname + window.location.search + hash;
-            page.url.update(url);
-        }
-        if(opts.shift) {
-            this.shift = opts.shift;
-        }
-        if(opts.with_trades) {
-            this.with_trades = opts.with_trades;
-        }
-        if(opts.with_markers) {
-            this.with_markers = opts.with_markers;
-        }
-        if(opts.force_tick) {
-            this.force_tick = opts.force_tick;
-        }
-    },
-    best_resolution: function(from, to) {
-        if(this.force_tick) {
-            return 'tick';
-        }
-        var length = parseInt(to - from);
-        for(var resolution in this.resolutions) {
-            if (this.resolutions[resolution].interval >= length) {
-                return resolution;
-            }
-        }
-        return '1d';
-    },
-    resolution_seconds: function(resolution) {
-        resolution = typeof resolution !== 'undefined' ? resolution : this.resolution;
-        return this.resolutions[resolution]['seconds'];
-
-    },
-};
-
-var configured_livechart = false;
-var configure_livechart = function () {
-    if(!configured_livechart) {
-        Highcharts.setOptions({
-            lang: {
-                loading:      text.localize('loading...'),
-                printChart:   text.localize('Print chart'),
-                downloadJPEG: text.localize('Save as JPEG'),
-                downloadPNG:  text.localize('Save as PNG'),
-                downloadSVG:  text.localize('Save as SVG'),
-                downloadPDF:  text.localize('Save as PDF'),
-                downloadCSV:  text.localize('Save as CSV'),
-                rangeSelectorFrom: text.localize('From'),
-                rangeSelectorTo:   text.localize('To'),
-                rangeSelectorZoom: text.localize('Zoom'),
-                months: [
-                    text.localize('January'), text.localize('February'), text.localize('March'), text.localize('April'), text.localize('May'), text.localize('June'),
-                    text.localize('July'), text.localize('August'), text.localize('September'), text.localize('October'), text.localize('November'), text.localize('December')
-                ],
-                shortMonths: [
-                    text.localize('Jan'), text.localize('Feb'), text.localize('Mar'), text.localize('Apr'), text.localize('May'), text.localize('Jun'),
-                    text.localize('Jul'), text.localize('Aug'), text.localize('Sep'), text.localize('Oct'), text.localize('Nov'), text.localize('Dec')
-                ],
-                weekdays: [
-                    text.localize('Sunday'), text.localize('Monday'), text.localize('Tuesday'), text.localize('Wednesday'),
-                    text.localize('Thursday'), text.localize('Friday'), text.localize('Saturday')
-                ],
-            },
-            navigator: {
-                series: {
-                    includeInCSVExport: false
-                }
-            }
-        });
-    }
-    configured_livechart = true;
-};
-;function DateTimePicker(params) {
-    var $self = this;
-    this.date_inp = "#" + params.id + "_date";
-    this.time_inp = "#" + params.id + "_time";
-    this.minDateTime = params.minDateTime || new Date(2010, 1, 1);
-    this.maxDateTime = params.maxDateTime || new Date();
-    this.onChange = params.onChange || function() {};
-    $(this.date_inp).datepicker({
-        minDate: this.minDateTime,
-        maxDate: this.maxDateTime,
-        dateFormat: "yy-mm-dd",
-        monthNames: [text.localize('January'), text.localize('February'), text.localize('March'), text.localize('April'), text.localize('May'), text.localize('June'),
-                     text.localize('July'), text.localize('August'), text.localize('September'), text.localize('October'), text.localize('November'), text.localize('December') ],
-        dayNamesShort: [text.localize('Su'), text.localize('Mo'), text.localize('Tu'), text.localize('We'),
-                        text.localize('Th'), text.localize('Fr'), text.localize('Sa')],
-                nextText: text.localize('Next'),
-                prevText: text.localize('Previous'),
-    });
-    $(this.date_inp).change(function() {
-        var date = $self.getDateTime();
-        if (date < $self.minDateTime)
-            $self.setDateTime($self.minDateTime);
-        else if (date > $self.maxDateTime)
-            $self.setDateTime($self.maxDateTime);
-        $self.onChange($self.getDateTime());
-    });
-    $(this.time_inp).change(function() {
-        if(!$(this).val().match(/^([01][0-9]|2[0-3]):[0-5][0-9](:[0-5][0-9])?$/)) {
-            $(this).val("00:00:00");
-        }
-        var date = $self.getDateTime();
-        if (date < $self.minDateTime)
-            $self.setDateTime($self.minDateTime);
-        else if (date > $self.maxDateTime)
-            $self.setDateTime($self.maxDateTime);
-        $self.onChange($self.getDateTime());
-    });
-}
-
-DateTimePicker.prototype = {
-    getDateTime: function() {
-        var date = $(this.date_inp).val().match(/^(\d\d\d\d)-(\d\d)-(\d\d)$/);
-        if (!date) return null;
-            var year = date[1], month = date[2], day = date[3];
-        var time = $(this.time_inp).val().match(/^([01][0-9]|2[0-3]):([0-5]\d)(:([0-5]\d))?$/);
-        var hour = 0, minute = 0, second = 0;
-        if (time) {
-            hour = time[1];
-            minute = time[2];
-            second = time[3] ? time[4] : 0;
-        }
-        return new Date(Date.UTC(year, month - 1, day, hour, minute, second));
-    },
-    setDateTime: function(date) {
-        var dateStr = date.getUTCFullYear() + "-" + (date.getUTCMonth() + 1) + "-" + date.getUTCDate();
-        $(this.date_inp).datepicker("setDate", dateStr);
-        var hours = date.getUTCHours() || 0;
-        if (hours < 10) hours = '0' + hours;
-            var minutes = date.getUTCMinutes() || 0;
-        if (minutes < 10) minutes = '0' + minutes;
-            var seconds = date.getUTCSeconds() || 0;
-        if (seconds < 10) seconds = '0' + seconds;
-            $(this.time_inp).val(hours + ':' + minutes + ':' + seconds);
-        this.onChange(this.getDateTime());
-    },
-    setMinDateTime: function(date) {
-        this.minDateTime = date;
-        if (this.getDateTime < date) {
-            this.setDateTime(date);
-        }
-        $(this.date_inp).datepicker("option", "minDate", date);
-    },
-    setMaxDateTime: function(date) {
-        this.maxDateTime = date;
-        if (this.getDateTime > date) {
-            this.setDateTime(date);
-        }
-        $(this.date_inp).datepicker("option", "maxDate", date);
-    },
-    clear: function() {
-        $(this.date_inp).val("");
-        $(this.time_inp).val("");
-    }
-};
-;var LiveChartIndicator = {};
-LiveChartIndicator['Barrier'] = function(params) {
-    this.name = params['name'];
-    this.value = typeof params['value'] !== 'object' ? parseFloat(params['value']) : params['value'];
-    this.color = params['color'] || 'blue';
-    this.width = params['width'] || 2;
-    this.id = 'barrier_' + this.name;
-    this.is_relative = /^[+-]/.test(params['value']);
-    this.painted = false;
-    this.label = params['label'] || '';
-    this.axis = params['axis'] || 'y';
-    this.nomargin = params['nomargin'] || false;
-};
-
-
-LiveChartIndicator['Barrier'].prototype = {
-    remove: function(that) {
-        if(!that.chart){
-            return;
-        }
-        if (this.axis == 'y') {
-            if(!that.chart.yAxis){
-                return;
-            }
-            that.chart.yAxis[0].removePlotLine(this.id);
-        } else {
-            if(!that.chart.xAxis){
-                return;
-            }
-            that.chart.xAxis[0].removePlotLine(this.id);
-        }
-    },
-    repaint: function(that) {
-        if (this.is_relative || !this.painted) {
-            this.remove(that);
-            this.paint(that);
-            return true;
-        }
-
-        return false;
-    },
-    paint: function(that) {
-        var value = this.value;
-        if (this.is_relative) {
-            if (that.spot) {
-                value = that.spot + value;
-            } else {
-                return;
-            }
-        }
-
-        var plot_option = { value: value, color: this.color, width: this.width, id: this.id };
-        if (this.label) {
-            if (this.axis == 'x') {
-                if(this.nomargin) {
-                    plot_option.label = {text: text.localize(this.label), verticalAlign: 'middle', textAlign: 'center' };
-                } else {
-                    plot_option.label = {text: text.localize(this.label), verticalAlign: 'middle', x: -10, textAlign: 'center' };
-                }
-            } else {
-                plot_option.label = {text: text.localize(this.label), align: 'center'};
-            }
-        }
-        if (!that.chart) {
-            return;
-        }
-        if (this.axis == 'y') {
-            if (!that.chart.yAxis) {
-                return;
-            }
-            that.chart.yAxis[0].addPlotLine(plot_option);
-        } else {
-            if (!that.chart.xAxis) {
-                return;
-            }
-            that.chart.xAxis[0].addPlotLine(plot_option);
-        }
-        this.painted = true;
-    }
-};
-;/*
- * Make sure data js is loaded before this
- * else website will not work properly
- * objects texts_json, markets_list, markets_json
- * should be available
- */
-
-// make texts object as Localizable
-var texts = {};
-for (var key in texts_json) {
-    if (texts_json.hasOwnProperty(key)) {
-        texts[key] = new Localizable(texts_json[key]);
-    }
-}
-
-// make markets object
-var markets = new Markets(markets_list, markets_json);
-;init_pjax(); //Pjax-standalone will wait for on load event before attaching.
-$(function() { onLoad.fire(); });
-;// json to hold all the events loaded on trading page
-var trade_event_bindings = {};
-
-function confirm_popup_action() {
-
-    $('.bom_confirm_popup_link').on('click', function (e){
-        e.preventDefault();
-        $.ajax({
-            type: 'GET',
-            url: this.href,
-            data: 'ajax_only=1',
-            success: function (html) {
-                SpotLight.set_content(html);
-                SpotLight.show();
-            }
-        });
-    });
-}
-
-var hide_payment_agents = function() {
-    var language = page.language();
-    if(language == 'JA') {
-        $('.payment_agent_methods').addClass('invisible');
-    }
-};
-
-onLoad.queue_for_url(confirm_popup_action, 'my_accountws|confirm_popup');
-onLoad.queue_for_url(hide_payment_agents, 'cashier');
-
-onLoad.queue_for_url(function() {
-    $('div.further-info')
-    .children('div').hide().end()
-    .children('a').click(function() {
-        $(this).siblings('div').toggle();
-        return false;
-    });
-}, '/c/paymentagent_list');
-;
-pjax_config_page('openpositionsws|statement|f_manager_statement|f_manager_history|' +
-    'f_profit_table|profit_table|trading', function() {
-    return {
-        onLoad: function() {
-            BetSell.register();
-        },
-        onUnload: function() {
-            BetSell.cleanup();
-        }
-    };
-});
-
-pjax_config_page('chart_application', function () {
-    return {
-        onLoad: function () {
-            load_chart_app();
-        }
-    };
-});
-
-pjax_config_page('/trading', function () {
-    return {
-        onLoad: function(){TradePage.onLoad();},
-        onUnload: function(){TradePage.onUnload();}
-    };
-});
-
-pjax_config_page('/jptrading', function () {
-    return {
-        onLoad: function(){TradePage.onLoad();},
-        onUnload: function(){TradePage.onUnload();}
-    };
-});
-;var BetAnalysis = function () {
-    var tab_change_registered = false;
-    var restored = false;
-    return {
-        reset: function(){
-            restored = false;
-            this.tab_live_chart.reset();
-        },
-        register_actions: function () {
-            var that = this;
-            if(tab_change_registered) {
-                return;
-            }
-
-            tab_change_registered = true;
-            MenuContent.listen_click(function (tab) {
-                if (tab.menu.attr('id') == 'betsBottomPage') {
-                    that.save(tab);
-
-                    var id = tab.id;
-                    var shown_some_tab = false;
-                    if (id == 'tab_explanation') {
-                        that.tab_explanation.render(tab);
-                        shown_some_tab = true;
-                    } else if(id == 'tab_last_digit') {
-                        Symbols.getSymbols();
-                        shown_some_tab = true;
-                    } else if(id == 'tab_graph') {
-                        that.tab_live_chart.render();
-                        shown_some_tab = true;
-                    }
-
-                    if(!shown_some_tab) {
-                        that.tab_live_chart.render();
-                    }
-                }
-
-                return;
-            });
-        },
-        save: function (tab) {
-            SessionStore.set('bet_page.selected_analysis_tab', tab.id);
-        },
-        restore: function () {
-            if(restored) {
-                return;
-            }
-            this.show_tab(SessionStore.get('bet_page.selected_analysis_tab'));
-            restored = true;
-        },
-        show_tab: function(tab) {
-            if(!tab || !$('#' . tab)) {
-                tab = 'tab_graph';
-            }
-
-            if(!this.is_showing_tab(tab)) {
-                MenuContent.trigger({
-                    'tab_id': tab
-                });
-            }
-        },
-        is_showing_tab: function(tab) {
-            return MenuContent.is_tab_selected($('#' + tab));
-        },
-        was_showing_tab: function(tab) {
-            return (SessionStore.get('bet_page.selected_analysis_tab') == tab);
-        },
-        bet_type_changed: function(bet_type) {
-            var saved_anaysis_tab = SessionStore.get('bet_page.selected_analysis_tab');
-            if (this.is_showing_tab('tab_explanation')) {
-                MenuContent.trigger({
-                    'tab_id': saved_anaysis_tab
-                });
-            }
-        },
-        underlying_changed: function() {
-            var saved_anaysis_tab = SessionStore.get('bet_page.selected_analysis_tab');
-
-            if (this.is_showing_tab('tab_graph')) {
-                MenuContent.trigger({
-                    'tab_id': saved_anaysis_tab
-                });
-            }
-        },
-        duration_changed: function() {
-            var saved_anaysis_tab = SessionStore.get('bet_page.selected_analysis_tab');
-
-            if (this.is_showing_tab('tab_graph')) {
-                MenuContent.trigger({
-                    'tab_id': saved_anaysis_tab
-                });
-            }
-        },
-        get_price_data: function (form, div, id) {
-            var that = this;
-            var daily_prices_url = changeUrlToSameDomain(form.action);
-            var daily_prices_params = $(form).serialize()+'&id='+Math.floor(Math.random()*83720);
-
-            var go_button = div.find('span.button');
-            go_button.addClass('invisible');
-            go_button.after(getImageLink());
-
-            $.ajax(ajax_loggedin({
-                url     : daily_prices_url,
-                async   : true,
-                data    : daily_prices_params,
-                success : function (texts) {
-                    div.html(texts);
-                    that.set_submit_event(id);
-                },
-            }));
-        },
-        set_submit_event: function(id) {
-           var that = this;
-           var div = $('#' + id + '-content');
-           var submit_button = div.find('button[type=submit]');
-           $(submit_button.closest('form')[0]).on('submit', function (e) {
-                e.preventDefault();
-                return false;
-           });
-           submit_button.on('click', function () {
-               that.get_price_data($(this).closest('form')[0], div, id);
-           });
-        },
-        tab_explanation: function() {
-            return {
-                render: function(tab) {
-                    var that = this;
-                    showLoadingImage(tab.content);
-                    $.get(that.url(), function (texts) {
-                        tab.content.html(texts);
-                    });
-                },
-                url: function() {
-                    var existing_link = $('#tab_explanation').find('a');
-                    var url = existing_link.attr('href').replace(/form_name=\w+/,'form_name='+ BetForm.attributes.bet_type());
-                    existing_link.attr('href', url);
-                    return url;
-                }
-            };
-        }(),
-    };
-}();
-;BetAnalysis.Portfolio = (function() {
-
-  var $portfolio;
-
-  function init() {
-
-    if (isActive()) {
-      $('#tab_portfolio').removeClass('invisible');
-    }
-
-    var $container = $('#tab_portfolio-content');
-    $portfolio = $portfolio || $('#portfolio');
-
-    if ($portfolio &&
-      (!$('#portfolio').parent().length ||
-        $('#portfolio').parent().get(0).id !== 'tab_portfolio-content')) {
-      $portfolio.detach();
-      $container.append($portfolio);
-    }
-  }
-
-  function show() {
-    if (isJapanTrading()) {
-      PortfolioWS.init();
-    }
-
-    return;
-  }
-
-  function isActive() {
-    var user = new User();
-    if (user.email && isJapanTrading()) {
-      return true;
-    }
-  }
-
-  function hide() {
-    if (isJapanTrading()) {
-      PortfolioWS.onUnload();
-    }
-
-    return;
-  }
-
-  return {
-    init: init,
-    show: show,
-    hide: hide,
-    isActive: isActive,
-  };
-})();
-
-;BetAnalysis.JapanInfo = function() {
-
-    this.show = this.hide = function(){};
-    
-    if (isJapanTrading() && $('#all_prices').length) {
-        $('#tab_japan_info').removeClass('invisible');
-    } else {
-        return;
-    }
-
-    var $container = $('#tab_japan_info-content');
-    var $rows = {};
-    var socket;
-
-    if (!$container.length) {
-        return;
-    }
-
-    var add_header = function() {
-        var names = Contract.contractType()[Contract.form()];
-        var ask, bid;
-        for (var i = 0; i < Object.keys(names).length; i++) {
-            var pos = contractTypeDisplayMapping(Object.keys(names)[i]);
-            if (pos === 'top') {
-                ask = names[Object.keys(names)[i]];
-            } else if (pos === 'bottom') {
-                bid = names[Object.keys(names)[i]];
-            }
-        }
-        var $header = $('<div />', {
-            'class': 'grd-parent grd-grid-12 grd-centered table-header grd-row-padding'
-        }).append(
-            $('<div />', {
-                'class': 'grd-grid-4 center-aligned',
-                'text': Content.localize().textExercisePeriod
-            }),
-            $('<div />', {
-                'class': 'grd-grid-4 center-aligned',
-                'text': ask
-            }),
-            $('<div />', {
-                'class': 'grd-grid-4 center-aligned',
-                'text': bid
-            })
-        );
-        $container.append($header);
-    };
-
-    var add_row = function(barrier, id, ask, bid) {
-        $rows[id] = $('<div />', {
-            'class': 'grd-parent grd-grid-12 grd-centered table-body table-body-lines grd-row-paddingd',
-        }).append(
-            $('<div />', {
-                'class': 'grd-grid-4 center-aligned',
-                'text': barrier
-            }),
-            $('<div />', {
-                'class': 'grd-grid-4 center-aligned ask',
-                'text': ask
-            }),
-            $('<div />', {
-                'class': 'grd-grid-4 center-aligned bid',
-                'text': bid
-            })
-        );
-        $container.append($rows[id]);
-    };
-
-    var update_ask = function(id, ask) {
-        if (!$rows[id]) {
-            return;
-        }
-        $rows[id].find('.ask').text(ask);
-    };
-
-    var update_bid = function(id, bid) {
-        if (!$rows[id]) {
-            return;
-        }
-        $rows[id].find('.bid').text(bid);
-    };
-
-    var clean = function() {
-        $container.text('');
-        $rows = {};
-    };
-
-    var request_prices = function() {
-        var barriers1 = Periods.barriers1();
-        var barriers2 = Periods.barriers2();
-
-        var types = Contract.contractType()[Contract.form()];
-
-        var period = $('#period').val();
-        var p = period.match(/^\d+_(\d+)$/);
-
-        var proposal = {
-            'proposal': 1,
-            'amount': 1000,
-            'basis': 'payout',
-            'currency': $('#currency').val(),
-            'symbol': $('#underlying').val(),
-            'date_expiry': p[1]
-        };
-
-        var id = 0;
-        if (barriers2.length) {
-            for (var i = 0; i < barriers2.length; i++) {
-                for (var j = 0; j < barriers1.length; j++) {
-                    id++;
-                    add_row(barriers2[i] + ' - ' + barriers1[j], id);
-                    for (var typeOfContract in types) {
-                        if (types.hasOwnProperty(typeOfContract)) {
-                            var req = $.extend({}, proposal, {
-                                'barrier': barriers1[j],
-                                'barrier2': barriers2[i],
-                                'contract_type': typeOfContract,
-                                'passthrough': {
-                                    'form_id': 'japan_barriers',
-                                    'id': id
-                                }
-                            });
-                            socket.send(req);
-                        }
-                    }
-                }
-            }
-        } else {
-            for (var d = 0; d < barriers1.length; d++) {
-                id++;
-                add_row(barriers1[d], id);
-                for (var typeOfContract2 in types) {
-                    if (types.hasOwnProperty(typeOfContract2)) {
-                        var req2 = $.extend({}, proposal, {
-                            'barrier': barriers1[d],
-                            'contract_type': typeOfContract2,
-                            'passthrough': {
-                                'form_id': 'japan_barriers',
-                                'id': id
-                            }
-                        });
-                        socket.send(req2);
-                    }
-                }
-            }
-        }
-    };
-
-    var processRes = function(res) {
-        if (res.echo_req.passthrough.id && $rows[res.echo_req.passthrough.id]) {
-            var position = contractTypeDisplayMapping(res.echo_req.contract_type);
-            if (position === 'top') {
-                update_ask(res.echo_req.passthrough.id, res.proposal ? res.proposal.ask_price : '-');
-            } else if (position === 'bottom') {
-                update_bid(res.echo_req.passthrough.id, res.proposal ? res.proposal.ask_price : '-');
-            }
-        }
-    };
-
-    this.show = function() {
-        clean();
-        add_header();
-        if (typeof socket !== 'object' || socket.readyState !== 1) {
-            socket = new BinarySocketClass();
-            socket.init({
-                onopen: function() {
-                    request_prices();
-                },
-                onmessage: function(msg) {
-                    var response = JSON.parse(msg.data);
-                    if (response) {
-                        processRes(response);
-                    }
-                },
-
-            });
-        } else {
-            request_prices();
-        }
-
-    };
-
-    this.hide = function() {
-        if (typeof socket === 'object') {
-            socket.close();
-        }
-    };
-};
-;BetAnalysis.tab_live_chart = function () {
-    var live_chart_initialized = false;
-    var invoked_for_websocket  = false;
-    return {
-        reset: function() {
-            if(typeof live_chart !== "undefined") {
-                if(live_chart !== null) {
-                    live_chart.close_chart();
-                    live_chart = null;
-                }
-            }
-        },
-        render: function(calledForWebsocketTrading) {
-            invoked_for_websocket = calledForWebsocketTrading || false;
-            if (live_chart_initialized && $('#live_chart_div').length > 0) {
-                this.update_live_chart();
-            } else {
-                this.get_live_chart();
-            }
-        },
-        get_live_chart: function() {
-            if (document.getElementById('underlying')){
-                showHighchart();
-            } else {
-                var that = this;
-                $.ajax(ajax_loggedin({
-                    url     : '/d/trade_livechart.cgi?l=' + page.language(),
-                    dataType: 'html',
-                    success : function (data) {
-                          that.set_live_chart(data);
-                        },
-                }));
-            }
-        },
-        set_live_chart: function (data) {
-            $('#trade_live_chart').html(data);
-            var that = this;
-            if(this.load_timer)
-                return;
-
-            showLoadingImage($('#live_chart_div'));
-            //Waiting for Highcharts to get loaded.
-            this.load_timer = setInterval(function(){
-                if(typeof Highcharts !== "undefined") {
-                    configure_livechart();
-                    that.update_live_chart();
-                    live_chart_initialized = true;
-                    clearInterval(that.load_timer);
-                    that.load_timer = undefined;
-                }
-            }, 80); //Its scientifically proven that humans cannot visualize what they see before 80ms.
-        },
-        update_live_chart: function () {
-            if(this.update_chart_config()) {
-                updateLiveChart(this.live_chart_config);
-            }
-
-            this.add_spot();
-            var that = this;
-            if (!invoked_for_websocket) {
-                BetForm.barriers.each(function(barrier) { that.add_barrier(barrier); });
-            }
-        },
-        update_chart_config: function() {
-            var symbol = invoked_for_websocket ? sessionStorage.getItem('underlying') : BetForm.attributes.underlying();
-            var live = SessionStore.get('live_chart_duration') || this.get_duration() || '10min';
-            if(!this.live_chart_config) {
-                this.live_chart_config = new LiveChartConfig({ renderTo: 'live_chart_div', symbol: symbol, live: live});
-                return true;
-            }
-
-            var update = {};
-            var update_config = false;
-            if(this.live_chart_config.live != live) {
-                update['live'] = live;
-                update_config = true;
-            }
-
-            if(this.live_chart_config.symbol.symbol != symbol) {
-                update['symbol'] = symbol;
-                update_config = true;
-            }
-
-            if(update_config) {
-                this.live_chart_config.update(update);
-            }
-            if (!live_chart) {
-                update_config = true;
-            }
-            return update_config;
-        },
-        add_spot: function() {
-            if(live_chart.config.has_indicator('spot')) {
-                live_chart.remove_indicator('spot');
-            }
-
-            var barrier = new LiveChartIndicator.Barrier({ name: "spot", value: '+0', color: 'blue'});
-            live_chart.add_indicator(barrier);
-        },
-        add_barrier: function(barrier) {
-            if(live_chart.config.has_indicator(barrier.component_id)) {
-                live_chart.remove_indicator(barrier.component_id);
-            }
-
-            barrier = new LiveChartIndicator.Barrier({ name: barrier.component_id, value: barrier.value(), color: 'green'});
-            live_chart.add_indicator(barrier);
-        },
-        get_duration: function () {
-            var duration_in_seconds = invoked_for_websocket ? '600' : BetForm.attributes.duration_seconds();
-            return $('#live_chart_duration').find('#' + this.corrected_hours_to_chart(duration_in_seconds)).data('live');
-        },
-        corrected_hours_to_chart: function(chart_duration) {
-            var hours, available_hours = [];
-            $('.live_charts_stream_button').each(function(){
-                available_hours.push(parseInt($(this).attr("id")));
-            });
-            available_hours.sort(function(a,b) { return a - b; });
-            for(hours in available_hours) {
-                if(chart_duration <= available_hours[hours]) {
-                    return available_hours[hours];
-                }
-            }
-            return 1;
-        },
-        get_duration_seconds: function (selected_duration) {
-           var duration;
-           if (selected_duration) {
-               duration = selected_duration.replace(/[a-zA-Z]/g, '');
-               var duration_unit = selected_duration.replace(/\d+/g, '');
-
-               if(duration_unit == 'min') {
-                   return duration * 60;
-               } else if(duration_unit == 'h') {
-                   return duration * 3600;
-               } else if(duration_unit == 'd') {
-                   return duration * 86400;
-               } else if(duration_unit == 'w') {
-                   return duration * 604800;
-               } else if(duration_unit == 'm') {
-                   return duration * 2592000;
-               } else if(duration_unit == 'y') {
-                   return duration * 31536000;
-               }
-           }
-           return duration;
-        },
-        live_chart_config: undefined,
-        load_timer: undefined,
-    };
-}();
-;var BetForm = function () {
-    return {
-        init: function() {
-            this.time = (typeof this.time === 'undefined') ? new BetForm.Time() : this.time;
-            this.barriers = (typeof this.barriers === 'undefined') ? new BetForm.Barriers() : this.barriers;
-            this.actions.init();
-            this.actions.register();
-        },
-        unregister_actions: function() {
-            this.actions.unregister();
-        },
-        restore: function () {
-            var bet_type_tab = this.attributes.model.form_name();
-
-            showLoadingImage($('#betInputBox'));
-            MenuContent.trigger({
-                'tab_id': bet_type_tab
-            });
-        },
-        update_content: function (data, event) {
-            var betInputBox = $('#betInputBox');
-            betInputBox.get(0).innerHTML = '<div class="toggle-content">' + data + '</div>';
-        },
-        bom_gmt_time: function() {
-            return moment.utc(page.header.time_now);
-        },
-        error_message: function () {
-            BetPrice.error_handler();
-        },
-        actions: function() {
-            var tab_change_registered = false;
-            var betform_request = null;
-            return {
-                init: function() {
-                    this.on_bet_type_change();
-                },
-                register: function() {
-                    $(BetForm.spot).on('change', function(event, spot) {
-                        BetForm.barriers.spot_changed(spot);
-                    });
-
-                    $(BetForm.time).on('change', function(event, time) {
-                        SessionStore.remove('live_chart_duration');
-                        BetForm.barriers.time_changed(time);
-                        BetPrice.container().hide();
-                    });
-
-
-                    $(BetForm.barriers).on('change', function(event, barrier) {
-                        BetPrice.container().hide();
-                        BetAnalysis.tab_live_chart.render();
-                    });
-
-
-                    var that = this;
-
-                    var when_enter_pressed = function() {
-                        //This is required to avoid key bounce causing 3 different enter pressed event
-                        if(!that.propagating_enter_pressed) {
-                            that.propagating_enter_pressed = setInterval(function(){
-                                BetPrice.get_price();
-                                clearInterval(that.propagating_enter_pressed);
-                                that.propagating_enter_pressed = undefined;
-                            }, 100);
-                        }
-                    };
-
-                    BetForm.attributes.form().on('keydown', function(e) {
-                        if(e.which == 13) {
-                            when_enter_pressed();
-                        }
-                    });
-
-                    $(BetForm.time).on('enter_pressed', when_enter_pressed);
-                },
-                unregister: function() {
-                    BetForm.attributes.form().off('keydown');
-                    $('#bet_underlying').off('change');
-                    $('#submarket').off('change');
-                    $('#bet_currency').off('change');
-                    $('#atleast').off('change');
-                    $(BetForm.spot).off('change');
-                    $(BetForm.time).off('change');
-                    $(BetForm.time).off('enter_pressed');
-                    $(BetForm.barriers).off('change');
-
-                    BetForm.time.unregister();
-                    BetForm.barriers.unregister();
-                    BetForm.attributes.form().off('submit');
-                },
-                on_bet_type_change: function() {
-                    var that = this;
-                    if(tab_change_registered) {
-                        return;
-                    }
-
-                    tab_change_registered = true;
-                    MenuContent.listen_click(function (info) {
-                        if (info.menu.attr('id') == 'betsTab') {
-                            if(BetForm.attributes.model.form_name() != info.id) {
-                                BetForm.attributes.model.form_name(info.id);
-                                //If we are already seeing a form, i.e. we are switching forms
-                                if(typeof BetForm.attributes.form_name() !== "undefined") {
-                                    page.url.invalidate();
-                                }
-                            }
-                            that.get_form_by_name(info.id);
-                            BetAnalysis.bet_type_changed();
-                        }
-                    });
-                },
-                get_form_by_name: function(form_name) {
-                    if(betform_request) {
-                        betform_request.abort();
-                    }
-
-                    var that = this;
-                    betform_request = $.ajax({
-                            url     : this.form_url(form_name),
-                            success : function (data) {
-                                    that.unregister();
-                                    BetForm.update_content(data);
-                                    betform_request = null;
-                                    BetForm.underlying_drop_down.init();
-                                    BetForm.attributes.restore.all();
-                                    that.on_form_load();
-                                },
-                    }).fail( function ( jqXHR, textStatus ) {
-                        BetForm.error_message();
-                    });
-                },
-                get_form_by_underlying: function (underlying) {
-                    if(betform_request) {
-                        betform_request.abort();
-                    }
-
-                    var that = this;
-                    betform_request = $.ajax({
-                        url     : this.form_url('', underlying),
-                        success : function (data) {
-                            that.unregister();
-                            BetForm.update_content(data);
-                            betform_request = null;
-                            BetForm.underlying_drop_down.init();
-                            BetForm.attributes.restore.all_but_underlying();
-                            that.on_form_load();
-                        }
-                    }).fail( function ( jqXHR, textStatus ) {
-                        BetForm.error_message();
-                    });
-                },
-                on_form_load: function() {
-                    this.correct_selected_tab();
-                    BetPrice.clear_buy_results();
-                    BetForm.time.init();
-                    BetForm.barriers.init();
-
-                    BetForm.amount.update_calculation_value();
-
-                    this.show_or_hide_analysis_tabs();
-
-                    this.on_form_submit();
-                    this.on_underlying_change();
-                    this.on_submarket_change();
-                    this.on_amount_change();
-                    this.on_amount_type_change();
-                    this.on_other_input_change();
-
-                    $('#bet_calculate').focus(); //Focus on the Get Prices button.
-                    this.hide_sub_trade();
-
-                    this.register();
-                    if(!BetForm.attributes.no_bets()) {
-                        BetPrice.get_price();
-                    }
-                    BetAnalysis.restore();
-                },
-                hide_sub_trade: function () {
-                    var sub_trade_menu = $('#betsTab').children().find('.tm-ul-2');
-                    var len = sub_trade_menu.length;
-                    for (var i=0; i<len; i++) {
-                        var sub_menu_child = sub_trade_menu.eq(i).children();
-                        if(sub_menu_child.length == 1) {
-                            sub_menu_child.hide();
-                        }
-                    }
-                },
-                on_underlying_change: function () {
-                    var that = this;
-                    if (MenuContent.is_tab_selected($('#tab_graph')) && document.getElementById('underlying')) {
-                        chartFrameSource();
-                    }
-                    $('#bet_underlying').on('change', function (event) {
-                        BetForm.attributes.model.underlying($(this).val());
-                        that.update_for_underlying($(this).val());
-                    }).addClass('unbind_later');
-                },
-                on_submarket_change: function () {
-                    var that = this;
-                    $('#submarket').on('change', function (event) {
-                        BetForm.attributes.model.submarket(this.value);
-                        BetForm.underlying_drop_down.update_for_submarket(this.value);
-                        //If Underlying Changed because of submarket
-                        if (BetForm.attributes.model.underlying() != BetForm.attributes.underlying()) {
-                            BetForm.attributes.model.underlying(BetForm.attributes.underlying());
-                            that.update_for_underlying(BetForm.attributes.underlying());
-                        }
-                    }).addClass('unbind_later');
-                },
-                update_for_underlying: function (underlying_symbol) {
-                    BetPrice.streaming.stop();
-                    BetForm.spot.clear();
-                    this.get_form_by_underlying(underlying_symbol);
-                    BetAnalysis.underlying_changed();
-                },
-                on_other_input_change: function () {
-                    $('#bet_currency').on('change', function (event) {
-                        BetForm.attributes.model.currency(this.value);
-                        $('#bet_calculation_container').hide();
-                    }).addClass('unbind_later');
-                    $('#atleast').on('change', function () {
-                        var selected = this.value;
-                        BetForm.attributes.model.start_time(selected);
-                        BetForm.time.update_for_start_time_change();
-                        $('#bet_calculation_container').hide();
-                    }).addClass('unbind_later');
-                    $('#stop_type').on('change', function (e) {
-                        var selected = $(this).val();
-                        $('#stop_type_2').val(selected);
-                        BetForm.attributes.model.stop_type(selected);
-                        $('#bet_calculation_container').hide();
-                    }).addClass('unbind_later');
-                    $('#stop_profit').on('change', function (e) {
-                        var target = $(this);
-                        var selected = BetPrice.spread.validate_change(target);
-                        target.val(selected);
-                        BetForm.attributes.model.stop_profit(selected);
-                        $('#bet_calculation_container').hide();
-                    }).addClass('unbind_later');
-                    $('#stop_loss').on('change', function (e) {
-                        var target = $(this);
-                        var selected = BetPrice.spread.validate_change(target);
-                        target.val(selected);
-                        BetForm.attributes.model.stop_loss(selected);
-                        $('#bet_calculation_container').hide();
-                    }).addClass('unbind_later');
-                    $('#amount_per_point').on('change', function (e) {
-                        var target = $(this);
-                        var selected = BetPrice.spread.validate_change(target);
-                        target.val(selected);
-                        BetForm.attributes.model.amount_per_point(selected);
-                        $('#bet_calculation_container').hide();
-                    }).addClass('unbind_later');
-                },
-                on_form_submit: function() {
-                    BetForm.attributes.form().on('submit', function (event) {
-                        event.preventDefault();
-                        BetPrice.clear_buy_results();
-                        BetPrice.get_price();
-                    }).addClass('unbind_later');
-                },
-                show_or_hide_analysis_tabs: function() {
-                    var analysis_tab = BetForm.attributes.extratab();
-                    if(analysis_tab == 'last_digit') {
-                        // We should show exactly one of these
-                        $('#tab_last_digit').removeClass("invisible");
-                    } else {
-                        // Hide them all if none selected
-                        MenuContent.hide_tab($('#tab_last_digit'));
-                        MenuContent.trigger({'tab_id': 'tab_explanation'});
-                    }
-                },
-                on_amount_change: function() {
-                    BetPrice.clear_buy_results();
-                    $('input#amount', BetForm.attributes.form_selector()).on('keyup', BetForm.amount.keyup).addClass('unbind_later');
-                    $('input#amount', BetForm.attributes.form_selector()).on('change', BetForm.amount.lost_focus).addClass('unbind_later');
-                },
-                on_amount_type_change: function() {
-                    //Force recalculate minimumss and update price boxes
-                    $('#amount_type').on('change', function() {
-                        BetForm.amount.lost_focus();
-                        BetForm.attributes.model.amount_type(this.value);
-                    }).addClass('unbind_later');
-                },
-                correct_selected_tab: function() {
-                    //Wrong tab selected? Select the right one.
-                    //Whe wrong tab? Caching, we build the frame before we build the form and sometimes there is no formname attribute in the url.
-                    var form_name = BetForm.attributes.form_name();
-                    if($('#bets_tab_' + form_name).length > 0 && $('#bets_tab_' + form_name + '.active.tm-li').length === 0) {
-                        $('#betsTab .active.tm-li').removeClass('active');
-                        $('#bets_tab_' + form_name + '.tm-li').addClass('active');
-                    }
-                },
-                form_url: function (form_name, underlying_symbol) {
-                    var params = 'controller_action=bet_form';
-                    var market = BetForm.attributes.model.market();
-                    if(market != 'null') {
-                        params += '&market=' + market;
-                    }
-
-                    form_name = form_name ? form_name : BetForm.attributes.model.form_name();
-                    if (form_name) {
-                        params += '&form_name=' + form_name;
-                    }
-
-
-                    underlying_symbol = underlying_symbol || BetForm.attributes.model.underlying();
-                    if (underlying_symbol && markets.by_symbol(underlying_symbol).market.name == market) {
-                        params += '&underlying_symbol=' + underlying_symbol;
-                    }
-
-                    var time = BetForm.attributes.model.time();
-                    if(time) {
-                        params += '&time=' + time;
-                    }
-
-                    var barrier_1 = BetForm.attributes.model.barrier_1();
-                    if(barrier_1) {
-                        params += '&H=' + barrier_1;
-                    }
-
-                    var barrier_2 = BetForm.attributes.model.barrier_2();
-                    if(barrier_2) {
-                        params += '&L=' + barrier_2;
-                    }
-
-                    var date_start = BetForm.attributes.model.start_time();
-                    if(date_start) {
-                        params += '&date_start=' + date_start;
-                    }
-
-                    var type = page.url.param_if_valid('type');
-                    if(type) {
-                        params += '&type=' + type;
-                    }
-
-                    var expiry_type = BetForm.attributes.model.expiry_type();
-                    if (expiry_type) {
-                        params += '&expiry_type=' + expiry_type;
-                    }
-
-                    var stop_profit = BetForm.attributes.model.stop_profit();
-                    if (stop_profit) {
-                        params += '&stop_profit=' + stop_profit;
-                    }
-
-                    var stop_loss = BetForm.attributes.model.stop_loss();
-                    if (stop_loss) {
-                        params += '&stop_loss=' + stop_loss;
-                    }
-
-                    var amount_per_point = BetForm.attributes.model.amount_per_point();
-                    if (amount_per_point) {
-                        params += '&amount_per_point=' + amount_per_point;
-                    }
-
-                    return page.url.url_for('trade_get.cgi', params);
-               },
-                disable: function (elements) {
-                    var form_ = $(BetForm.attributes.form_selector());
-                    form_.find('input[type="submit"]').each(function () {this.disabled = true;});
-                    form_.find('button[type="submit"]').each(function () {this.disabled = true;});
-                    if (elements) {
-                        form_.find('input').each(function () {this.disabled = true;});
-                        form_.find('select').each(function () {this.disabled = true;});
-                        form_.find('textarea').each(function () {this.disabled = true;});
-                        form_.find('button').each(function () {this.disabled = true;});
-                    }
-                },
-                enable: function (elements) {
-                    var form_ = $(BetForm.attributes.form_selector());
-                    form_.find('input[type="submit"]').each(function () {this.disabled = false;});
-                    form_.find('button[type="submit"]').each(function () {this.disabled = false;});
-                    if (elements) {
-                        form_.find('input').each(function () {this.disabled = false;});
-                        form_.find('select').each(function () {this.disabled = false;});
-                        form_.find('textarea').each(function () {this.disabled = false;});
-                        form_.find('button').each(function () {this.disabled = false;});
-                    }
-                },
-            };
-        }(),
-        spot: function() {
-            var spots = [];
-            return {
-                update: function(spot) {
-                    spots.push(spot);
-                    if (spots.length >= 30) {
-                        spots.shift();
-                    }
-
-                    this.show_spot(spot);
-                    $('#spot_spark').sparkline(spots, this.spark_line_config);
-
-                    $(this).trigger('change', [ spot ]);
-                },
-                show_spot: function(spot) {
-                    var spot_container = $('#spot');
-                    if(spot && parseFloat(spot) == spot) {
-                        var pre_spot = spot;
-
-                        var pre_spot_text = spot_container.text();
-                        if (pre_spot_text) {
-                            pre_spot = parseFloat(pre_spot_text);
-                        }
-
-                        price_moved(spot_container, pre_spot, spot);
-                    }
-                    spot_container.html(spot);
-                },
-                clear: function() {
-                    this.clear_sparkline();
-                    this.show_spot('');
-                },
-                clear_sparkline: function () {
-                    spots = [];
-                    $('#spot_spark').sparkline(spots, this.spark_line_config);
-                },
-                value: function() {
-                    return parseFloat(spots[spots.length - 1]);
-                },
-                spark_line_config: {
-                    type: 'line',
-                    lineColor: '#606060',
-                    fillColor: false,
-                    spotColor: '#00f000',
-                    minSpotColor: '#f00000',
-                    maxSpotColor: '#0000f0',
-                    highlightSpotColor: '#ffff00',
-                    highlightLineColor: '#000000',
-                    spotRadius: 1.25
-                },
-            };
-        }(),
-        underlying_drop_down: function() {
-            var underlyings_info = [];
-            return {
-                init: function() {
-                    underlyings_info = [];
-                    $('#bet_underlying > option').each(function(){
-                        var underlying = {};
-                        underlying.className = $(this).attr('class');
-                        underlying.value = $(this).val();
-                        underlying.label = $(this).text();
-                        underlyings_info.push(underlying);
-                    });
-                },
-                has: function(underlying_symbol) {
-                    for ( var index in underlyings_info ) {
-                        if(underlyings_info[index].value == underlying_symbol) {
-                            return true;
-                        }
-                    }
-
-                    return false;
-                },
-                update_for_submarket: function (submarket) {
-                    var index;
-
-                    if (submarket) {
-                        var old_value = $('#bet_underlying').val();
-                        this.clear();
-                        if ( submarket == 'all' ) {
-                            var len = underlyings_info.length;
-                            for ( index = 0; index < len; index++ ) {
-                                this.add(underlyings_info[index]);
-                            }
-                        } else {
-                            var regex_sub_market = new RegExp('\\b'+submarket+'\\b');
-                            for ( index in underlyings_info ) {
-                                if ( regex_sub_market.test(underlyings_info[index].className) ) {
-                                    this.add(underlyings_info[index]);
-                                }
-                            }
-                        }
-
-                        //If nothing was selected try to select the default from backend.
-                        if($('#bet_underlying').val() === null) {
-                            $('#bet_underlying').val(old_value);
-                        }
-                    }
-
-                    //If nothing was sent selected by the backend then select the first one.
-                    if($('#bet_underlying').val() === null) {
-                        $('#bet_underlying').val($('#bet_underlying option:eq(0)').val());
-                    }
-                },
-                clear: function() {
-                    $('#bet_underlying option').remove();
-                },
-                add: function(underlying_info) {
-                    var option = this.create_option(underlying_info);
-                    var drop_down = document.getElementById("bet_underlying");
-                    try {
-                        // for IE version less than 8
-                        drop_down.add(option, drop_down.options[null]);
-                    } catch (e) {
-                        drop_down.add(option, null);
-                    }
-                },
-                create_option: function(underlying_info) {
-                    var selected_underlying = BetForm.attributes.model.underlying();
-                    var option = document.createElement("option");
-
-                    option.className = underlying_info.className;
-                    option.value = underlying_info.value;
-
-                    if ( selected_underlying && selected_underlying == underlying_info.value) {
-                        option.selected = "selected";
-                    }
-
-                    option.text = underlying_info.label;
-
-                    return option;
-                }
-            };
-        }(),
-        amount: function() {
-            return {
-                payout_max:    100000,
-                stake_min:    0.5,
-                error:    undefined,
-                calculation_value: undefined,
-                keyup: function(event) {
-                    var me = BetForm.amount;
-                    me.update_calculation_value();
-                    BetForm.attributes.model.amount(me.calculation_value);
-                    BetPrice.order_form.update();
-                    //No need to panic unless the user actually entered a ','(188).
-                    if(event.keyCode == 188) {
-                        var amount = $(this).val();
-                        $(this).val(amount.replace(',', '.'));
-                    }
-                },
-                lost_focus: function(event) {
-                    var me = BetForm.amount;
-                    me.update_calculation_value();
-                    BetForm.attributes.model.amount(me.calculation_value);
-                    BetPrice.order_form.update();
-                    $('#amount').val(me.calculation_value);
-                },
-                update_calculation_value: function() {
-                    var amount = BetForm.attributes.amount();
-                    if ( this.valid(amount) ) {
-                        this.calculation_value = amount;
-                    }
-                },
-                valid: function(amount) {
-                    if (isNaN(amount)) {
-                        return false;
-                    }
-                    return true;
-                },
-                update_settings: function() {
-                    this.stake_min = parseFloat($('#staking_context #stake_min').html());
-                    this.payout_max = parseFloat($('#staking_context #payout_max').html());
-                    this.error = $('#staking_context #error').html();
-                },
-            };
-        }(),
-    };
-}();
-;BetForm.attributes = function() {
-    var selected_settings = {};
-    return {
-            form: function() {
-                return $('form[name=form0]');
-            },
-            expiry_type: function() {
-                return $('[name=expiry_type]', this.form_selector()).val();
-            },
-            expiry_time: function() {
-                return $('[name=expiry_time]', this.form_selector()).val();
-            },
-            expiry_date: function() {
-                return $('[name=expiry_date]', this.form_selector()).val();
-            },
-            no_bets: function() {
-                return ($('#no_bets').length > 0);
-            },
-            form_selector: function() {
-                return $('form[name=form0]').get(0);
-            },
-            form_name: function() {
-                return $('[name=form_name]', this.form_selector()).val();
-            },
-            bet_type: function() {
-                return LocalStore.get('bet_page.form_name');
-            },
-            prediction: function() {
-                return $('[name=prediction]', this.form_selector()).val();
-            },
-            market: function() {
-                return $('[name=market]', this.form_selector()).val();
-            },
-            submarket: function() {
-                return $('[name=submarket]', this.form_selector()).val();
-            },
-            underlying: function() {
-                return $('#bet_underlying', this.form_selector()).val();
-            },
-            underlying_text: function() {
-                return $('#bet_underlying option:selected', this.form_selector()).text();
-            },
-            spot: function() {
-                return $('[name=S]', this.form_selector()).val();
-            },
-            start_time: function() {
-                return $('[name=date_start]', this.form_selector()).val();
-            },
-            start_time_moment: function() {
-                var start_time = this.start_time();
-                var now = moment.utc(BetForm.bom_gmt_time());
-                if (typeof start_time !== 'undefined' && start_time !== 'now') {
-                    now = moment.utc(start_time*1000);
-                }
-
-                return now;
-            },
-            barrier_1: function() {
-                return $('#bet_H', this.form_selector()).val();
-            },
-            barrier_2: function() {
-                return $('#bet_L', this.form_selector()).val();
-            },
-            pip_size: function() {
-                return $('[name=pip_size]', this.form_selector()).val();
-            },
-            barrier_type: function() {
-                var barriers = $('[name=H]', this.form_selector()).length + $('[name=L]', this.form_selector()).length;
-                if(barriers > 0) {
-                    return $('[name=barrier_type]', this.form_selector()).val();
-                }
-                return;
-            },
-            duration_container: function() {
-                return $('#duration_container', this.form_selector());
-            },
-            duration_amount: function() {
-                return $('#duration_amount', this.form_selector()).val();
-            },
-            duration_units: function() {
-                return $('[name=duration_units]', this.form_selector()).val();
-            },
-            duration_seconds: function() {
-                var duration = parseInt(parseFloat(this.duration_amount()));
-                var duration_units = this.duration_units();
-
-                if(duration_units == 'm') {
-                    return duration * 60;
-                } else if(duration_units == 'h') {
-                    return duration * 3600;
-                } else if(duration_units == 'd') {
-                    return duration * 86400;
-                }
-
-                return duration;
-            },
-            duration_string: function() {
-                return this.duration_amount() + this.duration_units();
-            },
-            minimum_duration_for: function(unit) {
-                var duration_container = this.duration_container();
-                var minimums = duration_container.find('.' + unit);
-                if(minimums.html()) {
-                    return parseInt(parseFloat(minimums.html().split(':')[1]));
-                }
-
-                return;
-            },
-            currency: function() {
-                return $('[name=currency]', this.form_selector()).val();
-            },
-            amount: function() {
-                var amount_str =  $('#amount', BetForm.attributes.form_selector()).val();
-                if(amount_str) {
-                    amount_str = amount_str.replace(',', '.');
-                    amount_str = amount_str.replace(/[^\d\.]/g, '');
-                }
-                var amount_f = parseFloat(amount_str);
-                var amount = 0;
-                if (!isNaN(amount_f) && amount_f > 0) {
-                    // only keep the first 2 digits of the floating value, and only 2
-                    amount_f = Math.round(amount_f * 100) / 100;
-                    var amount_int = Math.floor(amount_f);
-                    var float_val = amount_f - amount_int;
-                    if (float_val) {
-                        amount = amount_f.toFixed(2);
-                    } else {
-                        amount = amount_int;
-                    }
-                }
-                return amount;
-            },
-            is_amount_payout: function() {
-                return ($('#amount_type').val() == "payout");
-            },
-            is_amount_stake: function() {
-                return ($('#amount_type').val() == "stake");
-            },
-            amount_type: function() {
-                return $('#amount_type', this.form_selector()).val();
-            },
-            extratab: function() {
-                return ($('input[name="extratab"]', this.form_selector()).val());
-            },
-            is_forward_starting: function() {
-                return (this.start_time() && this.start_time().match(/^\d+$/));
-            },
-            can_select: function (selector, value) {
-                if ($('#'+selector+' option[value="'+value+'"]').length > 0) {
-                    return true;
-                } else {
-                    return false;
-                }
-            },
-            model: function() {
-                return {
-                    form_name: function(form_name) {
-                        var fallback = 'bets_tab_callput';
-                        if(form_name) {
-                            LocalStore.set('bet_page.form_name', form_name);
-                        }
-
-                        form_name = this.get_setting_or_param('bet_page.form_name', 'form_name') || fallback;
-                        if(!$('#' + form_name).length) {
-                            form_name = fallback;
-                        }
-
-                        return form_name;
-                    },
-                    market: function() {
-                        var market = page.url.param_if_valid('market');
-                        if (market) {
-                            LocalStore.set('bet_page.market', market);
-                        }
-                        return page.url.param_if_valid('market') || LocalStore.get('bet_page.market') || 'forex';
-                    },
-                    underlying: function(underlying) {
-                        var for_market = this.market();
-                        if(underlying) {
-                            for_market = markets.by_symbol(underlying).market.name;
-                            LocalStore.set('bet_page.underlying.'+for_market, underlying);
-                            page.url.invalidate();
-                        }
-
-                        return page.url.param_if_valid('underlying_symbol') || LocalStore.get('bet_page.underlying.'+for_market);
-                    },
-                    submarket: function(submarket) {
-                        if(submarket) {
-                            LocalStore.set('bet_page.submarket', submarket);
-                            page.url.invalidate();
-                        }
-
-                        return LocalStore.get('bet_page.submarket');
-                    },
-                    start_time: function(start_time) {
-                        if(start_time) {
-                            LocalStore.set('bet_page.start_time', start_time);
-                            page.url.invalidate();
-                        }
-
-                        return this.get_setting_or_param('bet_page.start_time', 'date_start');
-                    },
-                    stop_type: function(stop_type) {
-                        if (stop_type) {
-                            LocalStore.set('bet_page.stop_type', stop_type);
-                            page.url.invalidate();
-                        }
-
-                        return page.url.param_if_valid('stop_type') || LocalStore.get('bet_page.stop_type') || 'point';
-                    },
-                    stop_loss: function(stop_loss) {
-                        if (stop_loss) {
-                            LocalStore.set('bet_page.stop_loss', stop_loss);
-                            page.url.invalidate();
-                        }
-
-                        return page.url.param_if_valid('stop_loss') || LocalStore.get('bet_page.stop_loss') || 10;
-                    },
-                    stop_profit: function(stop_profit) {
-                        if (stop_profit) {
-                            LocalStore.set('bet_page.stop_profit', stop_profit);
-                            page.url.invalidate();
-                        }
-
-                        return page.url.param_if_valid('stop_profit') || LocalStore.get('bet_page.stop_profit') || 10;
-                    },
-                    amount_per_point: function(amount_per_point) {
-                        if (amount_per_point) {
-                            LocalStore.set('bet_page.amount_per_point', amount_per_point);
-                            page.url.invalidate();
-                        }
-
-                        return page.url.param_if_valid('amount_per_point') || LocalStore.get('bet_page.amount_per_point') || 1;
-                    },
-                    expiry_type: function(expiry_type) {
-                        if (expiry_type) {
-                            LocalStore.set('bet_page.expiry_type', expiry_type);
-                            page.url.invalidate();
-                        }
-
-                        return page.url.param_if_valid('expiry_type') || LocalStore.get('bet_page.expiry_type') || 'duration';
-                    },
-                    time: function(time) {
-                        if(time) {
-                            LocalStore.set('bet_page.time', time);
-                            page.url.invalidate();
-                        }
-
-                        return this.get_setting_or_param("bet_page.time", 'time');
-                    },
-                    barrier_1: function() {
-                        return page.url.param_if_valid('H');
-                    },
-                    barrier_2: function() {
-                        return page.url.param_if_valid('L');
-                    },
-                    amount: function(amount) {
-                        if(amount) {
-                            LocalStore.set('bet_page.amount', amount);
-                            page.url.invalidate();
-                        }
-
-                        return this.get_setting_or_param("bet_page.amount", 'amount');
-                    },
-                    amount_type: function(amount_type) {
-                        if(amount_type) {
-                            LocalStore.set('bet_page.amount_type', amount_type);
-                            page.url.invalidate();
-                        }
-
-                        return this.get_setting_or_param("bet_page.amount_type", 'amount_type');
-                    },
-                    currency: function(currency) {
-                        if(currency) {
-                            LocalStore.set('bet_page.currency', currency);
-                            page.url.invalidate();
-                        }
-
-                        var url_currency = page.url.param_if_valid('currency');
-                        if(url_currency) {
-                            return url_currency;
-                        }
-
-                        var session_currency = LocalStore.get('bet_page.currency');
-                        if(session_currency) {
-                            return session_currency;
-                        }
-
-                        return;
-                    },
-                    get_setting_or_param: function(setting_name, param_name) {
-                        var saved_param = LocalStore.get(setting_name);
-                        var url_param = page.url.param_if_valid(param_name);
-
-                        //Only take the url provided param if its valid.
-                        if(url_param) {
-                            return url_param;
-                        }
-
-                        return saved_param;
-                    },
-                };
-            }(),
-            restore: function() {
-                return {
-                    all: function() {
-                        this.submarket();
-                        this.underlying();
-                        this.amount();
-                        this.amount_type();
-                        this.currency();
-                    },
-                    all_but_underlying: function() {
-                        this.submarket();
-                        this.amount();
-                        this.amount_type();
-                        this.currency();
-                    },
-                    underlying: function() {
-                        var underlying = BetForm.attributes.model.underlying();
-                        var market = BetForm.attributes.model.market();
-                        if(underlying && BetForm.attributes.can_select('bet_underlying', underlying)) {
-                            $('#bet_underlying', BetForm.attributes.form_selector()).val(underlying);
-                        }
-                    },
-                    submarket: function() {
-                        var market = BetForm.attributes.model.market();
-                        var submarket = BetForm.attributes.model.submarket();
-                        if(submarket && BetForm.attributes.can_select('submarket', submarket)) {
-                            $('#submarket', BetForm.attributes.form_selector()).val(submarket);
-                            BetForm.underlying_drop_down.update_for_submarket(submarket);
-                        }
-                    },
-                    amount: function() {
-                        var amount = BetForm.attributes.model.amount();
-                        if(amount) {
-                            $('#amount', BetForm.attributes.form_selector()).val(amount);
-                        }
-                    },
-                    amount_type: function() {
-                        var amount_type = BetForm.attributes.model.amount_type();
-                        if(amount_type) {
-                            $('#amount_type', BetForm.attributes.form_selector()).val(amount_type);
-                        }
-                    },
-                    currency: function() {
-                        if(!page.client.check_storage_values('attributes.restore.currency')) {
-                            return;
-                        }
-
-                        var currencies = page.client.get_storage_value('currencies');
-                        if(currencies && currencies.length > 0) {
-                            var client_currencies = currencies.split(',');
-                            $('#bet_currency option').each(function() {
-                                if($.inArray($(this).val(), client_currencies) < 0) {
-                                    $(this).remove();
-                                }
-                            });
-                        }
-
-                        var currency = BetForm.attributes.model.currency();
-                        if(currency && BetForm.attributes.can_select('bet_currency', currency)) {
-                            $('#bet_currency').val(currency);
-                        }
-                    },
-                };
-
-            }()
-    };
-}();
-;BetForm.Barriers = function() {
-    this.defaults = {};
-    this.barriers = [];
-};
-
-BetForm.Barriers.prototype = {
-    register: function() {
-        var that = this;
-        this.each(function(barrier) {
-            barrier.register();
-            $(barrier).on('change', function(event, value) {
-                $(that).trigger('change', [ value ]);
-            });
-        });
-    },
-    unregister: function() {
-        this.each(function(barrier) {
-            barrier.unregister();
-            $(barrier).off('change');
-        });
-    },
-    spot_changed: function(spot) {
-        this.each(function(barrier) { barrier.update_calclulated_value(barrier.value()); });
-    },
-    time_changed: function(end_time) {
-        var current_barrier_type = BetForm.attributes.barrier_type();
-        if(!moment.utc().isSame(moment.utc(end_time), 'day')) {
-            if(current_barrier_type == 'relative') {
-                this.switch_to('absolute');
-            }
-        } else if (current_barrier_type == 'absolute' && page.settings.get('enable_relative_barrier')) {
-            this.switch_to('relative');
-        }
-    },
-    init: function() {
-        this.barriers = [];
-        var barrier,
-            barrier_type = BetForm.attributes.barrier_type();
-        if($('#bet_H').length > 0) {
-            barrier = new BetForm.Barriers.Barrier({
-                    component_id: 'bet_H',
-                    calculated_barrier_id: 'betInputBox span.calculated_barrier_from_relative_high',
-                    barrier_type: barrier_type,
-            });
-
-            barrier.value(this.select_barrier_value(BetForm.attributes.barrier_1(), 'H'));
-            this.barriers.push(barrier);
-        }
-
-        if($('#bet_L').length > 0) {
-            barrier = new BetForm.Barriers.Barrier({
-                    component_id: 'bet_L',
-                    calculated_barrier_id: 'betInputBox span.calculated_barrier_from_relative_low',
-                    barrier_type: barrier_type,
-            });
-            barrier.value(this.select_barrier_value(BetForm.attributes.barrier_2(), 'L'));
-            this.barriers.push(barrier);
-        }
-
-        this.register();
-    },
-    select_barrier_value: function(model_value, default_type) {
-        var barrier_value;
-        var is_valid_barrier = function(value) {
-            return true;
-        };
-
-        if(is_valid_barrier(model_value)) {
-            return model_value;
-        }
-
-        var defaults = this.get_defaults_for(BetForm.attributes.barrier_type());
-        if(defaults && is_valid_barrier(defaults[default_type])) {
-            return defaults[default_type];
-        }
-
-        return 0;
-    },
-    switch_to: function(barrier_type) {
-        if(barrier_type == 'absolute') {
-            $('.barrier_text_absolute').show();
-            $('.barrier_text_relative').hide();
-            $('[name=barrier_type]', BetForm.attributes.form_selector()).val('absolute');
-            this.each(function(barrier) { barrier.switch_to('absolute'); });
-        } else if(barrier_type == 'relative') {
-            $('.barrier_text_absolute').hide();
-            $('.barrier_text_relative').show();
-            $('[name=barrier_type]', BetForm.attributes.form_selector()).val('relative');
-            this.each(function(barrier) { barrier.switch_to('relative'); });
-        }
-    },
-    each: function(method) {
-        var rets = [];
-        var barriers_count = this.barriers.length - 1;
-        while(barriers_count >= 0) {
-            rets.push(method(this.barriers[barriers_count]));
-            barriers_count--;
-        }
-
-        return rets;
-    },
-    get_defaults_for: function(barrierType) {
-        var that = this;
-        var underlying = BetForm.attributes.underlying();
-        market = BetForm.attributes.market();
-        time = BetForm.attributes.duration_string();
-        form_name = BetForm.attributes.form_name();
-        prediction = BetForm.attributes.prediction();
-
-        var lookup = underlying + '_' +  time + '_' + form_name + '_' + prediction;
-        if(typeof this.defaults[lookup] === 'undefined') {
-            $.ajax({
-                url: page.url.url_for('trade_get.cgi'),
-                data: {
-                    controller_action: 'barrier_defaults',
-                    underlying_symbol: underlying,
-                    market: market,
-                    time: time,
-                    form_name: form_name,
-                    barrier_type: barrierType,
-                },
-                dataType: 'json',
-                type: 'GET',
-                async: false,
-            }).done(function(ranges) {
-                that.defaults[lookup] = ranges;
-            });
-        }
-
-        return this.defaults[lookup];
-    },
-};
-
-BetForm.Barriers.Barrier = function(args) {
-    args = (typeof args === 'undefined') ? {} : args;
-    this.component_id = args.component_id;
-    this.calculated_barrier_id = args.calculated_barrier_id;
-    this.barrier_type = args.barrier_type;
-};
-
-BetForm.Barriers.Barrier.prototype = {
-    register: function() {
-        this.on_change();
-        this.on_keyup();
-    },
-    unregister: function() {
-        $('#' + this.component_id).off('keyup');
-        $('#' + this.component_id).off('change');
-    },
-    value: function(value) {
-        if(typeof value !== 'undefined') {
-            var barrier_prefix = "";
-            if (BetForm.attributes.form_name() != 'digits') {
-                if(this.barrier_type == 'relative') {
-                    if(value > 0) {
-                        barrier_prefix = "+";
-                    } else if(value === 0) {
-                        barrier_prefix = "+";
-                        value = this.min_value();
-                    }
-                } else {
-                    if(value < 0) {
-                        value = BetForm.spot.value();
-                    } else if(value === 0) {
-                        value = this.to_absolute_value(this.min_value());
-                    }
-                }
-                value = this.pipsized_value(value);
-            }
-
-            $('#' + this.component_id).val(barrier_prefix + value);
-
-            this.update_calclulated_value(value);
-            $(this).trigger('change', [ barrier_prefix + value ]);
-        }
-
-        return $('#' + this.component_id).val();
-    },
-    switch_to: function(barrier_type) {
-        this.barrier_type = barrier_type;
-        var value = $('#' + this.component_id).val();
-        if(barrier_type == 'absolute') {
-            this.value(this.to_absolute_value(value));
-            $('#' + this.calculated_barrier_id).hide();
-        } else if(barrier_type == 'relative') {
-            this.value(this.to_relative_value(value));
-            $('#' + this.calculated_barrier_id).show();
-        }
-    },
-    update_calclulated_value: function(value) {
-        if(this.barrier_type == 'relative') {
-            value = this.pipsized_value(this.to_absolute_value(value));
-            $('#' + this.calculated_barrier_id).html("(" + value + ")");
-        }
-    },
-    on_change: function() {
-        var that = this;
-        $('#' + this.component_id).on('change', function(event) {
-            var value = $(this).val();
-            if(value.length > 0) {
-                that.value(value);
-            }
-        }).addClass('unbind_later');
-    },
-    on_keyup: function() {
-        var that = this;
-        $('#' + this.component_id).on('keyup', function(event) {
-            var value = $(this).val();
-            if(value.length > 0) {
-                that.update_calclulated_value(value);
-            }
-        }).addClass('unbind_later');
-    },
-    pipsized_value: function(value) {
-        var pip_size = BetForm.attributes.pip_size();
-        if (/indices/.test(window.location.search)) {
-            return parseInt(value);
-        } else {
-            return parseFloat(value).toFixed(pip_size);
-        }
-    },
-    to_relative_value: function(barrier) {
-        var spot = BetForm.spot.value();
-        if(spot > 0) {
-            return this.pipsized_value(parseFloat(barrier) - spot);
-        }
-
-        return 0.00;
-    },
-    to_absolute_value: function(barrier) {
-        var spot = BetForm.spot.value();
-        if(spot > 0) {
-            return this.pipsized_value(parseFloat(barrier) + spot);
-        }
-
-        return 0.00;
-    },
-    min_value: function() {
-        if(typeof this.min_relative_value === 'undefined') {
-            var pip_size = BetForm.attributes.pip_size();
-            var value = "0.";
-            var zeros = pip_size - 1;
-            while(zeros > 0) {
-                value += 0;
-                zeros--;
-            }
-            value += 1;
-            this.min_relative_value = value;
-        }
-
-        if(this.barrier_type == "absolute") {
-            return this.to_absolute_value(this.min_relative_value);
-        }
-
-        return this.min_relative_value;
-    },
-};
-;/*
- * Represents the overall time selection ui(duration & end time)
-*/
-BetForm.Time = function() {
-    this.model = {};
-    this.model.expiry_type = BetForm.attributes.model.expiry_type();
-    this.trading_time = new BetForm.TradingTime();
-    this.duration = new BetForm.Time.Duration(this.trading_time);
-    this.end_time = new BetForm.Time.EndTime(this.trading_time);
-};
-
-BetForm.Time.prototype = {
-    init: function() {
-        // spreads doesn't have any concept of expiry
-        if (BetForm.attributes.model.form_name() != "spreads") {
-            this.trading_time.init();
-            this.duration.init();
-            this.end_time.init();
-            this.register();
-            if (BetForm.attributes.model.form_name() == "digits" || BetForm.attributes.model.form_name() == "asian") {
-                var expiry_val = 'duration';
-                $('#expiry_type').val(expiry_val);
-                page.url.invalidate();
-                LocalStore.set('bet_page.expiry_type', expiry_val);
-                BetForm.attributes.model.expiry_type(expiry_val);
-                this.model.expiry_type = expiry_val;
-                $('#duration_amount').val(this.trading_time.min_unit().min);
-            } else {
-                $('#expiry_type').val(this.model.expiry_type);
-            }
-            this.update_ui();
-        }
-    },
-    register: function() {
-        this.on_expiry_type_change();
-        this.duration.register();
-        this.end_time.register();
-
-        var that = this;
-        $(this.duration).on('change', function(event, time) {
-            $(that).trigger('change', [ time ]);
-        });
-
-        $(this.end_time).on('change', function(event, time) {
-            $(that).trigger('change', [ time ]);
-        });
-
-        $(this.duration).on('enter_pressed', function() {
-            $(that).trigger('enter_pressed');
-        });
-
-        $(this.end_time).on('enter_pressed', function() {
-            $(that).trigger('enter_pressed');
-        });
-    },
-    unregister: function() {
-        $('#expiry_type').off('change');
-        if(this.duration) {
-            this.duration.unregister();
-        }
-
-        if(this.end_time) {
-            this.end_time.unregister();
-        }
-
-        $(this.duration).off('change');
-        $(this.end_time).off('change');
-
-        $(this.duration).off('enter_pressed');
-        $(this.end_time).off('enter_pressed');
-    },
-    update_for_start_time_change: function() {
-        this.duration.update_units_select();
-        this.duration.update_ui();
-        this.end_time.update_ui();
-    },
-    update_ui: function() {
-        if(this.model.expiry_type == 'duration') {
-            this.duration.show();
-            this.end_time.hide();
-        } else {
-            this.duration.hide();
-            this.end_time.show();
-        }
-    },
-    on_expiry_type_change: function() {
-        var that = this;
-        $('#expiry_type').on('change', function() {
-            BetForm.attributes.model.expiry_type($(this).val());
-            that.model.expiry_type = $(this).val();
-            that.update_ui();
-        }).addClass('unbind_later');
-    },
-};
-
-/*
- * This object acts as a model for time parameter. It performs the following functions.
- *      - Read and interpret the time parameter from model(input / localstore).
- *              - The data can be interpretted in both duration format and end time format independent of underlying storage.
- *      - Provide a meachanism to parse and query the minimum durations passed through the form.
- *      - Provide functions to query trading_days and trading_times from the server.
- *      - Validate the time parameter
- *              - through the minimum durations passed to us through the form.
- *              - by querying on trading_days and trading_times from the server.
- *      - Provide mechanism to update the time model.
-*/
-BetForm.TradingTime = function() {
-    this.time_is_duration_regex = /^\d+[smhd]$/;
-    this.time_is_tick_regex = /^\d+t$/;
-    this.trading_info = {};
-};
-
-BetForm.TradingTime.prototype = {
-    init: function() {
-        this.suggested_duration = this.virgule_duration("" + $('#duration_amount').val() + $('#duration_units').val());
-        this.parse_units_from_form();
-    },
-    value: function(time) {
-        if(time) {
-            BetForm.attributes.model.time(time);
-        }
-
-        time = BetForm.attributes.model.time();
-        if(time) {
-            return time;
-        }
-
-        
-        //If we are not able to find something in the model(param/stored) 
-        //then we just use the value in duration as defaults.
-        //This is becuase only duration comes populated.
-        return "" + $('#duration_amount').val() + $('#duration_units').val();
-    },
-    underlying: function() {
-        return BetForm.attributes.underlying();
-    },
-    is_forward_starting: function() {
-        return BetForm.attributes.is_forward_starting();
-    },
-    as_duration: function() {
-        var time = this.value();
-        var duration;
-        if(this.time_is_tick(time)) {
-            duration = this.virgule_duration(time);
-        } else if(this.time_is_duration(time)) {
-            duration = this.virgule_duration(time);
-        } else if(isNaN(parseInt(time))) {
-            duration = this.suggested_duration;
-        } else {
-            duration = this.convert_to_duration(time);
-        }
-
-        //Validate the duration
-        var selected_unit = this.configured_unit_for(duration.units);
-
-        if(!selected_unit) {
-            var min_unit = this.min_unit();
-            duration.amount = min_unit.min;
-            duration.units = min_unit.units;
-        }
-
-        return duration;
-    },
-    as_end_time: function() {
-        var time = this.value();
-        var end_time;
-        if(this.time_is_duration(time)) {
-            var duration = this.virgule_duration(time);
-            end_time = this.convert_to_end_time(duration.amount, duration.units);
-        } else if(isNaN(parseInt(time))) {
-            end_time = this.convert_to_end_time(this.suggested_duration);
-        } else {
-            end_time = this.virgule_end_time(time);
-        }
-
-        //Validate the end_time
-        var min_time = this.min_time();
-        if(end_time.moment.isBefore(min_time)) {
-            end_time = this.virgule_end_time(min_time.utc() / 1000);
-        }
-
-        var max_time = this.max_time();
-        if(end_time.moment.isAfter(max_time)) {
-            end_time = this.virgule_end_time(min_time.utc() / 1000);
-        }
-
-        return end_time;
-    },
-    update_from_duration: function(amount, unit) {
-        var selected_unit = this.configured_unit_for(unit);
-
-        this.value("" + amount + unit);
-    },
-    update_from_end_time: function(expiry_date, expiry_time) {
-        var end_time = moment.utc(expiry_date + " " + expiry_time);
-        var min_time = this.min_time();
-        if(end_time.isBefore(min_time)) {
-            end_time = min_time;
-        }
-
-        if(!moment.utc().isSame(end_time, 'day')) {
-            var trading_times = this.get_trading_times(expiry_date);
-            end_time = moment.utc(trading_times.closing);
-        }
-
-        this.value(Math.ceil(end_time.utc() / 1000));
-    },
-    min_time: function() {
-        var min_unit = this.min_unit();
-        return this.convert_to_end_time(min_unit.min, min_unit.units).moment;
-    },
-    max_time: function() {
-        var max_unit = this.max_unit();
-        return this.convert_to_end_time(max_unit.max, max_unit.units).moment;
-    },
-    min_unit: function() {
-        var units = this.configured_units_by_start_time();
-        var order = ['d', 'h', 'm', 's' ,'t'];
-        var checking = order.length;
-        while(checking > 0) {
-            checking--;
-            if(units[order[checking]]) {
-                return units[order[checking]];
-            }
-        }
-    },
-    max_unit: function() {
-        var units = this.configured_units_by_start_time();
-        var order = ['t', 's', 'm', 'h', 'd'];
-        var checking = order.length;
-        while(checking > 0) {
-            checking--;
-            if(units[order[checking]]) {
-                return units[order[checking]];
-            }
-        }
-    },
-    time_is_tick: function(time) {
-        return this.time_is_tick_regex.test(time);
-    },
-    time_is_duration: function(time) {
-        return this.time_is_duration_regex.test(time);
-    },
-    convert_to_duration: function(inputTime) {
-        var units;
-        var amount;
-        var start_time = BetForm.attributes.start_time_moment();
-        var time = moment.utc(parseInt(inputTime) * 1000);
-
-        var diff = time.valueOf() - start_time.valueOf();
-        var min_unit = this.min_unit();
-        var min_expiration_time = BetForm.attributes.start_time_moment().add(min_unit.min, min_unit.units);
-        if(time.isBefore(min_expiration_time)) {
-            units = min_unit.units;
-            amount = min_unit.min;
-        } else if(diff / 1000 < 60) {
-            units = 's';
-            amount = Math.ceil(diff / 1000);
-        } else if (diff / (60 * 1000) < 60) {
-            units = 'm';
-            amount = Math.ceil(diff / (60 * 1000));
-        } else if (diff / (3600 * 1000) < 24) {
-            units = 'h';
-            amount = Math.ceil(diff / (3600 * 1000));
-        } else {
-            units = 'd';
-            amount = time.diff(start_time, 'day');
-        }
-
-        return {
-            units: units,
-            amount: amount
-        };
-    },
-    convert_to_end_time: function(duration_amount, duration_units) {
-        var ms = BetForm.attributes.start_time_moment();
-        ms.add(duration_amount, duration_units);
-        if(duration_units == "d") {
-            var trading_times = this.get_trading_times(ms.format("YYYY-MM-DD"));
-            ms = trading_times.closing;
-        }
-
-        var expiry_time = ms.format('HH:mm:ss');
-        if(moment.utc().isSame(ms, 'day')) {
-            expiry_time = ms.format('HH:mm');
-        }
-        return {
-            expiry_date: ms.format('YYYY-MM-DD'),
-            expiry_time: expiry_time,
-            moment: ms
-        };
-    },
-    virgule_duration: function(time) {
-        var units = time.substring(time.length - 1);
-        var amount = time.substring(0, time.length - 1);
-
-        return {
-            units: units,
-            amount: amount
-        };
-    },
-    virgule_end_time: function(inputTime) {
-        var time = parseInt(inputTime) * 1000,
-            ms = moment.utc(time),
-            expiry_time = ms.format('HH:mm:ss');
-        
-        if(moment.utc().isSame(ms, 'day')) {
-            expiry_time = ms.format('HH:mm');
-        }
-        if(!moment.utc().isSame(ms, 'day')) {
-            var trading_times = this.get_trading_times(ms.format('YYYY-MM-DD'));
-            expiry_time = moment.utc(trading_times.closing).format('HH:mm:ss');
-        }
-        
-        return {
-            expiry_date: ms.format('YYYY-MM-DD'),
-            expiry_time: expiry_time,
-            moment: ms
-        };
-    },
-    is_valid_duration: function(amount, unit) {
-        var selected_unit = this.configured_unit_for(unit);
-        if(amount < selected_unit.min) {
-            return false;
-        }
-
-        return true;
-    },
-    configured_units_by_start_time: function() {
-        var units = this.configured_units.spot;
-        if(this.is_forward_starting()) {
-            units = this.configured_units.forward_starting;
-        }
-
-        return units;
-    },
-    configured_unit_for: function(duration_unit) {
-        var units = this.configured_units_by_start_time();
-        return units[duration_unit];
-    },
-    parse_units_from_form: function() {
-        var normal_durations = {};
-        var forward_starting_durations = {};
-        var duration_container = BetForm.attributes.duration_container();
-        $('#duration_units > option').each(function(){
-            var duration_unit = {};
-            duration_unit.className = $(this).attr('class');
-            duration_unit.selected = $(this).attr('selected');
-            duration_unit.units = $(this).val();
-            duration_unit.label = $(this).text();
-
-            duration_unit.max = 59;
-            if(duration_unit.units == 'd') {
-                duration_unit.max = 365;
-            } else if(duration_unit.units == 'h') {
-                duration_unit.max = 23;
-            } else if (duration_unit.units == 't') {
-                duration_unit.max = 10;
-            }
-
-            if(duration_unit.className == 'forward_starting') {
-                duration_unit.min_select = duration_container.find('.non_input.forward_starting.' + duration_unit.units);
-                duration_unit.min = parseInt(duration_unit.min_select.html().split(":")[1]);
-                forward_starting_durations[duration_unit.units] = duration_unit;
-            } else {
-                duration_unit.min_select = duration_container.find('.non_input.' + duration_unit.units + ':not(.forward_starting)');
-                duration_unit.min = parseInt(duration_unit.min_select.html().split(":")[1]);
-                normal_durations[duration_unit.units] = duration_unit;
-            }
-        });
-
-        this.configured_units = {};
-        this.configured_units.spot = normal_durations;
-        this.configured_units.forward_starting = forward_starting_durations;
-    },
-    trading_dates: function() {
-        var trading_dates  = [];
-        var trading_days = this.get_trading_days();
-
-        for (var day in trading_days) {
-            if(trading_days[day]['trading']) {
-                trading_dates.push(day);
-            }
-        }
-
-        return trading_dates;
-    },
-    get_trading_days: function() {
-        var underlying_symbol = BetForm.attributes.underlying();
-        var barrier = BetForm.attributes.barrier_1();
-        if (typeof this.trading_info[underlying_symbol] === 'undefined') {
-            var that = this;
-            $.ajax({
-                url: page.url.url_for('trade_get.cgi'),
-                data: { controller_action: 'trading_days',
-                        underlying_symbol: underlying_symbol,
-                        form_name: BetForm.attributes.form_name(),
-                        date_start: BetForm.attributes.start_time(),
-                        barrier: barrier,
-                    },
-                dataType:'json',
-                async: false
-            }).done(function(trading_days) {
-                that.trading_info[underlying_symbol] = {};
-                for (var day in trading_days) if (trading_days.hasOwnProperty(day)) {
-                    var day_arr = day.split('-');
-                    day_arr[1] = parseInt(day_arr[1] - 1);
-                    var date = moment.utc(day_arr).format("YYYY-MM-DD");
-                    that.trading_info[underlying_symbol][date] = { trading: ((trading_days[day] == 1) ? true: false) };
-                }
-            });
-        }
-        return this.trading_info[underlying_symbol];
-    },
-    get_trading_times: function(date) {
-        var underlying_symbol = this.underlying();
-        if(typeof this.trading_info[underlying_symbol] === "undefined") {
-            this.get_trading_days();
-        }
-
-        var that = this;
-        if(typeof this.trading_info[underlying_symbol] === 'undefined' || typeof this.trading_info[underlying_symbol][date] === "undefined") {
-            this.trading_info[underlying_symbol][date] = { trading: 0 };
-        }
-
-        if(typeof this.trading_info[underlying_symbol][date]['opening'] === "undefined" ||
-            typeof this.trading_info[underlying_symbol][date]['closing'] === "undefined") {
-            $.ajax({
-                url: page.url.url_for('trade_get.cgi', '', 'cached'),
-                data: {
-                    controller_action: 'trading_times',
-                    underlying_symbol: underlying_symbol,
-                    trading_date: date,
-                },
-                dataType: 'json',
-                type: 'GET',
-                async: false,
-            }).done(function(response) {
-                that.trading_info[underlying_symbol][date].opening = moment.utc(response.opening);
-                that.trading_info[underlying_symbol][date].closing = moment.utc(response.closing);
-            });
-        }
-        return this.trading_info[underlying_symbol][date];
-    },
-};
-
-/*
- * Represents the duration ui
-*/
-BetForm.Time.Duration = function(trading_time) {
-    this.trading_time = trading_time;
-    this.date_picker = new DatePicker.SelectedDates('duration_amount', 'diff');
-};
-
-BetForm.Time.Duration.prototype = {
-    init: function() {
-        this.update_units_select();
-    },
-    register: function() {
-        this.on_unit_change();
-        this.on_amount_change();
-
-        var that = this;
-        $(this.date_picker).on('enter_pressed', function() {
-            $(that).trigger('enter_pressed');
-        });
-    },
-    unregister: function() {
-        this.date_picker.hide();
-
-        $(this.date_picker).off('change');
-        $('#duration_amount').off('change');
-
-        $(this.date_picker).off('enter_pressed');
-        $('#duration_units').off('change');
-    },
-    show: function(ms) {
-        $('#expiry_type_duration').show();
-        this.update_ui();
-    },
-    hide: function() {
-        $('#expiry_type_duration').hide();
-        this.date_picker.hide();
-    },
-    update_units_select: function() {
-        $('#duration_units option').remove();
-        var configured_units = this.trading_time.configured_units_by_start_time();
-        for (var unit in configured_units) if (configured_units.hasOwnProperty(unit)) {
-            this.add_duration_unit(configured_units[unit]);
-        }
-    },
-    update_ui: function() {
-        var selected = this.trading_time.as_duration();
-        if($('#duration_units >option[value=' + selected.units + ']').length > 0) {
-            $('#duration_units').val(selected.units);
-            var unit = this.trading_time.configured_unit_for(selected.units);
-            BetForm.attributes.duration_container().find('.non_input').hide();
-            unit.min_select.show();
-        }
-        $('#duration_amount').val(selected.amount);
-        if(selected.units == 'd') {
-            this.date_picker.show(this.trading_time.trading_dates());
-        } else {
-            this.date_picker.hide();
-        }
-
-        var hidden_expiry_type;
-        if (selected.units == 't') {
-            $('#expiry_type option[value="endtime"]').prop('disabled', true);
-        } else {
-            $('#expiry_type option[value="endtime"]').prop('disabled', false);
-            $(this).trigger('change', [ this.trading_time.as_end_time().moment ]);
-        }
-
-    },
-    on_unit_change: function() {
-        var that = this;
-        $('#duration_units').on('change', function(event) {
-            var amount = that.trading_time.as_duration().amount;
-            that.trading_time.update_from_duration(amount, this.value);
-            $(that).trigger('change', [ that.trading_time.as_end_time().moment ]);
-            that.update_ui();
-        }).addClass('unbind_later');
-    },
-    on_amount_change: function() {
-        var that = this;
-        var handle_change = function(duration) {
-            var selected_units = that.trading_time.as_duration().units;
-            duration = isNaN(parseInt(duration)) ? BetForm.time.trading_time.configured_unit_for(selected_units).min : parseInt(duration);
-            var min_span = that.trading_time.configured_unit_for(selected_units).min_select;
-
-            that.trading_time.update_from_duration(duration, selected_units);
-            that.update_ui();
-            if(that.trading_time.is_valid_duration(duration, selected_units)) {
-                $(this).removeClass('error');
-                min_span.removeClass('error');
-            } else {
-                $(this).addClass('error');
-                min_span.addClass('error');
-            }
-        };
-
-        $('#duration_amount').on('change', function() {
-            handle_change($(this).val());
-        }).addClass('unbind_later');
-
-        $(this.date_picker).on('change', function(event, duration) {
-            handle_change(duration);
-        });
-    },
-    add_duration_unit: function(duration_unit) {
-        if(duration_unit) {
-            var option = this.create_option(duration_unit);
-            var drop_down = document.getElementById("duration_units");
-            try {
-                // for IE version less than 8
-                drop_down.add(option, drop_down.options[null]);
-            } catch (e) {
-                drop_down.add(option, null);
-            }
-        }
-    },
-    create_option: function(duration_unit) {
-        var option = document.createElement("option");
-
-        option.className = duration_unit.className;
-        option.value = duration_unit.units;
-        option.selected = duration_unit.selected;
-        option.text = duration_unit.label;
-
-        return option;
-    },
-};
-
-/*
- * Represents the end time ui
-*/
-BetForm.Time.EndTime = function(trading_time) {
-    this.trading_time = trading_time;
-    this.time_picker = new TimePicker('expiry_time');
-    this.date_picker = new DatePicker.SelectedDates('expiry_date');
-};
-
-BetForm.Time.EndTime.prototype = {
-    init: function() {
-    },
-    register: function() {
-        this.on_time_change();
-        this.on_date_change();
-
-        var that = this;
-        var when_enter_pressed = function() {
-            $(that).trigger('enter_pressed');
-        };
-
-        $(this.time_picker).on('enter_pressed', when_enter_pressed);
-        $(this.date_picker).on('enter_pressed', when_enter_pressed);
-    },
-    unregister: function() {
-        this.time_picker.hide();
-        this.date_picker.hide();
-        $(this.date_picker).off('change');
-        $(this.time_picker).off('change');
-
-        $(this.date_picker).off('enter_pressed');
-        $(this.time_picker).off('enter_pressed');
-    },
-    show: function(ms) {
-        $('#expiry_type_endtime').show();
-        this.update_ui();
-    },
-    hide: function() {
-        $('#expiry_type_endtime').hide();
-        this.time_picker.hide();
-        this.date_picker.hide();
-    },
-    update_ui: function() {
-        var selected = this.trading_time.as_end_time();
-        $('#expiry_date').val(selected.expiry_date);
-        $('#expiry_time').val(selected.expiry_time);
-        $(this).trigger('change', [ selected.moment ]);
-
-        var now = moment.utc();
-        this.date_picker.hide();
-        this.time_picker.hide();
-        if(now.isSame(selected.moment, 'day')) {
-            $('#expiry_time').attr('disabled', false);
-            var trading_times = this.trading_time.get_trading_times(selected.expiry_date);
-            this.time_picker.show(trading_times.opening, trading_times.closing);
-            $('#market-closed-tip').hide();
-        } else {
-            $('#expiry_time').attr('disabled', true);
-            $('#market-closed-tip').show();
-        }
-
-        if(this.trading_time.is_forward_starting()) {
-            $('#expiry_date').attr('disabled', true);
-        } else {
-            $('#expiry_date').attr('disabled', false);
-        }
-
-        //Add Today, to make it selectable.
-        var min_unit = this.trading_time.min_unit();
-        var dates = this.trading_time.trading_dates();
-        if(min_unit.units !== "d" || min_unit.min === 0) {
-            dates.push(now.format("YYYY-MM-DD"));
-        }
-        this.date_picker.show(dates);
-    },
-    on_date_change: function() {
-        var that = this;
-        $(this.date_picker).on('change', function(event, date) {
-            var selected = that.trading_time.as_end_time();
-            that.trading_time.update_from_end_time(date, selected.expiry_time);
-            that.update_ui();
-        }).addClass('unbind_later');
-    },
-    on_time_change: function() {
-        var that = this;
-        $(this.time_picker).on('change', function(event, time) {
-            var selected = that.trading_time.as_end_time();
-            that.trading_time.update_from_end_time(selected.expiry_date, time);
-            that.update_ui();
-        }).addClass('unbind_later');
-    },
-};
-;var BetPrice = function() {
-    var price_request = null;
-    var _buy_response_container = null;
-    return {
-        deregister: function() {
-            $('#content button.buy_bet_button').off('click');
-        },
-        container: function() {
-            return $('#bet_calculation_container');
-        },
-        price_url: function() {
-            var url = BetForm.attributes.form_selector() ? BetForm.attributes.form_selector().action : '';
-            if (url) {
-                return url;
-            } else {
-                return '';
-            }
-        },
-        params: function() {
-            var params = getFormParams(BetForm.attributes.form_selector());
-            params += '&st=' + BetForm.attributes.underlying();
-            params += '&expiry=' + BetForm.attributes.duration_string();
-            params += '&'+Math.floor(Math.random()*83720);
-            params += '&ajax_only=1&price_only=1';
-            return params;
-        },
-        cancel_previous_request: function() {
-            if (price_request) {
-                price_request.abort();
-            }
-        },
-        get_price: function() {
-            var that = this;
-            this.cancel_previous_request();
-            this.show_loading();
-            var url = this.price_url();
-            if (url) {
-                price_request = $.ajax(ajax_loggedin({
-                  url     : url,
-                  dataType: 'html',
-                  data    : this.params(),
-                  success : function(data) { that.price_update(data); },
-                })).fail(function ( jqXHR, textStatus ) {
-                    that.error_handler();
-                });
-            } else {
-                that.error_handler();
-            }
-        },
-        error_handler: function() {
-            this.container().find('div.rbox-lowpad:first').html(text.localize("There was a problem accessing the server."));
-            this.streaming.stop();
-        },
-        price_update: function(data) {
-            price_request = null;
-            this.deregister();
-            var price_container = BetPrice.container().find('div.rbox-lowpad:first');
-            price_container.hide().html(data);
-            this.on_buy();
-            var sendBetUrl = $('#sendBetUrlLink').attr('href');
-            if (sendBetUrl){
-                page.url.update(sendBetUrl);
-            }
-            price_container.show();
-            BetForm.amount.update_settings();
-            this.streaming.start();
-        },
-        on_buy: function() {
-            var that = this;
-            $('#content button.buy_bet_button').on('click', function (e) {
-                e = e || window.event;
-                if (typeof e.preventDefault == 'function') {
-                    e.preventDefault();
-                }
-                BetPrice.order_form.disable_buy_buttons();
-                that.hide_buy_buttons();
-                var form = $(e.target).parents('form');
-                that.buy_bet(form);
-                return false;
-            }).addClass('unbind_later');
-            $('a.spread_250, a.spread_260').on('click', function (e) {
-                e = e || window.event;
-                if (typeof e.preventDefault == 'function') {
-                    e.preventDefault();
-                }
-                var target = $(e.target);
-                var button = target.parents('a[class^="spread"]');
-                that.spread.disable(button);
-                var form = $(e.target).parents('form');
-                that.buy_bet(form);
-                return false;
-            }).addClass('unbind_later');
-        },
-        buy_bet: function (form) {
-            var that = this;
-            var timeout = 60000;
-
-            if(page.client.show_login_if_logout(false)) {
-                return;
-            }
-
-            // pass the DOM form object wrapped in jQuery form object to getFormParams
-            var data = getFormParams(form.get(0)) + '&ajax_only=1';
-            $.ajax(ajax_loggedin({
-                url     : form.attr('action'),
-                type    : 'POST',
-                async   : true,
-                data    : data,
-                timeout : timeout,
-                success : function (resp, resp_status, jqXHR) { that.on_buy_bet_success(form, resp, resp_status, jqXHR); },
-                error   : function (jqXHR, resp_status, exp) { that.on_buy_bet_error(form, jqXHR, resp_status, exp); },
-            }));
-            $('.price_box').fadeTo(200, 0.6);
-        },
-        on_buy_bet_success: function (form, resp, resp_status, jqXHR) {
-            var data = {};
-            if (typeof resp == 'object') {
-               data = resp;
-            } else {
-                try {
-                    data = (JSON && JSON.parse(resp)) || $.parseJSON(resp) || {};
-                } catch (e) {
-                    var width = this.container().width() || 300; // since the error message could be any size, set the continer size to a good value
-                    return;
-                }
-            }
-            if (data.redirect) {
-                window.location.href = data.redirect;
-                return;
-            } else if (data.error) {
-                var width = this.container().width(); // since the error message could be any size, set the continer size to a good value
-                this.display_buy_error(data.error);
-            } else if (data.display) {
-                this.display_buy_results(data);
-            } else {
-                throw new Error("Invalid server response: " + data);
-            }
-            $('.price_box').fadeTo(0, 1);
-            BetPrice.order_form.enable_buy_buttons();
-            this.display_buy_buttons();
-        },
-        on_buy_bet_error: function (form, jqXHR, resp_status, exp) {
-            var details = '' + exp;
-            if (jqXHR.responseText) {
-                details += jqXHR.responseText;
-            } else if (document.location.href.match(/^http:/) && (!details || details.match(/access/i))) {
-                details += '<ul>Please <a href="' + document.location.href.replace('http://', 'https://') + '">continue browsing using HTTPS secure protocol</a></ul>';
-            } else {
-                details += text.localize('There was a problem accessing the server during purchase.');
-            }
-            var width = this.container().width(); // since the error message could be any size, set the continer size to a good value
-            this.display_buy_error('<div style="width: ' + width + 'px;"><h3>Error</h3><p>' + details + ' </p></div>', 1);
-            $('.price_box').fadeTo(0, 1);
-            BetPrice.order_form.enable_buy_buttons();
-            this.display_buy_buttons();
-        },
-        buy_response_container: function () {
-            if (!_buy_response_container) {
-                var price_container = this.container();
-                _buy_response_container = $('<div id="buy_confirm_container" class="trade_confirm_container ajax_response"><a class="close">x</a><div></div></div>');
-                _buy_response_container.hide();
-                _buy_response_container.height('100%');
-                price_container.append(_buy_response_container);
-            }
-            return _buy_response_container;
-        },
-        display_buy_results: function (data) {
-            var that = this;
-
-            var display_html = data.display;
-            var con = this.buy_response_container();
-            con.children('div').first().html(display_html);
-
-            if ($('#tick_chart').length > 0) {
-                data['show_contract_result'] = 1;
-                TickDisplay.initialize(data);
-            }
-
-            if ($('#is-digit').data('is-digit')) {
-                var start_moment = moment(data.contract_start*1000).utc();
-                that.digit.process(start_moment);
-            }
-
-            con.show();
-            // push_data_layer();
-            var _clear_results = function () { that.clear_buy_results(); };
-            con.find('a.close').on('click', _clear_results).css('cursor', 'pointer').addClass('unbind_later');
-        },
-        spread: function() {
-            var that = this;
-            return {
-                reset: function() {
-                    if (typeof this._stream !== 'undefined') {
-                        this._stream.close();
-                        this._stream.onmessage = function() {};
-                    }
-                },
-                validate_change: function(target) {
-                    var current = target.attr('value');
-                    var new_value = target.val();
-                    if (!new_value.toString().match(/^[0-9.]*$/)) {
-                        new_value = current;
-                    }
-
-                    return new_value;
-                },
-                disable: function(target) {
-                    var that = this;
-                    target.unbind('click');
-                },
-                on_sell: function(form) {
-                    var that = this;
-                    $('button.close_position').on('click', function (e) {
-                        e = e || window.event;
-                        if (typeof e.preventDefault == 'function') {
-                            e.preventDefault();
-                        }
-                        var target = $(e.target);
-                        BetSell.model.reload_page_on_close($('trading_socket_container') ? false : true);
-                        that.spread_con().find('#sell_level').parent().hide();
-                        that.sell_bet(target);
-                        return false;
-                    }).addClass('unbind_later');
-                },
-                sell_bet: function(target) {
-                    var that = this;
-                    that.reset();
-                    target.attr('disabled','disabled').hide();
-                    var form = target.parents('form');
-                    var timeout = 60000;
-
-                    if(page.client.show_login_if_logout(false)) {
-                        return;
-                    }
-
-                    // pass the DOM form object wrapped in jQuery form object to getFormParams
-                    var data = getFormParams(form.get(0)) + '&ajax_only=1';
-                    $.ajax(ajax_loggedin({
-                        url     : form.attr('action'),
-                        type    : 'POST',
-                        async   : true,
-                        data    : data,
-                        timeout : timeout,
-                        success : function (resp, resp_status, jqXHR) { that.on_sell_success(form, resp, resp_status, jqXHR); },
-                        error   : function (jqXHR, resp_status, exp) { that.on_sell_error(form, jqXHR, resp_status, exp); },
-                    }));
-                    $('.price_box').fadeTo(200, 0.6);
-                },
-                on_sell_error: function(form, resp, resp_status, jqXHR) {
-                    var that = this;
-
-                    if (typeof(resp.error) !== 'undefined') {
-                        that.err_con().find('p').text(resp.error);
-                        that.err_con().show();
-                    }
-                },
-                on_sell_success: function(form, resp, resp_status, jqXHR) {
-                    var that = this;
-
-                    var con = that.spread_con();
-                    if (typeof(resp.error) !== 'undefined') {
-                        that.err_con().find('p').text(resp.error);
-                        that.err_con().show();
-                    } else {
-                        con.find('#status').addClass('loss').text(text.localize('Closed'));
-                        that.paint_it(resp.value.dollar, con.find('#pnl_value').text(resp.value.dollar));
-                        con.find('#pnl_point').text(resp.value.point);
-                        con.find('#exit_level').text(resp.exit_level).parents('tr').show();
-                    }
-                },
-                paint_it: function(value, target) {
-                    var color = value > 0 ? 'profit' : 'loss';
-                    $(target).removeClass().addClass(color);
-                },
-                stream: function(channel) {
-                    var that = this;
-                    that.on_sell();
-                    var url = window.location.protocol + '//' + page.settings.get('streaming_server')+'/push/price/'+channel;
-                    that._stream = new EventSource(url, { withCredentials: true });
-                    that._stream.onmessage = function(e) {
-                        var data = JSON.parse(e.data);
-                        var prices = data.prices;
-                        var con = that.spread_con();
-                        var err_con = that.err_con();
-                        for (var i = 0; i < prices.length; i++) {
-                            var id = prices[i].id;
-                            var level = parseFloat(prices[i].level);
-
-                            if (typeof(prices[i].value) !== 'undefined') {
-                                if (prices[i].err !== null) {
-                                    con.find('.close_position').hide();
-                                    err_con.find('p').text(prices[i].err);
-                                    err_con.show();
-                                    break;
-                                } else {
-                                    err_con.hide();
-                                    con.find('.close_position').show();
-                                    con.find('#sell_level').text(level);
-                                    var current_value = that.round(parseFloat(prices[i].value.dollar),2);
-                                    that.paint_it(current_value, con.find('#pnl_value').text(current_value));
-                                    con.find('#pnl_point').text(prices[i].value.point);
-                                }
-                            }
-
-                            var higher_stop_level;
-                            var lower_stop_level;
-                            if (that.stop_loss_level() > that.stop_profit_level()) {
-                                higher_stop_level = that.stop_loss_level();
-                                lower_stop_level = that.stop_profit_level();
-                            } else {
-                                lower_stop_level = that.stop_loss_level();
-                                higher_stop_level = that.stop_profit_level();
-                            }
-
-                            if (level >= higher_stop_level || level <= lower_stop_level) {
-                                var sell_button = con.find('.close_position');
-                                sell_button.click();
-                                break;
-                            }
-                        }
-                    };
-                    that._stream.onerror = function() {
-                        that._stream.close();
-                    };
-                },
-                err_con: function() {
-                    var that = this;
-                    return that.spread_con().find('#error_box');
-                },
-                spread_con: function() {
-                    return $('#sell_content_wrapper');
-                },
-                split_level: function(level) {
-                    var that = this;
-                    var matches = level.toString().match(/[0-9]+/g);
-                    var point_val = matches[0];
-                    var cents_val = matches[1] || '00';
-
-                    return {
-                        point: point_val,
-                        decimal: cents_val,
-                    };
-                },
-                stop_loss_level: function() {
-                    var that = this;
-                    return parseFloat(that.spread_con().find('#stop_loss_level').text());
-                },
-                stop_profit_level: function() {
-                    var that = this;
-                    return parseFloat(that.spread_con().find('#stop_profit_level').text());
-                },
-                round: function(number,number_after_dec) {
-                    var result = Math.round(number * Math.pow(10,number_after_dec)) / Math.pow(10,number_after_dec);
-                    result = result.toFixed(number_after_dec);
-                    return result;
-                },
-            };
-        }(),
-        digit: function() {
-            return {
-                reset: function() {
-                    var $self = this;
-
-                    $self.ev.close();
-                    $self.digit_tick_count = 0;
-                    $self.applicable_ticks = [];
-                    $self.info_for_display = [];
-                },
-                process: function(start_moment) {
-                    var $self = this;
-
-                    $self.digit_tick_count = 0;
-                    $self.applicable_ticks = [];
-                    $self.info_for_display = [];
-                    var symbol = BetForm.attributes.underlying();
-                    var how_many_ticks = $('#tick-count').data('count');
-                    var stream_url = window.location.protocol + '//' + page.settings.get('streaming_server');
-                    stream_url += "/stream/ticks/" + symbol + "/" + start_moment.unix();
-                    $self.ev = new EventSource(stream_url, { withCredentials: true });
-
-                    $self.ev.onmessage = function(msg) {
-                        var data = JSON.parse(msg.data);
-                                if (!(data[0] instanceof Array)) {
-                                    data = [ data ];
-                                }
-                                for (var i = 0; i < data.length; i++) {
-                                    if (data[i][0] === 'tick') {
-                                        var tick = {
-                                            epoch: data[i][1],
-                                            quote: data[i][2]
-                                        };
-                                        if (tick.epoch > start_moment.unix() && $self.digit_tick_count < how_many_ticks) {
-                                            // checking for duplicate entries and skip them if they exists
-                                            if ($self.applicable_ticks.length > 0) {
-                                                var previous_tick_epoch = $self.info_for_display[$self.info_for_display.length-1][1];
-                                                if (previous_tick_epoch === tick.epoch) {
-                                                    continue;
-                                                }
-                                            }
-
-                                            $self.applicable_ticks.push(tick.quote);
-                                            $self.digit_tick_count++;
-                                            $self.info_for_display.push([$self.digit_tick_count,tick.epoch,tick.quote]);
-                                            $self.update_display();
-
-                                            if ($('#digit-contract-details').css('display') === 'none') {
-                                                $('#digit-contract-details').show();
-                                            }
-                                        }
-
-                                        if ($self.applicable_ticks.length === how_many_ticks) {
-                                            $self.evaluate_digit_outcome();
-                                            $self.reset();
-                                            break; // need to break the loop else it will keep on processing the extra tick
-                                        }
-                                    }
-                                }
-                    };
-                    $self.ev.onerror = function() { $self.ev.close(); };
-                },
-                update_display: function(data) {
-                    var $self = this;
-
-                    var ticks_to_display = $self.info_for_display.slice(-5);
-                    for (var i=0;i<5;i++) {
-                        if (typeof ticks_to_display[i] !== 'undefined') {
-                            var tick_number = ticks_to_display[i][0];
-                            var tick_time = moment.utc(ticks_to_display[i][1]*1000).format("hh:mm:ss");
-                            var tick_string = ticks_to_display[i][2].toString();
-                            $('#count-'+i).text('Tick '+tick_number);
-                            $('#time-'+i).text(tick_time);
-                            var shorten = tick_string.substr(0,tick_string.length-1);
-                            var last = tick_string.substr(-1);
-                            $('#tick-'+i+' span#latest-shorten').text(shorten);
-                            $('#tick-'+i+' span#latest-last').text(last);
-                        }
-                    }
-                },
-                evaluate_digit_outcome: function() {
-                    var $self = this;
-
-                    var prediction = $('#contract-sentiment').data('contract-sentiment');
-                    var client_prediction = $('#client-prediction').data('client-prediction');
-                    var last_tick = $self.applicable_ticks[$self.applicable_ticks.length-1];
-                    var last_digit = parseInt(last_tick.toString().substr(-1));
-                    var potential_payout = parseFloat($('#outcome-payout').data('payout').toString().replace(',',''));
-                    var cost = parseFloat($('#outcome-buyprice').data('buyprice').toString().replace(',',''));
-
-                    // buy price
-                    $('#contract-outcome-buyprice').text($('#outcome-buyprice').data('buyprice'));
-
-                    var final_price;
-
-                    if (prediction === 'match') {
-                        final_price = (last_digit === client_prediction) ? potential_payout : 0;
-                    } else if (prediction === 'differ') {
-                        final_price = (last_digit !== client_prediction) ? potential_payout : 0;
-                    }
-
-                    $('#confirmation_table').hide();
-                    $('#contract-outcome-payout').text($self.round(final_price,2));
-
-                    if (final_price !== 0) {
-                        $('#bet-confirm-header').text(text.localize('This contract won'));
-                        $('#contract-outcome-profit').removeClass('standin').addClass('standout profit').text($self.round(potential_payout - cost,2));
-                        $('#digit-contract-details').css('background', 'rgba(46,136,54,0.198039)');
-                    } else {
-                        $('#bet-confirm-header').text(text.localize('This contract lost'));
-                        $('#contract-outcome-label').removeClass('standout profit').addClass('standin loss').text(text.localize('Loss'));
-                        $('#contract-outcome-profit').removeClass('standout profit').addClass('standin loss').text($self.round(cost,2));
-                        $('#digit-contract-details').css('background', 'rgba(204,0,0,0.098039)');
-                    }
-
-                    $('#contract-outcome-details').show();
-                },
-                round: function(number,number_after_dec) {
-                    var result = Math.round(number * Math.pow(10,number_after_dec)) / Math.pow(10,number_after_dec);
-                    result = result.toFixed(number_after_dec);
-                    return result;
-                },
-            };
-        }(),
-        display_buy_error: function (data, extra_info) {
-            var that = this;
-            var con = this.buy_response_container();
-            con.addClass('bet_confirm_error');
-            if (extra_info) {
-                data += '<p>' + text.localize('Please confirm the trade on your statement before proceeding.') + '</p>';
-            }
-            data = '<p>' + data + '</p>';
-            con.children('div').first().html(data);
-            con.show();
-            var _clear_results = function () { that.clear_buy_results(); };
-            con.find('a.close').on('click', _clear_results).css('cursor', 'pointer').addClass('unbind_later');
-        },
-        clear_buy_results: function () {
-            var con = this.buy_response_container();
-            if ($('#tick_chart').length > 0) {
-                TickDisplay.reset();
-            }
-
-            if ($('#is-digit').data('is-digit')) {
-                this.digit.reset();
-            }
-
-            if ($('a[class^=spread]').length > 0) {
-                this.spread.reset();
-            }
-
-            con.hide().remove();
-            _buy_response_container = null;
-        },
-        hide_buy_buttons: function() {
-            this.deregister();
-            this.order_form.hide_buy_button();
-        },
-        display_buy_buttons: function() {
-            this.on_buy();
-            this.order_form.show_buy_button();
-        },
-        show_loading: function() {
-            var image_link = page.settings.get('image_link');
-            var loading_html = '<p id="loading-price">'+text.localize('loading...')+'<br /><img src="'+image_link['hourglass']+'" /></p>';
-            this.container().find('div.rbox-lowpad:first').show().html('<div class="rbox rbox-bg-alt"><div class="rbox-wrap"><div class="rbox-content">'+loading_html+'</div></div><span class="tl">&nbsp;</span><span class="tr">&nbsp;</span><span class="bl">&nbsp;</span><span class="br">&nbsp;</span></div></div>');
-            this.container().show();
-        },
-        streaming: function() {
-            var price_stream = null;
-            var update_from_stream = false;
-            return {
-                start: function() {
-                    BetForm.spot.clear_sparkline();
-                    this.stop();
-                    update_from_stream = true;
-                    var stream_channel = this.stream_channel();
-                    var url = window.location.protocol + '//' + page.settings.get('streaming_server')+'/push/price/'+stream_channel;
-                    if(url && typeof (EventSource) !== "undefined") {
-                        price_stream = new EventSource(url, { retry: 18000000 });
-                        var that = this;
-                        price_stream.onmessage = function(e) {
-                            that.process_message(e.data);
-                        };
-                        price_stream.addEventListener("ping", function(e) { return true; });
-                    } else {
-                        $('#spot_spark').html("<span title=\"" + text.localize("We are not able to stream live prices at the moment. To enjoy live streaming of prices try refreshing the page, if you get this issue after repeated attempts try a different browser") + "\">" + text.localize("No Live price update") + "</span>");
-                    }
-                },
-                stop: function() {
-                    if (price_stream !== null) {
-                        price_stream.close();
-                        price_stream = null;
-                    }
-                },
-                ignore_updates: function() {
-                    update_from_stream = false;
-                },
-                stream_channel: function() {
-                    return $('#stream_channel').html();
-                },
-                process_message: function(data) {
-                    if(data == 'stop_bet') {
-                        BetPrice.order_form.hide_buy_button();
-                    } else {
-                        BetPrice.order_form.show_buy_button();
-                    }
-
-                    if(update_from_stream) {
-                        var bet = JSON.parse(data);
-                        BetForm.spot.update(bet.spot);
-                        BetPrice.order_form.update_from_stream(bet);
-                    }
-                },
-            };
-        }(),
-        order_form: function() {
-            return {
-                forms: function() {
-                    return $('form[name=orderform]');
-                },
-                form_by_id: function(id) {
-                    return $('#orderform_' + id);
-                },
-                verify_display_id: function(id) {
-                    var display_id = $('input[name="display_id"]', this.form_by_id(id));
-                    return (display_id && display_id.val() == id);
-                },
-                hide_buy_button: function() {
-                    return $('button[name^="btn_buybet"]').parent().hide();
-                },
-                show_buy_button: function() {
-                    return $('button[name^="btn_buybet"]').parent().show();
-                },
-                disable_buy_buttons: function() {
-                    $('button[name^="btn_buybet"]').attr('disabled','disabled');
-                },
-                enable_buy_buttons: function() {
-                    $('a[id^="spread"]').removeAttr('disabled');
-                    $('button[name^="btn_buybet"]').removeAttr('disabled');
-                },
-                update_from_stream: function(stream) {
-                    var type = stream.type;
-                    if (type === 'spread') {
-                        this.update_spread_ui(stream.prices);
-                    } else if (type === 'price') {
-                        var prices = this.prices_from_stream(stream.prices);
-                        this.update_form(prices);
-                        this.update_ui(prices);
-                    }
-                },
-                update: function(prices) {
-                    prices = typeof prices !== 'undefined' ? prices : this.prices_from_form();
-                    this.update_form(prices);
-                    this.update_ui(prices);
-                },
-                prices_from_stream: function(stream) {
-                    var prices = [];
-                    for (var i = 0; i < stream.length; i++) {
-                        var id = stream[i].id || undefined;
-                        var prob = stream[i].value || undefined;
-                        if (!id || prob === undefined) {
-                            continue;
-                        }
-                        prices.push(this.calculate_price(id, prob, stream[i].err));
-                    }
-
-                    return prices;
-                },
-                prices_from_form: function () {
-                    var prices = [],
-                        order_forms = $('.orderform'),
-                        order_forms_count = order_forms ? order_forms.length : 0,
-                        i,
-                        id,
-                        prob,
-                        error;
-                    if (order_forms_count > 0 ) {
-                        for (i = 0; i < order_forms_count; i++) {
-                            id = $('input[name="display_id"]', form).val();
-                            prob = $('input[name="prob"]', form).val();
-                            var form = $(order_forms[i]),
-                                error_box_html = form.parent().parent().parents().siblings(".bet-error-box").html();
-                            // We handle payout messages locally and after recalculation
-                            if (error_box_html.length > 0 &&
-                                error_box_html != BetForm.amount.payout_err &&
-                                error_box_html != BetForm.amount.stake_err) {
-                                error = error_box_html;
-                            }
-                            prices.push(this.calculate_price(id, prob, error));
-                        }
-                    } else {
-                        var error_boxes = $('#bet_calculation_container').find('.bet-error-box');
-                        var count = error_boxes.length;
-                        for (i = 0; i < count; i++) {
-                            var error_box = $(error_boxes[i]);
-                            id = error_box.find('#error_display_id').val();
-                            if(!id) {
-                                continue;
-                            }
-                            prob = error_box.find('#error_probability_' + id).val();
-                            error = undefined;
-                            if(error_box.html().length > 0) {
-                                error = error_box.html();
-                            }
-                            prices.push(this.calculate_price(id, prob, error));
-                        }
-                    }
-                    return prices;
-                },
-                calculate_price: function(id, prob, error) {
-                    var form = this.form_by_id(id);
-                    var amount = BetForm.amount.calculation_value;
-                    var price;
-                    var payout;
-                    var profit;
-                    var roi;
-                    if(BetForm.attributes.is_amount_stake()) {
-                        payout = this.virgule_amount(Math.round((amount / prob) * 100));
-                        price = this.virgule_amount(amount * 100);
-                    } else if(BetForm.attributes.is_amount_payout()) {
-                        price = this.virgule_amount(Math.round((amount * prob) * 100));
-                        payout = this.virgule_amount(amount * 100);
-                    }
-
-                    var prev_price = $('input[name="price"]', form).length ? parseFloat($('input[name="price"]', form).val()) : 0;
-                    var prev_payout = $('input[name="payout"]', form).length ? parseFloat($('input[name="payout"]', form).val()) : 0;
-
-                    if (payout && price) {
-                        profit =  this.virgule_amount(payout.raw - price.raw);
-                        roi = Math.round(profit.raw / price.raw * 100);
-                    } else {
-                        profit = this.virgule_amount(0);
-                        roi = this.virgule_amount(0);
-                    }
-
-                    payout = payout ? payout : this.virgule_amount(0);
-                    price = price ? price : this.virgule_amount(0);
-
-                    return {
-                        type: 'price',
-                        id: id,
-                        prob: prob,
-                        err: error,
-                        price: price,
-                        payout: payout,
-                        profit: profit,
-                        roi: roi,
-                        prev_price: this.virgule_amount(prev_price * 100),
-                        prev_payout: this.virgule_amount(prev_payout * 100)
-                    };
-                },
-                update_form: function(prices) {
-                    for (var i = 0; i < prices.length; i++) {
-                        var form = this.form_by_id(prices[i].id);
-                        $('input[name="prob"]', form).val(prices[i].prob);
-                        $('input[name="price"]', form).val(prices[i].price.raw/100);
-                        $('input[name="payout"]', form).val(prices[i].payout.raw/100);
-                        $('input[name="amount_type"]', form).val(BetForm.attributes.amount_type());
-                    }
-                },
-                update_ui: function(prices) {
-                    for (var i = 0; i < prices.length; i++) {
-                        var form = this.form_by_id(prices[i].id);
-                        var err = prices[i].err;
-                        var bf_amount = BetForm.amount;
-                        var epsilon = 0.001; // Outside the visible range of a price.
-                        // We're intentionally making payout errors have highest priority
-                        // it's something they can fix immediately on this web interface.
-
-                        // just a minimum stake and a maximum payout check will do.
-                        if (prices[i].payout.raw/100  - epsilon > bf_amount.payout_max ||
-                            prices[i].price.raw/100 + epsilon < bf_amount.stake_min) {
-                            err = bf_amount.error;
-                        }
-
-                        this.show_error(form, err);
-                        this.update_price(prices[i].id, prices[i].price, prices[i].prev_price);
-                        this.update_description(prices[i].id, prices[i].payout, prices[i].prev_payout);
-                        this.update_profit_roi(prices[i].id, prices[i].profit, prices[i].roi);
-                    }
-                },
-                update_spread_ui: function(spread) {
-                    var that = this;
-
-                    for (var i = 0; i < spread.length; i++) {
-                        var id = spread[i].id;
-                        var level = spread[i].level;
-                        var chunks = BetPrice.spread.split_level(level);
-
-                        var con = $('.spread_'+id);
-                        con.find('.spread_point_' + id).text(chunks.point);
-                        con.find('.spread_decimal_' + id).text('.'+chunks.decimal);
-                    }
-                },
-                update_price: function(id, price, old_price) {
-                    var units_box = $('#units_for_' + id);
-                    var cents_box = $('#cents_for_' + id);
-                    var amount_box = $('#amount_for_' + id);
-
-                    price_moved(amount_box, old_price.raw, price.raw);
-
-                    units_box.text(price.units);
-                    cents_box.text(price.cents);
-                },
-                update_description: function(id, payout, old_payout) {
-                    $('#amount_for_' + id).siblings('.bet_description').each(function () {
-                            var elm = $(this);
-                            if (elm) {
-                                var desc = elm.text();
-                                if (desc) {
-                                    desc = desc.trim();
-                                    if(/^([A-Z]{3}) [\d+,]*\d+\.\d+/.test(desc)) {
-                                        desc = desc.replace(/[\d+,]*\d+\.\d+/, payout.value);
-                                        elm.text(desc);
-                                    }
-                                }
-                            }
-                    });
-                },
-                update_profit_roi: function(id, profit, roi) {
-                    $("#id_" + id + "_profit").text(profit.value);
-                    $("#id_" + id + "_roi").text(roi);
-                },
-                show_error: function(form, error) {
-                    var buy_button= form.parent();
-                    var error_box = buy_button.parents().siblings(".bet-error-box");
-                    if (!error) {
-                        error_box.hide();
-                        buy_button.show();
-                    } else {
-                        error_box.html(error);
-                        error_box.show();
-                        buy_button.hide();
-                    }
-                },
-                virgule_amount: function (big_amount) {
-                    var amount_string = big_amount.toFixed(0).toString();
-
-                    while (amount_string.length < 3)  {
-                        amount_string = '0' + amount_string;
-                    }
-
-                    var amount_break = amount_string.length - 2;
-
-                    var units =  virgule(amount_string.substr(0, amount_break));
-                    var cents =  '.' + amount_string.substr(amount_break);
-
-                    return {
-                        units: units,
-                        cents: cents,
-                        value: units + cents,
-                        raw: big_amount
-                    };
-                },
-            };
-        }(),
-    };
-}();
-;var BetSell = function() {
-    var _sell_request = null;
-    var _analyse_request = null;
-    var _container = null;
-    var _sell_button_disabled = false;
-    var _timer_interval_obj = {};
-    var _timeout_variables = {};
-    var _diff_end_start_time = 300; // we show point markers if end time start time difference is <= than this (5 minutes default)
-    var _model = {
-        currency: null,
-        shortcode: null,
-        payout: null,
-        purchase_price: null,
-        reload_page_on_close: false,
-    };
-    return {
-        _init: function () {
-            _sell_request = null;
-            _analyse_request = null;
-            _container = null;
-            _sell_button_disabled = false;
-            _timer_interval_obj = {};
-            _timeout_variables = {};
-            _model = {
-                currency: null,
-                shortcode: null,
-                payout: null,
-                purchase_price: null,
-                reload_page_on_close: false,
-            };
-            this.update_high_low(true);
-        },
-        model: {
-            currency: function (val) {
-                if (val) {
-                    _model.currency = val;
-                    return this;
-                }
-                return _model.currency;
-            },
-            shortcode: function (val) {
-                if (val) {
-                    _model.shortcode = val;
-                    return this;
-                }
-                return _model.shortcode;
-            },
-            payout: function (val) {
-                if (val) {
-                    _model.payout = val;
-                    return this;
-                }
-                return _model.payout;
-            },
-            purchase_price: function (val) {
-                if (val) {
-                    _model.purchase_price = val;
-                    return this;
-                }
-                return _model.purchase_price;
-            },
-            reload_page_on_close: function (val) {
-                if (val !== undefined) {
-                    _model.reload_page_on_close = (val ? true : false);
-                    return this;
-                }
-                return _model.reload_page_on_close;
-            },
-        },
-        container: function (refresh) {
-            if (refresh) {
-                if (this._container) {
-                    this._container.remove();
-                }
-                this._container = null;
-            }
-            if (!this._container) {
-                var that = this;
-                var con = $('<div class="inpage_popup_container" id="sell_popup_container"><a class="close">x</a><div class="inpage_popup_content"></div></div>');
-                con.hide();
-                var _on_close = function () {
-                    var should_reload = that.model.reload_page_on_close();
-                    that.cleanup(true);
-                    if (should_reload) {
-                        window.location.reload(true);
-                    }
-                };
-                con.find('a.close').on('click', function () { _on_close(); } );
-                $(document).on('keydown', function(e) {
-                     if (e.which === 27) _on_close();
-                });
-                this._container = con;
-            }
-            return this._container;
-        },
-        clear_timers: function () {
-            for (var timerKey in _timer_interval_obj) {
-                if (_timer_interval_obj.hasOwnProperty(timerKey)) {
-                    window.clearInterval(_timer_interval_obj[timerKey]);
-                }
-            }
-            for (var timeoutKey in _timeout_variables) {
-                if (_timeout_variables.hasOwnProperty(timeoutKey)) {
-                    window.clearTimeout(_timeout_variables[timeoutKey]);
-                }
-            }
-        },
-        cleanup: function (cancel_prev_req) {
-            this.close_container();
-            if (cancel_prev_req) {
-                this.cancel_previous_sell_request();
-                this.cancel_previous_analyse_request();
-            }
-            this._init();
-        },
-        basic_cleanup: function () {
-            this.clear_timers();
-            this.sparkline.clear();
-            this.streaming.stop();
-            this.streaming.url(null);
-        },
-        close_container: function () {
-            this.basic_cleanup();
-            if (live_chart && typeof live_chart !== "undefined") {
-                live_chart.close_chart();
-            }
-            if (this._container) {
-                this._container.hide().remove();
-                this._container = null;
-            }
-        },
-        server_data: function () {
-            var data = {};
-            var field = $('#sell_extra_info_data');
-            if (field) {
-                if (sessionStorage.getItem('stream_url') && sessionStorage.getItem('stream_url') == field.attr('stream_url')) {
-                    data['stream_url'] = sessionStorage.getItem('stream_url');
-                } else {
-                    sessionStorage.setItem('stream_url', field.attr('stream_url'));
-                    data['stream_url'] = field.attr('stream_url');
-                }
-                if (sessionStorage.getItem('submit_url') && sessionStorage.getItem('submit_url') == field.attr('submit_url')) {
-                    data['submit_url'] = sessionStorage.getItem('submit_url');
-                } else {
-                    sessionStorage.setItem('submit_url', field.attr('submit_url'));
-                    data['submit_url'] = field.attr('submit_url');
-                }
-                if (sessionStorage.getItem('error_message') && sessionStorage.getItem('error_message') == field.attr('submit_url')) {
-                    data['error_message'] = sessionStorage.getItem('error_message');
-                } else {
-                    sessionStorage.setItem('error_message', field.attr('error_message'));
-                    data['error_message'] = field.attr('error_message');
-                }
-                data['sell_channel'] = field.attr('sell_channel');
-                data['barrier'] = field.attr('barrier');
-                data['barrier2'] = field.attr('barrier2');
-                data['is_immediate'] = field.attr('is_immediate');
-                data['is_negative'] = field.attr('is_negative');
-                data['is_forward_starting'] = field.attr('is_forward_starting');
-                data['trade_feed_delay'] = field.attr('trade_feed_delay');
-                data['currency'] = field.attr('currency');
-                data['purchase_price'] = field.attr('purchase_price');
-                data['shortcode'] = field.attr('shortcode');
-                data['payout'] = field.attr('payout');
-                data['contract_id'] = field.attr('contract_id');
-            }
-            return data;
-        },
-        general_error_message: function () {
-            var data = this.server_data();
-            return data.error_message || 'Contract cannot be sold at this time.';
-        },
-        show_warning: function(data, replace) {
-            if (replace) {
-                this.clear_warnings();
-            }
-            var con = this.container();
-            $('.sell_price_wrapper', con).hide();
-            var warn_con = $(con.find('#warning_container')[0]);
-            var warn = $('<p class="comment">' + data + '</p>');
-            warn_con.html(warn).show();
-            warn.show();
-        },
-        clear_warnings: function() {
-            var warn_con = $(this.container().find('#warning_container')[0]);
-            warn_con.hide();
-            $('.message', warn_con).each(function () { $(this).hide().remove(); });
-        },
-        sell_button: function () {
-            return $(this.container().find('#sell_at_market')[0]);
-        },
-        disable_button: function (button) {
-            button.attr('disabled', 'disabled');
-            button.fadeTo(0, 0.5);
-        },
-        enable_button: function (button) {
-            button.removeAttr('disabled');
-            button.fadeTo(0, 1);
-        },
-        disable_sell_button: function (button_id, hide) {
-            var btn = $(button_id);
-            var that = this;
-            btn.attr('disabled', 'disabled');
-            if (hide) {
-                btn.hide();
-            }
-            this._sell_button_disabled = true;
-        },
-        enable_sell_button: function () {
-            if (this._sell_button_disabled) {
-                $('#sell_contract_form', this.container()).show();
-                var btn = this.sell_button();
-                btn.removeAttr('disabled');
-                btn.show();
-                this._sell_button_disabled = false;
-            }
-        },
-        get_loading_html: function() {
-            var image_link = page.settings.get('image_link');
-            return '<span class="loading">'+text.localize('loading...')+'&nbsp;<img src="'+image_link['hourglass']+'" /></span>';
-        },
-        show_inpage_popup: function (data) {
-            var con = this.container(true);
-            if (data) {
-                $('.inpage_popup_content', con).html(data);
-            }
-            var body = $(document.body);
-            con.css('position', 'fixed').css('z-index', get_highest_zindex() + 100);
-            body.append(con);
-            con.show();
-            // push_data_layer();
-            if ($('#sell_bet_desc', con).length > 0) {
-                con.draggable({
-                    handle: '#sell_bet_desc'
-                });
-            } else {
-                con.draggable();
-            }
-            this.reposition_confirmation();
-            return con;
-        },
-        reposition_confirmation: function (x, y) {
-            var con = this.container();
-            var win_ = $(window);
-
-            var x_min = 50;
-            var y_min = 50;
-
-            //To be responsive, on mobiles and phablets we show popup as full screen.
-            if(win_.width() < 767) {
-                x_min = 0;
-                y_min = 0;
-            }
-
-            if (x === undefined) {
-                x = Math.max(Math.floor((win_.width() - win_.scrollLeft() - con.width()) / 2), x_min) + win_.scrollLeft();
-            }
-
-            if (y === undefined) {
-                y = Math.min(Math.floor((win_.height() - con.height()) / 2), y_min) + win_.scrollTop();
-            }
-
-            con.offset({left: x, top: y});
-        },
-        update_price: function (price) {
-            var con = this._container;
-            if (!con) {
-                throw new Error("container is not available yet");
-            }
-            if (typeof price == 'object') {
-                if (typeof price.price != 'undefined') {
-                    price = price.price;
-                } else if (typeof price.value != 'undefined') {
-                    var payout = this.model.payout();
-                    if (isNaN(payout)) {
-                        throw new Error("Invalid payout " + payout);
-                    }
-                    price = price.value * payout;
-                }
-            }
-            if (isNaN(price)) {
-                throw new Error("Invalid price structure: " + price);
-            }
-
-            // update returns
-            this.update_return(price);
-
-            price = parseFloat(price).toFixed(2);
-            var cur = this.model.currency(),
-                prev_price;
-            var price_parts = stylized_price(price);
-            var price_con = $('#sell_price_container', con);
-
-            if(price_con.length > 0) {
-                var stylized = $('.stylized_price', price_con);
-                $('.stylized_units', stylized).html(price_parts.units);
-                $('.stylized_cents', stylized).html(price_parts.cents);
-                $('.stylized_currency', stylized).html(cur);
-                var price_field = $('input[name="price"]', price_con);
-                prev_price = price_field.val();
-                price_field.val(price);
-                BetSell.sparkline.update(price);
-                if (!prev_price) {
-                    return;
-                }
-
-                if (prev_price < price) {
-                    stylized.removeClass('price_moved_down');
-                    stylized.addClass('price_moved_up');
-                } else if (prev_price > price) {
-                    stylized.removeClass('price_moved_up');
-                    stylized.addClass('price_moved_down');
-                } else {
-                    stylized.removeClass('price_moved_up');
-                    stylized.removeClass('price_moved_down');
-                }
-            }
-            var trade_price = $('#trade_details_price', con);
-            if (trade_price.length > 0) {
-                prev_price = parseFloat(trade_price.html());
-                trade_price.html(price_parts.units + '' + price_parts.cents);
-                if (prev_price < price) {
-                    trade_price.removeClass('price_moved_down');
-                    trade_price.addClass('price_moved_up');
-                } else if (prev_price > price) {
-                    trade_price.removeClass('price_moved_up');
-                    trade_price.addClass('price_moved_down');
-                } else {
-                    trade_price.removeClass('price_moved_up');
-                    trade_price.removeClass('price_moved_down');
-                }
-
-            }
-        },
-        update_return: function(price) {
-            var con = this._container;
-            var trade_return = $('#trade_details_return', con);
-            if (trade_return.length > 0) {
-                price = (((price - this.model.purchase_price()) / this.model.purchase_price()) * 100 ).toFixed(2);
-                trade_return.html(price + '%');
-            }
-        },
-        update_spot: function (spot) {
-            var con = this._container;
-            if (!con) {
-                throw new Error("container is not available yet");
-            }
-            var trade_spot = $('#now_spot', con);
-            if (trade_spot.length > 0) {
-                var prev_spot = parseFloat(trade_spot.html());
-                trade_spot.html(spot);
-                if (prev_spot < spot) {
-                    trade_spot.removeClass('price_moved_down');
-                    trade_spot.addClass('price_moved_up');
-                } else if (prev_spot > spot) {
-                    trade_spot.removeClass('price_moved_up');
-                    trade_spot.addClass('price_moved_down');
-                } else {
-                    trade_spot.removeClass('price_moved_up');
-                    trade_spot.removeClass('price_moved_down');
-                }
-            }
-        },
-        update_time: function(epoch_time){
-            var that = this;
-
-            var date = that.get_date_from_seconds(epoch_time);
-            var mom = moment.utc(date).format('YYYY-MM-DD HH:mm:ss');
-            
-            var con = this._container;
-            var selector = con.find('#trade_details_now_date');
-
-            selector.attr('epoch_time', epoch_time);
-            selector.html(mom);
-        },
-        update_timer: function (con, container_id, duration) {
-            var that = this;
-            var container = con.find('#'+container_id);
-
-            if(container.length>0){
-                var text_year = text.localize('year');
-                var text_years = text.localize('years');
-                var text_month = text.localize('month');
-                var text_months = text.localize('months');
-                var text_day = text.localize('day');
-                var text_days = text.localize('days');
-                var text_hour = text.localize('hour');
-                var text_hours = text.localize('hours');
-                var text_minute = text.localize('minute');
-                var text_minutes = text.localize('minutes');
-                var text_second = text.localize('second');
-                var text_seconds = text.localize('seconds');
-
-                var duration_m = moment.duration(duration*1000); 
-                var text_arr = [];
-
-                var months = duration_m.months();
-                var days = duration_m.days();
-                var hours = duration_m.hours();
-                var minutes = duration_m.minutes();
-                var seconds = duration_m.seconds();
-
-                if(months > 0){
-                    text_arr.push(months);
-                    if(months > 1){
-                        text_arr.push(text_months);
-                    }
-                    else{
-                        text_arr.push(text_month);
-                    }
-                }
-
-                if(days > 0){
-                    text_arr.push(days);
-                    if(days > 1){
-                        text_arr.push(text_days);
-                    }
-                    else{
-                        text_arr.push(text_day);
-                    }
-                }
-
-                if(hours > 0){
-                    text_arr.push(hours);
-                    if(hours > 1){
-                        text_arr.push(text_hours);
-                    }
-                    else{
-                        text_arr.push(text_hour);
-                    }
-                }
-
-                if(minutes > 0){
-                    text_arr.push(minutes);
-                    if(minutes > 1){
-                        text_arr.push(text_minutes);
-                    }
-                    else{
-                        text_arr.push(text_minute);
-                    }
-                }
-
-                if(seconds > 0){
-                    text_arr.push(seconds);
-                    if(seconds > 1){
-                        text_arr.push(text_seconds);
-                    }
-                    else{
-                        text_arr.push(text_second);
-                    }
-                }
-
-                var final = [text_arr[0],text_arr[1]];
-                if(typeof text_arr[2] !== 'undefined'){
-                    final.push(text_arr[2]);
-                    final.push(text_arr[3]);
-                }
-
-                container.text(final.join(' '));
-            }
-        },
-        update_barriers: function (barriers) {
-            var that = this;
-            var con = $('#live_barriers');
-            if (barriers.barrier) {
-                $('#now_barrier .dir', con).text(barriers.barrier.dir);
-                $('#now_barrier .diff', con).text(barriers.barrier.diff);
-            }
-            if (barriers.barrier2) {
-                $('#now_barrier2 .dir', con).html(barriers.barrier2.dir);
-                $('#now_barrier2 .diff', con).text(barriers.barrier2.diff);
-            }
-        },
-        update_high_low: function (force) {
-            var con = this._container;
-            var spot = $('#now_spot', con).html();
-            var high = $('#now_high', con);
-            var low = $('#now_low', con);
-            var changed = false;
-            if (high.length > 0) {
-                spot = parseFloat(spot);
-                if (spot > parseFloat(high.html())) {
-                    high.html(spot);
-                    changed = true;
-                }
-            }
-            if (low.length > 0) {
-                spot = parseFloat(spot);
-                if (spot < parseFloat(low.html())) {
-                    low.html(spot);
-                    changed = true;
-                }
-            }
-            if (changed || force) {
-                ['now', 'final', 'eo'].forEach(function (place) {
-                    var tooltip = $('#'+place+'_high_low_tooltip');
-                    var local_high = $('#'+place+'_high');
-                    var local_low = $('#'+place+'_low');
-                    if (tooltip && local_high && local_low) {
-                        tooltip.attr("title", text.localize('High') + ': '+local_high.html()+' '+text.localize('Low')+': '+ local_low.html());
-                    }
-                });
-            }
-            // Force all tooltips to the top all the time.
-            // Hopefully, this isn't expensive.
-            $('abbr').css('z-index', get_highest_zindex() + 1000);
-        },
-        resubmit_sell_at_market: function () {
-            var that = this;
-            this.basic_cleanup();
-            $('.sell_bottom_content').hide();
-            this.add_overlay();
-            $('#reload_sell_container').show();
-            $('#reload_sell_container').on('click', '#reload_sell', function () {
-                var contractId = that.server_data().contract_id;
-                that.close_container();
-                _timeout_variables[Object.keys(_timeout_variables).length] = setTimeout(function() {
-                    that.get_analyse_contract(contractId);
-                }, 2000);
-                // invoke submit after 2 seconds so settlement time differ from expiry date
-            });
-        },
-        sell_at_market: function (data) {
-            var that = this;
-            var con = that.show_sell_at_market(data);
-            var server_data = that.server_data();
-
-            $('.tab_menu_container').tabs({
-                load: function(event, ui){
-                   var load_live_chart = ui.tab.find(".ui-tabs-anchor").attr('load_live_chart');
-                   if (load_live_chart && load_live_chart == 1) {
-                       var symbol = ui.tab.find(".ui-tabs-anchor").attr('underlying_symbol');
-                       var liveChartConfig = new LiveChartConfig({ renderTo: 'analysis_live_chart', symbol: symbol, with_trades: 0, shift: 0});
-                       var time_obj = that.get_time_interval();
-                       if(time_obj['is_live'] && time_obj['is_live'] === 1) {
-                            liveChartConfig.update( {
-                                live: '10min'
-                            });
-                       } else {
-                           var from_date, to_date;
-                           if (server_data.is_forward_starting > 0) {
-                               if(server_data.trade_feed_delay > 0) {
-                                   from_date = that.get_date_from_seconds(time_obj['from_time'] - parseInt(server_data.trade_feed_delay));
-                                   to_date = that.get_date_from_seconds(time_obj['to_time'] + parseInt(server_data.trade_feed_delay));
-                               }
-                           } else {
-                               from_date = that.get_date_from_seconds(time_obj['from_time'] - 5);
-                               to_date = that.get_date_from_seconds(time_obj['to_time']);
-                           }
-
-                           var display_marker = false;
-                           if(time_obj['to_time'] - time_obj['from_time'] <= _diff_end_start_time) {
-                               display_marker = true;
-                           }
-
-                           if(time_obj['force_tick']) {
-                               liveChartConfig.update({
-                                   force_tick: true,
-                               });
-                           }
-
-                           liveChartConfig.update({
-                               interval: {
-                                   from: from_date,
-                                   to: to_date
-                               },
-                               with_markers: display_marker,
-                           });
-                       }
-                       configure_livechart();
-                       updateLiveChart(liveChartConfig);
-                       var barrier,
-                           purchase_time = $('#trade_details_purchase_date').attr('epoch_time');
-                       if (!purchase_time) { // dont add barrier if its forward starting
-                           if(server_data.barrier && server_data.barrier2) {
-                               if (liveChartConfig.has_indicator('high')) {
-                                   live_chart.remove_indicator('high');
-                               }
-                               barrier = new LiveChartIndicator.Barrier({ name: "high", value: server_data.barrier, color: 'green', label: text.localize('High Barrier')});
-                               live_chart.add_indicator(barrier);
-
-                               if (liveChartConfig.has_indicator('low')) {
-                                   live_chart.remove_indicator('low');
-                               }
-                               barrier = new LiveChartIndicator.Barrier({ name: "low", value: server_data.barrier2, color: 'red', label: text.localize('Low Barrier')});
-                               live_chart.add_indicator(barrier);
-
-                           } else {
-                               if (liveChartConfig.has_indicator('barrier')) {
-                                   live_chart.remove_indicator('barrier');
-                               }
-                               barrier = new LiveChartIndicator.Barrier({ name: "barrier", value: server_data.barrier, color: 'green', label: text.localize('Barrier')});
-                               live_chart.add_indicator(barrier);
-                           }
-                       }
-                       that.add_time_indicators(liveChartConfig);
-                   }
-                }
-            });
-            that.model.currency(server_data.currency);
-            that.model.shortcode(server_data.shortcode);
-            that.model.payout(server_data.payout);
-            that.model.purchase_price(server_data.purchase_price);
-            that.clear_warnings();
-            var now_time_con = con.find('#now_time_container');
-            if (now_time_con.length > 0 ) {
-                var stream_url = server_data.stream_url + '/' + server_data.sell_channel;
-                that.streaming.start(stream_url);
-                // that.start_now_timer(con, 'now_time_container', 'trade_date_now'); // now timer
-                // that.create_date_timer(con.find('#trade_details_now_date'));
-
-                // var duration = now_time_con.attr('duration'); // need now duration to subtract from end duration
-                // if(parseInt(duration) > 0) { // if now duration is positive then start the timer for end date
-                //     if(con.find('#end_time_container').attr('duration') !== '') {
-                //         duration = parseInt(con.find('#end_time_container').attr('duration')) - parseInt(duration);
-                //         if (duration > 0) {
-                //             that.start_end_timer(con, 'end_time_container', 'now_time_container', 'trade_date_end', duration); // end timer
-                //         }
-                //     }
-                // }
-            }
-            if (con.find($('#sell_price_container')).length > 0) {
-                that.sparkline.init(55);
-                con.on('click', '#sell_at_market', function (e) { e.preventDefault(); that.on_sell_button_click('#sell_at_market'); return false; });
-            }
-            that.update_high_low(true);
-            that.reposition_confirmation();
-        },
-        start_end_timer: function (con, end_attr_selector_id, now_attr_selector_id, container_id, duration) {
-            var that = this;
-            var time_container = con.find('#' + end_attr_selector_id);
-            var now_time_container = con.find('#' + now_attr_selector_id);
-            if (time_container.length > 0) {
-                var time_obj = that.seconds_to_time(duration);
-                var selected = 0;
-                time_obj['is_inverse'] = 1;
-
-                var text_year = text.localize('year');
-                var text_years = text.localize('years');
-                var text_month = text.localize('month');
-                var text_months = text.localize('months');
-                var text_day = text.localize('day');
-                var text_days = text.localize('days');
-                var text_hour = text.localize('hour');
-                var text_hours = text.localize('hours');
-                var text_minute = text.localize('minute');
-                var text_minutes = text.localize('minutes');
-                var text_second = text.localize('second');
-                var text_seconds = text.localize('seconds');
-
-
-                var interval = 1;
-                var timer_input = {
-                    year        : { value: time_obj.year, text: text_year, text_plural: text_years, interval: 31536000 },
-                    month       : { value: time_obj.month, text: text_month, text_plural: text_months, interval: 2592000  },
-                    day         : { value: time_obj.day, text: text_day, text_plural: text_days, interval: 86400 },
-                    hour        : { value: time_obj.hour, text: text_hour, text_plural: text_hours, interval: 3600 },
-                    minute      : { value: time_obj.minute, text: text_minute, text_plural: text_minutes, interval: 60 },
-                    second      : { value: time_obj.second, text: text_second, text_plural: text_seconds, interval: 1 },
-                    is_inverse  : time_obj['is_inverse'],
-                };
-                that.create_timer(con.find('#' + container_id), timer_input);
-
-            }
-        },
-        start_now_timer: function (con, attr_selector_id, container_id) {
-            var that = this;
-            var time_container = con.find('#' + attr_selector_id);
-            if (time_container.length > 0) {
-                var time_obj = that.seconds_to_time(time_container.attr('duration'));
-
-                var text_year = text.localize('year');
-                var text_years = text.localize('years');
-                var text_month = text.localize('month');
-                var text_months = text.localize('months');
-                var text_day = text.localize('day');
-                var text_days = text.localize('days');
-                var text_hour = text.localize('hour');
-                var text_hours = text.localize('hours');
-                var text_minute = text.localize('minute');
-                var text_minutes = text.localize('minutes');
-                var text_second = text.localize('second');
-                var text_seconds = text.localize('seconds');
-
-                var interval = 1;
-                var timer_input = {
-                    year        : { value: time_obj.year, text: text_year, text_plural: text_years, interval: 31536000 },
-                    month       : { value: time_obj.month, text: text_month, text_plural: text_months, interval: 2592000  },
-                    day         : { value: time_obj.day, text: text_day, text_plural: text_days, interval: 86400 },
-                    hour        : { value: time_obj.hour, text: text_hour, text_plural: text_hours, interval: 3600 },
-                    minute      : { value: time_obj.minute, text: text_minute, text_plural: text_minutes, interval: 60 },
-                    second      : { value: time_obj.second, text: text_second, text_plural: text_seconds, interval: 1 },
-                    is_negative : time_obj['is_negative'],
-                };
-                that.create_timer(con.find('#' + container_id), timer_input);
-            }
-
-        },
-        get_params: function (element) {
-            var params_arr = [];
-            if (!element) return '';
-            var attr = element.attributes;
-            var j=0;
-            for (var i = 0; i < attr.length; i++ ) {
-
-                if (attr[i].name == 'class' || attr[i].name == 'onclick') {
-                    continue;
-                }
-
-                params_arr[j] = attr[i].name+'='+encodeURIComponent(attr[i].value);
-                j++;
-
-            }
-            return params_arr.join('&');
-        },
-        show_sell_at_market: function (data) {
-            return this.show_inpage_popup('<div class="inpage_popup_content_box">' + data + '</div>');
-        },
-        on_sell_button_click: function (target) {
-            this.disable_sell_button(target, true);
-            this.streaming.stop();
-            this.model.reload_page_on_close(true);
-            this.show_loading();
-            this.sell_bet();
-        },
-        cancel_previous_sell_request: function() {
-            if (_sell_request) {
-                _sell_request.abort();
-            }
-        },
-        cancel_previous_analyse_request: function() {
-            if (_analyse_request) {
-                _analyse_request.abort();
-            }
-        },
-        show_loading: function () {
-            var con = this.container();
-            var sell_info = $( con.find('.sell_info')[0] );
-            var loading = this.get_loading_html();
-            loading = $(loading);
-            loading.show();
-            sell_info.append(loading);
-        },
-        hide_loading: function () {
-            var con = this.container();
-            con.find('.loading').each( function () { $(this).hide().remove(); } );
-        },
-        get_sell_bet_data: function () {
-            return 'controller_action=sell&purchase_price=' + this.server_data().purchase_price + '&currency=' + this.server_data().currency + '&shortcode=' + this.server_data().shortcode + '&contract_id=' + this.server_data().contract_id + '&payout=' + this.server_data().payout + '&price=' + $('input[name="price"]', $('#sell_price_container')).val() + '&ajax_only=1';
-        },
-        sell_bet: function () {
-            var that = this;
-            var timeout = 60000;
-            this.cancel_previous_sell_request();
-            _sell_request = $.ajax(ajax_loggedin({
-                url     : that.server_data().submit_url,
-                type    : 'POST',
-                async   : true,
-                data    : that.get_sell_bet_data(),
-                timeout : timeout,
-                success : function (resp, resp_status, jqXHR) {
-                    that.on_sell_bet_success(resp, resp_status, jqXHR);
-                },
-                error   : function (jqXHR, resp_status, exp) {
-                    that.on_sell_bet_error(jqXHR, resp_status, exp);
-                },
-            }));
-        },
-        on_sell_bet_success: function (resp, resp_status, jqXHR) {
-            var data = {};
-            if (typeof resp == 'object') {
-               data = resp;
-            } else {
-                data = (JSON && JSON.parse(resp)) || $.parseJSON(resp) || {};
-            }
-            this.hide_loading();
-            if (data.redirect) {
-                window.location.href = data.redirect;
-                return;
-            } else if (data.error) {
-                this.show_warning(data.error, true);
-            } else if (data.display) {
-                this.clear_warnings();
-                this.show_inpage_popup(data.display);
-            } else {
-                throw new Error("Invalid server response: " + data);
-            }
-        },
-        on_sell_bet_error: function (jqXHR, resp_status, exp) {
-            this.hide_loading();
-            var details = '' + exp;
-            if (jqXHR.responseText) {
-                details += jqXHR.responseText;
-            } else if (document.location.href.match(/^http:/) && (!details || details.match(/access/i))) {
-                details += '<p>Please <a href="' + document.location.href.replace('http://', 'https://') + '">continue browsing using HTTPS secure protocol</a></p>';
-            }
-            this.show_warning(details, true);
-        },
-        get_analyse_contract: function (contract_id, bologinid, clicked_button) {
-            if (clicked_button) {
-                this.disable_button($(clicked_button));
-            }
-            this.cancel_previous_analyse_request();
-            var $loading = $('#trading_init_progress');
-            if($loading.length){
-                $loading.show();
-            }
-            var data = "contract_id=" + encodeURIComponent(contract_id);
-            if (bologinid) {
-                data += '&bo_client=' + encodeURIComponent(bologinid);
-            }
-            _analyse_request = $.ajax(ajax_loggedin({
-                context : this,
-                url     : page.url.url_for('trade/analyse_contract'),
-                type    : 'POST',
-                data    : data,
-                success : function (data, textStatus, jqXHR) {
-                    if (jqXHR.responseJSON) {
-                        this.only_show_chart(data);
-                    } else {
-                        var html = $.parseHTML(data);
-                        if ($(html).find('#is_spread_contract').length) {
-                            this.show_buy_sell(data);
-                        } else {
-                            this.sell_at_market(data);
-                        }
-                    }
-                },
-                error   : function (jqXHR, resp_status, exp) {
-                    this.show_sell_at_market(text.localize("Please try again."));
-                },
-            })).always(function () {
-                if($loading.length){
-                    $loading.hide();
-                }
-                if (clicked_button) {
-                    this.enable_button($(clicked_button));
-                }
-            });
-        },
-        register: function () {
-            var that = this;
-            $('#profit-table, #portfolio-table, #bet_calculation_container, #statement-table, #statement-ws-container, #contract_confirmation_container, #profit-table-ws-container').on('click', '.open_contract_details', function (e) {
-                e.preventDefault();
-                that.get_analyse_contract($(this).attr('contract_id'), $(this).attr('bo_client'), this);
-            });
-        },
-        show_buy_sell: function(data) {
-            var con = this.show_spread_popup(data);
-            if (con && !con.find('#status').hasClass('loss')) {
-                BetPrice.spread.stream($('#sell_extra_info_data').attr('sell_channel'));
-            }
-        },
-        show_spread_popup: function(data) {
-            var that = this;
-
-            var con = that.container(true);
-            con.addClass('spread_popup');
-            data = '<div class="inpage_popup_content_box">' + data + '</div>';
-            if (data) {
-                $('.inpage_popup_content', con).html(data);
-            }
-            var body = $(document.body);
-            con.css('position', 'fixed').css('z-index', get_highest_zindex() + 100);
-            body.append(con);
-            con.show();
-            // push_data_layer();
-            if ($('#sell_bet_desc', con).length > 0) {
-                con.draggable({
-                    handle: '#sell_bet_desc'
-                });
-            } else {
-                con.draggable();
-            }
-            this.reposition_confirmation();
-            return con;
-        },
-        only_show_chart: function(data) {
-            this.show_inpage_popup('<div class="inpage_popup_content_box"><div class="popup_bet_desc drag-handle">'+data.longcode+'</div><div id="tick_chart"></div></div>');
-            TickDisplay.initialize(data);
-        },
-        streaming: function() {
-            var _stream = null;
-            var _update_from_stream = false;
-            var _url = null;
-            var timer;
-            return {
-                start: function(url) {
-                    BetSell.sparkline.clear();
-                    this.stop();
-                    if (url) {
-                        this._url = url;
-                    }
-                    _update_from_stream = true;
-                    url = this._url;
-                    if (url && typeof (EventSource) !== "undefined") {
-                        this._stream = new EventSource(url, { retry: 18000000 });
-                        var that = this;
-                        this._stream.onmessage = function(e) {
-                            that.process_message(e.data);
-                        };
-                        this._stream.addEventListener("ping", function(e) { return true; });
-                        return true;
-                    } else {
-                        var err_msg = "We are not able to stream live prices at the moment. To enjoy live streaming of prices try refreshing the page, if you get this issue after repeated attempts try a different browser";
-                        BetSell.show_warning(err_msg);
-                        $('#spot_spark').html('<span title="' + err_msg + '">No Live price update</span>"');
-                        return false;
-                    }
-                },
-                stop: function() {
-                    if (this._stream) {
-                        this._stream.close();
-                        this._stream = null;
-                    }
-                },
-                ignore_updates: function() {
-                    _update_from_stream = false;
-                },
-                process_message: function(data) {
-                    if (_update_from_stream) {
-                        var bet = JSON.parse(data);
-                        var no_error = true;
-                        this.update_price(bet);
-                    }
-                }, // process_message
-
-                update_price: function(bet) {
-                    var prices = bet.prices;
-                    var spot = bet.spot;
-                    var epoch = bet.epoch;
-
-                    var con = BetSell.container();
-                    var start_epoch_el =  con.find('#trade_details_start_date');
-                    var end_epoch_el = con.find('#trade_details_end_date');
-
-                    if(start_epoch_el.length && end_epoch_el.length && start_epoch_el.attr('epoch_time') && end_epoch_el.attr('epoch_time')){
-                        var start_epoch = start_epoch_el.attr('epoch_time');
-                        var end_epoch = end_epoch_el.attr('epoch_time');
-
-                        if(epoch > end_epoch){
-                            epoch = end_epoch; 
-                            this.stop();
-                        }
-                        else{
-                            BetSell.update_spot(spot);
-                            for (var i = 0; i < prices.length; i++) {
-                                if (!prices[i] || prices[i].id != 'sell') {
-                                    continue;
-                                }
-                                if (prices[i].err) {
-                                    BetSell.show_warning(prices[i].err, true);
-                                    BetSell.disable_sell_button('#sell_at_market', true);
-                                    no_error = false;
-                                } else {
-                                    BetSell.clear_warnings();
-                                    BetSell.enable_sell_button();
-                                }
-                                BetSell.update_price(prices[i]);
-                                BetSell.update_barriers(bet.barriers);
-                            } // for    
-                        }
-                        BetSell.update_time(epoch);
-                        BetSell.update_timer(con,'trade_date_now', epoch-start_epoch);
-                        BetSell.update_timer(con,'trade_date_end', end_epoch-epoch);                 
-                    }
-                },
-                url: function(val) {
-                    if (val !== undefined) {
-                        this._url = val;
-                        return this;
-                    }
-                    return this._url;
-                },
-            };
-        }(), // streaming
-        sparkline: function() {
-            var _values = [];
-            var _length = 30;
-            return {
-                init:   function(length) {
-                    _values = [];
-                    if (length) {
-                        _length = length;
-                    }
-                    var container = $(BetSell.container().find('#sell_price_container')[0]);
-                    $('#sell_price_sparkline').remove();
-                    var spark = $('<div id="sell_price_sparkline"></div>');
-                    container.append(spark);
-                    spark.show();
-                    $('#sell_price_container').on('mouseover', '#sell_price_sparkline canvas', function () { $('#jqstooltip').css('z-index', get_highest_zindex() + 100); });
-                },
-                update: function(val) {
-                    var that = this;
-                    _values.push(val);
-                    if (_values.length >= _length) {
-                        _values.shift();
-                    }
-                    $('#sell_price_sparkline').sparkline(_values, that._config);
-                },
-                clear: function() {
-                    var that = this;
-                    _values = [];
-                    $('#sell_price_sparkline').sparkline(_values, that._config);
-                },
-                _config: {
-                    type: 'line',
-                    lineColor: '#606060',
-                    fillColor: false,
-                    spotColor: '#00f000',
-                    minSpotColor: '#f00000',
-                    maxSpotColor: '#0000f0',
-                    highlightSpotColor: '#ffff00',
-                    highlightLineColor: '#000000',
-                    spotRadius: 1.25
-                },
-            };
-        }(), // sparkline
-        create_timer: function (selector, input) { // input in form of obj have year : { value: 0, text: 'text', interval: 1}
-            var duration_obj = {};
-            var interval = 1;
-            var that = this;
-            if(input.year && input.year.value > 0) {
-                duration_obj['year'] = input.year.value;
-                interval = input.year.interval;
-            }
-            if(input.month && input.month.value > 0) {
-                duration_obj['month'] = input.month.value;
-                interval = input.month.interval;
-            }
-            if(input.day && input.day.value > 0) {
-                duration_obj['day'] = input.day.value;
-                interval = input.day.interval;
-            }
-            if(input.hour && input.hour.value > 0) {
-                duration_obj['hour'] = input.hour.value;
-                interval = input.hour.interval;
-            }
-            if(input.minute && input.minute.value > 0) {
-                duration_obj['minute'] = input.minute.value;
-                interval = input.minute.interval;
-            }
-            if(input.second && input.second.value > 0) {
-                duration_obj['second'] = input.second.value;
-                interval = input.second.interval;
-            }
-
-            var duration = moment.duration(duration_obj);
-            _timer_interval_obj[Object.keys(_timer_interval_obj).length] = setInterval(function anonymous() {
-                    var timestring;
-                    var count = 0;
-
-                    if (input['is_negative']) {
-                        timestring = '- ';
-                        duration = moment.duration(duration.asSeconds() - interval, 'seconds');
-                    } else if (input['is_inverse']) {
-                        timestring = '';
-                        duration = moment.duration(duration.asSeconds() - interval, 'seconds');
-                    } else {
-                        timestring = '';
-                        duration = moment.duration(duration.asSeconds() + interval, 'seconds');
-                    }
-                    var full_count_days =  Math.floor(duration.asDays());
-                    if (full_count_days == 1 && count < 2) {
-                        timestring += full_count_days + ' ' + input.day.text + ' ';
-                        count++;
-                    } else if (full_count_days > 1 && count < 2) {
-                        timestring += full_count_days + ' ' + input.day.text_plural + ' ';
-                        count++;
-                    }
-                    if (duration.hours() == 1 && count < 2) {
-                        timestring += duration.hours() + ' ' + input.hour.text + ' ';
-                        count++;
-                    } else if (duration.hours() > 1 && count < 2) {
-                        timestring += duration.hours() + ' ' + input.hour.text_plural + ' ';
-                        count++;
-                    }
-                    if (duration.minutes() == 1 && count < 2) {
-                        timestring += duration.minutes() + ' ' + input.minute.text + ' ';
-                        count++;
-                    } else if (duration.minutes() > 1 && count < 2) {
-                        timestring += duration.minutes() + ' ' + input.minute.text_plural + ' ';
-                        count++;
-                    }
-
-                    if (duration.seconds() == 1 && count < 2) {
-                        timestring += duration.seconds() + ' ' + input.second.text;
-                        count++;
-                    } else if (duration.seconds() > 1 && count < 2) {
-                        timestring += duration.seconds() + ' ' + input.second.text_plural;
-                        count++;
-                    } else if (duration.seconds() === 0 && count < 1) {
-                        timestring += duration.seconds() + ' ' + input.second.text;
-                        count++;
-                    }
-
-                    if (count === 0) {
-                        that.resubmit_sell_at_market();
-                    } else if (full_count_days === 0 && duration.hours() === 0 && duration.minutes() === 0 && duration.seconds() === 0) {
-                        selector.html(timestring);
-                        that.resubmit_sell_at_market();
-                    } else {
-                        selector.html(timestring);
-                    }
-                    return anonymous;
-            }(), Math.abs(interval) * 1000);
-        },
-        create_date_timer: function(selector) {
-            var interval = 1;
-            var that = this;
-            var epoch_time = parseInt(selector.attr('epoch_time')) + 1;
-            _timer_interval_obj[Object.keys(_timer_interval_obj).length] = setInterval(function anonymous() {
-                epoch_time += interval;
-                var date = that.get_date_from_seconds(epoch_time);
-                var mom = moment.utc(date).format('YYYY-MM-DD HH:mm:ss');
-                selector.attr('epoch_time', epoch_time);
-                selector.html(mom);
-                return anonymous;
-            },  Math.abs(interval) * 1000);
-        },
-        seconds_to_time: function(seconds) {
-            var duration = moment.duration(Math.abs(parseInt(seconds)), 'seconds');
-            var days, months;
-            // as we dont use month in our date format
-            if (duration.asDays() > 365) {
-                days = duration.days();
-                months = duration.months();
-            } else {
-                days = Math.floor(duration.asDays());
-                months = 0;
-            }
-            var obj = {
-                year: duration.years(),
-                month: months,
-                day: days,
-                hour: duration.hours(),
-                minute: duration.minutes(),
-                second: duration.seconds(),
-            };
-            obj['is_negative'] = parseInt(seconds) < 0 ? 1 : 0;
-            return obj;
-        },
-        get_date_from_seconds: function(seconds) {
-            var date = new Date(seconds*1000);
-            return date;
-        },
-        get_time_interval: function() {
-            var time_obj = {};
-            var start_time = $('#trade_details_start_date').attr('epoch_time');
-            var purchase_time = $('#trade_details_purchase_date').attr('epoch_time');
-            var now_time = $('#trade_details_now_date').attr('epoch_time');
-            var end_time = $('#trade_details_end_date').attr('epoch_time');
-            if(purchase_time) { // forward starting
-                time_obj['from_time'] = parseInt(purchase_time);
-                time_obj['to_time'] = parseInt(start_time);
-            } else if(start_time && now_time) {
-                if (now_time > start_time) {
-                    if (((parseInt(end_time) - parseInt(start_time)) > 3600) && ((parseInt(now_time) - parseInt(start_time)) < 3600)) {
-                        // check if end date is more than 1 hours and now time - start time is less than 1 hours
-                        // in this case we switch back to tick chart rather than ohlc
-                        time_obj['from_time'] = parseInt(start_time);
-                        time_obj['to_time'] = parseInt(start_time) + 3595;
-                    } else if ((parseInt(end_time) - parseInt(start_time)) === 3600) {
-                        time_obj['from_time'] = parseInt(start_time);
-                        time_obj['to_time'] = parseInt(end_time);
-                        time_obj['force_tick'] = 1;
-                    } else {
-                        time_obj['from_time'] = parseInt(start_time);
-                        time_obj['to_time'] = parseInt(end_time);
-                    }
-                }
-            } else if (!now_time && start_time && end_time) { // bet has expired
-                time_obj['from_time'] = parseInt(start_time);
-                time_obj['to_time'] = parseInt(end_time);
-            } else {
-                time_obj['is_live'] = 1;
-            }
-            return time_obj;
-        },
-        add_time_indicators: function(liveChartConfig) {
-            var that = this,
-                indicator;
-            var start_time = $('#trade_details_start_date').attr('epoch_time');
-            var purchase_time = $('#trade_details_purchase_date').attr('epoch_time');
-            var sold_time = $('#trade_details_sold_date').attr('epoch_time');
-            var end_time = $('#trade_details_end_date').attr('epoch_time');
-            var entry_spot_time = $('#trade_details_entry_spot_time').attr('epoch_time');
-            if(purchase_time) {
-                if (liveChartConfig.has_indicator('purchase_time')) {
-                    live_chart.remove_indicator('purchase_time');
-                }
-                indicator = new LiveChartIndicator.Barrier({ name: "purchase_time", label: 'Purchase Time', value: that.get_date_from_seconds(parseInt(purchase_time)), color: '#e98024', axis: 'x'});
-                live_chart.add_indicator(indicator);
-            }
-
-            if(start_time) {
-                if (liveChartConfig.has_indicator('start_time')) {
-                    live_chart.remove_indicator('start_time');
-                }
-                indicator = new LiveChartIndicator.Barrier({ name: "start_time", label: 'Start Time', value: that.get_date_from_seconds(parseInt(start_time)), color: '#e98024', axis: 'x'});
-                live_chart.add_indicator(indicator);
-            }
-
-            if(entry_spot_time && entry_spot_time != start_time) {
-                if (liveChartConfig.has_indicator('entry_spot_time')) {
-                    live_chart.remove_indicator('entry_spot_time');
-                }
-
-                if (start_time && entry_spot_time < start_time) {
-                    indicator = new LiveChartIndicator.Barrier({ name: "entry_spot_time", label: 'Entry Spot', value: that.get_date_from_seconds(parseInt(entry_spot_time)), color: '#e98024', axis: 'x'});
-                } else {
-                    indicator = new LiveChartIndicator.Barrier({ name: "entry_spot_time", label: 'Entry Spot', value: that.get_date_from_seconds(parseInt(entry_spot_time)), color: '#e98024', axis: 'x', nomargin: true});
-                }
-                live_chart.add_indicator(indicator);
-            }
-
-            if(end_time) {
-                if (liveChartConfig.has_indicator('end_time')) {
-                    live_chart.remove_indicator('end_time');
-                }
-
-                indicator = new LiveChartIndicator.Barrier({ name: "end_time", label: 'End Time', value: that.get_date_from_seconds(parseInt(end_time)), color: '#e98024', axis: 'x'});
-                live_chart.add_indicator(indicator);
-            }
-            if(sold_time) {
-                if (liveChartConfig.has_indicator('sold_time')) {
-                    live_chart.remove_indicator('sold_time');
-                }
-
-                indicator = new LiveChartIndicator.Barrier({ name: "sold_time", label: 'Sell Time', value: that.get_date_from_seconds(parseInt(sold_time)), color: '#e98024', axis: 'x'});
-                live_chart.add_indicator(indicator);
-            }
-
-        },
-        add_overlay: function() {
-            var overlay = $('#overlay-wrapper');
-            overlay.show();
-            overlay.css({
-                height: $('#sell_content_container').outerHeight(true) + 'px',
-                top: $('#sell_bet_desc').outerHeight() + 'px', // appending pixel because this height is already generated
-            });
-        },
-        show_popup: function(trans_id) {
-            var contract_id = (/trading/i).test(window.location.pathname) ? 
-                $('div.button button.open_contract_detailsws').attr('contract_id') :
-                $('td').filter(function() {return $(this).text() == trans_id;}).parents('tr').find('button.open_contract_detailsws').attr('contract_id');
-            this.get_analyse_contract(contract_id);
-        },
-    }; // BetSell
-}();
-;var PricingDetails = function() {
-    return {
-        register: function() {
-            if(this.popup().length > 0) {
-                this.on_open_debug_link();
-                this.on_close();
-            }
-        },
-        on_open_debug_link: function() {
-            var that = this;
-            $('a.pricing-details').on('click', function (event) {
-                var popup = that.popup();
-                $('.draggable').draggable(); // This is overkill, but nobody cares.
-                popup.toggleClass('invisible');
-
-                $('#' + popup.children(':first').attr('id')).tabs();
-
-                event.preventDefault();
-            }).addClass('unbind_later');
-        },
-        on_close: function() {
-            var that = this;
-            $('a.pricing-details-close').on('click', function (event) {
-                that.popup().addClass('invisible');
-                event.preventDefault();
-            }).addClass('unbind_later');
-        },
-        popup: function() {
-            return $('#pricing_details_popup');
-        }
-    };
-}();
-;var TickDisplay = function() {
-    return {
-        reset: function() {
-            var $self = this;
-            $self.contract_barrier = null;
-            $self.applicable_ticks = [];
-            $self.number_of_ticks = null;
-            $self.ev.close();
-            $self.chart.destroy();
-        },
-        initialize: function(data) {
-            var $self = this;
-
-            // setting up globals
-            $self.number_of_ticks = parseInt(data.number_of_ticks);
-            $self.symbol = data.symbol;
-            $self.display_symbol = data.display_symbol;
-            $self.contract_start_ms = parseInt(data.contract_start * 1000);
-            $self.contract_category = data.contract_category;
-            $self.set_barrier = ($self.contract_category.match('digits')) ? false : true;
-            $self.display_decimals = data.display_decimals || 2;
-            $self.show_contract_result = data.show_contract_result;
-            var tick_frequency = 5;
-
-            if (data.show_contract_result) {
-                $self.contract_sentiment = data.contract_sentiment;
-                $self.price = parseFloat(data.price);
-                $self.payout = parseFloat(data.payout);
-            }
-
-            var minimize = data.show_contract_result;
-
-            $self.set_x_indicators();
-            $self.initialize_chart({
-                plot_from: data.previous_tick_epoch * 1000,
-                plot_to: new Date((parseInt(data.contract_start) + parseInt(($self.number_of_ticks+2)*tick_frequency)) * 1000).getTime(),
-                minimize: minimize,
-                width: data.width ? data.width : undefined
-            });
-        },
-        set_x_indicators: function() {
-            var $self = this;
-
-            var exit_tick_index = $self.number_of_ticks - 1;
-            if ($self.contract_category.match('asian')) {
-                $self.ticks_needed = $self.number_of_ticks;
-                $self.x_indicators = {
-                    '_0': { label: 'Entry Spot', id: 'start_tick'},
-                };
-                $self.x_indicators['_' + exit_tick_index] = {
-                    label: 'Exit Spot',
-                    id: 'exit_tick',
-                };
-            } else if ($self.contract_category.match('callput')) {
-                $self.ticks_needed = $self.number_of_ticks + 1;
-                $self.x_indicators = {
-                    '_0': { label: 'Entry Spot', id: 'entry_tick'},
-                };
-                $self.x_indicators['_' + $self.number_of_ticks] = {
-                    label: 'Exit Spot',
-                    id: 'exit_tick',
-                };
-            } else if ($self.contract_category.match('digits')) {
-                $self.ticks_needed = $self.number_of_ticks;
-                $self.x_indicators = {
-                    '_0': { label: 'Tick 1', id: 'start_tick'},
-                };
-                $self.x_indicators['_' + exit_tick_index] = {
-                    label:  'Tick ' + $self.number_of_ticks,
-                    id: 'last_tick',
-                };
-            } else {
-                $self.x_indicators = {};
-            }
-        },
-        initialize_chart: function(config) {
-            var $self = this;
-
-            $self.chart = new Highcharts.Chart({
-                chart: {
-                    type: 'line',
-                    renderTo: 'tick_chart',
-                    width: config.width ? config.width : (config.minimize ? 394 : null),
-                    height: config.minimize ? 143 : null,
-                    backgroundColor: null,
-                    events: { load: $self.plot(config.plot_from, config.plot_to) },
-                    marginLeft: 50
-                },
-                credits: {enabled: false},
-                tooltip: {
-                    formatter: function () {
-                        var that = this;
-                        var new_y = that.y.toFixed($self.display_decimals);
-                        var mom = moment.utc($self.applicable_ticks[that.x].epoch*1000).format("dddd, MMM D, HH:mm:ss");
-                        return mom + "<br/>" + $self.display_symbol + " " + new_y;
-                    },
-                },
-                xAxis: {
-                    type: 'linear',
-                    min: 0,
-                    max: $self.number_of_ticks + 1,
-                    labels: { enabled: false, }
-                },
-                yAxis: {
-                    opposite: false,
-                    labels: {
-                        align: 'left',
-                        x: 0,
-                    },
-                    title: ''
-                },
-                series: [{
-                    data: [],
-                }],
-                title: '',
-                exporting: {enabled: false, enableImages: false},
-                legend: {enabled: false},
-            });
-            Highcharts.setOptions({
-              lang: {thousandsSep: ','}
-            });
-        },
-        plot: function(plot_from, plot_to) {
-            var $self = this;
-
-            var plot_from_moment = moment(plot_from).utc();
-            var plot_to_moment = moment(plot_to).utc();
-            var contract_start_moment = moment($self.contract_start_ms).utc();
-            $self.counter = 0;
-            $self.applicable_ticks = [];
-
-            var symbol = $self.symbol;
-            var stream_url = window.location.protocol + '//' + page.settings.get('streaming_server');
-            stream_url += "/stream/ticks/" + symbol + "/" + plot_from_moment.unix() + "/" + plot_to_moment.unix();
-            $self.ev = new EventSource(stream_url, { withCredentials: true });
-
-            $self.ev.onmessage = function(msg) {
-                if ($self.applicable_ticks.length >= $self.ticks_needed) {
-                    $self.ev.close();
-                    $self.evaluate_contract_outcome();
-                    return;
-                }
-
-                var data = JSON.parse(msg.data);
-                if (data && !(data[0] instanceof Array)) {
-                    data = [ data ];
-                }
-                if (data) {
-                    for (var i = 0; i < data.length; i++) {
-                        if (data[i][0] === 'tick') {
-                            var tick = {
-                                epoch: parseInt(data[i][1]),
-                                quote: parseFloat(data[i][2])
-                            };
-
-                            if (tick.epoch > contract_start_moment.unix()) {
-                                if ($self.applicable_ticks.length >= $self.ticks_needed) {
-                                    $self.ev.close();
-                                    $self.evaluate_contract_outcome();
-                                    return;
-                                } else {
-                                    if (!$self.chart) return;
-                                    if (!$self.chart.series) return;
-                                    $self.chart.series[0].addPoint([$self.counter, tick.quote], true, false);
-                                    $self.applicable_ticks.push(tick);
-                                    var indicator_key = '_' + $self.counter;
-                                    if (typeof $self.x_indicators[indicator_key] !== 'undefined') {
-                                        $self.x_indicators[indicator_key]['index'] = $self.counter;
-                                        $self.add($self.x_indicators[indicator_key]);
-                                    }
-
-                                    $self.add_barrier();
-                                    $self.apply_chart_background_color(tick);
-                                    $self.counter++;
-                                }
-                            }
-
-                        }
-                    }
-                }
-            };
-            $self.ev.onerror = function(e) {$self.ev.close(); };
-        },
-        apply_chart_background_color: function(tick) {
-            var $self = this;
-            if(!$self.show_contract_result) {
-                return;
-            }
-            var chart_container = $('#tick_chart');
-            if ($self.contract_sentiment === 'up') {
-                if (tick.quote > $self.contract_barrier) {
-                    chart_container.css('background-color', 'rgba(46,136,54,0.198039)');
-                } else {
-                    chart_container.css('background-color', 'rgba(204,0,0,0.098039)');
-                }
-            } else if ($self.contract_sentiment === 'down') {
-                if (tick.quote < $self.contract_barrier) {
-                    chart_container.css('background-color', 'rgba(46,136,54,0.198039)');
-                } else {
-                    chart_container.css('background-color', 'rgba(204,0,0,0.098039)');
-                }
-            }
-        },
-        add_barrier: function() {
-            var $self = this;
-
-            if (!$self.set_barrier) {
-                return;
-            }
-
-            var barrier_type = $self.contract_category.match('asian') ? 'asian' : 'static';
-
-            if (barrier_type === 'static') {
-                var barrier_tick = $self.applicable_ticks[0];
-                $self.chart.yAxis[0].addPlotLine({
-                    id: 'tick-barrier',
-                    value: barrier_tick.quote,
-                    label: {text: 'Barrier ('+barrier_tick.quote+')', align: 'center'},
-                    color: 'green',
-                    width: 2,
-                    zIndex: 2,
-                });
-                $self.contract_barrier = barrier_tick.quote;
-                $self.set_barrier = false;
-            }
-
-            if (barrier_type === 'asian') {
-                var total = 0;
-                for (var i=0; i < $self.applicable_ticks.length; i++) {
-                    total += parseFloat($self.applicable_ticks[i].quote);
-                }
-                var calc_barrier =  total/$self.applicable_ticks.length;
-                calc_barrier = calc_barrier.toFixed(parseInt($self.display_decimals) + 1); // round calculated barrier
-
-                $self.chart.yAxis[0].removePlotLine('tick-barrier');
-                $self.chart.yAxis[0].addPlotLine({
-                    id: 'tick-barrier',
-                    value: calc_barrier,
-                    color: 'green',
-                    label: {
-                        text: 'Average ('+calc_barrier+')',
-                        align: 'center'
-                    },
-                    width: 2,
-                    zIndex: 2,
-                });
-                $self.contract_barrier = calc_barrier;
-            }
-        },
-        add: function(indicator) {
-            var $self = this;
-
-            $self.chart.xAxis[0].addPlotLine({
-               value: indicator.index,
-               id: indicator.id,
-               label: {text: indicator.label, x: /start_tick|entry_tick/.test(indicator.id) ? -15 : 5},
-               color: '#e98024',
-               width: 2,
-               zIndex: 2,
-            });
-        },
-        evaluate_contract_outcome: function() {
-            var $self = this;
-
-            if (!$self.contract_barrier) {
-                return; // can't do anything without barrier
-            }
-
-            var exit_tick_index = $self.applicable_ticks.length - 1;
-            var exit_spot = $self.applicable_ticks[exit_tick_index].quote;
-
-            if ($self.contract_sentiment === 'up') {
-                if (exit_spot > $self.contract_barrier) {
-                    $self.win();
-                } else {
-                    $self.lose();
-                }
-            } else if ($self.contract_sentiment === 'down') {
-                if (exit_spot < $self.contract_barrier) {
-                    $self.win();
-                } else {
-                    $self.lose();
-                }
-            }
-        },
-        win: function() {
-            var $self = this;
-
-            var profit = $self.payout - $self.price;
-            $self.update_ui($self.payout, profit, text.localize('This contract won'));
-        },
-        lose: function() {
-            var $self = this;
-            $self.update_ui(0, -$self.price, text.localize('This contract lost'));
-        },
-        update_ui: function(final_price, pnl, contract_status) {
-            var $self = this;
-
-            $('#bet-confirm-header').text(text.localize(contract_status));
-            $('#contract-outcome-buyprice').text($self.to_monetary_format($self.price));
-            $('#contract-outcome-payout').text($self.to_monetary_format(final_price));
-
-            if (pnl > 0) {
-                $('#contract-outcome-label').removeClass('standin loss').addClass('standout profit').text(text.localize('Profit'));
-                $('#contract-outcome-profit').removeClass('standin loss').addClass('standout profit').text($self.to_monetary_format(pnl));
-            } else {
-                $('#contract-outcome-label').removeClass('standout profit').addClass('standin loss').text(text.localize('Loss'));
-                $('#contract-outcome-profit').removeClass('standout profit').addClass('standin loss').text($self.to_monetary_format(pnl));
-            }
-            $('#confirmation_table').hide();
-            $('#contract-outcome-details').show();
-        },
-        to_monetary_format: function(number) {
-            return number.toFixed(2);
-        }
-    };
-}();
-;var rearrange_compare_underlying_list = function () {
-    var instrument_content = $('#instrument-content');
-    instrument_content.find('input').removeAttr('disabled');
-
-    var first_li, line1, symbol, url;
-    var all_li = $('#chart_compare_underlying').find('li');
-
-    if (all_li.length == 1) {
-        $('#instrument-content').find('input:checked').attr('disabled', true);
-    }
-
-    all_li.each(function (index) {
-        var li = $(this);
-        var instrument = instrument_content.find('#s_'+li.find('input[type=checkbox]').val().replace(/-$/,''));
-
-        li.removeClass().addClass('line_'+(index+1));
-
-        if (index === 0) {
-            instrument.attr('checked', 'checked');
-        }
-    });
-
-};
-
-// Check input error
-var check_input_error = function (container)
-{
-    var valid = true;
-
-    container
-        .find('.errorfield').remove()
-        .end()
-        .find('input[type=text]').each(function (){
-            var error_message;
-
-            if (!this.value.toString().match(/^\d+\.?\d*$/))
-            {
-                error_message = lightchart_text.error_digitonly;
-            }
-            else if(this.value <= 0)
-            {
-                error_message = lightchart_text.error_nonzero;
-            }
-
-            // If not digit
-            if (error_message)
-            {
-                error_message = error_message.replace(/\{\d+:INPUT\}/, this.previousSibling.innerHTML);
-                $(this).after('<div class="errorfield">'+error_message+'</div>');
-
-                valid = false;
-                return valid;
-            }
-        }).end()
-        .siblings().find('input[type=text]').each(function () {
-            if (!this.value.toString().match(/^\d+\.?\d*$/)) {
-                $(this).remove();
-            }
-        });
-
-    return valid;
-};
-
-function listen_to_chart_element () {
-    var current_hover_li = null;
-    var form_chart_director = $('#form_chart_director');
-    var chart_director_imageholder = document.getElementById('chart_director_imageholder');
-    var chart_properties = $('#chart_properties');
-    var chart_overlay_or_new = $('#chart_overlay_or_new');
-    var lightchart_text = {};
-    var lightchart_texts = $('#lightchart_texts').find('li');
-    var selected_field_history = {};
-    var chart_compare_underlying = $('#chart_compare_underlying');
-    var chart_period = $('#chart_period');
-
-    lightchart_texts.each(function()
-    {
-        lightchart_text[this.id] = this.innerHTML;
-    });
-
-    var instrument_content = $('#instrument-content');
-    instrument_content.find('input[value='+chart_compare_underlying.find('li:first input[name=overlay]').val()+']').attr('checked', 'checked');
-    $('#form_chart_director input[name=symbol]').val(chart_compare_underlying.find('li:first input[name=overlay]').val().replace(/-$/,''));
-    draw_chart();
-    rearrange_compare_underlying_list();
-
-    var remove_hover = function () {
-        current_hover_li.removeClass('hover').find('.menu-wrap-a .tm-a').unwrap().unwrap();
-    };
-
-    var popup_content = {};
-    var item_on_focus = {};
-
-    $('.drop-down')
-        .on('mouseover', '.tm-li', function (event) {
-            var target = $(event.target);
-
-            if (!target.hasClass('.tm-li')) {
-                target = target.parents('.tm-li');
-            }
-
-            current_hover_li = target;
-
-            target
-                .parents('.tm-ul').find('.menu-wrap-a .tm-a').unwrap().unwrap()
-                .end().end()
-                .siblings().removeClass('hover').end()
-                .find('.tm-a')
-                .wrap('<span class="menu-wrap-a"><span class="menu-wrap-b"></span></span>');
-        })
-        .on('mouseout', '.tm-li', function (event) {
-            if (!current_hover_li.hasClass('hover')) {
-                $(event.target).parents('.tm-ul').find('.menu-wrap-a .tm-a').unwrap().unwrap();
-            }
-        });
-
-    var previous_selected_radio = {};
-    $('#form_chart_director')
-        .find('input[type=radio]').each(function(){
-            if (this.checked) {
-                previous_selected_radio[this.name] = this.id;
-            }
-        }).end()
-        .on('click', 'input[name=period],input[name=interval]', function (event){
-            var target = $(event.target);
-            if (target.attr('name') == 'interval')
-            {
-                target = $(document.getElementById('pr_1')).attr('checked', 'checked');
-                $('#settings-content').find('input[value=CLOSE]').attr('checked', 'checked');
-            }
-
-            draw_chart(function () {
-                target
-                    .parents('#chart_period').find('.button').removeClass('disabled')
-                    .end().end()
-                    .siblings('label').addClass('disabled').children().addClass('disabled');
-                return true;
-            });
-        })
-        .on('click', '#settings-content input,input[value=None]', function (){
-            draw_chart();
-        })
-        .on('click', '#band-content input,#indicator-content input,#moving-average-content input,#instrument-content input', function (event) {
-            var selected_value = event.target.value;
-            var key = selected_value.replace(/-$/,'');
-            var prefix = event.target.name;
-            var selected_id = event.target.id;
-
-            if (event.target.type.toLowerCase() == 'checkbox' && !event.target.checked) {
-                $('#chart_compare_underlying').find('ul').find('li input[value^=' + $(this).val() + ']').parents('li').remove();
-                $('#form_chart_director input[name=symbol]').val($('#chart_compare_underlying').find('li:first input[name=overlay]').val().replace(/-$/,''));
-                draw_chart();
-                return true;
-            }
-
-            if (event.target.checked){
-                item_on_focus = event.target;
-            }
-
-            if (prefix == '__selsym') {
-                var overlays = chart_compare_underlying.find('li');
-
-                if (overlays.size() > 5) {
-                    overlays.filter(':nth-child(2)').remove();
-                }
-
-                overlays
-                    .filter(':last').after('<li>'+($(event.target).next().html())+'<input type="checkbox" checked="checked" value="'+selected_value+'-" name="overlay" /></li>');
-
-                $('#form_chart_director input[name=symbol]').val(selected_value);
-                rearrange_compare_underlying_list();
-                remove_hover();
-                draw_chart();
-                return true;
-            }
-
-            if (typeof popup_content[key] == 'object') {
-                popup_content[key].removeClass('invisible').data('related_input_name', prefix).data('related_input_id', selected_id);
-                remove_hover();
-                return true;
-            }
-            else {
-                // Request for the properties box if not exist
-                $.get(
-                    form_chart_director.attr('action') + '&' + form_chart_director.serialize()+ '&getdesc='+key+ '&prefix='+prefix,
-                    function (texts) {
-                        if (!texts) {
-                            draw_chart();
-                            return false;
-                        }
-
-                        // Append the container into its chart properties container,
-                        // which groups all the chart properties
-                        popup_content[key] = $('<div class="popupbox">'+decodeURIComponent(texts)+'</div>').appendTo(chart_properties);
-                        popup_content[key].removeClass('invisible').data('related_input_name', prefix).data('related_input_id', selected_id);
-                    }
-                );
-            }
-        })
-        .on('click', 'div.popupbox .close-button', function(event){
-            var popupbox = $(event.target).parents('div.popupbox').addClass('invisible');
-            $('#'+previous_selected_radio[popupbox.data('related_input_name')]).attr('checked', 'checked');
-            $(item_on_focus).removeAttr('checked');
-        })
-        .on('click', 'div.popupbox button[type=submit]', function (event){
-            event.preventDefault();
-
-            var popupbox = $(event.target).parents('div.popupbox');
-
-            var valid = check_input_error(popupbox);
-
-            if (valid)
-            {
-                previous_selected_radio[popupbox.data('related_input_name')] = popupbox.data('related_input_id');
-
-                draw_chart(function (){
-                    popupbox.addClass('invisible');
-                });
-            }
-
-            item_on_focus = null;
-        })
-        .on('mouseover', '#chart_compare_underlying li', function (event) {
-            $(event.target).addClass('hover').parents('li').addClass('hover');
-        })
-        .on('mouseout', '#chart_compare_underlying li', function (event) {
-            $(event.target).removeClass('hover').parents('li').removeClass('hover');
-        })
-        .on('click', '#chart_overlay_or_new .draw-overlay', function (event){
-            if (chart_overlay_or_new.find('input:checked').val() == 'overlay') {
-                var overlays = chart_compare_underlying.find('li');
-
-                if (overlays.size() > 5) {
-                    overlays.filter(':nth-child(2)').remove();
-                }
-
-                overlays
-                    .filter(':last').after(
-                        '<li><a href="#">' +
-                        chart_overlay_or_new.find('h4').html() +
-                        '</a><input type="checkbox" checked="checked" value="'+previous_selected_radio[chart_overlay_or_new.data('related_input_name')]+'" name="overlay"></li>'
-                    );
-
-                chart_compare_underlying.find('li').each(function (index){
-                    this.className = 'line_'+(index+1);
-                });
-            }
-        });
-
-    $('li.interval').hover(function () {
-        $('#intraday_interval').show();
-    }, function () {
-        $('#intraday_interval').hide();
-    });
-}
-
-var draw_chart = function (callback_after_complete) {
-
-    var chart_director_imageholder = document.getElementById('chart_director_imageholder');
-
-    if (chart_director_imageholder === null) return;
-
-    var all_li = $('#chart_compare_underlying').find('li');
-    if (all_li.length == 1) {
-        $('#instrument-content').find('input:checked').attr('disabled', true);
-    }
-
-    var prn = parseInt(Math.random()*8989898, 10);
-    var form_chart_director = $('#form_chart_director');
-    var img_url = form_chart_director.attr('action') + '&' + form_chart_director.serialize()+'&cache='+parseInt(Math.random()*8989898, 10)+'&current_width='+get_container_width();
-    // I know this is nasty and gross, but so is the problem.
-    // If I thought we were never going to fix charting, I would try to do
-    // this better. Feel free to punch me in the face.  -mwm (2011-09-08)
-    var tick_url = img_url.replace('print_chart', 'getticker');
-    $('#ticker').load(tick_url);
-    var image = new Image();
-
-    showLoadingImage($('#chart_director_imageholder'));
-
-    image.src = img_url;
-
-    // show the image directly, it was cached by the browser
-    if (image.complete)
-    {
-        // Append image to the container
-        chart_director_imageholder.innerHTML = '';
-        chart_director_imageholder.appendChild(image);
-
-        if (typeof callback_after_complete == 'function') {
-            callback_after_complete();
-        }
-    }
-    else
-    {
-        // Image error checking
-        image.onerror = function (event)
-        {
-            chart_director_imageholder.innerHTML='<p>Chart couldn\'t be loaded. </p>';
-        };
-
-        // Image loaded successfully
-        image.onload = function ()
-        {
-            chart_director_imageholder.innerHTML = '';
-            chart_director_imageholder.appendChild(image);
-            // The onload event always occurs in firefox 1.0 infinitely,
-            // so clear the onload listener once the image is loaded
-            this.onload = null;
-
-            if (typeof callback_after_complete == 'function') {
-                callback_after_complete();
-            }
-        };
-    }
-};
-
-onLoad.queue_for_url(function() {
-    listen_to_chart_element();
-}, 'smartchart');
-;var load_chart_app = function () {
-    var isMac = /Mac/i.test(navigator.platform),
-        isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent),
-        isAndroid = /Android/i.test(navigator.userAgent),
-        isWindowsPhone = /Windows Phone/i.test(navigator.userAgent),
-        isJavaInstalled = navigator.javaEnabled(),
-        isMobile = isIOS || isAndroid || isWindowsPhone,
-        shouldBeInstalled = !isJavaInstalled && !isMobile;
-
-    $('#install-java').toggle(shouldBeInstalled);
-    $('#download-app').toggle(isJavaInstalled);
-
-    $('#download-app').on('click', function () {
-        if (isMac) {
-            alert('You need to change your security preferences!');
-            return;
-        }
-
-        if (isMobile) {
-            alert('The charting app is not available on mobile devices!');
-        }
-    });
-};
-;var client_form;
-onLoad.queue(function() {
-    client_form = new ClientForm({valid_loginids: page.settings.get('valid_loginids')});
-});
-;var APITokenWS = (function() {
-    "use strict";
-
-    var columns,
-        errorClass,
-        hideClass,
-        isValid,
-        tableContainer,
-        maxTokens;
-
-
-    var init = function() {
-        columns = ['Name', 'Token', 'Scopes', 'Last Used', 'Action'];
-        errorClass  = 'errorfield';
-        hideClass   = 'dynamic';
-        tableContainer = '#tokens_list';
-        maxTokens = 30;
-
-        showLoadingImage($(tableContainer));
-
-        BinarySocket.send({"api_token": "1"});
-
-        $('#btnCreate').click(function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            createToken();
-        });
-    };
-
-    var responseHandler = function(response) {
-        if('error' in response) {
-            showMessage(response.error.message, false);
-            return false;
-        }
-
-        clearMessages();
-
-        var rebuildTable = true;
-        var api_token = response.api_token;
-        var newToken  = '';
-
-        if('new_token' in api_token) {
-            if(api_token.new_token === 1) {
-                showFormMessage(text.localize('New token created.'), true);
-                $('#txtName').val('');
-                newToken = response.echo_req.new_token;
-            }
-        }
-        else if('delete_token' in api_token) {
-            rebuildTable = false;
-            var deletedToken = response.echo_req.delete_token;
-            if(api_token.delete_token !== 1) {
-                showError(deletedToken, text.localize('An error occured.'));
-            }
-            else {
-                $('#' + deletedToken).parents('tr').removeClass('new').addClass('deleting').fadeOut(700, function(){
-                    $(this).remove();
-                    // Hide the table if there is no Token remained
-                    if(api_token.tokens.length === 0) {
-                        $(tableContainer).addClass(hideClass);
-                    }
-                });
-            }
-        }
-
-        if(rebuildTable) {
-            populateTokensList(api_token, newToken);
-            showLocalTimeOnHover('td.last-used');
-        }
-
-        // Hide form if tokens count reached the maximum limit
-        if(api_token.tokens.length >= maxTokens) {
-            $('#token_form').addClass(hideClass);
-            showMessage(text.localize('The maximum number of tokens ([_1]) has been reached.').replace('[_1]', maxTokens), false);
-        }
-        else {
-            $('#token_form').removeClass(hideClass);
-        }
-    };
-
-    // -----------------------
-    // ----- Tokens List -----
-    // -----------------------
-    var populateTokensList = function(api_token, newTokenName) {
-        var $tableContainer = $(tableContainer);
-        if(api_token.tokens.length === 0) {
-            $tableContainer.addClass(hideClass);
-            return;
-        }
-
-        $tableContainer.removeClass(hideClass);
-        showLoadingImage($(tableContainer));
-
-        var tokens = api_token.tokens;
-        var $tokensTable = createEmptyTable('tokens_table');
-
-        for(var i = 0; i < tokens.length; i++) {
-            var $tableRow = createTableRow(tokens[i]);
-            if(newTokenName && tokens[i].display_name === newTokenName) {
-                $tableRow.addClass('new');
-            }
-            $tokensTable.find('tbody').append($tableRow);
-        }
-
-        $tableContainer.empty().append($tokensTable);
-
-        $('.btnDelete').click(function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            if(window.confirm(
-                text.localize('Are you sure that you want to permanently delete token') +
-                ': "' + $(this).parents('tr').find('td.name').text() + '"?')) {
-                    deleteToken($(this).attr('id'));
-            }
-        });
-    };
-
-    String.prototype.capitalizeFirstLetter = function() {
-        return this.charAt(0).toUpperCase() + this.slice(1);
-    };
-
-    var createTableRow = function(token) {
-        var lastUsed = (token.last_used ? token.last_used + ' GMT': text.localize('Never Used'));
-        var scopes = token.scopes.map(function (v) {
-            return v.capitalizeFirstLetter();
-        });
-        // sort with Read, Trade, Payments, Admin
-        var scopes_i = {'Read': 0, 'Trade': 1, 'Payments': 2, 'Admin': 3};
-        scopes.sort(function(a, b) {
-            return scopes_i[a] > scopes_i[b];
-        });
-        var $tableRow = Table.createFlexTableRow(
-            [
-                token.display_name,
-                token.token,
-                scopes.join(', '),
-                lastUsed,
-                ''  // btnDelete
-            ],
-            columns,
-            "data"
-        );
-
-        $tableRow.children('.action').html(
-            $('<span/>', {class: 'button'})
-                .append($('<button/>', {class: 'button btnDelete', text: text.localize('Delete'), id: token.token})
-            )
-        );
-
-        return $tableRow;
-    };
-
-    var createEmptyTable = function(tableID) {
-        var header = [];
-        columns.map(function(col) {
-            header.push(text.localize(col));
-        });
-
-        var metadata = {
-            id: tableID,
-            cols: columns
-        };
-
-        return Table.createFlexTable([], metadata, header);
-    };
-
-    // ---------------------------
-    // ----- Form Validation -----
-    // ---------------------------
-    var formValidate = function() {
-        clearMessages();
-        isValid = true;
-
-        var nameID  = '#txtName';
-        var newName = $(nameID).val().trim();
-
-        var letters = Content.localize().textLetters,
-            numbers = Content.localize().textNumbers,
-            space   = Content.localize().textSpace;
-
-        // Token Name
-        if(!isRequiredError(nameID) && !isCountError(nameID, 2, 32)){
-            if(!(/^\w+$/).test(newName)) {
-                showError(nameID, Content.errorMessage('reg', [letters, numbers, '_']));
-            }
-        }
-
-        var scopes = $('input:checkbox[name="scopes[]"]:checked').map(function () {
-            return this.value;
-        }).get();
-        if (scopes.length === 0) {
-            showError('#scopes', text.localize('Please select at least one scope.'));
-        }
-
-        return isValid ? newName : false;
-    };
-
-    var isRequiredError = function(fieldID) {
-        if(!$(fieldID).val() || !(/.+/).test($(fieldID).val().trim())){
-            showError(fieldID, Content.errorMessage('req'));
-            return true;
-        } else {
-            return false;
-        }
-    };
-
-    var isCountError = function(fieldID, min, max) {
-        var fieldValue = $(fieldID).val().trim();
-        if((fieldValue.length > 0 && fieldValue.length < min) || fieldValue.length > max) {
-            showError(fieldID, Content.errorMessage('range', '(' + min + '-' + max + ')'));
-            return true;
-        } else {
-            return false;
-        }
-    };
-
-    // ---------------------------
-    // ----- Actions Process -----
-    // ---------------------------
-    var createToken = function() {
-        var is_valid = formValidate();
-        if(is_valid !== false) {
-            var newName = $('#txtName').val().trim();
-            var scopes = $('input:checkbox[name="scopes[]"]:checked').map(function () {
-                return this.value;
-            }).get();
-
-            BinarySocket.send({
-                "api_token" : 1,
-                "new_token" : newName,
-                "new_token_scopes": scopes
-            });
-        }
-    };
-
-    var deleteToken = function(token) {
-        if(token) {
-            BinarySocket.send({
-                "api_token"    : 1,
-                "delete_token" : token
-            });
-        }
-    };
-
-    // -----------------------------
-    // ----- Message Functions -----
-    // -----------------------------
-    var showMessage = function(msg, isSuccess) {
-        $('#token_message > p')
-            .attr('class', isSuccess ? 'success-msg' : 'errorfield')
-            .html(isSuccess ? '<ul class="checked"><li>' + text.localize(msg) + '</li></ul>' : text.localize(msg));
-        $('#token_message').removeClass(hideClass);
-    };
-
-    var showFormMessage = function(msg, isSuccess) {
-        var $elmID = $('#formMessage');
-        $elmID
-            .attr('class', isSuccess ? 'success-msg' : 'errorfield')
-            .html(isSuccess ? '<ul class="checked"><li>' + text.localize(msg) + '</li></ul>' : text.localize(msg))
-            .css('display', 'block')
-            .delay(3000)
-            .fadeOut(1000);
-    };
-
-    var showError = function(fieldID, errMsg) {
-        $(fieldID).parent().append($('<p/>', {class: errorClass, text: errMsg}));
-        isValid = false;
-    };
-
-    var clearMessages = function(fieldID) {
-        $(fieldID ? fieldID : '#frmNewToken .' + errorClass).remove();
-        $('#token_message').addClass(hideClass);
-        $('#formMessage').html('');
-    };
-
-
-    return {
-        init: init,
-        responseHandler: responseHandler
-    };
-}());
-
-
-
-pjax_config_page_require_auth("api_tokenws", function() {
-    return {
-        onLoad: function() {
-            BinarySocket.init({
-                onmessage: function(msg) {
-                    var response = JSON.parse(msg.data);
-                    if (response) {
-                        if (response.msg_type === "api_token") {
-                            APITokenWS.responseHandler(response);
-                        }
-                    }
-                    else {
-                        console.log('some error occured');
-                    }
-                }
-            });
-
-            Content.populate();
-            APITokenWS.init();
-        }
-    };
-});
-;var PasswordWS = (function(){
-
-  var $form, $result;
-
-  var init = function() {
-    $('#change-password').removeClass('invisible');
-    $form   = $("#change-password > form");
-    $result = $("#change-password > div[data-id='success-result']");
-    $form.find("button").on("click", function(e){
-      e.preventDefault();
-      e.stopPropagation();
-      PasswordWS.sendRequest();
-    });
-  };
-
-  var validateForm = function() {
-
-    var isValid 	= true,
-      old_pass 	= $form.find("input[name='oldpassword']").val(),
-      new_pass 	= $form.find("input[name='new-password']").val(),
-      repeat_pass = $form.find("input[name='repeat-password']").val();
-
-    /**
-     * Validation for new-password
-    **/
-
-    // Old passwrod cannot be blank. We leave the actual matching to backend
-    if(0 === old_pass.length) {
-      $form.find("p[data-error='old-blank']").removeClass("hidden");
-      isValid = false;
-    } else {
-      $form.find("p[data-error='old-blank']").addClass("hidden");
-    }
-
-    // New password cannot be the same as the old password
-    if(new_pass.length > 0 && new_pass === old_pass) {
-      $form.find("p[data-error='same-as-old']").removeClass("hidden");
-      isValid = false;
-    } else {
-      $form.find("p[data-error='same-as-old']").addClass("hidden");
-    }
-
-    if (!Validate.errorMessagePassword(document.getElementById('password').value, document.getElementById('repeat-password').value, document.getElementById('error-password'), document.getElementById('error-repeat-password'))){
-      isValid = false;
-    }
-
-    // New and Repeat should be the same
-    if(new_pass !== repeat_pass) {
-      $form.find("p[data-error='not-the-same']").removeClass("hidden");
-      isValid = false;
-    } else {
-      $form.find("p[data-error='not-the-same']").addClass("hidden");
-    }
-
-    if(isValid) return {
-      old_pass: old_pass,
-      new_pass: new_pass
-    };
-
-    return false;
-
-  };
-
-  var sendRequest = function() {
-
-    $form.find("p[data-error='server-sent-error']").addClass("hidden");
-
-    var passwords = validateForm();
-    if(false === passwords) return false;
-
-    BinarySocket.send({
-        "change_password": "1",
-        "old_password": passwords.old_pass,
-        "new_password": passwords.new_pass
-    });
-
-  };
-
-  var apiResponse = function(resp) {
-
-    console.log("apiResponse:", resp);
-
-    /**
-     * Failed
-    **/
-    if("error" in resp) {
-      var errorMsg = text.localize("Old password is wrong.");
-      if("message" in resp.error) {
-        errorMsg = resp.error.message;
-      }
-      $form.find("p[data-error='server-sent-error']").text(errorMsg).removeClass("hidden");
-      return false;
-    }
-
-    /**
-     * Succeeded
-    **/
-    $form.addClass("hidden");
-    $result.removeClass("hidden");
-    setTimeout(function(){page.client.send_logout_request(true);}, 5000);
-    return true;
-
-  };
-
-  return {
-    init: init,
-    sendRequest: sendRequest,
-    apiResponse: apiResponse
-  };
-
-})();
-
-pjax_config_page_require_auth("user/change_password", function() {
-    return {
-        onLoad: function() {
-          Content.populate();
-          if (isIE() === false) {
-            $('#password').on('input', function() {
-              $('#password-meter').attr('value', testPassword($('#password').val())[0]);
-            });
-          } else {
-            $('#password-meter').remove();
-          }
-
-          BinarySocket.init({
-                onmessage: function(msg){
-                    var response = JSON.parse(msg.data);
-                    if (response) {
-                        var type = response.msg_type;
-                        if (type === "change_password" || (type === "error" && "change_password" in response.echo_req)){
-                            PasswordWS.apiResponse(response);
-                        }
-                    }
-                }
-            });
-            PasswordWS.init();
-        }
-    };
-});
-;var ClientForm = function(init_params) {
-    this.valid_loginids =  new RegExp("^(" + init_params['valid_loginids'] + ")[0-9]+$", "i");
-};
-
-ClientForm.prototype = {
-    is_loginid_valid: function(login_id) {
-        if (login_id.length > 0) {
-            login_id = login_id.toUpperCase();
-            return this.valid_loginids.test(login_id);
-        }
-
-        return true;
-    }
-};
-;var LoggedInHandler = (function() {
-    "use strict";
-
-    var init = function() {
-        parent.window['is_logging_in'] = 1; // this flag is used in base.js to prevent auto-reloading this page
-        var redirect_url;
-        try {
-            var tokens  = storeTokens(),
-                loginid = $.cookie('loginid');
-
-            if(!$.cookie('loginid')) { // redirected to another domain (e.g. github.io) so those cookie are not accessible here
-                var loginids = Object.keys(tokens);
-                var loginid_list = '';
-                loginids.map(function(id) {
-                    loginid_list += (loginid_list ? '+' : '') + id + ':' + (/^V/i.test(id) ? 'V' : 'R') + ':E'; // since there is not any data source to check, so assume all are enabled, disabled accounts will be handled on authorize
-                });
-                loginid = loginids[0];
-                // set cookies
-                page.client.set_cookie('loginid'     , loginid);
-                page.client.set_cookie('loginid_list', loginid_list);
-            }
-            page.client.set_cookie('login', tokens[loginid]);
-
-            // set flags
-            sessionStorage.setItem('check_tnc', '1');
-            if (!$('body').hasClass('BlueTopBack')) localStorage.setItem('risk_classification', 'check');
-            GTM.set_login_flag();
-
-            // redirect url
-            redirect_url = sessionStorage.getItem('redirect_url');
-            sessionStorage.removeItem('redirect_url');
-        } catch(e) {console.log('storage is not supported');}
-
-        // redirect back
-        var set_default = true;
-        if(redirect_url) {
-            var do_not_redirect = ['reset_passwordws', 'lost_passwordws', 'change_passwordws', 'home'];
-            var reg = new RegExp(do_not_redirect.join('|'), 'i');
-            if(!reg.test(redirect_url) && page.url.url_for('') !== redirect_url) {
-                set_default = false;
-            }
-        }
-        if(set_default) {
-            redirect_url = page.url.default_redirect_url();
-            var lang_cookie = $.cookie('language');
-            if(lang_cookie && lang_cookie !== page.language()) {
-                redirect_url = redirect_url.replace(new RegExp('\/' + page.language() + '\/', 'i'), '/' + lang_cookie.toLowerCase() + '/');
-            }
-        }
-        document.getElementById('loading_link').setAttribute('href', redirect_url);
-        window.location.href = redirect_url;
-    };
-
-    var storeTokens = function() {
-        // Parse hash for loginids and tokens returned by OAuth
-        var hash = (/acct1/i.test(window.location.hash) ? window.location.hash : window.location.search).substr(1).split('&'); // to maintain compatibility till backend change released
-        var tokens = {};
-        for(var i = 0; i < hash.length; i += 2) {
-            var loginid = getHashValue(hash[i], 'acct');
-            var token = getHashValue(hash[i+1], 'token');
-            if(loginid && token) {
-                tokens[loginid] = token;
-            }
-        }
-        if(Object.keys(tokens).length > 0) {
-            page.client.set_storage_value('tokens', JSON.stringify(tokens));
-        }
-        return tokens;
-    };
-
-    var getHashValue = function(source, key) {
-        var match = new RegExp('^' + key);
-        return source && source.length > 0 ? (match.test(source.split('=')[0]) ? source.split('=')[1] : '') : '';
-    };
-
-    return {
-        init: init,
-    };
-}());
-;var SelfExlusionWS = (function() {
-    "use strict";
-
-    var $form,
-        $loading,
-        dateID,
-        errorClass,
-        hiddenClass;
-
-    var fields,
-        submittedValues,
-        isValid;
-
-    var init = function() {
-        $form       = $('#frmSelfExclusion');
-        $loading    = $('#loading');
-        dateID      = 'exclude_until';
-        errorClass  = 'errorfield';
-        hiddenClass = 'hidden';
-
-        if(page.client.is_virtual()) {
-            $('#selfExclusionDesc').addClass(hiddenClass);
-            showPageError(Content.localize().textFeatureUnavailable, true);
-            return;
-        }
-
-        showLoadingImage($loading);
-
-        submittedValues = {};
-
-        fields = {};
-        $form.find('input').each(function() {
-            fields[$(this).attr('id')] = '';
-        });
-
-        initDatePicker();
-        $form.find('button').on('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            if(formValidate()) {
-                setRequest();
-            }
-        });
-
-        getRequest();
-    };
-
-    // ----------------------
-    // ----- Get Values -----
-    // ----------------------
-    var getRequest = function() {
-        BinarySocket.send({"get_self_exclusion": "1"});
-    };
-
-    var getResponse = function(response) {
-        $loading.addClass(hiddenClass);
-        $form.removeClass(hiddenClass);
-
-        if('error' in response) {
-            if (response.error.code === 'ClientSelfExclusion') {
-                page.client.send_logout_request();
-            }
-            if('message' in response.error) {
-                showPageError(response.error.message, true);
-            }
-            return false;
-        } else {
-            $.each(response.get_self_exclusion, function(key, value) {
-                fields[key] = value + '';
-                $form.find('#' + key).val(value);
-            });
-        }
-    };
-
-    var initDatePicker = function () {
-        // 6 months from now
-        var start_date = new Date();
-        start_date.setMonth(start_date.getMonth() + 6);
-        start_date.setDate(start_date.getDate() + 1);
-
-        // 5 years from now
-        var end_date = new Date();
-        end_date.setFullYear(end_date.getFullYear() + 5);
-
-        var $dateID = $('#' + dateID);
-        $dateID.datepicker({
-            dateFormat: 'yy-mm-dd',
-            minDate   : start_date,
-            maxDate   : end_date,
-            onSelect  : function(dateText, inst) {
-                $dateID.attr('value', dateText);
-            }
-        });
-    };
-
-    // ----------------------
-    // ----- Set Values -----
-    // ----------------------
-    var setRequest = function() {
-        submittedValues['set_self_exclusion'] = '1';
-        BinarySocket.send(submittedValues);
-    };
-
-    var setResponse = function(response) {
-        if('error' in response) {
-            var  errMsg = response.error.message;
-            if('field' in response.error) {
-                showError(response.error.field, text.localize(errMsg));
-            }
-            else {
-                showFormMessage(text.localize(errMsg), false);
-            }
-        }
-        else {
-            showFormMessage(text.localize('Your changes have been updated.'), true);
-            page.client.set_storage_value('session_start', parseInt(moment().valueOf() / 1000)); // used to handle session duration limit
-            getRequest();
-        }
-    };
-
-    // ----------------------------
-    // ----- Form Validations -----
-    // ----------------------------
-    var formValidate = function() {
-        clearError();
-        isValid = true;
-        var isChanged = false;
-        submittedValues = {};
-
-        $.each(fields, function(key, currentValue) {
-            var newValue = $form.find('#' + key).val().trim();
-
-            if(newValue.length > 0) {
-                submittedValues[key] = newValue;
-            }
-
-            if(key === dateID) {
-                validateExclusionDate(newValue);
-            }
-            else {
-                if(newValue.length > 0 && !isNormalInteger(newValue)) {
-                    showError(key, text.localize('Please enter an integer value'));
-                }
-                else if(currentValue > 0 && (newValue.length === 0 || isLargerInt(newValue, currentValue))) {
-                    showError(key, text.localize('Please enter a number between 0 and [_1]').replace('[_1]', currentValue));
-                }
-                else if(key === 'session_duration_limit' && newValue > (6 * 7 * 24 * 60)) {
-                    showError(key, text.localize('Session duration limit cannot be more than 6 weeks.'));
-                }
-            }
-
-            if(newValue !== currentValue) {
-                isChanged = true;
-            }
-        });
-
-        if(isValid && !isChanged) {
-            showFormMessage('You did not change anything.', false);
-            isValid = false;
-        }
-
-        return isValid;
-    };
-
-    var isLargerInt = function(a, b) {
-        return a.length === b.length ? a > b : a.length > b.length;
-    };
-
-    var isNormalInteger = function(value) {
-        return /^\d+$/.test(value);
-    };
-
-    var validateExclusionDate = function(exclusion_date) {
-        var date_regex = /^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/;
-        var errMsg = '';
-
-        if (exclusion_date) {
-            if(date_regex.test(exclusion_date) === false){
-                errMsg = 'Please select a valid date';
-            }
-            else {
-                exclusion_date = new Date(exclusion_date);
-                // self exclusion date must > 6 months from now
-                var six_month_date = new Date();
-                six_month_date.setMonth(six_month_date.getMonth() + 6);
-                // self exclusion date must < 5 years from now
-                var five_year_date = new Date();
-                five_year_date.setFullYear(five_year_date.getFullYear() + 5);
-
-                if (exclusion_date < new Date()) {
-                    errMsg = 'Exclude time must be after today.';
-                }
-                else if (exclusion_date < six_month_date) {
-                    errMsg = 'Exclude time cannot be less than 6 months.';
-                }
-                else if (exclusion_date > five_year_date) {
-                    errMsg = 'Exclude time cannot be for more than 5 years.';
-                }
-                else {
-                    var isConfirmed = confirm(text.localize('When you click "Ok" you will be excluded from trading on the site until the selected date.'));
-                    if(!isConfirmed) {
-                        isValid = false;
-                    }
-                }
-            }
-        }
-
-        if(errMsg.length > 0) {
-            showError(dateID, text.localize(errMsg));
-        }
-    };
-
-    // -----------------------------
-    // ----- Message Functions -----
-    // -----------------------------
-    var showPageError = function(errMsg, hideForm) {
-        $('#errorMsg').html(errMsg).removeClass(hiddenClass);
-        if(hideForm) {
-            $form.addClass(hiddenClass);
-        }
-    };
-
-    var showError = function(fieldID, errMsg) {
-        $('#' + fieldID).parent().append($('<p/>', {class: errorClass, text: errMsg}));
-        isValid = false;
-    };
-
-    var clearError = function(fieldID) {
-        $(fieldID ? fieldID : '#frmSelfExclusion p.' + errorClass).remove();
-        $('#errorMsg').html('').addClass(hiddenClass);
-        $('#formMessage').html('');
-    };
-
-    var showFormMessage = function(msg, isSuccess) {
-        var $elmID = $('#formMessage');
-        $elmID
-            .attr('class', isSuccess ? 'success-msg' : errorClass)
-            .html(isSuccess ? '<ul class="checked"><li>' + text.localize(msg) + '</li></ul>' : text.localize(msg))
-            .css('display', 'block')
-            .delay(5000)
-            .fadeOut(1000);
-    };
-
-
-    return {
-        init        : init,
-        getResponse : getResponse,
-        setResponse : setResponse
-    };
-}());
-
-
-pjax_config_page_require_auth("user/self_exclusionws", function() {
-    return {
-        onLoad: function() {
-            BinarySocket.init({
-                onmessage: function(msg){
-                    var response = JSON.parse(msg.data);
-                    if (response) {
-                        if (response.msg_type === "authorize") {
-                            SelfExlusionWS.init();
-                        }
-                        else if (response.msg_type === "get_self_exclusion") {
-                            SelfExlusionWS.getResponse(response);
-                        }
-                        else if (response.msg_type === "set_self_exclusion") {
-                            SelfExlusionWS.setResponse(response);
-                        }
-                    }
-                    else {
-                        console.log('some error occured');
-                    }
-                }
-            });
-
-            Content.populate();
-            if(TUser.get().hasOwnProperty('is_virtual')) {
-                SelfExlusionWS.init();
-            }
-        }
-    };
-});
-;var SettingsDetailsWS = (function() {
-    "use strict";
-
-    var formID,
-        frmBtn,
-        RealAccElements,
-        errorClass;
-    var fieldIDs;
-    var isValid,
-        changed;
-
-
-    var init = function() {
-        formID = '#frmPersonalDetails';
-        frmBtn = formID + ' button';
-        RealAccElements = '.RealAcc';
-        errorClass = 'errorfield';
-        changed = false;
-        fieldIDs = {
-            address1 : '#Address1',
-            address2 : '#Address2',
-            city     : '#City',
-            state    : '#State',
-            postcode : '#Postcode',
-            phone    : '#Phone'
-        };
-
-        BinarySocket.send({"get_settings": "1"});
-    };
-
-    var getDetails = function(response) {
-        var data = response.get_settings;
-
-        $('#lblCountry').text(data.country);
-        $('#lblEmail').text(data.email);
-
-        if(page.client.is_virtual()){ // Virtual Account
-            $(RealAccElements).remove();
-        }
-        else { // Real Account
-            var birthDate = data.date_of_birth ? moment.utc(new Date(data.date_of_birth * 1000)).format("YYYY-MM-DD") : '';
-            $('#lblBirthDate').text(birthDate);
-            // Generate states list
-            var residence = $.cookie('residence');
-            BinarySocket.send({"states_list": residence, "passthrough": {"value": data.address_state}});
-            if (page.client.residence === 'jp') {
-                var jpData = response.get_settings.jp_settings;
-                $('#lblName').text((data.last_name || '') + ' ' + (data.first_name || ''));
-                $('#lblGender').text(text.localize(jpData.gender) || '');
-                $('#lblOccupation').text(text.localize(jpData.occupation) || '');
-                $('#lblAddress1').text(data.address_line_1 || '');
-                $('#lblAddress2').text(data.address_line_2 || '');
-                $('#lblCity').text(data.address_city || '');
-                $('#lblPostcode').text(data.address_postcode || '');
-                $('#lblPhone').text(data.phone || '');
-                $('#lblAnnualIncome').text(text.localize(jpData.annual_income) || '');
-                $('#lblFinancialAsset').text(text.localize(jpData.financial_asset) || '');
-                $('#lblDailyLossLimit').text(jpData.daily_loss_limit || '');
-                $('#lblEquities').text(text.localize(jpData.trading_experience_equities) || '');
-                $('#lblCommodities').text(text.localize(jpData.trading_experience_commodities) || '');
-                $('#lblForeignCurrencyDeposit').text(text.localize(jpData.trading_experience_foreign_currency_deposit) || '');
-                $('#lblMarginFX').text(text.localize(jpData.trading_experience_margin_fx) || '');
-                $('#lblInvestmentTrust').text(text.localize(jpData.trading_experience_investment_trust) || '');
-                $('#lblPublicCorporationBond').text(text.localize(jpData.trading_experience_public_bond) || '');
-                $('#lblDerivativeTrading').text(text.localize(jpData.trading_experience_option_trading) || '');
-                $('#lblPurposeOfTrading').text(text.localize(jpData.trading_purpose) || '');
-                if (jpData.hedge_asset !== null && jpData.hedge_asset_amount !== null) {
-                  $('#lblHedgeAsset').text(text.localize(jpData.hedge_asset) || '');
-                  $('#lblHedgeAssetAmount').text(jpData.hedge_asset_amount || '');
-                  $('.hedge').css('display', 'block');
-                }
-                $('.JpAcc').css('display', 'block');
-                $('.rowBirthDate').removeClass('hidden');
-                $('.rowName').removeClass('hidden');
-                $('.rowCustomerSupport').removeClass('hidden');
-            } else {
-                $('#lblName').text((data.salutation || '') + ' ' + (data.first_name || '') + ' ' + (data.last_name || ''));
-                $(fieldIDs.address1).val(data.address_line_1);
-                $(fieldIDs.address2).val(data.address_line_2);
-                $(fieldIDs.city).val(data.address_city);
-
-                $(fieldIDs.postcode).val(data.address_postcode);
-                $(fieldIDs.phone).val(data.phone);
-
-                $(fieldIDs.address1).on('change', function() {
-                  changed = true;
-                });
-                $(fieldIDs.address2).on('change', function() {
-                  changed = true;
-                });
-                $(fieldIDs.city).on('change', function() {
-                  changed = true;
-                });
-                $(fieldIDs.postcode).on('change', function() {
-                  changed = true;
-                });
-                $(fieldIDs.phone).on('change', function() {
-                  changed = true;
-                });
-
-                $(RealAccElements).removeClass('hidden');
-
-                $(frmBtn).click(function(e){
-                    e.preventDefault();
-                    e.stopPropagation();
-                    return setDetails();
-                });
-            }
-        }
-
-        $(formID).removeClass('hidden');
-    };
-
-    var populateStates = function(response) {
-        $(fieldIDs.state).empty();
-        var defaultValue = response.echo_req.passthrough.value;
-        var states = response.states_list;
-        if(states.length > 0) {
-            for(var i = 0; i < states.length; i++){
-                $(fieldIDs.state).append($('<option/>', {value: states[i].value, text: states[i].text}));
-            }
-            // set Current value
-            $(fieldIDs.state).val(defaultValue);
-        }
-        else {
-            $(fieldIDs.state).replaceWith($('<input/>', {id: 'State', type: 'text', maxlength: '35', value: defaultValue}));
-        }
-        $('#lblState').text($('#State option:selected').text());
-        $(fieldIDs.state).on('change', function() {
-          changed = true;
-        });
-    };
-
-    var formValidate = function() {
-        clearError();
-        isValid = true;
-
-        var address1 = $(fieldIDs.address1).val().trim(),
-            address2 = $(fieldIDs.address2).val().trim(),
-            city     = $(fieldIDs.city).val().trim(),
-            state    = $(fieldIDs.state).val(),
-            postcode = $(fieldIDs.postcode).val().trim(),
-            phone    = $(fieldIDs.phone).val().trim();
-
-        var letters = Content.localize().textLetters,
-            numbers = Content.localize().textNumbers,
-            space   = Content.localize().textSpace,
-            period  = Content.localize().textPeriod,
-            comma   = Content.localize().textComma;
-
-        // address 1
-        if(!isRequiredError(fieldIDs.address1) && !(/^[a-zA-Z0-9\s\,\.\-\/\(\)#']+$/).test(address1)) {
-            showError(fieldIDs.address1, Content.errorMessage('reg', [letters, numbers, space, period, comma, '- / ( ) # \'']));
-        }
-
-        // address line 2
-        if(!(/^[a-zA-Z0-9\s\,\.\-\/\(\)#']*$/).test(address2)) {
-            showError(fieldIDs.address2, Content.errorMessage('reg', [letters, numbers, space, period, comma, '- / ( ) # \'']));
-        }
-
-        // town/city
-        isRequiredError(fieldIDs.city);
-
-        // state
-        if(!isRequiredError(fieldIDs.state) && ($(fieldIDs.state).is('input') && !(/^[a-zA-Z\s\-']+$/).test(state))) {
-            showError(fieldIDs.state, Content.errorMessage('reg', [letters, space, '- \'']));
-        }
-
-        // postcode
-        if(!isRequiredError(fieldIDs.postcode) && !isCountError(fieldIDs.postcode, 4, 20) && !(/(^[a-zA-Z0-9\s\-\/]+$)/).test(postcode)) {
-            showError(fieldIDs.postcode, Content.errorMessage('reg', [letters, numbers, space, '- /']));
-        }
-
-        // telephone
-        if(!isCountError(fieldIDs.phone, 6, 35) && !(/^(|\+?[0-9\s\-]+)$/).test(phone)) {
-            showError(fieldIDs.phone, Content.errorMessage('reg', [numbers, space, '-']));
-        }
-
-        if (!changed) {
-          isValid = false;
-        }
-        changed = false;
-
-        if(isValid) {
-            return {
-                address1 : address1,
-                address2 : address2,
-                city     : city,
-                state    : state,
-                postcode : postcode,
-                phone    : phone
-            };
-        }
-        else {
-            return false;
-        }
-    };
-
-    var isRequiredError = function(fieldID) {
-        if(!$(fieldID).val() || !(/.+/).test($(fieldID).val().trim())){
-            showError(fieldID, Content.errorMessage('req'));
-            return true;
-        } else {
-            return false;
-        }
-    };
-
-    var isCountError = function(fieldID, min, max) {
-        var fieldValue = $(fieldID).val().trim();
-        if((fieldValue.length > 0 && fieldValue.length < min) || fieldValue.length > max) {
-            showError(fieldID, Content.errorMessage('range', '(' + min + '-' + max + ')'));
-            return true;
-        } else {
-            return false;
-        }
-    };
-
-    var showError = function(fieldID, errMsg) {
-        $(fieldID).after($('<p/>', {class: errorClass, text: errMsg}));
-        isValid = false;
-    };
-
-    var clearError = function(fieldID) {
-        $(fieldID ? fieldID : formID + ' .' + errorClass).remove();
-    };
-
-    var setDetails = function() {
-        var formData = formValidate();
-        if(!formData)
-            return false;
-
-        BinarySocket.send({
-            "set_settings"    : 1,
-            "address_line_1"  : formData.address1,
-            "address_line_2"  : formData.address2,
-            "address_city"    : formData.city,
-            "address_state"   : formData.state,
-            "address_postcode": formData.postcode,
-            "phone"           : formData.phone
-        });
-    };
-
-    var setDetailsResponse = function(response) {
-        var isError = response.set_settings !== 1;
-        $('#formMessage').css('display', '')
-            .attr('class', isError ? 'errorfield' : 'success-msg')
-            .html(isError ? text.localize('Sorry, an error occurred while processing your account.') : '<ul class="checked"><li>' + text.localize('Your settings have been updated successfully.') + '</li></ul>')
-            .delay(3000)
-            .fadeOut(1000);
-    };
-
-
-    return {
-        init: init,
-        getDetails: getDetails,
-        setDetails: setDetails,
-        setDetailsResponse: setDetailsResponse,
-        populateStates: populateStates
-    };
-}());
-
-
-
-pjax_config_page_require_auth("settings/detailsws", function() {
-    return {
-        onLoad: function() {
-            BinarySocket.init({
-                onmessage: function(msg) {
-                    var response = JSON.parse(msg.data);
-                    if (response) {
-                        var type = response.msg_type;
-                        switch(type){
-                            case "get_settings":
-                                SettingsDetailsWS.getDetails(response);
-                                break;
-                            case "set_settings":
-                                SettingsDetailsWS.setDetailsResponse(response);
-                                break;
-                            case "states_list":
-                                SettingsDetailsWS.populateStates(response);
-                                break;
-                            case "error":
-                                $('#formMessage').attr('class', 'errorfield').text(response.error.message);
-                                break;
-                            default:
-                                break;
-                        }
-                    }
-                    else {
-                        console.log('some error occured');
-                    }
-                }
-            });
-
-            Content.populate();
-            SettingsDetailsWS.init();
-        }
-    };
-});
-;var SettingsWS = (function() {
-    "use strict";
-
-    var init = function() {
-        var classHidden = 'invisible',
-            classReal   = '.real';
-
-        if(!page.client.is_virtual()) {
-            $(classReal).removeClass(classHidden);
-        }
-        else {
-            $(classReal).addClass(classHidden);
-        }
-
-        $('#settingsContainer').removeClass(classHidden);
-    };
-
-    return {
-        init: init
-    };
-}());
-
-
-pjax_config_page_require_auth("settingsws", function() {
-    return {
-        onLoad: function() {
-            if(page.client.get_storage_value('is_virtual').length === 0) {
-                BinarySocket.init({
-                    onmessage: function(msg) {
-                        var response = JSON.parse(msg.data);
-                        if (response && response.msg_type === 'authorize') {
-                            SettingsWS.init();
-                        }
-                    }
-                });
-            }
-            else {
-                SettingsWS.init();
-            }
-        }
-    };
-});
-;var TNCApproval = (function() {
-    "use strict";
-
-    var terms_conditions_version,
-        client_tnc_status,
-        hiddenClass,
-        redirectUrl,
-        isReal;
-
-
-    var init = function() {
-        hiddenClass = 'invisible';
-        showLoadingImage($('#tnc-loading'));
-
-        redirectUrl = sessionStorage.getItem('tnc_redirect');
-        sessionStorage.removeItem('tnc_redirect');
-
-        BinarySocket.send({"get_settings"   : "1"});
-        BinarySocket.send({"website_status" : "1"});
-
-        $('#btn-accept').click(function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            BinarySocket.send({"tnc_approval" : "1"});
-        });
-    };
-
-    var showTNC = function() {
-        if(!terms_conditions_version || !client_tnc_status) {
-            return;
-        }
-
-        if(terms_conditions_version === client_tnc_status) {
-            redirectBack();
-            return;
-        }
-
-        $('#tnc-loading').addClass(hiddenClass);
-        $('#tnc_image').attr('src', page.url.url_for_static('images/pages/cashier/protection-icon.svg'));
-        $('#tnc_approval').removeClass(hiddenClass);
-        $('#tnc-message').html(
-            text.localize('[_1] has updated its [_2]. By clicking OK, you confirm that you have read and accepted the updated [_2].')
-                .replace('[_1]', page.client.get_storage_value('landing_company_name'))
-                .replace(/\[_2\]/g, $('<a/>', {class: 'pjaxload', href: page.url.url_for('terms-and-conditions'), text: text.localize('Terms & Conditions')}).prop('outerHTML'))
-        );
-        $('#btn-accept').text(text.localize('OK'));
-    };
-
-    var responseTNCApproval = function(response) {
-        if(!response.hasOwnProperty('error')) {
-            redirectBack();
-        }
-        else {
-            $('#err_message').html(response.error.message).removeClass(hiddenClass);
-        }
-    };
-
-    var redirectBack = function() {
-        window.location.href = redirectUrl || page.url.default_redirect_url();
-    };
-
-    var apiResponse = function(response) {
-        isReal = !TUser.get().is_virtual;
-        if(!isReal) {
-            redirectBack();
-        }
-
-        switch(response.msg_type) {
-            case 'website_status':
-                terms_conditions_version = response.website_status.terms_conditions_version;
-                showTNC();
-                break;
-            case 'get_settings':
-                client_tnc_status = response.get_settings.client_tnc_status || '-';
-                showTNC();
-                break;
-            case 'tnc_approval':
-                responseTNCApproval(response);
-                break;
-            default:
-                break;
-        }
-    };
-
-    return {
-        init : init,
-        apiResponse : apiResponse
-    };
-}());
-
-
-
-pjax_config_page_require_auth("tnc_approvalws", function() {
-    return {
-        onLoad: function() {
-            BinarySocket.init({
-                onmessage: function(msg) {
-                    var response = JSON.parse(msg.data);
-                    if (response) {
-                        TNCApproval.apiResponse(response);
-                    }
-                }
-            });
-
-            Content.populate();
-            TNCApproval.init();
-        }
-    };
-});
-;var ForwardWS = (function() {
-  function init() {
-    Content.populate();
-    var verification_error = document.getElementById('verification-error');
-    $('#submit-currency').click(function() {
-      $('#submit-currency').attr('disabled', 'disabled');
-      BinarySocket.send({"set_account_currency": $('#select-currency').val()});
-    });
-    $('#submit-verification').click(function() {
-      var verification_token = document.getElementById('verification-token').value;
-      if (!Validate.errorMessageToken(verification_token, verification_error)) {
-        $('#submit-verification').attr('disabled', 'disabled');
-        getCashierURL(verification_token);
-      }
-    });
-    $('#submit-ukgc-funds-protection').click(function() {
-      $('#submit-ukgc-funds-protection').attr('disabled', 'disabled');
-      BinarySocket.send({"tnc_approval": 1, "ukgc_funds_protection": 1});
-    });
-  }
-  function getCashierType() {
-    var cashier_type;
-    if (/withdraw/.test(window.location.hash)) {
-      cashier_type = 'withdraw';
-      document.getElementById('deposit-withdraw-heading').innerHTML = 'Withdraw';
-    } else if (/deposit/.test(window.location.hash)) {
-      cashier_type = 'deposit';
-      document.getElementById('deposit-withdraw-heading').innerHTML = 'Deposit';
-    }
-    return cashier_type;
-  }
-  function getCashierURL(verification_token) {
-    var req = {'cashier':getCashierType()};
-    if (verification_token) req.verification_code = verification_token;
-    BinarySocket.send(req);
-  }
-  function hideAll() {
-    $('#withdraw-form').hide();
-    $('#currency-form').hide();
-    $('#ukgc-funds-protection').hide();
-    $('#deposit-withdraw-error').hide();
-  }
-  function showError(error) {
-    hideAll();
-    document.getElementById('deposit-withdraw-error').innerHTML = error || text.localize('Sorry, an error occurred while processing your request.');
-    $('#deposit-withdraw-error').show();
-  }
-  function lock_withdrawal(withdrawal_locked) {
-    if (withdrawal_locked === 'locked') {
-      showError(text.localize('Withdrawal is locked, please [_1] for more information.')
-                    .replace('[_1]', '<a href="' + page.url.url_for('/contact') + '">' +
-                                     text.localize('contact us') + '</a>'));
-    } else {
-      BinarySocket.send({"cashier_password": "1"});
-    }
-  }
-  return {
-    init: init,
-    getCashierType: getCashierType,
-    getCashierURL: getCashierURL,
-    hideAll: hideAll,
-    showError: showError,
-    lock_withdrawal: lock_withdrawal
-  };
-})();
-
-pjax_config_page_require_auth("cashier/forwardws", function() {
-    return {
-        onLoad: function() {
-          function check_virtual() {
-            if (page.client.is_virtual()) {
-              ForwardWS.showError(text.localize('This feature is not relevant to virtual-money accounts.'));
-            }
-            return page.client.is_virtual();
-          }
-          if (!check_virtual()) {
-            BinarySocket.init({
-              onmessage: function(msg){
-                var response = JSON.parse(msg.data);
-                if (response && !check_virtual()) {
-                  var type = response.msg_type;
-                  var error = response.error;
-                  if (type === 'cashier_password' && !error){
-                    ForwardWS.init();
-                    if (response.cashier_password === 1) {
-                      document.getElementById('deposit-withdraw-message').innerHTML = text.localize('Your cashier is locked as per your request - to unlock it, please click [_1]here')
-                                                                                          .replace('[_1]', '<a href="' + page.url.url_for('user/settings/securityws') + '">') + '.</a>';
-                    } else {
-                      var cashier_type = ForwardWS.getCashierType();
-                      if (cashier_type === 'withdraw') {
-                        BinarySocket.send({'verify_email': TUser.get().email, 'type': 'payment_withdraw'});
-                        document.getElementById('deposit-withdraw-message').innerHTML = text.localize('For added security, please check your email to retrieve the verification token.');
-                        $('#withdraw-form').show();
-                      } else if (cashier_type === 'deposit') {
-                        if (TUser.get().currency !== "") {
-                          ForwardWS.getCashierURL();
-                        } else {
-                          document.getElementById('deposit-withdraw-message').innerHTML = text.localize('Please choose which currency you would like to transact in.');
-                          $('#currency-form').show();
-                        }
-                      }
-                    }
-                  } else if (type === 'cashier_password' && error) {
-                    ForwardWS.showError(error.message);
-                  } else if (type === 'cashier' && !error) {
-                    ForwardWS.hideAll();
-                    document.getElementById('deposit-withdraw-message').innerHTML = '';
-                    $('#deposit-withdraw-iframe-container iframe').attr('src', response.cashier);
-                    $('#deposit-withdraw-iframe-container').show();
-                  } else if (type === 'cashier' && error) {
-                    ForwardWS.hideAll();
-                    document.getElementById('deposit-withdraw-message').innerHTML = '';
-                    if (error.code && error.code === 'ASK_TNC_APPROVAL') {
-                      window.location.href = page.url.url_for('user/tnc_approvalws');
-                    } else if (error.code && error.code === 'ASK_FIX_ADDRESS') {
-                      document.getElementById('deposit-withdraw-message').innerHTML = text.localize('There was a problem validating your personal details. Please fix the fields [_1]here')
-                                                                                          .replace('[_1]', '<a href="' + page.url.url_for('user/settings/detailsws') + '">') + '.</a> ' +
-                                                                                          text.localize('If you need assistance feel free to contact our [_1]Customer Support')
-                                                                                          .replace('[_1]', '<a href="' + page.url.url_for('contact') + '">') + '.</a>';
-                    } else if (error.code && error.code === 'ASK_UK_FUNDS_PROTECTION') {
-                      $('#ukgc-funds-protection').show();
-                    } else if (error.code && error.code === 'ASK_AUTHENTICATE') {
-                      document.getElementById('deposit-withdraw-message').innerHTML = text.localize('Your account is not fully authenticated. Please visit the <a href="[_1]">authentication</a> page for more information.')
-                                                                                          .replace('[_1]', page.url.url_for('cashier/authenticatews'));
-                    } else {
-                        ForwardWS.showError(error.message);
-                    }
-                  } else if (type === 'set_account_currency' && !error) {
-                    ForwardWS.getCashierURL();
-                  } else if (type === 'set_account_currency' && error) {
-                    ForwardWS.showError(error.message);
-                  } else if (type === 'tnc_approval' && !error) {
-                    ForwardWS.getCashierURL();
-                  } else if (type === 'tnc_approval' && error) {
-                    ForwardWS.showError(error.message);
-                  }
-                }
-              }
-            });
-            if (sessionStorage.getItem('withdrawal_locked') === 'locked' && /withdraw/.test(window.location.hash)) {
-              ForwardWS.lock_withdrawal('locked');
-            } else if (!sessionStorage.getItem('withdrawal_locked') && /withdraw/.test(window.location.hash)) {
-              BinarySocket.send({"get_account_status": "1", "passthrough":{"dispatch_to":"ForwardWS"}});
-            } else {
-              BinarySocket.send({"cashier_password": "1"});
-            }
-          }
-        }
-    };
-});
-;var sidebar_scroll = function(elm_selector) {
-    elm_selector.on('click', '#sidebar-nav li', function() {
-        var clicked_li = $(this);
-        $.scrollTo($('.section:eq(' + clicked_li.index() + ')'), 500);
-        return false;
-    }).addClass('unbind_later');
-
-    if (elm_selector.size()) {
-        // grab the initial top offset of the navigation
-        var selector = elm_selector.find('.sidebar');
-        var width = selector.width();
-        var sticky_navigation_offset_top = selector.offset().top;
-        // With thanks:
-        // http://www.backslash.gr/content/blog/webdevelopment/6-navigation-menu-that-stays-on-top-with-jquery
-
-        // our function that decides weather the navigation bar should have "fixed" css position or not.
-        var sticky_navigation = function() {
-            var scroll_top = $(window).scrollTop(); // our current vertical position from the top
-
-            // if we've scrolled more than the navigation, change its position to fixed to stick to top,
-            // otherwise change it back to relative
-            if (scroll_top > sticky_navigation_offset_top && scroll_top + selector[0].offsetHeight < document.getElementById('footer').offsetTop) {
-                selector.css({'position': 'fixed', 'top': 0, 'width': width});
-            } else if (scroll_top + selector[0].offsetHeight > document.getElementById('footer').offsetTop) {
-                selector.css({'position': 'absolute', 'bottom': document.getElementById('footer').offsetHeight + 'px', 'top': '', 'width': width});
-            } else {
-                selector.css({'position': 'relative'});
-            }
-        };
-
-        //run our function on load
-        sticky_navigation();
-
-        var sidebar_nav = selector.find('#sidebar-nav');
-        var length = elm_selector.find('.section').length;
-        $(window).on('scroll', function() {
-            // and run it again every time you scroll
-            sticky_navigation();
-
-            for (var i = 0; i < length; i++) {
-                if ($(window).scrollTop() === 0 || $(this).scrollTop() >= $('.section:eq(' + i + ')').offset().top - 5) {
-                    sidebar_nav.find('li').removeClass('selected');
-
-                    if ($(window).scrollTop() === 0) {
-                        // We're at the top of the screen, so highlight first nav item
-                        sidebar_nav.find('li:first-child').addClass('selected');
-                    } else if ($(window).scrollTop() + $(window).height() >= $(document).height()) {
-                        // We're at bottom of screen so highlight last nav item.
-                        sidebar_nav.find('li:last-child').addClass('selected');
-                    } else {
-                        sidebar_nav.find('li:eq(' + i + ')').addClass('selected');
-                    }
-                }
-            }
-        });
-    }
-};
-
-var get_started_behaviour = function() {
-    // Get Started behaviour:
-
-    var update_active_subsection = function(to_show) {
-        var fragment;
-        var subsection = $('.subsection');
-        subsection.addClass('hidden');
-        to_show.removeClass('hidden');
-        var nav_back = $('.subsection-navigation .back');
-        var nav_next = $('.subsection-navigation .next');
-
-        if (to_show.hasClass('first')) {
-            nav_back.addClass('disabled');
-            nav_next.removeClass('disabled');
-        } else if (to_show.hasClass('last')) {
-            nav_back.removeClass('disabled');
-            nav_next.addClass('disabled');
-        } else {
-            nav_back.removeClass('disabled');
-            nav_next.removeClass('disabled');
-        }
-
-        fragment = to_show.find('a[name]').attr('name').slice(0, -8);
-        document.location.hash = fragment;
-
-        return false;
-    };
-
-    var to_show;
-    var nav = $('.get-started').find('.subsection-navigation');
-    var fragment;
-    var len = nav.length;
-
-    if (len) {
-        nav.on('click', 'a', function() {
-            var button = $(this);
-            if (button.hasClass('disabled')) {
-                return false;
-            }
-            var now_showing = $('.subsection:not(.hidden)');
-            var show = button.hasClass('next') ? now_showing.next('.subsection') : now_showing.prev('.subsection');
-            return update_active_subsection(show);
-        });
-
-        fragment = (location.href.split('#'))[1];
-        to_show = fragment ? $('a[name=' + fragment + '-section]').parent().parent('.subsection') : $('.subsection.first');
-        update_active_subsection(to_show);
-    }
-    select_nav_element();
-};
-
-var select_nav_element = function() {
-  var $navLink = $('.nav li a');
-  var $navList = $('.nav li');
-  $navList.removeClass('selected');
-  for (i = 0; i < $navLink.length; i++) {
-    if ($navLink[i].href.match(window.location.pathname)) {
-      document.getElementsByClassName('nav')[0].getElementsByTagName('li')[i].setAttribute('class', 'selected');
-      break;
-    }
-  }
-  return;
-};
-
-var Charts = function(charts) {
-    window.open(charts, 'DetWin', 'width=580,height=710,scrollbars=yes,location=no,status=no,menubar=no');
-};
-
-var email_rot13 = function(str) {
-    return str.replace(/[a-zA-Z]/g, function(c){return String.fromCharCode((c<="Z"?90:122)>=(c=c.charCodeAt(0)+13)?c:c-26);});
-};
-
-var display_cs_contacts = function () {
-    $('.contact-content').on("change", '#cs_telephone_number', function () {
-        var val = $(this).val();
-        $('#display_cs_telephone').text(val);
-    });
-    $('#cs_contact_eaddress').html(email_rot13("<n uers=\"znvygb:fhccbeg@ovanel.pbz\" ery=\"absbyybj\">fhccbeg@ovanel.pbz</n>"));
-};
-
-var change_chat_icon = function () {
-  // desk.com change icon - crude way
-  var len = $('#live-chat-icon').length;
-  if( len > 0 ) {
-      var timer = null;
-      var updateIcon =  function () {
-          var image_link = page.settings.get('image_link');
-          var desk_widget = $('.a-desk-widget');
-          var image_str = desk_widget.css('background-image');
-          if(image_str) {
-              desk_widget.css({
-                  'background-image': 'url("' + image_link['livechaticon'] + '")',
-                  'background-size': 'contain',
-                  'min-width': 50,
-                  'min-height': 50,
-                  'width': 'auto'
-              });
-              desk_widget.hover(function() {
-                  $(this).css({
-                      'background': 'url("' + image_link['livechaticon'] + '") no-repeat scroll 0 0',
-                      'background-size': 'contain',
-                  });
-              });
-
-              if(image_str.match(/live-chat-icon/g)){
-                  clearInterval(timer);
-              }
-          }
-      };
-      timer = setInterval(updateIcon, 500);
-  }
-};
-
-var render_desk_widget = function() {
-       new DESK.Widget({
-                version: 1,
-                site: 'binary.desk.com',
-                port: '80',
-                type: 'chat',
-                id: 'live-chat-icon',
-                displayMode: 0,  //0 for popup, 1 for lightbox
-                features: {
-                        offerAlways: true,
-                        offerAgentsOnline: false,
-                        offerRoutingAgentsAvailable: false,
-                        offerEmailIfChatUnavailable: false
-                },
-                fields: {
-                        ticket: {
-                                // desc: &#x27;&#x27;,
-                // labels_new: &#x27;&#x27;,
-                // priority: &#x27;&#x27;,
-                // subject: &#x27;&#x27;,
-                // custom_loginid: &#x27;&#x27;
-                        },
-                        interaction: {
-                                // email: &#x27;&#x27;,
-                // name: &#x27;&#x27;
-                        },
-                        chat: {
-                                //subject: ''
-                        },
-                        customer: {
-                                // company: &#x27;&#x27;,
-                // desc: &#x27;&#x27;,
-                // first_name: &#x27;&#x27;,
-                // last_name: &#x27;&#x27;,
-                // locale_code: &#x27;&#x27;,
-                // title: &#x27;&#x27;,
-                // custom_loginid: &#x27;&#x27;
-                        }
-                }
-        }).render();
-};
-
-var show_live_chat_icon = function() {
-    if(typeof DESK === 'undefined') {
-        loadCSS("https://d3jyn100am7dxp.cloudfront.net/assets/widget_embed_191.cssgz?1367387331");
-        loadJS("https://d3jyn100am7dxp.cloudfront.net/assets/widget_embed_libraries_191.jsgz?1367387332");
-    }
-
-
-    var desk_load = setInterval(function() {
-        if(typeof DESK !== "undefined") {
-            render_desk_widget();
-            change_chat_icon();
-            clearInterval(desk_load);
-        }
-    }, 80);
-};
-
-var display_career_email = function() {
-    $("#hr_contact_eaddress").html(email_rot13("<n uers=\"znvygb:ue@ovanel.pbz\" ery=\"absbyybj\">ue@ovanel.pbz</n>"));
-};
-
-function check_login_hide_signup() {
-    if (page.client.is_logged_in) {
-        $('#verify-email-form').remove();
-        $('.break').attr('style', 'margin-bottom:1em');
-    }
-}
-
-function hide_if_logged_in() {
-    if (page.client.is_logged_in) {
-        $('.client_logged_out').remove();
-    }
-}
-
-// use function to generate elements and append them
-// e.g. element is select and element to append is option
-function appendTextValueChild(element, text, value, disabled){
-    var option = document.createElement("option");
-    option.text = text;
-    option.value = value;
-    if (disabled === 'disabled') {
-      option.setAttribute('disabled', disabled);
-    }
-    element.appendChild(option);
-    return;
-}
-
-// append numbers to a drop down menu, eg 1-30
-function dropDownNumbers(select, startNum, endNum) {
-    select.appendChild(document.createElement("option"));
-
-    for (i = startNum; i <= endNum; i++){
-        var option = document.createElement("option");
-        option.text = i;
-        option.value = i;
-        select.appendChild(option);
-    }
-    return;
-
-}
-
-function dropDownMonths(select, startNum, endNum) {
-    var months = [
-        text.localize("Jan"),
-        text.localize("Feb"),
-        text.localize("Mar"),
-        text.localize("Apr"),
-        text.localize("May"),
-        text.localize("Jun"),
-        text.localize("Jul"),
-        text.localize("Aug"),
-        text.localize("Sep"),
-        text.localize("Oct"),
-        text.localize("Nov"),
-        text.localize("Dec")
-    ];
-    select.appendChild(document.createElement("option"));
-    for (i = startNum; i <= endNum; i++){
-        var option = document.createElement("option");
-        if (i <= '9') {
-            option.value = '0' + i;
-        } else {
-            option.value = i;
-        }
-        for (j = i; j <= i; j++) {
-            option.text = months[j-1];
-        }
-        select.appendChild(option);
-    }
-    return;
-}
-
-function generateBirthDate(country){
-    var days    = document.getElementById('dobdd'),
-        months  = document.getElementById('dobmm'),
-        year    = document.getElementById('dobyy');
-
-    if (document.getElementById('dobdd').length > 1) return;
-
-    //days
-    dropDownNumbers(days, 1, 31);
-    //months
-    dropDownMonths(months, 1, 12);
-    var currentYear = new Date().getFullYear();
-    var startYear = currentYear - 100;
-    var endYear = currentYear - 17;
-    //years
-    dropDownNumbers(year, startYear, endYear);
-    if ((country && country === 'jp') || page.language().toLowerCase() === 'ja') {
-      days.options[0].innerHTML = text.localize('Day');
-      months.options[0].innerHTML = text.localize('Month');
-      year.options[0].innerHTML = text.localize('Year');
-    }
-    return;
-}
-
-function isValidDate(day, month, year){
-    // Assume not leap year by default (note zero index for Jan)
-    var daysInMonth = [31,28,31,30,31,30,31,31,30,31,30,31];
-
-    // If evenly divisible by 4 and not evenly divisible by 100,
-    // or is evenly divisible by 400, then a leap year
-    if ( ((year % 4 === 0) && (year % 100 !== 0)) || (year % 400 === 0) ) {
-        daysInMonth[1] = 29;
-    }
-    return day <= daysInMonth[--month];
-}
-
-function handle_residence_state_ws(){
-  BinarySocket.init({
-    onmessage: function(msg){
-      var select;
-      var response = JSON.parse(msg.data);
-      if (response) {
-        var type = response.msg_type;
-        var country;
-        var residenceDisabled = $('#residence-disabled');
-        if (type === 'get_settings') {
-          country = response.get_settings.country_code;
-          if (country && country !== null) {
-            page.client.residence = country;
-            generateBirthDate(country);
-            generateState();
-            if (/maltainvestws/.test(window.location.pathname)) {
-              var settings = response.get_settings;
-              var title = document.getElementById('title'),
-                  fname = document.getElementById('fname'),
-                  lname = document.getElementById('lname'),
-                  dobdd = document.getElementById('dobdd'),
-                  dobmm = document.getElementById('dobmm'),
-                  dobyy = document.getElementById('dobyy');
-              var inputs = document.getElementsByClassName('input-disabled');
-              if (settings.salutation) {
-                title.value = settings.salutation;
-                fname.value = settings.first_name;
-                lname.value = settings.last_name;
-                var day = moment.utc(settings.date_of_birth * 1000).format('DD');
-                dobdd.value = /^0/.test(day) ? day.replace('0','') : day;
-                dobmm.value = moment.utc(settings.date_of_birth * 1000).format('MM');
-                dobyy.value = moment.utc(settings.date_of_birth * 1000).format('YYYY');
-                for (i = 0; i < inputs.length; i++) {
-                    inputs[i].disabled = true;
-                }
-                document.getElementById('address1').value = settings.address_line_1;
-                document.getElementById('address2').value = settings.address_line_2;
-                document.getElementById('address-town').value = settings.address_city;
-                window.state = settings.address_state;
-                document.getElementById('address-postcode').value = settings.address_postcode;
-                document.getElementById('tel').value = settings.phone;
-              } else {
-                for (i = 0; i < inputs.length; i++) {
-                    inputs[i].disabled = false;
-                }
-              }
-            }
-            return;
-          } else if (document.getElementById('move-residence-here')) {
-            var residenceForm = $('#residence-form');
-            $('#real-form').hide();
-            residenceDisabled.insertAfter('#move-residence-here');
-            $('#error-residence').insertAfter('#residence-disabled');
-            residenceDisabled.removeAttr('disabled');
-            residenceForm.show();
-            residenceForm.submit(function(evt) {
-              evt.preventDefault();
-              if (Validate.fieldNotEmpty(residenceDisabled.val(), document.getElementById('error-residence'))) {
-                page.client.residence = residenceDisabled.val();
-                BinarySocket.send({set_settings:1, residence:page.client.residence});
-              }
-              return;
-            });
-            return;
-          }
-        } else if (type === 'set_settings') {
-          var errorElement = document.getElementById('error-residence');
-          if (response.hasOwnProperty('error')) {
-            if (response.error.message) {
-              errorElement.innerHTML = response.error.message;
-              errorElement.setAttribute('style', 'display:block');
-            }
-            return;
-          } else {
-            errorElement.setAttribute('style', 'display:none');
-            BinarySocket.send({landing_company: page.client.residence});
-            return;
-          }
-        } else if (type === 'landing_company') {
-          $.cookie('residence', page.client.residence, {domain: '.' + document.domain.split('.').slice(-2).join('.'), path: '/'});
-          if (response.landing_company.hasOwnProperty('financial_company') && !response.landing_company.hasOwnProperty('gaming_company') && response.landing_company.financial_company.shortcode === 'maltainvest') {
-            window.location.href = page.url.url_for('new_account/maltainvestws');
-            return;
-          } else if (response.landing_company.hasOwnProperty('financial_company') && !response.landing_company.hasOwnProperty('gaming_company') && response.landing_company.financial_company.shortcode === 'japan') {
-            window.location.href = page.url.url_for('new_account/japanws');
-            return;
-          } else if (!$('#real-form').is(':visible')) {
-            $('#residence-form').hide();
-            residenceDisabled.insertAfter('#move-residence-back');
-            $('#error-residence').insertAfter('#residence-disabled');
-            residenceDisabled.attr('disabled', 'disabled');
-            $('#real-form').show();
-            generateBirthDate(country);
-            generateState();
-            return;
-          }
-        } else if (type === 'states_list'){
-          select = document.getElementById('address-state');
-          var states_list = response.states_list;
-          if (states_list.length > 0){
-            for (i = 0; i < states_list.length; i++) {
-                appendTextValueChild(select, states_list[i].text, states_list[i].value);
-            }
-            select.parentNode.parentNode.setAttribute('style', 'display:block');
-            if (window.state) {
-              select.value = window.state;
-            }
-          }
-          return;
-        } else if (type === 'residence_list'){
-          select = document.getElementById('residence-disabled') || document.getElementById('residence');
-          var phoneElement   = document.getElementById('tel'),
-              residenceValue = page.client.residence,
-              residence_list = response.residence_list;
-          if (residence_list.length > 0){
-            for (i = 0; i < residence_list.length; i++) {
-              if (residence_list[i].disabled  && select) {
-                appendTextValueChild(select, residence_list[i].text, residence_list[i].value, 'disabled');
-              } else if (select) {
-                appendTextValueChild(select, residence_list[i].text, residence_list[i].value);
-              }
-              if (phoneElement && phoneElement.value === '' && residence_list[i].phone_idd && residenceValue === residence_list[i].value){
-                phoneElement.value = '+' + residence_list[i].phone_idd;
-              }
-            }
-            if (residenceValue && select){
-                select.value = residenceValue;
-            }
-            if (document.getElementById('virtual-form')) {
-                BinarySocket.send({website_status:1});
-            }
-          }
-          return;
-        } else if (type === 'website_status') {
-          var status  = response.website_status;
-          if (status && status.clients_country) {
-            var clientCountry = $('#residence option[value="' + status.clients_country + '"]');
-            if (!clientCountry.attr('disabled')) {
-                clientCountry.attr('selected', 'selected');
-            }
-          }
-          return;
-        }
-      }
-    }
-  });
-}
-
-function generateState() {
-    var state = document.getElementById('address-state');
-    appendTextValueChild(state, Content.localize().textSelect, '');
-    if (page.client.residence !== "") {
-      BinarySocket.send({ states_list: page.client.residence });
-    }
-    return;
-}
-
-// returns true if internet explorer browser
-function isIE() {
-  return /(msie|trident|edge)/i.test(window.navigator.userAgent) && !window.opera;
-}
-
-// trim leading and trailing white space
-function Trim(str){
-  while(str.charAt(0) == (" ") ){str = str.substring(1);}
-  while(str.charAt(str.length-1) ==" " ){str = str.substring(0,str.length-1);}
-  return str;
-}
-
-function limitLanguage(lang) {
-  if (page.language() !== lang && !Login.is_login_pages()) {
-    window.location.href = page.url_for_language(lang);
-  }
-  if (document.getElementById('language_select')) {
-    $('#language_select').remove();
-    $('#gmt-clock').removeClass();
-    $('#gmt-clock').addClass('grd-grid-6 grd-grid-mobile-12');
-    $('#contact-us').removeClass();
-    $('#contact-us').addClass('grd-grid-6 grd-hide-mobile');
-  }
-}
-
-function checkClientsCountry() {
-  var clients_country = localStorage.getItem('clients_country');
-  if (clients_country) {
-    var str;
-    if (clients_country === 'jp') {
-      limitLanguage('JA');
-    } else if (clients_country === 'id') {
-      limitLanguage('ID');
-    } else {
-      $('#language_select').show();
-    }
-  } else {
-    BinarySocket.init();
-    BinarySocket.send({"website_status" : "1"});
-  }
-}
-
-
-if (page.language() === 'ID') {
-  change_blog_link('id');
-}
-
-function change_blog_link(lang) {
-  var regex = new RegExp(lang);
-  if (!regex.test($('.blog a').attr('href'))) {
-    $('.blog a').attr('href', $('.blog a').attr('href') + '/' + lang + '/');
-  }
-}
-
-pjax_config_page('/\?.+|/home', function() {
-    return {
-        onLoad: function() {
-            if(/^(\/|\/home)$/i.test(window.location.pathname)) {
-                page.client.redirect_if_login();
-            }
-            check_login_hide_signup();
-            submit_email();
-        }
-    };
-});
-
-pjax_config_page('/why-us', function() {
-    return {
-        onLoad: function() {
-            var whyus = $('.why-us');
-            sidebar_scroll(whyus);
-            hide_if_logged_in();
-        },
-        onUnload: function() {
-            $(window).off('scroll');
-        }
-    };
-});
-
-pjax_config_page('/volidx-markets', function() {
-    return {
-        onLoad: function() {
-            if (page.url.location.hash !== "") {
-              $('a[href="' + page.url.location.hash + '"]').click();
-            }
-        },
-        onUnload: function() {
-            $(window).off('scroll');
-        }
-    };
-});
-
-pjax_config_page('/open-source-projects', function() {
-    return {
-        onLoad: function() {
-            sidebar_scroll($('.open-source-projects'));
-        },
-        onUnload: function() {
-            $(window).off('scroll');
-        }
-    };
-});
-
-pjax_config_page('/payment-agent', function() {
-    return {
-        onLoad: function() {
-            sidebar_scroll($('.payment-agent'));
-        },
-        onUnload: function() {
-            $(window).off('scroll');
-        }
-    };
-});
-
-pjax_config_page('/get-started', function() {
-    return {
-        onLoad: function() {
-            if (!/jp/.test(window.location.pathname) && page.language().toLowerCase() === 'ja') {
-              window.location.href = page.url.url_for('get-started-jp');
-            }
-            get_started_behaviour();
-        },
-        onUnload: function() {
-            $(window).off('scroll');
-        },
-    };
-});
-
-pjax_config_page('/contact', function() {
-    return {
-        onLoad: function() {
-            display_cs_contacts();
-            show_live_chat_icon();
-        },
-    };
-});
-
-pjax_config_page('/careers', function() {
-    return {
-        onLoad: function() {
-            display_career_email();
-        },
-    };
-});
-
-pjax_config_page('/bulk-trader-facility', function() {
-    return {
-        onLoad: function() {
-            var whyus = $('.bulk-trader-facility');
-            sidebar_scroll(whyus);
-        },
-        onUnload: function() {
-            $(window).off('scroll');
-        }
-    };
-});
-
-pjax_config_page('/terms-and-conditions', function() {
-    return {
-        onLoad: function() {
-            if (page.language() === 'JA' && /^jp/.test(window.location.pathname)) {
-              window.location.href = page.url.url_for('terms-and-conditions-jp');
-            } else if (page.language() === 'EN' && /jp/.test(window.location.pathname)) {
-              window.location.href = page.url.url_for('terms-and-conditions');
-            }
-            var selected_tab = page.url.params_hash().selected_tab;
-            if(selected_tab) {
-              $('li#' + selected_tab + ' a').click();
-            }
-            var year = document.getElementsByClassName('currentYear');
-            for (i = 0; i < year.length; i++){
-              year[i].innerHTML = new Date().getFullYear();
-            }
-        },
-    };
-});
-
-pjax_config_page('\/login|\/loginid_switch', function() {
-    return {
-        onLoad: function() {
-            if(!$('body').hasClass('BlueTopBack')) {
-                window.location.href = Login.login_url();
-            }
-        }
-    };
-});
-
-var $buoop = {
-  vs: {i:10, f:39, o:30, s:5, c:39},
-  l: page.language().toLowerCase(),
-  url: 'https://whatbrowser.org/'
-};
-function $buo_f(){
- var e = document.createElement("script");
- e.src = "//browser-update.org/update.min.js";
- document.body.appendChild(e);
-}
-try {
-  document.addEventListener("DOMContentLoaded", $buo_f,false);
-} catch(e) {
-  window.attachEvent("onload", $buo_f);
-}
-;pjax_config_page('/get-started-jp', function() {
-    return {
-        onLoad: function() {
-          if (page.language().toLowerCase() !== 'ja') {
-            window.location.href = page.url.url_for('get-started');
-          }
-          var tab = window.location.hash;
-          if (tab && tab !== '') {
-            $('#index').hide();
-            $('.sidebar-left ul li.' + tab.slice(1, tab.length)).addClass('selected');
-            showSelectedTab();
-          }
-          function showSelectedTab() {
-            var updatedTab = window.location.hash;
-            $('.contents div').hide();
-            if (updatedTab && updatedTab !== '') {
-              if ($('#index').is(":visible")) $('#index').hide();
-              $('.contents div[id=content-' + updatedTab.slice(1, updatedTab.length) + ']').show();
-              $('.contents div[id=content-' + updatedTab.slice(1, updatedTab.length) + '] div').show();
-              $('.sidebar-left ul li').removeClass('selected');
-              $('.sidebar-left ul li.' + updatedTab.slice(1, updatedTab.length)).addClass('selected');
-              $('.contents').show();
-            }
-            else {
-              $('.contents').hide();
-              $('.sidebar-left ul li').removeClass('selected');
-              $('#index').show();
-            }
-          }
-          $(window).on('hashchange', function(){
-            showSelectedTab();
-          });
-          $('.sidebar-left ul li').click(function(e) {
-            $('.sidebar-left ul li').removeClass('selected');
-            $(this).addClass('selected');
-          });
-        }
-    };
-});
-;/*
- *  This is developed to simplify the usage of enjoyhint (https://github.com/xbsoftware/enjoyhint) 
- *
- *  How to Implement in a page:
- *  1. Add the button element to the template: <div id="guideBtn"></div>
- *  2. Add the js initialization call, having the customized parameters: Guide.init({script : 'trading'});
- *  3. Add the script data to getScript() method
- */
-
-var Guide = (function() {
-	var opt,
-		cookieName,
-		btnNext,
-		btnFinish;
-
-	var init = function(options) {
-		opt = {
-			script	       : '',      // the script name in scripts
-			autoStart      : false,   // false: start by button click
-			guideBtnID     : '#guideBtn',
-			btnText        : text.localize('Walkthrough Guide'),  // guide start button's text
-			blink_class    : 'highlight',
-			blink_inDelay  : 1000,
-			blink_outDelay : 1000,
-			blink_interval : 3000,    // 0: continous blinking (blink_inDelay + blink_outDelay)
-			blink_count    : 0        // 0: infinite
-		};
-        $.extend(true, opt, options);
-
-        cookieName = 'hide_guide';
-		btnNext    = {className: "button", html: '<span>' + text.localize('Next') + '</span>'};
-		btnFinish  = {className: "button btnFinish", html: '<span>' + text.localize('Finish') + '</span>'};
-
-		if($(opt.guideBtnID).length === 0) {
-			console.warn('Could not find the button placeholder: <div id="' + opt.guideBtnID + '"></div>');
-			return;
-		}
-
-		if(opt.script.length === 0) {
-			console.warn('"script" name should be specified');
-			return;
-		}
-
-		if(isDisabled()) {
-			$(opt.guideBtnID).remove();
-			return;
-		}
-
-		makeButton();
-	};
-
-	/*
-	 *  do not show the guide button if its close (X) has been clicked before
-	 */
-	var isDisabled = function() {
-		var disabled = $.cookie(cookieName);
-		return !!disabled && $.inArray(opt.script, disabled.split(',')) >= 0;
-	};
-
-	/*
-	 *  handle the guide button appearance using a cookie for all scripts
-	 */
-	var setDisabled = function() {
-		if(!isDisabled()) {
-			var disabled = $.cookie(cookieName);
-			$.cookie(cookieName, (!disabled ? opt.script : disabled + ',' + opt.script));
-		}
-	};
-
-	/*
-	 *  generate the button's html
-	 */
-	var makeButton = function() {
-		if($(opt.guideBtnID).children().length > 0) {
-			return;
-		}
-
-		$(opt.guideBtnID)
-			.addClass('grd-hide-mobile pulser')
-			.append($('<span/>', {class: 'close', text: 'X'}))
-			.append($('<strong/>'));
-		$(opt.guideBtnID + ' strong').html('<span></span>' + opt.btnText);
-
-		setEvents();
-	};
-
-	/*
-	 *  both buttons' click event
-	 */
-	var setEvents = function() {
-		$(opt.guideBtnID + ' strong').click(function(e){
-			var enjoyhint_instance = null;
-			enjoyhint_instance = new EnjoyHint({});
-			enjoyhint_instance.setScript(getScript(opt.script));
-			enjoyhint_instance.runScript();
-		});
-		
-		if(opt.autoStart) {
-			$(opt.guideBtnID).click();
-		}
-
-		// Hide button
-		$(opt.guideBtnID + ' span.close').click(function(){
-			setDisabled();
-			$(opt.guideBtnID).remove();
-		});
-	};
-
-	/*
-	 *  each page's script
-	 */
-	var getScript = function(scriptName) {
-		if(scriptName === 'trading') {
-			return [
-				{
-					selector    : '#contract_markets',
-					description : '<h1>' + text.localize('Step') + ' 1</h1>' + 
-									text.localize('Select your market'),
-					event_type  : 'next',
-					nextButton  : btnNext
-				},
-				{
-					selector    : '#underlying',
-					description : '<h1>' + text.localize('Step') + ' 2</h1>' + 
-									text.localize('Select your underlying asset'),
-					event_type  : 'next',
-					nextButton  : btnNext
-				},
-				{
-					selector    : '#contract_form_name_nav',
-					description : '<h1>' + text.localize('Step') + ' 3</h1>' +
-									text.localize('Select your trade type'),
-					event_type  : 'next',
-					nextButton  : btnNext
-				},
-				{
-					selector    : '#websocket_form',
-					description : '<h1>' + text.localize('Step') + ' 4</h1>' + 
-									text.localize('Adjust trade parameters'),
-					event_type  : 'next',
-					nextButton  : btnNext
-				},
-				{
-					selector    : '#contracts_list',
-					description : '<h1>' + text.localize('Step') + ' 5</h1>' + 
-									text.localize('Predict the direction<br />and purchase'),
-					event_type  : 'next',
-					nextButton  : btnFinish
-				}
-			];
-		}
-	};
-
-
-	return {
-		init: init
-	};
-})();
-;pjax_config_page('/open-positions', function() {
-  return {
-      onLoad: function() {
-        if (document.getElementById('Information_Technology')) {
-          if (page.url.location.hash) {
-              $.scrollTo($(page.url.location.hash));
-          }
-        }
-      }
-  };
-});
-pjax_config_page('/open-positions/job-details', function() {
-    return {
-        onLoad: function() {
-          var dept = page.url.params_hash().dept,
-              sidebarListItem = $('#sidebar-nav li');
-          function showSelectedDiv() {
-            $('.sections div').hide();
-            $('.sections div[id=' + dept + '-' + page.url.location.hash.substring(1) + ']').show();
-            $('.title-sections').html($('.sidebar li[class="selected"]').text());
-            if (dept === 'Information_Technology' && page.url.location.hash.substring(1) === 'section-three') {
-              $('.senior_perl_message').removeClass('invisible');
-            } else if (!$('.senior_perl_message').hasClass('invisible')) {
-              $('.senior_perl_message').addClass('invisible');
-            }
-          }
-          $(window).on('hashchange', function(){
-            showSelectedDiv();
-          });
-          $('.job-details').find('#title').html(text.localize(dept.replace(/_/g, ' ')));
-          var deptImage = $('.dept-image'),
-              sourceImage = deptImage.attr('src').replace('Information_Technology', dept);
-          deptImage.attr('src', sourceImage)
-                   .show();
-          var deptContent = $('#content-' + dept + ' div');
-          var section,
-              sections = ['section-one', 'section-two', 'section-three', 'section-four', 'section-five', 'section-six', 'section-seven', 'section-eight'];
-          sidebarListItem.slice(deptContent.length).hide();
-          for (i = 0; i < deptContent.length; i++) {
-              section = $('#' + dept + '-' + sections[i]);
-              section.insertAfter('.sections div:last-child');
-              if (section.attr('class')) {
-                $('#sidebar-nav a[href="#' + sections[i] + '"]').html(text.localize(section.attr('class').replace(/_/g, ' ')));
-              }
-          }
-          $('.sidebar').show();
-          if ($('.sidebar li:visible').length === 1) {
-            $('.sidebar').hide();
-          }
-          $('#' + page.url.location.hash.substring(9)).addClass('selected');
-          showSelectedDiv();
-          $('#back-button').attr('href', page.url.url_for('open-positions') + '#' + dept);
-          sidebarListItem.click(function(e) {
-            sidebarListItem.removeClass('selected');
-            $(this).addClass('selected');
-          });
-        }
-    };
-});
-;var minDT = new Date();
-minDT.setUTCFullYear(minDT.getUTCFullYear - 3);
-var liveChartsFromDT, liveChartsToDT, liveChartConfig;
-
-var updateDatesFromConfig = function(config) {
-    var duration = $('#live_chart_duration li[data-live=' + config.live + ']').attr('id');
-    var now = new Date();
-    liveChartsFromDT.setDateTime(new Date(now.getTime() - (duration * 1000)));
-    liveChartsToDT.setDateTime(now);
-};
-
-var show_chart_for_instrument = function() {
-    var symb, disp_symb;
-    $("#instrument_select .deleteme").remove();
-    $("#instrument_select option:selected").each(function(){
-        symb = $(this).val();
-        disp_symb = $(this).text();
-    });
-
-    if (symb) {
-        liveChartConfig.update({
-            symbol: symb,
-            update_url: 1
-        });
-        updateLiveChart(liveChartConfig);
-    }
-};
-
-var remove_highlight_chart_duration = function () {
-    $('#live_chart_duration').find('.live_charts_stream_button').each( function () {
-        $(this).find('span').removeClass('current');
-    });
-};
-
-var build_markets_select = function() {
-    var market_select = $("#market_select");
-    markets.each(function() {
-        if (this.name == 'forex') {
-            market_select.append("<option id='opt_" + this.name + "' value='" + this.name + "'>" + this.translated_display_name() + "</option>");
-        } else {
-            market_select.append("<option class='ja-hide' id='opt_" + this.name + "' value='" + this.name + "'>" + this.translated_display_name() + "</option>");
-        }
-    });
-
-    $("#market_select").val(liveChartConfig.market.name);
-    build_instrument_select();
-
-    $("#market_select").change(build_instrument_select);
-};
-
-var build_instrument_select = function() {
-    var instrument_select = $("#instrument_select");
-    var market = markets.get($('#market_select').val());
-    $("#instrument_span").hide();
-    if(market) {
-        $("#instrument_select option").remove();
-        instrument_select.append("<option class='deleteme'></option>");
-        market.each(function() {
-            this.each(function() {
-                instrument_select.append("<option value='" + this.symbol + "'>" + this.translated_display_name() + "</option>");
-            });
-        });
-        $("#instrument_span").show();
-        $("#instrument_select").change(show_chart_for_instrument);
-        $("#instrument_select").val(liveChartConfig.symbol.symbol);
-    }
-};
-
-var init_live_chart = function () {
-    liveChartsFromDT = new DateTimePicker({
-        id: "live_charts_from",
-        onChange: function(date) { liveChartsToDT.setMinDateTime(date); }
-    });
-
-    liveChartsToDT = new DateTimePicker({
-        id: "live_charts_to",
-        onChange: function(date) { liveChartsFromDT.setMaxDateTime(date); }
-    });
-
-
-    liveChartConfig = new LiveChartConfig({
-        renderTo: 'live_chart_div',
-    });
-
-    configure_livechart();
-    build_markets_select();
-
-
-    $(".notice").hide();
-    $("#live_chart_extended_options").hide();
-    $("#live_charts_show_extended_options").on('click', function(e){
-        e.preventDefault();
-        $("#live_chart_extended_options").toggle();
-    });
-    $("#live_charts_high_barrier").change(function(){
-        var val = $(this).val();
-        if(liveChartConfig.has_indicator('high') || !val) {
-            live_chart.remove_indicator('high');
-        }
-
-        if (val) {
-            var barrier = new LiveChartIndicator.Barrier({ name: "high", value: val, color: 'green'});
-            live_chart.add_indicator(barrier);
-        }
-    });
-    $("#live_charts_low_barrier").change(function(){
-        var val = $(this).val();
-        if(liveChartConfig.has_indicator('low') || !val) {
-            live_chart.remove_indicator('low');
-        }
-
-        if (val) {
-            var barrier = new LiveChartIndicator.Barrier({ name: "low", value: val, color: 'red'});
-            live_chart.add_indicator(barrier);
-        }
-    });
-
-
-    $('#live_charts_hide_spot').hide();
-    $("#live_charts_show_spot").on('click', function(e){
-        e.preventDefault();
-        var barrier = new LiveChartIndicator.Barrier({ name: "spot", value: "+0"});
-        live_chart.add_indicator(barrier);
-        $(this).hide();
-        $('#live_charts_hide_spot').show();
-    });
-
-    $("#live_charts_hide_spot").on('click', function(e){
-        e.preventDefault();
-        live_chart.remove_indicator('spot');
-        $(this).hide();
-        $('#live_charts_show_spot').show();
-    });
-
-    $("#live_charts_show_interval").on('click', function() {
-        liveChartConfig.update({
-            interval: {
-                from: liveChartsFromDT.getDateTime(),
-                to: liveChartsToDT.getDateTime()
-            },
-            update_url: 1
-        });
-        updateLiveChart(liveChartConfig);
-    });
-
-    $("#live_chart_duration").on('duration_change', function(e) {
-        updateDatesFromConfig(e.config);
-    });
-
-    show_chart_for_instrument();
-    updateDatesFromConfig(liveChartConfig);
-};
-
-
-pjax_config_page('livechart', function() {
-    return {
-        onLoad: function() {
-            init_live_chart();
-        },
-        onUnload: function() {
-            live_chart.close_chart();
-            live_chart = null;
-        }
-    };
-});
-
-//The first time some one loads live chart in the session, the script might not have finished loading by the time onLoad.fire() was called.
-//So we check if livechart was not configured when we loaded this script then we initialize it manually.
-$(function() {
-    if(!live_chart && /livechart/.test(window.location.pathname)) {
-        init_live_chart();
-    }
-
-});
-;var PortfolioWS =  (function() {
-    'use strict';
-
-    var rowTemplate;
-
-    var init = function() {
-        showLoadingImage($("#portfolio-loading"));
-        // get the row template and then discard the node as it has served its purpose
-        var $tempRow = $("#portfolio-dynamic tr[data-contract_id='!contract_id!']");
-        if($tempRow) {
-            rowTemplate = $tempRow[0].outerHTML;
-            $tempRow.remove();
-        }
-        BinarySocket.send({"balance":1});
-        BinarySocket.send({"portfolio":1});
-        // Subscribe transactions to auto update new purchases
-        BinarySocket.send({'transaction': 1, 'subscribe': 1});
-    };
-
-
-    /**
-     * Show balance
-    **/
-    var updateBalance = function(data) {
-        $("span[data-id='balance']").text(data.balance.currency + ' ' + addComma(parseFloat(data.balance.balance)));
-        if(parseFloat(data.balance.balance, 10) > 0 || page.client.is_virtual()) {
-            $('#if-balance-zero').addClass('dynamic');
-        } else {
-            $('#if-balance-zero').removeClass('dynamic');
-        }
-    };
-
-    /**
-     * Updates portfolio table
-    **/
-    var updatePortfolio = function(data) {
-        /**
-         * Check for error
-        **/
-        if("error" in data) {
-            throw new Error("Trying to get portfolio data, we got this error", data.error);
-        }
-
-        /**
-         * no open contracts
-        **/
-        if(0 === data.portfolio.contracts.length) {
-            $("#portfolio-no-contract").show();
-            $("#portfolio-table").addClass("dynamic");
-            $("#portfolio-content").removeClass("dynamic");
-            $("#portfolio-loading").hide();
-            return true;
-        }
-
-        /**
-         * User has at least one contract
-        **/
-        if(!rowTemplate) init();
-        $("#portfolio-no-contract").hide();
-        var contracts = '';
-        var sumPurchase = 0.0;
-        var currency;
-        $.each(data.portfolio.contracts, function(ci, c) {
-            sumPurchase += parseFloat(c.buy_price, 10);
-            currency = c.currency;
-            contracts += rowTemplate
-            .split("!transaction_id!").join(c.transaction_id)
-            .split("!contract_id!").join(c.contract_id)
-            .split("!payout!").join(parseFloat(c.payout).toFixed(2))
-            .split("!longcode!").join(c.longcode)
-            .split("!currency!").join(c.currency)
-            .split("!buy_price!").join(addComma(parseFloat(c.buy_price)));
-        });
-
-        // contracts is ready to be added to the dom
-        $("#portfolio-dynamic").append(trans(contracts));
-        if(contracts.length > 0) {
-            $("#portfolio-table").removeClass("dynamic");
-        }
-
-        // update footer area data
-        sumPurchase = sumPurchase.toFixed(2);
-        $("#cost-of-open-positions").text(currency + ' ' + addComma(parseFloat(sumPurchase)));
-
-        // request "proposal_open_contract"
-        BinarySocket.send({"proposal_open_contract":1, "subscribe":1});
-
-        // ready to show portfolio table
-        $("#portfolio-loading").remove();
-        $("#portfolio-content").removeClass("dynamic");
-    };
-
-    var transactionResponseHandler = function(response) {
-        if(response.hasOwnProperty('error')) {
-            return;
-        }
-
-        if(response.transaction.action === 'buy') {
-            $('#portfolio-dynamic').empty();
-            BinarySocket.send({'portfolio': 1});
-        }
-        else if(response.transaction.action === 'sell') {
-            $("tr[data-contract_id='" + response.transaction.contract_id + "']").remove();
-            if($('#portfolio-dynamic tr').length === 0) {
-                BinarySocket.send({"portfolio":1});
-            }
-        }
-    };
-
-    var updateIndicative = function(data) {
-        if(data.hasOwnProperty('error')) return;
-        var proposal = data.proposal_open_contract;
-        var $td = $("tr[data-contract_id='" + proposal.contract_id + "'] td.indicative");
-        var old_indicative = $td.find('strong').text();
-        old_indicative = parseFloat(old_indicative, 2);
-        if(isNaN(old_indicative)) old_indicative = 0.0;
-
-        var new_indicative = parseFloat(proposal.bid_price, 2);
-        if(isNaN(new_indicative)) new_indicative = 0.0;
-
-        var bid_price = parseFloat(proposal.bid_price || 0).toFixed(2);
-
-        var status_class = '';
-        var no_resale_html = '';
-        if(proposal.is_sold == 1) {
-            $td.parent('tr').remove();
-            if($('#portfolio-dynamic tr').length === 0) {
-                BinarySocket.send({"portfolio":1});
-            }
-        }
-        else {
-            if(proposal.is_valid_to_sell != 1) {
-                no_resale_html = '<span>' + text.localize('Resale not offered') + '</span>';
-                $td.addClass("no_resale");
-            }
-            else {
-                status_class = new_indicative < old_indicative ? ' price_moved_down' : (new_indicative > old_indicative ? ' price_moved_up' : '');
-                $td.removeClass("no_resale");
-            }
-            $td.html(proposal.currency + ' <strong class="indicative_price' + status_class + '"">' + bid_price + '</strong>' + no_resale_html);
-        }
-
-        var indicative_sum = 0, indicative_price = 0, up_down;
-        $("strong.indicative_price").each(function() {
-            indicative_price = $(this).text();
-            indicative_price = parseFloat(indicative_price, 2);
-            if(!isNaN(indicative_price)) {
-                indicative_sum += indicative_price;
-            }
-        });
-
-        indicative_sum = indicative_sum.toFixed(2);
-
-        $("#value-of-open-positions").text('USD ' + parseFloat(indicative_sum).toFixed(2));
-    };
-
-
-    /*** utility functions ***/
-
-    // Dynamic text
-    var dTexts = ["view", "indicative"];
-
-    /**
-     * In the dynamic parts we have strings to include
-     * For instance, in portfolio table, we have a 'View' button
-     * for each contract.
-    **/
-    var trans = function(str) {
-        var placeholder;
-        for(var i = 0, l = dTexts.length; i < l; i++) {
-            placeholder = ":"+dTexts[i]+":";
-            if(-1 === str.indexOf(placeholder)) continue;
-            str = str.split(placeholder).join(text.localize(dTexts[i]));
-        }
-        return str;
-    };
-
-    var onLoad = function() {
-        BinarySocket.init({
-            onmessage: function(msg){
-                var response;
-                try {
-                    response  = JSON.parse(msg.data);
-                    if("object" !== typeof response || !("msg_type" in response)) {
-                        throw new Error("Response from WS API is not well formatted.");
-                    }
-                } catch(e) {
-                    throw new Error("Response from WS API is not well formatted."+ e);
-                }
-
-                var msg_type = response.msg_type;
-                switch(msg_type) {
-                    case "balance":
-                        updateBalance(response);
-                        break;
-                    case "portfolio":
-                        updatePortfolio(response);
-                        break;
-                    case "transaction":
-                        transactionResponseHandler(response);
-                        break;
-                    case "proposal_open_contract":
-                        updateIndicative(response);
-                        break;
-                    default:
-                        // msg_type is not what PortfolioWS handles, so ignore it.
-                }
-            }
-        });
-        init();
-    };
-
-    var onUnload = function(){
-        BinarySocket.send({"forget_all": "proposal_open_contract"});
-        BinarySocket.send({"forget_all": "transaction"});
-    };
-
-    return {
-        init: init,
-        updateBalance: updateBalance,
-        updatePortfolio: updatePortfolio,
-        updateIndicative: updateIndicative,
-        transactionResponseHandler: transactionResponseHandler,
-        onLoad: onLoad,
-        onUnload: onUnload,
-    };
-
-})();
-
-pjax_config_page_require_auth("user/openpositionsws", function() {
-    return {
-        onLoad: PortfolioWS.onLoad,
-        onUnload: PortfolioWS.onUnload,
-    };
-});
-;$(function() {
-    $( "#accordion" ).accordion({
-      heightStyle: "content",
-      collapsible: true,
-      active: false
-    });
-});
-;var AssetIndexWS = (function() {
-    "use strict";
-
-    var $container,
-        $tabs,
-        $contents;
-    
-    var activeSymbols,
-        assetIndex,
-        marketColumns,
-        idx;
-
-    var init = function() {
-        $container = $('#asset-index');
-        showLoadingImage($container);
-        marketColumns = {};
-        activeSymbols = null;
-        assetIndex = null;
-        // index of items in asset_index response
-        idx = {
-            symbol: 0,
-            displayName: 1,
-            cells : 2,
-                cellName: 0,
-                cellDisplayName: 1,
-                cellFrom: 2,
-                cellTo  : 3,
-            symInfo: 3,
-            values : 4
-        };
-
-        var $args = {
-            active_symbols: "brief"
-        };
-        if (isJapanTrading()) {
-            $args['landing_company'] = "japan";
-        }
-
-        BinarySocket.send($args);
-        BinarySocket.send({"asset_index": 1});
-    };
-
-    var getActiveSymbols = function(response) {
-        activeSymbols = response.active_symbols;
-        if(assetIndex) {
-            populateTable();
-        }
-    };
-
-    var getAssetIndex = function(response) {
-        assetIndex = response.asset_index;
-        if(activeSymbols) {
-            populateTable();
-        }
-    };
-
-    // Search and Remove (to decrease the next search count)
-    var getSymbolInfo = function(qSymbol) {
-        return activeSymbols.filter(function(sy, id) {
-            if(sy.symbol === qSymbol) {
-                activeSymbols.splice(id, 1);
-                return true;
-            }
-        });
-    };
-
-    /*
-     * This method generates headers for all tables of each market
-     * should include headers existed in all assets of each market and its submarkets
-     */
-    var organizeData = function() {
-        for(var i = 0; i < assetIndex.length; i++) {
-            var assetItem = assetIndex[i];
-            var symbolInfo = getSymbolInfo(assetItem[idx.symbol])[0];
-            if(!symbolInfo) {
-                continue;
-            }
-            var market = symbolInfo.market;
-
-            assetItem.push(symbolInfo);
-
-            // Generate market columns to use in all this market's submarket tables
-            if(!(market in marketColumns)) {
-                marketColumns[market] = {
-                    header : [''],
-                    columns: ['']
-                };
-            }
-
-            var assetCells = assetItem[idx.cells],
-                values = {};
-            for(var j = 0; j < assetCells.length; j++) {
-                var col  = assetCells[j][idx.cellName];
-                
-                values[col] = assetCells[j][idx.cellFrom] + ' - ' + assetCells[j][idx.cellTo];
-                
-                var marketCols = marketColumns[market];
-                if($.inArray(col, marketCols.columns) === -1) {
-                    marketCols.header.push(text.localize(assetCells[j][idx.cellDisplayName]));
-                    marketCols.columns.push(col);
-                }
-            }
-            assetItem.push(values);
-        }
-    };
-
-    var populateTable = function() {
-        $('#errorMsg').addClass('hidden');
-        organizeData();
-
-        var isJapan = page.language().toLowerCase() === 'ja';
-        
-        $tabs = $('<ul/>', {class: isJapan ? 'hidden' : ''});
-        $contents = $('<div/>');
-
-        for(var i = 0; i < assetIndex.length; i++) {
-            var assetItem  = assetIndex[i];
-            var symbolInfo = assetItem[idx.symInfo];
-            if(!symbolInfo) {
-                continue;
-            }
-
-            // just show "Major Pairs" when the language is JA
-            if(isJapan && symbolInfo.submarket !== 'major_pairs') {
-                continue;
-            }            
-
-            var $submarketTable = getSubmarketTable(assetItem, symbolInfo);
-            $submarketTable.find('tbody').append(createSubmarketTableRow(assetItem, symbolInfo));
-        }
-
-        $container
-            .empty()
-            .append($tabs)
-            .append($('<div/>', {class: 'grd-row-padding'}))
-            .append($contents.children());
-
-        $container.tabs('destroy').tabs();
-    };
-
-    var getSubmarketTable = function(assetItem, symbolInfo) {
-        var marketID    = 'market-'    + symbolInfo.market;
-        var submarketID = 'submarket-' + symbolInfo.submarket;
-        
-        var $table = $contents.find('#' + submarketID);
-        if($table.length === 0) {
-            // Create the table for this submarket
-            var $market = $contents.find('#' + marketID);
-            if($market.length === 0) {
-                // Create the market and tab elements
-                $market = $('<div/>', {id: marketID});
-                $tabs.append($('<li/>').append($('<a/>', {href: '#' + marketID, text: symbolInfo.market_display_name, id: 'outline'})));
-            }
-            $table = createEmptyTable(assetItem, symbolInfo, submarketID);
-            $market.append($table);
-            $contents.append($market);
-        }
-
-        return $table;
-    };
-
-    var createSubmarketTableRow = function(assetItem, symbolInfo) {
-        var cells   = [symbolInfo.display_name],
-            columns = ["asset"];
-
-        var marketCols = marketColumns[symbolInfo.market],
-            assetCells = assetItem[idx.values];
-        for(var i = 1; i < marketCols.columns.length; i++) {
-            var prop = marketCols.columns[i];
-            if(prop.length > 0) {
-                cells.push(prop in assetCells ? assetCells[prop] : '--');
-                columns.push(prop);
-            }
-        }
-
-        return Table.createFlexTableRow(cells, columns, "data");
-    };
-
-    var createEmptyTable = function(assetItem, symbolInfo, submarketID) {
-        var market = symbolInfo.market;
-
-        var metadata = {
-            id: submarketID,
-            cols: marketColumns[market].columns
-        };
-
-        var $submarketTable = Table.createFlexTable([], metadata, marketColumns[market].header);
-        
-        var $submarketHeader = $('<tr/>', {class: 'flex-tr'})
-            .append($('<th/>', {class: 'flex-tr-child submarket-name', colspan: marketColumns[market].columns.length, text: symbolInfo.submarket_display_name}));
-        $submarketTable.find('thead').prepend($submarketHeader);
-
-        return $submarketTable;
-    };
-
-
-    return {
-        init: init,
-        getAssetIndex: getAssetIndex,
-        getActiveSymbols: getActiveSymbols
-    };
-}());
-
-
-
-pjax_config_page("asset_indexws", function() {
-    return {
-        onLoad: function() {
-            BinarySocket.init({
-                onmessage: function(msg) {
-                    var response = JSON.parse(msg.data);
-                    if (response) {
-                        if (response.msg_type === "asset_index") {
-                            AssetIndexWS.getAssetIndex(response);
-                        }
-                        else if (response.msg_type === "active_symbols") {
-                            AssetIndexWS.getActiveSymbols(response);
-                        }
-                    }
-                }
-            });
-
-            Content.populate();
-            AssetIndexWS.init();
-        }
-    };
-});
-;var MarketTimesWS = (function() {
-    "use strict";
-
-    var $date,
-        $container;
-
-    var columns,
-        activeSymbols, 
-        tradingTimes;
-
-
-    var init = function() {
-        $date      = $('#trading-date');
-        $container = $('#trading-times');
-        columns    = ['Asset', 'Opens', 'Closes', 'Settles', 'UpcomingEvents'];
-        activeSymbols = null;
-        tradingTimes = null;
-        showLoadingImage($container);
-        BinarySocket.send({"active_symbols": "brief"});
-        sendRequest('today');
-
-        $date.val(moment.utc(new Date()).format('YYYY-MM-DD'));
-        $date.datepicker({minDate: 0, maxDate: '+1y', dateFormat: 'yy-mm-dd', autoSize: true});
-        $date.change(function() {
-            $container.empty();
-            showLoadingImage($container);
-            sendRequest();
-        });
-    };
-
-    var sendRequest = function(date) {
-        tradingTimes = null;
-        BinarySocket.send({"trading_times": (date ? date : $date.val())});
-    };
-
-    var getActiveSymbols = function(response) {
-        activeSymbols = response.active_symbols;
-        if(tradingTimes) {
-            populateTable();
-        }
-    };
-
-    var getTradingTimes = function(response) {
-        tradingTimes = response.trading_times;
-        if(activeSymbols) {
-            populateTable();
-        }
-    };
-
-    var populateTable = function() {
-        $('#errorMsg').addClass('hidden');
-
-        var isJapanTrading = page.language().toLowerCase() === 'ja';
-
-        var markets = tradingTimes.markets;
-
-        var $ul = $('<ul/>', {class: isJapanTrading ? 'hidden' : ''});
-        var $contents = $('<div/>');
-
-        for(var m = 0; m < markets.length; m++) {
-            var tabID = 'market_' + (m + 1);
-
-            // tabs
-            if(!isJapanTrading) {
-                $ul.append($('<li/>').append($('<a/>', {href: '#' + tabID, text: markets[m].name, id: 'outline'})));
-            }
-
-            // contents
-            var $market = $('<div/>', {id: tabID});
-            $market.append(createMarketTables(markets[m], isJapanTrading));
-            $contents.append($market);
-        }
-
-        $container
-            .empty()
-            .append($ul)
-            .append($('<div/>', {class: 'grd-row-padding'}))
-            .append($contents.children());
-
-        $container.tabs('destroy').tabs();
-    };
-
-    var createMarketTables = function(market, isJapanTrading) {
-        var $marketTables = $('<div/>');
-
-        // submarkets of this market
-        var submarkets = market.submarkets;
-        for(var s = 0; s < submarkets.length; s++) {
-            // just show "Major Pairs" when the language is JA
-            if(isJapanTrading) {
-                var symbolInfo = symbolSearch(submarkets[s].name);
-                if(symbolInfo.length > 0 && symbolInfo[0].submarket !== 'major_pairs') {
-                    continue;
-                }
-            }
-
-            // submarket table
-            var $submarketTable = createEmptyTable(market.name + '-' + s);
-
-            // submarket name
-            $submarketTable.find('thead').prepend(createSubmarketHeader(submarkets[s].name));
-
-            // symbols of this submarket
-            var symbols = submarkets[s].symbols;
-            for(var sy = 0; sy < symbols.length; sy++) {
-                $submarketTable.find('tbody').append(createSubmarketTableRow(market.name, submarkets[s].name, symbols[sy]));
-            }
-
-            $marketTables.append($submarketTable);
-        }
-
-        return $marketTables;
-    };
-
-    var createSubmarketHeader = function(submarketName) {
-        return $('<tr/>', {class: 'flex-tr'})
-            .append($('<th/>', {class: 'flex-tr-child submarket-name', colspan: columns.length, text: submarketName}));
-    };
-
-    var createSubmarketTableRow = function(marketName, submarketName, symbol) {
-        var $tableRow = Table.createFlexTableRow(
-            [
-                symbol.name,
-                '', // Opens
-                '', // Closes
-                symbol.times.settlement,
-                ''  // UpcomingEvents
-            ], 
-            columns, 
-            "data"
-        );
-
-        $tableRow.children('.opens').html(symbol.times.open.join('<br />'));
-        $tableRow.children('.closes').html(symbol.times.close.join('<br />'));
-        $tableRow.children('.upcomingevents').html(createEventsText(symbol.events));
-
-        return $tableRow;
-    };
-
-    var symbolSearch = function(submarketname) {
-        return activeSymbols.filter(function(sy) {
-            return sy.submarket_display_name === submarketname;
-        });
-    };
-
-    var createEventsText = function(events) {
-        var result = '';
-        for(var i = 0; i < events.length; i++) {
-            result += (i > 0 ? '<br />' : '') + events[i].descrip + ': ' + events[i].dates;
-        }
-        return result.length > 0 ? result : '--';
-    };
-
-    var createEmptyTable = function(tableID) {
-        var header = [
-            Content.localize().textAsset,
-            Content.localize().textOpens,
-            Content.localize().textCloses,
-            Content.localize().textSettles,
-            Content.localize().textUpcomingEvents
-        ];
-
-        var metadata = {
-            id: tableID,
-            cols: columns
-        };
-
-        return Table.createFlexTable([], metadata, header);
-    };
-
-
-    return {
-        init: init,
-        getTradingTimes : getTradingTimes,
-        getActiveSymbols: getActiveSymbols
-    };
-}());
-
-
-
-pjax_config_page("market_timesws", function() {
-    return {
-        onLoad: function() {
-            BinarySocket.init({
-                onmessage: function(msg) {
-                    var response = JSON.parse(msg.data);
-                    if (response) {
-                        if (response.msg_type === "trading_times") {
-                            MarketTimesWS.getTradingTimes(response);
-                        }
-                        else if (response.msg_type === "active_symbols") {
-                            MarketTimesWS.getActiveSymbols(response);
-                        }
-                    }
-                }
-            });
-
-            Content.populate();
-            MarketTimesWS.init();
-        }
-    };
-});
-;/*
- * This file contains the code related to loading of trading page bottom analysis
- * content. It will contain jquery so as to compatible with old code and less rewrite
- *
- * Please note that this will be removed in near future
- */
-
-/*
- * This function is called whenever we change market, form
- * or underlying to load bet analysis for that particular event
- */
-
-var TradingAnalysis = (function() {
-    var trading_digit_info, tab_japan_info;
-
-    var requestTradeAnalysis = function() {
-        var contentId = document.getElementById('trading_bottom_content');
-        var formName = isJapanTrading() ? $('input[type="radio"][name="market_menu"]:checked').val() : $('#contract_form_name_nav').find('.a-active').attr('id');
-        if (formName === 'matchdiff') {
-          formName = 'digits';
-        }
-        $('#tab_explanation a').attr('href',  page.url.url_for('trade/bet_explanation', 'underlying_symbol=' + $('#underlying').val() + '&form_name=' + formName));
-        if (formName === 'digits' || formName === 'overunder' || formName === 'evenodd') {
-            $('#tab_last_digit').removeClass("invisible");
-        } else {
-          $('#tab_last_digit').addClass("invisible");
-        }
-        sessionStorage.setItem('currentAnalysisTab', getActiveTab());
-        loadAnalysisTab();
-    };
-
-    /*
-     * This function bind event to link elements of bottom content
-     * navigation
-     */
-    var bindAnalysisTabEvent = function() {
-        'use strict';
-        var analysisNavElement = document.querySelector('#trading_bottom_content #betsBottomPage');
-        if (analysisNavElement) {
-            analysisNavElement.addEventListener('click', function(e) {
-                if (e.target && e.target.nodeName === 'A') {
-                    e.preventDefault();
-
-                    var clickedLink = e.target,
-                        clickedElement = clickedLink.parentElement,
-                        isTabActive = clickedElement.classList.contains('active');
-
-                    sessionStorage.setItem('currentAnalysisTab', clickedElement.id);
-
-                    if (!isTabActive) {
-                        loadAnalysisTab();
-                    }
-                }
-            });
-        }
-    };
-
-    /*
-     * This function handles all the functionality on how to load
-     * tab according to current paramerted
-     */
-    var loadAnalysisTab = function() {
-        'use strict';
-        var currentTab = getActiveTab(),
-            currentLink = document.querySelector('#' + currentTab + ' a'),
-            contentId = document.getElementById(currentTab + '-content');
-
-        var analysisNavElement = document.querySelector('#trading_bottom_content #betsBottomPage');
-        toggleActiveNavMenuElement(analysisNavElement, currentLink.parentElement);
-        toggleActiveAnalysisTabs();
-
-        tab_japan_info = new BetAnalysis.JapanInfo();
-        BetAnalysis.Portfolio.init();
-
-        if(currentTab === 'tab_portfolio'){
-            BetAnalysis.Portfolio.show();
-        } else if (currentTab === 'tab_japan_info') {
-            tab_japan_info.show();
-        } else {
-            BetAnalysis.Portfolio.hide();
-            tab_japan_info.hide();
-            if (currentTab === 'tab_graph') {
-                if (document.getElementById('underlying')){
-                    showHighchart();
-                } else {
-                    BetAnalysis.tab_live_chart.reset();
-                    BetAnalysis.tab_live_chart.render(true);
-                }
-            } else {
-                if (currentTab == 'tab_last_digit') {
-                    var underlying = $('[name=underlying] option:selected').val() || $('#underlying option:selected').val();
-                    var tick = $('[name=tick_count]').val() || 100;
-                    trading_digit_info = TradingAnalysis.tab_last_digitws;
-                    var request = JSON.parse('{"ticks_history":"'+ underlying +'",'+
-                                              '"end": "latest",'+
-                                              '"count": '+ tick +','+
-                                              '"req_id": 1}');
-                    BinarySocket.send(request);
-                } else{
-                    var url = currentLink.getAttribute('href') ;
-                    $.ajax({
-                        method: 'GET',
-                        url: url,
-                    })
-                    .done(function(data) {
-                        contentId.innerHTML = data;
-                        if(currentTab === 'tab_explanation') {
-                            showExplanation(currentLink.href);
-                        } else if (currentTab == 'tab_last_digit') {
-                            trading_digit_info = new BetAnalysis.DigitInfo();
-                            trading_digit_info.on_latest();
-                            trading_digit_info.show_chart(sessionStorage.getItem('underlying'));
-                        }
-
-                    });
-                }
-            }
-        }
-
-    };
-
-    /*
-     * function to toggle the active element for analysis menu
-     */
-    var toggleActiveAnalysisTabs = function() {
-        'use strict';
-        var currentTab = getActiveTab(),
-            analysisContainer = document.getElementById('bet_bottom_content');
-
-        if (analysisContainer) {
-            trading_digit_info = undefined;
-            var childElements = analysisContainer.children,
-                currentTabElement = document.getElementById(currentTab + '-content'),
-                classes = currentTabElement.classList;
-
-            for (var i = 0, len = childElements.length; i < len; i++) {
-                childElements[i].classList.remove('selectedTab');
-                childElements[i].classList.add('invisible');
-            }
-
-            classes.add('selectedTab');
-            classes.remove('invisible');
-        }
-    };
-
-    /*
-     * get the current active tab if its visible i.e allowed for current parameters
-     */
-    var getActiveTab = function() {
-        var selectedTab = sessionStorage.getItem('currentAnalysisTab') || (isJapanTrading() ? 'tab_portfolio' : window.chartAllowed ? 'tab_graph' : 'tab_explanation'),
-            selectedElement = document.getElementById(selectedTab);
-
-        if (selectedElement && selectedElement.classList.contains('invisible') &&
-            !(selectedTab === 'tab_portfolio' && BetAnalysis.Portfolio.isActive())) {
-            selectedTab = window.chartAllowed ? 'tab_graph' : 'tab_explanation';
-            sessionStorage.setItem('currentAnalysisTab', selectedTab);
-        }
-
-        return selectedTab;
-    };
-
-    /*
-     * handle the display of proper explanation based on parameters
-     */
-    var showExplanation = function(href) {
-        var options = new URL(href).params_hash();
-        var form_name    = options.form_name || 'risefall',
-            show_image   = options.show_image   ? options.show_image   > 0 : true,
-            show_winning = options.show_winning ? options.show_winning > 0 : true,
-            show_explain = true,
-            hidden_class = 'invisible',
-            $Container   = $('#tab_explanation-content');
-
-        if(show_winning) {
-            $Container.find('#explanation_winning, #winning_' + form_name).removeClass(hidden_class);
-        }
-
-        if(show_explain) {
-            $Container.find('#explanation_explain, #explain_' + form_name).removeClass(hidden_class);
-        }
-
-        var images = {
-            risefall : {
-                image1: 'rise-fall-1.svg',
-                image2: 'rise-fall-2.svg',
-            },
-            higherlower : {
-                image1: 'higher-lower-1.svg',
-                image2: 'higher-lower-2.svg',
-            },
-            touchnotouch : {
-                image1: 'touch-notouch-1.svg',
-                image2: 'touch-notouch-2.svg',
-            },
-            endsinout : {
-                image1: 'in-out-1.svg',
-                image2: 'in-out-2.svg',
-            },
-            staysinout : {
-                image1: 'in-out-3.svg',
-                image2: 'in-out-4.svg',
-            },
-            updown : {
-                image1: 'up-down-1.svg',
-                image2: 'up-down-2.svg',
-            },
-            spreads : {
-                image1: 'spreads-1.svg',
-                image2: 'spreads-2.svg',
-            },
-            evenodd : {
-                image1: 'evenodd-1.svg',
-                image2: 'evenodd-2.svg',
-            },
-            overunder : {
-                image1: 'overunder-1.svg',
-                image2: 'overunder-2.svg',
-            },
-        };
-
-        if(show_image && images.hasOwnProperty(form_name)) {
-            var image_path = page.url.url_for_static('images/pages/trade-explanation/');
-            $Container.find('#explanation_image_1').attr('src', image_path + images[form_name].image1);
-            $Container.find('#explanation_image_2').attr('src', image_path + images[form_name].image2);
-            $Container.find('#explanation_image').removeClass(hidden_class);
-        }
-    };
-
-    return {
-        request: requestTradeAnalysis,
-        digit_info: function() {
-            return trading_digit_info;
-        },
-        // Should be removed with legacy trading.
-        set_digit_info: function(obj) {
-            trading_digit_info = obj;
-        },
-        japan_info: function() {
-            return tab_japan_info;
-        },
-        tab_portfolio: function() {
-            return tab_portfolio;
-        },
-        getActiveTab: getActiveTab,
-        bindAnalysisTabEvent: bindAnalysisTabEvent
-    };
-
-})();
-;/*
- * Handles barrier processing and display
- *
- * It process `Contract.barriers` and display them if its applicable
- * for current `Contract.form()
- */
-
-var Barriers = (function () {
-    'use strict';
-
-    var isBarrierUpdated = false;
-
-    var display = function (barrierCategory) {
-        var barriers = Contract.barriers()[Defaults.get('underlying')],
-            formName = Contract.form();
-
-        if (barriers && formName && Defaults.get('formname')!=='risefall') {
-            var barrier = barriers[formName];
-            if(barrier) {
-                var unit = document.getElementById('duration_units'),
-                    end_time = document.getElementById('expiry_date'),
-                    currentTick = Tick.quote(),
-                    indicativeBarrierTooltip = document.getElementById('indicative_barrier_tooltip'),
-                    indicativeHighBarrierTooltip = document.getElementById('indicative_high_barrier_tooltip'),
-                    indicativeLowBarrierTooltip = document.getElementById('indicative_low_barrier_tooltip'),
-                    decimalPlaces = countDecimalPlaces(currentTick);
-
-                if (barrier.count === 1) {
-                    document.getElementById('high_barrier_row').style.display = 'none';
-                    document.getElementById('low_barrier_row').style.display = 'none';
-                    document.getElementById('barrier_row').setAttribute('style', '');
-
-                    var defaults_barrier = Defaults.get('barrier');
-                    var barrier_def = defaults_barrier && !isNaN(defaults_barrier) ? defaults_barrier : barrier['barrier'];
-                    var elm = document.getElementById('barrier'),
-                        tooltip = document.getElementById('barrier_tooltip'),
-                        span = document.getElementById('barrier_span');
-                    if ((unit && unit.value === 'd') || (end_time && moment(end_time.value).isAfter(moment(),'day'))) {
-                        if (currentTick && !isNaN(currentTick) && String(barrier_def).match(/^[+-]/)) {
-                            elm.value = (parseFloat(currentTick) + parseFloat(barrier_def)).toFixed(decimalPlaces);
-                            elm.textContent = (parseFloat(currentTick) + parseFloat(barrier_def)).toFixed(decimalPlaces);
-                        } else {
-                            elm.value = parseFloat(barrier_def);
-                            elm.textContent = parseFloat(barrier_def);
-                        }
-                        tooltip.style.display = 'none';
-                        span.style.display = 'inherit';
-                        // no need to display indicative barrier in case of absolute barrier
-                        indicativeBarrierTooltip.textContent = '';
-                    } else {
-                        elm.value = barrier_def;
-                        elm.textContent = barrier_def;
-                        span.style.display = 'none';
-                        tooltip.style.display = 'inherit';
-                        if (currentTick && !isNaN(currentTick)) {
-                            indicativeBarrierTooltip.textContent = (parseFloat(currentTick) + parseFloat(barrier_def)).toFixed(decimalPlaces);
-                        } else {
-                            indicativeBarrierTooltip.textContent = '';
-                        }
-                    }
-                    Defaults.set('barrier', elm.value);
-                    Defaults.remove('barrier_high', 'barrier_low');
-                    return;
-                } else if (barrier.count === 2) {
-                    document.getElementById('barrier_row').style.display = 'none';
-                    document.getElementById('high_barrier_row').setAttribute('style', '');
-                    document.getElementById('low_barrier_row').setAttribute('style', '');
-
-                    var high_elm = document.getElementById('barrier_high'),
-                        low_elm = document.getElementById('barrier_low'),
-                        high_tooltip = document.getElementById('barrier_high_tooltip'),
-                        high_span = document.getElementById('barrier_high_span'),
-                        low_tooltip = document.getElementById('barrier_low_tooltip'),
-                        low_span = document.getElementById('barrier_low_span');
-
-                    var defaults_barrier_high = Defaults.get('barrier_high'), defaults_barrier_low = Defaults.get('barrier_low');
-                    var barrier_high = defaults_barrier_high && !isNaN(defaults_barrier_high) ? defaults_barrier_high : barrier['barrier'],
-                        barrier_low  = defaults_barrier_low  && !isNaN(defaults_barrier_low)  ? defaults_barrier_low  : barrier['barrier1'];
-                    if (unit && unit.value === 'd') {
-                        if (currentTick && !isNaN(currentTick) && String(barrier_high).match(/^[+-]/)) {
-                            high_elm.value = (parseFloat(currentTick) + parseFloat(barrier_high)).toFixed(decimalPlaces);
-                            high_elm.textContent = (parseFloat(currentTick) + parseFloat(barrier_high)).toFixed(decimalPlaces);
-
-                            low_elm.value = (parseFloat(currentTick) + parseFloat(barrier_low)).toFixed(decimalPlaces);
-                            low_elm.textContent = (parseFloat(currentTick) + parseFloat(barrier_low)).toFixed(decimalPlaces);
-                        } else {
-                            high_elm.value = parseFloat(barrier_high);
-                            high_elm.textContent = parseFloat(barrier_high);
-
-                            low_elm.value = parseFloat(barrier_low);
-                            low_elm.textContent = parseFloat(barrier_low);
-                        }
-
-                        high_tooltip.style.display = 'none';
-                        high_span.style.display = 'inherit';
-                        low_tooltip.style.display = 'none';
-                        low_span.style.display = 'inherit';
-
-                        indicativeHighBarrierTooltip.textContent = '';
-                        indicativeLowBarrierTooltip.textContent = '';
-                    } else {
-                        high_elm.value = barrier_high;
-                        high_elm.textContent = barrier_high;
-
-                        low_elm.value = barrier_low;
-                        low_elm.textContent = barrier_low;
-
-                        high_span.style.display = 'none';
-                        high_tooltip.style.display = 'inherit';
-                        low_span.style.display = 'none';
-                        low_tooltip.style.display = 'inherit';
-
-                        if (currentTick && !isNaN(currentTick)) {
-                            indicativeHighBarrierTooltip.textContent = (parseFloat(currentTick) + parseFloat(barrier_high)).toFixed(decimalPlaces);
-                            indicativeLowBarrierTooltip.textContent = (parseFloat(currentTick) + parseFloat(barrier_low)).toFixed(decimalPlaces);
-                        } else {
-                            indicativeHighBarrierTooltip.textContent = '';
-                            indicativeLowBarrierTooltip.textContent = '';
-                        }
-                    }
-                    Defaults.set('barrier_high', high_elm.value);
-                    Defaults.set('barrier_low', low_elm.value);
-                    Defaults.remove('barrier');
-                    return;
-                }
-            }
-        }
-
-        var elements = document.getElementsByClassName('barrier_class');
-        for (var i = 0; i < elements.length; i++){
-            elements[i].style.display = 'none';
-        }
-        Defaults.remove('barrier', 'barrier_high', 'barrier_low');
-    };
-
-    return {
-        display: display,
-        isBarrierUpdated: function () { return isBarrierUpdated; },
-        setBarrierUpdate: function (flag) {
-            isBarrierUpdated = flag;
-        }
-    };
-})();
-;TradingAnalysis.DigitInfoWS = function() {
-    this.chart_config = {
-        chart: {
-                renderTo:'last_digit_histo',
-                defaultSeriesType:'column',
-                backgroundColor:'#eee',
-                borderWidth:1,
-                borderColor:'#ccc',
-                plotBackgroundColor:'#fff',
-                plotBorderWidth:1,
-                plotBorderColor:'#ccc',
-                height:225 // This is "unresponsive", but so is leaving it empty where it goes to 400px.
-        },
-        title:{text:''},
-        credits:{enabled:false},
-        exporting:{enabled:false},
-        legend:{
-            enabled:false
-        },
-        tooltip:{
-            borderWidth:1,
-            formatter:function() {
-                var that = this;
-                var total = $("select[name='tick_count']").val();
-                var percentage = that.y/total*100;
-                return '<b>Digit:</b> '+ that.x +'<br/>'+
-                '<b>Percentage:</b> '+ percentage.toFixed(1) + " %";
-            }
-        },
-        plotOptions:{
-            column:{
-                shadow:false,
-                borderWidth:0.5,
-                borderColor:'#666',
-                pointPadding:0,
-                groupPadding:0.0,
-                color: '#e1f0fb',
-            },
-            series: {
-                dataLabels: {
-                    enabled: true,
-                    style: {
-                        textShadow: false, 
-                    },
-                    formatter: function() {
-                        var total = $("select[name='tick_count']").val();
-                        var percentage = this.point.y/total*100;
-                        return percentage.toFixed(2) + ' %';
-                    },
-                },
-            },
-        },
-        xAxis:{
-            categories: ['0','1','2','3','4','5','6','7','8','9'],
-            lineWidth:0,
-            lineColor:'#999',
-            tickLength:10,
-            tickColor:'#ccc',
-        },
-        yAxis:{
-            title:{text:''},
-            maxPadding:0,
-            gridLineColor:'#e9e9e9',
-            tickWidth:1,
-            tickLength:3,
-            tickColor:'#ccc',
-            lineColor:'#ccc',
-            endOnTick:true,
-            opposite: false,
-            labels: {
-                align: 'left',
-                x: 0,
-                enabled: false,
-                formatter: function() {
-                    var total = $("select[name='tick_count']").val();
-                    var percentage = parseInt(this.value/total*100);
-                    return percentage + " %";
-                },
-            },
-        },
-    };
-
-    this.spots = [];
-    this.stream_id = null;
-    // To avoid too many greens and reds
-    this.prev_min_index = -1;
-    this.prev_max_index = -1;
-};
-
-TradingAnalysis.DigitInfoWS.prototype = {
-    add_content: function(underlying){
-        var domain = document.domain.split('.').slice(-2).join('.'),
-            underlyings =[];
-        var symbols = Symbols.getAllSymbols();
-        i=0;
-        for(var key in symbols){
-            if(/^(R_|RD)/.test(key)){
-                underlyings[i++] = key;
-            }
-        }
-        underlyings = underlyings.sort();
-        var elem = '<select class="smallfont" name="underlying">';
-        for(i=0;i<underlyings.length;i++){
-            elem = elem + '<option value="'+underlyings[i]+'">'+text.localize(symbols[underlyings[i]])+'</option>';
-        }
-        elem = elem + '</select>';
-        var contentId = document.getElementById('tab_last_digit-content'),
-            content = '<div class="grd-parent">'+
-                        '<div id="last_digit_histo_form" class="grd-grid-8 grd-grid-mobile-12 grd-centered">'+
-                        '<form class=smallfont action="#" method="post">'+
-                        '<div class="grd-grid-mobile-12">'+ text.localize('Select market')+' : ' + elem +' </div>'+
-                        '<div class="grd-grid-mobile-12">'+ text.localize('Number of ticks')+' : <select class="smallfont" name="tick_count"><option value="25">25</option><option value="50">50</option><option selected="selected" value="100">100</option><option value="500">500</option><option value="1000">1000</option></select></div>'+
-                        '</form>'+
-                        '</div>'+
-                        '<div id="last_digit_histo" class="grd-grid-8 grd-grid-mobile-12 grd-centered"></div>'+
-                        '<div id="last_digit_title" class="grd-hide">'+ (domain.charAt(0).toUpperCase() + domain.slice(1)) + ' - ' + text.localize('Last digit stats for the latest [_1] ticks on [_2]') +'</div>'+
-                        '</div>';
-        contentId.innerHTML = content;
-        $('[name=underlying]').val(underlying);
-        
-    },
-    on_latest: function() {
-        var that = this;
-        var tab = $('#tab_last_digit-content');
-        var form = tab.find('form:first');
-        form.on('submit', function(event) {
-            event.preventDefault();
-            return false;
-        }).addClass('unbind_later');
-
-        var get_latest = function() {
-            var symbol = $('[name=underlying] option:selected').val();
-            var request = JSON.parse('{"ticks_history":"'+ symbol +'",'+
-                                        '"end": "latest",'+
-                                        '"count": '+ $('[name=tick_count]', form).val() +','+
-                                        '"req_id": 2}');
-            if(that.chart.series[0].name !== symbol){
-                if($('#underlying option:selected').val() != $('[name=underlying]', form).val()){
-                    request['subscribe'] = 1;
-                    request['style'] = "ticks";
-                }
-                if(that.stream_id !== null ){
-                    BinarySocket.send(JSON.parse('{"forget": "'+ that.stream_id +'"}'));
-                    that.stream_id = null;
-                }
-            }
-            BinarySocket.send(request);
-        };
-        $('[name=underlying]', form).on('change',  get_latest ).addClass('unbind_later');
-        $('[name=tick_count]', form).on('change',  get_latest ).addClass('unbind_later');
-    },
-    show_chart: function(underlying, spots) {
-        if(typeof spots === 'undefined' || spots.length <= 0){
-            console.log("Unexpected error occured in the charts.");
-            return;
-        }
-        var dec = spots[0].split('.')[1].length;
-        for(i=0;i<spots.length;i++){
-            var val = parseFloat(spots[i]).toFixed(dec);
-            spots[i]=val.substr(val.length-1);
-        }
-        this.spots = spots;
-        if(this.chart &&  $('#last_digit_histo').html()){
-            this.chart.xAxis[0].update({
-                title:{
-                    text: $('#last_digit_title').html().replace('[_2]', $('[name=underlying] option:selected').text()).replace('[_1]',spots.length),
-                }
-            }, true);
-            this.chart.series[0].name = underlying;
-        }
-        else{
-            this.add_content(underlying);
-            this.chart_config.xAxis.title = {
-                text: $('#last_digit_title').html().replace('[_2]', $('[name=underlying] option:selected').text()).replace('[_1]',spots.length),
-            };
-            this.chart = new Highcharts.Chart(this.chart_config);
-            this.chart.addSeries({name : underlying, data: []});
-            this.on_latest();
-            this.stream_id = null;
-        }
-        this.update();
-    },
-    update: function(symbol, latest_spot) {
-        if(typeof this.chart === "undefined") {
-            return;
-        }
-        
-        var series = this.chart.series[0]; // Where we put the final data.
-        if (series.name != symbol) {
-            latest_spot = undefined; // This simplifies the logic a bit later.
-        }
-
-        if (typeof latest_spot !== "undefined") { // This is a bit later. :D
-            this.spots.unshift(latest_spot.slice(-1)); // Only last digit matters
-            this.spots.pop();
-        }
-
-        // Always recompute and draw, even if theres no new data.
-        // This is especially useful on first reuqest, but maybe in other ways.
-        var filtered_spots = [];
-        var digit = 10,
-            filterFunc = function (el) { return el == digit; };
-        var min_max_counter = [];
-        while(digit--) {
-            var val = this.spots.filter(filterFunc).length;
-            filtered_spots[digit] = val;
-            if (typeof min_max_counter[val] === 'undefined') {
-                min_max_counter[val] = 0;
-            }
-            min_max_counter[val]++;
-        }
-        var min = Math.min.apply(null, filtered_spots);
-        var max = Math.max.apply(null, filtered_spots);
-        var min_index = filtered_spots.indexOf(min);
-        var max_index = filtered_spots.indexOf(max);
-        // changing color
-        if (min_max_counter[min] >= 1) {
-            filtered_spots[min_index] = {y: min, color: '#CC0000'};
-            if(this.prev_min_index === -1){
-                this.prev_min_index = min_index;
-            } else if(this.prev_min_index != min_index){
-                if(typeof(filtered_spots[this.prev_min_index]) === 'object'){
-                    filtered_spots[this.prev_min_index] = {y: filtered_spots[this.prev_min_index].y, color: '#e1f0fb'};
-                } else
-                    filtered_spots[this.prev_min_index] = {y: filtered_spots[this.prev_min_index], color: '#e1f0fb'};
-                this.prev_min_index = min_index;
-            }
-        }
-
-        if (min_max_counter[max] >= 1) {
-            filtered_spots[max_index] = {y: max, color: '#2E8836'};
-            if(this.prev_max_index === -1){
-                this.prev_max_index = max_index;
-            } else if(this.prev_max_index != max_index){
-                if(typeof(filtered_spots[this.prev_max_index]) === 'object'){
-                    filtered_spots[this.prev_max_index] = {y: filtered_spots[this.prev_max_index].y, color: '#e1f0fb'};
-                } else
-                    filtered_spots[this.prev_max_index] = {y: filtered_spots[this.prev_max_index], color: '#e1f0fb'};
-                this.prev_max_index = max_index;
-            }
-        }
-        return series.setData(filtered_spots);
-    },
-    show_tab: function() {
-        var tab_last_digit = $('#tab_last_digit');
-        MenuContent.show_tab(tab_last_digit);
-        var saved_anaysis_tab = SessionStore.get('bet_page.selected_analysis_tab');
-        if(saved_anaysis_tab == 'tab_last_digit') {
-            MenuContent.trigger({
-                'tab_id': saved_anaysis_tab
-            });
-        }
-    },
-    hide_tab: function() {
-        var tab_last_digit = $('#tab_last_digit');
-        MenuContent.hide_tab(tab_last_digit);
-        if(typeof this.chart !== "undefined") {
-            this.chart.destroy();
-        }
-        this.chart = undefined;
-        this.spots = [];
-    },
-    update_chart: function(tick){
-        if(tick.req_id === 2){
-            if(this.chart.series[0].name === tick.tick.symbol){
-                this.stream_id = tick.tick.id || null;
-                this.update(tick.tick.symbol, tick.tick.quote);
-            } else{
-                BinarySocket.send(JSON.parse('{"forget":"'+tick.tick.id+'"}'));
-            }
-        } else{
-            if(!this.stream_id){
-                this.update(tick.tick.symbol, tick.tick.quote);
-            }
-        }
-    }
-};
-
-TradingAnalysis.tab_last_digitws = new TradingAnalysis.DigitInfoWS();
 ;/*
  * This contains common functions we need for processing the response
  */
@@ -84453,10 +78750,11 @@ var TradingEvents = (function () {
 
         var $japanUnit = $('#japan_unit');
         var japanState = PricingTable.getState();
-        $japanUnit.keyup(function(e){
+        $japanUnit.change(function(e){
             var value = Math.abs(parseInt(e.target.value, 10)) || 1;
             japanState.units = value;
             $('#japan_payout').text('¥'+ parseInt(value)*1000);
+            processPricingTableRequest();
         });
 
         /*
@@ -84569,10 +78867,18 @@ var Price = (function() {
         form_id = 0;
 
     var createProposal = function(typeOfContract) {
-        var proposal = {
-          proposal: 1,
-          subscribe: 1
-        };
+        var proposal;
+        if (page.user.is_logged_in) {
+          proposal = {
+            proposal: 1,
+            subscribe: 1
+          };
+        } else {
+          proposal = {
+            price_stream: 1,
+            subscribe: 1
+          };
+        }
         var underlying = document.getElementById('underlying'),
             submarket = document.getElementById('submarket'),
             contractType = typeOfContract,
@@ -85286,7 +79592,7 @@ var Purchase = (function () {
             container.style.display = 'block';
             message_container.hide();
             confirmation_error.show();
-            confirmation_error.innerHTML = (/ClientUnwelcome/.test(error.code) ? error['message'] + '<a href="' + page.url.url_for('cashier/authenticatews') + '"> ' + text.localize('Authorise your account.' + '</a>') : error['message']);
+            confirmation_error.innerHTML = (/ClientUnwelcome/.test(error.code) ? error['message'] + '<a href="' + page.url.url_for('user/authenticatews') + '"> ' + text.localize('Authorise your account.' + '</a>') : error['message']);
         } else {
             var guideBtn = document.getElementById('guideBtn');
             if(guideBtn) {
@@ -85824,7 +80130,239 @@ var Tick = (function() {
         processHistory: processHistory
     };
 })();
-;var WSTickDisplay = Object.create(TickDisplay);
+;var TickDisplay = function() {
+    return {
+        initialize: function(data) {
+            var $self = this;
+
+            // setting up globals
+            $self.number_of_ticks = parseInt(data.number_of_ticks);
+            $self.symbol = data.symbol;
+            $self.display_symbol = data.display_symbol;
+            $self.contract_start_ms = parseInt(data.contract_start * 1000);
+            $self.contract_category = data.contract_category;
+            $self.set_barrier = ($self.contract_category.match('digits')) ? false : true;
+            $self.display_decimals = data.display_decimals || 2;
+            $self.show_contract_result = data.show_contract_result;
+            var tick_frequency = 5;
+
+            if (data.show_contract_result) {
+                $self.contract_sentiment = data.contract_sentiment;
+                $self.price = parseFloat(data.price);
+                $self.payout = parseFloat(data.payout);
+            }
+
+            var minimize = data.show_contract_result;
+
+            $self.set_x_indicators();
+            $self.initialize_chart({
+                plot_from: data.previous_tick_epoch * 1000,
+                plot_to: new Date((parseInt(data.contract_start) + parseInt(($self.number_of_ticks+2)*tick_frequency)) * 1000).getTime(),
+                minimize: minimize,
+                width: data.width ? data.width : undefined
+            });
+        },
+        set_x_indicators: function() {
+            var $self = this;
+
+            var exit_tick_index = $self.number_of_ticks - 1;
+            if ($self.contract_category.match('asian')) {
+                $self.ticks_needed = $self.number_of_ticks;
+                $self.x_indicators = {
+                    '_0': { label: 'Entry Spot', id: 'start_tick'},
+                };
+                $self.x_indicators['_' + exit_tick_index] = {
+                    label: 'Exit Spot',
+                    id: 'exit_tick',
+                };
+            } else if ($self.contract_category.match('callput')) {
+                $self.ticks_needed = $self.number_of_ticks + 1;
+                $self.x_indicators = {
+                    '_0': { label: 'Entry Spot', id: 'entry_tick'},
+                };
+                $self.x_indicators['_' + $self.number_of_ticks] = {
+                    label: 'Exit Spot',
+                    id: 'exit_tick',
+                };
+            } else if ($self.contract_category.match('digits')) {
+                $self.ticks_needed = $self.number_of_ticks;
+                $self.x_indicators = {
+                    '_0': { label: 'Tick 1', id: 'start_tick'},
+                };
+                $self.x_indicators['_' + exit_tick_index] = {
+                    label:  'Tick ' + $self.number_of_ticks,
+                    id: 'last_tick',
+                };
+            } else {
+                $self.x_indicators = {};
+            }
+        },
+        initialize_chart: function(config) {
+            var $self = this;
+
+            $self.chart = new Highcharts.Chart({
+                chart: {
+                    type: 'line',
+                    renderTo: 'tick_chart',
+                    width: config.width ? config.width : (config.minimize ? 394 : null),
+                    height: config.minimize ? 143 : null,
+                    backgroundColor: null,
+                    events: { load: $self.plot(config.plot_from, config.plot_to) },
+                    marginLeft: 50
+                },
+                credits: {enabled: false},
+                tooltip: {
+                    formatter: function () {
+                        var that = this;
+                        var new_y = that.y.toFixed($self.display_decimals);
+                        var mom = moment.utc($self.applicable_ticks[that.x].epoch*1000).format("dddd, MMM D, HH:mm:ss");
+                        return mom + "<br/>" + $self.display_symbol + " " + new_y;
+                    },
+                },
+                xAxis: {
+                    type: 'linear',
+                    min: 0,
+                    max: $self.number_of_ticks + 1,
+                    labels: { enabled: false, }
+                },
+                yAxis: {
+                    opposite: false,
+                    labels: {
+                        align: 'left',
+                        x: 0,
+                    },
+                    title: ''
+                },
+                series: [{
+                    data: [],
+                }],
+                title: '',
+                exporting: {enabled: false, enableImages: false},
+                legend: {enabled: false},
+            });
+            Highcharts.setOptions({
+              lang: {thousandsSep: ','}
+            });
+        },
+        apply_chart_background_color: function(tick) {
+            var $self = this;
+            if(!$self.show_contract_result) {
+                return;
+            }
+            var chart_container = $('#tick_chart');
+            if ($self.contract_sentiment === 'up') {
+                if (tick.quote > $self.contract_barrier) {
+                    chart_container.css('background-color', 'rgba(46,136,54,0.198039)');
+                } else {
+                    chart_container.css('background-color', 'rgba(204,0,0,0.098039)');
+                }
+            } else if ($self.contract_sentiment === 'down') {
+                if (tick.quote < $self.contract_barrier) {
+                    chart_container.css('background-color', 'rgba(46,136,54,0.198039)');
+                } else {
+                    chart_container.css('background-color', 'rgba(204,0,0,0.098039)');
+                }
+            }
+        },
+        add_barrier: function() {
+            var $self = this;
+
+            if (!$self.set_barrier) {
+                return;
+            }
+
+            var barrier_type = $self.contract_category.match('asian') ? 'asian' : 'static';
+
+            if (barrier_type === 'static') {
+                var barrier_tick = $self.applicable_ticks[0];
+                $self.chart.yAxis[0].addPlotLine({
+                    id: 'tick-barrier',
+                    value: barrier_tick.quote,
+                    label: {text: 'Barrier ('+barrier_tick.quote+')', align: 'center'},
+                    color: 'green',
+                    width: 2,
+                    zIndex: 2,
+                });
+                $self.contract_barrier = barrier_tick.quote;
+                $self.set_barrier = false;
+            }
+
+            if (barrier_type === 'asian') {
+                var total = 0;
+                for (var i=0; i < $self.applicable_ticks.length; i++) {
+                    total += parseFloat($self.applicable_ticks[i].quote);
+                }
+                var calc_barrier =  total/$self.applicable_ticks.length;
+                calc_barrier = calc_barrier.toFixed(parseInt($self.display_decimals) + 1); // round calculated barrier
+
+                $self.chart.yAxis[0].removePlotLine('tick-barrier');
+                $self.chart.yAxis[0].addPlotLine({
+                    id: 'tick-barrier',
+                    value: calc_barrier,
+                    color: 'green',
+                    label: {
+                        text: 'Average ('+calc_barrier+')',
+                        align: 'center'
+                    },
+                    width: 2,
+                    zIndex: 2,
+                });
+                $self.contract_barrier = calc_barrier;
+            }
+        },
+        add: function(indicator) {
+            var $self = this;
+
+            $self.chart.xAxis[0].addPlotLine({
+               value: indicator.index,
+               id: indicator.id,
+               label: {text: indicator.label, x: /start_tick|entry_tick/.test(indicator.id) ? -15 : 5},
+               color: '#e98024',
+               width: 2,
+               zIndex: 2,
+            });
+        },
+        evaluate_contract_outcome: function() {
+            var $self = this;
+
+            if (!$self.contract_barrier) {
+                return; // can't do anything without barrier
+            }
+
+            var exit_tick_index = $self.applicable_ticks.length - 1;
+            var exit_spot = $self.applicable_ticks[exit_tick_index].quote;
+
+            if ($self.contract_sentiment === 'up') {
+                if (exit_spot > $self.contract_barrier) {
+                    $self.win();
+                } else {
+                    $self.lose();
+                }
+            } else if ($self.contract_sentiment === 'down') {
+                if (exit_spot < $self.contract_barrier) {
+                    $self.win();
+                } else {
+                    $self.lose();
+                }
+            }
+        },
+        win: function() {
+            var $self = this;
+
+            var profit = $self.payout - $self.price;
+            $self.update_ui($self.payout, profit, text.localize('This contract won'));
+        },
+        lose: function() {
+            var $self = this;
+            $self.update_ui(0, -$self.price, text.localize('This contract lost'));
+        },
+        to_monetary_format: function(number) {
+            return number.toFixed(2);
+        }
+    };
+}();
+
+var WSTickDisplay = Object.create(TickDisplay);
 WSTickDisplay.plot = function(plot_from, plot_to) {
     var $self = this;
     $self.contract_start_moment = moment($self.contract_start_ms).utc();
@@ -86049,352 +80587,7 @@ WSTickDisplay.updateChart = function(data, contract) {
     is_trading_page: function(){return trading_page;}
   };
 })();
-;var TUser = (function () {
-    var data = {};
-    return {
-        set: function(a){ data = a; },
-        get: function(){ return data; }
-    };
-})();;/*
- * It provides a abstraction layer over native javascript Websocket.
- *
- * Provide additional functionality like if connection is close, open
- * it again and process the buffered requests
- *
- *
- * Usage:
- *
- * `BinarySocket.init()` to initiate the connection
- * `BinarySocket.send({contracts_for : 1})` to send message to server
- */
-function BinarySocketClass() {
-    'use strict';
-
-    var binarySocket,
-        bufferedSends = [],
-        manualClosed = false,
-        events = {},
-        authorized = false,
-        timeouts = {},
-        req_number = 0,
-        socketUrl = getSocketURL() + '?app_id=' + getAppId() + (page.language() ? '&l=' + page.language() : '');
-
-    var clearTimeouts = function(){
-        for(var k in timeouts){
-            if(timeouts.hasOwnProperty(k)){
-                clearTimeout(timeouts[k]);
-                delete timeouts[k];
-            }
-        }
-    };
-
-    var status = function () {
-        return binarySocket && binarySocket.readyState;
-    };
-
-    var isReady = function () {
-        return binarySocket && binarySocket.readyState === 1;
-    };
-
-    var isClose = function () {
-        return !binarySocket || binarySocket.readyState === 2 || binarySocket.readyState === 3;
-    };
-
-    var sendBufferedSends = function () {
-        while (bufferedSends.length > 0) {
-            binarySocket.send(JSON.stringify(bufferedSends.shift()));
-        }
-    };
-
-    var send = function(data) {
-        if (isClose()) {
-            bufferedSends.push(data);
-            init(1);
-        } else if (isReady()) {
-            if(!data.hasOwnProperty('passthrough') && !data.hasOwnProperty('verify_email')){
-                data.passthrough = {};
-            }
-            // temporary check
-            if((data.contracts_for || data.proposal || data.price_stream) && !data.passthrough.hasOwnProperty('dispatch_to')){
-                data.passthrough.req_number = ++req_number;
-                timeouts[req_number] = setTimeout(function(){
-                    if(typeof reloadPage === 'function' && data.contracts_for){
-                        alert("The server didn't respond to the request:\n\n"+JSON.stringify(data)+"\n\n");
-                        reloadPage();
-                    }
-                    else{
-                        $('.price_container').hide();
-                    }
-                }, 60*1000);
-            }
-
-            binarySocket.send(JSON.stringify(data));
-        } else {
-            bufferedSends.push(data);
-        }
-    };
-
-    var init = function (es) {
-        if(!es){
-            events = {};
-        }
-        if(typeof es === 'object'){
-            bufferedSends = [];
-            manualClosed = false;
-            events = es;
-            clearTimeouts();
-        }
-
-        if(isClose()){
-            binarySocket = new WebSocket(socketUrl);
-        }
-
-        binarySocket.onopen = function (){
-            var loginToken = getCookieItem('login');
-            if(loginToken && !authorized) {
-                binarySocket.send(JSON.stringify({authorize: loginToken}));
-            }
-            else {
-                sendBufferedSends();
-            }
-
-            if(typeof events.onopen === 'function'){
-                events.onopen();
-            }
-
-            if(isReady()=== true){
-                if(!Login.is_login_pages()) {
-                    page.header.validate_cookies();
-                }
-                if (clock_started === false) {
-                    page.header.start_clock_ws();
-                }
-            }
-        };
-
-        binarySocket.onmessage = function (msg){
-            var response = JSON.parse(msg.data);
-            if (response) {
-                if(response.hasOwnProperty('echo_req') && response.echo_req.hasOwnProperty('passthrough')) {
-                    var passthrough = response.echo_req.passthrough;
-                    if(passthrough.hasOwnProperty('req_number')) {
-                        clearInterval(timeouts[response.echo_req.passthrough.req_number]);
-                        delete timeouts[response.echo_req.passthrough.req_number];
-                    }
-                    else if (passthrough.hasOwnProperty('dispatch_to')) {
-                      if (passthrough.dispatch_to === 'ViewPopupWS') {
-                        ViewPopupWS.dispatch(response);
-                      } else if (passthrough.dispatch_to === 'ViewChartWS') {
-                        Highchart.dispatch(response);
-                      } else if (passthrough.dispatch_to === 'ViewTickDisplayWS') {
-                        WSTickDisplay.dispatch(response);
-                      }
-                    }
-                }
-                var type = response.msg_type;
-                if (type === 'authorize') {
-                    if(response.hasOwnProperty('error')) {
-                        var isActiveTab = sessionStorage.getItem('active_tab') === '1';
-                        if(response.error.code === 'SelfExclusion' && isActiveTab) {
-                            sessionStorage.removeItem('active_tab');
-                            alert(response.error.message);
-                        }
-                        LocalStore.set('reality_check.ack', 0);
-                        page.client.send_logout_request(isActiveTab);
-                    }
-                    else {
-                        authorized = true;
-                        if(typeof events.onauth === 'function'){
-                            events.onauth();
-                        }
-                        if(!Login.is_login_pages()) {
-                            page.client.response_authorize(response);
-                            send({balance:1, subscribe: 1});
-                            send({landing_company_details: TUser.get().landing_company_name});
-                            send({get_settings: 1});
-                            if(!page.client.is_virtual()) {
-                                send({get_self_exclusion: 1});
-                            }
-                        }
-                        sendBufferedSends();
-                    }
-                } else if (type === 'balance') {
-                    ViewBalanceUI.updateBalances(response);
-                } else if (type === 'time') {
-                    page.header.time_counter(response);
-                } else if (type === 'logout') {
-                    localStorage.removeItem('jp_test_allowed');
-                    RealityCheckData.clear();
-                    page.header.do_logout(response);
-                } else if (type === 'landing_company_details') {
-                    page.client.response_landing_company_details(response);
-                    BinarySocket.send({reality_check: 1, passthrough: { for: 'init_rc' }});
-                } else if (type === 'get_self_exclusion') {
-                    SessionDurationLimit.exclusionResponseHandler(response);
-                } else if (type === 'payout_currencies' && response.echo_req.hasOwnProperty('passthrough') && response.echo_req.passthrough.handler === 'page.client') {
-                    page.client.response_payout_currencies(response);
-                } else if (type === 'get_settings') {
-                    if(!$.cookie('residence') && response.get_settings.country_code) page.client.set_cookie('residence', response.get_settings.country_code);
-                    GTM.event_handler(response.get_settings);
-                    page.client.set_storage_value('tnc_status', response.get_settings.client_tnc_status || '-');
-                    if (!localStorage.getItem('risk_classification')) page.client.check_tnc();
-                    var jpStatus = response.get_settings.jp_account_status;
-                    if (jpStatus) {
-                        switch (jpStatus.status) {
-                            case 'jp_knowledge_test_pending': localStorage.setItem('jp_test_allowed', 1);
-                                break;
-                            case 'jp_knowledge_test_fail':
-                                if (Date.now() >= (jpStatus.next_test_epoch * 1000)) {
-                                    localStorage.setItem('jp_test_allowed', 1);
-                                } else {
-                                    localStorage.setItem('jp_test_allowed', 0);
-                                }
-                                break;
-                            default: localStorage.setItem('jp_test_allowed', 0);
-                        }
-
-                        KnowledgeTest.showKnowledgeTestTopBarIfValid(jpStatus);
-                    } else {
-                        localStorage.removeItem('jp_test_allowed');
-                    }
-                } else if (type === 'website_status') {
-                    if(!response.hasOwnProperty('error')) {
-                        LocalStore.set('website.tnc_version', response.website_status.terms_conditions_version);
-                        if (!localStorage.getItem('risk_classification')) page.client.check_tnc();
-                    }
-                  if (response.website_status.clients_country) {
-                    localStorage.setItem('clients_country', response.website_status.clients_country);
-                    if (!$('body').hasClass('BlueTopBack')) {
-                      checkClientsCountry();
-                    }
-                  }
-                } else if (type === 'reality_check') {
-                    if (response.echo_req.passthrough.for === 'init_rc') {
-                        var currentData = TUser.get();
-                        var addedLoginTime = Object.assign({logintime: response.reality_check.start_time}, currentData);
-                        TUser.set(addedLoginTime);
-                        RealityCheck.init();
-                    } else {
-                        RealityCheck.realityCheckWSHandler(response);
-                    }
-                } else if (type === 'get_account_status') {
-                  if (response.get_account_status.risk_classification === 'high' && page.header.qualify_for_risk_classification()) {
-                    send({get_financial_assessment: 1});
-                  } else {
-                    localStorage.removeItem('risk_classification');
-                  }
-                  var withdrawal_locked, i;
-                  for (i = 0; i < response.get_account_status.status.length; i++) {
-                    if (response.get_account_status.status[i] === 'withdrawal_locked') {
-                      withdrawal_locked = 'locked';
-                      break;
-                    }
-                  }
-                  if (response.echo_req.hasOwnProperty('passthrough') && response.echo_req.passthrough.hasOwnProperty('dispatch_to')) {
-                    if (response.echo_req.passthrough.dispatch_to === 'ForwardWS') {
-                        ForwardWS.lock_withdrawal(withdrawal_locked || 'unlocked');
-                    } else if (response.echo_req.passthrough.dispatch_to === 'Cashier') {
-                        Cashier.lock_withdrawal(withdrawal_locked || 'unlocked');
-                    } else if (response.echo_req.passthrough.dispatch_to === 'PaymentAgentWithdrawWS') {
-                      PaymentAgentWithdrawWS.lock_withdrawal(withdrawal_locked || 'unlocked');
-                    }
-                  }
-                  sessionStorage.setItem('withdrawal_locked', withdrawal_locked || 'unlocked');
-                  localStorage.setItem('risk_classification.response', response.get_account_status.risk_classification);
-                } else if (type === 'get_financial_assessment' && !response.hasOwnProperty('error')) {
-                  if (Object.keys(response.get_financial_assessment).length === 0) {
-                    if (page.header.qualify_for_risk_classification() && localStorage.getItem('risk_classification.response') === 'high') {
-                      localStorage.setItem('risk_classification', 'high');
-                      page.header.check_risk_classification();
-                    }
-                  } else if ((localStorage.getItem('reality_check.ack') === '1' || !localStorage.getItem('reality_check.interval')) && localStorage.getItem('risk_classification') !== 'high') {
-                    localStorage.removeItem('risk_classification');
-                    localStorage.removeItem('risk_classification.response');
-                    page.client.check_tnc();
-                  }
-                }
-                if (response.hasOwnProperty('error')) {
-                    if(response.error && response.error.code) {
-                      if (response.error.code === 'RateLimit') {
-                        $('#ratelimit-error-message')
-                            .css('display', 'block')
-                            .on('click', '#ratelimit-refresh-link', function () {
-                                window.location.reload();
-                            });
-                      } else if (response.error.code === 'InvalidToken' &&
-                          type !== 'reset_password' &&
-                          type !== 'new_account_virtual' &&
-                          type !== 'paymentagent_withdraw' &&
-                          type !== 'cashier') {
-                            page.client.send_logout_request();
-                      }
-                    }
-                }
-                if(typeof events.onmessage === 'function'){
-                    events.onmessage(msg);
-                }
-            }
-        };
-
-        binarySocket.onclose = function (e) {
-            authorized = false;
-            clearTimeouts();
-
-            if(!manualClosed){
-                init(1);
-            }
-            if(typeof events.onclose === 'function'){
-                events.onclose();
-            }
-        };
-
-        binarySocket.onerror = function (error) {
-            console.log('socket error', error);
-        };
-    };
-
-    var close = function () {
-        manualClosed = true;
-        bufferedSends = [];
-        events = {};
-        if (binarySocket) {
-            binarySocket.close();
-        }
-    };
-
-    var clear = function(){
-        bufferedSends = [];
-        manualClosed = false;
-        events = {};
-    };
-
-    return {
-        init: init,
-        send: send,
-        close: close,
-        socket: function () { return binarySocket; },
-        clear: clear,
-        clearTimeouts: clearTimeouts
-    };
-
-}
-
-var BinarySocket = new BinarySocketClass();
-;pjax_config_page("applications", function(){
-    return {
-        onLoad: function() {
-          Content.populate();
-          if (page.client.residence === 'jp' || page.language().toLowerCase() === 'ja') {
-            $('.applications-page').empty()
-                                   .append('<p class="notice-msg">' + Content.localize().textFeatureUnavailable + '</p>')
-                                   .removeClass('invisible');
-          } else {
-            $('.applications-page').removeClass('invisible');
-          }
-        }
-    };
-});
-;pjax_config_page_require_auth("cashier/authenticatews", function(){
+;pjax_config_page_require_auth("user/authenticatews", function(){
   return {
     onLoad: function() {
       Content.populate();
@@ -86425,7 +80618,7 @@ var BinarySocket = new BinarySocketClass();
               if (response.msg_type === 'get_account_status' && !check_virtual() && !error){
                 if ($.inArray('authenticated', response.get_account_status.status) > -1) {
                   message.innerHTML = '<p>' +
-                                        text.localize('Your account is fully authenticated. You can view your [_1]trading limits here').replace('[_1]', '<a class="pjaxload" href="' + page.url.url_for('cashier/limitsws') + '">') + '</a>.' +
+                                        text.localize('Your account is fully authenticated. You can view your [_1]trading limits here').replace('[_1]', '<a class="pjaxload" href="' + page.url.url_for('user/settings/limitsws') + '">') + '</a>.' +
                                       '</p>';
                 } else {
                   message.innerHTML = '<p>' +
@@ -86452,3216 +80645,165 @@ var BinarySocket = new BinarySocketClass();
     }
   };
 });
-;pjax_config_page_require_auth("user/authorised_appsws", function(){
-    return {
-        onLoad: function() {
-            BinarySocket.init({
-                onmessage: function(msg){
-                    var response = JSON.parse(msg.data);
-
-                    if (response) {
-                        var type = response.msg_type;
-                        if (type === 'oauth_apps'){
-                            Applications.responseHandler(response);
-                        }
-                    }
-                }
-            });
-            Content.populate();
-            Applications.init();
-        },
-        onUnload: function(){
-            Applications.clean();
-        }
-    };
-});
-;var ApplicationsData = (function(){
-    "use strict";
-
-    function getApplications(){
-        var request = {oauth_apps: 1};
-        BinarySocket.send(request);
-    }
-    
-    function revokeApplication(id){
-        if(!id){
-            return;
-        }
-        var request = {
-            oauth_apps: 1,
-            revoke_app: id
-        };
-        
-        BinarySocket.send(request);
-    }
-    
-    return{
-      getApplications: getApplications,
-      revokeApplication: revokeApplication
-    };
-}());
-;var Applications = (function(){
-    "use strict";
-    
-    var tableExist = function(){
-        return document.getElementById("applications-table");
-    };
-    
-    function responseHandler(response){
-        if (response.hasOwnProperty('error') && response.error.message) {
-          $("#applications-ws-container .error-msg").text(response.error.message);
-          return;
-        } else {
-
-            var applications = response.oauth_apps;
-            
-            if (!tableExist()) {
-                $("#loading").remove();
-                ApplicationsUI.createEmptyTable().appendTo("#applications-ws-container");
-                var titleElement = document.getElementById("applications-title").firstElementChild,
-                    desc = document.getElementById("description");
-                titleElement.textContent = text.localize(titleElement.textContent);
-                desc.textContent = text.localize(desc.textContent);
-            }
-            
-            // Show a message when the table is empty.
-            if (applications.length === 0) {
-                ApplicationsUI.clearTableContent();
-                $('#applications-table tbody')
-                    .append($('<tr/>', {class: "flex-tr"})
-                        .append($('<td/>', {colspan: 7})
-                            .append($('<p/>', {class: "notice-msg center", text: text.localize("You have not granted access to any applications.")})
-                            )
-                        )
-                    );
-            }
-            else{
-                ApplicationsUI.createTable(applications);
-            }
-        }
-    }
-    
-    function initPage(){
-        showLoadingImage($('<div/>', {id: 'loading'}).insertAfter('#applications-title'));
-        ApplicationsData.getApplications();
-    }
-    
-    function initTable(){
-        $("#applications-ws-container .error-msg").text("");
-        ApplicationsUI.clearTableContent();
-    }
-
-    return {
-        init: initPage,
-        responseHandler: responseHandler,
-        clean: initTable
-    };
-}());
-;var ApplicationsUI = (function(){
-    "use strict";
-    var tableID = "applications-table",
-        columns = ["name","permissions","last_used","action"];
-    
-    function createEmptyTable(){
-        var header = [
-                text.localize("Name"),
-                text.localize("Permissions"),
-                text.localize("Last Used"),
-                text.localize("Action")
-            ];
-        var metadata = {
-            id: tableID,
-            cols: columns
-        };
-        var data = [];
-        var $table = Table.createFlexTable(data,metadata,header);
-        return $table;
-    }
-    
-    function createTable(app){
-        Table.clearTableBody(tableID);
-        Table.appendTableBody(tableID, app, createRow);
-        showLocalTimeOnHover('td.last_used');
-    }
-    
-    function createRow(data){
-        var name = data.name,
-            permissions = data.scopes.join(", "),
-            last_used = data.last_used ? moment.utc(data.last_used).format("YYYY-MM-DD HH:mm:ss") : text.localize("Never"),
-            action = '';
-        var $row = Table.createFlexTableRow([name,permissions,last_used,action], columns,"data");
-        var $viewButtonSpan = Button.createBinaryStyledButton();
-        var $viewButton = $viewButtonSpan.children(".button").first();
-        $viewButton.text(text.localize("Revoke access"));
-        $viewButton.on("click",function(){
-            ApplicationsData.revokeApplication(data.app_id);
-            $row.css({ opacity: 0.5 });
-        });
-        $row.children(".action").first().append($viewButtonSpan);
-        return $row[0];
-    }
-    
-    function clearTableContent(){
-        Table.clearTableBody(tableID);
-        $("#" + tableID +">tfoot").hide();
-    }
-    
-    return{
-        createEmptyTable: createEmptyTable,
-        createTable: createTable,
-        clearTableContent: clearTableContent
-    };
-    
-}());
-;var Cashier = (function() {
-    "use strict";
-
-    var show_error = function(error) {
-      $('.withdraw').parent().addClass('button-disabled')
-                             .removeAttr('href');
-      $('.notice-msg').html(error)
-                      .parent().removeClass('invisible');
-    };
-
-    var lock_withdrawal = function(withdrawal_locked) {
-      if (withdrawal_locked === 'locked') {
-        show_error(text.localize('Withdrawal is locked, please [_1] for more information.')
-                       .replace('[_1]', '<a href="' + page.url.url_for('/contact') + '">' +
-                                        text.localize('contact us') + '</a>'));
-      }
-    };
-
-    return {
-        lock_withdrawal: lock_withdrawal
-    };
-}());
-
-pjax_config_page("/cashier", function(){
-    return {
-        onLoad: function() {
-          if (!/\/cashier\.html/.test(window.location.pathname) || !page.client.is_logged_in) {
-            return;
-          } else if (sessionStorage.getItem('withdrawal_locked') === 'locked') {
-            Cashier.lock_withdrawal('locked');
-          } else if (!sessionStorage.getItem('withdrawal_locked')) {
-            BinarySocket.send({"get_account_status": "1", "passthrough":{"dispatch_to":"Cashier"}});
-          }
-        }
-    };
-});
-
-pjax_config_page("/cashier/payment_methods", function(){
-    return {
-        onLoad: function() {
-          if (!page.client.is_logged_in || page.client.is_virtual()) {
-            return;
-          } else if (sessionStorage.getItem('withdrawal_locked') === 'locked') {
-            Cashier.lock_withdrawal('locked');
-          } else if (!sessionStorage.getItem('withdrawal_locked')) {
-            BinarySocket.send({"get_account_status": "1", "passthrough":{"dispatch_to":"Cashier"}});
-          }
-        }
-    };
-});
-;var account_transferws = (function(){
-    "use strict";
-    var $form ;
-    var account_from , account_to ;
-    var currType,account_bal;
-    var availableCurr= [] ;
-    var payoutCurr = [];
-
-    var init = function(){
-        if(page.client.redirect_if_is_virtual()) {
-            return;
-        }
-
-        $form = $('#account_transfer');
-        account_bal = 0;
-
-        BinarySocket.send({ "transfer_between_accounts": "1","req_id" : 4 });
-
-        $form.find("button").on("click", function(e){
-            e.preventDefault();
-            e.stopPropagation();
-
-            if(validateForm() === false){
-                return false;
-            }
-
-            var amt = $form.find("#acc_transfer_amount").val();
-            BinarySocket.send({
-                        "transfer_between_accounts": "1",
-                        "account_from": account_from,
-                        "account_to": account_to,
-                        "currency": currType,
-                        "amount": amt
-            });
-
-        });
-
-        $form.find("#transfer_account_transfer").on("change",function(){
-
-           $form.find("#invalid_amount").text("");
-           set_account_from_to();
-
-           BinarySocket.send({"payout_currencies": "1"});
-
-        });
-    };
-    var set_account_from_to = function(){
-
-        var accounts = $("#transfer_account_transfer option:selected").text();
-        var matches = accounts
-                        .split('(')
-                        .filter(function(v){
-                            return v.indexOf(')') > -1;})
-                        .map( function(value) {
-                            return value.split(')')[0];
-                    });
-
-        account_from = matches[0];
-        account_to = matches[1];
-
-        $.each(availableCurr,function(index,value){
-            if(value.account == account_from){
-                currType = value.currency;
-                account_bal = value.balance;
-            }
-        });
-
-        $form.find("#currencyType").html(currType);
-    };
-    var validateForm =function(){
-
-        var amt = $form.find("#acc_transfer_amount").val();
-        var isValid = true;
-
-        if(amt.length <=0 ){
-            $form.find("#invalid_amount").text(text.localize("Invalid amount. Minimum transfer amount is 0.10, and up to 2 decimal places."));
-            isValid = false;
-        }
-
-        return isValid;
-    };
-
-    var apiResponse = function(response){
-        var type = response.msg_type;
-        if (type === "authorize") {
-            init();
-        }
-        else if (type === "transfer_between_accounts" || (type === "error" && "transfer_between_accounts" in response.echo_req)) {
-           responseMessage(response);
-        }
-        else if(type === "payout_currencies" || (type === "error" && "payout_currencies" in response.echo_req)) {
-            responseMessage(response);
-        }
-    };
-
-    var responseMessage = function(response) {
-        var resvalue ;
-        if("error" in response) {
-                if("message" in response.error) {
-
-                    if($('#transfer_account_transfer option').length > 0 ){
-                        $form.removeClass('invisible');
-                        $form.find("#invalid_amount").text(text.localize(response.error.message));
-                    }
-                    else{
-                        $("#client_message").removeClass('invisible');
-                        $("#client_message p").html(text.localize(response.error.message));
-                        $("#success_form").addClass('invisible');
-                        $form.addClass('invisible');
-
-                    }
-                    return false;
-                }
-
-                return false;
-        }
-        else if("payout_currencies" in response){
-
-            payoutCurr = response.payout_currencies;
-        }
-        else if ("transfer_between_accounts" in response){
-
-            if(response.req_id === 5){
-
-                $.each(response.accounts,function(key,value){
-                    $form.addClass('invisible');
-                    $("#success_form").removeClass('invisible');
-                    $("#client_message").addClass('invisible');
-
-                    if(value.loginid == account_from){
-                        $("#loginid_1").html(value.loginid);
-                        $("#balance_1").html(value.balance);
-                    }
-                    else if(value.loginid == account_to){
-                        $("#loginid_2").html(value.loginid);
-                        $("#balance_2").html(value.balance);
-
-                    }
-                });
-            }
-            else if(response.req_id === 4){
-                $form.removeClass('invisible');
-                var secondacct, firstacct,str,optionValue;
-                var selectedIndex = -1;
-
-                $.each(response.accounts, function(index,value){
-                    var currObj = {};
-
-                    if($.isEmptyObject(firstacct))
-                    {
-                        firstacct = value.loginid;
-                        currObj.account = value.loginid;
-                        currObj.currency = value.currency;
-                        currObj.balance = value.balance;
-
-                        if(value.balance > 0 && selectedIndex < 0)
-                        {
-                            selectedIndex = index;
-                        }
-
-                        availableCurr.push(currObj);
-                    }
-                    else
-                    {
-                        secondacct = value.loginid;
-                        str = text.localize("from account (" + firstacct + ") to account (" + secondacct + ")");
-                        optionValue = firstacct + "_to_" + secondacct;
-                        $form.find("#transfer_account_transfer")
-                             .append($("<option></option>")
-                             .attr("value",optionValue)
-                             .text(str));
-                        str = text.localize("from account (" + secondacct + ") to account (" + firstacct + ")");
-                        optionValue = secondacct + "_to_" + firstacct;
-                        $form.find("#transfer_account_transfer")
-                             .append($("<option></option>")
-                             .attr("value",optionValue)
-                             .text(str));
-
-                        currObj.account = value.loginid;
-                        currObj.currency = value.currency;
-                        currObj.balance = value.balance;
-
-                        availableCurr.push(currObj);
-
-                        firstacct = {};
-
-                        if(selectedIndex < 0 && value.balance){
-                            selectedIndex =  index;
-                        }
-                    }
-
-                    if(($.isEmptyObject(firstacct) === false) && ($.isEmptyObject(secondacct) === false))
-                    {
-                        str = text.localize("from account (" + secondacct + ") to account (" + firstacct + ")");
-                        optionValue = secondacct + "_to_" + firstacct;
-                        $form.find("#transfer_account_transfer")
-                                 .append($("<option></option>")
-                                 .attr("value",optionValue)
-                                 .text(str));
-                    }
-                    secondacct = {};
-
-                    if(value.balance <= 0){
-                        $form.find("#transfer_account_transfer option:last").remove();
-                    }
-                    else{
-                        if(selectedIndex < 0 ){
-                            selectedIndex =  index;
-                        }
-                    }
-
-
-                });
-
-                for(var i = 0; i < selectedIndex; i++){
-                    $form.find("#transfer_account_transfer option").eq(i).remove();
-                }
-
-                if(selectedIndex >=0){
-                    $form.find("#transfer_account_transfer option").eq(selectedIndex).attr('selected', 'selected');
-                }
-
-
-                set_account_from_to();
-
-                if((account_bal <=0) && (response.accounts.length > 1) ){
-                    $("#client_message").removeClass('invisible');
-                    $("#success_form").addClass('invisible');
-                    $form.addClass('invisible');
-                    return false;
-                }
-                else if(account_to === undefined || account_from === undefined || $.isEmptyObject(account_to))
-                {
-                    $("#client_message").removeClass('invisible');
-                    $("#client_message p").html(text.localize("The account transfer is unavailable for your account."));
-                    $("#success_form").addClass('invisible');
-                    $form.addClass('invisible');
-                    return false;
-                }
-
-                BinarySocket.send({"payout_currencies": "1"});
-            }
-            else{
-                BinarySocket.send({
-                    "transfer_between_accounts": "1",
-                    "req_id" : 5
-                });
-
-            }
-        }
-
-    };
-
-    return {
-        init : init,
-        apiResponse : apiResponse
-    };
-
-})();
-
-pjax_config_page_require_auth("cashier/account_transferws", function() {
-    return {
-        onLoad: function() {
-            BinarySocket.init({
-                onmessage: function(msg){
-                    var response = JSON.parse(msg.data);
-                    if (response) {
-                        account_transferws.apiResponse(response);
-                    }
-                }
-            });
-
-            if(TUser.get().hasOwnProperty('is_virtual')) {
-                account_transferws.init();
-            }
-        }
-    };
-});
-;var MyAccountWS = (function() {
-    "use strict";
-
-    var loginid,
-        isReal,
-        get_account_status,
-        is_authenticated_payment_agent,
-        terms_conditions_version,
-        client_tnc_status;
-    var hiddenClass,
-        welcomeTextID,
-        virtualTopupID,
-        authButtonID;
-
-    var init = function() {
-        hiddenClass    = 'invisible';
-        welcomeTextID  = '#welcome_text';
-        virtualTopupID = '#VRT_topup_link';
-        authButtonID   = '#authenticate_button';
-
-        loginid = page.client.loginid || $.cookie('loginid');
-
-        BinarySocket.send({"get_settings"      : 1});
-        BinarySocket.send({"website_status"    : 1});
-        BinarySocket.send({"get_account_status": 1});
-
-        //checkDisabledAccount();
-    };
-
-    var responseGetSettings = function(response) {
-        var get_settings = response.get_settings;
-        if (get_settings.country === null || $.cookie('residence') === '') {
-          var documentDomain = document.domain.split('.').slice(-2).join('.');
-          if ($.cookie('residence') !== '') {
-            $.cookie('residence', '', {path: '/', domain: documentDomain});
-          } else if (get_settings.country_code) {
-            $.cookie('residence', get_settings.country_code, {path: '/', domain: documentDomain});
-          }
-          page.client.residence = get_settings.country_code;
-          page.contents.topbar_message_visibility();
-        }
-        client_tnc_status = get_settings.client_tnc_status || '-';
-        is_authenticated_payment_agent = get_settings.is_authenticated_payment_agent;
-
-        checkAll();
-    };
-
-    var responseAccountStatus = function(response) {
-        get_account_status = response.get_account_status.status;
-        checkAll();
-    };
-
-    var checkAll = function() {
-        if(!terms_conditions_version || !client_tnc_status || !get_account_status) {
-            return;
-        }
-
-        if(isReal && terms_conditions_version !== client_tnc_status && !localStorage.getItem('risk_classification')) {
-            window.location.href = page.url.url_for('user/tnc_approvalws');
-            return;
-        }
-
-        showWelcomeMessage();
-        if(!isReal) {
-            showTopUpLink();
-        }
-        else {
-            if(is_authenticated_payment_agent) {
-                $('#payment_agent').removeClass(hiddenClass);
-            }
-        }
-
-        if(get_account_status[0] === 'unwelcome'){
-            $(authButtonID).removeClass(hiddenClass);
-        }
-
-        $('#cashier-portfolio, #profit-statement').removeClass(hiddenClass);
-        $('#loading').remove();
-    };
-
-    var showWelcomeMessage = function() {
-        var landing_company = page.client.get_storage_value('landing_company_name');
-        $(welcomeTextID)
-            .text(
-                text.localize(
-                    isReal ?
-                        'You are currently logged in to your real money account with [_1] ([_2]).' :
-                        'You are currently logged in to your virtual money account ([_2]).'
-                )
-                    .replace('[_1]', landing_company || '')
-                    .replace('[_2]', loginid)
-            )
-            .removeClass(hiddenClass);
-    };
-
-    var showTopUpLink = function() {
-        if(TUser.get().balance < 1000) {
-            $(virtualTopupID + ' a')
-                .text(
-                    text.localize('Deposit [_1] [_2] virtual money into your account [_3]')
-                        .replace('[_1]', TUser.get().currency)
-                        .replace('[_2]', '10000')
-                        .replace('[_3]', loginid)
-                );
-            $(virtualTopupID).removeClass(hiddenClass);
-        }
-    };
-
-    var checkDisabledAccount = function() {
-        var disabledAccount = [];
-        page.user.loginid_array.map(function(loginObj) {
-            if (loginObj.disabled && loginObj.real) {
-                disabledAccount.push(loginObj.id);
-            }
-        });
-
-        if(disabledAccount.length > 0) {
-            var msgSingular = text.localize('Your [_1] account is unavailable. For any questions please contact [_2].'),
-                msgPlural   = text.localize('Your [_1] accounts are unavailable. For any questions please contact [_2].');
-            $('<p/>', {class: 'notice-msg'})
-                .html(
-                    (disabledAccount.length === 1 ? msgSingular : msgPlural)
-                        .replace('[_1]', disabledAccount.join(', '))
-                        .replace('[_2]', $('<a/>', {class: 'pjaxload', href: page.url.url_for('contact'), text: text.localize('Customer Support')}).prop('outerHTML'))
-                )
-                .insertAfter($(welcomeTextID));
-        }
-    };
-
-    var apiResponse = function(response) {
-        if('error' in response){
-            if('message' in response.error) {
-                console.warn(response.error.message);
-            }
-            return false;
-        }
-
-        isReal = !page.client.is_virtual();
-
-        switch(response.msg_type) {
-            case 'get_account_status':
-                responseAccountStatus(response);
-                break;
-            case 'get_settings':
-                responseGetSettings(response);
-                break;
-            case 'landing_company_details':
-                showWelcomeMessage();
-                break;
-            case 'website_status':
-                terms_conditions_version = response.website_status.terms_conditions_version;
-                checkAll();
-                break;
-            default:
-                break;
-        }
-    };
-
-    return {
-        init : init,
-        apiResponse : apiResponse
-    };
-}());
-
-
-pjax_config_page_require_auth("user/my_accountws", function() {
-    return {
-        onLoad: function() {
-            showLoadingImage($('<div/>', {id: 'loading'}).insertAfter('#welcome'));
-
-            if(page.url.param('login')) {
-                page.client.clear_storage_values();
-            }
-
-            BinarySocket.init({
-                onmessage: function(msg) {
-                    var response = JSON.parse(msg.data);
-                    if (response) {
-                        MyAccountWS.apiResponse(response);
-                    }
-                }
-            });
-
-            Content.populate();
-            MyAccountWS.init();
-        }
-    };
-});
-;var PaymentAgentListWS = (function() {
-    "use strict";
-
-    var hiddenClass,
-        ddlCountriesID,
-        $paListContainer;
-
-    var residence,
-        agentTemplate;
-
-
-    var init = function() {
-        hiddenClass = 'hidden';
-        ddlCountriesID = '#target_country';
-        $paListContainer = $('#pa_list');
-        agentTemplate = $paListContainer.find('#accordion').html();
-
-        residence = $.cookie('residence');
-        if(!residence || residence.length === 0) {
-            residence = '00'; // just to get a list of payment agent Countries
-        }
-
-        sendRequest(residence, true);
-    };
-
-    var sendRequest = function(country, isList) {
-        BinarySocket.send({
-            "paymentagent_list": country ? country : $(ddlCountriesID).val(), 
-            "passthrough": isList ? {"countries_list": "1"} : {}
-        });
-    };
-
-    var responseHandler = function(response) {
-        if(response.echo_req.passthrough && response.echo_req.passthrough.countries_list === '1') {
-            populateCountriesList(response);
-        }
-        else {
-            populateAgentsList(response.paymentagent_list.list);
-        }
-    };
-
-    // --------------------------
-    // ----- Countries List -----
-    // --------------------------
-    var populateCountriesList = function(response) {
-        var $ddlCountries = $(ddlCountriesID);
-        $ddlCountries.empty();
-
-        var cList = response.paymentagent_list.available_countries;
-        if(cList.length === 0) {
-            $ddlCountries.parent().addClass(hiddenClass);
-            showEmptyListMsg();
-            return;
-        }
-
-        var requestedCountry = response.echo_req.paymentagent_list;
-        var found = false;
-        cList.map(function(country) {
-            if(country === requestedCountry) {
-                found = true;
-            }
-            insertListOption($ddlCountries, country[1], country[0]);
-        });
-
-        if(found) {
-            $ddlCountries.val(requestedCountry);
-            populateAgentsList(response.paymentagent_list.list);
-        }
-        else {
-            sendRequest();
-        }
-
-        $ddlCountries.change(function() {
-            sendRequest();
-        });
-    };
-
-    var insertListOption = function($ddlObject, itemText, itemValue) {
-        $ddlObject.append($('<option/>', {value: itemValue, text: itemText}));
-    };
-
-    // -----------------------
-    // ----- Agents List -----
-    // -----------------------
-    var populateAgentsList = function(list) {
-        if(!list || list.length === 0) {
-            showEmptyListMsg();
-            return;
-        }
-
-        showLoadingImage($paListContainer);
-
-        var $accordion = $('<div/>', {id: 'accordion'});
-
-        list.map(function(agent){
-            var supported_banks = '';
-            if(agent.supported_banks && agent.supported_banks.length > 0) {
-                var banks = agent.supported_banks.split(',');
-                banks.map(function(bank){
-                    supported_banks += bank.length === 0 ? 
-                        '' :
-                        '<img src="' + page.url.url_for_static('images/pages/payment_agent/banks/' + bank.toLowerCase() + '.png') + '" alt="' + bank + '" title="' + bank + '" />';
-                });
-            }
-        
-            $accordion.append(
-                agentTemplate
-                    .replace(/%name/g                   , agent.name)
-                    .replace(/%summary/g                , agent.summary)
-                    .replace(/%deposit_commission/g     , agent.deposit_commission)
-                    .replace(/%withdrawal_commission/g  , agent.withdrawal_commission)
-                    .replace(/%url/g                    , agent.url)
-                    .replace(/%email/g                  , agent.email)
-                    .replace(/%telephone/g              , agent.telephone)
-                    .replace(/%further_information/g    , agent.further_information)
-                    .replace(/%supported_banks/g        , supported_banks)
-            );
-        });
-
-        $paListContainer.empty().append($accordion);
-
-        $('#accordion').accordion({
-            heightStyle : 'content',
-            collapsible : true,
-            active      : false
-        });
-    };
-
-    var showEmptyListMsg = function() {
-        $('#no_paymentagent').removeClass(hiddenClass);
-    };
-
-    return {
-        init: init,
-        responseHandler: responseHandler
-    };
-}());
-
-
-
-pjax_config_page("payment_agent_listws", function() {
-    return {
-        onLoad: function() {
-            BinarySocket.init({
-                onmessage: function(msg) {
-                    var response = JSON.parse(msg.data);
-                    if (response) {
-                        if (response.msg_type === "paymentagent_list") {
-                            PaymentAgentListWS.responseHandler(response);
-                        }
-                    }
-                    else {
-                        console.log('some error occured');
-                    }
-                }
-            });
-
-            Content.populate();
-            PaymentAgentListWS.init();
-        }
-    };
-});
-;var PaymentAgentWithdrawWS = (function() {
-    "use strict";
-
-    var containerID,
-        viewIDs,
-        fieldIDs,
-        errorClass,
-        $views;
-
-    var formData,
-        isValid;
-
-    var withdrawCurrency,
-        minAmount,
-        maxAmount;
-
-    var init = function() {
-        containerID = '#paymentagent_withdrawal';
-        $views      = $(containerID + ' .viewItem');
-        errorClass  = 'errorfield';
-        viewIDs = {
-            error   : '#viewError',
-            success : '#viewSuccess',
-            confirm : '#viewConfirm',
-            form    : '#viewForm'
-        };
-        fieldIDs = {
-            verificationCode : '#verification-code',
-            ddlAgents        : '#ddlAgents',
-            txtAmount        : '#txtAmount',
-            txtDesc          : '#txtDescription'
-        };
-        withdrawCurrency = 'USD';
-        minAmount = 10;
-        maxAmount = 2000;
-
-        $views.addClass('hidden');
-
-        if(page.client.is_virtual()) { // Virtual Account
-            showPageError(text.localize('You are not authorized for withdrawal via payment agent.'));
-            return false;
-        }
-
-        var residence = $.cookie('residence');
-
-        if (sessionStorage.getItem('withdrawal_locked') === 'unlocked') {
-          BinarySocket.send({"paymentagent_list": residence});
-        } else if (sessionStorage.getItem('withdrawal_locked') === 'locked') {
-          lock_withdrawal('locked');
-        }
-
-        $(viewIDs.form + ' button').click(function(e){
-            e.preventDefault();
-            e.stopPropagation();
-            formData = formValidate();
-            if(!formData) {
-                return false;
-            }
-            else {
-                withdrawRequest(true);
-            }
-        });
-    };
-
-    // -----------------------
-    // ----- Agents List -----
-    // -----------------------
-    var populateAgentsList = function(response) {
-        var $ddlAgents = $(fieldIDs.ddlAgents);
-        $ddlAgents.empty();
-        var paList = response.paymentagent_list.list;
-        if(paList.length > 0) {
-            BinarySocket.send({verify_email: TUser.get().email, type:'paymentagent_withdraw'});
-            insertListOption($ddlAgents, text.localize('Please select a payment agent'), '');
-            for(var i = 0; i < paList.length; i++){
-                insertListOption($ddlAgents, paList[i].name, paList[i].paymentagent_loginid);
-            }
-            setActiveView(viewIDs.form);
-        }
-        else {
-            showPageError(text.localize('The Payment Agent facility is currently not available in your country.'));
-        }
-    };
-
-    var insertListOption = function($ddlObject, itemText, itemValue) {
-        $ddlObject.append($('<option/>', {value: itemValue, text: itemText}));
-    };
-
-    // ----------------------------
-    // ----- Form Validations -----
-    // ----------------------------
-    var formValidate = function() {
-        clearError();
-        isValid = true;
-
-        var agent  = $(fieldIDs.ddlAgents).val(),
-            amount = $(fieldIDs.txtAmount).val().trim(),
-            desc   = $(fieldIDs.txtDesc).val().trim(),
-            token  = $(fieldIDs.verificationCode).val().trim();
-
-        var letters = Content.localize().textLetters,
-            numbers = Content.localize().textNumbers,
-            space   = Content.localize().textSpace,
-            period  = Content.localize().textPeriod,
-            comma   = Content.localize().textComma;
-
-        // Payment Agent
-        isRequiredError(fieldIDs.ddlAgents);
-
-        // verification token
-        if(!isRequiredError(fieldIDs.verificationCode)){
-          if (token.length !== 48) {
-            showError(fieldIDs.verificationCode, Content.errorMessage('valid', text.localize('verification token')));
-          }
-        }
-
-        // Amount
-        if(!isRequiredError(fieldIDs.txtAmount)){
-            if(!(/^\d+(\.\d+)?$/).test(amount) || !$.isNumeric(amount)) {
-                showError(fieldIDs.txtAmount, Content.errorMessage('reg', [numbers]));
-            }
-            else if(!(/^\d+(\.\d{1,2})?$/).test(amount)) {
-                showError(fieldIDs.txtAmount, text.localize('Only 2 decimal points are allowed.'));
-            }
-            else if(amount < minAmount) {
-                showError(fieldIDs.txtAmount, text.localize('Invalid amount, minimum is') + ' ' + withdrawCurrency + ' ' + minAmount);
-            }
-            else if(amount > maxAmount) {
-                showError(fieldIDs.txtAmount, text.localize('Invalid amount, maximum is') + ' ' + withdrawCurrency + ' ' + maxAmount);
-            }
-        }
-
-        // Description
-        if(!(/^[a-zA-Z0-9\s\.\,\-']*$/).test(desc)) {
-            showError(fieldIDs.txtDesc, Content.errorMessage('reg', [letters, numbers, space, period, comma, '- \'']));
-        }
-
-        if(isValid) {
-            return {
-                agent             : agent,
-                agentname         : $(fieldIDs.ddlAgents + ' option:selected').text(),
-                currency          : withdrawCurrency,
-                amount            : amount,
-                desc              : desc,
-                verificationCode : token
-            };
-        }
-        else {
-            return false;
-        }
-    };
-
-    var isRequiredError = function(fieldID) {
-        if(!$(fieldID).val() || !(/.+/).test($(fieldID).val().trim())){
-            showError(fieldID, Content.errorMessage('req'));
-            return true;
-        } else {
-            return false;
-        }
-    };
-
-    var isCountError = function(fieldID, min, max) {
-        var fieldValue = $(fieldID).val().trim();
-        if((fieldValue.length > 0 && fieldValue.length < min) || fieldValue.length > max) {
-            showError(fieldID, Content.errorMessage('range', '(' + min + '-' + max + ')'));
-            return true;
-        } else {
-            return false;
-        }
-    };
-
-    // ----------------------------
-    // ----- Withdraw Process -----
-    // ----------------------------
-    var withdrawRequest = function(isDryRun) {
-        var dry_run = isDryRun ? 1 : 0;
-        BinarySocket.send({
-            "paymentagent_withdraw" : 1,
-            "paymentagent_loginid"  : formData.agent,
-            "currency"              : formData.currency,
-            "amount"                : formData.amount,
-            "description"           : formData.desc,
-            "dry_run"               : dry_run,
-            "verification_code"     : formData.verificationCode
-        });
-    };
-
-    var withdrawResponse = function(response) {
-        var responseCode = response.paymentagent_withdraw;
-        switch(responseCode){
-            case 2: // dry_run success: showing the confirmation page
-                setActiveView(viewIDs.confirm);
-
-                $('#lblAgentName').text(formData.agentname);
-                $('#lblCurrency').text(formData.currency);
-                $('#lblAmount').text(formData.amount);
-
-                $(viewIDs.confirm + ' #btnConfirm').click(function(){
-                    withdrawRequest(false);
-                });
-                $(viewIDs.confirm + ' #btnBack').click(function(){
-                    setActiveView(viewIDs.form);
-                });
-                break;
-
-            case 1: // withdrawal success
-                setActiveView(viewIDs.success);
-                $('#successMessage').css('display', '')
-                    .attr('class', 'success-msg')
-                    .html(
-                        '<ul class="checked"><li>' +
-                        text.localize('Your request to withdraw [_1] [_2] from your account [_3] to Payment Agent [_4] account has been successfully processed.')
-                            .replace('[_1]', formData.currency)
-                            .replace('[_2]', formData.amount)
-                            .replace('[_3]', $.cookie('loginid'))
-                            .replace('[_4]', formData.agentname) +
-                        '</li></ul>'
-                    );
-                break;
-
-            default: // error
-                if(response.echo_req.dry_run === 1) {
-                    setActiveView(viewIDs.form);
-                    $('#formMessage').css('display', '')
-                        .attr('class', errorClass)
-                        .html(response.error.message);
-                } else if (response.error.code === 'InvalidToken') {
-                    showPageError(Content.localize().textClickHereToRestart.replace('[_1]', page.url.url_for('paymentagent/withdrawws')));
-                } else {
-                    showPageError(response.error.message);
-                }
-                break;
-        }
-    };
-
-    // -----------------------------
-    // ----- Message Functions -----
-    // -----------------------------
-    var showPageError = function(errMsg, noticeMsg) {
-        setActiveView(viewIDs.error);
-        $(viewIDs.error + ' > p').html(errMsg);
-        if (noticeMsg) {
-          $(viewIDs.error).append($('<p/>', {html: noticeMsg}));
-        }
-    };
-
-    var showError = function(fieldID, errMsg) {
-        $(fieldID).parent().append($('<p/>', {class: errorClass, text: errMsg}));
-        isValid = false;
-    };
-
-    var clearError = function(fieldID) {
-        $(fieldID ? fieldID : viewIDs.form + ' .' + errorClass).remove();
-    };
-
-    // ----- View Control -----
-    var setActiveView = function(viewID) {
-        $views.addClass('hidden');
-        $(viewID).removeClass('hidden');
-    };
-
-    var lock_withdrawal = function(withdrawal_locked) {
-      if (withdrawal_locked === 'locked') {
-        showPageError(text.localize('Withdrawal is locked, please [_1] for more information.')
-                          .replace('[_1]', '<a href="' + page.url.url_for('/contact') + '">' +
-                                            text.localize('contact us') + '</a>'));
-      } else if (!page.client.is_virtual()) {
-        BinarySocket.send({"paymentagent_list": $.cookie('residence')});
-      }
-    };
-
-    return {
-        init: init,
-        populateAgentsList: populateAgentsList,
-        withdrawResponse: withdrawResponse,
-        lock_withdrawal: lock_withdrawal
-    };
-}());
-
-
-
-pjax_config_page_require_auth("paymentagent/withdrawws", function() {
-    return {
-        onLoad: function() {
-            BinarySocket.init({
-                onmessage: function(msg) {
-                    var response = JSON.parse(msg.data);
-                    if (response) {
-                        var type = response.msg_type;
-                        switch(type){
-                            case "authorize":
-                                PaymentAgentWithdrawWS.init();
-                                break;
-                            case "paymentagent_list":
-                                PaymentAgentWithdrawWS.populateAgentsList(response);
-                                break;
-                            case "paymentagent_withdraw":
-                                PaymentAgentWithdrawWS.withdrawResponse(response);
-                                break;
-                            default:
-                                break;
-                        }
-                    }
-                    else {
-                        console.log('some error occured');
-                    }
-                }
-            });
-
-            Content.populate();
-            if(TUser.get().hasOwnProperty('is_virtual') || sessionStorage.getItem('withdrawal_locked') === 'locked') {
-                PaymentAgentWithdrawWS.init();
-            } else if (!sessionStorage.getItem('withdrawal_locked')) {
-              BinarySocket.send({"get_account_status": "1", "passthrough":{"dispatch_to":"PaymentAgentWithdrawWS"}});
-            }
-        }
-    };
-});
-;var securityws = (function(){
-    "use strict";
-    var $form,
-        init_done;
-
-    var clearErrors = function(){
-        $("#SecuritySuccessMsg").text('');
-        $("#invalidinputfound").text('');
-        $('#errorcashierlockpassword1').contents().filter(function () {
-          return this.nodeType === 3;
-        }).remove();
-    };
-
-    var init = function(){
-        init_done = true;
-
-        $form   = $("#changeCashierLock");
-
-        clearErrors();
-
-        if(checkIsVirtual()) {
-            return;
-        }
-
-        $form   = $("#changeCashierLock");
-        clearErrors();
-
-        var loginToken = CommonData.getApiToken();
-        $form.find("button").on("click", function(e){
-            e.preventDefault();
-            e.stopPropagation();
-            if(validateForm() === false){
-                return false;
-            }
-            BinarySocket.send({"authorize": loginToken, "passthrough": {"value": $(this).attr("value") === "Update" ? "lock_password" : "unlock_password"}});
-        });
-        BinarySocket.send({"authorize": loginToken, "passthrough": {"value": "is_locked"}});
-    };
-
-    var checkIsVirtual = function(){
-        if(page.client.is_virtual()) {
-            $form.hide();
-            $('#SecuritySuccessMsg').addClass('notice-msg center').text(Content.localize().textFeatureUnavailable);
-            return true;
-        }
-        return false;
-    };
-
-    var validateForm = function(){
-        var isValid = true;
-        clearErrors();
-
-        var pwd1 = document.getElementById("cashierlockpassword1").value,
-            pwd2 = document.getElementById("cashierlockpassword2").value,
-            errorPassword = document.getElementById('errorcashierlockpassword1'),
-            errorRPassword = document.getElementById('errorcashierlockpassword2'),
-            isVisible = $("#repasswordrow").is(':visible');
-
-        if(isVisible === true){
-          if (!Validate.errorMessagePassword(pwd1, pwd2, errorPassword, errorRPassword)){
-            isValid = false;
-          }
-        } else if (!/[ -~]{6,25}/.test(pwd1)) {
-          errorPassword.textContent = Content.errorMessage('min', 6);
-          isValid = false;
-        }
-        return isValid;
-    };
-    var isAuthorized =  function(response){
-        if(response.echo_req.passthrough){
-            var option = response.echo_req.passthrough.value;
-            var pwd = $("#cashierlockpassword1").val();
-
-            switch(option){
-                case   "lock_password" :
-                        BinarySocket.send({
-                            "cashier_password": "1",
-                            "lock_password": pwd
-                        });
-                        break;
-                case   "unlock_password" :
-                        BinarySocket.send({
-                            "cashier_password": "1",
-                            "unlock_password": pwd
-                        });
-                        break;
-                case   "is_locked" :
-                        BinarySocket.send({
-                            "cashier_password": "1",
-                            "passthrough" : {"value" : "lock_status"}
-                        });
-                        break ;
-                default:
-                        if(!init_done) {
-                            init();
-                        }
-                        break;
-            }
-        }
-    };
-    var responseMessage = function(response){
-
-       var resvalue;
-
-       if(response.echo_req.passthrough && (response.echo_req.passthrough.value === "lock_status") ){
-            var passthrough = response.echo_req.passthrough.value;
-            resvalue = response.cashier_password;
-            if(parseInt(resvalue) === 1){
-                $("#repasswordrow").hide();
-                $("legend").text(text.localize("Unlock Cashier"));
-                $("#lockInfo").text(text.localize("Your cashier is locked as per your request - to unlock it, please enter the password."));
-                $form.find("button").attr("value","Unlock Cashier");
-                $form.find("button").html(text.localize("Unlock Cashier"));
-                $('#changeCashierLock').show();
-            }
-            else if(parseInt(resvalue) === 0){
-                $("#repasswordrow").show();
-                $("legend").text(text.localize("Lock Cashier"));
-                $("#lockInfo").text(text.localize("An additional password can be used to restrict access to the cashier."));
-                $form.find("button").attr("value","Update");
-                $form.find("button").html(text.localize("Update"));
-                $('#password-meter-div').attr('style', 'display:block');
-                if (isIE() === false) {
-                  $('#cashierlockpassword1').on('input', function() {
-                    $('#password-meter').attr('value', testPassword($('#cashierlockpassword1').val())[0]);
-                  });
-                } else {
-                  $('#password-meter').remove();
-                }
-                $('#changeCashierLock').show();
-            }
-        }
-        else{
-            if("error" in response) {
-                if("message" in response.error) {
-                    $("#invalidinputfound").text(text.localize(response.error.message));
-                }
-                return false;
-            }
-            else{
-                resvalue = response.echo_req.cashier_password;
-                if(parseInt(resvalue) === 1){
-                    $("#changeCashierLock").hide();
-                    $("#invalidinputfound").text('');
-                    $("#SecuritySuccessMsg").text(text.localize('Your settings have been updated successfully.'));
-                }
-                else{
-                    $("#invalidinputfound").text(text.localize('Sorry, an error occurred while processing your account.'));
-                    return false;
-                }
-            }
-        }
-        return;
-    };
-    var SecurityApiResponse = function(response){
-        if(checkIsVirtual()) {
-            return;
-        }
-        var type = response.msg_type;
-        if (type === "cashier_password" || (type === "error" && "cashier_password" in response.echo_req)){
-           responseMessage(response);
-        }else if(type === "authorize" || (type === "error" && "authorize" in response.echo_req))
-        {
-            isAuthorized(response);
-        }
-    };
-
-    return {
-        init : init,
-        SecurityApiResponse : SecurityApiResponse
-    };
-})();
-
-pjax_config_page_require_auth("user/settings/securityws", function() {
-    return {
-        onLoad: function() {
-            Content.populate();
-
-            BinarySocket.init({
-                onmessage: function(msg){
-                    var response = JSON.parse(msg.data);
-                    if (response) {
-                        securityws.SecurityApiResponse(response);
-                    }
-                }
-            });
-
-            securityws.init();
-        }
-    };
-});
-;var TopUpVirtualWS = (function() {
-	"use strict";
-
-    var containerID,
-        viewIDs,
-        hiddenClass,
-        $views;
-
-    var init = function() {
-        containerID = '#topup_virtual';
-        hiddenClass = 'hidden';
-        $views      = $(containerID + ' .viewItem');
-        viewIDs = {
-            error   : '#viewError',
-            success : '#viewSuccess'
-        };
-
-        $views.addClass('hidden');
-
-        if(!page.client.is_virtual()) {
-            showMessage(text.localize('Sorry, this feature is available to virtual accounts only.'), false);
-        }
-        else {
-            BinarySocket.send({"topup_virtual": "1"});
-        }
-    };
-
-    var responseHandler = function(response) {
-    	var str, amt , currType;
-	 	if('error' in response) {
-            if('message' in response.error) {
-                showMessage(text.localize(response.error.message), false);
-            }
-        }
-        else{
-            showMessage(
-                text.localize('[_1] [_2] has been credited to your Virtual money account [_3]')
-                    .replace('[_1]', response.topup_virtual.currency)
-                    .replace('[_2]', response.topup_virtual.amount)
-                    .replace('[_3]', page.client.loginid),
-                true);
-        }
-    };
-
-    var showMessage = function(message, isSuccess) {
-        var viewID = isSuccess ? viewIDs.success : viewIDs.error;
-        setActiveView(viewID);
-        $(viewID + ' > p').html(message);
-    };
-
-    var setActiveView = function(viewID) {
-        $views.addClass(hiddenClass);
-        $(viewID).removeClass(hiddenClass);
-    };
-
-
-    return {
-    	init: init,
-    	responseHandler: responseHandler
-    };
-}());
-
-
-pjax_config_page_require_auth("top_up_virtualws", function() {
-    return {
-        onLoad: function() {
-        	BinarySocket.init({
-                onmessage: function(msg){
-                    var response = JSON.parse(msg.data);
-                    if (response) {
-                        if (response.msg_type === "authorize") {
-                            TopUpVirtualWS.init();
-                        }
-                        else if (response.msg_type === "topup_virtual") {
-                            TopUpVirtualWS.responseHandler(response);
-                        }
-                    }
-                    else {
-                        console.log('some error occured');
-                    }
-                }
-            });
-
-            Content.populate();
-            if(TUser.get().hasOwnProperty('is_virtual')) {
-                TopUpVirtualWS.init();
-            }
-        }
-    };
-});
-;var Button = (function(){
-    "use strict";
-    function createBinaryStyledButton(){
-        var span = $("<span></span>", {class: "button"});
-        var button = $("<button></button>", {class: "button"});
-        span.append(button);
-
-        return span;
-    }
-
-    return {
-        createBinaryStyledButton: createBinaryStyledButton
-    };
-}());
-;var CommonData = (function(){
-    function getCookieItem(sKey) {
-        if (!sKey) { return null; }
-        return decodeURIComponent(document.cookie.replace(new RegExp("(?:(?:^|.*;)\\s*" + encodeURIComponent(sKey).replace(/[\-\.\+\*]/g, "\\$&") + "\\s*\\=\\s*([^;]*).*$)|^.*$"), "$1")) || null;
-    }
-    
-    //because getCookieItem('login') is confusing and does not looks like we are getting API token
-    function getApiToken(){
-        return getCookieItem("login");
-    }
-
-    return {
-        getCookieItem: getCookieItem,
-        getApiToken: getApiToken
-    };
-}());;function onlyNumericOnKeypress(ev) {
-    var key = ev.keyCode;
-    var char = String.fromCharCode(ev.which);
-    if(
-        (char === '.' && ev.target.value.indexOf(char) >= 0) ||
-        (!/[0-9\.]/.test(char) && [8, 37, 39, 46].indexOf(key) < 0) || // delete, backspace, arrow keys
-        /['%]/.test(char)) { // similarity to arrows key code in some browsers
-
-        ev.returnValue = false;
-        ev.preventDefault();
-    }
-}
-;var PasswordMeter = (function(){
-    'use strict';
+;var PasswordWS = (function(){
+
+  var $form, $result;
+
+  var init = function() {
+    $('#change-password').removeClass('invisible');
+    $form   = $("#change-password > form");
+    $result = $("#change-password > div[data-id='success-result']");
+    $form.find("button").on("click", function(e){
+      e.preventDefault();
+      e.stopPropagation();
+      PasswordWS.sendRequest();
+    });
+  };
+
+  var validateForm = function() {
+
+    var isValid 	= true,
+      old_pass 	= $form.find("input[name='oldpassword']").val(),
+      new_pass 	= $form.find("input[name='new-password']").val(),
+      repeat_pass = $form.find("input[name='repeat-password']").val();
 
     /**
-     * attach password meter to DOM
-     * @param $container       container for password meter, can be a p or div
-     * @param id               optional id for meter element
-     */
-    function attach($container) {
-        if (isIE()) return;
-        var $meter = $('<meter></meter>', {id: 'password-meter', min: 0, max: 50, high: 20, low: 10, optimum: 50});
-        $container
-            .append($meter);
+     * Validation for new-password
+    **/
+
+    // Old passwrod cannot be blank. We leave the actual matching to backend
+    if(0 === old_pass.length) {
+      $form.find("p[data-error='old-blank']").removeClass("hidden");
+      isValid = false;
+    } else {
+      $form.find("p[data-error='old-blank']").addClass("hidden");
+    }
+
+    // New password cannot be the same as the old password
+    if(new_pass.length > 0 && new_pass === old_pass) {
+      $form.find("p[data-error='same-as-old']").removeClass("hidden");
+      isValid = false;
+    } else {
+      $form.find("p[data-error='same-as-old']").addClass("hidden");
+    }
+
+    if (!Validate.errorMessagePassword(document.getElementById('password').value, document.getElementById('repeat-password').value, document.getElementById('error-password'), document.getElementById('error-repeat-password'))){
+      isValid = false;
+    }
+
+    // New and Repeat should be the same
+    if(new_pass !== repeat_pass) {
+      $form.find("p[data-error='not-the-same']").removeClass("hidden");
+      isValid = false;
+    } else {
+      $form.find("p[data-error='not-the-same']").addClass("hidden");
+    }
+
+    if(isValid) return {
+      old_pass: old_pass,
+      new_pass: new_pass
+    };
+
+    return false;
+
+  };
+
+  var sendRequest = function() {
+
+    $form.find("p[data-error='server-sent-error']").addClass("hidden");
+
+    var passwords = validateForm();
+    if(false === passwords) return false;
+
+    BinarySocket.send({
+        "change_password": "1",
+        "old_password": passwords.old_pass,
+        "new_password": passwords.new_pass
+    });
+
+  };
+
+  var apiResponse = function(resp) {
+
+    console.log("apiResponse:", resp);
+
+    /**
+     * Failed
+    **/
+    if("error" in resp) {
+      var errorMsg = text.localize("Old password is wrong.");
+      if("message" in resp.error) {
+        errorMsg = resp.error.message;
+      }
+      $form.find("p[data-error='server-sent-error']").text(errorMsg).removeClass("hidden");
+      return false;
     }
 
     /**
-     * Update password meter
-     * @param $container        container for password meter, can be a p or div
-     * @param newPW
-     */
-    function updateMeter($container, newPW) {
-        var pwStrength = testPassword(newPW);
-        var pwStrengthScore = pwStrength[0];
-
-        $container.children('meter').val(pwStrengthScore);
-    }
-
-    return {
-        attach: attach,
-        updateMeter: updateMeter
-    };
-}());
-;
-var StringUtil = (function(){
-    function toTitleCase(str){
-        return str.replace(/\w[^\s\/\\]*/g, function(txt){
-            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-        });
-    }
-
-    function dateToStringWithoutTime(date){
-        return [date.getDate(), date.getMonth()+1, date.getFullYear()].join("/");
-    }
-
-    //Time should be in SECOND !!!
-    function timeStampToDateString(time){
-        var dateObj = new Date(time * 1000);
-        var momentObj = moment.utc(dateObj);
-        return momentObj.format("YYYY-MM-DD");
-    }
-
-    //Time should be in SECOND !!!
-    function timeStampToTimeString(time){
-        var dateObj = new Date(time * 1000);
-        var momentObj = moment.utc(dateObj);
-        return momentObj.format("HH:mm:ss");
-    }
-
-    //Time should be in SECOND !!!
-    function timeStampToDateTimeString(time){
-        var dateObj = new Date(time * 1000);
-        var momentObj = moment.utc(dateObj);
-        return momentObj.toString();
-    }
-
-    return {
-        toTitleCase: toTitleCase,
-        dateToStringWithoutTime: dateToStringWithoutTime,
-        unixTimeToDateString: timeStampToDateString,
-        unixTimeToTimeString: timeStampToTimeString,
-        unixTimeToDateTimeString: timeStampToDateTimeString
-    };
-}());
-
-;
-var Table = (function(){
-    "use strict";
-    /***
-     *
-     * @param {Array[]} data ordered data to pump into table body
-     * @param {Object} metadata object containing metadata of table
-     * @param {String[]} metadata.cols cols of table
-     * @param {String} metadata.id table id
-     * @param {String[]} [metadata.tableClass] class used in html
-     * @param {String[]} [header] string to be used as Header in table, if not stated then table will not have Header
-     * @param {String[]} [footer] string to be used as footer, to have empty footer, simply use an empty element in array
-     * eg. ["", "halo", ""] will have 3 elements in footer, 2 of them being empty
-     */
-    function createFlexTable(body, metadata, header, footer){
-
-        var tableClasses = (metadata.tableClass) ? metadata.tableClass + " flex-table" : "flex-table";
-
-        var $tableContainer = $("<div></div>", {class: "flex-table-container"});
-        var $table = $("<table></table>", {class: tableClasses, id: metadata.id});
-        var $body = createFlexTableTopGroup(body, metadata.cols, "body");
-
-        if (header) {
-            var $header = createFlexTableTopGroup([header], metadata.cols, "header");
-            $header.appendTo($table);
-        }
-
-        $body.appendTo($table);
-
-        if (footer) {
-            var $footer = createFlexTableTopGroup([footer], metadata.cols, "footer");
-            $footer.appendTo($table);
-        }
-
-        $table.appendTo($tableContainer);
-
-        return $tableContainer;
-    }
-
-    /***
-     *
-     * @param {object[][]} data header strings
-     * @param {String[]} metadata cols name
-     * @param {"header"\"footer"|"body"} opt optional arg to specify which type of element to create, default to header
-     */
-    function createFlexTableTopGroup(data, metadata, opt){
-
-        var $outer = function(){
-            switch (opt) {
-                case "body":
-                    return $("<tbody></tbody>");
-                case "footer":
-                    return $("<tfoot></tfoot>");
-                default :
-                    return $("<thead></thead>");
-            }
-        }();
-
-        for (var i = 0 ; i < data.length ; i++){
-            var innerType = (opt === "body") ? "data" : "header";
-            var $tr = createFlexTableRow(data[i], metadata, innerType);
-            $tr.appendTo($outer);
-        }
-
-        return $outer;
-    }
-
-    /***
-     *
-     * @param {object[]} data
-     * @param {String[]} metadata cols name
-     * @param {"header"|"data"} opt optional, default to "header"
-     */
-    function createFlexTableRow(data, metadata, opt){
-        if (data.length !== metadata.length) {
-            throw new Error("metadata and data does not match");
-        }
-
-        var isData = (opt === "data");
-
-        var $tr = $("<tr></tr>", {class: "flex-tr"});
-        for (var i = 0 ; i < data.length ; i++){
-            var className = metadata[i].toLowerCase().replace(/\s/g, "-") + " flex-tr-child";
-            var rowElement = (isData) ?
-                $("<td></td>", {class: className, text: data[i]}) :
-                $("<th></th>", {class: className, text: data[i]});
-            rowElement.appendTo($tr);
-        }
-
-        return $tr;
-    }
-
-    function clearTableBody(id){
-        var tbody = document.querySelector("#" + id +">tbody");
-        while (tbody && tbody.firstElementChild){
-            tbody.removeChild(tbody.firstElementChild);
-        }
-    }
-
-    /***
-     *
-     * @param {String} id table id
-     * @param {Object[]} data array of data to be transform to row
-     * @param {Function} rowGenerator takes in one arg, and convert it into row to be append to table body
-     */
-    function appendTableBody(id, data, rowGenerator){
-        var tbody = document.querySelector("#" + id +">tbody");
-        var docFrag = document.createDocumentFragment();
-        data.map(function(ele){
-            var row = rowGenerator(ele);
-            docFrag.appendChild(row);
-        });
-
-        tbody.appendChild(docFrag);
-    }
-
-    /***
-     *
-     * @param {String} id table id
-     * @param {Object[]} data array of data to be transform to row
-     * @param {Function} rowGenerator takes in one arg, and convert it into row to be append to table body
-     */
-    function overwriteTableBody(id, data, rowGenerator){
-        clearTableBody(id);
-        appendTableBody(id, data, rowGenerator);
-    }
-
-    return {
-        createFlexTable: createFlexTable,
-        createFlexTableRow: createFlexTableRow,
-        overwriteTableBody: overwriteTableBody,
-        clearTableBody: clearTableBody,
-        appendTableBody: appendTableBody
-    };
-}());
-;var ValidAccountOpening = (function(){
-  var redirectCookie = function() {
-    if (page.client.show_login_if_logout(true)) {
-        return;
-    }
-    if (!page.client.is_virtual()) {
-      window.location.href = page.url.url_for('user/my_accountws');
-      return;
-    }
-    for (i = 0; i < page.user.loginid_array.length; i++){
-      if (page.user.loginid_array[i].real === true){
-        window.location.href = page.url.url_for('user/my_accountws');
-        return;
-      }
-    }
-  };
-  var handler = function(response, message) {
-    if (response.error) {
-      var errorMessage = response.error.message;
-      if (response.error.code === 'show risk disclaimer' && document.getElementById('financial-form')) {
-        $('#financial-form').addClass('hidden');
-        $('#financial-risk').removeClass('hidden');
-        return;
-      }
-      if (document.getElementById('real-form')) {
-        $('#real-form').remove();
-      } else if (document.getElementById('japan-form')) {
-        $('#japan-form').remove();
-      } else if (document.getElementById('financial-form')) {
-        $('#financial-form').remove();
-        $('#financial-risk').remove();
-      }
-      var error = document.getElementsByClassName('notice-msg')[0];
-      error.innerHTML = (response.msg_type === 'sanity_check') ? text.localize('There was some invalid character in an input field.') : errorMessage;
-      error.parentNode.parentNode.parentNode.setAttribute('style', 'display:block');
-      return;
-    } else if (getCookieItem('residence') === 'jp') {
-      window.location.href = page.url.url_for('new_account/knowledge_testws');
-      $('#topbar-msg').children('a').addClass('invisible');
-    } else {     // jp account require more steps to have real account
-      page.client.process_new_account(getCookieItem('email'), message.client_id, message.oauth_token, false);
-    }
-  };
-  var letters, numbers, space, hyphen, period, apost;
-
-  var initializeValues = function() {
-    letters = Content.localize().textLetters;
-    numbers = Content.localize().textNumbers;
-    space   = Content.localize().textSpace;
-    hyphen  = Content.localize().textHyphen;
-    period  = Content.localize().textPeriod;
-    apost   = Content.localize().textApost;
-  };
-
-  var checkFname = function(fname, errorFname) {
-    if (Trim(fname.value).length < 2) {
-      errorFname.innerHTML = Content.errorMessage('min', '2');
-      Validate.displayErrorMessage(errorFname);
-      window.accountErrorCounter++;
-    } else if (!/^[a-zA-Z\s-.']+$/.test(fname.value)){
-      initializeValues();
-      errorFname.innerHTML = Content.errorMessage('reg', [letters, space, hyphen, period, apost]);
-      Validate.displayErrorMessage(errorFname);
-      window.accountErrorCounter++;
-    }
-    return;
-  };
-  var checkLname = function(lname, errorLname) {
-    if (Trim(lname.value).length < 2) {
-      errorLname.innerHTML = Content.errorMessage('min', '2');
-      Validate.displayErrorMessage(errorLname);
-      window.accountErrorCounter++;
-    } else if (!/^[a-zA-Z\s-.']+$/.test(lname.value)){
-      initializeValues();
-      errorLname.innerHTML = Content.errorMessage('reg', [letters, space, hyphen, period, apost]);
-      Validate.displayErrorMessage(errorLname);
-      window.accountErrorCounter++;
-    }
-    return;
-  };
-  var checkDate = function(dobdd, dobmm, dobyy, errorDob) {
-    if (!isValidDate(dobdd.value, dobmm.value, dobyy.value) || dobdd.value === '' || dobmm.value === '' || dobyy.value === '') {
-      errorDob.innerHTML = Content.localize().textErrorBirthdate;
-      Validate.displayErrorMessage(errorDob);
-      window.accountErrorCounter++;
-    }
-    return;
-  };
-  var checkPostcode = function(postcode, errorPostcode) {
-    if (postcode.value !== '' && !/^[a-zA-Z\d-]+$/.test(postcode.value)){
-      initializeValues();
-      errorPostcode.innerHTML = Content.errorMessage('reg', [letters, numbers, hyphen]);
-      Validate.displayErrorMessage(errorPostcode);
-      window.accountErrorCounter++;
-    }
-    return;
-  };
-  var checkTel = function(tel, errorTel) {
-    if (tel.value.replace(/\+| /g,'').length < 6) {
-      errorTel.innerHTML = Content.errorMessage('min', 6);
-      Validate.displayErrorMessage(errorTel);
-      window.accountErrorCounter++;
-    } else if (!/^\+?[0-9\s]{6,35}$/.test(tel.value)){
-      initializeValues();
-      errorTel.innerHTML = Content.errorMessage('reg', [numbers, space]);
-      Validate.displayErrorMessage(errorTel);
-      window.accountErrorCounter++;
-    }
-    return;
-  };
-  var checkAnswer = function(answer, errorAnswer) {
-    if (answer.value.length < 4) {
-      errorAnswer.innerHTML = Content.errorMessage('min', 4);
-      Validate.displayErrorMessage(errorAnswer);
-      window.accountErrorCounter++;
-    }
-    return;
-  };
-  return {
-    redirectCookie: redirectCookie,
-    handler: handler,
-    checkFname: checkFname,
-    checkLname: checkLname,
-    checkDate: checkDate,
-    checkPostcode: checkPostcode,
-    checkTel: checkTel,
-    checkAnswer: checkAnswer
-  };
-}());
-;var Validate = (function(){
-  var errorCounter = 0;
-
-  //give DOM element of error to display
-  function displayErrorMessage(error){
-    error.setAttribute('style', 'display:block');
-  }
-
-  //give DOM element or error to hide
-  function hideErrorMessage(error){
-    error.setAttribute('style', 'display:none');
-    var errorMessage = $('.error-message-password');
-    if (errorMessage){
-      errorMessage.remove();
-    }
-  }
-
-  function handleError(error, text){
-    var par = document.createElement('p'),
-        re = new RegExp(text),
-        allText = '';
-    par.className = 'error-message-password';
-    var parClass = $('.' + par.className);
-    if (parClass.length > 1) {
-      for (i = 0; i < parClass.length; i++){
-        allText = allText + parClass[i].textContent;
-      }
-      if (!re.test(allText)){
-        par.innerHTML = par.innerHTML + ' ' + text;
-      }
-    } else {
-      par.innerHTML = text;
-    }
-    error.appendChild(par);
-    displayErrorMessage(error);
-  }
-
-  //check validity of token
-  function validateToken(token) {
-    if (token.length == 48) {
-      return true;
-    }
-    return false;
-  }
-
-  //give error message for invalid email, needs DOM element of error and value of email
-  function errorMessageEmail(email, error) {
-    if (email === "") {
-      error.textContent = Content.errorMessage('req');
-      displayErrorMessage(error);
-      return true;
-    } else if (!validateEmail(email)) {
-      error.textContent = Content.errorMessage('valid', text.localize('email address'));
-      displayErrorMessage(error);
-      return true;
-    }
-    hideErrorMessage(error);
-    return false;
-  }
-
-  //give error message for invalid verification token, needs DOM element of error and value of verification token
-  function errorMessageToken(token, error) {
-    if (token === "") {
-      error.textContent = Content.errorMessage('req');
-      displayErrorMessage(error);
-      return true;
-    } else if (!validateToken(token)) {
-      error.textContent = Content.errorMessage('valid', text.localize('verification token'));
-      displayErrorMessage(error);
-      return true;
-    }
-    hideErrorMessage(error);
-    return false;
-  }
-
-  function passwordNotEmpty(password, error){
-    if (!/^.+$/.test(password)) {
-      handleError(error, Content.errorMessage('req'));
-      return errorCounter++;
-    }
+     * Succeeded
+    **/
+    $form.addClass("hidden");
+    $result.removeClass("hidden");
+    setTimeout(function(){page.client.send_logout_request(true);}, 5000);
     return true;
-  }
 
-  function fieldNotEmpty(field, error){
-    if (!/^.+$/.test(field)) {
-      error.textContent = Content.errorMessage('req');
-      displayErrorMessage(error);
-      return errorCounter++;
-    }
-    return true;
-  }
-
-  function passwordMatching(password, rPassword, rError){
-    if (password !== rPassword) {
-      rError.textContent = Content.localize().textPasswordsNotMatching;
-      displayErrorMessage(rError);
-      return errorCounter++;
-    }
-    return true;
-  }
-
-  function passwordLength(password, error){
-    if (password.length < 6 || password.length > 25) {
-      handleError(error, Content.errorMessage('range', '6-25'));
-      return errorCounter++;
-    }
-    return true;
-  }
-
-  function passwordChars(password, error){
-    if (/[0-9]+/.test(password) && /[A-Z]+/.test(password) && /[a-z]+/.test(password)) {
-      return true;
-    }
-    handleError(error, text.localize('Password should have lower and uppercase letters with numbers.'));
-    return errorCounter++;
-  }
-
-  function passwordValid(password, error){
-    if (!/^[!-~]+$/.test(password)) {
-      handleError(error, Content.errorMessage('valid', Content.localize().textPassword));
-      return errorCounter++;
-    }
-    return true;
-  }
-
-  function passwordStrong(password, error){
-    var tooltipPassword = document.getElementById('tooltip-password');
-    tooltipPassword.setAttribute('style', 'display:none');
-    if (testPassword(password)[0] < 20) {
-      displayErrorMessage(error);
-      return errorCounter++;
-    }
-    return true;
-  }
-
-  //give error message for invalid password, needs value of password, repeat of password, and DOM element of error
-  /**
-   *
-   * @param password      password
-   * @param rPassword     confirm password
-   * @param error         dom to show error for password (not jquery!)
-   * @param rError        dom to show error for confirm password (not jquery!)
-   * @returns {boolean}
-     */
-  function errorMessagePassword(password, rPassword, error, rError) {
-    hideErrorMessage(error);
-    hideErrorMessage(rError);
-    errorCounter = 0;
-
-    if (passwordNotEmpty(password, error) === true){
-      passwordLength(password, error);
-      passwordChars(password, error);
-      passwordValid(password, error);
-      if (fieldNotEmpty(rPassword, rError) === true){
-        passwordMatching(password, rPassword, rError);
-      }
-    } else {
-      fieldNotEmpty(rPassword, rError);
-    }
-
-    if (errorCounter === 0){
-      return true;
-    }
-    return false;
-  }
-
-  function errorMessageResidence(residence, error) {
-    hideErrorMessage(error);
-    if (residence === ""){
-      error.textContent = Content.errorMessage('req');
-      displayErrorMessage(error);
-      return true;
-    }
-    return false;
-  }
+  };
 
   return {
-    displayErrorMessage: displayErrorMessage,
-    hideErrorMessage: hideErrorMessage,
-    errorMessageEmail: errorMessageEmail,
-    errorMessagePassword: errorMessagePassword,
-    fieldNotEmpty: fieldNotEmpty,
-    errorMessageResidence: errorMessageResidence,
-    errorMessageToken: errorMessageToken
+    init: init,
+    sendRequest: sendRequest,
+    apiResponse: apiResponse
   };
-}());
 
-function validateEmail(mail) {
-  if (/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,63}$/.test(mail)){
-    return true;
-  }
-  return false;
-}
-
-function passwordValid(password) {
-  if (password.length > 25) {
-    return false;
-  }
-
-  var r = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,25}$/;
-  return r.test(password);
-}
-
-/**
- * Use this if you want to separate validation logic with UI
- * Use Validate.errorMessagePassword if you want to handle UI with validation together
- * @param password      password
- * @returns {Array}     array of error message, can be empty
- */
-function showPasswordError(password) {
-  var errMsgs = [];
-  if (password.length < 6 || password.length > 25) {
-    errMsgs.push(Content.errorMessage('range', '6-25'));
-  }
-
-  var hasUpperLowerDigitRegex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])/;
-  if (!hasUpperLowerDigitRegex.test(password)) {
-    errMsgs.push(text.localize('Password should have lower and uppercase letters with numbers.'));
-  }
-
-  return errMsgs;
-}
-;pjax_config_page_require_auth("new_account/maltainvestws", function(){
-  return {
-    onLoad: function() {
-      Content.populate();
-      for (i = 0; i < page.user.loginid_array.length; i++){
-        if (page.user.loginid_array[i].financial){
-          window.location.href = page.url.url_for('user/my_accountws');
-          return;
-        } else if (page.user.loginid_array[i].non_financial){
-          $('.security').hide();
-        }
-      }
-      handle_residence_state_ws();
-      BinarySocket.send({residence_list:1});
-      BinarySocket.send({get_settings:1});
-      $('#financial-form').submit(function(evt) {
-        evt.preventDefault();
-        if (FinancialAccOpeningUI.checkValidity()){
-          BinarySocket.init({
-            onmessage: function(msg){
-              var response = JSON.parse(msg.data);
-              if (response) {
-                var error = response.error;
-                if (response.msg_type === 'new_account_maltainvest'){
-                  ValidAccountOpening.handler(response, response.new_account_maltainvest);
-                }
-              }
-            }
-          });
-        }
-      });
-      $('#financial-risk').submit(function(evt) {
-        evt.preventDefault();
-        window.acceptRisk = true;
-        if (FinancialAccOpeningUI.checkValidity()){
-          BinarySocket.init({
-            onmessage: function(msg){
-              var response = JSON.parse(msg.data);
-              if (response) {
-                if (response.msg_type === 'new_account_maltainvest'){
-                  ValidAccountOpening.handler(response, response.new_account_maltainvest);
-                }
-              }
-            }
-          });
-        }
-      });
-    }
-  };
-});
-;var FinancialAccOpeningData = (function(){
-    function getRealAcc(elementObj){
-        var req = {
-            new_account_maltainvest: 1,
-            salutation: elementObj['title'].value,
-            first_name: elementObj['fname'].value,
-            last_name: elementObj['lname'].value,
-            date_of_birth: elementObj['dobyy'].value + '-' + elementObj['dobmm'].value + '-' + elementObj['dobdd'].value,
-            residence: elementObj['residence'].value,
-            address_line_1: elementObj['address1'].value,
-            address_line_2: elementObj['address2'].value,
-            address_city: elementObj['town'].value,
-            address_state: elementObj['state'].value,
-            address_postcode: elementObj['postcode'].value,
-            phone: elementObj['tel'].value,
-            forex_trading_experience: elementObj['forexExperience'].value,
-            forex_trading_frequency: elementObj['forexFrequency'].value,
-            indices_trading_experience: elementObj['indicesExperience'].value,
-            indices_trading_frequency: elementObj['indicesFrequency'].value,
-            commodities_trading_experience: elementObj['commoditiesExperience'].value,
-            commodities_trading_frequency: elementObj['commoditiesFrequency'].value,
-            stocks_trading_experience: elementObj['stocksExperience'].value,
-            stocks_trading_frequency: elementObj['stocksFrequency'].value,
-            other_derivatives_trading_experience: elementObj['binaryExperience'].value,
-            other_derivatives_trading_frequency: elementObj['binaryFrequency'].value,
-            other_instruments_trading_experience: elementObj['otherExperience'].value,
-            other_instruments_trading_frequency: elementObj['otherFrequency'].value,
-            employment_industry: elementObj['employment'].value,
-            education_level: elementObj['education'].value,
-            income_source: elementObj['incomeSource'].value,
-            net_income: elementObj['income'].value,
-            estimated_worth: elementObj['netWorth'].value
-        };
-
-        if ($.cookie('affiliate_tracking')) {
-          req.affiliate_token = JSON.parse($.cookie('affiliate_tracking')).t;
-        }
-
-        if (elementObj['answer'].value !== '') {
-          req.secret_question = elementObj['question'].value;
-          req.secret_answer = elementObj['answer'].value;
-        }
-
-        if (window.acceptRisk) {
-          req.accept_risk = 1;
-        } else {
-          req.accept_risk = 0;
-        }
-
-        BinarySocket.send(req);
-    }
-
-    return {
-        getRealAcc: getRealAcc
-    };
-}());
-;var FinancialAccOpeningUI = (function(){
-  "use strict";
-
-  function checkValidity(){
-    window.accountErrorCounter = 0;
-
-    var letters = Content.localize().textLetters,
-        numbers = Content.localize().textNumbers,
-        space   = Content.localize().textSpace,
-        hyphen  = Content.localize().textHyphen,
-        period  = Content.localize().textPeriod,
-        apost   = Content.localize().textApost;
-
-    var elementObj = {
-        title                    : document.getElementById('title'),
-        fname                    : document.getElementById('fname'),
-        lname                    : document.getElementById('lname'),
-        dobdd                    : document.getElementById('dobdd'),
-        dobmm                    : document.getElementById('dobmm'),
-        dobyy                    : document.getElementById('dobyy'),
-        residence                : document.getElementById('residence-disabled'),
-        address1                 : document.getElementById('address1'),
-        address2                 : document.getElementById('address2'),
-        town                     : document.getElementById('address-town'),
-        state                    : document.getElementById('address-state'),
-        postcode                 : document.getElementById('address-postcode'),
-        tel                      : document.getElementById('tel'),
-        question                 : document.getElementById('secret-question'),
-        answer                   : document.getElementById('secret-answer'),
-        tnc                      : document.getElementById('tnc'),
-        forexExperience          : document.getElementById('forex-trading-experience'),
-        forexFrequency           : document.getElementById('forex-trading-frequency'),
-        indicesExperience        : document.getElementById('indices-trading-experience'),
-        indicesFrequency         : document.getElementById('indices-trading-frequency'),
-        commoditiesExperience    : document.getElementById('commodities-trading-experience'),
-        commoditiesFrequency     : document.getElementById('commodities-trading-frequency'),
-        stocksExperience         : document.getElementById('stocks-trading-experience'),
-        stocksFrequency          : document.getElementById('stocks-trading-frequency'),
-        binaryExperience         : document.getElementById('other-derivatives-trading-experience'),
-        binaryFrequency          : document.getElementById('other-derivatives-trading-frequency'),
-        otherExperience          : document.getElementById('other-instruments-trading-experience'),
-        otherFrequency           : document.getElementById('other-instruments-trading-frequency'),
-        employment               : document.getElementById('employment-industry'),
-        education                : document.getElementById('education-level'),
-        incomeSource             : document.getElementById('income-source'),
-        income                   : document.getElementById('net-income'),
-        netWorth                 : document.getElementById('estimated-worth')
-    };
-
-    var errorObj = {
-        title                    : document.getElementById('error-title'),
-        fname                    : document.getElementById('error-fname'),
-        lname                    : document.getElementById('error-lname'),
-        dobdd                    : document.getElementById('error-birthdate'),
-        dobmm                    : document.getElementById('error-birthdate'),
-        dobyy                    : document.getElementById('error-birthdate'),
-        residence                : document.getElementById('error-residence'),
-        address1                 : document.getElementById('error-address1'),
-        address2                 : document.getElementById('error-address2'),
-        town                     : document.getElementById('error-town'),
-        state                    : document.getElementById('error-state'),
-        postcode                 : document.getElementById('error-postcode'),
-        tel                      : document.getElementById('error-tel'),
-        question                 : document.getElementById('error-question'),
-        answer                   : document.getElementById('error-answer'),
-        tnc                      : document.getElementById('error-tnc'),
-        forexExperience          : document.getElementById('error-forex-trading-experience'),
-        forexFrequency           : document.getElementById('error-forex-trading-frequency'),
-        indicesExperience        : document.getElementById('error-indices-trading-experience'),
-        indicesFrequency         : document.getElementById('error-indices-trading-frequency'),
-        commoditiesExperience    : document.getElementById('error-commodities-trading-experience'),
-        commoditiesFrequency     : document.getElementById('error-commodities-trading-frequency'),
-        stocksExperience         : document.getElementById('error-stocks-trading-experience'),
-        stocksFrequency          : document.getElementById('error-stocks-trading-frequency'),
-        binaryExperience         : document.getElementById('error-other-derivatives-trading-experience'),
-        binaryFrequency          : document.getElementById('error-other-derivatives-trading-frequency'),
-        otherExperience          : document.getElementById('error-other-instruments-trading-experience'),
-        otherFrequency           : document.getElementById('error-other-instruments-trading-frequency'),
-        employment               : document.getElementById('error-employment-industry'),
-        education                : document.getElementById('error-education-level'),
-        incomeSource             : document.getElementById('error-income-source'),
-        income                   : document.getElementById('error-net-income'),
-        netWorth                 : document.getElementById('error-estimated-worth')
-    };
-
-    var key;
-    for (key in errorObj) {
-      if (errorObj[key].offsetParent !== null) {
-        errorObj[key].setAttribute('style', 'display:none');
-      }
-    }
-
-    ValidAccountOpening.checkFname(elementObj['fname'], errorObj['fname']);
-    ValidAccountOpening.checkLname(elementObj['lname'], errorObj['lname']);
-    ValidAccountOpening.checkDate(elementObj['dobdd'], elementObj['dobmm'], elementObj['dobyy'], errorObj['dobdd']);
-    ValidAccountOpening.checkPostcode(elementObj['postcode'], errorObj['postcode']);
-
-    if (elementObj['residence'].value === 'gb' && /^$/.test(Trim(elementObj['postcode'].value))){
-      errorPostcode.innerHTML = Content.errorMessage('req');
-      Validate.displayErrorMessage(errorPostcode);
-      window.accountErrorCounter++;
-    }
-
-    ValidAccountOpening.checkTel(elementObj['tel'], errorObj['tel']);
-    if (elementObj['answer'].offsetParent !== null) {
-      ValidAccountOpening.checkAnswer(elementObj['answer'], errorObj['answer']);
-    }
-
-    for (key in elementObj){
-      if (elementObj[key].offsetParent !== null && key !== 'address2' && key !== 'postcode' && key !== 'state') {
-        if (/^$/.test(Trim(elementObj[key].value)) && elementObj[key].type !== 'checkbox'){
-          errorObj[key].innerHTML = Content.errorMessage('req');
-          Validate.displayErrorMessage(errorObj[key]);
-          window.accountErrorCounter++;
-        }
-        if (elementObj[key].type === 'checkbox' && !elementObj[key].checked){
-          errorObj[key].innerHTML = Content.errorMessage('req');
-          Validate.displayErrorMessage(errorObj[key]);
-          window.accountErrorCounter++;
-        }
-      }
-    }
-
-    if (window.accountErrorCounter === 0) {
-      FinancialAccOpeningData.getRealAcc(elementObj);
-      for (key in errorObj) {
-        if (errorObj[key].offsetParent !== null) {
-          errorObj[key].setAttribute('style', 'display:none');
-        }
-      }
-      return 1;
-    }
-    return 0;
-  }
-
-  return {
-    checkValidity: checkValidity
-  };
 })();
-;var FinancialAssessmentws = (function(){
-   "use strict";
 
-    var init = function(){
-        if (checkIsVirtual()) return;
-        LocalizeText();
-        $("#assessment_form").on("submit",function(event) {
-            event.preventDefault();
-            submitForm();
-            return false;
-        });
-        BinarySocket.send(JSON.parse("{\"get_financial_assessment\" : 1}"));
-    };
-
-    // For translating strings
-    var LocalizeText = function(){
-        $("#heading").text(text.localize($("#heading").text()));
-        $('#heading_risk').text(text.localize($("#heading_risk").text()));
-        $('#high_risk_classification').text(text.localize($('#high_risk_classification').text()));
-        document.getElementsByTagName('legend')[0].innerHTML = text.localize(document.getElementsByTagName('legend')[0].innerHTML);
-        if (document.getElementsByTagName('legend')[1]) document.getElementsByTagName('legend')[1].innerHTML = text.localize(document.getElementsByTagName('legend')[1].innerHTML);
-        $("#assessment_form label").each(function(){
-            var ele = $(this);
-            ele.text(text.localize(ele.text()));
-        });
-        $("#assessment_form option").each(function(){
-            var ele = $(this);
-            ele.text(text.localize(ele.text()));
-        });
-        $("#warning").text(text.localize($("#warning").text()));
-        $("#submit").text(text.localize($("#submit").text()));
-    };
-
-    var submitForm = function(){
-        if(!validateForm()){
-            return;
-        }
-        $('#submit').attr('disabled', 'disabled');
-        var data = {'set_financial_assessment' : 1};
-        showLoadingImg();
-        $('#assessment_form select').each(function(){
-            data[$(this).attr("id")] = $(this).val();
-        });
-        $('html, body').animate({ scrollTop: 0 }, 'fast');
-        BinarySocket.send(data);
-        RiskClassification.cleanup();
-    };
-
-    var validateForm = function(){
-        var isValid = true,
-            errors = {};
-        $('#assessment_form select').each(function(){
-            if($(this).val() === ''){
-                isValid = false;
-                errors[$(this).attr("id")] = text.localize('Please select a value.');
-            }
-        });
-        if(!isValid){
-            displayErrors(errors);
-        }
-
-        return isValid;
-    };
-
-    var showLoadingImg = function(){
-        showLoadingImage($('<div/>', {id: 'loading'}).insertAfter('#heading'));
-        $("#assessment_form").addClass('invisible');
-    };
-
-    var hideLoadingImg = function(show_form){
-        $("#loading").remove();
-        if(typeof show_form === 'undefined'){
-            show_form = true;
-        }
-        if(show_form)
-            $("#assessment_form").removeClass('invisible');
-    };
-
-    var responseGetAssessment = function(response){
-        hideLoadingImg();
-        for(var key in response.get_financial_assessment){
-            if(key){
-                var val = response.get_financial_assessment[key];
-                $("#"+key).val(val);
-            }
-        }
-    };
-
-    var displayErrors = function(errors){
-        var id;
-        $(".errorfield").each(function(){$(this).text('');});
-        for(var key in errors){
-            if(key){
-                var error = errors[key];
-                $("#error"+key).text(text.localize(error));
-                id = key;
-            }
-        }
-        hideLoadingImg();
-        $('html, body').animate({
-            scrollTop: $("#"+id).offset().top
-        }, 'fast');
-    };
-
-    var responseOnSuccess = function(){
-        $("#heading").hide();
-        hideLoadingImg(false);
-        $("#response_on_success").text(text.localize("Your details have been updated."))
-            .removeClass("invisible");
-    };
-
-    var apiResponse = function(response){
-        if (checkIsVirtual()) return;
-        if(response.msg_type === 'get_financial_assessment'){
-            responseGetAssessment(response);
-        }
-        else if(response.msg_type === 'set_financial_assessment' && 'error' in response){
-            displayErrors(response.error.details);
-        }
-        else if(response.msg_type === 'set_financial_assessment'){
-            responseOnSuccess();
-        }
-    };
-
-    var checkIsVirtual = function(){
-        if(page.client.is_virtual()) {
-            $("#assessment_form").addClass('invisible');
-            $('#response_on_success').addClass('notice-msg center').removeClass('invisible').text(text.localize('This feature is not relevant to virtual-money accounts.'));
-            hideLoadingImg(false);
-            return true;
-        }
-        return false;
-    };
-
-    return {
-        init : init,
-        apiResponse : apiResponse,
-        submitForm: submitForm,
-        LocalizeText: LocalizeText
-    };
-}());
-
-
-pjax_config_page_require_auth("user/assessmentws", function() {
+pjax_config_page_require_auth("user/change_password", function() {
     return {
         onLoad: function() {
-            BinarySocket.init({
-                onmessage: function(msg) {
-                    var response = JSON.parse(msg.data);
-                    if (response) {
-                        FinancialAssessmentws.apiResponse(response);
-                    }
-                }
+          Content.populate();
+          if (isIE() === false) {
+            $('#password').on('input', function() {
+              $('#password-meter').attr('value', testPassword($('#password').val())[0]);
             });
-            showLoadingImage($('<div/>', {id: 'loading'}).insertAfter('#heading'));
-            FinancialAssessmentws.init();
-        }
-    };
-});
-;pjax_config_page_require_auth("user/iphistoryws", function(){
-    return {
-        onLoad: function() {
-            BinarySocket.init({
-                onmessage: function(msg){
-                    var response = JSON.parse(msg.data);
-
-                    if (response) {
-                        var type = response.msg_type;
-                        if (type === 'login_history'){
-                            IPHistory.responseHandler(response);
-                        }
-                    }
-                }
-            });
-            Content.populate();
-            IPHistory.init();
-        },
-        onUnload: function(){
-            IPHistory.clean();
-        }
-    };
-});
-;var IPHistoryData = (function(){
-    "use strict";
-
-    function getHistory(limit){
-        var request = {login_history: 1};
-        if(limit){
-            $.extend(request,limit);
-        }
-        BinarySocket.send(request);
-    }
-
-    return{
-      getHistory: getHistory,
-    };
-}());
-;var IPHistory = (function(){
-    "use strict";
-
-    //Batch refer to number of data get from ws service per request
-    //chunk refer to number of data populate to ui for each append
-    //receive means receive from ws service
-    //consume means consume by UI and displayed to page
-
-    var batchSize = 50;
-    var chunkSize = batchSize/5;
-
-    var noMoreData = true;
-    var pending = false;            //serve as a lock to prevent ws request is sequential
-    var currentBatch = [];
-    var historyReceived = 0;
-    var historyConsumed = 0;
-
-    var tableExist = function(){
-        return document.getElementById("login-history-table");
-    };
-    var finishedConsumed = function(){
-        return historyConsumed === historyReceived;
-    };
-
-    function responseHandler(response){
-        if (response.hasOwnProperty('error') && response.error.message) {
-          document.getElementById('err').textContent = response.error.message;
-          return;
-        } else {
-          pending = false;
-
-          var login_history = response.login_history;
-          currentBatch = login_history;
-          historyReceived += currentBatch.length;
-
-          if (!tableExist()) {
-              IPHistoryUI.createEmptyTable().appendTo("#login_history-ws-container");
-              IPHistoryUI.updateTable(getNextChunk());
-
-              // Show a message when the table is empty
-              if ((historyReceived === 0) && (currentBatch.length === 0)) {
-                  $('#login-history-table tbody')
-                      .append($('<tr/>', {class: "flex-tr"})
-                          .append($('<td/>', {colspan: 6})
-                              .append($('<p/>', {class: "notice-msg center", text: text.localize("Your account has no Login/Logout activity.")})
-                              )
-                          )
-                      );
-              }
-
-              var titleElement = document.getElementById("login_history-title").firstElementChild;
-              titleElement.textContent = text.localize(titleElement.textContent);
+          } else {
+            $('#password-meter').remove();
           }
-        }
-    }
 
-    function getNextBatch(){
-        IPHistoryData.getHistory({limit: 50});
-        pending = true;
-    }
-
-    function getNextChunk(){
-        var chunk = currentBatch.splice(0, chunkSize);
-        historyConsumed += chunk.length;
-        return chunk;
-    }
-
-
-    function loadChunkWhenScroll(){
-        $(document).scroll(function(){
-
-            function hidableHeight(percentage){
-                var totalHidable = $(document).height() - $(window).height();
-                return Math.floor(totalHidable * percentage / 100);
-            }
-
-            var pFromTop = $(document).scrollTop();
-
-            if (!tableExist()){
-                return;
-            }
-
-            if (pFromTop < hidableHeight(70)) {
-                return;
-            }
-
-            /*if (finishedConsumed() && !noMoreData && !pending) {
-                getNextBatchStatement();
-                return;
-            }*/
-
-            if (!finishedConsumed()){
-                IPHistoryUI.updateTable(getNextChunk());
-            }
-        });
-    }
-
-
-    function initTable(){
-        pending = false;
-        noMoreData = false;
-
-        currentBatch = [];
-
-        historyReceived = 0;
-        historyConsumed = 0;
-
-        $("#login_history-ws-container .error-msg").text("");
-
-        IPHistoryUI.clearTableContent();
-    }
-
-    function initPage(){
-        getNextBatch();
-        loadChunkWhenScroll();
-    }
-
-    function cleanPageState(){
-        initTable();
-    }
-
-    return {
-        init: initPage,
-        responseHandler: responseHandler,
-        clean: cleanPageState
-    };
-}());
-;var IPHistoryUI = (function(){
-    "use strict";
-
-    var tableID = "login-history-table",
-        columns = ["timestamp","action","browser","ip","status"];
-
-    function createEmptyTable(){
-        var header = [
-            text.localize("Date and Time"),
-            text.localize("Action"),
-            text.localize("Browser"),
-            text.localize("IP Address"),
-            text.localize("Status"),
-        ];
-        var metadata = {
-            id: tableID,
-            cols: columns
-        };
-        var data = [];
-        var $table = Table.createFlexTable(data,metadata,header);
-        return $table;
-    }
-
-    function updateTable(history){
-        Table.appendTableBody(tableID, history, createRow);
-        showLocalTimeOnHover('td.timestamp');
-    }
-
-    function createRow(data){
-        var userAgent = data['environment'];
-        var history = userAgent.split(' ');
-        var timestamp = moment.unix(data.time).utc().format('YYYY-MM-DD HH:mm:ss').replace(' ', '\n') + ' GMT';
-        var ip = history[2].split('=')[1];
-        var browser = "Unknown",
-            ver = "Unknown",
-            verOffset = 0;
-        if (/(msie|trident)/i.test(userAgent)){
-            browser = "Internet Explorer";
-            verOffset = /(msie)/i.test(userAgent) ? userAgent.indexOf("MSIE") : verOffset;
-            verOffset = /(trident)/i.test(userAgent) ? userAgent.indexOf("Trident") : verOffset;
-            if (userAgent.substring(verOffset+13).split(" ")[0].indexOf(':') != -1) {
-              ver = userAgent.substring(verOffset+13).split(" ")[0].split(":")[1].split(")")[0];
-            }
-        } else if ((verOffset = userAgent.indexOf("Edge")) != -1) {
-            browser = "Edge";
-            ver = userAgent.substring(verOffset).split("/")[1].split(" ")[0];
-            if (ver.indexOf(';') != -1) {
-              ver = ver.split(';')[0];
-            }
-        } else if ((verOffset = userAgent.indexOf("OPR")) != -1){
-            browser = "Opera";
-            ver = userAgent.substring(verOffset+4).split(" ")[0];
-        } else if ((verOffset = userAgent.indexOf("Chrome")) != -1){
-            browser = "Chrome";
-            ver = userAgent.substring(verOffset+7).split(" ")[0];
-        } else if ((verOffset = userAgent.indexOf("Safari")) != -1){
-            browser = "Safari";
-            ver = userAgent.substring(verOffset+7).split(" ")[0];
-        } else if ((verOffset = userAgent.indexOf("Firefox")) != -1){
-            browser = "Firefox";
-            ver = userAgent.substring(verOffset+8).split(" ")[0];
-        }
-        var status = data['status'] === 1 ? text.localize('Successful') : text.localize('Failed');
-        var browserString = browser + " v" + ver;
-        var $row = Table.createFlexTableRow([timestamp, data['action'], browserString, ip, status], columns, "data");
-        $row.children(".timestamp").addClass('pre');
-        return $row[0];
-    }
-
-    function clearTableContent(){
-        Table.clearTableBody(tableID);
-        $("#" + tableID +">tfoot").hide();
-    }
-
-    return{
-        createEmptyTable: createEmptyTable,
-        updateTable: updateTable,
-        clearTableContent: clearTableContent
-    };
-}());
-;pjax_config_page("new_account/japanws", function(){
-  return {
-    onLoad: function() {
-      Content.populate();
-      ValidAccountOpening.redirectCookie();
-      if (page.client.residence !== 'jp') {
-        window.location.href = page.url.url_for('user/my_accountws');
-        return;
-      }
-      handle_residence_state_ws();
-      BinarySocket.send({get_settings:1});
-      var purpose = $('#trading-purpose'),
-          hedging = $('.hedging-assets');
-      purpose.change(function(evt) {
-        if (purpose.val() === 'Hedging') {
-          hedging.show();
-        }
-        else if (hedging.is(":visible")) {
-          hedging.hide();
-        }
-        return;
-      });
-      $('#japan-form').submit(function(evt) {
-        evt.preventDefault();
-        if (JapanAccOpeningUI.checkValidity()){
           BinarySocket.init({
-            onmessage: function(msg){
-              var response = JSON.parse(msg.data);
-              if (response) {
-                var type = response.msg_type;
-                if (type === 'new_account_japan'){
-                  ValidAccountOpening.handler(response, response.new_account_japan);
-                } else if (type === 'sanity_check') {
-                  ValidAccountOpening.handler(response);
-                }
-              }
-            }
-          });
-          JapanAccOpeningUI.fireRequest();
-        }
-      });
-    }
-  };
-});
-;var JapanAccOpeningData = (function(){
-    function getJapanAcc(elementObj){
-        var req = {
-          new_account_japan: 1,
-          gender : elementObj['gender'].value,
-          first_name: elementObj['fname'].value,
-          last_name: elementObj['lname'].value,
-          date_of_birth : elementObj['dobyy'].value + '-' + elementObj['dobmm'].value + '-' + elementObj['dobdd'].value,
-          occupation: elementObj['occupation'].value,
-          residence : page.client.residence,
-          address_line_1: elementObj['address1'].value,
-          address_line_2: elementObj['address2'].value,
-          address_city: elementObj['town'].value,
-          address_postcode: elementObj['postcode'].value,
-          address_state : elementObj['state'].value,
-          phone: elementObj['tel'].value,
-          secret_question: elementObj['question'].value,
-          secret_answer: elementObj['answer'].value,
-          annual_income: elementObj['income'].value,
-          financial_asset: elementObj['asset'].value,
-          daily_loss_limit: elementObj['limit'].value,
-          trading_experience_equities: elementObj['equities'].value,
-          trading_experience_commodities: elementObj['commodities'].value,
-          trading_experience_foreign_currency_deposit: elementObj['deposit'].value,
-          trading_experience_margin_fx: elementObj['margin'].value,
-          trading_experience_investment_trust: elementObj['trust'].value,
-          trading_experience_public_bond: elementObj['bond'].value,
-          trading_experience_option_trading: elementObj['otc'].value,
-          trading_purpose : elementObj['purpose'].value,
-          agree_use_electronic_doc                : 1,
-          agree_warnings_and_policies             : 1,
-          confirm_understand_own_judgment         : 1,
-          confirm_understand_trading_mechanism    : 1,
-          confirm_understand_judgment_time        : 1,
-          confirm_understand_total_loss           : 1,
-          confirm_understand_sellback_loss        : 1,
-          confirm_understand_shortsell_loss       : 1,
-          confirm_understand_company_profit       : 1,
-          confirm_understand_expert_knowledge     : 1,
-          declare_not_fatca                       : 1
-        };
-
-        if (elementObj['purpose'].value === 'Hedging') {
-          req.hedge_asset = elementObj['hedge'].value;
-          req.hedge_asset_amount = elementObj['amount'].value;
-        }
-
-        BinarySocket.send(req);
-    }
-
-    return {
-        getJapanAcc: getJapanAcc
-    };
-}());
-;var JapanAccOpeningUI = function () {
-  "use strict";
-
-    var elementObj;
-
-  function checkValidity() {
-    window.accountErrorCounter = 0;
-    var letters = Content.localize().textLetters,
-        numbers = Content.localize().textNumbers,
-        space = Content.localize().textSpace,
-        hyphen = Content.localize().textHyphen,
-        period = Content.localize().textPeriod,
-        apost = Content.localize().textApost;
-
-    elementObj = {
-        gender: document.getElementById('gender'),
-        fname: document.getElementById('fname'),
-        lname: document.getElementById('lname'),
-        dobdd: document.getElementById('dobdd'),
-        dobmm: document.getElementById('dobmm'),
-        dobyy: document.getElementById('dobyy'),
-        occupation: document.getElementById('occupation'),
-        address1: document.getElementById('address1'),
-        address2: document.getElementById('address2'),
-        town: document.getElementById('address-town'),
-        state: document.getElementById('address-state'),
-        postcode: document.getElementById('address-postcode'),
-        tel: document.getElementById('tel'),
-        question: document.getElementById('secret-question'),
-        answer: document.getElementById('secret-answer'),
-        fatca: document.getElementById('fatca'),
-        income: document.getElementById('annual-income'),
-        asset: document.getElementById('financial-asset'),
-        limit: document.getElementById('daily-loss-limit'),
-        equities: document.getElementById('equities'),
-        commodities: document.getElementById('commodities'),
-        deposit: document.getElementById('foreign-currency-deposit'),
-        margin: document.getElementById('margin-fx'),
-        trust: document.getElementById('investment-trust'),
-        bond: document.getElementById('public-and-corporation-bond'),
-        otc: document.getElementById('otc-derivative-trading'),
-        purpose: document.getElementById('trading-purpose'),
-        hedge: document.getElementById('hedge-asset'),
-        amount: document.getElementById('hedge-asset-amount'),
-        electronic: document.getElementById('use-electronic-doc'),
-        policies: document.getElementById('warnings-and-policies'),
-        judgement: document.getElementById('own-judgment'),
-        mechanism: document.getElementById('trading-mechanism'),
-        time: document.getElementById('judgment-time'),
-        total: document.getElementById('total-loss'),
-        sellback: document.getElementById('sellback-loss'),
-        shortsell: document.getElementById('shortsell-loss'),
-        profit: document.getElementById('company-profit'),
-        knowledge: document.getElementById('expert-knowledge')
-    };
-
-    var errorObj = {
-        gender: document.getElementById('error-gender'),
-        fname: document.getElementById('error-fname'),
-        lname: document.getElementById('error-lname'),
-        dobdd: document.getElementById('error-birthdate'),
-        dobmm: document.getElementById('error-birthdate'),
-        dobyy: document.getElementById('error-birthdate'),
-        occupation: document.getElementById('error-occupation'),
-        address1: document.getElementById('error-address1'),
-        address2: document.getElementById('error-address2'),
-        town: document.getElementById('error-town'),
-        state: document.getElementById('error-state'),
-        postcode: document.getElementById('error-postcode'),
-        tel: document.getElementById('error-tel'),
-        question: document.getElementById('error-question'),
-        answer: document.getElementById('error-answer'),
-        fatca: document.getElementById('error-fatca'),
-        income: document.getElementById('error-annual-income'),
-        asset: document.getElementById('error-financial-asset'),
-        limit: document.getElementById('error-daily-loss-limit'),
-        equities: document.getElementById('error-equities'),
-        commodities: document.getElementById('error-commodities'),
-        deposit: document.getElementById('error-foreign-currency-deposit'),
-        margin: document.getElementById('error-margin-fx'),
-        trust: document.getElementById('error-investment-trust'),
-        bond: document.getElementById('error-public-and-corporation-bond'),
-        otc: document.getElementById('error-otc-derivative-trading'),
-        purpose: document.getElementById('error-trading-purpose'),
-        hedge: document.getElementById('error-hedge-asset'),
-        amount: document.getElementById('error-hedge-asset-amount'),
-        electronic: document.getElementById('error-use-electronic-doc'),
-        policies: document.getElementById('error-warnings-and-policies'),
-        judgement: document.getElementById('error-own-judgment'),
-        mechanism: document.getElementById('error-trading-mechanism'),
-        time: document.getElementById('error-judgment-time'),
-        total: document.getElementById('error-total-loss'),
-        sellback: document.getElementById('error-sellback-loss'),
-        shortsell: document.getElementById('error-shortsell-loss'),
-        profit: document.getElementById('error-company-profit'),
-        knowledge: document.getElementById('error-expert-knowledge')
-    };
-    var key;
-    for (key in errorObj) {
-      if (errorObj[key].offsetParent !== null) {
-        errorObj[key].setAttribute('style', 'display:none');
-      }
-    }
-
-    if (/[`~!@#$%^&*)(_=+\[}{\]\\\/";:\?><,|\d]+/.test(Trim(elementObj['fname'].value))) {
-      errorObj['fname'].innerHTML = Content.errorMessage('reg', [letters, space, hyphen, period, apost]);
-      Validate.displayErrorMessage(errorObj['fname']);
-      window.accountErrorCounter++;
-    }
-
-    if (/[`~!@#$%^&*)(_=+\[}{\]\\\/";:\?><,|\d]+/.test(Trim(elementObj['lname'].value))) {
-      errorObj['lname'].innerHTML = Content.errorMessage('reg', [letters, space, hyphen, period, apost]);
-      Validate.displayErrorMessage(errorObj['lname']);
-      window.accountErrorCounter++;
-    }
-
-    ValidAccountOpening.checkDate(elementObj['dobdd'], elementObj['dobmm'], elementObj['dobyy'], errorObj['dobdd']);
-
-    if (!/^\d{3}-\d{4}$/.test(elementObj['postcode'].value)) {
-      errorObj['postcode'].innerHTML = text.localize('Please follow the pattern 3 numbers, a dash, followed by 4 numbers.');
-      Validate.displayErrorMessage(errorObj['postcode']);
-      window.accountErrorCounter++;
-    }
-
-    if (elementObj['tel'].value.replace(/\+| /g,'').length < 6) {
-      errorObj['tel'].innerHTML = Content.errorMessage('min', 6);
-      Validate.displayErrorMessage(errorObj['tel']);
-      window.accountErrorCounter++;
-    } else if (!/^\+?[0-9\s-]{6,35}$/.test(elementObj['tel'].value)){
-      errorObj['tel'].innerHTML = Content.errorMessage('reg', [numbers, space, hyphen]);
-      Validate.displayErrorMessage(errorObj['tel']);
-      window.accountErrorCounter++;
-    }
-
-    if (!/^\d+$/.test(elementObj['limit'].value)) {
-      errorObj['limit'].innerHTML = Content.errorMessage('reg', [numbers]);
-      Validate.displayErrorMessage(errorObj['limit']);
-      window.accountErrorCounter++;
-    }
-
-    if (elementObj['amount'].offsetParent !== null && !/^\d+$/.test(elementObj['amount'].value)) {
-      errorObj['amount'].innerHTML = Content.errorMessage('reg', [numbers]);
-      Validate.displayErrorMessage(errorObj['amount']);
-      window.accountErrorCounter++;
-    }
-
-    for (key in elementObj) {
-      if (elementObj[key].offsetParent !== null && key !== 'address2') {
-        if (/^$/.test(Trim(elementObj[key].value)) && elementObj[key].type !== 'checkbox') {
-          errorObj[key].innerHTML = Content.errorMessage('req');
-          Validate.displayErrorMessage(errorObj[key]);
-          window.accountErrorCounter++;
-        }
-        if (elementObj[key].type === 'checkbox' && !elementObj[key].checked) {
-          errorObj[key].innerHTML = Content.errorMessage('req');
-          Validate.displayErrorMessage(errorObj[key]);
-          window.accountErrorCounter++;
-        }
-      }
-    }
-
-    if (window.accountErrorCounter === 0) {
-      for (key in errorObj) {
-        if (errorObj[key].offsetParent !== null) {
-          errorObj[key].setAttribute('style', 'display:none');
-        }
-      }
-      return 1;
-    }
-    return 0;
-  }
-
-    function fireRequest() {
-        JapanAccOpeningData.getJapanAcc(elementObj);
-    }
-
-  return {
-    checkValidity: checkValidity,
-      fireRequest: fireRequest,
-  };
-}();
-;pjax_config_page_require_auth("limitsws", function(){
-    return {
-        onLoad: function() {
-            Content.populate();
-            Content.limitsTranslation();
-            if (TUser.get().is_virtual) {
-                LimitsWS.limitsError();
-                return;
-            }
-            document.getElementById('client_message').setAttribute('style', 'display:none');
-
-            BinarySocket.init({
                 onmessage: function(msg){
                     var response = JSON.parse(msg.data);
                     if (response) {
                         var type = response.msg_type;
-                        var error = response.error;
-
-                        if (type === 'authorize' && TUser.get().is_virtual){
-                            LimitsWS.limitsError();
-                        } else if (type === 'get_limits' && !error){
-                            LimitsWS.limitsHandler(response);
-                        } else if (error) {
-                            LimitsWS.limitsError();
+                        if (type === "change_password" || (type === "error" && "change_password" in response.echo_req)){
+                            PasswordWS.apiResponse(response);
                         }
                     }
                 }
             });
-
-            BinarySocket.send({get_limits: 1});
-        },
-        onUnload: function(){
-            LimitsWS.clean();
+            PasswordWS.init();
         }
     };
 });
-;var LimitsWS = (function(){
-    "use strict";
-
-    function limitsHandler(response){
-        var limits = response.get_limits;
-        LimitsUI.fillLimitsTable(limits);
-
-        var elem_withdrawal_limit = document.getElementById("withdrawal-limit");
-        var elem_already_withdraw = document.getElementById("already-withdraw");
-        var elem_withdrawal_limit_aggregate = document.getElementById("withdrawal-limit-aggregate");
-
-        if(limits['lifetime_limit'] === 99999999 && limits['num_of_days_limit'] === 99999999) {
-            elem_withdrawal_limit.textContent = Content.localize().textAuthenticatedWithdrawal;
-        } else {
-            var text_WithdrawalLimits     = Content.localize().textWithdrawalLimitsEquivalant;
-            var text_WithrawalAmount      = Content.localize().textWithrawalAmountEquivalant;
-            var text_CurrentMaxWithdrawal = Content.localize().textCurrentMaxWithdrawalEquivalant;
-            var client_currency           = 'EUR';
-            var num_of_days_limit         = addComma(limits['num_of_days_limit']);
-            var already_withdraw          = limits["withdrawal_since_inception_monetary"]; // no need for addComma since it is already string like "1,000"
-            var remainder                 = addComma(limits['remainder']);
-
-            if((/^(iom)$/i).test(TUser.get().landing_company_name)) { // MX
-                text_WithdrawalLimits = Content.localize().textWithdrawalLimitsEquivalantDay;
-                text_WithrawalAmount  = Content.localize().textWithrawalAmountEquivalantDay;
-                elem_withdrawal_limit.textContent = text_WithdrawalLimits.replace('[_1]', limits['num_of_days']).replace('[_2]', client_currency).replace('[_3]', num_of_days_limit);
-                elem_already_withdraw.textContent = text_WithrawalAmount.replace('[_1]', client_currency).replace('[_2]', already_withdraw).replace('[_3]', limits['num_of_days']);
-            }
-            else {
-                if((/^(costarica|japan)$/i).test(TUser.get().landing_company_name)) { // CR , JP
-                    text_WithdrawalLimits     = Content.localize().textWithdrawalLimits;
-                    text_WithrawalAmount      = Content.localize().textWithrawalAmount;
-                    text_CurrentMaxWithdrawal = Content.localize().textCurrentMaxWithdrawal;
-                    client_currency           = TUser.get().currency || page.client.get_storage_value('currencies');
-                }
-                elem_withdrawal_limit.textContent = text_WithdrawalLimits.replace('[_1]', client_currency).replace('[_2]', num_of_days_limit);
-                elem_already_withdraw.textContent =  text_WithrawalAmount.replace('[_1]', client_currency).replace('[_2]', already_withdraw);
-            }
-            elem_withdrawal_limit_aggregate.textContent = text_CurrentMaxWithdrawal.replace('[_1]', client_currency).replace('[_2]', remainder);
-        }
-    }
-
-    function limitsError(){
-        document.getElementById('withdrawal-title').setAttribute('style', 'display:none');
-        document.getElementById('limits-title').setAttribute('style', 'display:none');
-        document.getElementsByClassName('notice-msg')[0].innerHTML = Content.localize().textFeatureUnavailable;
-        document.getElementById('client_message').setAttribute('style', 'display:block');
-    }
-
-    function initTable(){
-        document.getElementById('client_message').setAttribute('style', 'display:none');
-        LimitsUI.clearTableContent();
-    }
-
-    return {
-        limitsHandler: limitsHandler,
-        limitsError: limitsError,
-        clean: initTable
-    };
-}());
-;var LimitsUI = (function(){
-    "use strict";
-
-    function fillLimitsTable(limits){
-        var open_positions = addComma(limits['open_positions']);
-        var account_balance = addComma(limits['account_balance']);
-        var daily_turnover = addComma(limits['daily_turnover']);
-        var payout = addComma(limits['payout']);
-
-        document.getElementById('item').textContent = Content.localize().textItem;
-        
-        var currency = TUser.get().currency;
-        var limit = document.getElementById('limit');
-        if (currency === "") {
-            limit.textContent = Content.localize().textLimit;
-        } else {
-            limit.textContent = Content.localize().textLimit + " (" + currency + ")";
-        }
-        $('#max-open-position').prepend(Content.localize().textMaxOpenPosition);
-        document.getElementById('max-open-position-tooltip').setAttribute('title', Content.localize().textMaxOpenPositionTooltip);
-        document.getElementById('open-positions').textContent = open_positions;
-        
-        $('#max-acc-balance').prepend(Content.localize().textMaxAccBalance);
-        document.getElementById('max-acc-balance-tooltip').setAttribute('title', Content.localize().textMaxAccBalanceTooltip);
-        document.getElementById('account-balance').textContent = account_balance;
-        
-        $('#max-daily-turnover').prepend(Content.localize().textMaxDailyTurnover);
-        document.getElementById('max-daily-turnover-tooltip').setAttribute('title', Content.localize().textMaxDailyTurnoverTooltip);
-        document.getElementById('daily-turnover').textContent = daily_turnover;
-        
-        $('#max-aggregate').prepend(Content.localize().textMaxAggregate);
-        document.getElementById('max-aggregate-tooltip').setAttribute('title', Content.localize().textMaxAggregateTooltip);
-        document.getElementById('payout').textContent = payout;
-    }
-
-    function clearTableContent(){
-        Table.clearTableBody('client-limits');
-        $("#limits-title>tfoot").hide();
-    }
-
-    
-    
-    return {
-        clearTableContent: clearTableContent,
-        fillLimitsTable: fillLimitsTable
-    };
-}());
-;var Login = (function() {
-    "use strict";
-
-    var redirect_to_login = function() {
-        if (!page.client.is_logged_in && !is_login_pages()) {
-            try {
-                sessionStorage.setItem('redirect_url', window.location.href);
-            } catch(e) {
-                alert('The website needs features which are not enabled on private mode browsing. Please use normal mode.');
-            }
-            window.location.href = this.login_url();
-        }
-    };
-
-    var login_url = function() {
-        return localStorage.getItem('config.server_url') && /qa/.test(localStorage.getItem('config.server_url')) ? 'https://www.' + localStorage.getItem('config.server_url').split('.')[1] + '.com/oauth2/authorize?app_id=' + getAppId() + '&l=' + page.language() :
-                                                           'https://oauth.binary.com/oauth2/authorize?app_id=' + getAppId() + '&l=' + page.language();
-    };
-
-    var is_login_pages = function() {
-        return /logged_inws|oauth2/.test(document.URL);
-    };
-
-    return {
-        redirect_to_login: redirect_to_login,
-        is_login_pages   : is_login_pages,
-        login_url        : login_url,
-    };
-}());
-;pjax_config_page('user/lost_passwordws', function() {
+;pjax_config_page_require_auth("paymentagent/transferws", function(){
     return {
         onLoad: function() {
-            if(page.client.redirect_if_login()) {
-                return;
-            }
             BinarySocket.init({
-                onmessage: LostPassword.lostPasswordWSHandler
+                onmessage: function(msg){
+                    var response = JSON.parse(msg.data);
+
+                    if (response) {
+                        PaymentAgentTransfer.handleResponse(response);
+                    }
+                }
             });
-            LostPassword.init();
+            Content.populate();
+            PaymentAgentTransfer.init_variable();
+            if (TUser.get().email) {
+                PaymentAgentTransfer.init();
+            }
         }
     };
 });
-;var LostPassword = (function() {
-    'use strict';
-
-    var hiddenClass = 'invisible';
-
-    function submitEmail() {
-        var emailInput = $('#lp_email').val();
-
-        if (emailInput === '') {
-            $("#email_error").removeClass(hiddenClass).text(text.localize('This field is required.'));
-        } else if (!validateEmail(emailInput)){
-            $("#email_error").removeClass(hiddenClass).text(text.localize('Invalid email format'));
-        }
-        else {
-            BinarySocket.send({verify_email: emailInput, type: 'reset_password'});
-            $('#submit').prop('disabled', true);
-        }
-    }
-
-    function onEmailInput(input) {
-        if (input) {
-            $("#email_error").addClass(hiddenClass);
-        }
-    }
-    
-    function lostPasswordWSHandler(msg) {
-        var response = JSON.parse(msg.data);
-        var type = response.msg_type;
-
-        if (type === 'verify_email') {
-            if (response.verify_email === 1) {
-                load_with_pjax('reset_passwordws');
-            } else if (response.error) {
-                $("#email_error").removeClass(hiddenClass).text(text.localize('Invalid email format'));
-                $('#submit').prop('disabled', false);
-            }
-        }
-    }
-
-    function init() {
-        $('#lost_passwordws').removeClass('invisible');
-        $('#submit:enabled').click(function() {
-            submitEmail();
-        });
-
-        $('#lp_email').keypress(function(ev) {
-            if (ev.which === 13) {
-                submitEmail();
-            }
-            onEmailInput(ev.target.value);
-        });
-    }
-
-    return {
-        lostPasswordWSHandler: lostPasswordWSHandler,
-        init: init
-    };
-}());
 ;var PaymentAgentTransferData = (function () {
     "use strict";
     function transfer(transferTo, currency, amount, toDryRun) {
@@ -89941,7 +81083,252 @@ pjax_config_page_require_auth("user/assessmentws", function() {
         updateDoneView: updateDoneView
     };
 }());
-;pjax_config_page_require_auth("paymentagent/transferws", function(){
+;var PortfolioWS =  (function() {
+    'use strict';
+
+    var rowTemplate;
+
+    var init = function() {
+        showLoadingImage($("#portfolio-loading"));
+        // get the row template and then discard the node as it has served its purpose
+        var $tempRow = $("#portfolio-dynamic tr[data-contract_id='!contract_id!']");
+        if($tempRow.length) {
+            rowTemplate = $tempRow[0].outerHTML;
+            $tempRow.remove();
+        }
+        BinarySocket.send({"balance":1});
+        BinarySocket.send({"portfolio":1});
+        // Subscribe transactions to auto update new purchases
+        BinarySocket.send({'transaction': 1, 'subscribe': 1});
+    };
+
+
+    /**
+     * Show balance
+    **/
+    var updateBalance = function(data) {
+        $("span[data-id='balance']").text(data.balance.currency + ' ' + addComma(parseFloat(data.balance.balance)));
+        if(parseFloat(data.balance.balance, 10) > 0 || page.client.is_virtual()) {
+            $('#if-balance-zero').addClass('dynamic');
+        } else {
+            $('#if-balance-zero').removeClass('dynamic');
+        }
+    };
+
+    /**
+     * Updates portfolio table
+    **/
+    var updatePortfolio = function(data) {
+        /**
+         * Check for error
+        **/
+        if("error" in data) {
+            throw new Error("Trying to get portfolio data, we got this error", data.error);
+        }
+
+        /**
+         * no open contracts
+        **/
+        if(0 === data.portfolio.contracts.length) {
+            $("#portfolio-no-contract").show();
+            $("#portfolio-table").addClass("dynamic");
+            $("#portfolio-content").removeClass("dynamic");
+            $("#portfolio-loading").hide();
+            return true;
+        }
+
+        /**
+         * User has at least one contract
+        **/
+        if(!rowTemplate) init();
+        $("#portfolio-no-contract").hide();
+        var contracts = '';
+        var sumPurchase = 0.0;
+        var currency;
+        $.each(data.portfolio.contracts, function(ci, c) {
+            sumPurchase += parseFloat(c.buy_price, 10);
+            currency = c.currency;
+            var longcode = c.longcode;
+            var match = longcode.match(/(\d{4}-\d{2}-\d{2})\s?(\d{2}:\d{2}:\d{2})?/);
+            if(match){
+                var time = toJapanTimeIfNeeded(c.expiry_time);
+                longcode = longcode.replace(match[0], time);
+            }
+
+            contracts += rowTemplate
+            .split("!transaction_id!").join(c.transaction_id)
+            .split("!contract_id!").join(c.contract_id)
+            .split("!payout!").join(parseFloat(c.payout).toFixed(2))
+            .split("!longcode!").join(longcode)
+            .split("!currency!").join(c.currency)
+            .split("!buy_price!").join(addComma(parseFloat(c.buy_price)));
+        });
+
+        // contracts is ready to be added to the dom
+        $("#portfolio-dynamic").append(trans(contracts));
+        if(contracts.length > 0) {
+            $("#portfolio-table").removeClass("dynamic");
+        }
+
+        // update footer area data
+        sumPurchase = sumPurchase.toFixed(2);
+        $("#cost-of-open-positions").text(currency + ' ' + addComma(parseFloat(sumPurchase)));
+
+        // request "proposal_open_contract"
+        BinarySocket.send({"proposal_open_contract":1, "subscribe":1});
+
+        // ready to show portfolio table
+        $("#portfolio-loading").remove();
+        $("#portfolio-content").removeClass("dynamic");
+    };
+
+    var transactionResponseHandler = function(response) {
+        if(response.hasOwnProperty('error')) {
+            return;
+        }
+
+        if(response.transaction.action === 'buy') {
+            $('#portfolio-dynamic').empty();
+            BinarySocket.send({'portfolio': 1});
+        }
+        else if(response.transaction.action === 'sell') {
+            $("tr[data-contract_id='" + response.transaction.contract_id + "']").remove();
+            if($('#portfolio-dynamic tr').length === 0) {
+                BinarySocket.send({"portfolio":1});
+            }
+        }
+    };
+
+    var updateIndicative = function(data) {
+        if(data.hasOwnProperty('error')) return;
+        var proposal = data.proposal_open_contract;
+        var $td = $("tr[data-contract_id='" + proposal.contract_id + "'] td.indicative");
+        var old_indicative = $td.find('strong').text();
+        old_indicative = parseFloat(old_indicative, 2);
+        if(isNaN(old_indicative)) old_indicative = 0.0;
+
+        var new_indicative = parseFloat(proposal.bid_price, 2);
+        if(isNaN(new_indicative)) new_indicative = 0.0;
+
+        var bid_price = parseFloat(proposal.bid_price || 0).toFixed(2);
+
+        var status_class = '';
+        var no_resale_html = '';
+        if(proposal.is_sold == 1) {
+            $td.parent('tr').remove();
+            if($('#portfolio-dynamic tr').length === 0) {
+                BinarySocket.send({"portfolio":1});
+            }
+        }
+        else {
+            if(proposal.is_valid_to_sell != 1) {
+                no_resale_html = '<span>' + text.localize('Resale not offered') + '</span>';
+                $td.addClass("no_resale");
+            }
+            else {
+                status_class = new_indicative < old_indicative ? ' price_moved_down' : (new_indicative > old_indicative ? ' price_moved_up' : '');
+                $td.removeClass("no_resale");
+            }
+            $td.html(proposal.currency + ' <strong class="indicative_price' + status_class + '"">' + bid_price + '</strong>' + no_resale_html);
+        }
+
+        var indicative_sum = 0, indicative_price = 0, up_down;
+        $("strong.indicative_price").each(function() {
+            indicative_price = $(this).text();
+            indicative_price = parseFloat(indicative_price, 2);
+            if(!isNaN(indicative_price)) {
+                indicative_sum += indicative_price;
+            }
+        });
+
+        indicative_sum = indicative_sum.toFixed(2);
+
+        var curr = localStorage.getItem('client.currencies');
+        $("#value-of-open-positions").text(curr + ' ' + parseFloat(indicative_sum).toFixed(2));
+    };
+
+
+    /*** utility functions ***/
+
+    // Dynamic text
+    var dTexts = ["view", "indicative"];
+
+    /**
+     * In the dynamic parts we have strings to include
+     * For instance, in portfolio table, we have a 'View' button
+     * for each contract.
+    **/
+    var trans = function(str) {
+        var placeholder;
+        for(var i = 0, l = dTexts.length; i < l; i++) {
+            placeholder = ":"+dTexts[i]+":";
+            if(-1 === str.indexOf(placeholder)) continue;
+            str = str.split(placeholder).join(text.localize(dTexts[i]));
+        }
+        return str;
+    };
+
+    var onLoad = function() {
+        BinarySocket.init({
+            onmessage: function(msg){
+                var response;
+                try {
+                    response  = JSON.parse(msg.data);
+                    if("object" !== typeof response || !("msg_type" in response)) {
+                        throw new Error("Response from WS API is not well formatted.");
+                    }
+                } catch(e) {
+                    throw new Error("Response from WS API is not well formatted."+ e);
+                }
+
+                var msg_type = response.msg_type;
+                switch(msg_type) {
+                    case "balance":
+                        updateBalance(response);
+                        break;
+                    case "portfolio":
+                        updatePortfolio(response);
+                        break;
+                    case "transaction":
+                        transactionResponseHandler(response);
+                        break;
+                    case "proposal_open_contract":
+                        updateIndicative(response);
+                        break;
+                    default:
+                        // msg_type is not what PortfolioWS handles, so ignore it.
+                }
+            }
+        });
+        init();
+    };
+
+    var onUnload = function(){
+        BinarySocket.send({"forget_all": "proposal_open_contract"});
+        BinarySocket.send({"forget_all": "transaction"});
+    };
+
+    return {
+        init: init,
+        updateBalance: updateBalance,
+        updatePortfolio: updatePortfolio,
+        updateIndicative: updateIndicative,
+        transactionResponseHandler: transactionResponseHandler,
+        onLoad: onLoad,
+        onUnload: onUnload,
+    };
+
+})();
+
+pjax_config_page_require_auth("user/portfoliows", function() {
+    return {
+        onLoad: PortfolioWS.onLoad,
+        onUnload: PortfolioWS.onUnload,
+    };
+});
+;
+
+pjax_config_page_require_auth("user/profit_table", function(){
     return {
         onLoad: function() {
             BinarySocket.init({
@@ -89949,18 +81336,3490 @@ pjax_config_page_require_auth("user/assessmentws", function() {
                     var response = JSON.parse(msg.data);
 
                     if (response) {
-                        PaymentAgentTransfer.handleResponse(response);
+                        var type = response.msg_type;
+                        if (type === 'profit_table'){
+                            ProfitTableWS.profitTableHandler(response);
+                            showLocalTimeOnHover('td.buy-date,td.sell-date');
+                        }
                     }
                 }
             });
             Content.populate();
-            PaymentAgentTransfer.init_variable();
-            if (TUser.get().email) {
-                PaymentAgentTransfer.init();
+            ProfitTableWS.init();
+        },
+        onUnload: function(){
+            ProfitTableWS.clean();
+        }
+    };
+});
+;
+var ProfitTableData = (function(){
+    function getProfitTable(opts){
+        var req = {profit_table: 1, description: 1};
+        if(opts){
+            $.extend(true, req, opts);
+        }
+
+        BinarySocket.send(req);
+    }
+
+    return {
+        getProfitTable: getProfitTable
+    };
+}());;
+var ProfitTableWS = (function () {
+    var batchSize = 100;
+    var chunkSize = batchSize/2;
+
+    var transactionsReceived = 0;
+    var transactionsConsumed = 0;
+    var noMoreData = false;
+    var pending = false;
+
+    var currentBatch = [];
+
+    var tableExist = function(){
+        return document.getElementById("profit-table");
+    };
+
+    var finishedConsumed = function(){
+        return transactionsConsumed === transactionsReceived;
+    };
+
+    function initTable(){
+        currentBatch = [];
+        transactionsConsumed = 0;
+        transactionsReceived = 0;
+        pending = false;
+
+        $(".error-msg").text("");
+
+        if (tableExist()) {
+            ProfitTableUI.cleanTableContent();
+        }
+    }
+
+    function profitTableHandler(response){
+
+        pending = false;
+        var profitTable = response.profit_table;
+        currentBatch = profitTable.transactions;
+        transactionsReceived += currentBatch.length;
+
+        if (currentBatch.length < batchSize) {
+            noMoreData = true;
+        }
+
+        if (!tableExist()) {
+            ProfitTableUI.createEmptyTable().appendTo("#profit-table-ws-container");
+            ProfitTableUI.updateProfitTable(getNextChunk());
+
+            // Show a message when the table is empty
+            if((transactionsReceived === 0) && (currentBatch.length === 0)) {
+                $('#profit-table tbody')
+                    .append($('<tr/>', {class: "flex-tr"})
+                        .append($('<td/>', {colspan: 8})
+                            .append($('<p/>', {class: "notice-msg center", text: text.localize("Your account has no trading activity.")})
+                            )
+                        )
+                    );
+            }
+
+            Content.profitTableTranslation();
+        }
+    }
+
+    function getNextBatchTransactions(){
+        ProfitTableData.getProfitTable({offset: transactionsReceived, limit: batchSize});
+        pending = true;
+    }
+
+    function getNextChunk(){
+        var chunk = currentBatch.splice(0, chunkSize);
+        transactionsConsumed += chunk.length;
+        return chunk;
+    }
+
+    function onScrollLoad(){
+        $(document).scroll(function(){
+            function hidableHeight(percentage){
+                var totalHidable = $(document).height() - $(window).height();
+                return Math.floor(totalHidable * percentage / 100);
+            }
+
+            var pFromTop = $(document).scrollTop();
+
+            if (!tableExist()){
+                return;
+            }
+
+            if (pFromTop < hidableHeight(50)) {
+                return;
+            }
+
+            if (finishedConsumed() && !noMoreData && !pending) {
+                getNextBatchTransactions();
+                return;
+            }
+
+            if (!finishedConsumed()) {
+                ProfitTableUI.updateProfitTable(getNextChunk());
+            }
+        });
+    }
+
+
+
+    function init(){
+        getNextBatchTransactions();
+        onScrollLoad();
+    }
+
+    return {
+        profitTableHandler: profitTableHandler,
+        init: init,
+        clean: initTable
+    };
+}());
+;
+var ProfitTableUI = (function(){
+    "use strict";
+
+    var profitTableID = "profit-table";
+    var cols = ["buy-date", "ref", "contract", "buy-price", "sell-date", "sell-price", "pl", "details"];
+
+    function createEmptyTable(){
+        var header = [
+            Content.localize().textDate,
+            Content.localize().textRef,
+            Content.localize().textContract,
+            Content.localize().textPurchasePrice,
+            Content.localize().textSaleDate,
+            Content.localize().textSalePrice,
+            Content.localize().textProfitLoss,
+            Content.localize().textDetails
+        ];
+
+        header[6] = header[6] + (TUser.get().currency ? " (" + TUser.get().currency + ")" : "");
+
+        var footer = [Content.localize().textTotalProfitLoss, "", "", "", "", "", "", ""];
+
+        var data = [];
+        var metadata = {
+            cols: cols,
+            id: profitTableID
+        };
+        var $tableContainer = Table.createFlexTable(data, metadata, header, footer);
+
+        var $pltotal = $tableContainer.
+            children("table").
+            children("tfoot").
+            children("tr").
+            attr("id", "pl-day-total");
+
+        return $tableContainer;
+    }
+
+    function updateProfitTable(transactions){
+        Table.appendTableBody(profitTableID, transactions, createProfitTableRow);
+        updateFooter(transactions);
+    }
+
+    function updateFooter(transactions){
+        var accTotal = document.querySelector("#pl-day-total > .pl").textContent;
+        accTotal = parseFloat(accTotal.replace(/,/g, ''));
+        if (isNaN(accTotal)) {
+            accTotal = 0;
+        }
+
+        var currentTotal = transactions.reduce(function(previous, current){
+            var buyPrice = Number(parseFloat(current["buy_price"]));
+            var sellPrice = Number(parseFloat(current["sell_price"]));
+            var pl = sellPrice - buyPrice;
+            return previous + pl;
+        }, 0);
+
+        var total = accTotal + currentTotal;
+
+        $("#pl-day-total > .pl").text(addComma(Number(total).toFixed(2)));
+
+        var subTotalType = (total >= 0 ) ? "profit" : "loss";
+        $("#pl-day-total > .pl").removeClass("profit").removeClass("loss");
+        $("#pl-day-total > .pl").addClass(subTotalType);
+    }
+
+    function createProfitTableRow(transaction){
+        var buyMoment = moment.utc(transaction["purchase_time"] * 1000);
+        var sellMoment = moment.utc(transaction["sell_time"] * 1000);
+
+        var buyDate = buyMoment.format("YYYY-MM-DD") + "\n" + buyMoment.format("HH:mm:ss") + ' GMT';
+        var sellDate = sellMoment.format("YYYY-MM-DD") + "\n" + sellMoment.format("HH:mm:ss") + ' GMT';
+
+        var ref = transaction["transaction_id"];
+        var buyPrice = Number(parseFloat(transaction["buy_price"])).toFixed(2);
+        var sellPrice = Number(parseFloat(transaction["sell_price"])).toFixed(2);
+
+        var pl = Number(sellPrice - buyPrice).toFixed(2);
+
+        var plType = (pl >= 0) ? "profit" : "loss";
+
+        var data = [buyDate, ref, '', buyPrice, sellDate, sellPrice, pl, ''];
+        var $row = Table.createFlexTableRow(data, cols, "data");
+
+        $row.children(".buy-date").addClass("pre");
+        $row.children(".pl").addClass(plType);
+        $row.children(".sell-date").addClass("pre");
+        $row.children(".contract").html(transaction["longcode"] + "<br>");
+
+        //create view button and append
+        var $viewButtonSpan = Button.createBinaryStyledButton();
+        var $viewButton = $viewButtonSpan.children(".button").first();
+        $viewButton.text(text.localize("View"));
+        $viewButton.addClass("open_contract_detailsws");
+        $viewButton.attr("contract_id", transaction["contract_id"]);
+
+        $row.children(".contract,.details").append($viewButtonSpan);
+
+        return $row[0];
+    }
+
+    function initDatepicker(){
+        DatepickerUtil.initDatepicker("profit-table-date", moment.utc(), null, 0);
+    }
+
+    function clearTableContent(){
+        Table.clearTableBody(profitTableID);
+        $("#" + profitTableID + ">tfoot").hide();
+    }
+
+    return {
+        createEmptyTable: createEmptyTable,
+        updateProfitTable: updateProfitTable,
+        initDatepicker: initDatepicker,
+        cleanTableContent: clearTableContent
+    };
+}());
+;var SelfExlusionWS = (function() {
+    "use strict";
+
+    var $form,
+        $loading,
+        dateID,
+        errorClass,
+        hiddenClass;
+
+    var fields,
+        submittedValues,
+        isValid;
+
+    var init = function() {
+        $form       = $('#frmSelfExclusion');
+        $loading    = $('#loading');
+        dateID      = 'exclude_until';
+        errorClass  = 'errorfield';
+        hiddenClass = 'hidden';
+
+        if(page.client.is_virtual()) {
+            $('#selfExclusionDesc').addClass(hiddenClass);
+            showPageError(Content.localize().textFeatureUnavailable, true);
+            return;
+        }
+
+        showLoadingImage($loading);
+
+        submittedValues = {};
+
+        fields = {};
+        $form.find('input').each(function() {
+            fields[$(this).attr('id')] = '';
+        });
+
+        initDatePicker();
+        $form.find('button').on('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            if(formValidate()) {
+                setRequest();
+            }
+        });
+
+        getRequest();
+    };
+
+    // ----------------------
+    // ----- Get Values -----
+    // ----------------------
+    var getRequest = function() {
+        BinarySocket.send({"get_self_exclusion": "1"});
+    };
+
+    var getResponse = function(response) {
+        $loading.addClass(hiddenClass);
+        $form.removeClass(hiddenClass);
+
+        if('error' in response) {
+            if (response.error.code === 'ClientSelfExclusion') {
+                page.client.send_logout_request();
+            }
+            if('message' in response.error) {
+                showPageError(response.error.message, true);
+            }
+            return false;
+        } else {
+            $.each(response.get_self_exclusion, function(key, value) {
+                fields[key] = value + '';
+                $form.find('#' + key).val(value);
+            });
+        }
+    };
+
+    var initDatePicker = function () {
+        // 6 months from now
+        var start_date = new Date();
+        start_date.setMonth(start_date.getMonth() + 6);
+        start_date.setDate(start_date.getDate() + 1);
+
+        // 5 years from now
+        var end_date = new Date();
+        end_date.setFullYear(end_date.getFullYear() + 5);
+
+        var $dateID = $('#' + dateID);
+        $dateID.datepicker({
+            dateFormat: 'yy-mm-dd',
+            minDate   : start_date,
+            maxDate   : end_date,
+            onSelect  : function(dateText, inst) {
+                $dateID.attr('value', dateText);
+            }
+        });
+    };
+
+    // ----------------------
+    // ----- Set Values -----
+    // ----------------------
+    var setRequest = function() {
+        submittedValues['set_self_exclusion'] = '1';
+        BinarySocket.send(submittedValues);
+    };
+
+    var setResponse = function(response) {
+        if('error' in response) {
+            var  errMsg = response.error.message;
+            if('field' in response.error) {
+                showError(response.error.field, text.localize(errMsg));
+            }
+            else {
+                showFormMessage(text.localize(errMsg), false);
+            }
+        }
+        else {
+            showFormMessage(text.localize('Your changes have been updated.'), true);
+            page.client.set_storage_value('session_start', parseInt(moment().valueOf() / 1000)); // used to handle session duration limit
+            getRequest();
+        }
+    };
+
+    // ----------------------------
+    // ----- Form Validations -----
+    // ----------------------------
+    var formValidate = function() {
+        clearError();
+        isValid = true;
+        var isChanged = false;
+        submittedValues = {};
+
+        $.each(fields, function(key, currentValue) {
+            var newValue = $form.find('#' + key).val().trim();
+
+            if(newValue.length > 0) {
+                submittedValues[key] = newValue;
+            }
+
+            if(key === dateID) {
+                validateExclusionDate(newValue);
+            }
+            else {
+                if(newValue.length > 0 && !isNormalInteger(newValue)) {
+                    showError(key, text.localize('Please enter an integer value'));
+                }
+                else if(currentValue > 0 && (newValue.length === 0 || isLargerInt(newValue, currentValue))) {
+                    showError(key, text.localize('Please enter a number between 0 and [_1]').replace('[_1]', currentValue));
+                }
+                else if(key === 'session_duration_limit' && newValue > (6 * 7 * 24 * 60)) {
+                    showError(key, text.localize('Session duration limit cannot be more than 6 weeks.'));
+                }
+            }
+
+            if(newValue !== currentValue) {
+                isChanged = true;
+            }
+        });
+
+        if(isValid && !isChanged) {
+            showFormMessage('You did not change anything.', false);
+            isValid = false;
+        }
+
+        return isValid;
+    };
+
+    var isLargerInt = function(a, b) {
+        return a.length === b.length ? a > b : a.length > b.length;
+    };
+
+    var isNormalInteger = function(value) {
+        return /^\d+$/.test(value);
+    };
+
+    var validateExclusionDate = function(exclusion_date) {
+        var date_regex = /^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/;
+        var errMsg = '';
+
+        if (exclusion_date) {
+            if(date_regex.test(exclusion_date) === false){
+                errMsg = 'Please select a valid date';
+            }
+            else {
+                exclusion_date = new Date(exclusion_date);
+                // self exclusion date must > 6 months from now
+                var six_month_date = new Date();
+                six_month_date.setMonth(six_month_date.getMonth() + 6);
+                // self exclusion date must < 5 years from now
+                var five_year_date = new Date();
+                five_year_date.setFullYear(five_year_date.getFullYear() + 5);
+
+                if (exclusion_date < new Date()) {
+                    errMsg = 'Exclude time must be after today.';
+                }
+                else if (exclusion_date < six_month_date) {
+                    errMsg = 'Exclude time cannot be less than 6 months.';
+                }
+                else if (exclusion_date > five_year_date) {
+                    errMsg = 'Exclude time cannot be for more than 5 years.';
+                }
+                else {
+                    var isConfirmed = confirm(text.localize('When you click "Ok" you will be excluded from trading on the site until the selected date.'));
+                    if(!isConfirmed) {
+                        isValid = false;
+                    }
+                }
+            }
+        }
+
+        if(errMsg.length > 0) {
+            showError(dateID, text.localize(errMsg));
+        }
+    };
+
+    // -----------------------------
+    // ----- Message Functions -----
+    // -----------------------------
+    var showPageError = function(errMsg, hideForm) {
+        $('#errorMsg').html(errMsg).removeClass(hiddenClass);
+        if(hideForm) {
+            $form.addClass(hiddenClass);
+        }
+    };
+
+    var showError = function(fieldID, errMsg) {
+        $('#' + fieldID).parent().append($('<p/>', {class: errorClass, text: errMsg}));
+        isValid = false;
+    };
+
+    var clearError = function(fieldID) {
+        $(fieldID ? fieldID : '#frmSelfExclusion p.' + errorClass).remove();
+        $('#errorMsg').html('').addClass(hiddenClass);
+        $('#formMessage').html('');
+    };
+
+    var showFormMessage = function(msg, isSuccess) {
+        var $elmID = $('#formMessage');
+        $elmID
+            .attr('class', isSuccess ? 'success-msg' : errorClass)
+            .html(isSuccess ? '<ul class="checked"><li>' + text.localize(msg) + '</li></ul>' : text.localize(msg))
+            .css('display', 'block')
+            .delay(5000)
+            .fadeOut(1000);
+    };
+
+
+    return {
+        init        : init,
+        getResponse : getResponse,
+        setResponse : setResponse
+    };
+}());
+
+
+pjax_config_page_require_auth("user/settings/self_exclusionws", function() {
+    return {
+        onLoad: function() {
+            BinarySocket.init({
+                onmessage: function(msg){
+                    var response = JSON.parse(msg.data);
+                    if (response) {
+                        if (response.msg_type === "authorize") {
+                            SelfExlusionWS.init();
+                        }
+                        else if (response.msg_type === "get_self_exclusion") {
+                            SelfExlusionWS.getResponse(response);
+                        }
+                        else if (response.msg_type === "set_self_exclusion") {
+                            SelfExlusionWS.setResponse(response);
+                        }
+                    }
+                    else {
+                        console.log('some error occured');
+                    }
+                }
+            });
+
+            Content.populate();
+            if(TUser.get().hasOwnProperty('is_virtual')) {
+                SelfExlusionWS.init();
             }
         }
     };
 });
+;var SettingsWS = (function() {
+    "use strict";
+
+    var init = function() {
+        var classHidden = 'invisible',
+            classReal   = '.real';
+
+        if(!page.client.is_virtual()) {
+            $(classReal).removeClass(classHidden);
+        }
+        else {
+            $(classReal).addClass(classHidden);
+        }
+
+        $('#settingsContainer').removeClass(classHidden);
+    };
+
+    return {
+        init: init
+    };
+}());
+
+
+pjax_config_page_require_auth("settingsws", function() {
+    return {
+        onLoad: function() {
+            if(page.client.get_storage_value('is_virtual').length === 0) {
+                BinarySocket.init({
+                    onmessage: function(msg) {
+                        var response = JSON.parse(msg.data);
+                        if (response && response.msg_type === 'authorize') {
+                            SettingsWS.init();
+                        }
+                    }
+                });
+            }
+            else {
+                SettingsWS.init();
+            }
+        }
+    };
+});
+;var APITokenWS = (function() {
+    "use strict";
+
+    var columns,
+        errorClass,
+        hideClass,
+        isValid,
+        tableContainer,
+        maxTokens;
+
+
+    var init = function() {
+        columns = ['Name', 'Token', 'Scopes', 'Last Used', 'Action'];
+        errorClass  = 'errorfield';
+        hideClass   = 'dynamic';
+        tableContainer = '#tokens_list';
+        maxTokens = 30;
+
+        showLoadingImage($(tableContainer));
+
+        BinarySocket.send({"api_token": "1"});
+
+        $('#btnCreate').click(function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            createToken();
+        });
+    };
+
+    var responseHandler = function(response) {
+        if('error' in response) {
+            showMessage(response.error.message, false);
+            return false;
+        }
+
+        clearMessages();
+
+        var rebuildTable = true;
+        var api_token = response.api_token;
+        var newToken  = '';
+
+        if('new_token' in api_token) {
+            if(api_token.new_token === 1) {
+                showFormMessage(text.localize('New token created.'), true);
+                $('#txtName').val('');
+                newToken = response.echo_req.new_token;
+            }
+        }
+        else if('delete_token' in api_token) {
+            rebuildTable = false;
+            var deletedToken = response.echo_req.delete_token;
+            if(api_token.delete_token !== 1) {
+                showError(deletedToken, text.localize('An error occured.'));
+            }
+            else {
+                $('#' + deletedToken).parents('tr').removeClass('new').addClass('deleting').fadeOut(700, function(){
+                    $(this).remove();
+                    // Hide the table if there is no Token remained
+                    if(api_token.tokens.length === 0) {
+                        $(tableContainer).addClass(hideClass);
+                    }
+                });
+            }
+        }
+
+        if(rebuildTable) {
+            populateTokensList(api_token, newToken);
+            showLocalTimeOnHover('td.last-used');
+        }
+
+        // Hide form if tokens count reached the maximum limit
+        if(api_token.tokens.length >= maxTokens) {
+            $('#token_form').addClass(hideClass);
+            showMessage(text.localize('The maximum number of tokens ([_1]) has been reached.').replace('[_1]', maxTokens), false);
+        }
+        else {
+            $('#token_form').removeClass(hideClass);
+        }
+    };
+
+    // -----------------------
+    // ----- Tokens List -----
+    // -----------------------
+    var populateTokensList = function(api_token, newTokenName) {
+        var $tableContainer = $(tableContainer);
+        if(api_token.tokens.length === 0) {
+            $tableContainer.addClass(hideClass);
+            return;
+        }
+
+        $tableContainer.removeClass(hideClass);
+        showLoadingImage($(tableContainer));
+
+        var tokens = api_token.tokens;
+        var $tokensTable = createEmptyTable('tokens_table');
+
+        for(var i = 0; i < tokens.length; i++) {
+            var $tableRow = createTableRow(tokens[i]);
+            if(newTokenName && tokens[i].display_name === newTokenName) {
+                $tableRow.addClass('new');
+            }
+            $tokensTable.find('tbody').append($tableRow);
+        }
+
+        $tableContainer.empty().append($tokensTable);
+
+        $('.btnDelete').click(function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            if(window.confirm(
+                text.localize('Are you sure that you want to permanently delete token') +
+                ': "' + $(this).parents('tr').find('td.name').text() + '"?')) {
+                    deleteToken($(this).attr('id'));
+            }
+        });
+    };
+
+    String.prototype.capitalizeFirstLetter = function() {
+        return this.charAt(0).toUpperCase() + this.slice(1);
+    };
+
+    var createTableRow = function(token) {
+        var lastUsed = (token.last_used ? token.last_used + ' GMT': text.localize('Never Used'));
+        var scopes = token.scopes.map(function (v) {
+            return v.capitalizeFirstLetter();
+        });
+        // sort with Read, Trade, Payments, Admin
+        var scopes_i = {'Read': 0, 'Trade': 1, 'Payments': 2, 'Admin': 3};
+        scopes.sort(function(a, b) {
+            return scopes_i[a] > scopes_i[b];
+        });
+        var $tableRow = Table.createFlexTableRow(
+            [
+                token.display_name,
+                token.token,
+                scopes.join(', '),
+                lastUsed,
+                ''  // btnDelete
+            ],
+            columns,
+            "data"
+        );
+
+        $tableRow.children('.action').html(
+            $('<span/>', {class: 'button'})
+                .append($('<button/>', {class: 'button btnDelete', text: text.localize('Delete'), id: token.token})
+            )
+        );
+
+        return $tableRow;
+    };
+
+    var createEmptyTable = function(tableID) {
+        var header = [];
+        columns.map(function(col) {
+            header.push(text.localize(col));
+        });
+
+        var metadata = {
+            id: tableID,
+            cols: columns
+        };
+
+        return Table.createFlexTable([], metadata, header);
+    };
+
+    // ---------------------------
+    // ----- Form Validation -----
+    // ---------------------------
+    var formValidate = function() {
+        clearMessages();
+        isValid = true;
+
+        var nameID  = '#txtName';
+        var newName = $(nameID).val().trim();
+
+        var letters = Content.localize().textLetters,
+            numbers = Content.localize().textNumbers,
+            space   = Content.localize().textSpace;
+
+        // Token Name
+        if(!isRequiredError(nameID) && !isCountError(nameID, 2, 32)){
+            if(!(/^\w+$/).test(newName)) {
+                showError(nameID, Content.errorMessage('reg', [letters, numbers, '_']));
+            }
+        }
+
+        var scopes = $('input:checkbox[name="scopes[]"]:checked').map(function () {
+            return this.value;
+        }).get();
+        if (scopes.length === 0) {
+            showError('#scopes', text.localize('Please select at least one scope.'));
+        }
+
+        return isValid ? newName : false;
+    };
+
+    var isRequiredError = function(fieldID) {
+        if(!$(fieldID).val() || !(/.+/).test($(fieldID).val().trim())){
+            showError(fieldID, Content.errorMessage('req'));
+            return true;
+        } else {
+            return false;
+        }
+    };
+
+    var isCountError = function(fieldID, min, max) {
+        var fieldValue = $(fieldID).val().trim();
+        if((fieldValue.length > 0 && fieldValue.length < min) || fieldValue.length > max) {
+            showError(fieldID, Content.errorMessage('range', '(' + min + '-' + max + ')'));
+            return true;
+        } else {
+            return false;
+        }
+    };
+
+    // ---------------------------
+    // ----- Actions Process -----
+    // ---------------------------
+    var createToken = function() {
+        var is_valid = formValidate();
+        if(is_valid !== false) {
+            var newName = $('#txtName').val().trim();
+            var scopes = $('input:checkbox[name="scopes[]"]:checked').map(function () {
+                return this.value;
+            }).get();
+
+            BinarySocket.send({
+                "api_token" : 1,
+                "new_token" : newName,
+                "new_token_scopes": scopes
+            });
+        }
+    };
+
+    var deleteToken = function(token) {
+        if(token) {
+            BinarySocket.send({
+                "api_token"    : 1,
+                "delete_token" : token
+            });
+        }
+    };
+
+    // -----------------------------
+    // ----- Message Functions -----
+    // -----------------------------
+    var showMessage = function(msg, isSuccess) {
+        $('#token_message > p')
+            .attr('class', isSuccess ? 'success-msg' : 'errorfield')
+            .html(isSuccess ? '<ul class="checked"><li>' + text.localize(msg) + '</li></ul>' : text.localize(msg));
+        $('#token_message').removeClass(hideClass);
+    };
+
+    var showFormMessage = function(msg, isSuccess) {
+        var $elmID = $('#formMessage');
+        $elmID
+            .attr('class', isSuccess ? 'success-msg' : 'errorfield')
+            .html(isSuccess ? '<ul class="checked"><li>' + text.localize(msg) + '</li></ul>' : text.localize(msg))
+            .css('display', 'block')
+            .delay(3000)
+            .fadeOut(1000);
+    };
+
+    var showError = function(fieldID, errMsg) {
+        $(fieldID).parent().append($('<p/>', {class: errorClass, text: errMsg}));
+        isValid = false;
+    };
+
+    var clearMessages = function(fieldID) {
+        $(fieldID ? fieldID : '#frmNewToken .' + errorClass).remove();
+        $('#token_message').addClass(hideClass);
+        $('#formMessage').html('');
+    };
+
+
+    return {
+        init: init,
+        responseHandler: responseHandler
+    };
+}());
+
+
+
+pjax_config_page_require_auth("api_tokenws", function() {
+    return {
+        onLoad: function() {
+            BinarySocket.init({
+                onmessage: function(msg) {
+                    var response = JSON.parse(msg.data);
+                    if (response) {
+                        if (response.msg_type === "api_token") {
+                            APITokenWS.responseHandler(response);
+                        }
+                    }
+                    else {
+                        console.log('some error occured');
+                    }
+                }
+            });
+
+            Content.populate();
+            APITokenWS.init();
+        }
+    };
+});
+;pjax_config_page_require_auth("user/settings/authorised_appsws", function(){
+    return {
+        onLoad: function() {
+            BinarySocket.init({
+                onmessage: function(msg){
+                    var response = JSON.parse(msg.data);
+
+                    if (response) {
+                        var type = response.msg_type;
+                        if (type === 'oauth_apps'){
+                            Applications.responseHandler(response);
+                        }
+                    }
+                }
+            });
+            Content.populate();
+            Applications.init();
+        },
+        onUnload: function(){
+            Applications.clean();
+        }
+    };
+});
+;var ApplicationsData = (function(){
+    "use strict";
+
+    function getApplications(){
+        var request = {oauth_apps: 1};
+        BinarySocket.send(request);
+    }
+    
+    function revokeApplication(id){
+        if(!id){
+            return;
+        }
+        var request = {
+            oauth_apps: 1,
+            revoke_app: id
+        };
+        
+        BinarySocket.send(request);
+    }
+    
+    return{
+      getApplications: getApplications,
+      revokeApplication: revokeApplication
+    };
+}());
+;var Applications = (function(){
+    "use strict";
+    
+    var tableExist = function(){
+        return document.getElementById("applications-table");
+    };
+    
+    function responseHandler(response){
+        if (response.hasOwnProperty('error') && response.error.message) {
+          $("#applications-ws-container .error-msg").text(response.error.message);
+          return;
+        } else {
+
+            var applications = response.oauth_apps;
+            
+            if (!tableExist()) {
+                $("#loading").remove();
+                ApplicationsUI.createEmptyTable().appendTo("#applications-ws-container");
+                var titleElement = document.getElementById("applications-title").firstElementChild,
+                    desc = document.getElementById("description");
+                titleElement.textContent = text.localize(titleElement.textContent);
+                desc.textContent = text.localize(desc.textContent);
+            }
+            
+            // Show a message when the table is empty.
+            if (applications.length === 0) {
+                ApplicationsUI.clearTableContent();
+                $('#applications-table tbody')
+                    .append($('<tr/>', {class: "flex-tr"})
+                        .append($('<td/>', {colspan: 7})
+                            .append($('<p/>', {class: "notice-msg center", text: text.localize("You have not granted access to any applications.")})
+                            )
+                        )
+                    );
+            }
+            else{
+                ApplicationsUI.createTable(applications);
+            }
+        }
+    }
+    
+    function initPage(){
+        showLoadingImage($('<div/>', {id: 'loading'}).insertAfter('#applications-title'));
+        ApplicationsData.getApplications();
+    }
+    
+    function initTable(){
+        $("#applications-ws-container .error-msg").text("");
+        ApplicationsUI.clearTableContent();
+    }
+
+    return {
+        init: initPage,
+        responseHandler: responseHandler,
+        clean: initTable
+    };
+}());
+;var ApplicationsUI = (function(){
+    "use strict";
+    var tableID = "applications-table",
+        columns = ["name","permissions","last_used","action"];
+    
+    function createEmptyTable(){
+        var header = [
+                text.localize("Name"),
+                text.localize("Permissions"),
+                text.localize("Last Used"),
+                text.localize("Action")
+            ];
+        var metadata = {
+            id: tableID,
+            cols: columns
+        };
+        var data = [];
+        var $table = Table.createFlexTable(data,metadata,header);
+        return $table;
+    }
+    
+    function createTable(app){
+        Table.clearTableBody(tableID);
+        Table.appendTableBody(tableID, app, createRow);
+        showLocalTimeOnHover('td.last_used');
+    }
+    
+    function createRow(data){
+        var name = data.name,
+            permissions = data.scopes.join(", "),
+            last_used = data.last_used ? moment.utc(data.last_used).format("YYYY-MM-DD HH:mm:ss") : text.localize("Never"),
+            action = '';
+        var $row = Table.createFlexTableRow([name,permissions,last_used,action], columns,"data");
+        var $viewButtonSpan = Button.createBinaryStyledButton();
+        var $viewButton = $viewButtonSpan.children(".button").first();
+        $viewButton.text(text.localize("Revoke access"));
+        $viewButton.on("click",function(){
+            ApplicationsData.revokeApplication(data.app_id);
+            $row.css({ opacity: 0.5 });
+        });
+        $row.children(".action").first().append($viewButtonSpan);
+        return $row[0];
+    }
+    
+    function clearTableContent(){
+        Table.clearTableBody(tableID);
+        $("#" + tableID +">tfoot").hide();
+    }
+    
+    return{
+        createEmptyTable: createEmptyTable,
+        createTable: createTable,
+        clearTableContent: clearTableContent
+    };
+    
+}());
+;var FinancialAssessmentws = (function(){
+   "use strict";
+
+    var init = function(){
+        if (checkIsVirtual()) return;
+        LocalizeText();
+        $("#assessment_form").on("submit",function(event) {
+            event.preventDefault();
+            submitForm();
+            return false;
+        });
+        BinarySocket.send(JSON.parse("{\"get_financial_assessment\" : 1}"));
+    };
+
+    // For translating strings
+    var LocalizeText = function(){
+        $("#heading").text(text.localize($("#heading").text()));
+        $('#heading_risk').text(text.localize($("#heading_risk").text()));
+        $('#high_risk_classification').text(text.localize($('#high_risk_classification').text()));
+        document.getElementsByTagName('legend')[0].innerHTML = text.localize(document.getElementsByTagName('legend')[0].innerHTML);
+        if (document.getElementsByTagName('legend')[1]) document.getElementsByTagName('legend')[1].innerHTML = text.localize(document.getElementsByTagName('legend')[1].innerHTML);
+        $("#assessment_form label").each(function(){
+            var ele = $(this);
+            ele.text(text.localize(ele.text()));
+        });
+        $("#assessment_form option").each(function(){
+            var ele = $(this);
+            ele.text(text.localize(ele.text()));
+        });
+        $("#warning").text(text.localize($("#warning").text()));
+        $("#submit").text(text.localize($("#submit").text()));
+    };
+
+    var submitForm = function(){
+        if(!validateForm()){
+            return;
+        }
+        $('#submit').attr('disabled', 'disabled');
+        var data = {'set_financial_assessment' : 1};
+        showLoadingImg();
+        $('#assessment_form select').each(function(){
+            data[$(this).attr("id")] = $(this).val();
+        });
+        $('html, body').animate({ scrollTop: 0 }, 'fast');
+        BinarySocket.send(data);
+        RiskClassification.cleanup();
+    };
+
+    var validateForm = function(){
+        var isValid = true,
+            errors = {};
+        $('#assessment_form select').each(function(){
+            if($(this).val() === ''){
+                isValid = false;
+                errors[$(this).attr("id")] = text.localize('Please select a value.');
+            }
+        });
+        if(!isValid){
+            displayErrors(errors);
+        }
+
+        return isValid;
+    };
+
+    var showLoadingImg = function(){
+        showLoadingImage($('<div/>', {id: 'loading'}).insertAfter('#heading'));
+        $("#assessment_form").addClass('invisible');
+    };
+
+    var hideLoadingImg = function(show_form){
+        $("#loading").remove();
+        if(typeof show_form === 'undefined'){
+            show_form = true;
+        }
+        if(show_form)
+            $("#assessment_form").removeClass('invisible');
+    };
+
+    var responseGetAssessment = function(response){
+        hideLoadingImg();
+        for(var key in response.get_financial_assessment){
+            if(key){
+                var val = response.get_financial_assessment[key];
+                $("#"+key).val(val);
+            }
+        }
+    };
+
+    var displayErrors = function(errors){
+        var id;
+        $(".errorfield").each(function(){$(this).text('');});
+        for(var key in errors){
+            if(key){
+                var error = errors[key];
+                $("#error"+key).text(text.localize(error));
+                id = key;
+            }
+        }
+        hideLoadingImg();
+        $('html, body').animate({
+            scrollTop: $("#"+id).offset().top
+        }, 'fast');
+    };
+
+    var responseOnSuccess = function(){
+        $("#heading").hide();
+        hideLoadingImg(false);
+        $("#response_on_success").text(text.localize("Your details have been updated."))
+            .removeClass("invisible");
+    };
+
+    var apiResponse = function(response){
+        if (checkIsVirtual()) return;
+        if(response.msg_type === 'get_financial_assessment'){
+            responseGetAssessment(response);
+        }
+        else if(response.msg_type === 'set_financial_assessment' && 'error' in response){
+            displayErrors(response.error.details);
+        }
+        else if(response.msg_type === 'set_financial_assessment'){
+            responseOnSuccess();
+        }
+    };
+
+    var checkIsVirtual = function(){
+        if(page.client.is_virtual()) {
+            $("#assessment_form").addClass('invisible');
+            $('#response_on_success').addClass('notice-msg center').removeClass('invisible').text(text.localize('This feature is not relevant to virtual-money accounts.'));
+            hideLoadingImg(false);
+            return true;
+        }
+        return false;
+    };
+
+    return {
+        init : init,
+        apiResponse : apiResponse,
+        submitForm: submitForm,
+        LocalizeText: LocalizeText
+    };
+}());
+
+
+pjax_config_page_require_auth("user/settings/assessmentws", function() {
+    return {
+        onLoad: function() {
+            BinarySocket.init({
+                onmessage: function(msg) {
+                    var response = JSON.parse(msg.data);
+                    if (response) {
+                        FinancialAssessmentws.apiResponse(response);
+                    }
+                }
+            });
+            showLoadingImage($('<div/>', {id: 'loading'}).insertAfter('#heading'));
+            FinancialAssessmentws.init();
+        }
+    };
+});
+;pjax_config_page_require_auth("user/settings/iphistoryws", function(){
+    return {
+        onLoad: function() {
+            BinarySocket.init({
+                onmessage: function(msg){
+                    var response = JSON.parse(msg.data);
+
+                    if (response) {
+                        var type = response.msg_type;
+                        if (type === 'login_history'){
+                            IPHistory.responseHandler(response);
+                        }
+                    }
+                }
+            });
+            Content.populate();
+            IPHistory.init();
+        },
+        onUnload: function(){
+            IPHistory.clean();
+        }
+    };
+});
+;var IPHistoryData = (function(){
+    "use strict";
+
+    function getHistory(limit){
+        var request = {login_history: 1};
+        if(limit){
+            $.extend(request,limit);
+        }
+        BinarySocket.send(request);
+    }
+
+    return{
+      getHistory: getHistory,
+    };
+}());
+;var IPHistory = (function(){
+    "use strict";
+
+    //Batch refer to number of data get from ws service per request
+    //chunk refer to number of data populate to ui for each append
+    //receive means receive from ws service
+    //consume means consume by UI and displayed to page
+
+    var batchSize = 50;
+    var chunkSize = batchSize/5;
+
+    var noMoreData = true;
+    var pending = false;            //serve as a lock to prevent ws request is sequential
+    var currentBatch = [];
+    var historyReceived = 0;
+    var historyConsumed = 0;
+
+    var tableExist = function(){
+        return document.getElementById("login-history-table");
+    };
+    var finishedConsumed = function(){
+        return historyConsumed === historyReceived;
+    };
+
+    function responseHandler(response){
+        if (response.hasOwnProperty('error') && response.error.message) {
+          document.getElementById('err').textContent = response.error.message;
+          return;
+        } else {
+          pending = false;
+
+          var login_history = response.login_history;
+          currentBatch = login_history;
+          historyReceived += currentBatch.length;
+
+          if (!tableExist()) {
+              IPHistoryUI.createEmptyTable().appendTo("#login_history-ws-container");
+              IPHistoryUI.updateTable(getNextChunk());
+
+              // Show a message when the table is empty
+              if ((historyReceived === 0) && (currentBatch.length === 0)) {
+                  $('#login-history-table tbody')
+                      .append($('<tr/>', {class: "flex-tr"})
+                          .append($('<td/>', {colspan: 6})
+                              .append($('<p/>', {class: "notice-msg center", text: text.localize("Your account has no Login/Logout activity.")})
+                              )
+                          )
+                      );
+              }
+
+              var titleElement = document.getElementById("login_history-title").firstElementChild;
+              titleElement.textContent = text.localize(titleElement.textContent);
+          }
+        }
+    }
+
+    function getNextBatch(){
+        IPHistoryData.getHistory({limit: 50});
+        pending = true;
+    }
+
+    function getNextChunk(){
+        var chunk = currentBatch.splice(0, chunkSize);
+        historyConsumed += chunk.length;
+        return chunk;
+    }
+
+
+    function loadChunkWhenScroll(){
+        $(document).scroll(function(){
+
+            function hidableHeight(percentage){
+                var totalHidable = $(document).height() - $(window).height();
+                return Math.floor(totalHidable * percentage / 100);
+            }
+
+            var pFromTop = $(document).scrollTop();
+
+            if (!tableExist()){
+                return;
+            }
+
+            if (pFromTop < hidableHeight(70)) {
+                return;
+            }
+
+            /*if (finishedConsumed() && !noMoreData && !pending) {
+                getNextBatchStatement();
+                return;
+            }*/
+
+            if (!finishedConsumed()){
+                IPHistoryUI.updateTable(getNextChunk());
+            }
+        });
+    }
+
+
+    function initTable(){
+        pending = false;
+        noMoreData = false;
+
+        currentBatch = [];
+
+        historyReceived = 0;
+        historyConsumed = 0;
+
+        $("#login_history-ws-container .error-msg").text("");
+
+        IPHistoryUI.clearTableContent();
+    }
+
+    function initPage(){
+        getNextBatch();
+        loadChunkWhenScroll();
+    }
+
+    function cleanPageState(){
+        initTable();
+    }
+
+    return {
+        init: initPage,
+        responseHandler: responseHandler,
+        clean: cleanPageState
+    };
+}());
+;var IPHistoryUI = (function(){
+    "use strict";
+
+    var tableID = "login-history-table",
+        columns = ["timestamp","action","browser","ip","status"];
+
+    function createEmptyTable(){
+        var header = [
+            text.localize("Date and Time"),
+            text.localize("Action"),
+            text.localize("Browser"),
+            text.localize("IP Address"),
+            text.localize("Status"),
+        ];
+        var metadata = {
+            id: tableID,
+            cols: columns
+        };
+        var data = [];
+        var $table = Table.createFlexTable(data,metadata,header);
+        return $table;
+    }
+
+    function updateTable(history){
+        Table.appendTableBody(tableID, history, createRow);
+        showLocalTimeOnHover('td.timestamp');
+    }
+
+    function createRow(data){
+        var userAgent = data['environment'];
+        var history = userAgent.split(' ');
+        var timestamp = moment.unix(data.time).utc().format('YYYY-MM-DD HH:mm:ss').replace(' ', '\n') + ' GMT';
+        var ip = history[2].split('=')[1];
+        var browser = "Unknown",
+            ver = "Unknown",
+            verOffset = 0;
+        if (/(msie|trident)/i.test(userAgent)){
+            browser = "Internet Explorer";
+            verOffset = /(msie)/i.test(userAgent) ? userAgent.indexOf("MSIE") : verOffset;
+            verOffset = /(trident)/i.test(userAgent) ? userAgent.indexOf("Trident") : verOffset;
+            if (userAgent.substring(verOffset+13).split(" ")[0].indexOf(':') != -1) {
+              ver = userAgent.substring(verOffset+13).split(" ")[0].split(":")[1].split(")")[0];
+            }
+        } else if ((verOffset = userAgent.indexOf("Edge")) != -1) {
+            browser = "Edge";
+            ver = userAgent.substring(verOffset).split("/")[1].split(" ")[0];
+            if (ver.indexOf(';') != -1) {
+              ver = ver.split(';')[0];
+            }
+        } else if ((verOffset = userAgent.indexOf("OPR")) != -1){
+            browser = "Opera";
+            ver = userAgent.substring(verOffset+4).split(" ")[0];
+        } else if ((verOffset = userAgent.indexOf("Chrome")) != -1){
+            browser = "Chrome";
+            ver = userAgent.substring(verOffset+7).split(" ")[0];
+        } else if ((verOffset = userAgent.indexOf("Safari")) != -1){
+            browser = "Safari";
+            ver = userAgent.substring(verOffset+7).split(" ")[0];
+        } else if ((verOffset = userAgent.indexOf("Firefox")) != -1){
+            browser = "Firefox";
+            ver = userAgent.substring(verOffset+8).split(" ")[0];
+        }
+        var status = data['status'] === 1 ? text.localize('Successful') : text.localize('Failed');
+        var browserString = browser + " v" + ver;
+        var $row = Table.createFlexTableRow([timestamp, data['action'], browserString, ip, status], columns, "data");
+        $row.children(".timestamp").addClass('pre');
+        return $row[0];
+    }
+
+    function clearTableContent(){
+        Table.clearTableBody(tableID);
+        $("#" + tableID +">tfoot").hide();
+    }
+
+    return{
+        createEmptyTable: createEmptyTable,
+        updateTable: updateTable,
+        clearTableContent: clearTableContent
+    };
+}());
+;pjax_config_page_require_auth("limitsws", function(){
+    return {
+        onLoad: function() {
+            Content.populate();
+            Content.limitsTranslation();
+            if (TUser.get().is_virtual) {
+                LimitsWS.limitsError();
+                return;
+            }
+            document.getElementById('client_message').setAttribute('style', 'display:none');
+
+            BinarySocket.init({
+                onmessage: function(msg){
+                    var response = JSON.parse(msg.data);
+                    if (response) {
+                        var type = response.msg_type;
+                        var error = response.error;
+
+                        if (type === 'authorize' && TUser.get().is_virtual){
+                            LimitsWS.limitsError();
+                        } else if (type === 'get_limits' && !error){
+                            LimitsWS.limitsHandler(response);
+                        } else if (error) {
+                            LimitsWS.limitsError();
+                        }
+                    }
+                }
+            });
+
+            BinarySocket.send({get_limits: 1});
+        },
+        onUnload: function(){
+            LimitsWS.clean();
+        }
+    };
+});
+;var LimitsWS = (function(){
+    "use strict";
+
+    function limitsHandler(response){
+        var limits = response.get_limits;
+        LimitsUI.fillLimitsTable(limits);
+
+        var elem_withdrawal_limit = document.getElementById("withdrawal-limit");
+        var elem_already_withdraw = document.getElementById("already-withdraw");
+        var elem_withdrawal_limit_aggregate = document.getElementById("withdrawal-limit-aggregate");
+
+        if(limits['lifetime_limit'] === 99999999 && limits['num_of_days_limit'] === 99999999) {
+            elem_withdrawal_limit.textContent = Content.localize().textAuthenticatedWithdrawal;
+        } else {
+            var text_WithdrawalLimits     = Content.localize().textWithdrawalLimitsEquivalant;
+            var text_WithrawalAmount      = Content.localize().textWithrawalAmountEquivalant;
+            var text_CurrentMaxWithdrawal = Content.localize().textCurrentMaxWithdrawalEquivalant;
+            var client_currency           = 'EUR';
+            var num_of_days_limit         = addComma(limits['num_of_days_limit']);
+            var already_withdraw          = limits["withdrawal_since_inception_monetary"]; // no need for addComma since it is already string like "1,000"
+            var remainder                 = addComma(limits['remainder']);
+
+            if((/^(iom)$/i).test(TUser.get().landing_company_name)) { // MX
+                text_WithdrawalLimits = Content.localize().textWithdrawalLimitsEquivalantDay;
+                text_WithrawalAmount  = Content.localize().textWithrawalAmountEquivalantDay;
+                elem_withdrawal_limit.textContent = text_WithdrawalLimits.replace('[_1]', limits['num_of_days']).replace('[_2]', client_currency).replace('[_3]', num_of_days_limit);
+                elem_already_withdraw.textContent = text_WithrawalAmount.replace('[_1]', client_currency).replace('[_2]', already_withdraw).replace('[_3]', limits['num_of_days']);
+            }
+            else {
+                if((/^(costarica|japan)$/i).test(TUser.get().landing_company_name)) { // CR , JP
+                    text_WithdrawalLimits     = Content.localize().textWithdrawalLimits;
+                    text_WithrawalAmount      = Content.localize().textWithrawalAmount;
+                    text_CurrentMaxWithdrawal = Content.localize().textCurrentMaxWithdrawal;
+                    client_currency           = TUser.get().currency || page.client.get_storage_value('currencies');
+                }
+                elem_withdrawal_limit.textContent = text_WithdrawalLimits.replace('[_1]', client_currency).replace('[_2]', num_of_days_limit);
+                elem_already_withdraw.textContent =  text_WithrawalAmount.replace('[_1]', client_currency).replace('[_2]', already_withdraw);
+            }
+            elem_withdrawal_limit_aggregate.textContent = text_CurrentMaxWithdrawal.replace('[_1]', client_currency).replace('[_2]', remainder);
+        }
+    }
+
+    function limitsError(){
+        document.getElementById('withdrawal-title').setAttribute('style', 'display:none');
+        document.getElementById('limits-title').setAttribute('style', 'display:none');
+        document.getElementsByClassName('notice-msg')[0].innerHTML = Content.localize().textFeatureUnavailable;
+        document.getElementById('client_message').setAttribute('style', 'display:block');
+    }
+
+    function initTable(){
+        document.getElementById('client_message').setAttribute('style', 'display:none');
+        LimitsUI.clearTableContent();
+    }
+
+    return {
+        limitsHandler: limitsHandler,
+        limitsError: limitsError,
+        clean: initTable
+    };
+}());
+;var LimitsUI = (function(){
+    "use strict";
+
+    function fillLimitsTable(limits){
+        var open_positions = addComma(limits['open_positions']);
+        var account_balance = addComma(limits['account_balance']);
+        var daily_turnover = addComma(limits['daily_turnover']);
+        var payout = addComma(limits['payout']);
+
+        document.getElementById('item').textContent = Content.localize().textItem;
+        
+        var currency = TUser.get().currency;
+        var limit = document.getElementById('limit');
+        if (currency === "") {
+            limit.textContent = Content.localize().textLimit;
+        } else {
+            limit.textContent = Content.localize().textLimit + " (" + currency + ")";
+        }
+        $('#max-open-position').prepend(Content.localize().textMaxOpenPosition);
+        document.getElementById('max-open-position-tooltip').setAttribute('title', Content.localize().textMaxOpenPositionTooltip);
+        document.getElementById('open-positions').textContent = open_positions;
+        
+        $('#max-acc-balance').prepend(Content.localize().textMaxAccBalance);
+        document.getElementById('max-acc-balance-tooltip').setAttribute('title', Content.localize().textMaxAccBalanceTooltip);
+        document.getElementById('account-balance').textContent = account_balance;
+        
+        $('#max-daily-turnover').prepend(Content.localize().textMaxDailyTurnover);
+        document.getElementById('max-daily-turnover-tooltip').setAttribute('title', Content.localize().textMaxDailyTurnoverTooltip);
+        document.getElementById('daily-turnover').textContent = daily_turnover;
+        
+        $('#max-aggregate').prepend(Content.localize().textMaxAggregate);
+        document.getElementById('max-aggregate-tooltip').setAttribute('title', Content.localize().textMaxAggregateTooltip);
+        document.getElementById('payout').textContent = payout;
+    }
+
+    function clearTableContent(){
+        Table.clearTableBody('client-limits');
+        $("#limits-title>tfoot").hide();
+    }
+
+    
+    
+    return {
+        clearTableContent: clearTableContent,
+        fillLimitsTable: fillLimitsTable
+    };
+}());
+;var SettingsDetailsWS = (function() {
+    "use strict";
+
+    var formID,
+        frmBtn,
+        RealAccElements,
+        errorClass;
+    var fieldIDs;
+    var isValid,
+        changed;
+
+
+    var init = function() {
+        formID = '#frmPersonalDetails';
+        frmBtn = formID + ' button';
+        RealAccElements = '.RealAcc';
+        errorClass = 'errorfield';
+        changed = false;
+        fieldIDs = {
+            address1 : '#Address1',
+            address2 : '#Address2',
+            city     : '#City',
+            state    : '#State',
+            postcode : '#Postcode',
+            phone    : '#Phone'
+        };
+
+        BinarySocket.send({"get_settings": "1"});
+    };
+
+    var getDetails = function(response) {
+        var data = response.get_settings;
+
+        $('#lblCountry').text(data.country);
+        $('#lblEmail').text(data.email);
+
+        if(page.client.is_virtual()){ // Virtual Account
+            $(RealAccElements).remove();
+        }
+        else { // Real Account
+            var birthDate = data.date_of_birth ? moment.utc(new Date(data.date_of_birth * 1000)).format("YYYY-MM-DD") : '';
+            $('#lblBirthDate').text(birthDate);
+            // Generate states list
+            var residence = $.cookie('residence');
+            BinarySocket.send({"states_list": residence, "passthrough": {"value": data.address_state}});
+            if (page.client.residence === 'jp') {
+                var jpData = response.get_settings.jp_settings;
+                $('#lblName').text((data.last_name || '') + ' ' + (data.first_name || ''));
+                $('#lblGender').text(text.localize(jpData.gender) || '');
+                $('#lblOccupation').text(text.localize(jpData.occupation) || '');
+                $('#lblAddress1').text(data.address_line_1 || '');
+                $('#lblAddress2').text(data.address_line_2 || '');
+                $('#lblCity').text(data.address_city || '');
+                $('#lblPostcode').text(data.address_postcode || '');
+                $('#lblPhone').text(data.phone || '');
+                $('#lblAnnualIncome').text(text.localize(jpData.annual_income) || '');
+                $('#lblFinancialAsset').text(text.localize(jpData.financial_asset) || '');
+                $('#lblDailyLossLimit').text(jpData.daily_loss_limit || '');
+                $('#lblEquities').text(text.localize(jpData.trading_experience_equities) || '');
+                $('#lblCommodities').text(text.localize(jpData.trading_experience_commodities) || '');
+                $('#lblForeignCurrencyDeposit').text(text.localize(jpData.trading_experience_foreign_currency_deposit) || '');
+                $('#lblMarginFX').text(text.localize(jpData.trading_experience_margin_fx) || '');
+                $('#lblInvestmentTrust').text(text.localize(jpData.trading_experience_investment_trust) || '');
+                $('#lblPublicCorporationBond').text(text.localize(jpData.trading_experience_public_bond) || '');
+                $('#lblDerivativeTrading').text(text.localize(jpData.trading_experience_option_trading) || '');
+                $('#lblPurposeOfTrading').text(text.localize(jpData.trading_purpose) || '');
+                if (jpData.hedge_asset !== null && jpData.hedge_asset_amount !== null) {
+                  $('#lblHedgeAsset').text(text.localize(jpData.hedge_asset) || '');
+                  $('#lblHedgeAssetAmount').text(jpData.hedge_asset_amount || '');
+                  $('.hedge').css('display', 'block');
+                }
+                $('.JpAcc').css('display', 'block');
+                $('.rowBirthDate').removeClass('hidden');
+                $('.rowName').removeClass('hidden');
+                $('.rowCustomerSupport').removeClass('hidden');
+            } else {
+                $('#lblName').text((data.salutation || '') + ' ' + (data.first_name || '') + ' ' + (data.last_name || ''));
+                $(fieldIDs.address1).val(data.address_line_1);
+                $(fieldIDs.address2).val(data.address_line_2);
+                $(fieldIDs.city).val(data.address_city);
+
+                $(fieldIDs.postcode).val(data.address_postcode);
+                $(fieldIDs.phone).val(data.phone);
+
+                $(fieldIDs.address1).on('change', function() {
+                  changed = true;
+                });
+                $(fieldIDs.address2).on('change', function() {
+                  changed = true;
+                });
+                $(fieldIDs.city).on('change', function() {
+                  changed = true;
+                });
+                $(fieldIDs.postcode).on('change', function() {
+                  changed = true;
+                });
+                $(fieldIDs.phone).on('change', function() {
+                  changed = true;
+                });
+
+                $(RealAccElements).removeClass('hidden');
+
+                $(frmBtn).click(function(e){
+                    e.preventDefault();
+                    e.stopPropagation();
+                    return setDetails();
+                });
+            }
+        }
+
+        $(formID).removeClass('hidden');
+    };
+
+    var populateStates = function(response) {
+        $(fieldIDs.state).empty();
+        var defaultValue = response.echo_req.passthrough.value;
+        var states = response.states_list;
+        if(states.length > 0) {
+            for(var i = 0; i < states.length; i++){
+                $(fieldIDs.state).append($('<option/>', {value: states[i].value, text: states[i].text}));
+            }
+            // set Current value
+            $(fieldIDs.state).val(defaultValue);
+        }
+        else {
+            $(fieldIDs.state).replaceWith($('<input/>', {id: 'State', type: 'text', maxlength: '35', value: defaultValue}));
+        }
+        $('#lblState').text($('#State option:selected').text());
+        $(fieldIDs.state).on('change', function() {
+          changed = true;
+        });
+    };
+
+    var formValidate = function() {
+        clearError();
+        isValid = true;
+
+        var address1 = $(fieldIDs.address1).val().trim(),
+            address2 = $(fieldIDs.address2).val().trim(),
+            city     = $(fieldIDs.city).val().trim(),
+            state    = $(fieldIDs.state).val(),
+            postcode = $(fieldIDs.postcode).val().trim(),
+            phone    = $(fieldIDs.phone).val().trim();
+
+        var letters = Content.localize().textLetters,
+            numbers = Content.localize().textNumbers,
+            space   = Content.localize().textSpace,
+            period  = Content.localize().textPeriod,
+            comma   = Content.localize().textComma;
+
+        // address 1
+        if(!isRequiredError(fieldIDs.address1) && !(/^[a-zA-Z0-9\s\,\.\-\/\(\)#']+$/).test(address1)) {
+            showError(fieldIDs.address1, Content.errorMessage('reg', [letters, numbers, space, period, comma, '- / ( ) # \'']));
+        }
+
+        // address line 2
+        if(!(/^[a-zA-Z0-9\s\,\.\-\/\(\)#']*$/).test(address2)) {
+            showError(fieldIDs.address2, Content.errorMessage('reg', [letters, numbers, space, period, comma, '- / ( ) # \'']));
+        }
+
+        // town/city
+        isRequiredError(fieldIDs.city);
+
+        // state
+        if(!isRequiredError(fieldIDs.state) && ($(fieldIDs.state).is('input') && !(/^[a-zA-Z\s\-']+$/).test(state))) {
+            showError(fieldIDs.state, Content.errorMessage('reg', [letters, space, '- \'']));
+        }
+
+        // postcode
+        if(!isRequiredError(fieldIDs.postcode) && !isCountError(fieldIDs.postcode, 4, 20) && !(/(^[a-zA-Z0-9\s\-\/]+$)/).test(postcode)) {
+            showError(fieldIDs.postcode, Content.errorMessage('reg', [letters, numbers, space, '- /']));
+        }
+
+        // telephone
+        if(!isCountError(fieldIDs.phone, 6, 35) && !(/^(|\+?[0-9\s\-]+)$/).test(phone)) {
+            showError(fieldIDs.phone, Content.errorMessage('reg', [numbers, space, '-']));
+        }
+
+        if (!changed) {
+          isValid = false;
+        }
+        changed = false;
+
+        if(isValid) {
+            return {
+                address1 : address1,
+                address2 : address2,
+                city     : city,
+                state    : state,
+                postcode : postcode,
+                phone    : phone
+            };
+        }
+        else {
+            return false;
+        }
+    };
+
+    var isRequiredError = function(fieldID) {
+        if(!$(fieldID).val() || !(/.+/).test($(fieldID).val().trim())){
+            showError(fieldID, Content.errorMessage('req'));
+            return true;
+        } else {
+            return false;
+        }
+    };
+
+    var isCountError = function(fieldID, min, max) {
+        var fieldValue = $(fieldID).val().trim();
+        if((fieldValue.length > 0 && fieldValue.length < min) || fieldValue.length > max) {
+            showError(fieldID, Content.errorMessage('range', '(' + min + '-' + max + ')'));
+            return true;
+        } else {
+            return false;
+        }
+    };
+
+    var showError = function(fieldID, errMsg) {
+        $(fieldID).after($('<p/>', {class: errorClass, text: errMsg}));
+        isValid = false;
+    };
+
+    var clearError = function(fieldID) {
+        $(fieldID ? fieldID : formID + ' .' + errorClass).remove();
+    };
+
+    var setDetails = function() {
+        var formData = formValidate();
+        if(!formData)
+            return false;
+
+        BinarySocket.send({
+            "set_settings"    : 1,
+            "address_line_1"  : formData.address1,
+            "address_line_2"  : formData.address2,
+            "address_city"    : formData.city,
+            "address_state"   : formData.state,
+            "address_postcode": formData.postcode,
+            "phone"           : formData.phone
+        });
+    };
+
+    var setDetailsResponse = function(response) {
+        var isError = response.set_settings !== 1;
+        $('#formMessage').css('display', '')
+            .attr('class', isError ? 'errorfield' : 'success-msg')
+            .html(isError ? text.localize('Sorry, an error occurred while processing your account.') : '<ul class="checked"><li>' + text.localize('Your settings have been updated successfully.') + '</li></ul>')
+            .delay(3000)
+            .fadeOut(1000);
+    };
+
+
+    return {
+        init: init,
+        getDetails: getDetails,
+        setDetails: setDetails,
+        setDetailsResponse: setDetailsResponse,
+        populateStates: populateStates
+    };
+}());
+
+
+
+pjax_config_page_require_auth("settings/detailsws", function() {
+    return {
+        onLoad: function() {
+            BinarySocket.init({
+                onmessage: function(msg) {
+                    var response = JSON.parse(msg.data);
+                    if (response) {
+                        var type = response.msg_type;
+                        switch(type){
+                            case "get_settings":
+                                SettingsDetailsWS.getDetails(response);
+                                break;
+                            case "set_settings":
+                                SettingsDetailsWS.setDetailsResponse(response);
+                                break;
+                            case "states_list":
+                                SettingsDetailsWS.populateStates(response);
+                                break;
+                            case "error":
+                                $('#formMessage').attr('class', 'errorfield').text(response.error.message);
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                    else {
+                        console.log('some error occured');
+                    }
+                }
+            });
+
+            Content.populate();
+            SettingsDetailsWS.init();
+        }
+    };
+});
+;var securityws = (function(){
+    "use strict";
+    var $form,
+        init_done;
+
+    var clearErrors = function(){
+        $("#SecuritySuccessMsg").text('');
+        $("#invalidinputfound").text('');
+        $('#errorcashierlockpassword1').contents().filter(function () {
+          return this.nodeType === 3;
+        }).remove();
+    };
+
+    var init = function(){
+        init_done = true;
+
+        $form   = $("#changeCashierLock");
+
+        clearErrors();
+
+        if(checkIsVirtual()) {
+            return;
+        }
+
+        $form   = $("#changeCashierLock");
+        clearErrors();
+
+        var loginToken = CommonData.getApiToken();
+        $form.find("button").on("click", function(e){
+            e.preventDefault();
+            e.stopPropagation();
+            if(validateForm() === false){
+                return false;
+            }
+            BinarySocket.send({"authorize": loginToken, "passthrough": {"value": $(this).attr("value") === "Update" ? "lock_password" : "unlock_password"}});
+        });
+        BinarySocket.send({"authorize": loginToken, "passthrough": {"value": "is_locked"}});
+    };
+
+    var checkIsVirtual = function(){
+        if(page.client.is_virtual()) {
+            $form.hide();
+            $('#SecuritySuccessMsg').addClass('notice-msg center').text(Content.localize().textFeatureUnavailable);
+            return true;
+        }
+        return false;
+    };
+
+    var validateForm = function(){
+        var isValid = true;
+        clearErrors();
+
+        var pwd1 = document.getElementById("cashierlockpassword1").value,
+            pwd2 = document.getElementById("cashierlockpassword2").value,
+            errorPassword = document.getElementById('errorcashierlockpassword1'),
+            errorRPassword = document.getElementById('errorcashierlockpassword2'),
+            isVisible = $("#repasswordrow").is(':visible');
+
+        if(isVisible === true){
+          if (!Validate.errorMessagePassword(pwd1, pwd2, errorPassword, errorRPassword)){
+            isValid = false;
+          }
+        } else if (!/[ -~]{6,25}/.test(pwd1)) {
+          errorPassword.textContent = Content.errorMessage('min', 6);
+          isValid = false;
+        }
+        return isValid;
+    };
+    var isAuthorized =  function(response){
+        if(response.echo_req.passthrough){
+            var option = response.echo_req.passthrough.value;
+            var pwd = $("#cashierlockpassword1").val();
+
+            switch(option){
+                case   "lock_password" :
+                        BinarySocket.send({
+                            "cashier_password": "1",
+                            "lock_password": pwd
+                        });
+                        break;
+                case   "unlock_password" :
+                        BinarySocket.send({
+                            "cashier_password": "1",
+                            "unlock_password": pwd
+                        });
+                        break;
+                case   "is_locked" :
+                        BinarySocket.send({
+                            "cashier_password": "1",
+                            "passthrough" : {"value" : "lock_status"}
+                        });
+                        break ;
+                default:
+                        if(!init_done) {
+                            init();
+                        }
+                        break;
+            }
+        }
+    };
+    var responseMessage = function(response){
+
+       var resvalue;
+
+       if(response.echo_req.passthrough && (response.echo_req.passthrough.value === "lock_status") ){
+            var passthrough = response.echo_req.passthrough.value;
+            resvalue = response.cashier_password;
+            if(parseInt(resvalue) === 1){
+                $("#repasswordrow").hide();
+                $("legend").text(text.localize("Unlock Cashier"));
+                $("#lockInfo").text(text.localize("Your cashier is locked as per your request - to unlock it, please enter the password."));
+                $form.find("button").attr("value","Unlock Cashier");
+                $form.find("button").html(text.localize("Unlock Cashier"));
+                $('#changeCashierLock').show();
+            }
+            else if(parseInt(resvalue) === 0){
+                $("#repasswordrow").show();
+                $("legend").text(text.localize("Lock Cashier"));
+                $("#lockInfo").text(text.localize("An additional password can be used to restrict access to the cashier."));
+                $form.find("button").attr("value","Update");
+                $form.find("button").html(text.localize("Update"));
+                $('#password-meter-div').attr('style', 'display:block');
+                if (isIE() === false) {
+                  $('#cashierlockpassword1').on('input', function() {
+                    $('#password-meter').attr('value', testPassword($('#cashierlockpassword1').val())[0]);
+                  });
+                } else {
+                  $('#password-meter').remove();
+                }
+                $('#changeCashierLock').show();
+            }
+        }
+        else{
+            if("error" in response) {
+                if("message" in response.error) {
+                    $("#invalidinputfound").text(text.localize(response.error.message));
+                }
+                return false;
+            }
+            else{
+                resvalue = response.echo_req.cashier_password;
+                if(parseInt(resvalue) === 1){
+                    $("#changeCashierLock").hide();
+                    $("#invalidinputfound").text('');
+                    $("#SecuritySuccessMsg").text(text.localize('Your settings have been updated successfully.'));
+                }
+                else{
+                    $("#invalidinputfound").text(text.localize('Sorry, an error occurred while processing your account.'));
+                    return false;
+                }
+            }
+        }
+        return;
+    };
+    var SecurityApiResponse = function(response){
+        if(checkIsVirtual()) {
+            return;
+        }
+        var type = response.msg_type;
+        if (type === "cashier_password" || (type === "error" && "cashier_password" in response.echo_req)){
+           responseMessage(response);
+        }else if(type === "authorize" || (type === "error" && "authorize" in response.echo_req))
+        {
+            isAuthorized(response);
+        }
+    };
+
+    return {
+        init : init,
+        SecurityApiResponse : SecurityApiResponse
+    };
+})();
+
+pjax_config_page_require_auth("user/settings/securityws", function() {
+    return {
+        onLoad: function() {
+            Content.populate();
+
+            BinarySocket.init({
+                onmessage: function(msg){
+                    var response = JSON.parse(msg.data);
+                    if (response) {
+                        securityws.SecurityApiResponse(response);
+                    }
+                }
+            });
+
+            securityws.init();
+        }
+    };
+});
+;pjax_config_page_require_auth("user/statement", function(){
+    return {
+        onLoad: function() {
+            BinarySocket.init({
+                onmessage: function(msg){
+                    var response = JSON.parse(msg.data);
+
+                    if (response) {
+                        var type = response.msg_type;
+                        if (type === 'statement'){
+                            StatementWS.statementHandler(response);
+                            showLocalTimeOnHover('td.date');
+                        }
+                    }
+                }
+            });
+            Content.populate();
+            StatementWS.init();
+        },
+        onUnload: function(){
+            StatementWS.clean();
+        }
+    };
+});
+;var StatementData = (function(){
+    "use strict";
+    var hasOlder = true;
+
+    function getStatement(opts){
+        var req = {statement: 1, description: 1};
+        if(opts){ 
+            $.extend(true, req, opts);    
+        }
+
+        BinarySocket.send(req);
+    }
+
+    return {
+        getStatement: getStatement,
+        hasOlder: hasOlder
+    };
+}());
+;var StatementWS = (function(){
+    "use strict";
+
+    //Batch refer to number of data get from ws service per request
+    //chunk refer to number of data populate to ui for each append
+    //receive means receive from ws service
+    //consume means consume by UI and displayed to page
+
+    var batchSize = 100;
+    var chunkSize = batchSize/2;
+
+    var noMoreData = false;
+    var pending = false;            //serve as a lock to prevent ws request is sequential
+    var currentBatch = [];
+    var transactionsReceived = 0;
+    var transactionsConsumed = 0;
+
+    var tableExist = function(){
+        return document.getElementById("statement-table");
+    };
+    var finishedConsumed = function(){
+        return transactionsConsumed === transactionsReceived;
+    };
+
+    function statementHandler(response){
+        pending = false;
+
+        var statement = response.statement;
+        currentBatch = statement.transactions;
+        transactionsReceived += currentBatch.length;
+
+        if (currentBatch.length < batchSize){
+            noMoreData = true;
+        }
+
+        if (!tableExist()) {
+            StatementUI.createEmptyStatementTable().appendTo("#statement-ws-container");
+            StatementUI.updateStatementTable(getNextChunkStatement());
+
+            // Show a message when the table is empty
+            if ((transactionsReceived === 0) && (currentBatch.length === 0)) {
+                $('#statement-table tbody')
+                    .append($('<tr/>', {class: "flex-tr"})
+                        .append($('<td/>', {colspan: 7})
+                            .append($('<p/>', {class: "notice-msg center", text: text.localize("Your account has no trading activity.")})
+                            )
+                        )
+                    );
+            }
+
+            Content.statementTranslation();
+        }
+    }
+
+    function getNextBatchStatement(){
+        StatementData.getStatement({offset: transactionsReceived, limit: batchSize});
+        pending = true;
+    }
+
+    function getNextChunkStatement(){
+        var chunk = currentBatch.splice(0, chunkSize);
+        transactionsConsumed += chunk.length;
+        return chunk;
+    }
+
+
+    function loadStatementChunkWhenScroll(){
+        $(document).scroll(function(){
+
+            function hidableHeight(percentage){
+                var totalHidable = $(document).height() - $(window).height();
+                return Math.floor(totalHidable * percentage / 100);
+            }
+
+            var pFromTop = $(document).scrollTop();
+
+            if (!tableExist()){
+                return;
+            }
+
+            if (pFromTop < hidableHeight(70)) {
+                return;
+            }
+
+            if (finishedConsumed() && !noMoreData && !pending) {
+                getNextBatchStatement();
+                return;
+            }
+
+            if (!finishedConsumed()){
+                StatementUI.updateStatementTable(getNextChunkStatement());
+            }
+        });
+    }
+
+
+    function initTable(){
+        pending = false;
+        noMoreData = false;
+
+        currentBatch = [];
+
+        transactionsReceived = 0;
+        transactionsConsumed = 0;
+
+        $(".error-msg").text("");
+
+        StatementUI.clearTableContent();
+    }
+
+    function initPage(){
+        getNextBatchStatement();
+        loadStatementChunkWhenScroll();
+    }
+
+    function cleanStatementPageState(){
+        initTable();
+    }
+
+    return {
+        init: initPage,
+        statementHandler: statementHandler,
+        clean: cleanStatementPageState
+    };
+}());
+;var StatementUI = (function(){
+    "use strict";
+    var tableID = "statement-table";
+    var columns = ["date", "ref", "payout", "act", "desc", "credit", "bal", "details"];
+
+    function createEmptyStatementTable(){
+        var header = [
+            Content.localize().textDate,
+            Content.localize().textRef,
+            text.localize('Potential Payout'),
+            Content.localize().textAction,
+            Content.localize().textDescription,
+            Content.localize().textCreditDebit,
+            Content.localize().textBalance,
+            Content.localize().textDetails
+        ];
+
+        header[6] = header[6] + (TUser.get().currency ? " (" + TUser.get().currency + ")" : "");
+
+        var metadata = {
+            id: tableID,
+            cols: columns
+        };
+        var data = [];
+        var $tableContainer = Table.createFlexTable(data, metadata, header);
+        return $tableContainer;
+    }
+
+    function updateStatementTable(transactions){
+        Table.appendTableBody(tableID, transactions, createStatementRow);
+    }
+
+    function clearTableContent(){
+        Table.clearTableBody(tableID);
+        $("#" + tableID +">tfoot").hide();
+    }
+
+    function createStatementRow(transaction){
+        var action = transaction["action_type"];
+        var dateObj = new Date(transaction["transaction_time"] * 1000);
+        action = StringUtil.toTitleCase(action);
+
+        var momentObj = moment.utc(dateObj);
+        var dateStr = momentObj.format("YYYY-MM-DD");
+        var timeStr = momentObj.format("HH:mm:ss") + ' GMT';
+
+        var date = dateStr + "\n" + timeStr;
+        var ref = transaction["transaction_id"];
+        var payout = Number(parseFloat(transaction["payout"])).toFixed(2);
+        var desc = transaction["longcode"].replace(/\n/g, '<br />');
+        var amount = addComma(Number(parseFloat(transaction["amount"])));
+        var balance = addComma(Number(parseFloat(transaction["balance_after"])));
+
+        var creditDebitType = (parseFloat(amount) >= 0) ? "profit" : "loss";
+
+        var $statementRow = Table.createFlexTableRow([date, ref, isNaN(payout) ? '-' : payout, action, '', amount, balance, ''], columns, "data");
+        $statementRow.children(".credit").addClass(creditDebitType);
+        $statementRow.children(".date").addClass("pre");
+        $statementRow.children(".desc").html(desc + "<br>");
+
+        //create view button and append
+        if (action === "Sell" || action === "Buy") {
+            var $viewButtonSpan = Button.createBinaryStyledButton();
+            var $viewButton = $viewButtonSpan.children(".button").first();
+            $viewButton.text(text.localize("View"));
+            $viewButton.addClass("open_contract_detailsws");
+            $viewButton.attr("contract_id", transaction["contract_id"]);
+
+            $statementRow.children(".desc,.details").append($viewButtonSpan);
+        }
+
+        return $statementRow[0];        //return DOM instead of jquery object
+    }
+
+    return {
+        clearTableContent: clearTableContent,
+        createEmptyStatementTable: createEmptyStatementTable,
+        updateStatementTable: updateStatementTable
+    };
+}());
+;var TopUpVirtualWS = (function() {
+	"use strict";
+
+    var containerID,
+        viewIDs,
+        hiddenClass,
+        $views;
+
+    var init = function() {
+        containerID = '#topup_virtual';
+        hiddenClass = 'hidden';
+        $views      = $(containerID + ' .viewItem');
+        viewIDs = {
+            error   : '#viewError',
+            success : '#viewSuccess'
+        };
+
+        $views.addClass('hidden');
+
+        if(!page.client.is_virtual()) {
+            showMessage(text.localize('Sorry, this feature is available to virtual accounts only.'), false);
+        }
+        else {
+            BinarySocket.send({"topup_virtual": "1"});
+        }
+    };
+
+    var responseHandler = function(response) {
+    	var str, amt , currType;
+	 	if('error' in response) {
+            if('message' in response.error) {
+                showMessage(text.localize(response.error.message), false);
+            }
+        }
+        else{
+            showMessage(
+                text.localize('[_1] [_2] has been credited to your Virtual money account [_3]')
+                    .replace('[_1]', response.topup_virtual.currency)
+                    .replace('[_2]', response.topup_virtual.amount)
+                    .replace('[_3]', page.client.loginid),
+                true);
+        }
+    };
+
+    var showMessage = function(message, isSuccess) {
+        var viewID = isSuccess ? viewIDs.success : viewIDs.error;
+        setActiveView(viewID);
+        $(viewID + ' > p').html(message);
+    };
+
+    var setActiveView = function(viewID) {
+        $views.addClass(hiddenClass);
+        $(viewID).removeClass(hiddenClass);
+    };
+
+
+    return {
+    	init: init,
+    	responseHandler: responseHandler
+    };
+}());
+
+
+pjax_config_page_require_auth("top_up_virtualws", function() {
+    return {
+        onLoad: function() {
+        	BinarySocket.init({
+                onmessage: function(msg){
+                    var response = JSON.parse(msg.data);
+                    if (response) {
+                        if (response.msg_type === "authorize") {
+                            TopUpVirtualWS.init();
+                        }
+                        else if (response.msg_type === "topup_virtual") {
+                            TopUpVirtualWS.responseHandler(response);
+                        }
+                    }
+                    else {
+                        console.log('some error occured');
+                    }
+                }
+            });
+
+            Content.populate();
+            if(TUser.get().hasOwnProperty('is_virtual')) {
+                TopUpVirtualWS.init();
+            }
+        }
+    };
+});
+;pjax_config_page('user/lost_passwordws', function() {
+    return {
+        onLoad: function() {
+            if(page.client.redirect_if_login()) {
+                return;
+            }
+            BinarySocket.init({
+                onmessage: LostPassword.lostPasswordWSHandler
+            });
+            LostPassword.init();
+        }
+    };
+});
+;var LostPassword = (function() {
+    'use strict';
+
+    var hiddenClass = 'invisible';
+
+    function submitEmail() {
+        var emailInput = $('#lp_email').val();
+
+        if (emailInput === '') {
+            $("#email_error").removeClass(hiddenClass).text(text.localize('This field is required.'));
+        } else if (!validateEmail(emailInput)){
+            $("#email_error").removeClass(hiddenClass).text(text.localize('Invalid email format'));
+        }
+        else {
+            BinarySocket.send({verify_email: emailInput, type: 'reset_password'});
+            $('#submit').prop('disabled', true);
+        }
+    }
+
+    function onEmailInput(input) {
+        if (input) {
+            $("#email_error").addClass(hiddenClass);
+        }
+    }
+    
+    function lostPasswordWSHandler(msg) {
+        var response = JSON.parse(msg.data);
+        var type = response.msg_type;
+
+        if (type === 'verify_email') {
+            if (response.verify_email === 1) {
+                load_with_pjax('reset_passwordws');
+            } else if (response.error) {
+                $("#email_error").removeClass(hiddenClass).text(text.localize('Invalid email format'));
+                $('#submit').prop('disabled', false);
+            }
+        }
+    }
+
+    function init() {
+        $('#lost_passwordws').removeClass('invisible');
+        $('#submit:enabled').click(function() {
+            submitEmail();
+        });
+
+        $('#lp_email').keypress(function(ev) {
+            if (ev.which === 13) {
+                submitEmail();
+            }
+            onEmailInput(ev.target.value);
+        });
+    }
+
+    return {
+        lostPasswordWSHandler: lostPasswordWSHandler,
+        init: init
+    };
+}());
+;var MyAccountWS = (function() {
+    "use strict";
+
+    var loginid,
+        isReal,
+        get_account_status,
+        is_authenticated_payment_agent,
+        terms_conditions_version,
+        client_tnc_status;
+    var hiddenClass,
+        welcomeTextID,
+        virtualTopupID,
+        authButtonID;
+
+    var init = function() {
+        hiddenClass    = 'invisible';
+        welcomeTextID  = '#welcome_text';
+        virtualTopupID = '#VRT_topup_link';
+        authButtonID   = '#authenticate_button';
+
+        loginid = page.client.loginid || $.cookie('loginid');
+
+        BinarySocket.send({"get_settings"      : 1});
+        BinarySocket.send({"website_status"    : 1});
+        BinarySocket.send({"get_account_status": 1});
+
+        //checkDisabledAccount();
+    };
+
+    var responseGetSettings = function(response) {
+        var get_settings = response.get_settings;
+        if (get_settings.country === null || $.cookie('residence') === '') {
+          var documentDomain = document.domain.split('.').slice(-2).join('.');
+          if ($.cookie('residence') !== '') {
+            $.cookie('residence', '', {path: '/', domain: documentDomain});
+          } else if (get_settings.country_code) {
+            $.cookie('residence', get_settings.country_code, {path: '/', domain: documentDomain});
+          }
+          page.client.residence = get_settings.country_code;
+          page.contents.topbar_message_visibility();
+        }
+        client_tnc_status = get_settings.client_tnc_status || '-';
+        is_authenticated_payment_agent = get_settings.is_authenticated_payment_agent;
+
+        checkAll();
+    };
+
+    var responseAccountStatus = function(response) {
+        get_account_status = response.get_account_status.status;
+        checkAll();
+    };
+
+    var checkAll = function() {
+        if(!terms_conditions_version || !client_tnc_status || !get_account_status) {
+            return;
+        }
+
+        if(isReal && terms_conditions_version !== client_tnc_status && !localStorage.getItem('risk_classification')) {
+            window.location.href = page.url.url_for('user/tnc_approvalws');
+            return;
+        }
+
+        showWelcomeMessage();
+        if(!isReal) {
+            showTopUpLink();
+        }
+        else {
+            if(is_authenticated_payment_agent) {
+                $('#payment_agent').removeClass(hiddenClass);
+            }
+        }
+
+        if(get_account_status[0] === 'unwelcome'){
+            $(authButtonID).removeClass(hiddenClass);
+        }
+
+        $('#cashier-portfolio, #profit-statement').removeClass(hiddenClass);
+        $('#loading').remove();
+    };
+
+    var showWelcomeMessage = function() {
+        var landing_company = page.client.get_storage_value('landing_company_name');
+        $(welcomeTextID)
+            .text(
+                text.localize(
+                    isReal ?
+                        'You are currently logged in to your real money account with [_1] ([_2]).' :
+                        'You are currently logged in to your virtual money account ([_2]).'
+                )
+                    .replace('[_1]', landing_company || '')
+                    .replace('[_2]', loginid)
+            )
+            .removeClass(hiddenClass);
+    };
+
+    var showTopUpLink = function() {
+        if(TUser.get().balance < 1000) {
+            $(virtualTopupID + ' a')
+                .text(
+                    text.localize('Deposit [_1] [_2] virtual money into your account [_3]')
+                        .replace('[_1]', TUser.get().currency)
+                        .replace('[_2]', '10000')
+                        .replace('[_3]', loginid)
+                );
+            $(virtualTopupID).removeClass(hiddenClass);
+        }
+    };
+
+    var checkDisabledAccount = function() {
+        var disabledAccount = [];
+        page.user.loginid_array.map(function(loginObj) {
+            if (loginObj.disabled && loginObj.real) {
+                disabledAccount.push(loginObj.id);
+            }
+        });
+
+        if(disabledAccount.length > 0) {
+            var msgSingular = text.localize('Your [_1] account is unavailable. For any questions please contact [_2].'),
+                msgPlural   = text.localize('Your [_1] accounts are unavailable. For any questions please contact [_2].');
+            $('<p/>', {class: 'notice-msg'})
+                .html(
+                    (disabledAccount.length === 1 ? msgSingular : msgPlural)
+                        .replace('[_1]', disabledAccount.join(', '))
+                        .replace('[_2]', $('<a/>', {class: 'pjaxload', href: page.url.url_for('contact'), text: text.localize('Customer Support')}).prop('outerHTML'))
+                )
+                .insertAfter($(welcomeTextID));
+        }
+    };
+
+    var apiResponse = function(response) {
+        if('error' in response){
+            if('message' in response.error) {
+                console.warn(response.error.message);
+            }
+            return false;
+        }
+
+        isReal = !page.client.is_virtual();
+
+        switch(response.msg_type) {
+            case 'get_account_status':
+                responseAccountStatus(response);
+                break;
+            case 'get_settings':
+                responseGetSettings(response);
+                break;
+            case 'landing_company_details':
+                showWelcomeMessage();
+                break;
+            case 'website_status':
+                terms_conditions_version = response.website_status.terms_conditions_version;
+                checkAll();
+                break;
+            default:
+                break;
+        }
+    };
+
+    return {
+        init : init,
+        apiResponse : apiResponse
+    };
+}());
+
+
+pjax_config_page_require_auth("user/my_accountws", function() {
+    return {
+        onLoad: function() {
+            showLoadingImage($('<div/>', {id: 'loading'}).insertAfter('#welcome'));
+
+            if(page.url.param('login')) {
+                page.client.clear_storage_values();
+            }
+
+            BinarySocket.init({
+                onmessage: function(msg) {
+                    var response = JSON.parse(msg.data);
+                    if (response) {
+                        MyAccountWS.apiResponse(response);
+                    }
+                }
+            });
+
+            Content.populate();
+            MyAccountWS.init();
+        }
+    };
+});
+;pjax_config_page_require_auth("new_account/maltainvestws", function(){
+  return {
+    onLoad: function() {
+      Content.populate();
+      for (i = 0; i < page.user.loginid_array.length; i++){
+        if (page.user.loginid_array[i].financial){
+          window.location.href = page.url.url_for('user/my_accountws');
+          return;
+        } else if (page.user.loginid_array[i].non_financial){
+          $('.security').hide();
+        }
+      }
+      handle_residence_state_ws();
+      BinarySocket.send({residence_list:1});
+      BinarySocket.send({get_settings:1});
+      $('#financial-form').submit(function(evt) {
+        evt.preventDefault();
+        if (FinancialAccOpeningUI.checkValidity()){
+          BinarySocket.init({
+            onmessage: function(msg){
+              var response = JSON.parse(msg.data);
+              if (response) {
+                var error = response.error;
+                if (response.msg_type === 'new_account_maltainvest'){
+                  ValidAccountOpening.handler(response, response.new_account_maltainvest);
+                }
+              }
+            }
+          });
+        }
+      });
+      $('#financial-risk').submit(function(evt) {
+        evt.preventDefault();
+        window.acceptRisk = true;
+        if (FinancialAccOpeningUI.checkValidity()){
+          BinarySocket.init({
+            onmessage: function(msg){
+              var response = JSON.parse(msg.data);
+              if (response) {
+                if (response.msg_type === 'new_account_maltainvest'){
+                  ValidAccountOpening.handler(response, response.new_account_maltainvest);
+                }
+              }
+            }
+          });
+        }
+      });
+    }
+  };
+});
+;var FinancialAccOpeningData = (function(){
+    function getRealAcc(elementObj){
+        var req = {
+            new_account_maltainvest: 1,
+            salutation: elementObj['title'].value,
+            first_name: elementObj['fname'].value,
+            last_name: elementObj['lname'].value,
+            date_of_birth: elementObj['dobyy'].value + '-' + elementObj['dobmm'].value + '-' + elementObj['dobdd'].value,
+            residence: elementObj['residence'].value,
+            address_line_1: elementObj['address1'].value,
+            address_line_2: elementObj['address2'].value,
+            address_city: elementObj['town'].value,
+            address_state: elementObj['state'].value,
+            address_postcode: elementObj['postcode'].value,
+            phone: elementObj['tel'].value,
+            forex_trading_experience: elementObj['forexExperience'].value,
+            forex_trading_frequency: elementObj['forexFrequency'].value,
+            indices_trading_experience: elementObj['indicesExperience'].value,
+            indices_trading_frequency: elementObj['indicesFrequency'].value,
+            commodities_trading_experience: elementObj['commoditiesExperience'].value,
+            commodities_trading_frequency: elementObj['commoditiesFrequency'].value,
+            stocks_trading_experience: elementObj['stocksExperience'].value,
+            stocks_trading_frequency: elementObj['stocksFrequency'].value,
+            other_derivatives_trading_experience: elementObj['binaryExperience'].value,
+            other_derivatives_trading_frequency: elementObj['binaryFrequency'].value,
+            other_instruments_trading_experience: elementObj['otherExperience'].value,
+            other_instruments_trading_frequency: elementObj['otherFrequency'].value,
+            employment_industry: elementObj['employment'].value,
+            education_level: elementObj['education'].value,
+            income_source: elementObj['incomeSource'].value,
+            net_income: elementObj['income'].value,
+            estimated_worth: elementObj['netWorth'].value
+        };
+
+        if ($.cookie('affiliate_tracking')) {
+          req.affiliate_token = JSON.parse($.cookie('affiliate_tracking')).t;
+        }
+
+        if (elementObj['answer'].value !== '') {
+          req.secret_question = elementObj['question'].value;
+          req.secret_answer = elementObj['answer'].value;
+        }
+
+        if (window.acceptRisk) {
+          req.accept_risk = 1;
+        } else {
+          req.accept_risk = 0;
+        }
+
+        BinarySocket.send(req);
+    }
+
+    return {
+        getRealAcc: getRealAcc
+    };
+}());
+;var FinancialAccOpeningUI = (function(){
+  "use strict";
+
+  function checkValidity(){
+    window.accountErrorCounter = 0;
+
+    var letters = Content.localize().textLetters,
+        numbers = Content.localize().textNumbers,
+        space   = Content.localize().textSpace,
+        hyphen  = Content.localize().textHyphen,
+        period  = Content.localize().textPeriod,
+        apost   = Content.localize().textApost;
+
+    var elementObj = {
+        title                    : document.getElementById('title'),
+        fname                    : document.getElementById('fname'),
+        lname                    : document.getElementById('lname'),
+        dobdd                    : document.getElementById('dobdd'),
+        dobmm                    : document.getElementById('dobmm'),
+        dobyy                    : document.getElementById('dobyy'),
+        residence                : document.getElementById('residence-disabled'),
+        address1                 : document.getElementById('address1'),
+        address2                 : document.getElementById('address2'),
+        town                     : document.getElementById('address-town'),
+        state                    : document.getElementById('address-state'),
+        postcode                 : document.getElementById('address-postcode'),
+        tel                      : document.getElementById('tel'),
+        question                 : document.getElementById('secret-question'),
+        answer                   : document.getElementById('secret-answer'),
+        tnc                      : document.getElementById('tnc'),
+        forexExperience          : document.getElementById('forex-trading-experience'),
+        forexFrequency           : document.getElementById('forex-trading-frequency'),
+        indicesExperience        : document.getElementById('indices-trading-experience'),
+        indicesFrequency         : document.getElementById('indices-trading-frequency'),
+        commoditiesExperience    : document.getElementById('commodities-trading-experience'),
+        commoditiesFrequency     : document.getElementById('commodities-trading-frequency'),
+        stocksExperience         : document.getElementById('stocks-trading-experience'),
+        stocksFrequency          : document.getElementById('stocks-trading-frequency'),
+        binaryExperience         : document.getElementById('other-derivatives-trading-experience'),
+        binaryFrequency          : document.getElementById('other-derivatives-trading-frequency'),
+        otherExperience          : document.getElementById('other-instruments-trading-experience'),
+        otherFrequency           : document.getElementById('other-instruments-trading-frequency'),
+        employment               : document.getElementById('employment-industry'),
+        education                : document.getElementById('education-level'),
+        incomeSource             : document.getElementById('income-source'),
+        income                   : document.getElementById('net-income'),
+        netWorth                 : document.getElementById('estimated-worth')
+    };
+
+    var errorObj = {
+        title                    : document.getElementById('error-title'),
+        fname                    : document.getElementById('error-fname'),
+        lname                    : document.getElementById('error-lname'),
+        dobdd                    : document.getElementById('error-birthdate'),
+        dobmm                    : document.getElementById('error-birthdate'),
+        dobyy                    : document.getElementById('error-birthdate'),
+        residence                : document.getElementById('error-residence'),
+        address1                 : document.getElementById('error-address1'),
+        address2                 : document.getElementById('error-address2'),
+        town                     : document.getElementById('error-town'),
+        state                    : document.getElementById('error-state'),
+        postcode                 : document.getElementById('error-postcode'),
+        tel                      : document.getElementById('error-tel'),
+        question                 : document.getElementById('error-question'),
+        answer                   : document.getElementById('error-answer'),
+        tnc                      : document.getElementById('error-tnc'),
+        forexExperience          : document.getElementById('error-forex-trading-experience'),
+        forexFrequency           : document.getElementById('error-forex-trading-frequency'),
+        indicesExperience        : document.getElementById('error-indices-trading-experience'),
+        indicesFrequency         : document.getElementById('error-indices-trading-frequency'),
+        commoditiesExperience    : document.getElementById('error-commodities-trading-experience'),
+        commoditiesFrequency     : document.getElementById('error-commodities-trading-frequency'),
+        stocksExperience         : document.getElementById('error-stocks-trading-experience'),
+        stocksFrequency          : document.getElementById('error-stocks-trading-frequency'),
+        binaryExperience         : document.getElementById('error-other-derivatives-trading-experience'),
+        binaryFrequency          : document.getElementById('error-other-derivatives-trading-frequency'),
+        otherExperience          : document.getElementById('error-other-instruments-trading-experience'),
+        otherFrequency           : document.getElementById('error-other-instruments-trading-frequency'),
+        employment               : document.getElementById('error-employment-industry'),
+        education                : document.getElementById('error-education-level'),
+        incomeSource             : document.getElementById('error-income-source'),
+        income                   : document.getElementById('error-net-income'),
+        netWorth                 : document.getElementById('error-estimated-worth')
+    };
+
+    var key;
+    for (key in errorObj) {
+      if (errorObj[key].offsetParent !== null) {
+        errorObj[key].setAttribute('style', 'display:none');
+      }
+    }
+
+    ValidAccountOpening.checkFname(elementObj['fname'], errorObj['fname']);
+    ValidAccountOpening.checkLname(elementObj['lname'], errorObj['lname']);
+    ValidAccountOpening.checkDate(elementObj['dobdd'], elementObj['dobmm'], elementObj['dobyy'], errorObj['dobdd']);
+    ValidAccountOpening.checkPostcode(elementObj['postcode'], errorObj['postcode']);
+
+    if (elementObj['residence'].value === 'gb' && /^$/.test(Trim(elementObj['postcode'].value))){
+      errorPostcode.innerHTML = Content.errorMessage('req');
+      Validate.displayErrorMessage(errorPostcode);
+      window.accountErrorCounter++;
+    }
+
+    ValidAccountOpening.checkTel(elementObj['tel'], errorObj['tel']);
+    if (elementObj['answer'].offsetParent !== null) {
+      ValidAccountOpening.checkAnswer(elementObj['answer'], errorObj['answer']);
+    }
+
+    for (key in elementObj){
+      if (elementObj[key].offsetParent !== null && key !== 'address2' && key !== 'postcode' && key !== 'state') {
+        if (/^$/.test(Trim(elementObj[key].value)) && elementObj[key].type !== 'checkbox'){
+          errorObj[key].innerHTML = Content.errorMessage('req');
+          Validate.displayErrorMessage(errorObj[key]);
+          window.accountErrorCounter++;
+        }
+        if (elementObj[key].type === 'checkbox' && !elementObj[key].checked){
+          errorObj[key].innerHTML = Content.errorMessage('req');
+          Validate.displayErrorMessage(errorObj[key]);
+          window.accountErrorCounter++;
+        }
+      }
+    }
+
+    if (window.accountErrorCounter === 0) {
+      FinancialAccOpeningData.getRealAcc(elementObj);
+      for (key in errorObj) {
+        if (errorObj[key].offsetParent !== null) {
+          errorObj[key].setAttribute('style', 'display:none');
+        }
+      }
+      return 1;
+    }
+    return 0;
+  }
+
+  return {
+    checkValidity: checkValidity
+  };
+})();
+;pjax_config_page("new_account/japanws", function(){
+  return {
+    onLoad: function() {
+      Content.populate();
+      ValidAccountOpening.redirectCookie();
+      if (page.client.residence !== 'jp') {
+        window.location.href = page.url.url_for('user/my_accountws');
+        return;
+      }
+      handle_residence_state_ws();
+      BinarySocket.send({get_settings:1});
+      var purpose = $('#trading-purpose'),
+          hedging = $('.hedging-assets');
+      purpose.change(function(evt) {
+        if (purpose.val() === 'Hedging') {
+          hedging.show();
+        }
+        else if (hedging.is(":visible")) {
+          hedging.hide();
+        }
+        return;
+      });
+      $('#japan-form').submit(function(evt) {
+        evt.preventDefault();
+        if (JapanAccOpeningUI.checkValidity()){
+          BinarySocket.init({
+            onmessage: function(msg){
+              var response = JSON.parse(msg.data);
+              if (response) {
+                var type = response.msg_type;
+                if (type === 'new_account_japan'){
+                  ValidAccountOpening.handler(response, response.new_account_japan);
+                } else if (type === 'sanity_check') {
+                  ValidAccountOpening.handler(response);
+                }
+              }
+            }
+          });
+          JapanAccOpeningUI.fireRequest();
+        }
+      });
+    }
+  };
+});
+;var JapanAccOpeningData = (function(){
+    function getJapanAcc(elementObj){
+        var req = {
+          new_account_japan: 1,
+          gender : elementObj['gender'].value,
+          first_name: elementObj['fname'].value,
+          last_name: elementObj['lname'].value,
+          date_of_birth : elementObj['dobyy'].value + '-' + elementObj['dobmm'].value + '-' + elementObj['dobdd'].value,
+          occupation: elementObj['occupation'].value,
+          residence : page.client.residence,
+          address_line_1: elementObj['address1'].value,
+          address_line_2: elementObj['address2'].value,
+          address_city: elementObj['town'].value,
+          address_postcode: elementObj['postcode'].value,
+          address_state : elementObj['state'].value,
+          phone: elementObj['tel'].value,
+          secret_question: elementObj['question'].value,
+          secret_answer: elementObj['answer'].value,
+          annual_income: elementObj['income'].value,
+          financial_asset: elementObj['asset'].value,
+          daily_loss_limit: elementObj['limit'].value,
+          trading_experience_equities: elementObj['equities'].value,
+          trading_experience_commodities: elementObj['commodities'].value,
+          trading_experience_foreign_currency_deposit: elementObj['deposit'].value,
+          trading_experience_margin_fx: elementObj['margin'].value,
+          trading_experience_investment_trust: elementObj['trust'].value,
+          trading_experience_public_bond: elementObj['bond'].value,
+          trading_experience_option_trading: elementObj['otc'].value,
+          trading_purpose : elementObj['purpose'].value,
+          agree_use_electronic_doc                : 1,
+          agree_warnings_and_policies             : 1,
+          confirm_understand_own_judgment         : 1,
+          confirm_understand_trading_mechanism    : 1,
+          confirm_understand_judgment_time        : 1,
+          confirm_understand_total_loss           : 1,
+          confirm_understand_sellback_loss        : 1,
+          confirm_understand_shortsell_loss       : 1,
+          confirm_understand_company_profit       : 1,
+          confirm_understand_expert_knowledge     : 1,
+          declare_not_fatca                       : 1
+        };
+
+        if (elementObj['purpose'].value === 'Hedging') {
+          req.hedge_asset = elementObj['hedge'].value;
+          req.hedge_asset_amount = elementObj['amount'].value;
+        }
+
+        BinarySocket.send(req);
+    }
+
+    return {
+        getJapanAcc: getJapanAcc
+    };
+}());
+;var JapanAccOpeningUI = function () {
+  "use strict";
+
+    var elementObj;
+
+  function checkValidity() {
+    window.accountErrorCounter = 0;
+    var letters = Content.localize().textLetters,
+        numbers = Content.localize().textNumbers,
+        space = Content.localize().textSpace,
+        hyphen = Content.localize().textHyphen,
+        period = Content.localize().textPeriod,
+        apost = Content.localize().textApost;
+
+    elementObj = {
+        gender: document.getElementById('gender'),
+        fname: document.getElementById('fname'),
+        lname: document.getElementById('lname'),
+        dobdd: document.getElementById('dobdd'),
+        dobmm: document.getElementById('dobmm'),
+        dobyy: document.getElementById('dobyy'),
+        occupation: document.getElementById('occupation'),
+        address1: document.getElementById('address1'),
+        address2: document.getElementById('address2'),
+        town: document.getElementById('address-town'),
+        state: document.getElementById('address-state'),
+        postcode: document.getElementById('address-postcode'),
+        tel: document.getElementById('tel'),
+        question: document.getElementById('secret-question'),
+        answer: document.getElementById('secret-answer'),
+        fatca: document.getElementById('fatca'),
+        income: document.getElementById('annual-income'),
+        asset: document.getElementById('financial-asset'),
+        limit: document.getElementById('daily-loss-limit'),
+        equities: document.getElementById('equities'),
+        commodities: document.getElementById('commodities'),
+        deposit: document.getElementById('foreign-currency-deposit'),
+        margin: document.getElementById('margin-fx'),
+        trust: document.getElementById('investment-trust'),
+        bond: document.getElementById('public-and-corporation-bond'),
+        otc: document.getElementById('otc-derivative-trading'),
+        purpose: document.getElementById('trading-purpose'),
+        hedge: document.getElementById('hedge-asset'),
+        amount: document.getElementById('hedge-asset-amount'),
+        electronic: document.getElementById('use-electronic-doc'),
+        policies: document.getElementById('warnings-and-policies'),
+        judgement: document.getElementById('own-judgment'),
+        mechanism: document.getElementById('trading-mechanism'),
+        time: document.getElementById('judgment-time'),
+        total: document.getElementById('total-loss'),
+        sellback: document.getElementById('sellback-loss'),
+        shortsell: document.getElementById('shortsell-loss'),
+        profit: document.getElementById('company-profit'),
+        knowledge: document.getElementById('expert-knowledge')
+    };
+
+    var errorObj = {
+        gender: document.getElementById('error-gender'),
+        fname: document.getElementById('error-fname'),
+        lname: document.getElementById('error-lname'),
+        dobdd: document.getElementById('error-birthdate'),
+        dobmm: document.getElementById('error-birthdate'),
+        dobyy: document.getElementById('error-birthdate'),
+        occupation: document.getElementById('error-occupation'),
+        address1: document.getElementById('error-address1'),
+        address2: document.getElementById('error-address2'),
+        town: document.getElementById('error-town'),
+        state: document.getElementById('error-state'),
+        postcode: document.getElementById('error-postcode'),
+        tel: document.getElementById('error-tel'),
+        question: document.getElementById('error-question'),
+        answer: document.getElementById('error-answer'),
+        fatca: document.getElementById('error-fatca'),
+        income: document.getElementById('error-annual-income'),
+        asset: document.getElementById('error-financial-asset'),
+        limit: document.getElementById('error-daily-loss-limit'),
+        equities: document.getElementById('error-equities'),
+        commodities: document.getElementById('error-commodities'),
+        deposit: document.getElementById('error-foreign-currency-deposit'),
+        margin: document.getElementById('error-margin-fx'),
+        trust: document.getElementById('error-investment-trust'),
+        bond: document.getElementById('error-public-and-corporation-bond'),
+        otc: document.getElementById('error-otc-derivative-trading'),
+        purpose: document.getElementById('error-trading-purpose'),
+        hedge: document.getElementById('error-hedge-asset'),
+        amount: document.getElementById('error-hedge-asset-amount'),
+        electronic: document.getElementById('error-use-electronic-doc'),
+        policies: document.getElementById('error-warnings-and-policies'),
+        judgement: document.getElementById('error-own-judgment'),
+        mechanism: document.getElementById('error-trading-mechanism'),
+        time: document.getElementById('error-judgment-time'),
+        total: document.getElementById('error-total-loss'),
+        sellback: document.getElementById('error-sellback-loss'),
+        shortsell: document.getElementById('error-shortsell-loss'),
+        profit: document.getElementById('error-company-profit'),
+        knowledge: document.getElementById('error-expert-knowledge')
+    };
+    var key;
+    for (key in errorObj) {
+      if (errorObj[key].offsetParent !== null) {
+        errorObj[key].setAttribute('style', 'display:none');
+      }
+    }
+
+    if (/[`~!@#$%^&*)(_=+\[}{\]\\\/";:\?><,|\d]+/.test(Trim(elementObj['fname'].value))) {
+      errorObj['fname'].innerHTML = Content.errorMessage('reg', [letters, space, hyphen, period, apost]);
+      Validate.displayErrorMessage(errorObj['fname']);
+      window.accountErrorCounter++;
+    }
+
+    if (/[`~!@#$%^&*)(_=+\[}{\]\\\/";:\?><,|\d]+/.test(Trim(elementObj['lname'].value))) {
+      errorObj['lname'].innerHTML = Content.errorMessage('reg', [letters, space, hyphen, period, apost]);
+      Validate.displayErrorMessage(errorObj['lname']);
+      window.accountErrorCounter++;
+    }
+
+    ValidAccountOpening.checkDate(elementObj['dobdd'], elementObj['dobmm'], elementObj['dobyy'], errorObj['dobdd']);
+
+    if (!/^\d{3}-\d{4}$/.test(elementObj['postcode'].value)) {
+      errorObj['postcode'].innerHTML = text.localize('Please follow the pattern 3 numbers, a dash, followed by 4 numbers.');
+      Validate.displayErrorMessage(errorObj['postcode']);
+      window.accountErrorCounter++;
+    }
+
+    if (elementObj['tel'].value.replace(/\+| /g,'').length < 6) {
+      errorObj['tel'].innerHTML = Content.errorMessage('min', 6);
+      Validate.displayErrorMessage(errorObj['tel']);
+      window.accountErrorCounter++;
+    } else if (!/^\+?[0-9\s-]{6,35}$/.test(elementObj['tel'].value)){
+      errorObj['tel'].innerHTML = Content.errorMessage('reg', [numbers, space, hyphen]);
+      Validate.displayErrorMessage(errorObj['tel']);
+      window.accountErrorCounter++;
+    }
+
+    if (!/^\d+$/.test(elementObj['limit'].value)) {
+      errorObj['limit'].innerHTML = Content.errorMessage('reg', [numbers]);
+      Validate.displayErrorMessage(errorObj['limit']);
+      window.accountErrorCounter++;
+    }
+
+    if (elementObj['amount'].offsetParent !== null && !/^\d+$/.test(elementObj['amount'].value)) {
+      errorObj['amount'].innerHTML = Content.errorMessage('reg', [numbers]);
+      Validate.displayErrorMessage(errorObj['amount']);
+      window.accountErrorCounter++;
+    }
+
+    for (key in elementObj) {
+      if (elementObj[key].offsetParent !== null && key !== 'address2') {
+        if (/^$/.test(Trim(elementObj[key].value)) && elementObj[key].type !== 'checkbox') {
+          errorObj[key].innerHTML = Content.errorMessage('req');
+          Validate.displayErrorMessage(errorObj[key]);
+          window.accountErrorCounter++;
+        }
+        if (elementObj[key].type === 'checkbox' && !elementObj[key].checked) {
+          errorObj[key].innerHTML = Content.errorMessage('req');
+          Validate.displayErrorMessage(errorObj[key]);
+          window.accountErrorCounter++;
+        }
+      }
+    }
+
+    if (window.accountErrorCounter === 0) {
+      for (key in errorObj) {
+        if (errorObj[key].offsetParent !== null) {
+          errorObj[key].setAttribute('style', 'display:none');
+        }
+      }
+      return 1;
+    }
+    return 0;
+  }
+
+    function fireRequest() {
+        JapanAccOpeningData.getJapanAcc(elementObj);
+    }
+
+  return {
+    checkValidity: checkValidity,
+      fireRequest: fireRequest,
+  };
+}();
+;pjax_config_page("new_account/realws", function(){
+  return {
+    onLoad: function() {
+      Content.populate();
+      ValidAccountOpening.redirectCookie();
+      handle_residence_state_ws();
+      if (page.client.residence) {
+        BinarySocket.send({landing_company: page.client.residence});
+      }
+      BinarySocket.send({get_settings:1});
+      BinarySocket.send({residence_list:1});
+      $('#real-form').submit(function(evt) {
+        evt.preventDefault();
+        if (RealAccOpeningUI.checkValidity()){
+          BinarySocket.init({
+            onmessage: function(msg){
+              var response = JSON.parse(msg.data);
+              if (response) {
+                if(response.msg_type === 'authorize' && !page.client.is_virtual()) {
+                    window.location.href = page.url.url_for('user/my_accountws');
+                    return;
+                }
+                else if (response.msg_type === 'new_account_real'){
+                  ValidAccountOpening.handler(response, response.new_account_real);
+                }
+              }
+            }
+          });
+        }
+      });
+    }
+  };
+});
+;var RealAccOpeningData = (function(){
+    function getRealAcc(elementObj){
+        var req = {
+            new_account_real: 1,
+            salutation: elementObj['title'].value,
+            first_name: elementObj['fname'].value,
+            last_name: elementObj['lname'].value,
+            date_of_birth: elementObj['dobyy'].value + '-' + elementObj['dobmm'].value + '-' + elementObj['dobdd'].value,
+            residence: elementObj['residence'].value,
+            address_line_1: elementObj['address1'].value,
+            address_line_2: elementObj['address2'].value,
+            address_city: elementObj['town'].value,
+            address_state: elementObj['state'].value,
+            address_postcode: elementObj['postcode'].value,
+            phone: elementObj['tel'].value,
+            secret_question: elementObj['question'].value,
+            secret_answer: elementObj['answer'].value
+        };
+
+        if ($.cookie('affiliate_tracking')) {
+          req.affiliate_token = JSON.parse($.cookie('affiliate_tracking')).t;
+        }
+
+        BinarySocket.send(req);
+    }
+
+    return {
+        getRealAcc: getRealAcc
+    };
+}());
+;var RealAccOpeningUI = (function(){
+  "use strict";
+
+  function checkValidity(){
+    window.accountErrorCounter = 0;
+
+    var letters = Content.localize().textLetters,
+        numbers = Content.localize().textNumbers,
+        space   = Content.localize().textSpace,
+        hyphen  = Content.localize().textHyphen,
+        period  = Content.localize().textPeriod,
+        apost   = Content.localize().textApost;
+
+    var elementObj = {
+        title     : document.getElementById('title'),
+        fname     : document.getElementById('fname'),
+        lname     : document.getElementById('lname'),
+        dobdd     : document.getElementById('dobdd'),
+        dobmm     : document.getElementById('dobmm'),
+        dobyy     : document.getElementById('dobyy'),
+        residence : document.getElementById('residence-disabled'),
+        address1  : document.getElementById('address1'),
+        address2  : document.getElementById('address2'),
+        town      : document.getElementById('address-town'),
+        state     : document.getElementById('address-state'),
+        postcode  : document.getElementById('address-postcode'),
+        tel       : document.getElementById('tel'),
+        question  : document.getElementById('secret-question'),
+        answer    : document.getElementById('secret-answer'),
+        tnc       : document.getElementById('tnc')
+    };
+
+    var errorObj = {
+        title     : document.getElementById('error-title'),
+        fname     : document.getElementById('error-fname'),
+        lname     : document.getElementById('error-lname'),
+        dobdd     : document.getElementById('error-birthdate'),
+        dobmm     : document.getElementById('error-birthdate'),
+        dobyy     : document.getElementById('error-birthdate'),
+        residence : document.getElementById('error-residence'),
+        address1  : document.getElementById('error-address1'),
+        address2  : document.getElementById('error-address2'),
+        town      : document.getElementById('error-town'),
+        state     : document.getElementById('error-state'),
+        postcode  : document.getElementById('error-postcode'),
+        tel       : document.getElementById('error-tel'),
+        question  : document.getElementById('error-question'),
+        answer    : document.getElementById('error-answer'),
+        tnc       : document.getElementById('error-tnc')
+    };
+
+    var key;
+    for (key in errorObj) {
+      if (errorObj[key].offsetParent !== null) {
+        errorObj[key].setAttribute('style', 'display:none');
+      }
+    }
+
+    ValidAccountOpening.checkFname(elementObj['fname'], errorObj['fname']);
+    ValidAccountOpening.checkLname(elementObj['lname'], errorObj['lname']);
+    ValidAccountOpening.checkDate(elementObj['dobdd'], elementObj['dobmm'], elementObj['dobyy'], errorObj['dobdd']);
+    ValidAccountOpening.checkPostcode(elementObj['postcode'], errorObj['postcode']);
+
+    if (elementObj['residence'].value === 'gb' && /^$/.test(Trim(elementObj['postcode'].value))){
+      elementObj['postcode'].innerHTML = Content.errorMessage('req');
+      Validate.displayErrorMessage(elementObj['postcode']);
+      window.accountErrorCounter++;
+    }
+
+    ValidAccountOpening.checkTel(elementObj['tel'], errorObj['tel']);
+    ValidAccountOpening.checkAnswer(elementObj['answer'], errorObj['answer']);
+
+    for (key in elementObj){
+      if (elementObj[key].offsetParent !== null && key !== 'address2' && key !== 'postcode' && key !== 'state') {
+        if (/^$/.test(Trim(elementObj[key].value)) && elementObj[key].type !== 'checkbox'){
+          errorObj[key].innerHTML = Content.errorMessage('req');
+          Validate.displayErrorMessage(errorObj[key]);
+          window.accountErrorCounter++;
+        }
+        if (elementObj[key].type === 'checkbox' && !elementObj[key].checked){
+          errorObj[key].innerHTML = Content.errorMessage('req');
+          Validate.displayErrorMessage(errorObj[key]);
+          window.accountErrorCounter++;
+        }
+      }
+    }
+
+    if (window.accountErrorCounter === 0) {
+      $('#btn_submit').attr('disabled','disabled');
+      RealAccOpeningData.getRealAcc(elementObj);
+      for (key in errorObj) {
+        if (errorObj[key].offsetParent !== null) {
+          errorObj[key].setAttribute('style', 'display:none');
+        }
+      }
+      return 1;
+    }
+    return 0;
+  }
+
+  return {
+    checkValidity: checkValidity
+  };
+})();
+;pjax_config_page("new_account/virtualws", function(){
+  return {
+    onLoad: function() {
+      if (getCookieItem('login')) {
+          window.location.href = page.url.url_for('user/my_accountws');
+          return;
+      }
+      Content.populate();
+      var virtualForm = $('#virtual-form');
+
+      handle_residence_state_ws();
+      BinarySocket.send({residence_list:1});
+      var form = document.getElementById('virtual-form');
+      var errorPassword = document.getElementById('error-password'),
+          errorRPassword = document.getElementById('error-r-password'),
+          errorResidence = document.getElementById('error-residence'),
+          errorAccount = document.getElementById('error-account-opening'),
+          errorVerificationCode = document.getElementById('error-verification-code');
+
+      if (isIE() === false) {
+        $('#password').on('input', function() {
+          $('#password-meter').attr('value', testPassword($('#password').val())[0]);
+        });
+      } else {
+        $('#password-meter').remove();
+      }
+
+      if (form) {
+        virtualForm.submit( function(evt) {
+          evt.preventDefault();
+
+          var verificationCode = document.getElementById('verification-code').value,
+              residence        = document.getElementById('residence').value,
+              password         = document.getElementById('password').value,
+              rPassword        = document.getElementById('r-password').value;
+
+          Validate.errorMessageResidence(residence, errorResidence);
+          Validate.errorMessageToken(verificationCode, errorVerificationCode);
+          Validate.hideErrorMessage(errorAccount);
+
+          if (Validate.errorMessagePassword(password, rPassword, errorPassword, errorRPassword) && !Validate.errorMessageResidence(residence, errorResidence) && !Validate.errorMessageToken(verificationCode, errorVerificationCode)){
+            BinarySocket.init({
+              onmessage: function(msg){
+                var response = JSON.parse(msg.data);
+                if (response) {
+                  var type = response.msg_type;
+                  var error = response.error;
+
+                  if (type === 'new_account_virtual' && !error) {
+                    page.client.set_cookie('residence', response.echo_req.residence);
+                    page.client.process_new_account(
+                      response.new_account_virtual.email,
+                      response.new_account_virtual.client_id,
+                      response.new_account_virtual.oauth_token,
+                      true);
+                  } else if (type === 'error' || error) {
+                    if (error.code === 'InvalidToken' || error.code === 'duplicate email') {
+                      virtualForm.empty();
+                      $('.notice-message').remove();
+                      var noticeText;
+                      if (error.code === 'InvalidToken') {
+                        noticeText = '<p>' + Content.localize().textClickHereToRestart.replace('[_1]', page.url.url_for('')) + '</p>';
+                      } else if (error.code === 'duplicate email') {
+                        noticeText = '<p>' + Content.localize().textDuplicatedEmail.replace('[_1]', page.url.url_for('user/lost_passwordws')) + '</p>';
+                      }
+                      virtualForm.html(noticeText);
+                      return;
+                    } else if (error.code === 'PasswordError') {
+                      errorAccount.textContent = text.localize('Password is not strong enough.');
+                    } else if (error.message) {
+                      errorAccount.textContent = error.message;
+                    }
+                    Validate.displayErrorMessage(errorAccount);
+                  }
+                }
+              }
+            });
+            VirtualAccOpeningData.getDetails(password, residence, verificationCode);
+          }
+        });
+      }
+    }
+  };
+});
+;var VirtualAccOpeningData = (function(){
+    "use strict";
+
+    function getDetails(password, residence, verificationCode){
+        var req = {
+                    new_account_virtual: 1,
+                    client_password: password,
+                    residence: residence,
+                    verification_code: verificationCode
+                };
+
+        if ($.cookie('affiliate_tracking')) {
+            req.affiliate_token = JSON.parse($.cookie('affiliate_tracking')).t;
+        }
+
+        BinarySocket.send(req);
+    }
+
+    return {
+        getDetails: getDetails
+    };
+}());
 ;pjax_config_page_require_auth("user/profit_table", function(){
     return {
         onLoad: function() {
@@ -90234,173 +85093,6 @@ var ProfitTableUI = (function(){
         cleanTableContent: clearTableContent
     };
 }());
-;pjax_config_page("new_account/realws", function(){
-  return {
-    onLoad: function() {
-      Content.populate();
-      ValidAccountOpening.redirectCookie();
-      handle_residence_state_ws();
-      if (page.client.residence) {
-        BinarySocket.send({landing_company: page.client.residence});
-      }
-      BinarySocket.send({get_settings:1});
-      BinarySocket.send({residence_list:1});
-      $('#real-form').submit(function(evt) {
-        evt.preventDefault();
-        if (RealAccOpeningUI.checkValidity()){
-          BinarySocket.init({
-            onmessage: function(msg){
-              var response = JSON.parse(msg.data);
-              if (response) {
-                if(response.msg_type === 'authorize' && !page.client.is_virtual()) {
-                    window.location.href = page.url.url_for('user/my_accountws');
-                    return;
-                }
-                else if (response.msg_type === 'new_account_real'){
-                  ValidAccountOpening.handler(response, response.new_account_real);
-                }
-              }
-            }
-          });
-        }
-      });
-    }
-  };
-});
-;var RealAccOpeningData = (function(){
-    function getRealAcc(elementObj){
-        var req = {
-            new_account_real: 1,
-            salutation: elementObj['title'].value,
-            first_name: elementObj['fname'].value,
-            last_name: elementObj['lname'].value,
-            date_of_birth: elementObj['dobyy'].value + '-' + elementObj['dobmm'].value + '-' + elementObj['dobdd'].value,
-            residence: elementObj['residence'].value,
-            address_line_1: elementObj['address1'].value,
-            address_line_2: elementObj['address2'].value,
-            address_city: elementObj['town'].value,
-            address_state: elementObj['state'].value,
-            address_postcode: elementObj['postcode'].value,
-            phone: elementObj['tel'].value,
-            secret_question: elementObj['question'].value,
-            secret_answer: elementObj['answer'].value
-        };
-
-        if ($.cookie('affiliate_tracking')) {
-          req.affiliate_token = JSON.parse($.cookie('affiliate_tracking')).t;
-        }
-
-        BinarySocket.send(req);
-    }
-
-    return {
-        getRealAcc: getRealAcc
-    };
-}());
-;var RealAccOpeningUI = (function(){
-  "use strict";
-
-  function checkValidity(){
-    window.accountErrorCounter = 0;
-
-    var letters = Content.localize().textLetters,
-        numbers = Content.localize().textNumbers,
-        space   = Content.localize().textSpace,
-        hyphen  = Content.localize().textHyphen,
-        period  = Content.localize().textPeriod,
-        apost   = Content.localize().textApost;
-
-    var elementObj = {
-        title     : document.getElementById('title'),
-        fname     : document.getElementById('fname'),
-        lname     : document.getElementById('lname'),
-        dobdd     : document.getElementById('dobdd'),
-        dobmm     : document.getElementById('dobmm'),
-        dobyy     : document.getElementById('dobyy'),
-        residence : document.getElementById('residence-disabled'),
-        address1  : document.getElementById('address1'),
-        address2  : document.getElementById('address2'),
-        town      : document.getElementById('address-town'),
-        state     : document.getElementById('address-state'),
-        postcode  : document.getElementById('address-postcode'),
-        tel       : document.getElementById('tel'),
-        question  : document.getElementById('secret-question'),
-        answer    : document.getElementById('secret-answer'),
-        tnc       : document.getElementById('tnc')
-    };
-
-    var errorObj = {
-        title     : document.getElementById('error-title'),
-        fname     : document.getElementById('error-fname'),
-        lname     : document.getElementById('error-lname'),
-        dobdd     : document.getElementById('error-birthdate'),
-        dobmm     : document.getElementById('error-birthdate'),
-        dobyy     : document.getElementById('error-birthdate'),
-        residence : document.getElementById('error-residence'),
-        address1  : document.getElementById('error-address1'),
-        address2  : document.getElementById('error-address2'),
-        town      : document.getElementById('error-town'),
-        state     : document.getElementById('error-state'),
-        postcode  : document.getElementById('error-postcode'),
-        tel       : document.getElementById('error-tel'),
-        question  : document.getElementById('error-question'),
-        answer    : document.getElementById('error-answer'),
-        tnc       : document.getElementById('error-tnc')
-    };
-
-    var key;
-    for (key in errorObj) {
-      if (errorObj[key].offsetParent !== null) {
-        errorObj[key].setAttribute('style', 'display:none');
-      }
-    }
-
-    ValidAccountOpening.checkFname(elementObj['fname'], errorObj['fname']);
-    ValidAccountOpening.checkLname(elementObj['lname'], errorObj['lname']);
-    ValidAccountOpening.checkDate(elementObj['dobdd'], elementObj['dobmm'], elementObj['dobyy'], errorObj['dobdd']);
-    ValidAccountOpening.checkPostcode(elementObj['postcode'], errorObj['postcode']);
-
-    if (elementObj['residence'].value === 'gb' && /^$/.test(Trim(elementObj['postcode'].value))){
-      elementObj['postcode'].innerHTML = Content.errorMessage('req');
-      Validate.displayErrorMessage(elementObj['postcode']);
-      window.accountErrorCounter++;
-    }
-
-    ValidAccountOpening.checkTel(elementObj['tel'], errorObj['tel']);
-    ValidAccountOpening.checkAnswer(elementObj['answer'], errorObj['answer']);
-
-    for (key in elementObj){
-      if (elementObj[key].offsetParent !== null && key !== 'address2' && key !== 'postcode' && key !== 'state') {
-        if (/^$/.test(Trim(elementObj[key].value)) && elementObj[key].type !== 'checkbox'){
-          errorObj[key].innerHTML = Content.errorMessage('req');
-          Validate.displayErrorMessage(errorObj[key]);
-          window.accountErrorCounter++;
-        }
-        if (elementObj[key].type === 'checkbox' && !elementObj[key].checked){
-          errorObj[key].innerHTML = Content.errorMessage('req');
-          Validate.displayErrorMessage(errorObj[key]);
-          window.accountErrorCounter++;
-        }
-      }
-    }
-
-    if (window.accountErrorCounter === 0) {
-      $('#btn_submit').attr('disabled','disabled');
-      RealAccOpeningData.getRealAcc(elementObj);
-      for (key in errorObj) {
-        if (errorObj[key].offsetParent !== null) {
-          errorObj[key].setAttribute('style', 'display:none');
-        }
-      }
-      return 1;
-    }
-    return 0;
-  }
-
-  return {
-    checkValidity: checkValidity
-  };
-})();
 ;var RealityCheckData = (function () {
     'use strict';
 
@@ -90965,376 +85657,115 @@ var ProfitTableUI = (function(){
         init: init
     };
 }());
-;RiskClassification = (function() {
-  'use strict';
+;var TNCApproval = (function() {
+    "use strict";
 
-  var financial_assessment_url = page.url.url_for('user/assessmentws');
+    var terms_conditions_version,
+        client_tnc_status,
+        hiddenClass,
+        redirectUrl,
+        isReal;
 
-  var renderRiskClassificationPopUp = function () {
-      if (window.location.pathname === '/user/assessmentws') {
-        window.location.href = page.url.url_for('user/my_accountws');
-        return;
-      }
-      $.ajax({
-          url: financial_assessment_url,
-          dataType: 'html',
-          method: 'GET',
-          success: function(riskClassificationText) {
-              if (riskClassificationText.includes('assessment_form')) {
-                  var payload = $(riskClassificationText);
-                  showRiskClassificationPopUp(payload.find('#assessment_form'));
-                  FinancialAssessmentws.LocalizeText();
-                  $('#risk_classification #assessment_form').removeClass('invisible')
-                                      .attr('style', 'text-align: left;');
-                  $('#risk_classification #high_risk_classification').removeClass('invisible');
-                  $('#risk_classification #heading_risk').removeClass('invisible');
-                  $("#risk_classification #assessment_form").on("submit",function(event) {
-                      event.preventDefault();
-                      FinancialAssessmentws.submitForm();
-                      return false;
-                  });
-              }
-          },
-          error: function(xhr) {
-              return;
-          }
-      });
-      $("#risk_classification #assessment_form").on("submit",function(event) {
-          event.preventDefault();
-          FinancialAssessmentws.submitForm();
-          return false;
-      });
-  };
-
-  var showRiskClassificationPopUp = function (content) {
-    if ($('#risk_classification').length > 0) {
-        return;
-    }
-    var lightboxDiv = $("<div id='risk_classification' class='lightbox'></div>");
-
-    var wrapper = $('<div></div>');
-    wrapper = wrapper.append(content);
-    wrapper = $('<div></div>').append(wrapper);
-    wrapper.appendTo(lightboxDiv);
-    lightboxDiv.appendTo('body');
-  };
-
-  var cleanup = function () {
-    localStorage.removeItem('risk_classification');
-    localStorage.removeItem('risk_classification.response');
-    $('#risk_classification').remove();
-    if (sessionStorage.getItem('check_tnc')) {
-      page.client.check_tnc();
-    }
-  };
-
-  return {
-    renderRiskClassificationPopUp: renderRiskClassificationPopUp,
-    cleanup: cleanup
-  };
-}());
-;var SessionDurationLimit = (function() {
-    'use strict';
-
-    var warning;
 
     var init = function() {
-        clearTimeout(window.TimeOut_SessionLimitWarning);
-        clearTimeout(window.TimeOut_SessionLimitLogout);
-        $('#session_limit').remove();
+        hiddenClass = 'invisible';
+        showLoadingImage($('#tnc-loading'));
 
-        warning = 10; // seconds before limit to display the warning message
+        redirectUrl = sessionStorage.getItem('tnc_redirect');
+        sessionStorage.removeItem('tnc_redirect');
 
-        var limit    = page.client.get_storage_value('session_duration_limit') * 1,
-            now      = parseInt(moment().valueOf() / 1000),
-            start    = page.client.get_storage_value('session_start') * 1,
-            remained = limit + start - now;
-        if(remained < 0) remained = warning;
+        BinarySocket.send({"get_settings"   : "1"});
+        BinarySocket.send({"website_status" : "1"});
 
-        window.TimeOut_SessionLimitWarning = setTimeout(displayWarning, (remained - warning) * 1000);
-        window.TimeOut_SessionLimitLogout  = setTimeout(page.client.send_logout_request, remained * 1000);
+        $('#btn-accept').click(function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            BinarySocket.send({"tnc_approval" : "1"});
+        });
     };
 
-    var exclusionResponseHandler = function(response) {
-        if (response.hasOwnProperty('error') || !response.hasOwnProperty('get_self_exclusion')) {
+    var showTNC = function() {
+        if(!terms_conditions_version || !client_tnc_status) {
             return;
         }
 
-        var limit = response.get_self_exclusion.session_duration_limit * 60;
-        if(isNaN(limit) || limit <= 0) return;
+        if(terms_conditions_version === client_tnc_status) {
+            redirectBack();
+            return;
+        }
 
-        page.client.set_storage_value('session_duration_limit', limit);
-        window.addEventListener('storage', init, false);
-
-        init();
+        $('#tnc-loading').addClass(hiddenClass);
+        $('#tnc_image').attr('src', page.url.url_for_static('images/pages/cashier/protection-icon.svg'));
+        $('#tnc_approval').removeClass(hiddenClass);
+        $('#tnc-message').html(
+            text.localize('[_1] has updated its [_2]. By clicking OK, you confirm that you have read and accepted the updated [_2].')
+                .replace('[_1]', page.client.get_storage_value('landing_company_name'))
+                .replace(/\[_2\]/g, $('<a/>', {class: 'pjaxload', href: page.url.url_for('terms-and-conditions'), text: text.localize('Terms & Conditions')}).prop('outerHTML'))
+        );
+        $('#btn-accept').text(text.localize('OK'));
     };
 
-    var realityStorageEventHandler = function(e) {
-        if (e.key === 'client.session_start' || e.key === 'client.session_duration_limit') {
-            init();
+    var responseTNCApproval = function(response) {
+        if(!response.hasOwnProperty('error')) {
+            redirectBack();
+        }
+        else {
+            $('#err_message').html(response.error.message).removeClass(hiddenClass);
         }
     };
 
-    var displayWarning = function() {
-        $('body').append(
-            $("<div id='session_limit' class='lightbox'><div><div><div class='limit_message'>" +
-                text.localize('Your session duration limit will end in [_1] seconds.').replace('[_1]', warning) +
-                "</div></div></div></div>")
-        );
-        $('#session_limit').click(function(){$(this).remove();});
+    var redirectBack = function() {
+        window.location.href = redirectUrl || page.url.default_redirect_url();
+    };
+
+    var apiResponse = function(response) {
+        isReal = !TUser.get().is_virtual;
+        if(!isReal) {
+            redirectBack();
+        }
+
+        switch(response.msg_type) {
+            case 'website_status':
+                terms_conditions_version = response.website_status.terms_conditions_version;
+                showTNC();
+                break;
+            case 'get_settings':
+                client_tnc_status = response.get_settings.client_tnc_status || '-';
+                showTNC();
+                break;
+            case 'tnc_approval':
+                responseTNCApproval(response);
+                break;
+            default:
+                break;
+        }
     };
 
     return {
-        exclusionResponseHandler: exclusionResponseHandler,
+        init : init,
+        apiResponse : apiResponse
     };
 }());
-;pjax_config_page_require_auth("user/statement", function(){
+
+
+
+pjax_config_page_require_auth("tnc_approvalws", function() {
     return {
         onLoad: function() {
             BinarySocket.init({
-                onmessage: function(msg){
+                onmessage: function(msg) {
                     var response = JSON.parse(msg.data);
-
                     if (response) {
-                        var type = response.msg_type;
-                        if (type === 'statement'){
-                            StatementWS.statementHandler(response);
-                            showLocalTimeOnHover('td.date');
-                        }
+                        TNCApproval.apiResponse(response);
                     }
                 }
             });
+
             Content.populate();
-            StatementWS.init();
-        },
-        onUnload: function(){
-            StatementWS.clean();
+            TNCApproval.init();
         }
     };
 });
-;var StatementData = (function(){
-    "use strict";
-    var hasOlder = true;
-
-    function getStatement(opts){
-        var req = {statement: 1, description: 1};
-        if(opts){ 
-            $.extend(true, req, opts);    
-        }
-
-        BinarySocket.send(req);
-    }
-
-    return {
-        getStatement: getStatement,
-        hasOlder: hasOlder
-    };
-}());
-;var StatementWS = (function(){
-    "use strict";
-
-    //Batch refer to number of data get from ws service per request
-    //chunk refer to number of data populate to ui for each append
-    //receive means receive from ws service
-    //consume means consume by UI and displayed to page
-
-    var batchSize = 100;
-    var chunkSize = batchSize/2;
-
-    var noMoreData = false;
-    var pending = false;            //serve as a lock to prevent ws request is sequential
-    var currentBatch = [];
-    var transactionsReceived = 0;
-    var transactionsConsumed = 0;
-
-    var tableExist = function(){
-        return document.getElementById("statement-table");
-    };
-    var finishedConsumed = function(){
-        return transactionsConsumed === transactionsReceived;
-    };
-
-    function statementHandler(response){
-        pending = false;
-
-        var statement = response.statement;
-        currentBatch = statement.transactions;
-        transactionsReceived += currentBatch.length;
-
-        if (currentBatch.length < batchSize){
-            noMoreData = true;
-        }
-
-        if (!tableExist()) {
-            StatementUI.createEmptyStatementTable().appendTo("#statement-ws-container");
-            StatementUI.updateStatementTable(getNextChunkStatement());
-
-            // Show a message when the table is empty
-            if ((transactionsReceived === 0) && (currentBatch.length === 0)) {
-                $('#statement-table tbody')
-                    .append($('<tr/>', {class: "flex-tr"})
-                        .append($('<td/>', {colspan: 7})
-                            .append($('<p/>', {class: "notice-msg center", text: text.localize("Your account has no trading activity.")})
-                            )
-                        )
-                    );
-            }
-
-            Content.statementTranslation();
-        }
-    }
-
-    function getNextBatchStatement(){
-        StatementData.getStatement({offset: transactionsReceived, limit: batchSize});
-        pending = true;
-    }
-
-    function getNextChunkStatement(){
-        var chunk = currentBatch.splice(0, chunkSize);
-        transactionsConsumed += chunk.length;
-        return chunk;
-    }
-
-
-    function loadStatementChunkWhenScroll(){
-        $(document).scroll(function(){
-
-            function hidableHeight(percentage){
-                var totalHidable = $(document).height() - $(window).height();
-                return Math.floor(totalHidable * percentage / 100);
-            }
-
-            var pFromTop = $(document).scrollTop();
-
-            if (!tableExist()){
-                return;
-            }
-
-            if (pFromTop < hidableHeight(70)) {
-                return;
-            }
-
-            if (finishedConsumed() && !noMoreData && !pending) {
-                getNextBatchStatement();
-                return;
-            }
-
-            if (!finishedConsumed()){
-                StatementUI.updateStatementTable(getNextChunkStatement());
-            }
-        });
-    }
-
-
-    function initTable(){
-        pending = false;
-        noMoreData = false;
-
-        currentBatch = [];
-
-        transactionsReceived = 0;
-        transactionsConsumed = 0;
-
-        $(".error-msg").text("");
-
-        StatementUI.clearTableContent();
-    }
-
-    function initPage(){
-        getNextBatchStatement();
-        loadStatementChunkWhenScroll();
-    }
-
-    function cleanStatementPageState(){
-        initTable();
-    }
-
-    return {
-        init: initPage,
-        statementHandler: statementHandler,
-        clean: cleanStatementPageState
-    };
-}());
-;var StatementUI = (function(){
-    "use strict";
-    var tableID = "statement-table";
-    var columns = ["date", "ref", "payout", "act", "desc", "credit", "bal", "details"];
-
-    function createEmptyStatementTable(){
-        var header = [
-            Content.localize().textDate,
-            Content.localize().textRef,
-            text.localize('Potential Payout'),
-            Content.localize().textAction,
-            Content.localize().textDescription,
-            Content.localize().textCreditDebit,
-            Content.localize().textBalance,
-            Content.localize().textDetails
-        ];
-
-        header[6] = header[6] + (TUser.get().currency ? " (" + TUser.get().currency + ")" : "");
-
-        var metadata = {
-            id: tableID,
-            cols: columns
-        };
-        var data = [];
-        var $tableContainer = Table.createFlexTable(data, metadata, header);
-        return $tableContainer;
-    }
-
-    function updateStatementTable(transactions){
-        Table.appendTableBody(tableID, transactions, createStatementRow);
-    }
-
-    function clearTableContent(){
-        Table.clearTableBody(tableID);
-        $("#" + tableID +">tfoot").hide();
-    }
-
-    function createStatementRow(transaction){
-        var action = transaction["action_type"];
-        var dateObj = new Date(transaction["transaction_time"] * 1000);
-        action = StringUtil.toTitleCase(action);
-
-        var momentObj = moment.utc(dateObj);
-        var dateStr = momentObj.format("YYYY-MM-DD");
-        var timeStr = momentObj.format("HH:mm:ss") + ' GMT';
-
-        var date = dateStr + "\n" + timeStr;
-        var ref = transaction["transaction_id"];
-        var payout = Number(parseFloat(transaction["payout"])).toFixed(2);
-        var desc = transaction["longcode"].replace(/\n/g, '<br />');
-        var amount = addComma(Number(parseFloat(transaction["amount"])));
-        var balance = addComma(Number(parseFloat(transaction["balance_after"])));
-
-        var creditDebitType = (parseFloat(amount) >= 0) ? "profit" : "loss";
-
-        var $statementRow = Table.createFlexTableRow([date, ref, payout, action, '', amount, balance, ''], columns, "data");
-        $statementRow.children(".credit").addClass(creditDebitType);
-        $statementRow.children(".date").addClass("pre");
-        $statementRow.children(".desc").html(desc + "<br>");
-
-        //create view button and append
-        if (action === "Sell" || action === "Buy") {
-            var $viewButtonSpan = Button.createBinaryStyledButton();
-            var $viewButton = $viewButtonSpan.children(".button").first();
-            $viewButton.text(text.localize("View"));
-            $viewButton.addClass("open_contract_detailsws");
-            $viewButton.attr("contract_id", transaction["contract_id"]);
-
-            $statementRow.children(".desc,.details").append($viewButtonSpan);
-        }
-
-        return $statementRow[0];        //return DOM instead of jquery object
-    }
-
-    return {
-        clearTableContent: clearTableContent,
-        createEmptyStatementTable: createEmptyStatementTable,
-        updateStatementTable: updateStatementTable
-    };
-}());
 ;function submit_email() {
   var error = document.getElementById('signup_error');
   $('#verify-email-form').submit( function(evt){
@@ -91713,8 +86144,9 @@ var ProfitTableUI = (function(){
         }
 
         containerSetText('trade_details_contract_id'   , contract.contract_id);
-        containerSetText('trade_details_start_date'    , epochToDateTime(contract.date_start));
-        if (document.getElementById('trade_details_end_date')) containerSetText('trade_details_end_date'      , epochToDateTime(contract.date_expiry));
+
+        containerSetText('trade_details_start_date'    , toJapanTimeIfNeeded(epochToDateTime(contract.date_start)));
+        if (document.getElementById('trade_details_end_date')) containerSetText('trade_details_end_date'      , toJapanTimeIfNeeded(epochToDateTime(contract.date_expiry)));
         containerSetText('trade_details_payout', contract.currency + ' ' + parseFloat(contract.payout).toFixed(2));
         containerSetText('trade_details_purchase_price', contract.currency + ' ' + parseFloat(contract.buy_price).toFixed(2));
 
@@ -91738,7 +86170,7 @@ var ProfitTableUI = (function(){
         var currentSpot = user_sold ? contract.sell_spot : (is_ended ? contract.exit_tick : contract.current_spot);
 
         containerSetText('trade_details_ref_id'          , contract.transaction_ids.buy + (contract.transaction_ids.sell ? ' - ' + contract.transaction_ids.sell : ''));
-        containerSetText('trade_details_current_date'    , epochToDateTime(!is_ended ? contract.current_spot_time : (user_sold ? contract.sell_spot_time : contract.exit_tick_time)));
+        containerSetText('trade_details_current_date'    , toJapanTimeIfNeeded(epochToDateTime(!is_ended ? contract.current_spot_time : (user_sold ? contract.sell_spot_time : contract.exit_tick_time))));
         containerSetText('trade_details_current_spot'    , currentSpot || text.localize('not available'));
         containerSetText('trade_details_indicative_price', contract.currency + ' ' + parseFloat(is_ended ? (contract.sell_price || contract.bid_price) : contract.bid_price).toFixed(2));
 
@@ -91799,7 +86231,7 @@ var ProfitTableUI = (function(){
     var normalUpdateTimers = function() {
         var update_time = function() {
             var now = Math.max(Math.ceil((window.time || 0) / 1000), contract.current_spot_time || 0);
-            containerSetText('trade_details_live_date' , epochToDateTime(now));
+            containerSetText('trade_details_live_date' , toJapanTimeIfNeeded(epochToDateTime(now)));
             showLocalTimeOnHover('#trade_details_live_date');
 
             var is_started = !contract.is_forward_starting || contract.current_spot_time > contract.date_start,
@@ -91898,7 +86330,16 @@ var ProfitTableUI = (function(){
 
     var normalMakeTemplate = function() {
         $Container = $('<div/>').append($('<div/>', {id: wrapperID}));
-        $Container.prepend($('<div/>', {id: 'sell_bet_desc', class: 'popup_bet_desc drag-handle', text: contract.longcode}));
+
+        var longcode = contract.longcode;
+
+        var match = longcode.match(/(\d{4}-\d{2}-\d{2})\s?(\d{2}:\d{2}:\d{2})?/);
+        if(match){
+            var time = toJapanTimeIfNeeded(contract.date_expiry);
+            longcode = longcode.replace(match[0], time);
+        }
+
+        $Container.prepend($('<div/>', {id: 'sell_bet_desc', class: 'popup_bet_desc drag-handle', text: longcode}));
         var $sections = $('<div/>').append($('<div id="sell_details_chart_wrapper" class="grd-grid-8 grd-grid-mobile-12"></div><div id="sell_details_table" class="grd-grid-4 grd-grid-mobile-12"></div>'));
 
         $sections.find('#sell_details_table').append($(
@@ -92254,7 +86695,7 @@ var ProfitTableUI = (function(){
 }());
 
 
-pjax_config_page("profit_tablews|statementws|openpositionsws|trading", function() {
+pjax_config_page("profit_tablews|statementws|portfoliows|trading", function() {
     return {
         onLoad: function() {
             $('#profit-table-ws-container, #statement-ws-container, #portfolio-table, #contract_confirmation_container')
@@ -92265,8 +86706,7 @@ pjax_config_page("profit_tablews|statementws|openpositionsws|trading", function(
         }
     };
 });
-;
-var ViewBalance = (function () {
+;var ViewBalance = (function () {
     function init(){
         BinarySocket.init(1);
     }
@@ -92274,8 +86714,8 @@ var ViewBalance = (function () {
     return {
         init: init
     };
-}());;
-var ViewBalanceUI = (function(){
+}());
+;var ViewBalanceUI = (function(){
 
     function updateBalances(response){
         if(response.hasOwnProperty('error')) {
@@ -92299,724 +86739,6 @@ var ViewBalanceUI = (function(){
         updateBalances: updateBalances
     };
 }());
-;pjax_config_page("new_account/virtualws", function(){
-  return {
-    onLoad: function() {
-      if (getCookieItem('login')) {
-          window.location.href = page.url.url_for('user/my_accountws');
-          return;
-      }
-      Content.populate();
-      var virtualForm = $('#virtual-form');
-
-      handle_residence_state_ws();
-      BinarySocket.send({residence_list:1});
-      var form = document.getElementById('virtual-form');
-      var errorPassword = document.getElementById('error-password'),
-          errorRPassword = document.getElementById('error-r-password'),
-          errorResidence = document.getElementById('error-residence'),
-          errorAccount = document.getElementById('error-account-opening'),
-          errorVerificationCode = document.getElementById('error-verification-code');
-
-      if (isIE() === false) {
-        $('#password').on('input', function() {
-          $('#password-meter').attr('value', testPassword($('#password').val())[0]);
-        });
-      } else {
-        $('#password-meter').remove();
-      }
-
-      if (form) {
-        virtualForm.submit( function(evt) {
-          evt.preventDefault();
-
-          var verificationCode = document.getElementById('verification-code').value,
-              residence        = document.getElementById('residence').value,
-              password         = document.getElementById('password').value,
-              rPassword        = document.getElementById('r-password').value;
-
-          Validate.errorMessageResidence(residence, errorResidence);
-          Validate.errorMessageToken(verificationCode, errorVerificationCode);
-          Validate.hideErrorMessage(errorAccount);
-
-          if (Validate.errorMessagePassword(password, rPassword, errorPassword, errorRPassword) && !Validate.errorMessageResidence(residence, errorResidence) && !Validate.errorMessageToken(verificationCode, errorVerificationCode)){
-            BinarySocket.init({
-              onmessage: function(msg){
-                var response = JSON.parse(msg.data);
-                if (response) {
-                  var type = response.msg_type;
-                  var error = response.error;
-
-                  if (type === 'new_account_virtual' && !error) {
-                    page.client.set_cookie('residence', response.echo_req.residence);
-                    page.client.process_new_account(
-                      response.new_account_virtual.email,
-                      response.new_account_virtual.client_id,
-                      response.new_account_virtual.oauth_token,
-                      true);
-                  } else if (type === 'error' || error) {
-                    if (error.code === 'InvalidToken' || error.code === 'duplicate email') {
-                      virtualForm.empty();
-                      $('.notice-message').remove();
-                      var noticeText;
-                      if (error.code === 'InvalidToken') {
-                        noticeText = '<p>' + Content.localize().textClickHereToRestart.replace('[_1]', page.url.url_for('')) + '</p>';
-                      } else if (error.code === 'duplicate email') {
-                        noticeText = '<p>' + Content.localize().textDuplicatedEmail.replace('[_1]', page.url.url_for('user/lost_passwordws')) + '</p>';
-                      }
-                      virtualForm.html(noticeText);
-                      return;
-                    } else if (error.code === 'PasswordError') {
-                      errorAccount.textContent = text.localize('Password is not strong enough.');
-                    } else if (error.message) {
-                      errorAccount.textContent = error.message;
-                    }
-                    Validate.displayErrorMessage(errorAccount);
-                  }
-                }
-              }
-            });
-            VirtualAccOpeningData.getDetails(password, residence, verificationCode);
-          }
-        });
-      }
-    }
-  };
-});
-;var VirtualAccOpeningData = (function(){
-    "use strict";
-
-    function getDetails(password, residence, verificationCode){
-        var req = {
-                    new_account_virtual: 1,
-                    client_password: password,
-                    residence: residence,
-                    verification_code: verificationCode
-                };
-
-        if ($.cookie('affiliate_tracking')) {
-            req.affiliate_token = JSON.parse($.cookie('affiliate_tracking')).t;
-        }
-
-        BinarySocket.send(req);
-    }
-
-    return {
-        getDetails: getDetails
-    };
-}());
-;//////////////////////////////////////////////////////////////////
-// Purpose: Write loading image to a container for ajax request
-// Parameters:
-// 1) container - a jQuery object
-//////////////////////////////////////////////////////////////////
-function showLoadingImage(container)
-{
-    var image_link = page.settings.get('image_link');
-
-    container.empty().append('<div id="std_loading_img"><p>'+text.localize('loading...')+'</p><img src="'+image_link['hourglass']+'" /></div>');
-}
-
-/////////////////////////////////////////////////////////////////
-// Purpose   : Generate form's parameters in the format that is
-//             required by XMLHttpRequest.send
-// Return    : Parameters string e.g. var1=val1&var2=var2
-// Parameters: Targeted form object
-/////////////////////////////////////////////////////////////////
-function getFormParams(form_obj)
-{
-    var params_arr = [];
-    if (! form_obj) return '';
-    var elem = form_obj.elements;
-
-    var j=0;
-    for (var i = 0; i < elem.length; i++)
-    {
-        if(elem[i].name)
-        {
-            if(elem[i].nodeName == 'INPUT' && elem[i].type.match(/radio|checkbox/) && !elem[i].checked)
-            {
-                continue; // skip if it is not checked
-            }
-
-            params_arr[j] = elem[i].name+'='+encodeURIComponent(elem[i].value);
-            j++;
-        }
-    }
-
-    var params_str = params_arr.join('&');
-    return params_str;
-}
-
-/**
- * Adds thousand separators for numbers.
- *
- * @param Number num: any number (int or float)
- * @param string separator [optional] string to use for the separator (default is , as the name suggests)
- * @return string
- */
-function virgule(given_num)
-{
-    if (isNaN(given_num)) {
-        return given_num;
-    }
-    var maybe_minus = '';
-    var num = given_num;
-    if (given_num < 0) {
-        num = num * -1;
-        maybe_minus = '-';
-    }
-
-    if (num < 1000) {
-        return maybe_minus + num;
-    }
-
-    var separator = ',';
-    if (arguments.length > 1) {
-        separator = arguments[1];
-    }
-
-    var int_part = num;
-    var float_part = '';
-    var float_match = /(\d{3,})\.(\d+)/.exec(num);
-    if (float_match) {
-        int_part = float_match[1];
-        float_part = '.' + float_match[2];
-    }
-    var match = /(\d+)(\d\d\d)$/.exec(int_part);
-
-    return maybe_minus + virgule(match[1], separator) + separator + match[2] + float_part;
-}
-
-function getImageLink() {
-    var image_link = page.settings.get('image_link');
-    return '<img src="' + image_link['hourglass'] + '" class="bet_bottom_loading_image" />';
-}
-
-/**
- * updates a container node for when a price value inside is updated.
- * Like when the bet price is changed, updates the bet buy price container
- * with arrows to display the change.
- *
- * @param item Object: the node object
- * @param old_val: what it used to be
- * @param new_val: what it is now
- */
-function price_moved (item, old_val, new_val) {
-    if (new_val < old_val) {
-       item.removeClass("price_moved_up");
-       item.addClass("price_moved_down");
-    } else if (new_val > old_val) {
-       item.removeClass("price_moved_down");
-       item.addClass("price_moved_up");
-    } else {
-       item.removeClass("price_moved_down");
-       item.removeClass("price_moved_up");
-    }
-}
-
-
-/**
- * Returns the highest z-index in the page.
- * Accepts a jquery style selector to only check those elements,
- * uses all container tags by default
- * If no element found, returns null.
- *
- * @param selector: a jquery style selector for target elements
- * @return int|null
- */
-function get_highest_zindex(selector) {
-    if (!selector) {
-        selector = 'div,p,area,nav,section,header,canvas,aside,span';
-    }
-    var all = [];
-    var _store_zindex = function () {
-        if ($(this).is(':visible')) {
-            var z = $(this).css("z-index");
-            if ( !isNaN(z) ) {
-                all.push(z);
-            }
-        }
-    };
-    $(selector).each(_store_zindex);
-
-    return all.length ? Math.max.apply(Math, all) : null;
-}
-
-/**
- * Returns a stylized price for a value as units and cents.
- * this could be used anywhere we need to show a float value
- * like in bet_sell.js to display the current sell price.
-*/
-function stylized_price(val) {
-    var units = '0';
-    var cents = '00';
-    if (val) {
-        val = Math.round(val * 100) / 100;
-        var val_str = val.toString();
-        var parts = val_str.split('.');
-        units = virgule(parts[0]);
-        cents = parts[1] || '00';
-        if (cents.length < 2) {
-            cents += '0';
-        }
-    }
-    return {
-        units: units,
-        cents: '.' + cents
-   };
-}
-
-/**
- * Add login param which contains the login cookie.
- * Required as our most of our ajax requests are now Cross domain and it will no longer send the login cookie.
- * Replaces the old header X-AJAX-COOKIE as this way it works for both IE9 and other newer browsers.
- * Not adding the header also avoid extra options request saving a whole 700ms on pricing.
- */
-var ajax_loggedin = function(params) {
-    var login_cookie = $.cookie('login');
-    if(login_cookie) {
-        var extra_params = 'login=' + encodeURIComponent(login_cookie);
-        var staff_cookie = $.cookie('staff');
-        if(staff_cookie) {
-            extra_params += '&staff=' + encodeURIComponent(staff_cookie);
-        }
-
-        if(params.data) {
-            params.data += '&' + extra_params;
-        } else {
-            params.data = extra_params;
-        }
-    }
-
-    //A magical limit to param length imposed by IE.
-    if(params.data && params.data.length > 2000) {
-        params.type = "POST";
-    }
-
-    return params;
-};
-
-/**
- * Gets a DOM or jQuery element and reads its data attributes
- * and return an object of data stored in element attributes.
- * This is used where we store some data as element attributes.
- * Excludes commont HTML attributes from the element.
- *
- * @param element: DOM|jQuery element
- * @return object
- */
-function element_data_attrs(element) {
-    if (element && element instanceof jQuery) {
-        element = element.get().pop();
-    }
-    if (!element || !element.attributes) {
-        console.log(element);
-        throw new Error("Can not get data attributes from none element parameter");
-    }
-    var data = {};
-    var attrs = element.attributes;
-    if (attrs.length) {
-        var attr_blacklist = ['id', 'class', 'name', 'style', 'href', 'src', 'title', 'onclick'];
-        for (var i = 0; i < attrs.length; i++) {
-            var attr = attrs[i];
-            if (attr_blacklist.indexOf(attr.name.toLowerCase()) > -1) continue;
-            data[attr.name] = attr.value;
-        }
-    }
-    return data;
-}
-
-/**
- * Converts a snake_cased string to a camelCased string.
- * The first character case not changed unless requested.
- *
- * @param snake: snake_cased string
- * @param lower_case_first_char: boolean to force the first char to be lower cased
- * @param chars: string of chars to be considered a separator (default is _ and -)
- */
-function snake_case_to_camel_case(snake, lower_case_first_char, chars) {
-    chars = chars || '_-';
-    var _upper2ndchar = function (m) { return m[1].toUpperCase(); };
-    var regex = new RegExp('[' + chars + ']([a-zA-Z])', 'g');
-    var camel = snake.replace(regex, _upper2ndchar);
-    camel.replace('_', '');
-    if (lower_case_first_char) {
-        camel = camel[0].toLowerCase() + camel.substr(1);
-    }
-    return camel;
-}
-
-/**
- * attaches a datepicker to the specified element
- * This is a thin wrapper for datepicker, helps to keep a unique site-wide
- * default configurations for the datepicker.
- *
- * @param element any jquery selector or DOM/jQuery object to attach the datepicker to
- * @param config custom configurations for the datepicker
- */
-function attach_date_picker(element, conf) {
-    var k,
-        target = $(element);
-    if (!target || !target.length) return false;
-    var today = new Date();
-    var next_year = new Date();
-    next_year.setDate(today.getDate() + 365);
-    var options = {
-        dateFormat: 'yy-mm-dd',
-        maxDate: next_year,
-    };
-    for (k in conf) if (conf.hasOwnProperty(k)) {
-        options[k] = conf[k];
-    }
-    return target.datepicker(options);
-}
-
-/**
- * attaches a timepicker to the specified element.
- * This is a thin wrapper for timepicker, helps to keep a unique site-wide
- * default configurations for the timepicker.
- *
- * @param element any jquery selector or DOM/jQuery object to attach the timepicker to
- * @param config custom configurations for the timepicker
- */
-function attach_time_picker(element, conf) {
-    var attr, k, target = $(element);
-    if (!target || !target.length) return false;
-    var opts = {
-        timeSeparator: ':',
-        showLeadingZero: true,
-        howMinutesLeadingZero: true,
-        hourText: text.localize("Hour"),
-        minuteText: text.localize("Minute"),
-        minTime: {},
-        maxTime: {},
-    };
-    var data_attrs = element_data_attrs(target);
-    var regex = /^time\:(.+)/;
-    for (attr in data_attrs) if (data_attrs.hasOwnProperty(attr)) {
-        var matched = attr.match(regex);
-        if (matched) {
-            var data = data_attrs[attr];
-            var opt_name = matched[1].trim();
-            if (data == 'true') {
-                data = true;
-            } else if (data == 'false') {
-                data = false;
-            }
-            opt_name = snake_case_to_camel_case(opt_name, true).toLowerCase();
-            switch (opt_name) {
-                case 'mintimehour':
-                    opts.minTime.hour = data;
-                    break;
-                case 'mintimeminute':
-                    opts.minTime.minute = data;
-                    break;
-                case 'maxtimehour':
-                    opts.maxTime.hour = data;
-                    break;
-                case 'maxtimeminute':
-                    opts.maxTime.minute = data;
-                    break;
-            }
-        }
-    }
-    for (k in conf) if (conf.hasOwnProperty(k)) {
-        opts[k] = conf[k];
-    }
-    return target.timepicker(opts);
-}
-
-/**
- * attaches an inpage popup to the specified element.
- *
- * @param element any jquery selector or DOM/jQuery object to attach the inpage popups to
- */
-function attach_inpage_popup(element) {
-    var targets = $(element);
-    var popups = [];
-    var regx = /^popup-(.+)/;
-    targets.each(function () {
-        var attr,
-            matched,
-            attrs = element_data_attrs(this),
-            conf = {};
-        for (attr in attrs) if (attrs.hasOwnProperty(attr)) {
-            matched = attr.match(regx);
-            if (matched) {
-                conf[matched[1]] = attrs[attr];
-            }
-        }
-        var popup = new InPagePopup(conf);
-        popup.attach(this);
-        popups.push(popup);
-    });
-    return popups;
-}
-
-/**
- * Calculate container width for chart as of now but can
- * be used to get current container width
- */
-
-function get_container_width() {
-    var width = 960;
-    if ($('.chart_holder').length > 0) {
-        width = $('.chart_holder').width();
-    } else {
-        width = $('.grd-container').width();
-    }
-    return width;
-}
-
-/**
- * in a jquery UI tabs object, finds out whitch tab is marked to be the
- * active tab by default.
- *
- * The default active tab is selected based on CSS classes of tab list items.
- *
- * @param element any jquery selector or DOM/jquery object that contains a jquery UI tab UL
- * @return int the index of active list item or 0 if none of the items were
- * marked as active.
- */
-function find_active_jqtab(el) {
-    var jqel = $(el);
-    var ul = jqel.children('ul');
-    if (!ul) throw new Error("Invalid parameter. element is not a jquery UI tab container");
-    ul = ul.filter(":first");
-    var items = ul.children('li');
-    for (var i = 0; i < items.length; i++) {
-        if ($(items[i]).hasClass('active')) {
-            return i;
-        }
-    }
-    return 0;
-}
-
-/**
- * attaches tabs to the specified element selector
- *
- * @param element any jquery selector or DOM/jQuery object
- */
-function attach_tabs(element) {
-    var targets = $(element);
-    targets.each(function () {
-        var jqel = $(this);
-        var conf = {};
-        var active = 0;
-        try {
-            active = find_active_jqtab(jqel);
-        } catch (e) {
-            console.log(e);
-            console.log(jqel);
-        }
-        if (active) {
-            conf['active'] = active;
-            $('li.active', jqel).removeClass('active');
-        }
-        jqel.tabs(conf);
-    });
-    return targets;
-}
-
-function showLocalTimeOnHover(s) {
-    var selector = s || '.date';
-
-    $(selector).each(function(idx, ele) {
-        var gmtTimeStr = ele.innerHTML.replace('\n', ' ');
-
-        var localTime = moment.utc(gmtTimeStr, 'YYYY-MM-DD HH:mm:ss').local();
-        if (!localTime.isValid()) {
-            return;
-        }
-
-        var localTimeStr = localTime.format('YYYY-MM-DD HH:mm:ss ZZ');
-        var timeToShow = localTimeStr.replace(' ', '\n');
-        var tooltip = $('<span></span>', { class: 'tooltip-content', text: timeToShow });
-        $(ele)
-            .children('.tooltip-content')
-            .remove();
-        $(ele).append(tooltip);
-    });
-}
-;if (isJapanTrading()) {
-    var Contract = (function() {
-        'use strict';
-
-        var contractDetails = {},
-            contractType = {},
-            periods = {},
-            open, close, form, barrier;
-
-        var populate_periods = function(currentContract) {
-            var currentCategory = currentContract['contract_category'];
-            if (!periods[currentCategory]) {
-                periods[currentCategory] = {};
-            }
-
-            if (!periods[currentCategory][currentContract.underlying_symbol]) {
-                periods[currentCategory][currentContract.underlying_symbol] = {};
-            }
-
-            var period = currentContract['trading_period']['date_start']['epoch'] + '_' + currentContract['trading_period']['date_expiry']['epoch'];
-
-            periods[currentCategory][currentContract['underlying_symbol']][period] = {
-                available_barriers: currentContract['available_barriers'],
-                barrier: currentContract['barrier'],
-                high_barrier: currentContract['high_barrier'],
-                low_barrier: currentContract['low_barrier'],
-                barriers: currentContract['barriers'],
-                date_start: currentContract['trading_period']['date_start'],
-                date_expiry: currentContract['trading_period']['date_expiry'],
-                duration: currentContract['trading_period']['duration']
-            };
-        };
-
-        var details = function(formName) {
-            var contracts = Contract.contracts()['contracts_for'],
-                contractCategories = {},
-                barrierCategory;
-
-            open = contracts['open'];
-            close = contracts['close'];
-
-            var formBarrier = getFormNameBarrierCategory(formName);
-            form = formName = formBarrier['formName'];
-            barrier = barrierCategory = formBarrier['barrierCategory'];
-
-            contracts.available.forEach(function(currentObj) {
-                var contractCategory = currentObj['contract_category'];
-
-                if (formName && formName === contractCategory) {
-
-                    populate_periods(currentObj);
-
-                    if (!contractType[contractCategory]) {
-                        contractType[contractCategory] = {};
-                    }
-
-                    if (!contractType[contractCategory].hasOwnProperty(currentObj['contract_type'])) {
-                        contractType[contractCategory][currentObj['contract_type']] = currentObj['contract_display'];
-                    }
-                }
-            });
-        };
-
-        var getContracts = function(underlying) {
-            BinarySocket.send({ contracts_for: underlying, region: 'japan' });
-        };
-
-        var getContractForms = function() {
-            var contracts = Contract.contracts()['contracts_for'],
-                tradeContractForms = {};
-
-            contracts.available.forEach(function(currentObj) {
-                var contractCategory = currentObj['contract_category'];
-                if (contractCategory && !tradeContractForms.hasOwnProperty(contractCategory)) {
-                    if (contractCategory === 'callput') {
-                        if (currentObj['barrier_category'] === 'euro_atm') {
-                            tradeContractForms['risefall'] = Content.localize().textFormRiseFall;
-                        } else {
-                            tradeContractForms['higherlower'] = Content.localize().textFormHigherLower;
-                        }
-                    } else {
-                        tradeContractForms[contractCategory] = text.localize(currentObj['contract_category_display']);
-                    }
-                }
-            });
-
-            if (tradeContractForms.risefall || tradeContractForms.higherlower) {
-                tradeContractForms['updown'] = Content.localize().textFormUpDown;
-            }
-
-            if (tradeContractForms.endsinout || tradeContractForms.staysinout) {
-                tradeContractForms['inout'] = Content.localize().textFormInOut;
-            }
-
-            return tradeContractForms;
-        };
-
-        return {
-            details: details,
-            getContracts: getContracts,
-            contractForms: getContractForms,
-            open: function() {
-                return open; },
-            close: function() {
-                return close; },
-            contracts: function() {
-                return contractDetails; },
-            durations: function() {
-                return false; },
-            startDates: function() {
-                return false; },
-            barriers: function() {
-                return false; },
-            periods: function() {
-                return periods; },
-            contractType: function() {
-                return contractType; },
-            form: function() {
-                return form; },
-            barrier: function() {
-                return barrier; },
-            setContracts: function(data) {
-                contractDetails = data;
-            }
-        };
-
-    })();
-}
-;if (isJapanTrading()) {
-
-    var marketsOrder = function(market) {
-        var order = {
-            higherlower: 1,
-            touchnotouch: 2,
-            endsinout: 3,
-            staysinout: 4,
-        };
-
-        return order[market];
-    };
-
-    var displayContractForms = function(id, elements, selected) {
-        var $menu = $('#market_menu');
-
-        $menu.empty();
-
-        var markets = Object.keys(elements).filter(function(el) {
-            return marketsOrder(el);
-        }).sort(function(a, b) {
-            return marketsOrder(a) - marketsOrder(b);
-        });
-
-
-        $.each(markets, function(key, value) {
-            $menu
-                .append(
-                    $('<li />').append(
-                        $("<input />")
-                        .attr("type", "radio")
-                        .attr("name", "market_menu")
-                        .attr("value", value)
-                        .attr('id', value),
-                        $("<label />")
-                        .text(elements[value])
-                        .attr('for', value)
-                    ).click());
-        });
-
-        $('#' + selected).attr('checked', 'checked');
-        $menu.find('input[name=market_menu]').change(function(e) {
-            sessionStorage.setItem('formname', e.target.value);
-            processContractForm();
-            TradingAnalysis.request();
-        });
-    };
-
-
-}
 ;pjax_config_page_require_auth("new_account/knowledge_testws", function(){
     return {
         onLoad: function() {
@@ -93867,6 +87589,372 @@ function showLocalTimeOnHover(s) {
     };
 }());
 
+;if (isJapanTrading()) {
+    var Contract = (function() {
+        'use strict';
+
+        var contractDetails = {},
+            contractType = {},
+            periods = {},
+            open, close, form, barrier;
+
+        var populate_periods = function(currentContract) {
+            var currentCategory = currentContract['contract_category'];
+            if (!periods[currentCategory]) {
+                periods[currentCategory] = {};
+            }
+
+            if (!periods[currentCategory][currentContract.underlying_symbol]) {
+                periods[currentCategory][currentContract.underlying_symbol] = {};
+            }
+
+            var period = currentContract['trading_period']['date_start']['epoch'] + '_' + currentContract['trading_period']['date_expiry']['epoch'];
+
+            periods[currentCategory][currentContract['underlying_symbol']][period] = {
+                available_barriers: currentContract['available_barriers'],
+                barrier: currentContract['barrier'],
+                high_barrier: currentContract['high_barrier'],
+                low_barrier: currentContract['low_barrier'],
+                barriers: currentContract['barriers'],
+                date_start: currentContract['trading_period']['date_start'],
+                date_expiry: currentContract['trading_period']['date_expiry'],
+                duration: currentContract['trading_period']['duration']
+            };
+        };
+
+        var details = function(formName) {
+            var contracts = Contract.contracts()['contracts_for'],
+                contractCategories = {},
+                barrierCategory;
+
+            open = contracts['open'];
+            close = contracts['close'];
+
+            var formBarrier = getFormNameBarrierCategory(formName);
+            form = formName = formBarrier['formName'];
+            barrier = barrierCategory = formBarrier['barrierCategory'];
+
+            contracts.available.forEach(function(currentObj) {
+                var contractCategory = currentObj['contract_category'];
+
+                if (formName && formName === contractCategory) {
+
+                    populate_periods(currentObj);
+
+                    if (!contractType[contractCategory]) {
+                        contractType[contractCategory] = {};
+                    }
+
+                    if (!contractType[contractCategory].hasOwnProperty(currentObj['contract_type'])) {
+                        contractType[contractCategory][currentObj['contract_type']] = currentObj['contract_display'];
+                    }
+                }
+            });
+        };
+
+        var getContracts = function(underlying) {
+            BinarySocket.send({ contracts_for: underlying, region: 'japan' });
+        };
+
+        var getContractForms = function() {
+            var contracts = Contract.contracts()['contracts_for'],
+                tradeContractForms = {};
+
+            contracts.available.forEach(function(currentObj) {
+                var contractCategory = currentObj['contract_category'];
+                if (contractCategory && !tradeContractForms.hasOwnProperty(contractCategory)) {
+                    if (contractCategory === 'callput') {
+                        if (currentObj['barrier_category'] === 'euro_atm') {
+                            tradeContractForms['risefall'] = Content.localize().textFormRiseFall;
+                        } else {
+                            tradeContractForms['higherlower'] = Content.localize().textFormHigherLower;
+                        }
+                    } else {
+                        tradeContractForms[contractCategory] = text.localize(currentObj['contract_category_display']);
+                    }
+                }
+            });
+
+            if (tradeContractForms.risefall || tradeContractForms.higherlower) {
+                tradeContractForms['updown'] = Content.localize().textFormUpDown;
+            }
+
+            if (tradeContractForms.endsinout || tradeContractForms.staysinout) {
+                tradeContractForms['inout'] = Content.localize().textFormInOut;
+            }
+
+            return tradeContractForms;
+        };
+
+        return {
+            details: details,
+            getContracts: getContracts,
+            contractForms: getContractForms,
+            open: function() {
+                return open; },
+            close: function() {
+                return close; },
+            contracts: function() {
+                return contractDetails; },
+            durations: function() {
+                return false; },
+            startDates: function() {
+                return false; },
+            barriers: function() {
+                return false; },
+            periods: function() {
+                return periods; },
+            contractType: function() {
+                return contractType; },
+            form: function() {
+                return form; },
+            barrier: function() {
+                return barrier; },
+            setContracts: function(data) {
+                contractDetails = data;
+            }
+        };
+
+    })();
+}
+;var JapanInfo = function() {
+
+    this.show = this.hide = function(){};
+
+    if (isJapanTrading() && $('#all_prices').length) {
+        $('#tab_japan_info').removeClass('invisible');
+    } else {
+        return;
+    }
+
+    var $container = $('#tab_japan_info-content');
+    var $rows = {};
+    var socket;
+
+    if (!$container.length) {
+        return;
+    }
+
+    var add_header = function() {
+        var names = Contract.contractType()[Contract.form()];
+        var ask, bid;
+        for (var i = 0; i < Object.keys(names).length; i++) {
+            var pos = contractTypeDisplayMapping(Object.keys(names)[i]);
+            if (pos === 'top') {
+                ask = names[Object.keys(names)[i]];
+            } else if (pos === 'bottom') {
+                bid = names[Object.keys(names)[i]];
+            }
+        }
+        var $header = $('<div />', {
+            'class': 'grd-parent grd-grid-12 grd-centered table-header grd-row-padding'
+        }).append(
+            $('<div />', {
+                'class': 'grd-grid-4 center-aligned',
+                'text': Content.localize().textExercisePeriod
+            }),
+            $('<div />', {
+                'class': 'grd-grid-4 center-aligned',
+                'text': ask
+            }),
+            $('<div />', {
+                'class': 'grd-grid-4 center-aligned',
+                'text': bid
+            })
+        );
+        $container.append($header);
+    };
+
+    var add_row = function(barrier, id, ask, bid) {
+        $rows[id] = $('<div />', {
+            'class': 'grd-parent grd-grid-12 grd-centered table-body table-body-lines grd-row-paddingd',
+        }).append(
+            $('<div />', {
+                'class': 'grd-grid-4 center-aligned',
+                'text': barrier
+            }),
+            $('<div />', {
+                'class': 'grd-grid-4 center-aligned ask',
+                'text': ask
+            }),
+            $('<div />', {
+                'class': 'grd-grid-4 center-aligned bid',
+                'text': bid
+            })
+        );
+        $container.append($rows[id]);
+    };
+
+    var update_ask = function(id, ask) {
+        if (!$rows[id]) {
+            return;
+        }
+        $rows[id].find('.ask').text(ask);
+    };
+
+    var update_bid = function(id, bid) {
+        if (!$rows[id]) {
+            return;
+        }
+        $rows[id].find('.bid').text(bid);
+    };
+
+    var clean = function() {
+        $container.text('');
+        $rows = {};
+    };
+
+    var request_prices = function() {
+        var barriers1 = Periods.barriers1();
+        var barriers2 = Periods.barriers2();
+
+        var types = Contract.contractType()[Contract.form()];
+
+        var period = $('#period').val();
+        var p = period.match(/^\d+_(\d+)$/);
+
+        var proposal = {
+            'proposal': 1,
+            'amount': 1000,
+            'basis': 'payout',
+            'currency': $('#currency').val(),
+            'symbol': $('#underlying').val(),
+            'date_expiry': p[1]
+        };
+
+        var id = 0;
+        if (barriers2.length) {
+            for (var i = 0; i < barriers2.length; i++) {
+                for (var j = 0; j < barriers1.length; j++) {
+                    id++;
+                    add_row(barriers2[i] + ' - ' + barriers1[j], id);
+                    for (var typeOfContract in types) {
+                        if (types.hasOwnProperty(typeOfContract)) {
+                            var req = $.extend({}, proposal, {
+                                'barrier': barriers1[j],
+                                'barrier2': barriers2[i],
+                                'contract_type': typeOfContract,
+                                'passthrough': {
+                                    'form_id': 'japan_barriers',
+                                    'id': id
+                                }
+                            });
+                            socket.send(req);
+                        }
+                    }
+                }
+            }
+        } else {
+            for (var d = 0; d < barriers1.length; d++) {
+                id++;
+                add_row(barriers1[d], id);
+                for (var typeOfContract2 in types) {
+                    if (types.hasOwnProperty(typeOfContract2)) {
+                        var req2 = $.extend({}, proposal, {
+                            'barrier': barriers1[d],
+                            'contract_type': typeOfContract2,
+                            'passthrough': {
+                                'form_id': 'japan_barriers',
+                                'id': id
+                            }
+                        });
+                        socket.send(req2);
+                    }
+                }
+            }
+        }
+    };
+
+    var processRes = function(res) {
+        if (res.echo_req.passthrough.id && $rows[res.echo_req.passthrough.id]) {
+            var position = contractTypeDisplayMapping(res.echo_req.contract_type);
+            if (position === 'top') {
+                update_ask(res.echo_req.passthrough.id, res.proposal ? res.proposal.ask_price : '-');
+            } else if (position === 'bottom') {
+                update_bid(res.echo_req.passthrough.id, res.proposal ? res.proposal.ask_price : '-');
+            }
+        }
+    };
+
+    this.show = function() {
+        clean();
+        add_header();
+        if (typeof socket !== 'object' || socket.readyState !== 1) {
+            socket = new BinarySocketClass();
+            socket.init({
+                onopen: function() {
+                    request_prices();
+                },
+                onmessage: function(msg) {
+                    var response = JSON.parse(msg.data);
+                    if (response) {
+                        processRes(response);
+                    }
+                },
+
+            });
+        } else {
+            request_prices();
+        }
+
+    };
+
+    this.hide = function() {
+        if (typeof socket === 'object') {
+            socket.close();
+        }
+    };
+};
+;if (isJapanTrading()) {
+
+    var marketsOrder = function(market) {
+        var order = {
+            higherlower: 1,
+            touchnotouch: 2,
+            endsinout: 3,
+            staysinout: 4,
+        };
+
+        return order[market];
+    };
+
+    var displayContractForms = function(id, elements, selected) {
+        var $menu = $('#market_menu');
+
+        $menu.empty();
+
+        var markets = Object.keys(elements).filter(function(el) {
+            return marketsOrder(el);
+        }).sort(function(a, b) {
+            return marketsOrder(a) - marketsOrder(b);
+        });
+
+
+        $.each(markets, function(key, value) {
+            $menu
+                .append(
+                    $('<li />').append(
+                        $("<input />")
+                        .attr("type", "radio")
+                        .attr("name", "market_menu")
+                        .attr("value", value)
+                        .attr('id', value),
+                        $("<label />")
+                        .text(elements[value])
+                        .attr('for', value)
+                    ).click());
+        });
+
+        $('#' + selected).attr('checked', 'checked');
+        $menu.find('input[name=market_menu]').change(function(e) {
+            sessionStorage.setItem('formname', e.target.value);
+            processContractForm();
+            TradingAnalysis.request();
+        });
+    };
+
+
+}
 ;if(isJapanTrading()){
 	var Periods = (function(){
 		var barrier = 0,
@@ -93931,7 +88019,7 @@ function showLocalTimeOnHover(s) {
 					text = s_hours+":"+s_min+' - '+e_hours+":"+e_min+' ('+period.duration+')';
 				}
 				else{
-					text = period.date_expiry.date + ' ('+period.duration+')';
+					text = toJapanTimeIfNeeded(period.date_expiry.date) + ' ('+period.duration+')';
 				}
 				option = document.createElement('option');
 				content = document.createTextNode(text);
@@ -93991,6 +88079,57 @@ function showLocalTimeOnHover(s) {
 		};
 	})();
 }
+;var JapanPortfolio = (function() {
+
+  var $portfolio;
+
+  function init() {
+
+    if (isActive()) {
+      $('#tab_portfolio').removeClass('invisible');
+    }
+
+    var $container = $('#tab_portfolio-content');
+    $portfolio = $portfolio || $('#portfolio');
+
+    if ($portfolio &&
+      (!$('#portfolio').parent().length ||
+        $('#portfolio').parent().get(0).id !== 'tab_portfolio-content')) {
+      $portfolio.detach();
+      $container.append($portfolio);
+    }
+  }
+
+  function show() {
+    if (isJapanTrading()) {
+      PortfolioWS.init();
+    }
+
+    return;
+  }
+
+  function isActive() {
+    var user = new User();
+    if (user.email && isJapanTrading()) {
+      return true;
+    }
+  }
+
+  function hide() {
+    if (isJapanTrading()) {
+      PortfolioWS.onUnload();
+    }
+
+    return;
+  }
+
+  return {
+    init: init,
+    show: show,
+    hide: hide,
+    isActive: isActive,
+  };
+})();
 ;if(isJapanTrading()){
 	var Price = Object.create(Price);
 	Object.defineProperties(Price,{
@@ -94028,7 +88167,39 @@ function showLocalTimeOnHover(s) {
 			}
 		}
 	});
-};var PricingTable = (function() {
+};var PricingDetails = function() {
+    return {
+        register: function() {
+            if(this.popup().length > 0) {
+                this.on_open_debug_link();
+                this.on_close();
+            }
+        },
+        on_open_debug_link: function() {
+            var that = this;
+            $('a.pricing-details').on('click', function (event) {
+                var popup = that.popup();
+                $('.draggable').draggable(); // This is overkill, but nobody cares.
+                popup.toggleClass('invisible');
+
+                $('#' + popup.children(':first').attr('id')).tabs();
+
+                event.preventDefault();
+            }).addClass('unbind_later');
+        },
+        on_close: function() {
+            var that = this;
+            $('a.pricing-details-close').on('click', function (event) {
+                that.popup().addClass('invisible');
+                event.preventDefault();
+            }).addClass('unbind_later');
+        },
+        popup: function() {
+            return $('#pricing_details_popup');
+        }
+    };
+}();
+;var PricingTable = (function() {
 
   var state = {
     prev_prices: {},
@@ -94072,7 +88243,7 @@ function showLocalTimeOnHover(s) {
 
     render: function render() {
       var price = parseInt(this.props.price);
-      var inactive = this.props.is_active && price !== 1000 && price !== 0 ? '' : 'inactive';
+      var inactive = this.props.is_active && price !== this.props.units*1000 && price !== 0 ? '' : 'inactive';
       var barrierArr = this.props.barrier ? this.props.barrier.split(/ \- /).reverse() : [];
       var props = this.props;
 
@@ -94088,7 +88259,7 @@ function showLocalTimeOnHover(s) {
             "div", { "className": inactive, key: 'inactive' }
           ),
           React.createElement(
-            "div", { "className": "price", "key": "price" },
+            "div", { "className": "price col", "key": "price" },
             '¥' + price
           ),
           (this.props.type === 'buy' ? React.createElement(
@@ -94119,8 +88290,8 @@ function showLocalTimeOnHover(s) {
     displayName: "PricingTableHeader",
     render: function render() {
       var barrierLabel = Content.localize().textBarrier;
-      var buyPriceUnitLabel = Content.localize().textBuyPriceUnit;
-      var sellPriceUnitLabel = Content.localize().textSellPriceUnit;
+      var buyPriceUnitLabel = Content.localize().textBuy;
+      var sellPriceUnitLabel = Content.localize().textSell;
 
       return React.createElement(
         'div', { 'className': 'pricing_table_row row heading' },
@@ -94153,9 +88324,9 @@ function showLocalTimeOnHover(s) {
 
     render: function render() {
       var types = Object.keys(this.props.values);
-      var buy1 = React.createElement(PricingTableCell, { type: 'buy', is_active: 0, price: 1000 });
+      var buy1 = React.createElement(PricingTableCell, { type: 'buy', is_active: 0, price: 1000*this.props.units });
       var sell1 = React.createElement(PricingTableCell, { type: 'sell', is_active: 0, price: 0 });
-      var buy2 = React.createElement(PricingTableCell, { type: 'buy', is_active: 0, price: 1000 });
+      var buy2 = React.createElement(PricingTableCell, { type: 'buy', is_active: 0, price: 1000*this.props.units });
       var sell2 = React.createElement(PricingTableCell, { type: 'sell', is_active: 0, price: 0 });
 
       var barrier = this.props.barrier.replace(/_/, ' - ');
@@ -94187,7 +88358,7 @@ function showLocalTimeOnHover(s) {
           sell2 = React.createElement(PricingTableCell, {
             type: 'sell',
             is_active: 1,
-            price: 1000 - this.props.values[type],
+            price: this.props.units*1000 - this.props.values[type],
             dyn: dyn,
             barrier: barrier,
             contractType: type,
@@ -94210,7 +88381,7 @@ function showLocalTimeOnHover(s) {
           sell1 = React.createElement(PricingTableCell, {
             type: 'sell',
             is_active: 1,
-            price: 1000 - this.props.values[type],
+            price: this.props.units*1000 - this.props.values[type],
             dyn: dyn,
             barrier: barrier,
             contractType: type,
@@ -94329,6 +88500,7 @@ function showLocalTimeOnHover(s) {
       var contractTypes = Contract.contractType()[state.category];
       var close = $("#period option:selected").text();
       close = close.replace(/\s+\(.+$/, '');
+      close = toJapanTimeIfNeeded(close);
 
       if (contractTypes) {
 
@@ -94340,7 +88512,7 @@ function showLocalTimeOnHover(s) {
               mask: mask,
               values: {
                 currency: '¥',
-                sum: 1000,
+                sum: state.units*1000,
                 symbol: state.symbol,
                 close: close,
               },

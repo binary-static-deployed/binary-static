@@ -5910,6 +5910,7 @@ div.kineticjs-content {
   border-top: 1px solid #dedede;
   border-bottom: 1px solid #dedede;
   border-right: 1px solid #dedede;
+  text-align: right;
 }
 #trading_socket_container.japan .pricing_table_cell .button {
   color: white;
@@ -5990,9 +5991,6 @@ div.kineticjs-content {
 #trading_socket_container.japan #japan_payout_row {
   display: -ms-flexbox;
   display: flex;
-}
-#trading_socket_container.japan .price {
-  width: 50px;
 }
 
 @media all and (max-width: 480px) {

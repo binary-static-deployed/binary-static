@@ -1,0 +1,85 @@
+<div id="content">
+          <!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-MZWFF7"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script data-cfasync="false">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MZWFF7');</script>
+<!-- End Google Tag Manager -->
+          <div id="page_info" style="display:none;">
+              <title>Token API | Binary.com</title>
+          </div>
+          
+          <div class="grd-container">
+          
+
+          <div id="api_token" class="api_token grd-grid-12">
+    <h1>Token API</h1>
+
+    <p>Con acceder a nuestras aplicaciones móviles y otras aplicaciones de terceros, primero debe generar un token de la API.</p>
+    <ul class="bullet">
+      <li>Simplemente haga clic en "Crear" para generar el token; a continuación, cópielo y péguelo en la aplicación.</li>
+      <li>Elija el tipo específico de token de la API que necesita, basándose en las capacidades que desea hacer disponibles.</li>
+    </ul>
+
+    <div id="token_form" class="grd-grid-12 grd-row-padding">
+        <form class="form rbox" id="frmNewToken">
+            <fieldset>
+                <legend>Crear un token nuevo</legend>
+
+                <div class="grd-grid-12 grd-parent grd-row-padding">
+                    <div class="grd-grid-4 form_label">
+                        <label for="txtName">Seleccione un nombre:</label>
+                    </div>
+                    <div class="grd-grid-8">
+                        <input id="txtName" type="text" maxlength="32" />
+                    </div>
+                </div>
+
+                <div class="grd-grid-12 grd-parent grd-row-padding">
+                    <div class="grd-grid-4 form_label">
+                        <label for="txtName">Seleccione las condiciones:</label>
+                    </div>
+                    <div class="grd-grid-8">
+                        <input id="scopes" type="checkbox" name="scopes[]" value="read" checked="checked" readonly="readonly" />
+                          <abbr rel="tooltip" title="Se puede utilizar para ver la actividad de la cuenta, incluyendo la configuración, límites, balances, historial de compras del contratos, y mucho más.">Leer</abbr>
+                        <input type="checkbox" name="scopes[]" value="trade" />
+                          <abbr rel="tooltip" title="Se puede utilizar para comprar y vender contratos, renovar compras caducadas y recargar las cuentas de dinero virtual.">Operar</abbr>
+                        <input type="checkbox" name="scopes[]" value="payments" />
+                          <abbr rel="tooltip" title="Se puede utilizar para abrir cuentas, configurar ajustes, administrar el uso de token y mucho más.">Pagos</abbr>
+                        <input type="checkbox" name="scopes[]" value="admin" />
+                          <abbr rel="tooltip" title="Se puede utilizar para retirar fondos a los agentes de pago, transferir fondos entre cuentas y establecer / cancelar contraseñas del cajero.">Administrador</abbr>
+                    </div>
+                </div>
+
+                <div class="grd-grid-12 grd-parent">
+                    <div class="grd-grid-4"></div>
+                    <div class="grd-grid-8">
+                        <div id="formMessage"></div>
+                    </div>
+                </div>
+
+                <div class="grd-grid-12 grd-parent">
+                    <div class="grd-grid-4"></div>
+                    <div class="grd-grid-8">
+                        <span class="button">
+                            <button class="button" id="btnCreate">Crear</button>
+                        </span>
+                    </div>
+                </div>
+
+            </fieldset>
+        </form>
+    </div>
+
+    <div id="token_message" class="grd-grid-12 grd-row-padding center dynamic">
+        <p></p>
+    </div>
+
+    <div id="tokens_list" class="grd-grid-12 grd-parent grd-row-padding">
+    </div>
+</div>
+          </div>
+      </div>

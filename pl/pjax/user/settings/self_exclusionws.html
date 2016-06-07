@@ -1,0 +1,149 @@
+<div id="content">
+          <!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-MZWFF7"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script data-cfasync="false">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MZWFF7');</script>
+<!-- End Google Tag Manager -->
+          <div id="page_info" style="display:none;">
+              <title>Account Details | Binary.com</title>
+          </div>
+          
+          <div class="grd-container">
+          
+
+          <div class="grd-grid-12">
+	<h1>Udogodnienia samodzielnego wyłączenia</h1>
+
+	<p id="selfExclusionDesc">Handlowanie na rynkach finansowych może być uzależniające. Wypełnij poniższy formularz, aby ograniczyć swoją działalność na portalu lub wyślij podpisany list lub faks do naszego działu obsługi klienta. Po ustanowieniu limitów, możesz je tylko zwiększać. Limity zostaną usunięte lub zwiększone dopiero po 7 dniach, chyba że obowiązuje okres samodzielnego wyłączenia, który nie może zostać usunięty, ani zmieniony, jeśli został wcześniej potwierdzony. Aby znieść lub zwiększyć limity, proszę skontaktować się z działem <a href="/pl/contact.html">obsługi klienta</a>.</p>
+
+	<p id="errorMsg" class="notice-msg center hidden"></p>
+
+	<div id="loading"></div>
+
+	<form id="frmSelfExclusion" class="form rbox hidden">
+		<fieldset>
+
+			<div class="grd-row-padding row clear">
+				<div class="grd-grid-4 form_label">
+					<label for="max_balance">Maksymalne saldo gotówki na koncie</label>
+				</div>
+				<div class="grd-grid-8">
+					<input id="max_balance" type="text" maxlength="20" />
+					<div class="hint">Po osiągnięciu tego limitu nie można dokonywać dalszych wpłat.</div>
+				</div>
+			</div>
+
+			<div class="grd-row-padding row clear">
+				<div class="grd-grid-4 form_label">
+					<label for="max_turnover">Dzienny maksymalny obrót</label>
+				</div>
+				<div class="grd-grid-8">
+					<input id="max_turnover" type="text" maxlength="20" />
+					<div class="hint">Maksymalne dzienne łączne zakupy kontraktów.</div>
+				</div>
+			</div>
+
+			<div class="grd-row-padding row clear">
+				<div class="grd-grid-4 form_label">
+					<label for="max_losses">Dzienny limit strat</label>
+				</div>
+				<div class="grd-grid-8">
+					<input id="max_losses" type="text" maxlength="20" />
+					<div class="hint">Maksymalna łączna strata dzienna.</div>
+				</div>
+			</div>
+
+			<div class="grd-row-padding row clear">
+				<div class="grd-grid-4 form_label">
+					<label for="max_7day_turnover">7-dniowy maksymalny obrót</label>
+				</div>
+				<div class="grd-grid-8">
+					<input id="max_7day_turnover" type="text" maxlength="20" />
+					<div class="hint">Maksymalne łączne 7-dniowe zakupy kontraktów.</div>
+				</div>
+			</div>
+
+			<div class="grd-row-padding row clear">
+				<div class="grd-grid-4 form_label">
+					<label for="max_7day_losses">7-dniowy limit strat </label>
+				</div>
+				<div class="grd-grid-8">
+					<input id="max_7day_losses" type="text" maxlength="20" />
+					<div class="hint">Maksymalna łączna strata w okresie 7-dniowym.</div>
+				</div>
+			</div>
+
+			<div class="grd-row-padding row clear">
+				<div class="grd-grid-4 form_label">
+					<label for="max_30day_turnover">30-dniowy limit obrotów </label>
+				</div>
+				<div class="grd-grid-8">
+					<input id="max_30day_turnover" type="text" maxlength="20" />
+					<div class="hint">Maksymalne łączne zakupy kontraktów w okresie 30 dni.</div>
+				</div>
+			</div>
+
+			<div class="grd-row-padding row clear">
+				<div class="grd-grid-4 form_label">
+					<label for="max_30day_losses">30-dniowy limit strat</label>
+				</div>
+				<div class="grd-grid-8">
+					<input id="max_30day_losses" type="text" maxlength="20" />
+					<div class="hint">Maksymalna łączna strata w okresie 30-dni.</div>
+				</div>
+			</div>
+
+			<div class="grd-row-padding row clear">
+				<div class="grd-grid-4 form_label">
+					<label for="max_open_bets">Maksymalna dzienna liczba otwartych pozycji</label>
+				</div>
+				<div class="grd-grid-8">
+					<input id="max_open_bets" type="text" maxlength="4" />
+				</div>
+			</div>
+
+			<div class="grd-row-padding row clear">
+				<div class="grd-grid-4 form_label">
+					<label for="session_duration_limit">Limit czasu sesji, w minutach</label>
+				</div>
+				<div class="grd-grid-8">
+					<input id="session_duration_limit" type="text" maxlength="5" />
+					<div class="hint">Zostaniesz automatycznie wylogowany po tym czasie.</div>
+				</div>
+			</div>
+
+			<div class="grd-row-padding row clear">
+				<div class="grd-grid-4 form_label">
+					<label for="exclude_until">Wyłącz mnie z portalu do dnia</label>
+				</div>
+				<div class="grd-grid-8">
+					<input id="exclude_until" type="text" maxlength="10" />
+					<div class="hint">Wpisz datę w formacie RRRR-MM-DD.</div>
+				</div>
+			</div>
+
+			<div class="grd-row-padding row clear">
+				<div class="grd-grid-4"></div>
+				<div class="grd-grid-8">
+					<span class="button">
+						<button class="button">Uaktualnij ustawienia</button>
+					</span>
+				</div>
+			</div>
+
+			<div class="grd-row-padding row clear">
+				<div class="grd-grid-4"></div>
+				<div class="grd-grid-8">
+					<div id="formMessage"></div>
+				</div>
+			</div>
+
+		</fieldset>
+	</form>
+</div>
+          </div>
+      </div>
