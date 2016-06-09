@@ -75156,7 +75156,9 @@ var Barriers = (function () {
                     var elm = document.getElementById('barrier'),
                         tooltip = document.getElementById('barrier_tooltip'),
                         span = document.getElementById('barrier_span');
-                    if ((unit && unit.value === 'd') || (end_time && moment(end_time.value).isAfter(moment(),'day'))) {
+                    if ((unit && isVisible(unit) && unit.value === 'd') ||
+                        (end_time && isVisible(end_time) && moment(end_time.value).isAfter(moment(),'day')) ||
+                        !String(barrier['barrier']).match(/^[+-]/)) {
                         if (currentTick && !isNaN(currentTick) && String(barrier_def).match(/^[+-]/)) {
                             elm.value = (parseFloat(currentTick) + parseFloat(barrier_def)).toFixed(decimalPlaces);
                             elm.textContent = (parseFloat(currentTick) + parseFloat(barrier_def)).toFixed(decimalPlaces);
@@ -75169,6 +75171,7 @@ var Barriers = (function () {
                         // no need to display indicative barrier in case of absolute barrier
                         indicativeBarrierTooltip.textContent = '';
                     } else {
+                        if(!String(barrier_def).match(/^[+-]/)) barrier_def = barrier['barrier']; // override Defaults value, because it's changing from absolute to relative barrier
                         elm.value = barrier_def;
                         elm.textContent = barrier_def;
                         span.style.display = 'none';
@@ -75197,7 +75200,9 @@ var Barriers = (function () {
                     var defaults_barrier_high = Defaults.get('barrier_high'), defaults_barrier_low = Defaults.get('barrier_low');
                     var barrier_high = defaults_barrier_high && !isNaN(defaults_barrier_high) ? defaults_barrier_high : barrier['barrier'],
                         barrier_low  = defaults_barrier_low  && !isNaN(defaults_barrier_low)  ? defaults_barrier_low  : barrier['barrier1'];
-                    if (unit && unit.value === 'd') {
+                    if ((unit && isVisible(unit) && unit.value === 'd') ||
+                        (end_time && isVisible(end_time) && moment(end_time.value).isAfter(moment(),'day')) ||
+                        !String(barrier['barrier']).match(/^[+-]/)) {
                         if (currentTick && !isNaN(currentTick) && String(barrier_high).match(/^[+-]/)) {
                             high_elm.value = (parseFloat(currentTick) + parseFloat(barrier_high)).toFixed(decimalPlaces);
                             high_elm.textContent = (parseFloat(currentTick) + parseFloat(barrier_high)).toFixed(decimalPlaces);
@@ -75220,6 +75225,11 @@ var Barriers = (function () {
                         indicativeHighBarrierTooltip.textContent = '';
                         indicativeLowBarrierTooltip.textContent = '';
                     } else {
+                        // override Defaults value, if it's changing from absolute to relative barrier
+                        if(!String(barrier_high).match(/^[+-]/) || !String(barrier_low).match(/^[+-]/)) {
+                            barrier_high = barrier['barrier'];
+                            barrier_low  = barrier['barrier1'];
+                        }
                         high_elm.value = barrier_high;
                         high_elm.textContent = barrier_high;
 
@@ -76874,7 +76884,7 @@ function displayIndicativeBarrier() {
         highBarrierElement = document.getElementById('barrier_high'),
         lowBarrierElement = document.getElementById('barrier_low');
 
-    if (unit && unit.value !== 'd' && currentTick && !isNaN(currentTick)) {
+    if (unit && (!isVisible(unit) || unit.value !== 'd') && currentTick && !isNaN(currentTick)) {
         var decimalPlaces = countDecimalPlaces(currentTick);
         if (indicativeBarrierTooltip && isVisible(indicativeBarrierTooltip)) {
             var barrierValue = isNaN(parseFloat(barrierElement.value))?0:parseFloat(barrierElement.value);
@@ -76915,31 +76925,29 @@ function durationOrder(duration){
 function marketOrder(market){
     'use strict';
     var order = {
-        forex: 0,
-          major_pairs: 1,
-          minor_pairs: 2,
-          smart_fx: 3,
-        indices: 4,
-          asia_oceania: 5,
-          europe_africa: 6,
-          americas: 7,
-          otc_index: 8,
-        stocks: 9,
-          france: 10,
-          belgium: 11,
-          amsterdam: 12,
-          au_otc_stock: 13,
-        ge_otc_stock: 14,
-          uk_otc_stock: 15,
-          us_otc_stock: 16,
-        commodities: 17,
-          metals: 18,
-          energy: 19,
-        volidx: 20,
-          random_index: 21,
-          random_daily: 22,
-          random_nightly: 23
-    };
+        forex:               0,
+            major_pairs:     1,
+            minor_pairs:     2,
+            smart_fx:        3,
+        indices:             4,
+            asia_oceania:    5,
+            europe_africa:   6,
+            americas:        7,
+            otc_index:       8,
+        stocks:              9,
+            au_otc_stock:    10,
+            ge_otc_stock:    11,
+            india_otc_stock: 12,
+            uk_otc_stock:    13,
+            us_otc_stock:    14,
+        commodities:         15,
+            metals:          16,
+            energy:          17,
+        volidx:              18,
+            random_index:    19,
+            random_daily:    20,
+            random_nightly:  21
+    }; 
     return order[market];
 }
 
@@ -76973,7 +76981,7 @@ function displayTooltip(market, symbol){
       tip.hide();
       if (guide) guide.show();
     }
-    if (market.match(/^otc_index/) || symbol.match(/^OTC_/) || market.match(/otc_stock/) || markets.by_symbol(symbol).submarket.name.match(/otc_stock/)){
+    if (market.match(/^otc_index/) || symbol.match(/^OTC_/) || market.match(/stock/) || (markets.by_symbol(symbol) && markets.by_symbol(symbol).market.name.match(/stocks/))){
         tip.show();
         tip.setAttribute('target', page.url.url_for('/get-started/otc-indices-stocks'));
     }
@@ -78135,6 +78143,9 @@ var Durations = (function(){
             processTradingTimesRequest(end_date);
         }
         else{
+            if(!expiry_time.value) {
+                expiry_time.value = moment(window.time).add(5, 'minutes').utc().format('HH:mm');
+            }
             Durations.setTime(expiry_time.value);
             Defaults.set('expiry_time', Defaults.get('expiry_time') || expiry_time.value);
             expiry_time.show();
