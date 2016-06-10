@@ -54,13 +54,13 @@ table {
 }
 
 /* GLOBAL RULES */
-/* 
- * To simplify usage of a property 
+/*
+ * To simplify usage of a property
  * with different values for LTR and RTL languages
  * sample usage: @include BIDIR_VALUE(float, left, right);
  */
-/* 
- * To simplify usage of different properties 
+/*
+ * To simplify usage of different properties
  * with the same value for LTR and RTL languages
  * sample usage: @include BIDIR_PROP(margin-left, margin-right, 5px);
  */
@@ -102,13 +102,6 @@ a, a:visited {
 }
 a:hover, a:active, a:visited:hover, a:visited:active {
   text-decoration: underline;
-}
-a .learn-more, a:visited .learn-more {
-  font-weight: bold;
-  font-size: 0.8125em;
-  padding-right: 15px;
-  margin-top: 15px;
-  background: url("pages/home/learn-more-arrow_1.png") no-repeat right;
 }
 
 p {
@@ -277,14 +270,6 @@ select.input {
 }
 
 /* form styles */
-.extra_tooltip_container {
-  float: left;
-  text-align: right;
-  padding-right: 1em;
-  width: 40%;
-  line-height: 1.7em;
-}
-
 label {
   line-height: 25px;
 }
@@ -292,18 +277,6 @@ label {
 .form_label {
   text-align: left;
   line-height: 25px;
-}
-
-.extra_tooltip_container label {
-  padding: 0;
-  width: 94%;
-}
-
-#profit-table-form {
-  background: white;
-}
-#profit-table-form input {
-  border: 1px solid #e4e4e4;
 }
 
 .input {
@@ -349,25 +322,6 @@ label {
   font-style: italic;
 }
 
-.non_input {
-  color: #44484c;
-  line-height: 1.7em;
-}
-
-.non_input label {
-  line-height: 1.6em;
-}
-
-.gray {
-  color: #44484c;
-}
-
-.form_link {
-  display: block;
-  font-size: 76%;
-  line-height: 0.8em;
-}
-
 fieldset .error-msg {
   width: 100%;
   text-align: center;
@@ -376,11 +330,6 @@ fieldset .error-msg {
 /* global styles */
 * {
   margin: 0;
-}
-
-#popup {
-  width: 95%;
-  margin: 0 auto;
 }
 
 .clearfix {
@@ -492,16 +441,6 @@ fieldset .error-msg {
   overflow: hidden;
 }
 
-/* hacks - avoid! */
-/* using pixel as we need it to make footer sticky */
-.scrollbar-measure {
-  width: 100px;
-  height: 100px;
-  overflow: scroll;
-  position: absolute;
-  top: -9999px;
-}
-
 .center {
   margin-left: auto;
   margin-right: auto;
@@ -599,21 +538,12 @@ ul.checked li {
   outline: 0;
 }
 
-.empty-space {
-  margin-top: 137px;
-}
-
 #main-menu .items li a {
   white-space: nowrap;
 }
 
 #japan-form .hint {
   margin-bottom: 0;
-}
-
-.charting-page img.responsive {
-  width: 140px;
-  height: 140px;
 }
 
 .popup_page_overlay {
@@ -624,12 +554,6 @@ ul.checked li {
   top: 0;
   left: 0;
   z-index: 10;
-}
-
-.fake-link {
-  color: blue;
-  text-decoration: underline;
-  cursor: pointer;
 }
 
 .light-yellow-background {
@@ -769,10 +693,7 @@ _:-ms-fullscreen, :root #content-holder {
 #topbar #topbar-info {
   float: left;
 }
-#topbar #gmt-clock, #topbar #contact-us {
-  padding-top: 3px;
-}
-#topbar .upgrademessage {
+#topbar #gmt-clock, #topbar #contact-us, #topbar .upgrademessage {
   padding-top: 3px;
 }
 #topbar .upgrademessage a {
@@ -806,31 +727,6 @@ _:-ms-fullscreen, :root #content-holder {
   color: white;
   white-space: nowrap;
   text-decoration: none;
-}
-#topbar ul {
-  z-index: 999999;
-  position: absolute;
-  display: none;
-  background: #15212d;
-  border-radius: 0 0 5px 5px;
-  margin: 1px 0 0 0;
-  padding: 5px 10px 10px 10px;
-}
-#topbar ul li {
-  margin: 0 0 0 10px;
-  border: 0;
-  position: relative;
-  white-space: nowrap;
-  border-radius: 0;
-  padding: 2px 5px 2px 5px;
-  display: block;
-  border-radius: 2px;
-  line-height: 1.5;
-}
-#topbar ul li:active > ul, #topbar ul li:focus, #topbar ul li:hover {
-  cursor: pointer;
-  background: white;
-  color: black;
 }
 
 #header {
@@ -878,12 +774,6 @@ _:-ms-fullscreen, :root #content-holder {
 }
 #header #client-logged-out, #header #loginid-switch-form {
   text-align: left;
-}
-#header a#lost-password, #header a#register {
-  display: inline-block;
-  margin: 0 0 0 10px;
-  line-height: 170%;
-  font-size: 70%;
 }
 #header #logout {
   text-align: right;
@@ -972,9 +862,6 @@ _:-ms-fullscreen, :root #content-holder {
 #footer #footer-menu li {
   line-height: 1;
 }
-#footer #footer-menu #accounts_links {
-  padding-bottom: 10px;
-}
 #footer #footer-menu .partner img {
   max-width: 65%;
   margin: 0.3em auto;
@@ -982,10 +869,8 @@ _:-ms-fullscreen, :root #content-holder {
 #footer #footer-regulatory {
   background: #15212d;
 }
-#footer #footer-regulatory a, #footer #footer-regulatory span {
-  display: inline-block;
-}
 #footer #footer-regulatory a {
+  display: inline-block;
   color: white;
   text-decoration: underline;
 }
@@ -995,8 +880,8 @@ _:-ms-fullscreen, :root #content-holder {
   color: white;
   font-size: 10px;
 }
-#footer #footer-regulatory #iom_icon_footer {
-  max-width: 90px;
+#footer #footer-regulatory #social-networks {
+  padding-top: 20px;
 }
 #footer #footer-regulatory #lga_icon_footer {
   max-width: 140px;
@@ -1009,9 +894,6 @@ _:-ms-fullscreen, :root #content-holder {
   max-width: 150px;
   margin-top: 15px;
 }
-#footer #footer-regulatory #eighteen_plus {
-  max-width: 45px;
-}
 #footer #footer-regulatory .social-icons {
   text-align: left;
 }
@@ -1020,17 +902,6 @@ _:-ms-fullscreen, :root #content-holder {
   height: 30px;
   padding-right: 5px;
   padding-top: 10px;
-}
-#footer #footer-regulatory .fb-gplus-follow {
-  margin-top: 10px;
-}
-#footer #footer-regulatory .fb-gplus-follow .fb-like {
-  margin-right: 5px;
-}
-#footer #footer-regulatory .fb-gplus-follow .gplus {
-  position: relative;
-  display: inline-block;
-  top: 3px;
 }
 #footer #footer-regulatory #ratelimit-error-message {
   display: none;
@@ -1063,22 +934,6 @@ _:-ms-fullscreen, :root #content-holder {
   font-weight: 400;
   color: white;
   line-height: 110%;
-}
-#footer #suspend-message {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  background-color: #fef1cf;
-  z-index: 999;
-  text-align: center;
-}
-#footer #suspend-message .message {
-  margin: 12px;
-  font-style: italic;
-  color: #cc0033;
-}
-#footer #social-networks {
-  padding-top: 20px;
 }
 
 #main-menu {
@@ -1350,52 +1205,6 @@ _:-ms-fullscreen, :root #content-holder {
 }
 #content .page-section > .tab-content-wrapper .full-width-content {
   width: 100%;
-}
-
-#exception {
-  padding: 0px 0;
-  min-height: 200px;
-  text-align: center;
-}
-#exception h1 {
-  font-weight: normal;
-  font-size: 1.6em;
-  margin: 10% 0 5% 0;
-}
-#exception a {
-  color: white;
-  text-decoration: none;
-  text-align: center;
-  line-height: 100%;
-  background: #2e8836;
-  border-radius: 4px;
-  text-transform: capitalize;
-  padding: 10px 25px 10px 25px;
-  display: inline-block;
-  letter-spacing: 0.75px;
-  display: inline;
-}
-#exception a:visited {
-  color: white;
-}
-#exception a:hover, #exception a:active {
-  text-decoration: none;
-  background-color: #14602B;
-}
-#exception table.code {
-  margin-left: 50px;
-  font-size: 12px;
-  border-spacing: 2px;
-  border-collapse: collapse;
-  background: #dedede;
-}
-#exception table.code td {
-  border: 1px solid #c2c2c2;
-}
-#exception table.code td.current {
-  font-style: italic;
-  font-weight: bold;
-  color: #cc0033;
 }
 
 .lightbox {
@@ -1794,24 +1603,6 @@ abbr {
     width: 32%;
   }
 }
-#login #content {
-  margin-top: 40px;
-}
-#login p {
-  text-align: center;
-}
-#login p.errorfield {
-  text-align: left;
-}
-
-#login-fail {
-  background-color: #fef1cf;
-  border-radius: 10px;
-  padding: 20px;
-  margin: 10px;
-  line-height: 1.4em;
-}
-
 /* GET-STARTED PAGES RULES */
 .get-started, .get-started-jp {
   margin-top: 40px;
@@ -2131,327 +1922,6 @@ abbr {
   }
 }
 
-.batch_transaction_total {
-  text-align: right;
-  font-weight: bold;
-}
-
-.batch_transaction_total_price {
-  text-align: center;
-  font-weight: bold;
-}
-
-#betpage #content-holder #content {
-  width: 100%;
-}
-#betpage #content-holder #content form fieldset {
-  background: none;
-}
-#betpage #content-holder #content #explanation-content {
-  margin-top: 20px;
-}
-#betpage #content-holder #content .padding-left {
-  padding-left: 40px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-#betpage #content-holder #content .padding-right {
-  padding-right: 40px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-#betpage #content-holder #content > .content-tab-container {
-  width: 100%;
-}
-#betpage #content-holder #content > .content-tab-container .tab-content-wrapper {
-  width: 100%;
-  margin: 0 auto;
-}
-#betpage #content-holder #content > .content-tab-container .tab-content-wrapper #tab_graph-content {
-  width: 100%;
-}
-#betpage #content-holder #content > .content-tab-container .tab-content-wrapper form.smallfont {
-  height: 40px;
-}
-#betpage #content-holder #content > .content-tab-container .tab-content-wrapper form.smallfont .bet_bottom_loading_image {
-  padding: 10px 15px;
-}
-#betpage #content-holder #content > .content-tab-container .tab-content-wrapper form.smallfont button.button {
-  line-height: 0.3em;
-}
-#betpage #content-holder #content #bet_container {
-  margin-bottom: 20px;
-}
-#betpage #content-holder #content #bet_container fieldset {
-  border: 0;
-}
-#betpage #content-holder #content #bet_container .form_button {
-  margin-top: 0;
-}
-#betpage #content-holder #content #bet_container #betInputBox_container {
-  position: relative;
-  z-index: 10;
-  margin: 0;
-}
-#betpage #content-holder #content #bet_container #betInputBox_container .tab-content {
-  border: 1px solid #44484c;
-  min-height: 369px;
-}
-#betpage #content-holder #content #bet_container #betInputBox_container .tab-content-wrapper, #betpage #content-holder #content #bet_container #betInputBox_container .tab-content {
-  background-color: transparent;
-}
-#betpage #content-holder #content #bet_container #betInputBox_container .tab-menu ul#betsTab {
-  border-bottom: none;
-}
-#betpage #content-holder #content #bet_container #betInputBox_container .tab-menu ul#betsTab > li {
-  padding: 0;
-}
-#betpage #content-holder #content #bet_container #betInputBox_container .tab-menu ul#betsTab > li .tm-ul-2 {
-  top: 27px;
-  margin-top: 0;
-}
-#betpage #content-holder #content #bet_container #betInputBox_container .tab-menu ul#betsTab > li a.tm-a {
-  padding: 0 5px 0 5px;
-  width: auto;
-  font-size: 85%;
-}
-#betpage #content-holder #content #bet_container .unicode-info-icon {
-  font-size: 14px;
-}
-#betpage #content-holder #content #bet_container #bet_calculation_container {
-  margin: 0;
-  padding: 0;
-  position: relative;
-  /* loading section for bet container */
-}
-#betpage #content-holder #content #bet_container #bet_calculation_container #page_timeout_notice {
-  padding: 10px;
-  background: white;
-}
-#betpage #content-holder #content #bet_container #bet_calculation_container .rbox-content {
-  padding: 0;
-}
-#betpage #content-holder #content #bet_container #bet_calculation_container .bet-error-box {
-  clear: both;
-  margin: 0;
-  margin-top: 27px;
-  margin-left: 20px;
-  padding: 10px;
-  width: 380px;
-  color: black;
-  background-color: #fef1cf;
-}
-#betpage #content-holder #content #bet_container #bet_calculation_container .bet-error-box p {
-  margin: 0;
-}
-#betpage #content-holder #content #bet_container #bet_calculation_container .rbox {
-  margin: 0;
-  padding-bottom: 1.8em;
-}
-#betpage #content-holder #content #bet_container #bet_calculation_container .rbox .rbox-wrap {
-  min-height: 140px;
-}
-#betpage #content-holder #content #bet_container #bet_calculation_container .rbox .rbox-wrap .bet-error-box {
-  margin: 0;
-  padding: 1em;
-  font-size: 0.8em;
-  width: auto;
-}
-#betpage #content-holder #content #bet_container #bet_calculation_container .rbox .rbox-wrap .rbox-heading {
-  background-color: transparent;
-  margin-bottom: 0;
-  /*margin-bottom: 10px;*/
-}
-#betpage #content-holder #content #bet_container #bet_calculation_container .rbox .rbox-wrap .rbox-heading h4 {
-  padding: 0.7em 0 0.7em 4em;
-  text-transform: capitalize;
-}
-#betpage #content-holder #content #bet_container #bet_calculation_container .rbox .rbox-wrap .rbox-heading .asian_up {
-  background: url("../images/pages/trade/asian-u_1.svg") no-repeat 5% 75%;
-}
-#betpage #content-holder #content #bet_container #bet_calculation_container .rbox .rbox-wrap .rbox-heading .asian_down {
-  background: url("../images/pages/trade/asian-d_1.svg") no-repeat 5% 75%;
-}
-#betpage #content-holder #content #bet_container #bet_calculation_container .rbox .rbox-wrap .rbox-heading .differs {
-  background: url("../images/pages/trade/differs_1.svg") no-repeat 5% 75%;
-}
-#betpage #content-holder #content #bet_container #bet_calculation_container .rbox .rbox-wrap .rbox-heading .matches {
-  background: url("../images/pages/trade/matches_1.svg") no-repeat 5% 75%;
-}
-#betpage #content-holder #content #bet_container #bet_calculation_container .rbox .rbox-wrap .rbox-heading .spread_up {
-  background: url("../images/pages/trade/spreadbet.svg") no-repeat 5% 75%;
-}
-#betpage #content-holder #content #bet_container #bet_calculation_container .rbox .rbox-wrap .rbox-heading .spread_down {
-  background: url("../images/pages/trade/spreadbet.svg") no-repeat 5% 75%;
-}
-#betpage #content-holder #content #bet_container #bet_calculation_container .rbox .rbox-wrap .rbox-heading .rises {
-  background: url("../images/pages/trade/rise_1.png") no-repeat 5% 75%;
-}
-#betpage #content-holder #content #bet_container #bet_calculation_container .rbox .rbox-wrap .rbox-heading .falls {
-  background: url("../images/pages/trade/fall_1.png") no-repeat 5% 75%;
-}
-#betpage #content-holder #content #bet_container #bet_calculation_container .rbox .rbox-wrap .rbox-heading .higher {
-  background: url("../images/pages/trade/higher_1.png") no-repeat 5% 75%;
-}
-#betpage #content-holder #content #bet_container #bet_calculation_container .rbox .rbox-wrap .rbox-heading .lower {
-  background: url("../images/pages/trade/lower_1.png") no-repeat 5% 75%;
-}
-#betpage #content-holder #content #bet_container #bet_calculation_container .rbox .rbox-wrap .rbox-heading .touches {
-  background: url("../images/pages/trade/touch_1.png") no-repeat 5% 75%;
-}
-#betpage #content-holder #content #bet_container #bet_calculation_container .rbox .rbox-wrap .rbox-heading .does_not_touch {
-  background: url("../images/pages/trade/no-touch_1.png") no-repeat 5% 75%;
-}
-#betpage #content-holder #content #bet_container #bet_calculation_container .rbox .rbox-wrap .rbox-heading .stays_between {
-  background: url("../images/pages/trade/stay-in-between_1.png") no-repeat 5% 75%;
-}
-#betpage #content-holder #content #bet_container #bet_calculation_container .rbox .rbox-wrap .rbox-heading .goes_outside {
-  background: url("../images/pages/trade/stay-out_1.png") no-repeat 5% 75%;
-}
-#betpage #content-holder #content #bet_container #bet_calculation_container .rbox .rbox-wrap .rbox-heading .ends_between {
-  background: url("../images/pages/trade/ends-between_1.png") no-repeat 5% 75%;
-}
-#betpage #content-holder #content #bet_container #bet_calculation_container .rbox .rbox-wrap .rbox-heading .ends_outside {
-  background: url("../images/pages/trade/ends-outside_1.png") no-repeat 5% 75%;
-}
-#betpage #content-holder #content #bet_container #bet_calculation_container .rbox .ui-tabs ul.ui-tabs-nav li {
-  list-style-image: none;
-}
-#betpage #content-holder #content #bet_container #bet_calculation_container .rbox .ui-datepicker td {
-  padding: 0.1em;
-}
-#betpage #content-holder #content #bet_container #bet_calculation_container .rbox .form_button {
-  margin-bottom: 0;
-}
-#betpage #content-holder #content #bet_container #bet_calculation_container .rbox-bg-alt {
-  background: none;
-}
-#betpage #content-holder #content #bet_container #bet_calculation_container .rbox-bg-alt .rbox-content {
-  background: none;
-  padding: 0;
-}
-#betpage #content-holder #content #bet_container #bet_calculation_container .bet_pricebox_wrapper {
-  padding: 0;
-  margin: 0;
-}
-#betpage #content-holder #content #bet_container #bet_cost_container {
-  font-size: 0.8em;
-  display: inline-block;
-  background: white;
-}
-#betpage #content-holder #content #bet_container #bet_cost_container .rbox-wrap {
-  border-bottom: 1px solid #c2c2c2;
-}
-#betpage #content-holder #content #bet_container #bet_cost_container form {
-  width: 40%;
-  position: relative;
-}
-#betpage #content-holder #content #bet_container #bet_cost_container .pricing-details {
-  top: 1px;
-}
-#betpage #content-holder #content #bet_container #loading-price {
-  text-align: center;
-}
-#betpage #content-holder #content #bet_container #spot {
-  padding: 1px 2px;
-}
-#betpage #content-holder #content #bet_container .basicInputForm .error {
-  background-color: #fef1cf;
-}
-#betpage #content-holder #content #bet_container .basicInputForm #no_bets {
-  text-align: center;
-  margin: 30px 0 70px;
-}
-#betpage #content-holder #content #bet_container #betInputBox button {
-  margin: 1em auto 0;
-}
-#betpage #content-holder #content #bet_container #betInputBox form {
-  margin-top: 21px;
-}
-#betpage #content-holder #content #bet_container #betInputBox form fieldset {
-  background: none;
-}
-#betpage #content-holder #content #bet_container #betInputBox div {
-  clear: both;
-  padding: 10px 0;
-}
-#betpage #content-holder #content #bet_container #betInputBox #std_loading_img {
-  min-height: 300px;
-  padding-top: 50px;
-}
-#betpage #content-holder #content #bet_container #betInputBox div.toggle-content {
-  margin-top: 0;
-}
-#betpage #content-holder #content #bet_container #expiry,
-#betpage #content-holder #content #bet_container #type {
-  width: 163px;
-}
-#betpage #content-holder #content #bet_container .tab-content-wrapper p.required {
-  padding-top: 3px;
-}
-
-.outer_box {
-  color: white;
-  position: relative;
-  width: 153px;
-  height: 106px;
-  text-decoration: none;
-  text-align: left;
-}
-.outer_box .button_text {
-  margin-left: 8px;
-}
-
-.inner_box {
-  color: #000;
-  position: absolute;
-  text-align: center;
-  width: 139px;
-  height: 60px;
-  bottom: 0px;
-  margin: 0px 7px 7px;
-  background-color: white;
-}
-.inner_box .stylized_price {
-  margin: 15px 0;
-}
-
-.grey-out {
-  background-color: #dedede;
-}
-.grey-out .inner_box {
-  color: #dedede;
-}
-
-.buy {
-  background-color: #29abe2;
-}
-
-.sell {
-  background-color: #cc0033;
-}
-
-a.spread_250, a.spread_260, a.spread_buy, a.spread_sell {
-  text-decoration: none;
-}
-
-.stylized_cents {
-  font-size: 65%;
-  vertical-align: text-top;
-  margin-left: .02em;
-  margin-right: 0.1em;
-}
-
-.stylized_currency {
-  font-size: 75%;
-  text-align: left;
-}
-
-.stylized_price {
-  font-weight: bold;
-  font-size: 150%;
-}
-
 .price_moved_up {
   background-color: #29abe2;
   color: white;
@@ -2462,87 +1932,8 @@ a.spread_250, a.spread_260, a.spread_buy, a.spread_sell {
   color: white;
 }
 
-.bet_cost {
-  text-align: center;
-  width: 40%;
-  float: left;
-  margin: 0 5px 5px 5px;
-}
-
-.bet_cost em {
-  font-style: normal;
-}
-
-.bet_cost b {
-  font-size: 128%;
-}
-
-.bet_description {
-  width: 55.5%;
-  float: right;
-  padding: 0 3px 3px 0;
-  font-size: 1.2em;
-}
-
-.bet_return {
-  position: absolute;
-  text-align: center;
-  width: 100%;
-  margin: auto;
-  background-color: #dedede;
-  line-height: 1.8em;
-  font-size: 0.7em;
-  white-space: nowrap;
-  bottom: 0;
-}
-
-.price_box {
-  padding: 0;
-  margin-top: 20;
-  border: 1px solid #44484c;
-}
-.price_box a {
-  color: #2a3052;
-}
-
-.price_box_first {
-  margin-top: 26px;
-  margin-bottom: 20px;
-}
-
-.price_box_last {
-  position: relative;
-  bottom: 0;
-  margin-bottom: 0;
-}
-
 #bet_bottom_content {
   padding-top: 1em;
-}
-#bet_bottom_content input {
-  border: 1px solid #dedede;
-  border-radius: 4px;
-}
-#bet_bottom_content select {
-  border: 1px solid #dedede;
-  background: white;
-}
-#bet_bottom_content button {
-  height: 1.5em;
-  line-height: 0;
-}
-#bet_bottom_content ul > li {
-  list-style-image: none;
-}
-#bet_bottom_content h4 {
-  color: #2a3052;
-  font-weight: bold;
-  margin: 10px 0;
-}
-
-/* added for the underlying highlight */
-.is_intraday {
-  background-color: #c2c2c2;
 }
 
 a.close {
@@ -2565,156 +1956,6 @@ a.close:hover {
   text-decoration: none;
 }
 
-.trade_confirm_container {
-  overflow: display;
-  margin: 0;
-  padding: 0;
-  text-align: center;
-  border: solid 1px #f2f2f2;
-  background: #f2f2f2;
-}
-
-.bet_confirm_wrapper {
-  padding: 0;
-  margin: 0;
-}
-.bet_confirm_wrapper h2, .bet_confirm_wrapper h3, .bet_confirm_wrapper h4 {
-  margin-top: 30px;
-}
-.bet_confirm_wrapper p, .bet_confirm_wrapper div {
-  font-size: 16px;
-}
-.bet_confirm_wrapper .bet_confirm_error_message {
-  margin: 10px 0;
-}
-.bet_confirm_wrapper .price {
-  font-weight: bold;
-  font-size: 100%;
-}
-.bet_confirm_wrapper .bet_confirm_desc {
-  float: clear;
-  margin: 0 10px;
-  padding: 10px 5px;
-  text-align: justify;
-  border: solid 2px #dedede;
-  background: white;
-}
-.bet_confirm_wrapper .account_balance {
-  text-align: center;
-  width: 100%;
-  padding: 0;
-  margin: 0;
-  background: #e98024;
-  color: white;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-}
-.bet_confirm_wrapper .trade_ref {
-  padding: 0;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-.bet_confirm_wrapper table {
-  font-size: 14px;
-}
-.bet_confirm_wrapper table .even {
-  background: #f2f2f2;
-}
-.bet_confirm_wrapper #confirmation_table {
-  font-size: 16px;
-  border: none;
-  margin: 0;
-}
-.bet_confirm_wrapper #confirmation_table th, .bet_confirm_wrapper #confirmation_table tr, .bet_confirm_wrapper #confirmation_table td {
-  border: none;
-  padding-top: 0;
-  text-align: center;
-  vertical-align: middle;
-}
-.bet_confirm_wrapper #confirmation_table th {
-  padding-bottom: 5px;
-}
-.bet_confirm_wrapper #confirmation_table span.notes {
-  font-size: 12px;
-  margin: 0;
-  padding: 0;
-  padding-top: 6px;
-}
-.bet_confirm_wrapper #confirmation_table .success {
-  background: #e98024;
-  color: white;
-  padding-left: 1px;
-  padding-right: 1px;
-  margin-left: 8px;
-  margin-right: 8px;
-}
-
-.standout {
-  font-weight: bold;
-}
-.standout .price {
-  color: #e98024;
-}
-
-.standin {
-  font-size: 100%;
-  font-weight: normal;
-}
-
-.profit {
-  color: #2e8836;
-}
-
-.loss {
-  color: #cc0033;
-}
-
-.with_right_border {
-  border-right: solid 1px black;
-}
-
-.with_left_border {
-  border-left: solid 1px black;
-}
-
-#buy_confirm_container {
-  position: absolute;
-  overflow: display;
-  z-index: 100;
-  margin: 0;
-  top: 0;
-  padding: 0;
-  right: 0;
-  width: 100%;
-}
-#buy_confirm_container a.visualization {
-  font-size: 14px;
-  font-weight: normal;
-  text-decoration: underline;
-}
-#buy_confirm_container .account_balance {
-  padding: 10px 0;
-  margin: 0;
-}
-#buy_confirm_container #confirmation_table.rbox {
-  padding-bottom: 0 !important;
-}
-
-@media screen and (max-width: 480px) {
-  #betpage #content-holder #content .padding-left {
-    padding-left: 10px;
-    margin-top: 20px;
-    margin-bottom: 0px;
-  }
-  #betpage #content-holder #content .padding-right {
-    padding-right: 10px;
-    margin-top: 0px;
-    margin-bottom: 0px;
-  }
-}
 .popup_bet_desc {
   padding: 5px 0;
   border: 1px solid #DEDEDE;
@@ -2726,9 +1967,6 @@ a.close:hover {
 #sell_popup_container.message_popup {
   width: 500px;
   line-height: 25px;
-}
-#sell_popup_container.tick_popup {
-  min-height: 460px;
 }
 
 #sell_popup_container {
@@ -2744,116 +1982,6 @@ a.close:hover {
 }
 #sell_popup_container .inpage_popup_content {
   margin: 0;
-}
-#sell_popup_container .inpage_popup_content #explanation-content {
-  margin-top: 10px;
-  text-align: left;
-}
-#sell_popup_container .inpage_popup_content #sell_content_wrapper .sell_price_wrapper {
-  margin-top: 10px;
-}
-#sell_popup_container .inpage_popup_content #sell_content_wrapper .sell_price_wrapper #sell_price_container {
-  margin: 0 auto;
-  width: 60%;
-  display: inline-block;
-}
-#sell_popup_container .inpage_popup_content #sell_content_wrapper .sell_price_wrapper #sell_price_container .stylized_price {
-  min-width: 155px;
-  width: 40%;
-  margin-bottom: 5px;
-  display: inline-block;
-}
-#sell_popup_container .inpage_popup_content #sell_content_wrapper .sell_price_wrapper #sell_price_container #sell_price_sparkline {
-  padding: 0;
-  width: 40%;
-  text-align: left;
-  display: inline-block;
-}
-#sell_popup_container .inpage_popup_content #sell_content_wrapper .sell_price_wrapper #sell_info {
-  display: inline-block;
-  width: 30%;
-}
-#sell_popup_container .inpage_popup_content #sell_content_wrapper .sell_price_wrapper .form_button {
-  display: inline-block;
-  margin: 0 auto;
-  vertical-align: top;
-}
-#sell_popup_container .inpage_popup_content #sell_content_wrapper .extra-info {
-  font-size: 85%;
-}
-#sell_popup_container .inpage_popup_content #sell_content_wrapper .extra-info td {
-  border: 0;
-  padding: 0;
-}
-#sell_popup_container .inpage_popup_content #sell_content_wrapper .contract_barriers {
-  width: auto;
-  margin: 0 auto;
-}
-#sell_popup_container .inpage_popup_content #sell_content_wrapper .contract_barriers td {
-  margin: 0;
-  border: none;
-  text-align: left;
-  padding: 0 2px;
-}
-#sell_popup_container .inpage_popup_content #sell_content_wrapper .contract_barriers td.diff {
-  text-align: right;
-}
-#sell_popup_container .inpage_popup_content #sell_content_wrapper .contract_barriers td.dir {
-  text-align: center;
-}
-#sell_popup_container .inpage_popup_content #sell_content_wrapper #message_container_wrapper {
-  clear: both;
-  padding: 0;
-  background: none;
-}
-#sell_popup_container .inpage_popup_content #sell_content_wrapper #overlay-wrapper {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 90%;
-  background-color: #fff;
-  filter: alpha(opacity=50);
-  opacity: 0.5;
-  -moz-opacity: 0.5;
-  z-index: 150000;
-}
-#sell_popup_container .inpage_popup_content .bet_confirm_wrapper {
-  width: 60%;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 0;
-  margin-bottom: 40px;
-}
-#sell_popup_container .inpage_popup_content .note {
-  clear: both;
-  margin: 20px;
-  margin-top: 0;
-  text-align: left;
-}
-#sell_popup_container .inpage_popup_content #confirmation_table {
-  font-size: 16px;
-  border: none;
-  margin: 0;
-  padding-top: 0;
-  padding-bottom: 0;
-}
-#sell_popup_container .inpage_popup_content #confirmation_table th, #sell_popup_container .inpage_popup_content #confirmation_table td {
-  width: auto;
-}
-#sell_popup_container .inpage_popup_content #confirmation_table .standout {
-  width: 40%;
-}
-#sell_popup_container .inpage_popup_content #confirmation_table .standin {
-  width: 30%;
-}
-#sell_popup_container .inpage_popup_content .trade_ref {
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-#sell_popup_container .inpage_popup_content .account_balance {
-  padding-top: 10px;
-  padding-bottom: 10px;
 }
 
 .inpage_popup_container_ws {
@@ -2935,13 +2063,6 @@ a.close:hover {
   padding: 3px 10px;
 }
 
-.tab_menu_container.ui-corner-all {
-  border-radius: 0;
-}
-.tab_menu_container.ui-widget-content {
-  border: 1px solid #dedede;
-}
-
 /*------------------------------------------------------------------------------------
  HIDE STUFF                                                                         */
 .invisible {
@@ -2952,9 +2073,6 @@ a.close:hover {
   visibility: hidden;
 }
 
-#content .rbox-table-heading {
-  padding: 3px;
-}
 #content .rbox-heading {
   font-weight: bold;
   background-color: #f2f2f2;
@@ -2971,137 +2089,15 @@ a.close:hover {
 #content .rbox-content table td {
   border: 0;
 }
-#content .rbox-content .half-1 {
-  width: 50%;
-  float: left;
-}
-#content .rbox-content .half-2 {
-  width: 50%;
-  float: right;
-}
 
-#tt {
-  position: absolute;
-  display: block;
-  z-index: 200;
-}
-#tt #ttcont {
-  font-size: 0.8em;
-  background-color: white;
-  border: 1px solid #2a3052;
-  display: block;
-  padding: 0.1em 1em;
-}
-#tt #ttcont a, #tt #ttcont a:visited {
-  color: #2e8836;
-  text-decoration: none;
-}
-#tt #ttcont a:hover, #tt #ttcont a:active, #tt #ttcont a:visited:hover, #tt #ttcont a:visited:active {
-  text-decoration: underline;
-}
-
-.down-arrow-1 {
-  border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
-  border-top: 5px solid #2a3052;
-  width: 0;
-  height: 0;
-}
-
-/* show more button */
-.more {
-  margin-top: 15px;
-  text-align: right;
-}
-
-/* same as p, to act as an empty container */
-.div-p {
-  margin-bottom: 15px;
-}
-
-.centerText,
-.notice-1 {
+.centerText {
   text-align: center;
-}
-
-.market_higher {
-  background: transparent url("../images/javascript/up_arrow_1.gif") no-repeat 0 0;
-  padding-left: 15px;
-}
-
-.market_lower {
-  background: transparent url("../images/javascript/down_arrow_1.gif") no-repeat 0 0;
-  padding-left: 15px;
-}
-
-.title {
-  text-transform: capitalize;
-}
-
-#overLimitNotice {
-  padding-left: 30px;
-  padding-right: 30px;
-}
-
-.li-2-boxes li,
-.li-3-boxes li {
-  list-style: none;
-  float: left;
-  position: relative;
-}
-
-.li-2-boxes li {
-  width: 50%;
-}
-
-.li-3-boxes li {
-  width: 33%;
 }
 
 .li-2-boxes-content {
   padding: 0 15px;
   min-height: 10em;
   height: auto;
-}
-.li-2-boxes-content h2 a {
-  color: #2a3052;
-  font-size: 18px;
-  font-weight: bold;
-  text-decoration: none;
-}
-.li-2-boxes-content p {
-  margin-top: 10px;
-}
-
-.li-3-boxes-content {
-  padding: 0 15px;
-  height: 10em;
-}
-.li-3-boxes-content h2 {
-  color: #2a3052;
-  font-size: 18px;
-  font-weight: bold;
-  margin: 5px 15px;
-}
-.li-3-boxes-content h2 a {
-  text-decoration: none;
-  color: #2a3052;
-}
-.li-3-boxes-content p {
-  font-size: 14px;
-  margin: 10px 15px;
-}
-
-.li-2-boxes-content a.button,
-.li-3-boxes-content a.button {
-  position: absolute;
-  bottom: 0;
-}
-
-.li-2-boxes-content ul li {
-  float: none;
-  width: auto;
-  list-style: disc;
 }
 
 .li-boxes-content-icon {
@@ -3118,26 +2114,8 @@ a.close:hover {
   min-height: 12em;
 }
 
-.large {
-  height: 12em;
-}
-
 .disabled {
   color: #c2c2c2;
-}
-
-.bigger {
-  font-weight: 600;
-}
-
-.digit-container {
-  border-top: 1px solid #dedede;
-  background: rgba(222, 222, 222, 0.5);
-  margin: 0 !important;
-}
-
-#digit-contract-details .sign {
-  font-size: 30px !important;
 }
 
 .disabled-link {
@@ -3160,96 +2138,6 @@ a.close:hover {
   background-color: white;
 }
 
-.rbox-bg-alt {
-  background-color: white;
-}
-
-.rbox-lowpad {
-  padding: 0px 0px 0px 4px;
-}
-
-.rbox .form_button {
-  margin-bottom: 8px;
-}
-
-/*------------------------------------------------------------------------------------
- ROUNDED BOX CORNERS                                                                */
-.tl, .tr, .bl, .br {
-  background: transparent url("../images/common/nav/tab_1.png") no-repeat scroll 0 0;
-  width: 4px;
-  height: 4px;
-  line-height: 4px;
-  position: absolute;
-  z-index: 1;
-  font-size: 0;
-  display: none;
-}
-
-.tl {
-  background-position: 0 -312px;
-  top: -1px;
-  left: -1px;
-}
-
-.tr {
-  background-position: 100% -312px;
-  top: -1px;
-  right: -1px;
-}
-
-.bl {
-  background-position: 0 -316px;
-  bottom: -1px;
-  left: -1px;
-}
-
-.br {
-  background-position: 100% -316px;
-  bottom: -1px;
-  right: -1px;
-}
-
-/* showing 2 boxes besides each other */
-.half-1 {
-  float: left;
-}
-
-.half-2 {
-  float: right;
-}
-
-.half-1,
-.half-2 {
-  width: 48%;
-}
-
-.half-1.with-separator {
-  border-right: 1px solid #dedede;
-}
-
-table.half-1,
-table.half-2 {
-  width: 50%;
-}
-
-/* standard message */
-#WhiteBoxMessage {
-  margin: 0 auto 15px;
-  width: 80%;
-}
-
-#WhiteBoxMessage.errorbox {
-  text-align: center;
-  border: 1px solid #c2c2c2;
-  background-image: none;
-}
-#WhiteBoxMessage.errorbox .rbox-content {
-  background: none;
-}
-#WhiteBoxMessage.errorbox .rbox-content .form_button {
-  padding-right: 0;
-}
-
 /*------------------------------------------------------------------------------------
  To prevent 0 height when everything inside was floated                             */
 .clear {
@@ -3260,6 +2148,7 @@ table.half-2 {
 .errorbox {
   background: url("../images/common/general_error_1.gif") scroll no-repeat 35px 25px;
   margin: 0;
+  background-color: #fef1cf;
 }
 
 .errorbox .rbox-content {
@@ -3267,176 +2156,8 @@ table.half-2 {
   min-height: 1.5em;
 }
 
-.errorbox .form_button {
-  padding-right: 7.69em;
-}
-
-.loading-price {
-  padding: 20px;
-}
-
-.errorbox {
-  background-color: #fef1cf;
-}
-
-.errorbox h3 {
-  color: #cc0033;
-}
-
-.errorbox h3 {
-  margin-top: 5px;
-}
-
-.bet-error-box p,
-.errorbox p {
-  margin: 0;
-}
-
 .errorbox p {
   margin: 10px 0 0;
-}
-
-.rbox-wrap .rbox-wrap {
-  border: 1px solid #c2c2c2 !important;
-}
-
-.errorbox h3 {
-  color: #cc0033;
-}
-
-.popupbox {
-  left: 23%;
-  position: absolute;
-  top: 18em;
-  width: 50%;
-  z-index: 2;
-}
-
-/* rounded popup box */
-.rbox-shadow-popup {
-  position: fixed;
-  width: 24em;
-  top: 35%;
-  left: 50%;
-  z-index: 2;
-}
-.rbox-shadow-popup .rbox-shadow-popup-wrap {
-  position: relative;
-  left: -12em;
-  /* half the width of rbox-shadow-popup */
-  background-color: white;
-  padding-bottom: 0.5em;
-  text-align: center;
-}
-.rbox-shadow-popup .rbox-shadow-popup-wrap #bom-confirm-popup {
-  padding: 0 3em;
-}
-.rbox-shadow-popup .rbox-shadow-popup-wrap h4 {
-  padding: 0.2em 0.5em;
-}
-.rbox-shadow-popup .rbox-shadow-popup-wrap p {
-  padding: 0.5em;
-  font-size: 0.9em;
-}
-.rbox-shadow-popup .rbox-shadow-popup-wrap .close_button {
-  background: transparent url("../images/common/tooltips_1.png") no-repeat 0 100%;
-  width: 13px;
-  height: 13px;
-  cursor: pointer;
-  position: absolute;
-  right: 0.4em;
-  top: 0.4em;
-}
-.rbox-shadow-popup .rbox-shadow-popup-wrap .first {
-  padding-left: 0;
-}
-
-#transparent-cover {
-  position: fixed;
-  background-color: black;
-  opacity: 0.30;
-  filter: alpha(opacity=30);
-  width: 100%;
-  height: 100%;
-  visibility: visible;
-  top: 0;
-  left: 0;
-  z-index: 1;
-}
-
-form#profit-table-form fieldset,
-form#tradingform fieldset {
-  border: 0;
-  background-color: #f2f2f2;
-}
-form#profit-table-form fieldset legend,
-form#tradingform fieldset legend {
-  display: none;
-}
-form#profit-table-form span,
-form#tradingform span {
-  padding: 10px;
-}
-form#profit-table-form div.row,
-form#tradingform div.row {
-  clear: none;
-  float: left;
-  margin: -3px 8px 0 8px;
-}
-form#profit-table-form div.row label,
-form#tradingform div.row label {
-  width: auto;
-}
-
-form#tradingform div.row.form_button {
-  float: right;
-}
-
-form#tradingform div.row {
-  margin-right: 30px;
-}
-form#tradingform div.row label {
-  padding-top: 0;
-}
-
-form#forward_start {
-  font-size: 85%;
-}
-form#forward_start fieldset {
-  padding-top: 1em;
-  margin-bottom: 1em;
-}
-form#forward_start label {
-  width: auto;
-}
-
-#profit-table-form #fromdate {
-  width: 105px;
-}
-#profit-table-form #todate {
-  width: 105px;
-}
-
-input#duration_amount {
-  width: 75px;
-}
-
-#profit-table-form span {
-  position: relative;
-}
-
-#profit-table-form p {
-  position: absolute;
-  left: 13px;
-  bottom: -16px;
-}
-
-#submarket {
-  max-width: 90%;
-}
-
-#bet_underlying {
-  max-width: 90%;
 }
 
 /* landing page icon */
@@ -3466,52 +2187,12 @@ input#duration_amount {
   background-image: url("../images/pages/logintrouble/chromelogo-icon_1.png");
 }
 
-/* Fixed width to match datepicker */
-#duration_amount {
-  width: 95px;
-}
-
-#account_balance {
-  float: right;
-  margin: 0 20px 10px 0;
-  width: 35%;
-  font-size: 100%;
-  display: none;
-}
-#account_balance td {
-  text-align: right;
-  padding: 0;
-}
-#account_balance .currency {
-  padding: 0 2px;
-}
-
 #std_loading_img {
   margin: 0 auto;
   text-align: center;
 }
 
 /* statement */
-#tradingform label {
-  padding-top: 2px;
-}
-#tradingform select {
-  background: white;
-  border: 1px solid #dedede;
-  margin-right: 5px;
-}
-#tradingform input[type="text"] {
-  border: 1px solid #dedede;
-  margin-right: 5px;
-  width: 105px;
-}
-#tradingform input[type="checkbox"] {
-  border: none;
-}
-#tradingform select {
-  width: 6.5em;
-}
-
 #statement-table table tfoot th.num {
   text-align: center;
 }
@@ -3532,429 +2213,7 @@ input#duration_amount {
   margin-bottom: 20px;
 }
 
-.portfolio-currency-converter {
-  padding-left: 20px;
-  padding-right: 20px;
-  margin-left: 10px;
-  margin-right: 10px;
-}
-
-.button-menu {
-  margin: 5px 0;
-}
-
-/* Light chart */
-#form_chart_director fieldset {
-  position: relative;
-}
-#form_chart_director fieldset#chart_compare_underlying, #form_chart_director fieldset#chart_period {
-  background: none;
-  font-size: 0.9em;
-  border: none;
-}
-#form_chart_director fieldset#chart_compare_underlying ul li, #form_chart_director fieldset#chart_period ul li {
-  float: left;
-  list-style-image: none;
-  list-style-position: inherit;
-}
-#form_chart_director fieldset#chart_compare_underlying ul li label.button, #form_chart_director fieldset#chart_period ul li label.button {
-  width: auto;
-}
-#form_chart_director fieldset#chart_compare_underlying ul li label.button span.button, #form_chart_director fieldset#chart_period ul li label.button span.button {
-  background: transparent;
-  border: none;
-  border-bottom: 2px solid #c2c2c2;
-  border-radius: 0;
-  color: black;
-  font-weight: normal;
-}
-#form_chart_director fieldset#chart_compare_underlying ul li label.button span.button.disabled, #form_chart_director fieldset#chart_period ul li label.button span.button.disabled {
-  color: #e98024;
-  font-weight: bold;
-  border-bottom: 4px solid #e98024;
-}
-
-#form_chart_director h5 {
-  padding: 8px;
-}
-
-#form_chart_director ul.tm-ul {
-  margin: 0;
-}
-#form_chart_director ul.tm-ul li.tm-li {
-  margin: 0;
-  margin-right: 0.2em;
-  font-size: 85%;
-  padding: 0;
-}
-#form_chart_director ul.tm-ul li.tm-li a.tm-a {
-  padding: 0 1em;
-  display: block;
-}
-#form_chart_director ul.tm-ul li.tm-li a.tm-a span {
-  display: inline-block;
-  right: 0;
-}
-#form_chart_director #ticker {
-  margin-top: 3em;
-}
-#form_chart_director #instrument-content .rbox-content {
-  height: 42.5em;
-}
-#form_chart_director li.hover .drop-down-content, #form_chart_director .tab-menu-wrap ul li.active .drop-down-content, .tab-menu-wrap ul #form_chart_director li.active .drop-down-content {
-  margin-top: 0;
-  border: 1px solid #c2c2c2;
-  margin: 0;
-  top: 24px;
-}
-#form_chart_director li.hover .drop-down-content .half-1, #form_chart_director .tab-menu-wrap ul li.active .drop-down-content .half-1, .tab-menu-wrap ul #form_chart_director li.active .drop-down-content .half-1, #form_chart_director li.hover .drop-down-content .half-2, #form_chart_director .tab-menu-wrap ul li.active .drop-down-content .half-2, .tab-menu-wrap ul #form_chart_director li.active .drop-down-content .half-2 {
-  width: 47%;
-  height: auto;
-}
-#form_chart_director li.hover .drop-down-content .half-1.with-separator, #form_chart_director .tab-menu-wrap ul li.active .drop-down-content .half-1.with-separator, .tab-menu-wrap ul #form_chart_director li.active .drop-down-content .half-1.with-separator {
-  border-right: 1px solid #c2c2c2;
-}
-#form_chart_director li.hover .drop-down-content .tl, #form_chart_director .tab-menu-wrap ul li.active .drop-down-content .tl, .tab-menu-wrap ul #form_chart_director li.active .drop-down-content .tl, #form_chart_director li.hover .drop-down-content .tr, #form_chart_director .tab-menu-wrap ul li.active .drop-down-content .tr, .tab-menu-wrap ul #form_chart_director li.active .drop-down-content .tr, #form_chart_director li.hover .drop-down-content .bl, #form_chart_director .tab-menu-wrap ul li.active .drop-down-content .bl, .tab-menu-wrap ul #form_chart_director li.active .drop-down-content .bl, #form_chart_director li.hover .drop-down-content .br, #form_chart_director .tab-menu-wrap ul li.active .drop-down-content .br, .tab-menu-wrap ul #form_chart_director li.active .drop-down-content .br {
-  display: none;
-}
-#form_chart_director li.hover .drop-down-content .rbox-content, #form_chart_director .tab-menu-wrap ul li.active .drop-down-content .rbox-content, .tab-menu-wrap ul #form_chart_director li.active .drop-down-content .rbox-content {
-  height: auto;
-  overflow: auto;
-}
-#form_chart_director li.hover .drop-down-content ul.not-li, #form_chart_director .tab-menu-wrap ul li.active .drop-down-content ul.not-li, .tab-menu-wrap ul #form_chart_director li.active .drop-down-content ul.not-li {
-  display: block;
-  height: auto;
-  margin: 0 0 0 0.7em;
-  background: none;
-  border: 0;
-  line-height: 1em;
-}
-#form_chart_director li.hover .drop-down-content ul.not-li li, #form_chart_director .tab-menu-wrap ul li.active .drop-down-content ul.not-li li, .tab-menu-wrap ul #form_chart_director li.active .drop-down-content ul.not-li li {
-  background: none;
-  float: none;
-  display: list-item;
-  margin: 0;
-  padding: 0;
-}
-#form_chart_director li.hover .drop-down-content ul.not-li li label, #form_chart_director .tab-menu-wrap ul li.active .drop-down-content ul.not-li li label, .tab-menu-wrap ul #form_chart_director li.active .drop-down-content ul.not-li li label {
-  float: none;
-}
-#form_chart_director li.hover .drop-down-content ul.not-li, #form_chart_director .tab-menu-wrap ul li.active .drop-down-content ul.not-li, .tab-menu-wrap ul #form_chart_director li.active .drop-down-content ul.not-li {
-  position: relative;
-  top: auto;
-  left: auto;
-}
-#form_chart_director .drop-down-content {
-  margin-top: 0;
-  border: 1px solid #c2c2c2;
-}
-#form_chart_director .drop-down-content .half-1, #form_chart_director .drop-down-content .half-2 {
-  width: 47%;
-  height: auto;
-}
-#form_chart_director .drop-down-content .half-1.with-separator {
-  border-right: 1px solid #c2c2c2;
-}
-#form_chart_director .drop-down-content .tl, #form_chart_director .drop-down-content .tr, #form_chart_director .drop-down-content .bl, #form_chart_director .drop-down-content .br {
-  display: none;
-}
-#form_chart_director .drop-down-content .rbox-content {
-  height: auto;
-  overflow: auto;
-}
-#form_chart_director .drop-down-content ul.not-li {
-  display: block;
-  height: auto;
-  margin: 0 0 0 0.7em;
-  background: none;
-  border: 0;
-  line-height: 1em;
-}
-#form_chart_director .drop-down-content ul.not-li li {
-  background: none;
-  float: none;
-  display: list-item;
-  margin: 0;
-  padding: 0;
-}
-#form_chart_director .drop-down-content ul.not-li li label {
-  float: none;
-}
-#form_chart_director .popupbox .rbox.rbox-bg-alt {
-  margin: 0;
-  border: 1px solid #44484c;
-}
-#form_chart_director .popupbox .rbox.rbox-bg-alt .rbox-heading h4 {
-  background-color: #dedede;
-}
-#form_chart_director .popupbox .rbox.rbox-bg-alt ul.button-menu {
-  list-style: none;
-  height: 3em;
-  text-align: center;
-}
-#form_chart_director .popupbox .rbox.rbox-bg-alt ul.button-menu li {
-  margin: 0;
-  display: inline-block;
-  list-style-image: none;
-  padding-right: 1em;
-}
-#form_chart_director .popupbox .rbox.rbox-bg-alt .row {
-  margin-bottom: 5px;
-}
-
-#instrument-content {
-  width: 80em;
-}
-
-#instrument-content label {
-  float: none;
-}
-
-#moving-average-content,
-#settings-content {
-  width: 25em;
-}
-
-#indicator-content,
-#band-content {
-  width: 20em;
-}
-
-#intraday_interval ul.not-li {
-  margin: 0 0 0 1em;
-}
-#intraday_interval ul.not-li label {
-  cursor: pointer;
-  width: auto;
-}
-
-.underlying_group {
-  float: left;
-  margin: 0 0.5em;
-}
-
-.drop-down-content {
-  left: auto;
-  top: 27px;
-  position: absolute;
-  background-color: white;
-  display: none;
-  z-index: 999;
-}
-
-.hover .drop-down-content {
-  display: block;
-}
-
-#chart_period input {
-  left: -9999px;
-  position: absolute;
-  top: 0;
-}
-
-#intraday_interval {
-  position: absolute;
-  display: none;
-  background-color: white;
-  padding: 0 0.7em 0.7em;
-  border: 1px solid #c2c2c2;
-  width: 8em;
-  z-index: 2;
-}
-
-#intraday_interval li {
-  display: block;
-}
-
-#chart_compare_underlying,
-#chart_period {
-  z-index: 2;
-}
-#chart_compare_underlying li,
-#chart_period li {
-  margin-right: 0px;
-}
-
-#chart_properties label {
-  float: left;
-  width: 40%;
-  text-align: right;
-  padding-right: 10px;
-}
-
-#chart_properties input {
-  width: 30%;
-}
-
-.desc_box {
-  padding: 8px;
-  background-color: white;
-  border: 1px solid #dedede;
-}
-
-#chart_compare_underlying li {
-  background: url("../images/pages/light_chart/linechart_legends_1.png");
-  background-repeat: no-repeat;
-  background-color: white;
-  padding: 0 15px;
-}
-
-#chart_compare_underlying input {
-  position: absolute;
-  visibility: hidden;
-}
-
-#chart_compare_underlying a:link,
-#chart_compare_underlying a:visited {
-  text-decoration: none;
-}
-
-#chart_compare_underlying .button-menu {
-  margin: 0;
-}
-
-.line_1 {
-  background-position: 0 -35px !important;
-}
-
-.line_2 {
-  background-position: 0 -3px !important;
-}
-
-.line_3 {
-  background-position: 0 -67px !important;
-}
-
-.line_4 {
-  background-position: 0 -115px !important;
-}
-
-.line_5 {
-  background-position: 0 -19px !important;
-}
-
-.line_6 {
-  background-position: 0 -83px !important;
-}
-
-#chart_director_imageholder .notice-1 {
-  top: 25px;
-  position: absolute;
-  width: 100%;
-  z-index: 10;
-}
-
-.live-help {
-  margin: 1em 0 2em;
-}
-
 /* Aanlyse bet*/
-#bet_details-table td {
-  padding: 5px;
-  vertical-align: top;
-}
-
-#bet_details-table em {
-  font-size: 60%;
-  font-weight: normal;
-  color: black;
-}
-
-#profit_loss,
-#sale_price {
-  width: 11%;
-}
-
-.finder {
-  background-color: white;
-  margin-bottom: 5px;
-  position: relative;
-  left: 1px;
-}
-
-h2.finder {
-  font-size: 1.0em;
-  padding: .4em 50px .4em 0;
-  margin-right: 3px;
-  margin-left: 3px;
-  border-top: 1px solid #dedede;
-  color: #2a3052;
-}
-
-#desc {
-  margin: 0 10px 0 90px;
-}
-
-.top-space {
-  padding-top: 10px;
-}
-
-.inline {
-  display: inline;
-}
-
-#openAccForm select#AddressState,
-#changeAccountForm select#AddressState {
-  width: 159px;
-}
-
-#changeAccountForm label {
-  padding-top: 2px;
-}
-#changeAccountForm input {
-  border: 1px solid #dedede;
-}
-#changeAccountForm select {
-  border: 1px solid #dedede;
-  background: white;
-}
-
-#content #error_msg {
-  margin: 10px;
-}
-
-#bet_details-table {
-  margin-bottom: 5px;
-}
-
-.smaller-font table td,
-.smaller-font table th {
-  font-size: 0.85em;
-}
-
-.left-align table td,
-.left-align table th {
-  text-align: left;
-}
-
-.center-align table td,
-.center-align table th {
-  text-align: center;
-}
-
-div#lower_strike {
-  padding: 2px 0 9px 0;
-}
-
-div#lower_strike label {
-  width: 7.9%;
-}
-
-label#from_strike_label,
-label#from_strike_percent,
-label#from_expiry_label {
-  width: auto;
-}
-
-.hasDatepicker {
-  width: 95px;
-}
-
-div#price_table_notes {
-  font-size: 0.92em;
-  padding-top: 15px;
-}
-
 .tab-menu-wrap ul#trading-times {
   margin-bottom: 1em;
 }
@@ -3974,42 +2233,6 @@ div#price_table_notes {
 #paymentagent_deposit ul.recursive_list li {
   list-style-image: url("../images/pages/get-started/list-circle_1.png");
 }
-#paymentagent_deposit table.rbox-table.rbox-table-full tr.rbox-table-heading th {
-  text-align: left;
-}
-
-#payment-agent-registration ul.circles {
-  margin-left: 60px;
-  list-style-image: url("../images/pages/get-started/list-circle_1.png");
-}
-
-#asset-index #forex-normal-tab span.tm-a-2 {
-  cursor: pointer;
-}
-#asset-index .tm-li.active .tooltipx {
-  background: url("../images/common/tooltips_1.png") no-repeat 0 0.3em;
-}
-#asset-index .tm-li.active .tooltipx img {
-  width: 1.1em;
-  visibility: hidden;
-}
-#asset-index .tm-li.hover .tooltipx {
-  background: url("../images/common/tooltips_1.png") no-repeat 0 0.3em;
-}
-#asset-index .tm-li.hover .tooltipx img {
-  width: 1.1em;
-}
-#asset-index .tm-li .tm-ul-2 .tm-li-2 a {
-  display: inline;
-}
-
-#content #settings_message {
-  font-weight: bold;
-  color: #e98024;
-}
-#content #settings_message .success_msg {
-  font-size: 100%;
-}
 
 #content #client_message.errorbox {
   background-image: none;
@@ -4021,13 +2244,6 @@ div#price_table_notes {
 #content #client_message.errorbox .rbox-wrap .rbox-content {
   background-color: inherit;
   margin: 10px 0;
-}
-#content #client_message.errorbox .rbox-wrap .rbox-content .form_button {
-  padding: 0;
-  margin-top: 1em;
-}
-#content #client_message.errorbox .rbox-wrap .rbox-content ul {
-  margin: 1em 0;
 }
 
 @media screen and (max-width: 768px) {
@@ -4418,14 +2634,6 @@ table .loss, table .lower {
   text-decoration: none;
   background-color: #14602B;
 }
-.static_full .code-sample {
-  background-color: #f2f2f2;
-  overflow-x: auto;
-  width: 90%;
-  font-family: monospace;
-  white-space: pre;
-  padding: 18px;
-}
 
 .payment-agent .faded {
   color: #AFAFAF;
@@ -4485,25 +2693,6 @@ table .loss, table .lower {
 #live_chart_form_wrapper input[type=button]:hover, #live_chart_form_wrapper input[type=button]:active {
   text-decoration: none;
   background-color: #14602B;
-}
-#live_chart_form_wrapper #live_chart_options {
-  display: block;
-  min-height: 50px;
-}
-#live_chart_form_wrapper #live_chart_options #live_chart_duration li {
-  float: left;
-  text-align: center;
-  min-width: 7%;
-}
-#live_chart_form_wrapper #live_chart_options #live_chart_duration li span.button {
-  margin: 0 5px;
-  color: black;
-  font-weight: bold;
-  border-bottom: 2px solid #c2c2c2;
-}
-#live_chart_form_wrapper #live_chart_options #live_chart_duration li span.button.current {
-  color: #e98024;
-  border-bottom: 4px solid #e98024;
 }
 
 .chart-notice {
@@ -6556,17 +4745,6 @@ body.VI #legal-tab li.tm-li-2 {
   margin-right: 0px !important;
   padding: 0 8px !important;
 }
-body.VI ul#betsTab li a.tm-a {
-  font-size: 70% !important;
-}
-body.VI ul#betsTab li.tm-li {
-  margin-right: 3px !important;
-}
-@media screen and (max-width: 930px) {
-  body.VI ul#betsTab li a.tm-a {
-    font-size: 57% !important;
-  }
-}
 body.VI #trading_socket_container #contract_form_name_nav {
   font-size: 80%;
 }
@@ -6679,33 +4857,8 @@ body.PT h1, body.PT h2, body.PT h3, body.PT h4, body.PT h5, body.PT h6, body.RU 
   #footer-regulatory #social-networks {
     text-align: center;
   }
-
-  .empty-space {
-    margin-top: 90px;
-  }
 }
 @media screen and (max-width: 640px) {
-  ul#betsTab {
-    height: auto;
-  }
-
-  ul#betsTab > li {
-    float: none;
-    width: 100%;
-  }
-
-  ul#betsTab a {
-    line-height: 40px;
-  }
-
-  ul#betsTab ul {
-    position: relative;
-  }
-
-  ul#betsTab > li {
-    position: relative !important;
-  }
-
   ul.tm-ul-2 {
     display: block !important;
     top: 0 !important;
@@ -10196,8 +8349,4 @@ html.mm-opened.mm-black .mm-page {
 
 .mm-menu.mm-black .mm-header a:before {
   border-color: rgba(255, 255, 255, 0.3);
-}
-
-body.AR#betpage #content-holder #content #bet_container #bet_calculation_container {
-  padding-right: 5px;
 }

@@ -16,7 +16,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           
 
           <div class="endpoint-config">
-  <h1>Change API Endpoint</h1>
+  <h1>API エンドポイントの変更</h1>
   <div class="grd-parent grd-row-padding">
     <div class="rbox form">
       <div class="rbox-wrap">
@@ -24,24 +24,25 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <legend>お客さま基本情報</legend>
           <div class="grd-row-padding row clear">
               <div class="grd-grid-4 form_label">
-                  <label for="server_url">Server</label>
+                  <label for="server_url">サーバー</label>
               </div>
               <div class="grd-grid-8">
                   <input type="text" class="text" id="server_url" maxlength="30"></input>
                   <p class="hint">
-                    e.g. www.binaryqa36.com
+                    例：www.binaryqa36.com
                   </p>
                   <p class="errorfield" id="error-server_url" style="display:none"></p>
               </div>
           </div>
           <div class="grd-row-padding row clear">
               <div class="grd-grid-4 form_label">
-                  <label for="app_id">OAuth App ID (Optional)</label>
+                  <label for="app_id">OAuth アプリ ID (任意)</label>
               </div>
               <div class="grd-grid-8">
                   <input type="text" class="text" id="app_id" maxlength="5"></input>
                   <p class="hint">
-                    You have to register and get App ID before you can use different OAuth server for authentication. For more information refer to OAuth details on https://developers.binary.com/.
+                    認承に他のOAuthサーバーをご利用される前に、登録をしてアプリIDを取得頂く必要があります。OAuthに関する詳細は下記URLよりご確認ください。
+https://developers.binary.com/
                   </p>
                   <p class="errorfield" id="error-app_id" style="display:none"></p>
               </div>
@@ -52,7 +53,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               <button class="button" id="new_endpoint">送信</button>
           </div>
           <div class="button" style="display:inline-block">
-              <button class="button" id="reset_endpoint">Reset to Original Settings</button>
+              <button class="button" id="reset_endpoint">初期設定にリセットする</button>
           </div>
         </fieldset>
       </div>
