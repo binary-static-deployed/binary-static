@@ -1,4 +1,4 @@
-<div id="content">
+<div id="content" class="authenticatews-content">
           <!-- Google Tag Manager -->
 <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-MZWFF7"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -9,14 +9,29 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-MZWFF7');</script>
 <!-- End Google Tag Manager -->
           <div id="page_info" style="display:none;">
-              <title>Authenticate | Binary.com</title>
+              <title>Convalida | Binary.com</title>
+              <div id="content_class">authenticatews-content</div>
           </div>
           
           <div class="grd-container">
-          
 
-          <div class="grd-grid-12">
-<h1>Convalida</h1>
-<div id="authentication-message"></div>
-          </div>
+
+  <div class="grd-grid-12">
+  <h1>Convalida</h1>
+  <div id="authentication-message">
+
+      <p id="fully-authenticated" class="invisible">
+          Il tuo account è stato pienamente convalidato. Puoi vedere i tuoi <a class="pjaxload" href="/it/user/settings/limitsws.html">limiti di trading qui</a>.
+      </p>
+
+      <div id="not-authenticated" class="invisible">
+          <p>Per convalidare il tuo account, ti chiediamo gentilmente di inviare quanto segue tramite email all'indirizzo <a href="mailto:support@binary.com">support@binary.com</a></p>
+          <p>- Una copia scannerizzata del tuo passaporto, patente (provvisoria o definitiva) o carta d'identità, indicante il tuo nome e la tua data di nascita.</p>
+          <p>e</p>
+          <p>- Una copia scannerizzata di una bolletta o di un estratto conto (non antecedente i 3 mesi).</p>
       </div>
+
+      <p class="center notice-msg invisible" id="error_message"></p>
+
+  </div>
+</div>

@@ -1,4 +1,4 @@
-<div id="content">
+<div id="content" class="withdrawws-content">
           <!-- Google Tag Manager -->
 <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-MZWFF7"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -10,18 +10,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- End Google Tag Manager -->
           <div id="page_info" style="display:none;">
               <title>決済サービスへのご出金 | Binary.com</title>
+              <div id="content_class">withdrawws-content</div>
           </div>
           
           <div class="grd-container">
-          
 
-          <div class="grd-grid-12">
+
+  <div class="grd-grid-12">
     <h1>決済サービスへのご出金</h1>
 
     <div id="paymentagent_withdrawal">
 
         <div id="viewError" class="viewItem hidden">
-            <p class='error-msg'></p>
+            <p id="custom-error" class="error-msg hidden"></p>
+            <p id="withdrawal-locked-error" class="error-msg hidden">
+                Withdrawal is locked, please <a class="pjaxload" href="/ja/contact.html">contact us</a> for more information.
+            </p>
         </div>
 
         <div id="viewSuccess" class="viewItem hidden">
@@ -43,13 +47,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </div>
 
         <div id="viewForm" class="viewItem hidden">
-            <p>メールから認証コードを取得後、下記の情報をご提供下さい。</p>
+            <p>メールからワンタイムパスワードを取得後、下記の情報をご提供下さい。</p>
             <form class="form rbox grd-row-padding" id="frmWithdrawal">
                 <fieldset>
 
                   <div class="grd-row-padding row clear">
                       <div class="grd-grid-4 form_label">
-                          <label for="verification-code">認証コード</label>
+                          <label for="verification-code">ワンタイムパスワード</label>
                       </div>
                       <div class="grd-grid-8">
                           <input type="text" id="verification-code" maxlength="48" autocomplete="off"></input>
@@ -120,5 +124,3 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </div>
 
 </div>
-          </div>
-      </div>

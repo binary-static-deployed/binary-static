@@ -1,4 +1,4 @@
-<div id="content">
+<div id="content" class="authenticatews-content">
           <!-- Google Tag Manager -->
 <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-MZWFF7"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -9,14 +9,29 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-MZWFF7');</script>
 <!-- End Google Tag Manager -->
           <div id="page_info" style="display:none;">
-              <title>Authenticate | Binary.com</title>
+              <title>验证 | Binary.com</title>
+              <div id="content_class">authenticatews-content</div>
           </div>
           
           <div class="grd-container">
-          
 
-          <div class="grd-grid-12">
-<h1>验证</h1>
-<div id="authentication-message"></div>
-          </div>
+
+  <div class="grd-grid-12">
+  <h1>验证</h1>
+  <div id="authentication-message">
+
+      <p id="fully-authenticated" class="invisible">
+          您的账户已经得到完全验证，且您可在此查看您的<a class="pjaxload" href="/zh_cn/user/settings/limitsws.html">交易限额</a>。
+      </p>
+
+      <div id="not-authenticated" class="invisible">
+          <p>为验证您的账号，请将以下内容通过电子邮件发送到<a href="mailto:support@binary.com">support@binary.com</a></p>
+          <p>显示您名字和出生日期的护照、驾照（临时或永久）或身份证的扫描件。</p>
+          <p>以及</p>
+          <p>水电煤账单或银行月结单扫描件（日期不得超过3个月）。</p>
       </div>
+
+      <p class="center notice-msg invisible" id="error_message"></p>
+
+  </div>
+</div>

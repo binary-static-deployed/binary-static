@@ -1,4 +1,4 @@
-<div id="content">
+<div id="content" class="forwardws-content">
           <!-- Google Tag Manager -->
 <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-MZWFF7"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -10,16 +10,39 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- End Google Tag Manager -->
           <div id="page_info" style="display:none;">
               <title>Kasir | Binary.com</title>
+              <div id="content_class">forwardws-content</div>
           </div>
           
           <div class="grd-container">
-          
 
-          <div class='grd-grid-12 grd-row-padding'>
+
+  <div class='grd-grid-12 grd-row-padding'>
   <h1 id="deposit-withdraw-heading"></h1>
   <div>
-    <p id="deposit-withdraw-message"></p>
-    <p id="deposit-withdraw-error" class="error-msg"></p>
+
+    <div id="deposit-withdraw-message" style="display:none">
+      <p id="cashier-locked-message" class="messages">
+        Kasir Anda telah terkunci sesuai permintaan Anda - untuk membuka kunci, silahkan <a class="pjaxload" href="/id/user/settings/securityws.html">klik disini</a>.
+      </p>
+      <p id="check-email-message" class="messages">Untuk keamanan tambahan, silahkan lihat email Anda untuk mengambil token verifikasi.</p>
+      <p id="choose-currency-message" class="messages">Silahkan pilih mata uang mana yang ingin Anda depositkan.</p>
+      <p id="personal-details-message" class="messages">
+        Terdapat masalah dalam memvalidasi data pribadi Anda. Perbaiki kolom <a class="pjaxload" href="/id/user/settings/detailsws.html">disin</a>.
+        <br />
+        Jika Anda membutuhkan bantuan jangan ragu untuk menghubungi <a class="pjaxload" href="/id/contact.html">Customer Support</a> kami.
+      </p>
+      <p id="not-authenticated-message" class="messages">
+        Akun Anda belum dikonfirmasi sepenuhnya. Silahkan kunjungi halaman <a class="pjaxload" href="/id/user/authenticatews.html">otentikasi</a> untuk informasi lebih lanjut.
+      </p>
+    </div>
+
+    <div id="deposit-withdraw-error" class="error-msg" style="display:none">
+      <p id="withdrawal-locked-error" class="error_messages">
+        Penarikan terkunci, silahkan <a class="pjaxload" href="/id/contact.html">hubungi kami</a> untuk info lebih lanjut.
+      </p>
+      <p id="custom-error" class="error_messages"></p>
+    </div>
+
   </div>
   <div class="grd-container" id="deposit-withdraw-iframe-container" style="display:none">
     <script data-cfasync="false" type="text/javascript">
@@ -108,5 +131,3 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </fieldset>
   </div>
 </div>
-          </div>
-      </div>

@@ -1,4 +1,4 @@
-<div id="content">
+<div id="content" class="authenticatews-content">
           <!-- Google Tag Manager -->
 <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-MZWFF7"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -9,14 +9,29 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-MZWFF7');</script>
 <!-- End Google Tag Manager -->
           <div id="page_info" style="display:none;">
-              <title>Authenticate | Binary.com</title>
+              <title>Pembuktian | Binary.com</title>
+              <div id="content_class">authenticatews-content</div>
           </div>
           
           <div class="grd-container">
-          
 
-          <div class="grd-grid-12">
-<h1>Pembuktian</h1>
-<div id="authentication-message"></div>
-          </div>
+
+  <div class="grd-grid-12">
+  <h1>Pembuktian</h1>
+  <div id="authentication-message">
+
+      <p id="fully-authenticated" class="invisible">
+          Akun Anda telah terbukti. Anda dapat melihat <a class="pjaxload" href="/id/user/settings/limitsws.html">batasan trading disini</a>.
+      </p>
+
+      <div id="not-authenticated" class="invisible">
+          <p>Untuk membuktikan identitas Anda, silakan email hal berikut ini ke <a href="mailto:support@binary.com">support@binary.com</a></p>
+          <p>- Salinan scan dari paspor, SIM atau KTP, yang memperlihatkan nama dan tanggal lahir Anda.</p>
+          <p>dan</p>
+          <p>- Salinan scan dari tagihan utilitas atau rekening koran (tidak melebihi 3 bulan).</p>
       </div>
+
+      <p class="center notice-msg invisible" id="error_message"></p>
+
+  </div>
+</div>

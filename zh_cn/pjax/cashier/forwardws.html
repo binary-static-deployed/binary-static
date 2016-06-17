@@ -1,4 +1,4 @@
-<div id="content">
+<div id="content" class="forwardws-content">
           <!-- Google Tag Manager -->
 <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-MZWFF7"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -10,16 +10,39 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- End Google Tag Manager -->
           <div id="page_info" style="display:none;">
               <title>收银台 | Binary.com</title>
+              <div id="content_class">forwardws-content</div>
           </div>
           
           <div class="grd-container">
-          
 
-          <div class='grd-grid-12 grd-row-padding'>
+
+  <div class='grd-grid-12 grd-row-padding'>
   <h1 id="deposit-withdraw-heading"></h1>
   <div>
-    <p id="deposit-withdraw-message"></p>
-    <p id="deposit-withdraw-error" class="error-msg"></p>
+
+    <div id="deposit-withdraw-message" style="display:none">
+      <p id="cashier-locked-message" class="messages">
+        根据您的请求，您的收银台已被锁定 - 如需解除锁定，请点击<a class="pjaxload" href="/zh_cn/user/settings/securityws.html">此处</a>。
+      </p>
+      <p id="check-email-message" class="messages">为提高安全保障，请查看邮件并提取验证令牌。</p>
+      <p id="choose-currency-message" class="messages">请选择您想要交易的货币。</p>
+      <p id="personal-details-message" class="messages">
+        您的个人资料验证出了问题。请<a class="pjaxload" href="/zh_cn/user/settings/detailsws.html">在此</a>更正字段。
+        <br />
+        如果您需要帮助，请联系我们的<a class="pjaxload" href="/zh_cn/contact.html">客服部</a>。
+      </p>
+      <p id="not-authenticated-message" class="messages">
+        您的账户未完全验证。欲知详情请访问<a class="pjaxload" href="/zh_cn/user/authenticatews.html">验证</a>页面。
+      </p>
+    </div>
+
+    <div id="deposit-withdraw-error" class="error-msg" style="display:none">
+      <p id="withdrawal-locked-error" class="error_messages">
+        取款已锁定。欲知详情，请 <a class="pjaxload" href="/zh_cn/contact.html">联系我们</a>。
+      </p>
+      <p id="custom-error" class="error_messages"></p>
+    </div>
+
   </div>
   <div class="grd-container" id="deposit-withdraw-iframe-container" style="display:none">
     <script data-cfasync="false" type="text/javascript">
@@ -108,5 +131,3 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </fieldset>
   </div>
 </div>
-          </div>
-      </div>

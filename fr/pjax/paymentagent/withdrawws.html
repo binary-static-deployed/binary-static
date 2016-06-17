@@ -1,4 +1,4 @@
-<div id="content">
+<div id="content" class="withdrawws-content">
           <!-- Google Tag Manager -->
 <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-MZWFF7"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -10,18 +10,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- End Google Tag Manager -->
           <div id="page_info" style="display:none;">
               <title>Retrait de l'Agent de Paiement | Binary.com</title>
+              <div id="content_class">withdrawws-content</div>
           </div>
           
           <div class="grd-container">
-          
 
-          <div class="grd-grid-12">
+
+  <div class="grd-grid-12">
     <h1>Retrait de l'Agent de Paiement</h1>
 
     <div id="paymentagent_withdrawal">
 
         <div id="viewError" class="viewItem hidden">
-            <p class='error-msg'></p>
+            <p id="custom-error" class="error-msg hidden"></p>
+            <p id="withdrawal-locked-error" class="error-msg hidden">
+                Withdrawal is locked, please <a class="pjaxload" href="/fr/contact.html">contact us</a> for more information.
+            </p>
         </div>
 
         <div id="viewSuccess" class="viewItem hidden">
@@ -120,5 +124,3 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </div>
 
 </div>
-          </div>
-      </div>

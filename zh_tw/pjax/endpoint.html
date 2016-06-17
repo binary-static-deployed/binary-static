@@ -1,4 +1,4 @@
-<div id="content">
+<div id="content" class="endpoint-content">
           <!-- Google Tag Manager -->
 <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-MZWFF7"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -10,13 +10,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- End Google Tag Manager -->
           <div id="page_info" style="display:none;">
               <title>Endpoint | Binary.com</title>
+              <div id="content_class">endpoint-content</div>
           </div>
           
           <div class="grd-container">
-          
 
-          <div class="endpoint-config">
-  <h1>Change API Endpoint</h1>
+
+  <div class="endpoint-config">
+  <h1>更改 API 端點</h1>
   <div class="grd-parent grd-row-padding">
     <div class="rbox form">
       <div class="rbox-wrap">
@@ -24,24 +25,24 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <legend>詳細資料</legend>
           <div class="grd-row-padding row clear">
               <div class="grd-grid-4 form_label">
-                  <label for="server_url">Server</label>
+                  <label for="server_url">伺服器</label>
               </div>
               <div class="grd-grid-8">
                   <input type="text" class="text" id="server_url" maxlength="30"></input>
                   <p class="hint">
-                    e.g. www.binaryqa36.com
+                    例如 www.binaryqa36.com
                   </p>
                   <p class="errorfield" id="error-server_url" style="display:none"></p>
               </div>
           </div>
           <div class="grd-row-padding row clear">
               <div class="grd-grid-4 form_label">
-                  <label for="app_id">OAuth App ID (Optional)</label>
+                  <label for="app_id">OAuth 應用程式 ID (可選)</label>
               </div>
               <div class="grd-grid-8">
                   <input type="text" class="text" id="app_id" maxlength="5"></input>
                   <p class="hint">
-                    You have to register and get App ID before you can use different OAuth server for authentication. For more information refer to OAuth details on https://developers.binary.com/.
+                    使用各OAuth伺服器進行驗證前須先註冊並領取應用程式ID。欲知詳細資訊請前往https://developers.binary.com/參閱OAuth資料。
                   </p>
                   <p class="errorfield" id="error-app_id" style="display:none"></p>
               </div>
@@ -52,12 +53,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               <button class="button" id="new_endpoint">送出</button>
           </div>
           <div class="button" style="display:inline-block">
-              <button class="button" id="reset_endpoint">Reset to Original Settings</button>
+              <button class="button" id="reset_endpoint">重設為原始設定</button>
           </div>
         </fieldset>
       </div>
     </div>
   </div>
 </div>
-          </div>
-      </div>

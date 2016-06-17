@@ -1,4 +1,4 @@
-<div id="content">
+<div id="content" class="endpoint-content">
           <!-- Google Tag Manager -->
 <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-MZWFF7"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -10,13 +10,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- End Google Tag Manager -->
           <div id="page_info" style="display:none;">
               <title>Endpoint | Binary.com</title>
+              <div id="content_class">endpoint-content</div>
           </div>
           
           <div class="grd-container">
-          
 
-          <div class="endpoint-config">
-  <h1>Change API Endpoint</h1>
+
+  <div class="endpoint-config">
+  <h1>تغيير نقطة النهاية لواجهة برمجة التطبيقات</h1>
   <div class="grd-parent grd-row-padding">
     <div class="rbox form">
       <div class="rbox-wrap">
@@ -24,24 +25,24 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <legend>التفاصيل</legend>
           <div class="grd-row-padding row clear">
               <div class="grd-grid-4 form_label">
-                  <label for="server_url">Server</label>
+                  <label for="server_url">خادم</label>
               </div>
               <div class="grd-grid-8">
                   <input type="text" class="text" id="server_url" maxlength="30"></input>
                   <p class="hint">
-                    e.g. www.binaryqa36.com
+                    على سبيل المثال www.binaryqa36.com
                   </p>
                   <p class="errorfield" id="error-server_url" style="display:none"></p>
               </div>
           </div>
           <div class="grd-row-padding row clear">
               <div class="grd-grid-4 form_label">
-                  <label for="app_id">OAuth App ID (Optional)</label>
+                  <label for="app_id">تطبيق هوية ذات تفويض قياسي مفتوح (اختياري)</label>
               </div>
               <div class="grd-grid-8">
                   <input type="text" class="text" id="app_id" maxlength="5"></input>
                   <p class="hint">
-                    You have to register and get App ID before you can use different OAuth server for authentication. For more information refer to OAuth details on https://developers.binary.com/.
+                    يجب عليك التسجيل والحصول على تطبيق هوية قبل أن تتمكن من استخدام خادم ذات تفويض قياسي مفتوح مختلف للمصادقة. لمزيد من المعلومات راجع تفاصيل التفويض القياسي المفتوح على: https://developers.binary.com/.
                   </p>
                   <p class="errorfield" id="error-app_id" style="display:none"></p>
               </div>
@@ -52,12 +53,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               <button class="button" id="new_endpoint">تسليم</button>
           </div>
           <div class="button" style="display:inline-block">
-              <button class="button" id="reset_endpoint">Reset to Original Settings</button>
+              <button class="button" id="reset_endpoint">إعادة تعيين للإعدادات الأصلية</button>
           </div>
         </fieldset>
       </div>
     </div>
   </div>
 </div>
-          </div>
-      </div>

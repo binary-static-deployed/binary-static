@@ -1,4 +1,4 @@
-<div id="content">
+<div id="content" class="forwardws-content">
           <!-- Google Tag Manager -->
 <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-MZWFF7"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -10,16 +10,39 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- End Google Tag Manager -->
           <div id="page_info" style="display:none;">
               <title>Kasjer | Binary.com</title>
+              <div id="content_class">forwardws-content</div>
           </div>
           
           <div class="grd-container">
-          
 
-          <div class='grd-grid-12 grd-row-padding'>
+
+  <div class='grd-grid-12 grd-row-padding'>
   <h1 id="deposit-withdraw-heading"></h1>
   <div>
-    <p id="deposit-withdraw-message"></p>
-    <p id="deposit-withdraw-error" class="error-msg"></p>
+
+    <div id="deposit-withdraw-message" style="display:none">
+      <p id="cashier-locked-message" class="messages">
+        Your cashier is locked as per your request - to unlock it, please click <a class="pjaxload" href="/pl/user/settings/securityws.html">here</a>.
+      </p>
+      <p id="check-email-message" class="messages">Ze względów bezpieczeństwa token weryfikujący został wysłany na Twój adres e-mail. Sprawdź swoją skrzynkę odbiorczą.</p>
+      <p id="choose-currency-message" class="messages">Wybierz, w jakiej walucie chcesz zawrzeć transakcję.</p>
+      <p id="personal-details-message" class="messages">
+        There was a problem validating your personal details. Please fix the fields <a class="pjaxload" href="/pl/user/settings/detailsws.html">here</a>.
+        <br />
+        If you need assistance feel free to contact our <a class="pjaxload" href="/pl/contact.html">Customer Support</a>.
+      </p>
+      <p id="not-authenticated-message" class="messages">
+        Your account is not fully authenticated. Please visit the <a class="pjaxload" href="/pl/user/authenticatews.html">authentication</a> page for more information.
+      </p>
+    </div>
+
+    <div id="deposit-withdraw-error" class="error-msg" style="display:none">
+      <p id="withdrawal-locked-error" class="error_messages">
+        Withdrawal is locked, please <a class="pjaxload" href="/pl/contact.html">contact us</a> for more information.
+      </p>
+      <p id="custom-error" class="error_messages"></p>
+    </div>
+
   </div>
   <div class="grd-container" id="deposit-withdraw-iframe-container" style="display:none">
     <script data-cfasync="false" type="text/javascript">
@@ -50,7 +73,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   Nasza licencja zobowiązuje nas, aby poinformować Cię, co dzieje się z Twoimi środkami gromadzonymi na naszych kontach oraz o zakresie ochrony, jaką środki są objęte na wypadek naszej niewypłacalności <a href='http://www.gamblingcommission.gov.uk/Consumers/Protection-of-customer-funds.aspx' target='_blank'>http://www.gamblingcommission.gov.uk/Consumers/Protection-of-customer-funds.aspx</a>.
               </p>
               <p>
-                  Firma przechowuje środki klientów na innych rachunkach bankowych niż rachunek operacyjny. W przypadku niewypłacalności firmy rachunki te nie będą stanowiły jej aktywów. Tym samym spełnione zostają wymagania instytucji Gambling Commission dotyczące oddzielenia funduszy klientów na następującym poziomie: <strong>średnia ochrona</strong>.
+                  The company holds customer funds in separate bank accounts to the operational accounts which would not, in the event of insolvency, form part of the Company's assets. This meets the Gambling Commission's requirements for the segregation of customer funds at the level: <strong>medium protection</strong>.
               </p>
               <div class='grd-grid-3 grd-grid-mobile-6 grd-centered'>
                   <span class="button">
@@ -108,5 +131,3 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </fieldset>
   </div>
 </div>
-          </div>
-      </div>

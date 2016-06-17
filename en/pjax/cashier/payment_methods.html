@@ -1,4 +1,4 @@
-<div id="content">
+<div id="content" class="payment_methods-content">
           <!-- Google Tag Manager -->
 <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-MZWFF7"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -10,17 +10,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- End Google Tag Manager -->
           <div id="page_info" style="display:none;">
               <title>Payment Methods | Binary.com</title>
+              <div id="content_class">payment_methods-content</div>
           </div>
           
           <div class="grd-container">
-          
 
-          <div id='cashier-content'>
+
+  <div id='cashier-content'>
     <div class="grd-grid-12">
         <h1>Available payment methods</h1></br>
     </div>
     <div class="grd-grid-12 invisible">
-      <p class="notice-msg by_client_type client_real with_login_cookies"></p>
+      <p class="notice-msg by_client_type client_real with_login_cookies">
+        Withdrawal is locked, please <a class="pjaxload" href="/en/contact.html">contact us</a> for more information.
+      </p>
     </div>
     <div class="grd-grid-12">
         <div id="payment_method_suggestions grd-row-padding" class='center-aligned'>
@@ -31,7 +34,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <a href="/en/cashier/forwardws.html#deposit" class="button button_large by_client_type client_real with_login_cookies invisible">
                 <span>Deposit</span>
                 </a>
-                <a href="/en/cashier/forwardws.html#withdraw" class="button by_client_type client_real with_login_cookies invisible">
+                <a href="/en/cashier/forwardws.html#withdraw" class="button pjaxload by_client_type client_real with_login_cookies invisible">
                     <span class="withdraw">Withdraw</span>
                 </a>
             </p>
@@ -471,5 +474,3 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </div>
     </div>
 </div>
-          </div>
-      </div>

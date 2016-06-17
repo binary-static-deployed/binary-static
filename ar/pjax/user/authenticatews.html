@@ -1,4 +1,4 @@
-<div id="content">
+<div id="content" class="authenticatews-content">
           <!-- Google Tag Manager -->
 <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-MZWFF7"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -9,14 +9,29 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-MZWFF7');</script>
 <!-- End Google Tag Manager -->
           <div id="page_info" style="display:none;">
-              <title>Authenticate | Binary.com</title>
+              <title>التوثيق | Binary.com</title>
+              <div id="content_class">authenticatews-content</div>
           </div>
           
           <div class="grd-container">
-          
 
-          <div class="grd-grid-12">
-<h1>التوثيق</h1>
-<div id="authentication-message"></div>
-          </div>
+
+  <div class="grd-grid-12">
+  <h1>التوثيق</h1>
+  <div id="authentication-message">
+
+      <p id="fully-authenticated" class="invisible">
+          تم توثيق حسابك بالكامل. يمكنك أن تطلع على <a class="pjaxload" href="/ar/user/settings/limitsws.html">حدود تداولك هنا</a>.
+      </p>
+
+      <div id="not-authenticated" class="invisible">
+          <p>To authenticate your account, kindly email the following to <a href="mailto:support@binary.com">support@binary.com</a></p>
+          <p>- نسخة من جواز سفرك، أو نسخة من رخصة قيادة (مؤقته أو كاملة) أو بطاقة تحقيق شخصية، تحمل اسمك وتاريخ ميلادك.</p>
+          <p>و</p>
+          <p>- صورة ضوئية من فاتورة خدمات أو كشف حساب بنكي (يجب ألا يكون قد مضى عليها أكثر من ثلاثة أشهر).</p>
       </div>
+
+      <p class="center notice-msg invisible" id="error_message"></p>
+
+  </div>
+</div>

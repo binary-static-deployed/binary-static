@@ -1,4 +1,4 @@
-<div id="content">
+<div id="content" class="forwardws-content">
           <!-- Google Tag Manager -->
 <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-MZWFF7"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -10,16 +10,39 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- End Google Tag Manager -->
           <div id="page_info" style="display:none;">
               <title>Cassa | Binary.com</title>
+              <div id="content_class">forwardws-content</div>
           </div>
           
           <div class="grd-container">
-          
 
-          <div class='grd-grid-12 grd-row-padding'>
+
+  <div class='grd-grid-12 grd-row-padding'>
   <h1 id="deposit-withdraw-heading"></h1>
   <div>
-    <p id="deposit-withdraw-message"></p>
-    <p id="deposit-withdraw-error" class="error-msg"></p>
+
+    <div id="deposit-withdraw-message" style="display:none">
+      <p id="cashier-locked-message" class="messages">
+        Come da tua richiesta, la cassa è bloccata. Per sbloccarla, <a class="pjaxload" href="/it/user/settings/securityws.html">clicca qui</a>.
+      </p>
+      <p id="check-email-message" class="messages">Per maggior sicurezza, controlla la tua email per recuperare il token di verifica.</p>
+      <p id="choose-currency-message" class="messages">Scegli in quale valuta desideri operare.</p>
+      <p id="personal-details-message" class="messages">
+        Si è verificato un problema nella procedura di convalida dei tuoi dati personali. Sistema i campi <a class="pjaxload" href="/it/user/settings/detailsws.html">qui</a>.
+        <br />
+        Se hai bisogno di assistenza, contatta la nostra <a class="pjaxload" href="/it/contact.html">Assistenza clienti</a>.
+      </p>
+      <p id="not-authenticated-message" class="messages">
+        Il tuo account non è pienamente autenticato. Per ulteriori informazioni, visita la pagina di <a class="pjaxload" href="/it/user/authenticatews.html">autenticazione</a>.
+      </p>
+    </div>
+
+    <div id="deposit-withdraw-error" class="error-msg" style="display:none">
+      <p id="withdrawal-locked-error" class="error_messages">
+        Il prelievo è bloccato, per ulteriori informazioni <a class="pjaxload" href="/it/contact.html">contattaci</a>.
+      </p>
+      <p id="custom-error" class="error_messages"></p>
+    </div>
+
   </div>
   <div class="grd-container" id="deposit-withdraw-iframe-container" style="display:none">
     <script data-cfasync="false" type="text/javascript">
@@ -108,5 +131,3 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </fieldset>
   </div>
 </div>
-          </div>
-      </div>

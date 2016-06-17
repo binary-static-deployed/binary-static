@@ -44,6 +44,8 @@
     "src/javascript/binary/base/storage.js",
     "src/javascript/binary/base/utility.js",
     "src/javascript/binary/base.js",
+    "src/javascript/binary/common_functions/__tests__/active_symbols.js",
+    "src/javascript/binary/common_functions/active_symbols.js",
     "src/javascript/binary/common_functions/attach_dom/button.js",
     "src/javascript/binary/common_functions/attach_dom/password_strength_meter.js",
     "src/javascript/binary/common_functions/attach_dom/table.js",
