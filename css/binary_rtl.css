@@ -884,6 +884,9 @@ xmp {
 #footer #footer-regulatory #social-networks {
   padding-top: 20px;
 }
+#footer #footer-regulatory #iom_icon_footer {
+  max-width: 90px;
+}
 #footer #footer-regulatory #lga_icon_footer {
   max-width: 140px;
 }
