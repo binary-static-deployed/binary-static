@@ -65,7 +65,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   </div>
   <div class="grd-grid-12 grd-parent">
     <h1>
-      Text
+      Texto
     </h1>
     <div class="grd-grid-6">
       <xmp>
@@ -200,7 +200,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <div class="grd-grid-6">
       <a class="button" href="#">
         <span>
-          button link
+          link do botão
         </span>
       </a>
     </div>
@@ -215,7 +215,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <div class="grd-grid-6">
       <a class="button-disabled" href="#">
         <span>
-          disabled button link
+          link de botão desativado
         </span>
       </a>
     </div>
@@ -257,22 +257,44 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       </p>
     </div>
     <div class="grd-clear"></div>
+  </div>
+  <div class="grd-grid-12 grd-parent">
+    <h1>
+      Tooltips
+    </h1>
     <div class="grd-grid-6">
       <xmp>
-<abbr rel="tooltip" title="message">
+<span data-balloon="message"
+      data-balloon-length="small">
   text with tooltip
-</abbr>
+</span>
       </xmp>
     </div>
     <div class="grd-grid-6">
-      <abbr rel="tooltip" title="message">
+      <span data-balloon="message" data-balloon-length="small">
         text with tooltip
-      </abbr>
+      </span>
+    </div>
+    <div class="grd-clear"></div>
+    <div class="grd-grid-6">
+      <xmp>
+<span data-balloon="message"
+      data-balloon-pos="down"
+      data-balloon-length="medium"
+      class="no-underline">
+  text with tooltip
+</span>
+      </xmp>
+    </div>
+    <div class="grd-grid-6">
+      <span data-balloon="Tooltip message at bottom" data-balloon-pos="down" data-balloon-length="medium" class="no-underline">
+        text with tooltip
+      </span>
     </div>
   </div>
   <div class="grd-grid-12 grd-parent">
     <h1>
-      Tabs
+      Abas
     </h1>
     <p>
       For all types of tabs, you could call "build_menu_with_content" on server side to generate the HTML for you, or just output this HTML samples.
@@ -327,17 +349,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </ul>
         <div id="new-tab-1">
           <p>
-            Content 1 for tab 1
+            Conteúdo 1 para aba 1
           </p>
         </div>
         <div id="new-tab-2">
           <p>
-            Content 2 for tab 2. active by default
+            Conteúdo 2 para aba 2. ativo por padrão
           </p>
         </div>
         <div id="new-tab-3">
           <p>
-            Content 3 for tab 3
+            Conteúdo 3 para aba 3
           </p>
         </div>
       </div>
@@ -345,7 +367,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <div class="grd-clear"></div>
     <div class="grd-grid-6">
       <h2>
-        Tab With Submenus
+        Aba com submenus
       </h2>
       <xmp>
 <div class="content-tab-container">
@@ -419,16 +441,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <div class="tab-content">
           <div class="tab-content-wrapper">
             <div class="invisible toggle-content" id="adv-tab-first-content">
-              <p>Content 1 for tab 1</p>
+              <p>Conteúdo 1 para aba 1</p>
             </div>
             <div class="invisible toggle-content" id="adv-tab-second-sub-first-content">
-              <p>Content 2/1 for tab 2 submenu 1</p>
+              <p>Conteúdo 2/1 para aba 2 submenu 1</p>
             </div>
             <div class="invisible toggle-content" id="adv-tab-second-sub-second-content">
-              <p>Content 2/2 for tab 2 submenu 2</p>
+              <p>Conteúdo 2/2 para aba 2 submenu 2</p>
             </div>
             <div class="toggle-content" id="adv-tab-third-content">
-              <p>Content 3 for tab 3</p>
+              <p>Conteúdo 3 para aba 3</p>
             </div>
           </div>
         </div>
@@ -436,7 +458,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </div>
     <div class="grd-clear"></div>
     <div class="grd-grid-6">
-      <h2>Page section tab</h2>
+      <h2>Aba da seção de página</h2>
       <xmp>
 <div class="section-tab-container">
   <div class="tab-menu">
@@ -509,16 +531,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <div class="tab-content">
           <div class="tab-content-wrapper">
             <div class="invisible toggle-content" id="page-tab-first-content">
-              <p>Content 1 for tab 1</p>
+              <p>Conteúdo 1 para aba 1</p>
             </div>
             <div class="invisible toggle-content" id="page-tab-second-sub-first-content">
-              <p>Content 2/1 for tab 2 submenu 1</p>
+              <p>Conteúdo 2/1 para aba 2 submenu 1</p>
             </div>
             <div class="invisible toggle-content" id="page-tab-second-sub-second-content">
-              <p>Content 2/2 for tab 2 submenu 2</p>
+              <p>Conteúdo 2/2 para aba 2 submenu 2</p>
             </div>
             <div class="toggle-content" id="page-tab-third-content">
-              <p>Content 3 for tab 3</p>
+              <p>Conteúdo 3 para aba 3</p>
             </div>
           </div>
         </div>
@@ -526,7 +548,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </div>
   </div>
   <div class="grd-grid-12 grd-parent">
-    <h1>Tables</h1>
+    <h1>Tabelas</h1>
     <div class="grd-grid-6">
       <xmp>
 <table>
@@ -588,10 +610,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <tfoot>
           <tr>
             <th>
-              Footer
+              Rodapé
             </th>
             <th>
-              Footer
+              Rodapé
             </th>
           </tr>
         </tfoot>
@@ -655,14 +677,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </div>
     <div class="grd-grid-6">
       <fieldset>
-        <legend>Fieldset Legend</legend>
+        <legend>Legenda do conjunto de campos</legend>
         <div class="grd-row-padding">
           <div class="form_label grd-grid-4">
             <label for="loginid">ID de Login</label>
           </div>
           <div class="grd-grid-8">
             <input id="loginid" type="text" name="loginid">
-            <p class="hint">Hint comes here</p>
+            <p class="hint">A dica deve aparecer aqui</p>
             <p class="errorfield">error in loginid</p>
           </div>
         </div>

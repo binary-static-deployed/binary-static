@@ -39,21 +39,21 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     </div>
                 </div>
 
-                <div class="grd-grid-12 grd-parent grd-row-padding">
+                <p class="grd-grid-12 grd-parent">
                     <div class="grd-grid-4 form_label">
                         <label for="txtName">Geltungsbereiche auswählen:</label>
                     </div>
                     <div class="grd-grid-8">
                         <input id="scopes" type="checkbox" name="scopes[]" value="read" checked="checked" readonly="readonly" />
-                          <abbr rel="tooltip" title="Kann zur Anzeige der Kontenaktivität, einschließlich Einstellungen, Limits, Guthaben, Handelsverlauf, und mehr verwendet werden.">Lesen</abbr>
-                        <input type="checkbox" name="scopes[]" value="trade" />
-                          <abbr rel="tooltip" title="Kann verwendet werden, um Kontrakte zu kaufen und zu verkaufen, abgelaufene Kontrakte zu erneuern, und um virtuelle Konten aufzustocken.">Handel</abbr>
-                        <input type="checkbox" name="scopes[]" value="payments" />
-                          <abbr rel="tooltip" title="Kann verwendet werden, um Konten zu eröffnen, Einstellungen vorzunehmen, die Token-Verwendung zu verwalten, und mehr.">Zahlungen</abbr>
-                        <input type="checkbox" name="scopes[]" value="admin" />
-                          <abbr rel="tooltip" title="Kann verwendet werden, um Auszahlungen an Zahlungsagenten zu machen, Geld zwischen Konten zu transferieren und um Kassenpasswörter einzurichten oder zu löschen.">Admin</abbr>
+                          <label for="scopes" data-balloon="Kann zur Anzeige der Kontenaktivität, einschließlich Einstellungen, Limits, Guthaben, Handelsverlauf, und mehr verwendet werden." data-balloon-length="xlarge">Lesen</label>
+                        <input id="scopes-trade" type="checkbox" name="scopes[]" value="trade" />
+                          <label for="scopes-trade" data-balloon="Kann verwendet werden, um Kontrakte zu kaufen und zu verkaufen, abgelaufene Kontrakte zu erneuern, und um virtuelle Konten aufzustocken." data-balloon-length="xlarge">Handel</label>
+                        <input id="scopes-payments" type="checkbox" name="scopes[]" value="payments" />
+                          <label for="scopes-payments" data-balloon="Kann verwendet werden, um Konten zu eröffnen, Einstellungen vorzunehmen, die Token-Verwendung zu verwalten, und mehr." data-balloon-length="xlarge">Zahlungen</label>
+                        <input id="scopes-admin" type="checkbox" name="scopes[]" value="admin" />
+                          <label for="scopes-admin" data-balloon="Kann verwendet werden, um Auszahlungen an Zahlungsagenten zu machen, Geld zwischen Konten zu transferieren und um Kassenpasswörter einzurichten oder zu löschen." data-balloon-length="xlarge">Admin</label>
                     </div>
-                </div>
+                </p>
 
                 <div class="grd-grid-12 grd-parent">
                     <div class="grd-grid-4"></div>

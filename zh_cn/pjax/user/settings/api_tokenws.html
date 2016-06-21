@@ -39,21 +39,21 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     </div>
                 </div>
 
-                <div class="grd-grid-12 grd-parent grd-row-padding">
+                <p class="grd-grid-12 grd-parent">
                     <div class="grd-grid-4 form_label">
                         <label for="txtName">选择范围:</label>
                     </div>
                     <div class="grd-grid-8">
                         <input id="scopes" type="checkbox" name="scopes[]" value="read" checked="checked" readonly="readonly" />
-                          <abbr rel="tooltip" title="可用于查看账户活动，包括设置、限额、资产负债表、交易购入历史等。">阅读</abbr>
-                        <input type="checkbox" name="scopes[]" value="trade" />
-                          <abbr rel="tooltip" title="可用于合同购入与售出，给到期的购入合同延期，以及给虚拟金钱账户存入资金。">交易</abbr>
-                        <input type="checkbox" name="scopes[]" value="payments" />
-                          <abbr rel="tooltip" title="可用于开账户、设置、令牌用法管理等。">支付</abbr>
-                        <input type="checkbox" name="scopes[]" value="admin" />
-                          <abbr rel="tooltip" title="用途包括为付款代理取款、帐户转账以及设置/删除收银台密码。">管理中心</abbr>
+                          <label for="scopes" data-balloon="可用于查看账户活动，包括设置、限额、资产负债表、交易购入历史等。" data-balloon-length="xlarge">阅读</label>
+                        <input id="scopes-trade" type="checkbox" name="scopes[]" value="trade" />
+                          <label for="scopes-trade" data-balloon="可用于合同购入与售出，给到期的购入合同延期，以及给虚拟金钱账户存入资金。" data-balloon-length="xlarge">交易</label>
+                        <input id="scopes-payments" type="checkbox" name="scopes[]" value="payments" />
+                          <label for="scopes-payments" data-balloon="可用于开账户、设置、令牌用法管理等。" data-balloon-length="xlarge">支付</label>
+                        <input id="scopes-admin" type="checkbox" name="scopes[]" value="admin" />
+                          <label for="scopes-admin" data-balloon="用途包括为付款代理取款、帐户转账以及设置/删除收银台密码。" data-balloon-length="xlarge">管理中心</label>
                     </div>
-                </div>
+                </p>
 
                 <div class="grd-grid-12 grd-parent">
                     <div class="grd-grid-4"></div>

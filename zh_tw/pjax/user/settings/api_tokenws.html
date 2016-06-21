@@ -39,21 +39,21 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     </div>
                 </div>
 
-                <div class="grd-grid-12 grd-parent grd-row-padding">
+                <p class="grd-grid-12 grd-parent">
                     <div class="grd-grid-4 form_label">
                         <label for="txtName">選擇範圍:</label>
                     </div>
                     <div class="grd-grid-8">
                         <input id="scopes" type="checkbox" name="scopes[]" value="read" checked="checked" readonly="readonly" />
-                          <abbr rel="tooltip" title="可用於檢視帳戶活動，包括設定、限額、資產負債表、交易購入歷史等。">閱讀</abbr>
-                        <input type="checkbox" name="scopes[]" value="trade" />
-                          <abbr rel="tooltip" title="可用於合同購入與售出、給到期的購入合同延期、及給虛擬金錢帳戶存入資金。">交易</abbr>
-                        <input type="checkbox" name="scopes[]" value="payments" />
-                          <abbr rel="tooltip" title="可用於開帳戶、設定、權杖用法管理等。">支付</abbr>
-                        <input type="checkbox" name="scopes[]" value="admin" />
-                          <abbr rel="tooltip" title="用途包括為付款代理取款、帳戶轉賬、及設定/刪除收銀台密碼。">管理中心</abbr>
+                          <label for="scopes" data-balloon="可用於檢視帳戶活動，包括設定、限額、資產負債表、交易購入歷史等。" data-balloon-length="xlarge">閱讀</label>
+                        <input id="scopes-trade" type="checkbox" name="scopes[]" value="trade" />
+                          <label for="scopes-trade" data-balloon="可用於合同購入與售出、給到期的購入合同延期、及給虛擬金錢帳戶存入資金。" data-balloon-length="xlarge">交易</label>
+                        <input id="scopes-payments" type="checkbox" name="scopes[]" value="payments" />
+                          <label for="scopes-payments" data-balloon="可用於開帳戶、設定、權杖用法管理等。" data-balloon-length="xlarge">支付</label>
+                        <input id="scopes-admin" type="checkbox" name="scopes[]" value="admin" />
+                          <label for="scopes-admin" data-balloon="用途包括為付款代理取款、帳戶轉賬、及設定/刪除收銀台密碼。" data-balloon-length="xlarge">管理中心</label>
                     </div>
-                </div>
+                </p>
 
                 <div class="grd-grid-12 grd-parent">
                     <div class="grd-grid-4"></div>

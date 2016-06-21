@@ -39,21 +39,21 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     </div>
                 </div>
 
-                <div class="grd-grid-12 grd-parent grd-row-padding">
+                <p class="grd-grid-12 grd-parent">
                     <div class="grd-grid-4 form_label">
                         <label for="txtName">Pilih Cangkupan:</label>
                     </div>
                     <div class="grd-grid-8">
                         <input id="scopes" type="checkbox" name="scopes[]" value="read" checked="checked" readonly="readonly" />
-                          <abbr rel="tooltip" title="Dapat digunakan untuk melihat aktivitas akun, termasuk pengaturan, batas, saldo, sejarah pembelian trading, dan banyak lagi.">Baca</abbr>
-                        <input type="checkbox" name="scopes[]" value="trade" />
-                          <abbr rel="tooltip" title="Dapat digunakan untuk membeli dan menjual kontrak, memperbarui kontrak dan menambah saldo pada akun virtual.">Trade</abbr>
-                        <input type="checkbox" name="scopes[]" value="payments" />
-                          <abbr rel="tooltip" title="Dapat digunakan untuk mendaftar akun, menyeting, mengelola penggunaan token dan banyak lagi.">Pembayaran</abbr>
-                        <input type="checkbox" name="scopes[]" value="admin" />
-                          <abbr rel="tooltip" title="Dapat digunakan untuk menarik dana ke agen pembayaran, transfer dana antar akun, dan mengatur/menghapus sandi kasir.">Admin</abbr>
+                          <label for="scopes" data-balloon="Dapat digunakan untuk melihat aktivitas akun, termasuk pengaturan, batas, saldo, sejarah pembelian trading, dan banyak lagi." data-balloon-length="xlarge">Baca</label>
+                        <input id="scopes-trade" type="checkbox" name="scopes[]" value="trade" />
+                          <label for="scopes-trade" data-balloon="Dapat digunakan untuk membeli dan menjual kontrak, memperbarui kontrak dan menambah saldo pada akun virtual." data-balloon-length="xlarge">Trade</label>
+                        <input id="scopes-payments" type="checkbox" name="scopes[]" value="payments" />
+                          <label for="scopes-payments" data-balloon="Dapat digunakan untuk mendaftar akun, menyeting, mengelola penggunaan token dan banyak lagi." data-balloon-length="xlarge">Pembayaran</label>
+                        <input id="scopes-admin" type="checkbox" name="scopes[]" value="admin" />
+                          <label for="scopes-admin" data-balloon="Dapat digunakan untuk menarik dana ke agen pembayaran, transfer dana antar akun, dan mengatur/menghapus sandi kasir." data-balloon-length="xlarge">Admin</label>
                     </div>
-                </div>
+                </p>
 
                 <div class="grd-grid-12 grd-parent">
                     <div class="grd-grid-4"></div>

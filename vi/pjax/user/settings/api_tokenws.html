@@ -39,21 +39,21 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     </div>
                 </div>
 
-                <div class="grd-grid-12 grd-parent grd-row-padding">
+                <p class="grd-grid-12 grd-parent">
                     <div class="grd-grid-4 form_label">
                         <label for="txtName">Chọn Loại:</label>
                     </div>
                     <div class="grd-grid-8">
                         <input id="scopes" type="checkbox" name="scopes[]" value="read" checked="checked" readonly="readonly" />
-                          <abbr rel="tooltip" title="Có thể được sử dụng để xem hoạt động của tài khoản, bao gồm cài đặt, giới hạn, số dư, lịch sử giao dịch, và nhiều hơn nữa.">Đọc</abbr>
-                        <input type="checkbox" name="scopes[]" value="trade" />
-                          <abbr rel="tooltip" title="Có thể được sử dụng để mua và bán hợp đồng, làm mới hợp đồng mua hàng đã hết hạn, và nhận thêm tiền vào tài khoản tiền ảo.">Giao dịch</abbr>
-                        <input type="checkbox" name="scopes[]" value="payments" />
-                          <abbr rel="tooltip" title="Có thể được sử dụng để mở tài khoản, thiết lập, quản lý việc sử dụng mã token, và nhiều hơn nữa.">Thanh toán</abbr>
-                        <input type="checkbox" name="scopes[]" value="admin" />
-                          <abbr rel="tooltip" title="Có thể được sử dụng để rút tiền ở đại lý thanh toán, chuyển tiền giữa các tài khoản và thêm/ xóa mật khẩu thu ngân.">Amin</abbr>
+                          <label for="scopes" data-balloon="Có thể được sử dụng để xem hoạt động của tài khoản, bao gồm cài đặt, giới hạn, số dư, lịch sử giao dịch, và nhiều hơn nữa." data-balloon-length="xlarge">Đọc</label>
+                        <input id="scopes-trade" type="checkbox" name="scopes[]" value="trade" />
+                          <label for="scopes-trade" data-balloon="Có thể được sử dụng để mua và bán hợp đồng, làm mới hợp đồng mua hàng đã hết hạn, và nhận thêm tiền vào tài khoản tiền ảo." data-balloon-length="xlarge">Giao dịch</label>
+                        <input id="scopes-payments" type="checkbox" name="scopes[]" value="payments" />
+                          <label for="scopes-payments" data-balloon="Có thể được sử dụng để mở tài khoản, thiết lập, quản lý việc sử dụng mã token, và nhiều hơn nữa." data-balloon-length="xlarge">Thanh toán</label>
+                        <input id="scopes-admin" type="checkbox" name="scopes[]" value="admin" />
+                          <label for="scopes-admin" data-balloon="Có thể được sử dụng để rút tiền ở đại lý thanh toán, chuyển tiền giữa các tài khoản và thêm/ xóa mật khẩu thu ngân." data-balloon-length="xlarge">Amin</label>
                     </div>
-                </div>
+                </p>
 
                 <div class="grd-grid-12 grd-parent">
                     <div class="grd-grid-4"></div>
