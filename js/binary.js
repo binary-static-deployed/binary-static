@@ -69009,7 +69009,7 @@ Client.prototype = {
     show_login_if_logout: function(shouldReplacePageContents) {
         if(!this.is_logged_in) {
             if(shouldReplacePageContents) {
-                $('#content > .grd-container').addClass('center').empty()
+                $('#content > .container').addClass('center-text').empty()
                     .append($('<p/>', {class: 'notice-msg', html: text.localize('Please [_1] to view this page')
                         .replace('[_1]', '<a class="login_link" href="javascript:;">' + text.localize('login') + '</a>')}));
                 $('.login_link').click(function(){Login.redirect_to_login();});
@@ -69826,9 +69826,9 @@ Contents.prototype = {
                     }
                 }
                 if (show_financial) {
-                    $('.financial-upgrade-link').removeClass('invisible');
+                    $('.financial-upgrade-link').parent().removeClass('invisible');
                 } else {
-                    $('.financial-upgrade-link').addClass('invisible');
+                    $('.financial-upgrade-link').parent().addClass('invisible');
                 }
             }
         }
@@ -71659,7 +71659,7 @@ function handle_residence_state_ws(){
             for (i = 0; i < states_list.length; i++) {
                 appendTextValueChild(select, states_list[i].text, states_list[i].value);
             }
-            select.parentNode.parentNode.setAttribute('style', 'display:block');
+            select.parentNode.parentNode.show();
             if (window.state) {
               select.value = window.state;
             }
@@ -71732,9 +71732,9 @@ function limitLanguage(lang) {
   if (document.getElementById('language_select')) {
     $('#language_select').remove();
     $('#gmt-clock').removeClass();
-    $('#gmt-clock').addClass('grd-grid-6 grd-grid-mobile-12');
+    $('#gmt-clock').addClass('gr-6 gr-12-m');
     $('#contact-us').removeClass();
-    $('#contact-us').addClass('grd-grid-6 grd-hide-mobile');
+    $('#contact-us').addClass('gr-6 gr-hide-m');
   }
 }
 
@@ -71790,7 +71790,7 @@ try {
   window.attachEvent("onload", $buo_f);
 }
 ;/*
- *  This is developed to simplify the usage of enjoyhint (https://github.com/xbsoftware/enjoyhint) 
+ *  This is developed to simplify the usage of enjoyhint (https://github.com/xbsoftware/enjoyhint)
  *
  *  How to Implement in a page:
  *  1. Add the button element to the template: <div id="guideBtn"></div>
@@ -71867,7 +71867,7 @@ var Guide = (function() {
 		}
 
 		$(opt.guideBtnID)
-			.addClass('grd-hide-mobile pulser')
+			.addClass('gr-hide-m pulser')
 			.append($('<span/>', {class: 'close', text: 'X'}))
 			.append($('<strong/>'));
 		$(opt.guideBtnID + ' strong').html('<span></span>' + opt.btnText);
@@ -71885,7 +71885,7 @@ var Guide = (function() {
 			enjoyhint_instance.setScript(getScript(opt.script));
 			enjoyhint_instance.runScript();
 		});
-		
+
 		if(opt.autoStart) {
 			$(opt.guideBtnID).click();
 		}
@@ -71905,14 +71905,14 @@ var Guide = (function() {
 			return [
 				{
 					selector    : '#contract_markets',
-					description : '<h1>' + text.localize('Step') + ' 1</h1>' + 
+					description : '<h1>' + text.localize('Step') + ' 1</h1>' +
 									text.localize('Select your market'),
 					event_type  : 'next',
 					nextButton  : btnNext
 				},
 				{
 					selector    : '#underlying',
-					description : '<h1>' + text.localize('Step') + ' 2</h1>' + 
+					description : '<h1>' + text.localize('Step') + ' 2</h1>' +
 									text.localize('Select your underlying asset'),
 					event_type  : 'next',
 					nextButton  : btnNext
@@ -71926,14 +71926,14 @@ var Guide = (function() {
 				},
 				{
 					selector    : '#websocket_form',
-					description : '<h1>' + text.localize('Step') + ' 4</h1>' + 
+					description : '<h1>' + text.localize('Step') + ' 4</h1>' +
 									text.localize('Adjust trade parameters'),
 					event_type  : 'next',
 					nextButton  : btnNext
 				},
 				{
 					selector    : '#contracts_list',
-					description : '<h1>' + text.localize('Step') + ' 5</h1>' + 
+					description : '<h1>' + text.localize('Step') + ' 5</h1>' +
 									text.localize('Predict the direction<br />and purchase'),
 					event_type  : 'next',
 					nextButton  : btnFinish
@@ -73202,8 +73202,11 @@ pjax_config_page('/get-started', function() {
         onLoad: function() {
             if (!/jp/.test(window.location.pathname) && page.language().toLowerCase() === 'ja') {
               window.location.href = page.url.url_for('get-started-jp');
-            }
+            } else if (/jp/.test(window.location.pathname)) {
+              return;
+          } else {
             get_started_behaviour();
+          }
         },
         onUnload: function() {
             $(window).off('scroll');
@@ -74259,7 +74262,7 @@ pjax_config_page_require_auth("paymentagent/withdrawws", function() {
     var $container,
         $tabs,
         $contents;
-    
+
     var activeSymbols,
         assetIndex,
         marketColumns,
@@ -74346,9 +74349,9 @@ pjax_config_page_require_auth("paymentagent/withdrawws", function() {
                 values = {};
             for(var j = 0; j < assetCells.length; j++) {
                 var col  = assetCells[j][idx.cellName];
-                
+
                 values[col] = assetCells[j][idx.cellFrom] + ' - ' + assetCells[j][idx.cellTo];
-                
+
                 var marketCols = marketColumns[market];
                 if($.inArray(col, marketCols.columns) === -1) {
                     marketCols.header.push(text.localize(assetCells[j][idx.cellDisplayName]));
@@ -74364,7 +74367,7 @@ pjax_config_page_require_auth("paymentagent/withdrawws", function() {
         organizeData();
 
         var isJapan = page.language().toLowerCase() === 'ja';
-        
+
         $tabs = $('<ul/>', {class: isJapan ? 'hidden' : ''});
         $contents = $('<div/>');
 
@@ -74378,7 +74381,7 @@ pjax_config_page_require_auth("paymentagent/withdrawws", function() {
             // just show "Major Pairs" when the language is JA
             if(isJapan && symbolInfo.submarket !== 'major_pairs') {
                 continue;
-            }            
+            }
 
             var $submarketTable = getSubmarketTable(assetItem, symbolInfo);
             $submarketTable.find('tbody').append(createSubmarketTableRow(assetItem, symbolInfo));
@@ -74387,7 +74390,7 @@ pjax_config_page_require_auth("paymentagent/withdrawws", function() {
         $container
             .empty()
             .append($tabs)
-            .append($('<div/>', {class: 'grd-row-padding'}))
+            .append($('<div/>', {class: 'gr-padding-10'}))
             .append($contents.children());
 
         $container.tabs('destroy').tabs();
@@ -74396,7 +74399,7 @@ pjax_config_page_require_auth("paymentagent/withdrawws", function() {
     var getSubmarketTable = function(assetItem, symbolInfo) {
         var marketID    = 'market-'    + symbolInfo.market;
         var submarketID = 'submarket-' + symbolInfo.submarket;
-        
+
         var $table = $contents.find('#' + submarketID);
         if($table.length === 0) {
             // Create the table for this submarket
@@ -74440,7 +74443,7 @@ pjax_config_page_require_auth("paymentagent/withdrawws", function() {
         };
 
         var $submarketTable = Table.createFlexTable([], metadata, marketColumns[market].header);
-        
+
         var $submarketHeader = $('<tr/>', {class: 'flex-tr'})
             .append($('<th/>', {class: 'flex-tr-child submarket-name', colspan: marketColumns[market].columns.length, text: symbolInfo.submarket_display_name}));
         $submarketTable.find('thead').prepend($submarketHeader);
@@ -74487,7 +74490,7 @@ pjax_config_page("asset_indexws", function() {
         $container;
 
     var columns,
-        activeSymbols, 
+        activeSymbols,
         tradingTimes;
 
 
@@ -74556,7 +74559,7 @@ pjax_config_page("asset_indexws", function() {
         $container
             .empty()
             .append($ul)
-            .append($('<div/>', {class: 'grd-row-padding'}))
+            .append($('<div/>', {class: 'gr-padding-10'}))
             .append($contents.children());
 
         $container.tabs('destroy').tabs();
@@ -74607,8 +74610,8 @@ pjax_config_page("asset_indexws", function() {
                 '', // Closes
                 symbol.times.settlement,
                 ''  // UpcomingEvents
-            ], 
-            columns, 
+            ],
+            columns,
             "data"
         );
 
@@ -75521,15 +75524,15 @@ TradingAnalysis.DigitInfoWS.prototype = {
         }
         elem = elem + '</select>';
         var contentId = document.getElementById('tab_last_digit-content'),
-            content = '<div class="grd-parent">'+
-                        '<div id="last_digit_histo_form" class="grd-grid-8 grd-grid-mobile-12 grd-centered">'+
-                        '<form class=smallfont action="#" method="post">'+
-                        '<div class="grd-grid-6 grd-grid-mobile-12">'+ text.localize('Select market')+' : ' + elem +' </div>'+
-                        '<div class="grd-grid-6 grd-grid-mobile-12">'+ text.localize('Number of ticks')+' : <select class="smallfont" name="tick_count"><option value="25">25</option><option value="50">50</option><option selected="selected" value="100">100</option><option value="500">500</option><option value="1000">1000</option></select></div>'+
+            content = '<div class="gr-parent">'+
+                        '<div id="last_digit_histo_form" class="gr-8 gr-12-m gr-centered">'+
+                        '<form class="smallfont gr-row" action="#" method="post">'+
+                        '<div class="gr-6 gr-12-m">'+ text.localize('Select market')+' : ' + elem +' </div>'+
+                        '<div class="gr-6 gr-12-m">'+ text.localize('Number of ticks')+' : <select class="smallfont" name="tick_count"><option value="25">25</option><option value="50">50</option><option selected="selected" value="100">100</option><option value="500">500</option><option value="1000">1000</option></select></div>'+
                         '</form>'+
                         '</div>'+
-                        '<div id="last_digit_histo" class="grd-grid-8 grd-grid-mobile-12 grd-centered"></div>'+
-                        '<div id="last_digit_title" class="grd-hide">'+ (domain.charAt(0).toUpperCase() + domain.slice(1)) + ' - ' + text.localize('Last digit stats for the latest [_1] ticks on [_2]') +'</div>'+
+                        '<div id="last_digit_histo" class="gr-8 gr-12-m gr-centered"></div>'+
+                        '<div id="last_digit_title" class="gr-hide">'+ (domain.charAt(0).toUpperCase() + domain.slice(1)) + ' - ' + text.localize('Last digit stats for the latest [_1] ticks on [_2]') +'</div>'+
                         '</div>';
         contentId.innerHTML = content;
         $('[name=underlying]').val(underlying);
@@ -77089,7 +77092,7 @@ function marketOrder(market){
             random_index:    19,
             random_daily:    20,
             random_nightly:  21
-    }; 
+    };
     return order[market];
 }
 
@@ -77108,6 +77111,7 @@ function marketSort(a,b){
 function displayTooltip(market, symbol){
     'use strict';
     var tip = document.getElementById('symbol_tip'),
+        notice = document.getElementById('notice-message-forex'),
         guide = document.getElementById('guideBtn'),
         app = document.getElementById('androidApp'),
         appstore = document.getElementById('appstore');
@@ -77136,6 +77140,11 @@ function displayTooltip(market, symbol){
     if (market.match(/^smart_fx/) || symbol.match(/^WLD/)){
         tip.show();
         tip.setAttribute('target', page.url.url_for('/get-started/smart-indices', '#world-fx-indices'));
+    }
+    if (market.match(/^forex/) || market.match(/^major_pairs/) || market.match(/^minor_pairs/) || market.match(/^smart_fx/)) {
+        notice.show();
+    } else {
+        notice.hide();
     }
 }
 
@@ -81438,7 +81447,7 @@ var ProfitTableWS = (function () {
                 $('#profit-table tbody')
                     .append($('<tr/>', {class: "flex-tr"})
                         .append($('<td/>', {colspan: 8})
-                            .append($('<p/>', {class: "notice-msg center", text: text.localize("Your account has no trading activity.")})
+                            .append($('<p/>', {class: "notice-msg center-text", text: text.localize("Your account has no trading activity.")})
                             )
                         )
                     );
@@ -81624,6 +81633,9 @@ var ProfitTableUI = (function(){
     var $form,
         $loading,
         dateID,
+        timeDateID,
+        timeID,
+        time,
         errorClass,
         hiddenClass;
 
@@ -81634,6 +81646,9 @@ var ProfitTableUI = (function(){
     var init = function() {
         $form       = $('#frmSelfExclusion');
         $loading    = $('#loading');
+        timeDateID  = 'timeout_until_duration';
+        timeID      = 'timeout_until';
+        time        = new Date();
         dateID      = 'exclude_until';
         errorClass  = 'errorfield';
         hiddenClass = 'hidden';
@@ -81702,6 +81717,26 @@ var ProfitTableUI = (function(){
         var end_date = new Date();
         end_date.setFullYear(end_date.getFullYear() + 5);
 
+        // 6 weeks from now
+        var week_end_date = new Date();
+        week_end_date.setMonth(week_end_date.getMonth() + 2);
+        week_end_date.setDate(week_end_date.getDate() + 1);
+
+        var now_date = new Date();
+
+        var $timeID = $('#' + timeID);
+        attach_time_picker($timeID);
+
+        var $timeDateID = $('#' + timeDateID);
+        $timeDateID.datepicker({
+            dateFormat: 'yy-mm-dd',
+            minDate   : now_date,
+            maxDate   : week_end_date,
+            onSelect  : function(dateText, inst) {
+                $timeDateID.attr('value', dateText);
+            }
+        });
+
         var $dateID = $('#' + dateID);
         $dateID.datepicker({
             dateFormat: 'yy-mm-dd',
@@ -81751,22 +81786,29 @@ var ProfitTableUI = (function(){
             var newValue = $form.find('#' + key).val().trim();
 
             if(newValue.length > 0) {
-                submittedValues[key] = newValue;
-            }
-
-            if(key === dateID) {
-                validateExclusionDate(newValue);
-            }
-            else {
-                if(newValue.length > 0 && !isNormalInteger(newValue)) {
-                    showError(key, text.localize('Please enter an integer value'));
+                if (key === timeDateID) {
+                    if (validateExclusionDate(newValue, 'timeDate')) {
+                        submittedValues['timeout_until'] = time;
+                    }
+                } else if (key !== timeID) {
+                    submittedValues[key] = newValue;
                 }
-                else if(currentValue > 0 && (newValue.length === 0 || isLargerInt(newValue, currentValue))) {
-                    showError(key, text.localize('Please enter a number between 0 and [_1]').replace('[_1]', currentValue));
+                if(key === dateID) {
+                    validateExclusionDate(newValue);
                 }
-                else if(key === 'session_duration_limit' && newValue > (6 * 7 * 24 * 60)) {
-                    showError(key, text.localize('Session duration limit cannot be more than 6 weeks.'));
+                else if(key !== timeID && key !== timeDateID) {
+                    if(newValue.length > 0 && !isNormalInteger(newValue)) {
+                        showError(key, text.localize('Please enter an integer value'));
+                    }
+                    else if(currentValue > 0 && (newValue.length === 0 || isLargerInt(newValue, currentValue))) {
+                        showError(key, text.localize('Please enter a number between 0 and [_1]').replace('[_1]', currentValue));
+                    }
+                    else if(key === 'session_duration_limit' && newValue > (6 * 7 * 24 * 60)) {
+                        showError(key, text.localize('Session duration limit cannot be more than 6 weeks.'));
+                    }
                 }
+            } else if (key === timeDateID && $form.find('#' + timeID).val().trim().length > 0) {
+                showError(timeDateID, text.localize('Please select a valid date'));
             }
 
             if(newValue !== currentValue) {
@@ -81790,7 +81832,7 @@ var ProfitTableUI = (function(){
         return /^\d+$/.test(value);
     };
 
-    var validateExclusionDate = function(exclusion_date) {
+    var validateExclusionDate = function(exclusion_date, opt) {
         var date_regex = /^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/;
         var errMsg = '';
 
@@ -81800,6 +81842,17 @@ var ProfitTableUI = (function(){
             }
             else {
                 exclusion_date = new Date(exclusion_date);
+                if (opt) {
+                    if (validateExclusionTime($('#' + timeID).val().trim())) {
+                        if ($('#' + timeID).val().trim().length > 0) {
+                            exclusion_date.setHours(parseInt($('#' + timeID).val().split(':')[0]));
+                            exclusion_date.setMinutes(parseInt($('#' + timeID).val().split(':')[1]));
+                        }
+                        time = Math.floor(exclusion_date.getTime()/1000);
+                    } else {
+                        return false;
+                    }
+                }
                 // self exclusion date must > 6 months from now
                 var six_month_date = new Date();
                 six_month_date.setMonth(six_month_date.getMonth() + 6);
@@ -81807,27 +81860,53 @@ var ProfitTableUI = (function(){
                 var five_year_date = new Date();
                 five_year_date.setFullYear(five_year_date.getFullYear() + 5);
 
+                var six_week_date = new Date();
+                six_week_date.setMonth(six_week_date.getMonth() + 2);
+
                 if (exclusion_date < new Date()) {
                     errMsg = 'Exclude time must be after today.';
-                }
-                else if (exclusion_date < six_month_date) {
-                    errMsg = 'Exclude time cannot be less than 6 months.';
-                }
-                else if (exclusion_date > five_year_date) {
-                    errMsg = 'Exclude time cannot be for more than 5 years.';
-                }
-                else {
-                    var isConfirmed = confirm(text.localize('When you click "Ok" you will be excluded from trading on the site until the selected date.'));
-                    if(!isConfirmed) {
-                        isValid = false;
+                } else if (!opt) {
+                    if (exclusion_date < six_month_date) {
+                        errMsg = 'Exclude time cannot be less than 6 months.';
+                    }
+                    else if (exclusion_date > five_year_date) {
+                        errMsg = 'Exclude time cannot be for more than 5 years.';
+                    }
+                } else if (opt) {
+                    if (exclusion_date > six_week_date) {
+                        errMsg = 'Exclude time cannot be more than 6 weeks.';
                     }
                 }
             }
         }
 
         if(errMsg.length > 0) {
-            showError(dateID, text.localize(errMsg));
+            showError((opt ? timeDateID : dateID), text.localize(errMsg));
+            return false;
+        } else {
+            var isConfirmed = confirm(text.localize('When you click "Ok" you will be excluded from trading on the site until the selected date.'));
+            if(!isConfirmed) {
+                isValid = false;
+            }
+            return true;
         }
+    };
+
+    var validateExclusionTime = function(exclusion_time) {
+        var time_regex = /^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/;
+        var errMsg = '';
+
+        if (exclusion_time) {
+            if(time_regex.test(exclusion_time) === false){
+                errMsg = 'Please select a valid time';
+            }
+        }
+
+        if(errMsg.length > 0) {
+            showError(timeID, text.localize(errMsg));
+            return false;
+        }
+        return true;
     };
 
     // -----------------------------
@@ -81842,6 +81921,9 @@ var ProfitTableUI = (function(){
 
     var showError = function(fieldID, errMsg) {
         $('#' + fieldID).parent().append($('<p/>', {class: errorClass, text: errMsg}));
+        if (fieldID === timeID) {
+            $('#' + fieldID).attr('style', 'margin-bottom:10px');
+        }
         isValid = false;
     };
 
@@ -82326,7 +82408,7 @@ pjax_config_page_require_auth("api_tokenws", function() {
                 $('#applications-table tbody')
                     .append($('<tr/>', {class: "flex-tr"})
                         .append($('<td/>', {colspan: 7})
-                            .append($('<p/>', {class: "notice-msg center", text: text.localize("You have not granted access to any applications.")})
+                            .append($('<p/>', {class: "notice-msg center-text", text: text.localize("You have not granted access to any applications.")})
                             )
                         )
                     );
@@ -82540,7 +82622,7 @@ pjax_config_page_require_auth("api_tokenws", function() {
     var checkIsVirtual = function(){
         if(page.client.is_virtual()) {
             $("#assessment_form").addClass('invisible');
-            $('#response_on_success').addClass('notice-msg center').removeClass('invisible').text(text.localize('This feature is not relevant to virtual-money accounts.'));
+            $('#response_on_success').addClass('notice-msg center-text').removeClass('invisible').text(text.localize('This feature is not relevant to virtual-money accounts.'));
             hideLoadingImg(false);
             return true;
         }
@@ -82654,7 +82736,7 @@ pjax_config_page_require_auth("user/settings/assessmentws", function() {
                   $('#login-history-table tbody')
                       .append($('<tr/>', {class: "flex-tr"})
                           .append($('<td/>', {colspan: 6})
-                              .append($('<p/>', {class: "notice-msg center", text: text.localize("Your account has no Login/Logout activity.")})
+                              .append($('<p/>', {class: "notice-msg center-text", text: text.localize("Your account has no Login/Logout activity.")})
                               )
                           )
                       );
@@ -83349,7 +83431,7 @@ pjax_config_page_require_auth("settings/detailsws", function() {
     var checkIsVirtual = function(){
         if(page.client.is_virtual()) {
             $form.hide();
-            $('#SecuritySuccessMsg').addClass('notice-msg center').text(Content.localize().textFeatureUnavailable);
+            $('#SecuritySuccessMsg').addClass('notice-msg center-text').text(Content.localize().textFeatureUnavailable);
             return true;
         }
         return false;
@@ -83584,7 +83666,7 @@ pjax_config_page_require_auth("user/settings/securityws", function() {
                 $('#statement-table tbody')
                     .append($('<tr/>', {class: "flex-tr"})
                         .append($('<td/>', {colspan: 7})
-                            .append($('<p/>', {class: "notice-msg center", text: text.localize("Your account has no trading activity.")})
+                            .append($('<p/>', {class: "notice-msg center-text", text: text.localize("Your account has no trading activity.")})
                             )
                         )
                     );
@@ -84982,7 +85064,7 @@ var ProfitTableWS = (function () {
                 $('#profit-table tbody')
                     .append($('<tr/>', {class: "flex-tr"})
                         .append($('<td/>', {colspan: 8})
-                            .append($('<p/>', {class: "notice-msg center", text: text.localize("Your account has no trading activity.")})
+                            .append($('<p/>', {class: "notice-msg center-text", text: text.localize("Your account has no trading activity.")})
                             )
                         )
                     );
@@ -86405,7 +86487,7 @@ pjax_config_page_require_auth("tnc_approvalws", function() {
         var longcode = toJapanTimeIfNeeded(contract.date_expiry, '', contract.longcode);
 
         $Container.prepend($('<div/>', {id: 'sell_bet_desc', class: 'popup_bet_desc drag-handle', text: longcode}));
-        var $sections = $('<div/>').append($('<div id="sell_details_chart_wrapper" class="grd-grid-8 grd-grid-mobile-12"></div><div id="sell_details_table" class="grd-grid-4 grd-grid-mobile-12"></div>'));
+        var $sections = $('<div/>').append($('<div class="gr-row container"><div id="sell_details_chart_wrapper" class="gr-8 gr-12-m"></div><div id="sell_details_table" class="gr-4 gr-12-m"></div></div>'));
 
         $sections.find('#sell_details_table').append($(
             '<table>' +
@@ -86435,9 +86517,9 @@ pjax_config_page_require_auth("tnc_approvalws", function() {
             '<div id="trade_details_bottom"><div id="contract_sell_wrapper" class="' + hiddenClass + '"></div><div id="contract_sell_message"></div><div id="contract_win_status" class="' + hiddenClass + '"></div></div>'
         ));
 
-        $sections.find('#sell_details_chart_wrapper').html('<div id="live_chart_form_wrapper" class="grd-grid-12"></div>' +
+        $sections.find('#sell_details_chart_wrapper').html('<div id="live_chart_form_wrapper" class="gr-12"></div>' +
             '<div class="chart-notice"><div class="notice" id="delayed_feed_notice" style="display: none;">Charting for this underlying is delayed</div><div class="notice" id="not_available_notice" style="display: none;">Charting is not available for this underlying</div></div>' +
-            '<div id="' + (contract.tick_count ? 'tick_chart' : 'analysis_live_chart') + '" class="live_chart_wrapper grd-grid-12"></div>');
+            '<div id="' + (contract.tick_count ? 'tick_chart' : 'analysis_live_chart') + '" class="live_chart_wrapper gr-12"></div>');
 
         $Container.find('#' + wrapperID)
             .append($sections.html())
@@ -87815,38 +87897,40 @@ pjax_config_page("profit_tablews|statementws|portfoliows|trading", function() {
             }
         }
         var $header = $('<div />', {
-            'class': 'grd-parent grd-grid-12 grd-centered table-header grd-row-padding'
-        }).append(
-            $('<div />', {
-                'class': 'grd-grid-4 center-aligned',
-                'text': Content.localize().textExercisePeriod
-            }),
-            $('<div />', {
-                'class': 'grd-grid-4 center-aligned',
-                'text': ask
-            }),
-            $('<div />', {
-                'class': 'grd-grid-4 center-aligned',
-                'text': bid
-            })
+            'class': 'gr-12 gr-centered table-header gr-padding-10'
+        }).append($('<div/>', {'class': 'gr-row'})
+            .append(
+                $('<div />', {
+                    'class': 'gr-4 center-text',
+                    'text': Content.localize().textExercisePeriod
+                }),
+                $('<div />', {
+                    'class': 'gr-4 center-text',
+                    'text': ask
+                }),
+                $('<div />', {
+                    'class': 'gr-4 center-text',
+                    'text': bid
+                })
+            )
         );
         $container.append($header);
     };
 
     var add_row = function(barrier, id, ask, bid) {
         $rows[id] = $('<div />', {
-            'class': 'grd-parent grd-grid-12 grd-centered table-body table-body-lines grd-row-paddingd',
+            'class': 'gr-parent gr-12 gr-centered table-body table-body-lines gr-padding-10 gr-row',
         }).append(
             $('<div />', {
-                'class': 'grd-grid-4 center-aligned',
+                'class': 'gr-4 center-text',
                 'text': barrier
             }),
             $('<div />', {
-                'class': 'grd-grid-4 center-aligned ask',
+                'class': 'gr-4 center-text ask',
                 'text': ask
             }),
             $('<div />', {
-                'class': 'grd-grid-4 center-aligned bid',
+                'class': 'gr-4 center-text bid',
                 'text': bid
             })
         );

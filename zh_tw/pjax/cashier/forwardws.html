@@ -1,5 +1,5 @@
 <div id="content" class="forwardws-content">
-          <!-- Google Tag Manager -->
+        <!-- Google Tag Manager -->
 <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-MZWFF7"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <script data-cfasync="false">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -8,15 +8,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-MZWFF7');</script>
 <!-- End Google Tag Manager -->
-          <div id="page_info" style="display:none;">
-              <title>收銀台 | Binary.com</title>
-              <div id="content_class">forwardws-content</div>
-          </div>
-          
-          <div class="grd-container">
+        <div id="page_info" style="display:none;">
+            <title>收銀台 | Binary.com</title>
+            <div id="content_class">forwardws-content</div>
+        </div>
+        
+        <div class="container">
 
 
-  <div class='grd-grid-12 grd-row-padding'>
+  <div class='gr-12 gr-padding-10'>
   <h1 id="deposit-withdraw-heading"></h1>
   <div>
 
@@ -44,7 +44,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </div>
 
   </div>
-  <div class="grd-container" id="deposit-withdraw-iframe-container" style="display:none">
+  <div class="container" id="deposit-withdraw-iframe-container" style="display:none">
     <script data-cfasync="false" type="text/javascript">
     function receiveCmd(e){
       if (e.origin !== "https://cashier.binary.com") return;
@@ -62,20 +62,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </script>
     <iframe src="" frameborder="0" width="100%" height="1500" id="cashiercont" scrolling="auto" style="padding:0px;margin:0px;"></iframe>
   </div>
-  <div id="ukgc-funds-protection" class="grd-grid-12 grd-parent" style="display:none">
-      <div class="grd-grid-2 grd-grid-mobile-6 grd-centered-mobile">
+  <div id="ukgc-funds-protection" class="gr-row gr-parent" style="display:none">
+      <div class="gr-2 gr-6-m gr-centered-m">
           <p>
               <img class="responsive" src="/images/pages/cashier/protection-icon.svg"/>
           </p>
       </div>
-      <div class="grd-grid-10 grd-grid-mobile-12">
+      <div class="gr-10 gr-12-m">
               <p>
                   根據執照要求，我們通知您：在公司失去償付能力的情況下，由我們代您保管的資金會發生什麼情況，以及我們將提供何種程度的資金保護<a href='http://www.gamblingcommission.gov.uk/Consumers/Protection-of-customer-funds.aspx' target='_blank'> http://www.gamblingcommission.gov.uk/Consumers/Protection-of-customer-funds.aspx</a>。
               </p>
               <p>
                   公司把客戶資金存在獨立的銀行帳戶，與操作帳戶分開，因此如果公司破產，客戶資金不會成為公司資產的一部分。這符合客戶資金獨立分離帳戶管理的博彩委員會要求，即為：<strong>中等級別保護</strong>。
               </p>
-              <div class='grd-grid-3 grd-grid-mobile-6 grd-centered'>
+              <div class='gr-3 gr-6-m gr-centered'>
                   <span class="button">
                       <button id="submit-ukgc-funds-protection" class="button" value="ok" type="submit">執行</button>
                   </span>
@@ -85,11 +85,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div id="currency-form" style="display:none">
     <div class="rbox-wrap">
       <fieldset>
-        <div class="grd-row-padding row clear">
-          <div class="grd-grid-4 form_label">
+        <div class="gr-padding-10 gr-row clear">
+          <div class="gr-4 form_label">
             <label for="currency">交易</label>
           </div>
-          <div class="grd-grid-8">
+          <div class="gr-8">
             <select id="select-currency">
               <option value="USD" selected="selected">美元</option>
               <option value="EUR">歐元</option>
@@ -98,8 +98,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             </select>
           </div>
         </div>
-        <div class="grd-row-padding row clear form_button">
-          <div class="grd-grid-8">
+        <div class="gr-padding-10 row clear form_button">
+          <div class="gr-8">
             <span class="button">
               <button class="button" id="submit-currency" type="submit" value="Continue">繼續</button>
             </span>
@@ -110,23 +110,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   </div>
   <div id="withdraw-form" style="display:none">
     <fieldset>
-      <div class="grd-grid-12 grd-parent grd-row-padding">
-        <div class="form_label grd-grid-4">
+      <div class="gr-row gr-parent gr-padding-10">
+        <div class="form_label gr-4">
           <label for="verification-token">驗證權杖</label>
         </div>
-        <div class="grd-grid-8">
+        <div class="gr-8">
           <input id="verification-token" type="text" maxlength="48" autocomplete="off" />
           <div class="hint">請檢查您的電郵領取此權杖編號</div>
           <p class="errorfield" id="verification-error" style="display:none"></p>
         </div>
       </div>
-      <div class="grd-grid-12 grd-parent">
-        <div class="grd-grid-4"></div>
-        <div class="grd-grid-8">
-            <span class="button">
-              <button class="button" id="submit-verification" type="button">送出</button>
-            </span>
-          </div>
+      <div class="gr-12 gr-parent gr-centered center-text">
+        <span class="button">
+          <button class="button" id="submit-verification" type="button">送出</button>
+        </span>
       </div>
     </fieldset>
   </div>
