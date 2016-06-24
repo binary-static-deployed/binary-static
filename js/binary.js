@@ -71161,6 +71161,7 @@ var markets = new Markets(markets_list, markets_json);
      */
     function appendTableBody(id, data, rowGenerator){
         var tbody = document.querySelector("#" + id +">tbody");
+        if (!tbody) return;
         var docFrag = document.createDocumentFragment();
         data.map(function(ele){
             var row = rowGenerator(ele);
@@ -74795,7 +74796,7 @@ function BinarySocketClass() {
         binarySocket.onmessage = function (msg){
             var response = JSON.parse(msg.data);
             if (response) {
-                if(response.hasOwnProperty('echo_req') && response.echo_req.hasOwnProperty('passthrough')) {
+                if(response.hasOwnProperty('echo_req') && response.echo_req !== null && response.echo_req.hasOwnProperty('passthrough')) {
                     var passthrough = response.echo_req.passthrough;
                     if(passthrough.hasOwnProperty('req_number')) {
                         clearInterval(timeouts[response.echo_req.passthrough.req_number]);
@@ -76290,6 +76291,7 @@ TradingAnalysis.tab_last_digitws = new TradingAnalysis.DigitInfoWS();
       chart.series[0].addPoint([options.tick.epoch*1000, options.tick.quote*1]);
     } else {
       var c = options.ohlc;
+      if (!c) return;
       var ohlc = [c.open_time*1000, c.open*1, c.high*1, c.low*1, c.close*1];
 
       if(last.x !== ohlc[0]) {
@@ -77101,6 +77103,7 @@ function displayTooltip(market, symbol){
         guide = document.getElementById('guideBtn'),
         app = document.getElementById('androidApp'),
         appstore = document.getElementById('appstore');
+    if (!market || !symbol) return;
     if (market.match(/^volidx/) || symbol.match(/^R/) || market.match(/^random_index/) || market.match(/^random_daily/)){
         if (guide) guide.hide();
         tip.show();
@@ -77657,6 +77660,8 @@ var Contract = (function() {
             contractCategories = {},
             barrierCategory;
 
+        if (!contracts) return;
+
         startDates = { has_spot: 0, list: [] };
         durations = {};
         open = contracts['open'];
@@ -77729,6 +77734,8 @@ var Contract = (function() {
     var getContractForms = function() {
         var contracts = Contract.contracts()['contracts_for'],
             tradeContractForms = {};
+
+        if (!contracts) return;
 
         contracts.available.forEach(function(currentObj) {
             var contractCategory = currentObj['contract_category'];
@@ -79140,6 +79147,7 @@ var Price = (function() {
         }
 
         var container = document.getElementById('price_container_' + position);
+        if (!container) return;
         if (!$(container).is(":visible")) {
             $(container).fadeIn(200);
         }
@@ -80096,6 +80104,7 @@ var Tick = (function() {
     var display = function() {
         $('#spot').fadeIn(200);
         var spotElement = document.getElementById('spot');
+        if (!spotElement) return;
         var message = '';
         if (errorMessage) {
             message = errorMessage;
@@ -87495,6 +87504,8 @@ pjax_config_page("profit_tablews|statementws|portfoliows|trading", function() {
                 contractCategories = {},
                 barrierCategory;
 
+            if (!contracts) return;
+
             open = contracts['open'];
             close = contracts['close'];
 
@@ -87527,6 +87538,8 @@ pjax_config_page("profit_tablews|statementws|portfoliows|trading", function() {
         var getContractForms = function() {
             var contracts = Contract.contracts()['contracts_for'],
                 tradeContractForms = {};
+
+            if (!contracts) return;
 
             contracts.available.forEach(function(currentObj) {
                 var contractCategory = currentObj['contract_category'];
