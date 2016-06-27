@@ -3779,12 +3779,6 @@ div.kineticjs-content {
 #trading_socket_container #contract_description1 #contract_description2 #pricing_table_container #open_positions_container {
   display: none;
 }
-#trading_socket_container #notice-message-forex {
-  float: right;
-  margin-top: 1px;
-  padding: 6px 30px;
-  background-color: #fef1cf;
-}
 
 #open_positions_container {
   display: none;

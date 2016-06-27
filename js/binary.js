@@ -71758,6 +71758,9 @@ function checkClientsCountry() {
 
 if (page.language() === 'ID') {
   change_blog_link('id');
+} else if (page.language() === 'JA') {
+    $('#regulatory-text').removeClass('gr-9 gr-7-p')
+                         .addClass('gr-12 gr-12-p');
 }
 
 function change_blog_link(lang) {
@@ -77099,7 +77102,6 @@ function marketSort(a,b){
 function displayTooltip(market, symbol){
     'use strict';
     var tip = document.getElementById('symbol_tip'),
-        notice = document.getElementById('notice-message-forex'),
         guide = document.getElementById('guideBtn'),
         app = document.getElementById('androidApp'),
         appstore = document.getElementById('appstore');
@@ -77129,11 +77131,6 @@ function displayTooltip(market, symbol){
     if (market.match(/^smart_fx/) || symbol.match(/^WLD/)){
         tip.show();
         tip.setAttribute('target', page.url.url_for('/get-started/smart-indices', '#world-fx-indices'));
-    }
-    if (market.match(/^volidx/) || market.match(/^random_/)) {
-        notice.hide();
-    } else {
-        notice.show();
     }
 }
 
@@ -82953,9 +82950,9 @@ pjax_config_page_require_auth("user/settings/assessmentws", function() {
             var text_WithrawalAmount      = Content.localize().textWithrawalAmountEquivalant;
             var text_CurrentMaxWithdrawal = Content.localize().textCurrentMaxWithdrawalEquivalant;
             var client_currency           = 'EUR';
-            var num_of_days_limit         = addComma(limits['num_of_days_limit']);
+            var num_of_days_limit         = addComma(limits['num_of_days_limit']).split('.')[1] === '00' ? addComma(limits['num_of_days_limit']).split('.')[0] : addComma(limits['num_of_days_limit']);
             var already_withdraw          = limits["withdrawal_since_inception_monetary"]; // no need for addComma since it is already string like "1,000"
-            var remainder                 = addComma(limits['remainder']);
+            var remainder                 = addComma(limits['remainder']).split('.')[1] === '00' ? addComma(limits['remainder']).split('.')[0] : addComma(limits['remainder']);
 
             if((/^(iom)$/i).test(TUser.get().landing_company_name)) { // MX
                 text_WithdrawalLimits = Content.localize().textWithdrawalLimitsEquivalantDay;
@@ -83006,9 +83003,9 @@ pjax_config_page_require_auth("user/settings/assessmentws", function() {
     "use strict";
 
     function fillLimitsTable(limits){
-        var open_positions = addComma(limits['open_positions']);
-        var account_balance = addComma(limits['account_balance']);
-        var payout = addComma(limits['payout']);
+        var open_positions = addComma(limits['open_positions']).split('.')[0];
+        var account_balance = addComma(limits['account_balance']).split('.')[0];
+        var payout = addComma(limits['payout']).split('.')[0];
         var marketSpecific = limits.market_specific;
 
         document.getElementById('item').textContent = Content.localize().textItem;
@@ -83045,12 +83042,12 @@ pjax_config_page_require_auth("user/settings/assessmentws", function() {
               if (object.length && object.length > 0) {
                 appendRowTable(key.charAt(0).toUpperCase() + key.slice(1), '', 'auto', 'bold');
                 for (key in object) {
-                  if (object.hasOwnProperty(key)) {
-                    appendRowTable(object[key].name, object[key].turnover_limit !== 'null' ? addComma(object[key].turnover_limit) : 0, '25px', 'normal');
+                  if (object.hasOwnProperty(key) && (page.client.residence !== 'jp' || /Major Pairs/.test(object[key].name))) {
+                    appendRowTable(object[key].name, object[key].turnover_limit !== 'null' ? addComma(object[key].turnover_limit).split('.')[0] : 0, '25px', 'normal');
                   }
                 }
               } else {
-                appendRowTable(object.name, object.turnover_limit !== 'null' ? addComma(object.turnover_limit) : 0, 'auto', 'bold');
+                appendRowTable(object.name, object.turnover_limit !== 'null' ? addComma(object.turnover_limit).split('.')[0] : 0, 'auto', 'bold');
               }
             }
           }
