@@ -50,6 +50,7 @@
     "src/javascript/binary/common_functions/attach_dom/password_strength_meter.js",
     "src/javascript/binary/common_functions/attach_dom/table.js",
     "src/javascript/binary/common_functions/common_data.js",
+    "src/javascript/binary/common_functions/compatibility.js",
     "src/javascript/binary/common_functions/event_handler.js",
     "src/javascript/binary/common_functions/frontend.js",
     "src/javascript/binary/common_functions/guide.js",
@@ -95,6 +96,8 @@
     "src/javascript/binary/websocket_pages/trade/tick.js",
     "src/javascript/binary/websocket_pages/trade/tick_trade.js",
     "src/javascript/binary/websocket_pages/trade/tradepage.js",
+    "src/javascript/binary/websocket_pages/user/account/__tests__/profit_table.js",
+    "src/javascript/binary/websocket_pages/user/account/__tests__/statement.js",
     "src/javascript/binary/websocket_pages/user/account/authenticate.js",
     "src/javascript/binary/websocket_pages/user/account/change_password.js",
     "src/javascript/binary/websocket_pages/user/account/payment_agent_transfer.js",
@@ -153,5 +156,6 @@
     "src/javascript/binary/websocket_pages/user/view_popup/view_popupws.js",
     "src/javascript/binary/websocket_pages/user/viewbalance/viewbalance.init.js",
     "src/javascript/binary/websocket_pages/user/viewbalance/viewbalance.ui.js",
+    "src/javascript/binary/websocket_pages/websocket_pjax.js",
     "src/javascript/binary_japan/knowledge_test.js"
 ]
