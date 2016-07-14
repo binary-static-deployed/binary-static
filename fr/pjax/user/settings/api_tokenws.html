@@ -22,7 +22,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <p>In order to access our mobile apps and other third-party applications, you'll first need to generate an API Token.</p>
     <ul class="bullet">
       <li>Simply click on "Create" to generate your token; then copy and paste it into the app.</li>
-      <li>Choose the specific type of API token that you need, based on the capabilities that you wish to make available.</li>
+      <li>Choisissez le type de jeton d'API dont vous avez besoin, selon les fonctionnalités que vous souhaitez proposer.</li>
     </ul>
 
     <div id="token_form" class="gr-12 gr-padding-10">
@@ -41,17 +41,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
                 <div class="gr-row gr-padding-10">
                     <div class="gr-4 form_label">
-                        <label for="txtName">Choose Scopes:</label>
+                        <label for="txtName">Choisissez les champs d'application :</label>
                     </div>
                     <div class="gr-8">
                         <input id="scopes" type="checkbox" name="scopes[]" value="read" checked="checked" readonly="readonly" />
-                          <label for="scopes" data-balloon="Can be used to view account activity, including settings, limits, balance sheets, trade purchase history, and more." data-balloon-length="xlarge">Read</label>
+                          <label for="scopes" data-balloon="Peut être utilisé pour afficher l'activité du compte, notamment les paramètres, les bilans et l'historique des contrats achetés, entre autres." data-balloon-length="xlarge">Read</label>
                         <input id="scopes-trade" type="checkbox" name="scopes[]" value="trade" />
-                          <label for="scopes-trade" data-balloon="Can be used to buy and sell contracts, renew expired purchases, and top-up virtual-money accounts." data-balloon-length="xlarge">Trading</label>
+                          <label for="scopes-trade" data-balloon="Peut être utilisé pour acheter et vendre des contrats, renouveler des achats expirés et réapprovisionner les comptes virtuels." data-balloon-length="xlarge">Trading</label>
                         <input id="scopes-payments" type="checkbox" name="scopes[]" value="payments" />
-                          <label for="scopes-payments" data-balloon="Can be used to open accounts, set settings, manage token usage, and more." data-balloon-length="xlarge">Paiements</label>
+                          <label for="scopes-payments" data-balloon="Peut être utilisé ouvrir un compte, régler les paramètres et gérer l'utilisation des jetons d'authentification, entre autres." data-balloon-length="xlarge">Paiements</label>
                         <input id="scopes-admin" type="checkbox" name="scopes[]" value="admin" />
-                          <label for="scopes-admin" data-balloon="Can be used to withdraw to payment agents, transfer funds between accounts, and set / clear cashier passwords." data-balloon-length="xlarge">Admin</label>
+                          <label for="scopes-admin" data-balloon="Peut être utilisé pour effectuer des retraits par l'intermédiaire d'agents de paiement, transférer des fonds d'un compte à un autre et définir/supprimer les mots de passe de connexion à la Caisse." data-balloon-length="xlarge">Admin</label>
                     </div>
                 </div>
 
@@ -75,7 +75,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </form>
     </div>
 
-    <div id="token_message" class="gr-12 gr-padding-10 center-text dynamic">
+    <div id="token_message" class="gr-12 gr-padding-10 center-text invisible">
         <p></p>
     </div>
 

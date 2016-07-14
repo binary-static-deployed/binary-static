@@ -85,6 +85,10 @@ html, body {
   overflow-x: hidden;
 }
 
+h1, h2, h3 {
+  margin-bottom: 20px;
+}
+
 select, input, button, textarea {
   background: #fff;
   border: 1px solid #DEDEDE;
@@ -660,9 +664,10 @@ button.blue-button:hover {
   background: #2a3052;
   padding: 10px 0;
 }
-#footer #footer-menu h1 {
+#footer #footer-menu h4 {
   font-size: 13px;
   font-weight: bold;
+  color: #e98024;
 }
 #footer #footer-menu a {
   font-size: 13px;
@@ -1227,26 +1232,6 @@ meter#password-meter::-webkit-meter-bar {
   background: #F2F2F2;
   padding: 20px;
 }
-.get-started .sidebar-left .open-account a, .get-started-jp .sidebar-left .open-account a {
-  color: #fff;
-  text-decoration: none;
-  text-align: center;
-  line-height: 100%;
-  background: #2E8836;
-  border-radius: 4px;
-  text-transform: capitalize;
-  padding: 10px 25px 10px 25px;
-  display: inline-block;
-  letter-spacing: 0.75px;
-  display: block;
-}
-.get-started .sidebar-left .open-account a:visited, .get-started-jp .sidebar-left .open-account a:visited {
-  color: #fff;
-}
-.get-started .sidebar-left .open-account a:hover, .get-started .sidebar-left .open-account a:active, .get-started-jp .sidebar-left .open-account a:hover, .get-started-jp .sidebar-left .open-account a:active {
-  text-decoration: none;
-  background-color: #14602B;
-}
 .get-started .sidebar-right div, .get-started-jp .sidebar-right div {
   background: #F2F2F2;
   border-bottom: #DEDEDE;
@@ -1263,33 +1248,13 @@ meter#password-meter::-webkit-meter-bar {
 .get-started .sidebar-right .open-account p, .get-started-jp .sidebar-right .open-account p {
   margin-bottom: 1em;
 }
-.get-started .sidebar-right .open-account a, .get-started-jp .sidebar-right .open-account a {
-  color: #fff;
-  text-decoration: none;
-  text-align: center;
-  line-height: 100%;
-  background: #2E8836;
-  border-radius: 4px;
-  text-transform: capitalize;
-  padding: 10px 25px 10px 25px;
-  display: inline-block;
-  letter-spacing: 0.75px;
-  display: block;
-}
-.get-started .sidebar-right .open-account a:visited, .get-started-jp .sidebar-right .open-account a:visited {
-  color: #fff;
-}
-.get-started .sidebar-right .open-account a:hover, .get-started .sidebar-right .open-account a:active, .get-started-jp .sidebar-right .open-account a:hover, .get-started-jp .sidebar-right .open-account a:active {
-  text-decoration: none;
-  background-color: #14602B;
-}
 .get-started dl, .get-started-jp dl {
   text-align: center;
 }
 .get-started dl .section, .get-started-jp dl .section {
-  min-height: 210px;
+  min-height: 224px;
   background: #F2F2F2;
-  margin: 0 20px 20px 0;
+  margin: 0 10px 20px;
 }
 .get-started dl .section.section-jp, .get-started-jp dl .section.section-jp {
   min-height: 0;
@@ -1386,64 +1351,6 @@ meter#password-meter::-webkit-meter-bar {
 .get-started dl div#pre-contract-documents-img, .get-started-jp dl div#pre-contract-documents-img {
   height: 80px;
   background: url("../images/pages/get-started-jp/contract.svg") no-repeat;
-}
-.get-started .section-content h2, .get-started-jp .section-content h2 {
-  color: #e98024;
-  padding-top: 20px;
-}
-.get-started .section-content h2.center, .get-started-jp .section-content h2.center {
-  width: 63.82%;
-}
-.get-started .subsection-navigation, .get-started-jp .subsection-navigation {
-  clear: both;
-  text-align: center;
-  margin-top: 20px;
-  padding-top: 10px;
-}
-.get-started .subsection-navigation a, .get-started-jp .subsection-navigation a {
-  color: #fff;
-  text-decoration: none;
-  text-align: center;
-  line-height: 100%;
-  background: #2E8836;
-  border-radius: 4px;
-  text-transform: capitalize;
-  padding: 10px 25px 10px 25px;
-  display: inline-block;
-  letter-spacing: 0.75px;
-  padding: 0.43em 3.19%;
-}
-.get-started .subsection-navigation a:visited, .get-started-jp .subsection-navigation a:visited {
-  color: #fff;
-}
-.get-started .subsection-navigation a:hover, .get-started .subsection-navigation a:active, .get-started-jp .subsection-navigation a:hover, .get-started-jp .subsection-navigation a:active {
-  text-decoration: none;
-  background-color: #14602B;
-}
-.get-started .subsection-navigation a.disabled, .get-started-jp .subsection-navigation a.disabled {
-  color: #C2C2C2;
-  background: #F2F2F2;
-  cursor: default;
-}
-.get-started .section-5 ol ol, .get-started .section-5 ul ol, .get-started-jp .section-5 ol ol, .get-started-jp .section-5 ul ol {
-  list-style-type: lower-alpha;
-}
-.get-started .section-5 .subsection p .highlight, .get-started-jp .section-5 .subsection p .highlight {
-  font-style: italic;
-  margin: 0.62em 0;
-}
-.get-started .section-7 h4, .get-started-jp .section-7 h4 {
-  font-weight: bold;
-  margin-top: 1.87em;
-}
-.get-started .section-7 p, .get-started-jp .section-7 p {
-  margin: 0.62em 0 1.25em;
-}
-.get-started .section-7 a, .get-started-jp .section-7 a {
-  font-weight: bold;
-}
-.get-started .trade-type-flash, .get-started-jp .trade-type-flash {
-  padding-bottom: 25px;
 }
 
 .get-started-jp .link-size-box {
@@ -2166,26 +2073,6 @@ table .loss, table .lower {
   background: #F2F2F2;
   padding: 20px;
 }
-.static_full .sidebar .open-account a {
-  color: #fff;
-  text-decoration: none;
-  text-align: center;
-  line-height: 100%;
-  background: #2E8836;
-  border-radius: 4px;
-  text-transform: capitalize;
-  padding: 10px 25px 10px 25px;
-  display: inline-block;
-  letter-spacing: 0.75px;
-  display: block;
-}
-.static_full .sidebar .open-account a:visited {
-  color: #fff;
-}
-.static_full .sidebar .open-account a:hover, .static_full .sidebar .open-account a:active {
-  text-decoration: none;
-  background-color: #14602B;
-}
 .static_full .section {
   border-bottom: 1px solid #DEDEDE;
 }
@@ -2242,10 +2129,6 @@ table .loss, table .lower {
 }
 .payment-agent h1 {
   margin-bottom: 40px;
-}
-
-#frmPersonalDetails .JpAcc, #frmPersonalDetails .hedge {
-  display: none;
 }
 
 .live_chart_wrapper {
@@ -2585,10 +2468,6 @@ table .loss, table .lower {
     padding-bottom: 0px;
     border: none;
   }
-}
-
-a.dynamic, span.dynamic, div.dynamic, p.dynamic, button.dynamic, table.dynamic {
-  display: none !important;
 }
 
 #portfolio td {
@@ -4121,11 +4000,6 @@ div.kineticjs-content {
   overflow: initial;
 }
 
-@media (max-width: 600px) {
-  #profit-table-ws-container .flex-table-container, #statement-ws-container .flex-table-container {
-    overflow: auto;
-  }
-}
 .time_amount {
   width: 80%;
 }
@@ -4248,6 +4122,10 @@ body.JA .ja-show-block {
   display: inline-block !important;
   visibility: visible !important;
 }
+body.JA .ja-no-padding {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
 body.JA .regulatory-logo {
   display: none !important;
 }
@@ -4258,9 +4136,6 @@ body.JA #asset-forex div.table-header:nth-of-type(n + 3), body.JA #asset-forex d
   display: none !important;
 }
 body.JA #tradingtimes-forex div.table-header:nth-of-type(n + 3), body.JA #tradingtimes-forex div.table-body:nth-of-type(n + 15) {
-  display: none !important;
-}
-body.JA #topMenuWebtrader, body.JA #topMenuBetaInterface {
   display: none !important;
 }
 body.JA #footer-regulatory .gr-9, body.JA #footer-regulatory .gr-p-7 {
@@ -4401,6 +4276,10 @@ body.PT h1, body.PT h2, body.PT h3, body.PT h4, body.PT h5, body.PT h6, body.RU 
 
   #header #menu-top li a.smaller-font, #header ul#menu-top.smaller-font {
     font-size: 80%;
+  }
+
+  .flex-table-container {
+    overflow-x: auto;
   }
 }
 @media screen and (max-width: 640px) {
@@ -14549,6 +14428,7 @@ body {
   max-width: 960px;
   padding-right: 10px;
   padding-left: 10px;
+  box-sizing: border-box;
 }
 
 /*[class*="gr"] {

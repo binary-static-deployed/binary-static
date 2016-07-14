@@ -24,7 +24,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <fieldset>
             <legend>お客さま基本情報</legend>
 
-            <div class="gr-padding-10 gr-row rowName clear hidden RealAcc">
+            <div class="gr-padding-10 gr-row rowName clear hidden RealAcc JpAcc">
                 <div class="gr-4 form_label">
                     <label><em class="required_asterisk">**</em> お名前</label>
                 </div>
@@ -35,7 +35,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </div>
             </div>
 
-            <div class="gr-padding-10 gr-row clear JpAcc">
+            <div class="gr-padding-10 gr-row clear JpAcc invisible">
                 <div class="gr-4 form_label">
                     <label><em class="required_asterisk">**</em> 性別</label>
                 </div>
@@ -46,7 +46,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </div>
             </div>
 
-            <div class="gr-padding-10 gr-row clear rowBirthDate hidden RealAcc">
+            <div class="gr-padding-10 gr-row clear rowBirthDate hidden RealAcc JpAcc">
                 <div class="gr-4 form_label">
                     <label><em class="required_asterisk">**</em> 生年月日</label>
                 </div>
@@ -79,14 +79,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </div>
             </div>
 
-            <div class="gr-padding-10 gr-row clear JpAcc">
+            <div class="gr-padding-10 gr-row clear JpAcc invisible">
                 <div class="gr-4 form_label">
-                    <label><em class="required_asterisk">**</em> 職業</label>
+                    <label>職業</label>
                 </div>
                 <div class="gr-8">
-                    <span id="inputheading">
-                        <strong id="lblOccupation"></strong>
-                    </span>
+                    <select id="Occupation">
+                        <option value="Office worker">会社員</option>
+                        <option value="Director">取締役</option>
+                        <option value="Public worker">公務員</option>
+                        <option value="Self-employed">自営業</option>
+                        <option value="Housewife / Househusband">主婦/主夫</option>
+                        <option value="Contract / Temporary / Part Time">契約/臨時/パートタイム</option>
+                        <option value="Student">学生</option>
+                        <option value="Unemployed">無職</option>
+                        <option value="Others">その他</option>
+                    </select>
                 </div>
             </div>
         </fieldset>
@@ -149,7 +157,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             </div>
         </fieldset>
 
-        <fieldset class="JpAcc">
+        <fieldset class="JpAcc invisible">
             <legend>現住所</legend>
 
             <div class="gr-padding-10 gr-row clear">
@@ -219,158 +227,199 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             </div>
         </fieldset>
 
-        <fieldset class="JpAcc">
+        <fieldset class="JpAcc invisible">
             <legend>金融資産</legend>
 
             <div class="gr-padding-10 gr-row clear">
                 <div class="gr-4 form_label">
-                    <label><em class="required_asterisk">**</em> 年収</label>
+                    <label>年収</label>
                 </div>
                 <div class="gr-8">
-                    <span id="inputheading">
-                        <strong id="lblAnnualIncome"></strong>
-                    </span>
+                    <select id="AnnualIncome">
+                        <option value="Less than 1 million JPY">100万円未満</option>
+                        <option value="1-3 million JPY">100〜300万円</option>
+                        <option value="3-5 million JPY">300〜500万円</option>
+                        <option value="5-10 million JPY">500〜1,000万円</option>
+                        <option value="10-30 million JPY">1,000〜3,000万円</option>
+                        <option value="30-50 million JPY">3,000〜5,000万円</option>
+                        <option value="50-100 million JPY">5,000万円〜1億円</option>
+                        <option value="Over 100 million JPY">1億を超える</option>
+                    </select>
                 </div>
             </div>
 
             <div class="gr-padding-10 gr-row clear">
                 <div class="gr-4 form_label">
-                    <label><em class="required_asterisk">**</em> 金融資産</label>
+                    <label>金融資産</label>
                 </div>
                 <div class="gr-8">
-                    <span id="inputheading">
-                        <strong id="lblFinancialAsset"></strong>
-                    </span>
-                </div>
-            </div>
-
-            <div class="gr-padding-10 gr-row clear">
-                <div class="gr-4 form_label">
-                    <label><em class="required_asterisk">**</em> 損失限度額（1日）</label>
-                </div>
-                <div class="gr-8">
-                    <span id="inputheading">
-                        <strong id="lblDailyLossLimit"></strong>
-                    </span>
+                    <select id="FinancialAsset">
+                        <option value="Less than 1 million JPY">100万円未満</option>
+                        <option value="1-3 million JPY">100〜300万円</option>
+                        <option value="3-5 million JPY">300〜500万円</option>
+                        <option value="5-10 million JPY">500〜1,000万円</option>
+                        <option value="10-30 million JPY">1,000〜3,000万円</option>
+                        <option value="30-50 million JPY">3,000〜5,000万円</option>
+                        <option value="50-100 million JPY">5,000万円〜1億円</option>
+                        <option value="Over 100 million JPY">1億を超える</option>
+                    </select>
                 </div>
             </div>
         </fieldset>
 
-        <fieldset class="JpAcc">
+        <fieldset class="JpAcc invisible">
             <legend>投資経験</legend>
 
             <div class="gr-padding-10 gr-row clear">
                 <div class="gr-4 form_label">
-                    <label><em class="required_asterisk">**</em> 株式</label>
+                    <label>株式</label>
                 </div>
                 <div class="gr-8">
-                    <span id="inputheading">
-                        <strong id="lblEquities"></strong>
-                    </span>
+                    <select id="Equities">
+                        <option value="No experience">ご経験がない</option>
+                        <option value="Less than 6 months">6ヶ月未満</option>
+                        <option value="6 months to 1 year">6ヶ月から1年</option>
+                        <option value="1-3 years">1〜3年</option>
+                        <option value="3-5 years">3〜5年</option>
+                        <option value="Over 5 years">6年以上</option>
+                    </select>
                 </div>
             </div>
 
             <div class="gr-padding-10 gr-row clear">
                 <div class="gr-4 form_label">
-                    <label><em class="required_asterisk">**</em> コモディティ</label>
+                    <label>コモディティ</label>
                 </div>
                 <div class="gr-8">
-                    <span id="inputheading">
-                        <strong id="lblCommodities"></strong>
-                    </span>
+                    <select id="Commodities">
+                        <option value="No experience">ご経験がない</option>
+                        <option value="Less than 6 months">6ヶ月未満</option>
+                        <option value="6 months to 1 year">6ヶ月から1年</option>
+                        <option value="1-3 years">1〜3年</option>
+                        <option value="3-5 years">3〜5年</option>
+                        <option value="Over 5 years">6年以上</option>
+                    </select>
                 </div>
             </div>
 
             <div class="gr-padding-10 gr-row clear">
                 <div class="gr-4 form_label">
-                    <label><em class="required_asterisk">**</em> 外貨預金</label>
+                    <label>外貨預金</label>
                 </div>
                 <div class="gr-8">
-                    <span id="inputheading">
-                        <strong id="lblForeignCurrencyDeposit"></strong>
-                    </span>
+                    <select id="ForeignCurrencyDeposit">
+                        <option value="No experience">ご経験がない</option>
+                        <option value="Less than 6 months">6ヶ月未満</option>
+                        <option value="6 months to 1 year">6ヶ月から1年</option>
+                        <option value="1-3 years">1〜3年</option>
+                        <option value="3-5 years">3〜5年</option>
+                        <option value="Over 5 years">6年以上</option>
+                    </select>
                 </div>
             </div>
 
             <div class="gr-padding-10 gr-row clear">
                 <div class="gr-4 form_label">
-                    <label><em class="required_asterisk">**</em> 外国為替証拠金取引</label>
+                    <label>外国為替証拠金取引</label>
                 </div>
                 <div class="gr-8">
-                    <span id="inputheading">
-                        <strong id="lblMarginFX"></strong>
-                    </span>
+                    <select id="MarginFX">
+                        <option value="No experience">ご経験がない</option>
+                        <option value="Less than 6 months">6ヶ月未満</option>
+                        <option value="6 months to 1 year">6ヶ月から1年</option>
+                        <option value="1-3 years">1〜3年</option>
+                        <option value="3-5 years">3〜5年</option>
+                        <option value="Over 5 years">6年以上</option>
+                    </select>
                 </div>
             </div>
 
             <div class="gr-padding-10 gr-row clear">
                 <div class="gr-4 form_label">
-                    <label><em class="required_asterisk">**</em> 投資信託</label>
+                    <label>投資信託</label>
                 </div>
                 <div class="gr-8">
-                    <span id="inputheading">
-                        <strong id="lblInvestmentTrust"></strong>
-                    </span>
+                    <select id="InvestmentTrust">
+                        <option value="No experience">ご経験がない</option>
+                        <option value="Less than 6 months">6ヶ月未満</option>
+                        <option value="6 months to 1 year">6ヶ月から1年</option>
+                        <option value="1-3 years">1〜3年</option>
+                        <option value="3-5 years">3〜5年</option>
+                        <option value="Over 5 years">6年以上</option>
+                    </select>
                 </div>
             </div>
 
             <div class="gr-padding-10 gr-row clear">
                 <div class="gr-4 form_label">
-                    <label><em class="required_asterisk">**</em> 公社債</label>
+                    <label>公社債</label>
                 </div>
                 <div class="gr-8">
-                    <span id="inputheading">
-                        <strong id="lblPublicCorporationBond"></strong>
-                    </span>
+                    <select id="PublicCorporationBond">
+                        <option value="No experience">ご経験がない</option>
+                        <option value="Less than 6 months">6ヶ月未満</option>
+                        <option value="6 months to 1 year">6ヶ月から1年</option>
+                        <option value="1-3 years">1〜3年</option>
+                        <option value="3-5 years">3〜5年</option>
+                        <option value="Over 5 years">6年以上</option>
+                    </select>
                 </div>
             </div>
 
             <div class="gr-padding-10 gr-row clear">
                 <div class="gr-4 form_label">
-                    <label><em class="required_asterisk">**</em> 店頭デリバティブ（オプション）取引</label>
+                    <label>店頭デリバティブ（オプション）取引</label>
                 </div>
                 <div class="gr-8">
-                    <span id="inputheading">
-                        <strong id="lblDerivativeTrading"></strong>
-                    </span>
+                    <select id="DerivativeTrading">
+                        <option value="No experience">ご経験がない</option>
+                        <option value="Less than 6 months">6ヶ月未満</option>
+                        <option value="6 months to 1 year">6ヶ月から1年</option>
+                        <option value="1-3 years">1〜3年</option>
+                        <option value="3-5 years">3〜5年</option>
+                        <option value="Over 5 years">6年以上</option>
+                    </select>
                 </div>
             </div>
 
             <div class="gr-padding-10 gr-row clear">
                 <div class="gr-4 form_label">
-                    <label><em class="required_asterisk">**</em> 投資の目的</label>
+                    <label>投資の目的</label>
                 </div>
                 <div class="gr-8">
-                    <span id="inputheading">
-                        <strong id="lblPurposeOfTrading"></strong>
-                    </span>
+                    <select id="PurposeOfTrading">
+                        <option value="Targeting short-term profits">短期利益を目標にする</option>
+                        <option value="Targeting medium-term / long-term profits">中期利益/長期利益を目標にする</option>
+                        <option value="Both the above">上記の両方</option>
+                        <option value="Hedging">ヘッジ</option>
+                    </select>
                 </div>
             </div>
 
-            <div class="gr-padding-10 gr-row clear hedge">
+            <div class="gr-padding-10 gr-row clear hedge invisible">
                 <div class="gr-4 form_label">
-                    <label><em class="required_asterisk">**</em> ヘッジファンドを必要とする資産の分類</label>
+                    <label>ヘッジファンドを必要とする資産の分類</label>
                 </div>
                 <div class="gr-8">
-                    <span id="inputheading">
-                        <strong id="lblHedgeAsset"></strong>
-                    </span>
+                    <select id="HedgeAsset">
+                        <option value="Foreign currency deposit">外貨預金</option>
+                        <option value="Margin FX">外国為替証拠金取引</option>
+                        <option value="Other">その他</option>
+                    </select>
                 </div>
             </div>
 
-            <div class="gr-padding-10 gr-row clear hedge">
+            <div class="gr-padding-10 gr-row clear hedge invisible">
                 <div class="gr-4 form_label">
-                    <label><em class="required_asterisk">**</em> 上記資産額</label>
+                    <label>上記資産額</label>
                 </div>
                 <div class="gr-8">
-                    <span id="inputheading">
-                        <strong id="lblHedgeAssetAmount"></strong>
-                    </span>
+                    <input class="text" id="HedgeAssetAmount" maxlength="20" type="text"></input>
                 </div>
             </div>
         </fieldset>
 
-        <fieldset class="formlayout settings sticky hidden RealAcc ja-hide" id="formlayout">
+        <fieldset class="formlayout settings sticky hidden RealAcc JpAcc" id="formlayout">
             <div class="gr-row gr-padding-10">
                 <div class="gr-4"></div>
                 <div class="gr-8">
@@ -389,6 +438,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     </form>
 
-    <p class="required hidden RealAcc rowCustomerSupport"><em class="required_asterisk">**</em> 上記のお客さま情報の変更をご希望される場合は<a href="/ja/contact.html">カスタマーサポート</a>までご連絡ください。また、変更が生じた際は速やかにご連絡いただきますようお願いします。</p>
+    <p class="required hidden RealAcc JpAcc rowCustomerSupport"><em class="required_asterisk">**</em> 上記のお客さま情報の変更をご希望される場合は<a href="/ja/contact.html">カスタマーサポート</a>までご連絡ください。また、変更が生じた際は速やかにご連絡いただきますようお願いします。</p>
 
 </div>
