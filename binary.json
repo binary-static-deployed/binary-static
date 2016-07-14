@@ -102,6 +102,7 @@
     "src/javascript/binary/websocket_pages/trade/tick.js",
     "src/javascript/binary/websocket_pages/trade/tick_trade.js",
     "src/javascript/binary/websocket_pages/trade/tradepage.js",
+    "src/javascript/binary/websocket_pages/user/account/__tests__/iphistory.data.js",
     "src/javascript/binary/websocket_pages/user/account/__tests__/portfolio.js",
     "src/javascript/binary/websocket_pages/user/account/__tests__/profit_table.js",
     "src/javascript/binary/websocket_pages/user/account/__tests__/statement.js",
