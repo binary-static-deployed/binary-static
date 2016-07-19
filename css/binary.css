@@ -643,6 +643,7 @@ button.blue-button:hover {
 }
 #header #menu-top {
   text-align: center;
+  white-space: nowrap;
 }
 #header #menu-top a:hover {
   opacity: 0.75;
@@ -652,6 +653,7 @@ button.blue-button:hover {
   display: inline-block;
   text-align: center;
   margin: 0;
+  white-space: normal;
 }
 #header #menu-top li:last-child {
   background: none;
@@ -1291,10 +1293,7 @@ meter#password-meter::-webkit-meter-bar {
   background: #000;
   text-decoration: none;
 }
-.get-started dl a.a-jp, .get-started-jp dl a.a-jp {
-  min-height: 160px;
-}
-.get-started dl a:hover, .get-started-jp dl a:hover {
+.get-started dl a:hover .section-header, .get-started-jp dl a:hover .section-header {
   background: #14602B;
 }
 .get-started dl div#what-is-binary-trading, .get-started-jp dl div#what-is-binary-trading {
@@ -1372,6 +1371,9 @@ meter#password-meter::-webkit-meter-bar {
   vertical-align: middle;
   height: 35px;
   width: 170px;
+}
+.get-started-jp .section-header {
+  min-height: 50px;
 }
 
 .tour {
@@ -1525,51 +1527,55 @@ a.close:hover {
   padding-left: 6%;
   text-align: left;
 }
-.inpage_popup_container_ws .inpage_popup_content_box #sell_details_chart_wrapper {
+.inpage_popup_container_ws .inpage_popup_content_box #sell_content_wrapper {
+  max-height: 90vh;
+  overflow: scroll;
+}
+.inpage_popup_container_ws .inpage_popup_content_box #sell_content_wrapper #sell_details_chart_wrapper {
   border-right: 1px solid #44484C;
   margin-right: -1px;
   padding: 0px;
 }
-.inpage_popup_container_ws .inpage_popup_content_box #sell_details_chart_wrapper .chart-notice {
+.inpage_popup_container_ws .inpage_popup_content_box #sell_content_wrapper #sell_details_chart_wrapper .chart-notice {
   margin: 0px;
 }
-.inpage_popup_container_ws .inpage_popup_content_box #sell_details_chart_wrapper .highcharts-container {
+.inpage_popup_container_ws .inpage_popup_content_box #sell_content_wrapper #sell_details_chart_wrapper .highcharts-container {
   direction: ltr;
 }
-.inpage_popup_container_ws .inpage_popup_content_box #sell_details_table {
+.inpage_popup_container_ws .inpage_popup_content_box #sell_content_wrapper #sell_details_table {
   padding: 0px;
   border-left: 1px solid #44484C;
 }
-.inpage_popup_container_ws .inpage_popup_content_box #sell_details_table th {
+.inpage_popup_container_ws .inpage_popup_content_box #sell_content_wrapper #sell_details_table th {
   line-height: 24px;
   border-bottom-color: #C2C2C2;
   cursor: pointer;
 }
-.inpage_popup_container_ws .inpage_popup_content_box #sell_details_table td, .inpage_popup_container_ws .inpage_popup_content_box #sell_details_table td[data-balloon] {
+.inpage_popup_container_ws .inpage_popup_content_box #sell_content_wrapper #sell_details_table td, .inpage_popup_container_ws .inpage_popup_content_box #sell_content_wrapper #sell_details_table td[data-balloon] {
   border-bottom: 1px solid #F2F2F2;
 }
-.inpage_popup_container_ws .inpage_popup_content_box #sell_details_table #trade_details_profit_loss {
+.inpage_popup_container_ws .inpage_popup_content_box #sell_content_wrapper #sell_details_table #trade_details_profit_loss {
   font-weight: bold;
 }
-.inpage_popup_container_ws .inpage_popup_content_box #sell_details_table #trade_details_profit_loss span {
+.inpage_popup_container_ws .inpage_popup_content_box #sell_content_wrapper #sell_details_table #trade_details_profit_loss span {
   font-size: 10px;
   padding-left: 7px;
   font-weight: normal;
 }
-.inpage_popup_container_ws .inpage_popup_content_box #sell_details_table .last_cell {
+.inpage_popup_container_ws .inpage_popup_content_box #sell_content_wrapper #sell_details_table .last_cell {
   border-bottom: 0px;
   min-height: 20px;
   padding: 5px 15px;
   text-align: center;
 }
-.inpage_popup_container_ws .inpage_popup_content_box #sell_details_table #trade_details_message {
+.inpage_popup_container_ws .inpage_popup_content_box #sell_content_wrapper #sell_details_table #trade_details_message {
   font-style: italic;
 }
-.inpage_popup_container_ws .inpage_popup_content_box #sell_details_table #contract_sell_message {
+.inpage_popup_container_ws .inpage_popup_content_box #sell_content_wrapper #sell_details_table #contract_sell_message {
   font-size: 0.9em;
   line-height: 20px;
 }
-.inpage_popup_container_ws .inpage_popup_content_box #sell_details_table #sell_at_market_wrapper .note {
+.inpage_popup_container_ws .inpage_popup_content_box #sell_content_wrapper #sell_details_table #sell_at_market_wrapper .note {
   line-height: 18px;
   margin-bottom: 10px;
   font-size: 12px;
@@ -4115,16 +4121,6 @@ iframe#chart_frame {
   /* stylelint-disable-line declaration-block-no-duplicate-properties */
 }
 
-tr#highchart_duration td {
-  padding-top: 0;
-}
-tr#highchart_duration td:nth-child(1) {
-  text-align: right;
-}
-tr#highchart_duration td:nth-child(2) {
-  text-align: left;
-}
-
 #knowledge-test-msg {
   white-space: pre-line;
 }
@@ -4239,9 +4235,6 @@ body.JA .ja-no-padding {
 body.JA .regulatory-logo {
   display: none !important;
 }
-body.JA #header #menu-top li a.smaller-font, body.JA #header ul#menu-top.smaller-font {
-  font-size: 90%;
-}
 body.JA #asset-forex div.table-header:nth-of-type(n + 3), body.JA #asset-forex div.table-body:nth-of-type(n + 15) {
   display: none !important;
 }
@@ -4265,15 +4258,6 @@ body.VI #legal-tab li.tm-li-2 {
 }
 body.VI #trading_socket_container #contract_form_name_nav {
   font-size: 80%;
-}
-body.VI #header #menu-top li a.smaller-font, body.VI #header ul#menu-top.smaller-font {
-  font-size: 90%;
-}
-
-@media screen and (max-width: 768px) {
-  body.VI #header #menu-top li a.smaller-font, body.VI #header ul#menu-top.smaller-font, body.JA #header #menu-top li a.smaller-font, body.JA #header ul#menu-top.smaller-font {
-    font-size: 75%;
-  }
 }
 
 /*French Language */
@@ -4364,6 +4348,11 @@ body.PT h1, body.PT h2, body.PT h3, body.PT h4, body.PT h5, body.PT h6, body.RU 
 }
 
 /* media queries */
+@media screen and (max-width: 959px) {
+  #header ul#menu-top.smaller-font a {
+    font-size: 85%;
+  }
+}
 @media screen and (max-width: 768px) {
   #page-wrapper #content .page-section > .tab-menu ul.tm-ul li.active a {
     background: none;
@@ -4382,10 +4371,6 @@ body.PT h1, body.PT h2, body.PT h3, body.PT h4, body.PT h5, body.PT h6, body.RU 
 
   #footer-regulatory #social-networks {
     text-align: center;
-  }
-
-  #header #menu-top li a.smaller-font, #header ul#menu-top.smaller-font {
-    font-size: 80%;
   }
 
   .flex-table-container {
