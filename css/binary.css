@@ -142,6 +142,13 @@ span.button.button-disabled button.button-disabled {
   cursor: default;
 }
 
+.button.fullwidth {
+  width: 100%;
+}
+.button.fullwidth span {
+  display: block;
+}
+
 form {
   margin: 0;
   padding: 0;
@@ -402,6 +409,10 @@ button.blue-button:hover {
 
 .nowrap {
   white-space: nowrap;
+}
+
+p.no-para-margin {
+  margin: 0;
 }
 
 *, *:after, *:before {
@@ -1412,9 +1423,6 @@ meter#password-meter::-webkit-meter-bar {
   font-weight: bold;
   margin-bottom: 5px;
 }
-.contact-content p.no-para-margin {
-  margin: 0;
-}
 .contact-content .hr-line {
   border-bottom: 1px solid #DEDEDE;
 }
@@ -1529,7 +1537,9 @@ a.close:hover {
 }
 .inpage_popup_container_ws .inpage_popup_content_box #sell_content_wrapper {
   max-height: 90vh;
-  overflow: scroll;
+  overflow: auto;
+  overflow-x: hidden;
+  -ms-overflow-x: hidden;
 }
 .inpage_popup_container_ws .inpage_popup_content_box #sell_content_wrapper #sell_details_chart_wrapper {
   border-right: 1px solid #44484C;
@@ -2062,37 +2072,6 @@ table .loss, table .lower {
 .static_full {
   margin-top: 40px;
 }
-.static_full .sidebar ul {
-  font-size: 90%;
-}
-.static_full .sidebar ul li {
-  list-style-image: none;
-  margin: 0;
-  background: #F2F2F2;
-  line-height: 150%;
-  border-bottom: 1px solid #FFFFFF;
-}
-.static_full .sidebar ul li:hover {
-  background: #DEDEDE;
-}
-.static_full .sidebar ul li a {
-  font-weight: normal;
-  text-decoration: none;
-  display: block;
-  padding: 5px 5px 5px 10px;
-  color: #2a3052;
-}
-.static_full .sidebar ul li.selected {
-  background: #2a3052;
-}
-.static_full .sidebar ul li.selected a {
-  color: #fff;
-  text-decoration: none;
-}
-.static_full .sidebar .open-account {
-  background: #F2F2F2;
-  padding: 20px;
-}
 .static_full .section {
   border-bottom: 1px solid #DEDEDE;
 }
@@ -2137,6 +2116,38 @@ table .loss, table .lower {
 .static_full .sidebar-button a:hover, .static_full .sidebar-button a:active {
   text-decoration: none;
   background-color: #14602B;
+}
+
+.sidebar ul {
+  font-size: 90%;
+}
+.sidebar ul li {
+  list-style-image: none;
+  margin: 0;
+  background: #F2F2F2;
+  line-height: 150%;
+  border-bottom: 1px solid #FFFFFF;
+}
+.sidebar ul li:hover {
+  background: #DEDEDE;
+}
+.sidebar ul li a {
+  font-weight: normal;
+  text-decoration: none;
+  display: block;
+  padding: 5px 5px 5px 10px;
+  color: #2a3052;
+}
+.sidebar ul li.selected {
+  background: #2a3052;
+}
+.sidebar ul li.selected a {
+  color: #fff;
+  text-decoration: none;
+}
+.sidebar .open-account {
+  background: #F2F2F2;
+  padding: 20px;
 }
 
 .payment-agent .faded {
@@ -3056,9 +3067,6 @@ div.kineticjs-content {
 #trading_socket_container label {
   line-height: 28px;
 }
-#trading_socket_container #japan_unit_row, #trading_socket_container #japan_payout_row {
-  display: none;
-}
 #trading_socket_container #contract_market_form_container {
   height: 28px;
 }
@@ -3558,184 +3566,6 @@ div.kineticjs-content {
 
 #open_positions_container {
   display: none;
-}
-
-#trading_socket_container.japan {
-  min-width: 960px;
-}
-#trading_socket_container.japan .big-col {
-  -webkit-flex: 3;
-      -ms-flex: 3;
-          flex: 3;
-}
-#trading_socket_container.japan #market_menu {
-  background: #fff;
-  margin-left: 20px;
-}
-#trading_socket_container.japan #market_menu input {
-  margin-right: 5px;
-}
-#trading_socket_container.japan #contract_markets_container, #trading_socket_container.japan #contract_market_form_container {
-  display: none;
-}
-#trading_socket_container.japan #guideBtn {
-  display: none;
-}
-#trading_socket_container.japan #japan_unit {
-  width: 50px;
-}
-#trading_socket_container.japan .contract_heading {
-  float: left;
-  margin-top: 5px;
-  width: 62px;
-}
-#trading_socket_container.japan .contract_longcode {
-  float: left;
-  width: 220px;
-  line-height: 1.5;
-  margin-left: 10px;
-}
-#trading_socket_container.japan #contract_form_content {
-  float: left;
-  padding: 0;
-  width: 310px;
-}
-#trading_socket_container.japan #contract_description1, #trading_socket_container.japan #contract_description2 {
-  float: left;
-  width: 301px;
-  border: 1px solid #DEDEDE;
-  display: none;
-  height: 120px;
-  padding: 10px;
-  margin-left: 2px;
-}
-#trading_socket_container.japan #contract_description2 {
-  border-left: none;
-  margin-left: 0;
-  width: 302px;
-}
-#trading_socket_container.japan #pricing_table_container {
-  float: left;
-  width: 100%;
-}
-#trading_socket_container.japan .barrier {
-  -webkit-flex: 2;
-      -ms-flex: 2;
-          flex: 2;
-}
-#trading_socket_container.japan #contract_prices_container {
-  display: none;
-}
-#trading_socket_container.japan #pricing_table {
-  width: 100%;
-}
-#trading_socket_container.japan .multiplier2 input {
-  width: 29px;
-}
-#trading_socket_container.japan .multiplier1 {
-  text-align: center;
-}
-#trading_socket_container.japan .col.pricing_table_cell, #trading_socket_container.japan .col.exercise_price, #trading_socket_container.japan .col.barrier {
-  -webkit-align-items: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-justify-content: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  padding: 0;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-}
-#trading_socket_container.japan .col.barrier {
-  border: 1px solid #DEDEDE;
-}
-#trading_socket_container.japan .col.buy_cell {
-  border-top: 1px solid #DEDEDE;
-  border-bottom: 1px solid #DEDEDE;
-}
-#trading_socket_container.japan .col.sell_cell {
-  border-top: 1px solid #DEDEDE;
-  border-bottom: 1px solid #DEDEDE;
-  border-right: 1px solid #DEDEDE;
-  text-align: right;
-}
-#trading_socket_container.japan .pricing_table_cell .button {
-  color: #fff;
-  padding: 6px;
-  margin: 0;
-  border-radius: 5px;
-}
-#trading_socket_container.japan .pricing_table_cell.buy_cell .button {
-  background: #2E8836;
-}
-#trading_socket_container.japan .pricing_table_cell.sell_cell .button {
-  background: #DEDEDE;
-}
-#trading_socket_container.japan #contract_container #contract_form_container .col.button {
-  margin: 0;
-  text-align: center;
-}
-#trading_socket_container.japan #contract_container #contract_form_container .col.multiplier1 {
-  margin: 0 5px;
-}
-#trading_socket_container.japan #contract_container #contract_form_container .pricing_table_row > .col {
-  margin: 0;
-  padding: 5px 0;
-}
-#trading_socket_container.japan .pricing_table_row {
-  padding: 0;
-  margin-top: -1px;
-  clear: left;
-}
-#trading_socket_container.japan .pricing_table_row.row.heading {
-  float: left;
-  clear: left;
-  display: block;
-}
-#trading_socket_container.japan .pricing_table_row .exercise_price_h {
-  float: left;
-  width: 305px;
-  text-align: center;
-}
-#trading_socket_container.japan .pricing_table_row .prices_h {
-  float: left;
-  width: 163px;
-  text-align: center;
-}
-#trading_socket_container.japan #contract_container #contract_form_container .pricing_table_row .col.pricing_table_cell {
-  padding: 5px;
-}
-#trading_socket_container.japan .pricing_table_cell.price_rise {
-  background: #c03;
-  color: #fff;
-}
-#trading_socket_container.japan .pricing_table_cell.price_fall {
-  background: #29abe2;
-  color: #fff;
-}
-#trading_socket_container.japan .pricing_table_cell {
-  position: relative;
-}
-#trading_socket_container.japan .inactive {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  left: 0;
-  top: 0;
-  opacity: 0.8;
-  background: #F2F2F2;
-}
-#trading_socket_container.japan #period {
-  width: 200px;
-}
-#trading_socket_container.japan #payout_row {
-  display: none;
-}
-#trading_socket_container.japan #japan_unit_row, #trading_socket_container.japan #japan_payout_row {
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
 }
 
 @media all and (max-width: 480px) {
@@ -4249,6 +4079,9 @@ body.JA #bet_guide_content div:nth-child(1) {
 }
 body.JA #language_select {
   display: none;
+}
+body.JA #header #menu-top li {
+  white-space: nowrap;
 }
 
 /*Vietnamese Language */
