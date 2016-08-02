@@ -1112,7 +1112,6 @@ meter#password-meter {
   display: block;
   width: 10.9em;
   height: 0.5em;
-  -webkit-appearance: none;
   border: 1px solid #ccc;
   border-radius: 3px;
 }
@@ -1120,6 +1119,46 @@ meter#password-meter {
 meter#password-meter::-webkit-meter-bar {
   background: #F2F2F2;
   box-shadow: 0 5px 5px -5px rgba(0, 0, 0, 0.25) inset;
+}
+
+#accordion .ui-accordion-header {
+  border-radius: 0;
+  margin-bottom: -3px;
+}
+#accordion .ui-icon {
+  display: none;
+  visibility: hidden;
+}
+#accordion .ui-accordion-icons, #accordion .ui-accordion-icons .ui-accordion-icons {
+  padding-left: 1.5em;
+}
+#accordion .ui-state-active, #accordion .ui-state-default, #accordion .ui-state-hover {
+  border: none;
+  outline: none;
+  background-repeat: no-repeat;
+  background-position: left;
+}
+#accordion .ui-state-active.ui-state-default, #accordion .ui-state-active.ui-state-default.ui-state-hover {
+  background-image: url("../images/common/arrow_down.svg");
+  background-color: #2a3052;
+  border-color: #2a3052;
+  color: #fff;
+}
+#accordion .ui-state-default, #accordion .ui-state-hover {
+  background-image: url("../images/common/arrow_left.svg");
+  background-color: #F2F2F2;
+  border: 1px solid #C2C2C2;
+  color: #000;
+}
+#accordion .ui-state-hover {
+  background-color: #DEDEDE;
+}
+#accordion .ui-accordion-content {
+  padding-top: 0;
+  border-radius: 0;
+}
+#accordion .ui-widget-content {
+  border: 1px solid #C2C2C2;
 }
 
 /* pages */
@@ -2195,44 +2234,22 @@ table .loss, table .lower {
   margin: 5px 0;
 }
 
-#accordion table {
+#pa_list #accordion table {
   width: 80%;
   margin-left: auto;
   margin-right: auto;
 }
-#accordion table td {
+#pa_list #accordion table td {
   padding: 10px 4px;
 }
-#accordion table td:nth-of-type(1) {
+#pa_list #accordion table td:nth-of-type(1) {
   width: 40%;
 }
-#accordion .ui-icon {
-  display: none;
-  visibility: hidden;
-}
-#accordion .ui-state-active, #accordion .ui-state-default, #accordion .ui-state-hover {
-  border: none !important;
-  outline: none;
-}
-#accordion .ui-state-active.ui-state-default, #accordion .ui-state-active.ui-state-default.ui-state-hover {
-  background: #2a3052 !important;
-  color: #fff !important;
-}
-#accordion .ui-state-default, #accordion .ui-state-hover {
-  background: #F2F2F2 !important;
-  color: #000 !important;
-}
-#accordion .ui-accordion-content {
-  padding-top: 0 !important;
-}
-#accordion .ui-widget-content {
-  border: 1px solid #DEDEDE !important;
-}
-#accordion #supported_banks, #accordion .supported_banks {
+#pa_list #accordion #supported_banks, #pa_list #accordion .supported_banks {
   text-align: center;
   padding-top: 30px;
 }
-#accordion .supported_banks img {
+#pa_list #accordion .supported_banks img {
   width: 72px;
   height: 57px;
   margin: 3px;
@@ -3905,19 +3922,6 @@ button:disabled {
 }
 #virtual-form #tooltip-password, #change-password #tooltip-password, .usersettingssecurityws-content #tooltip-password {
   text-decoration: none;
-}
-#virtual-form meter#password-meter, #change-password meter#password-meter, .usersettingssecurityws-content meter#password-meter {
-  width: 10.9em;
-  height: 0.5em;
-  -webkit-appearance: none;
-  border: 1px solid #C2C2C2;
-  border-radius: 3px;
-  vertical-align: top;
-  display: block;
-}
-#virtual-form meter#password-meter::-webkit-meter-bar, #change-password meter#password-meter::-webkit-meter-bar, .usersettingssecurityws-content meter#password-meter::-webkit-meter-bar {
-  background: #F2F2F2;
-  box-shadow: 0 5px 5px -5px #44484C inset;
 }
 #virtual-form div.hint, #change-password div.hint, .usersettingssecurityws-content div.hint {
   margin-top: 10px;
