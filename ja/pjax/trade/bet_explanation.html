@@ -45,8 +45,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </div>
 
                 <div id="winning_higherlower" class="invisible">
-                    <p>「HIGH」を選択された場合、<strong>終値</strong>が<strong>バリア価格</strong>より正確に高くなるとペイアウトを獲得いただけます。</p>
-                    <p>「ラダー低」を選択された場合、 <strong>終値</strong>が<strong>エントリー価格</strong>より正確に低くなるとペイアウトを獲得いただけます。同値は条件を満たしていないと判定されます。</p>
+                    <p>「HIGH」を選択された場合、判定時刻の時点で<strong>判定レート</strong>が<strong>バリア価格</strong>以上の場合、ペイアウトを受け取れます。</p>
+                    <p>「LOW」を選択された場合、 判定時刻の時点で<strong>判定レート</strong>が<strong>バリア価格価格</strong>未満の場合、ペイアウトを受け取れます。</p>
                 </div>
 
                 <div id="winning_overunder" class="invisible">
@@ -90,8 +90,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </div>
 
                 <div id="winning_touchnotouch" class="invisible">
-                    <p>「タッチ」を選択された場合、<strong>トレード終了時間まで</strong>に市場価格が<strong>バリア</strong>設定した価格にタッチすればペイアウトを獲得いただけます。</p>
-                    <p>「NO-TOUCH」を選択された場合、<strong>トレード終了時間</strong>まで一度も市場価格が<strong>バリア</strong>設定した価格にタッチしなければペイアウトを獲得いただけます。</p>
+                    <p>「TOUCH」を選択された場合、<strong>取引期間が終了するまで</strong>に市場価格が<strong>バリア</strong>設定した価格にタッチすればペイアウトを受け取れます。</p>
+                    <p>「NO-TOUCH」を選択された場合、<strong>取引期間が終了時間</strong>まで市場価格が<strong>バリア</strong>設定した価格にタッチしなければペイアウトを受け取れます。</p>
                 </div>
 
                 <div id="winning_updown" class="invisible">
@@ -136,7 +136,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <div id="explain_endsinout" class="invisible">
                     <h3>判定レート</h3>
                     <p><strong>終値</strong>とは<strong>トレード終了時</strong>のスポット価格のことです。</p>
-                    <p>１日未満の取引期間を指定した場合、<strong>トレード終了時間</strong>は、 <strong>トレード開始時間</strong> から後に選択した分単位、及び時間単位で指定した時間に設定されます。１日以上の取引期間を指定した場合、トレード終了時間は取引日の最終時刻に設定されます。</p>
+                    <p><strong>取引可能時間</strong>は、取引期間開始時から取引終了時間までとなります。取引終了時間とは<strong>判定時刻2分前</strong>までで、取引終了時間を過ぎると新規購入注文＆売却取引は行えません。</p>
                     <p><strong>トレード開始時間</strong>とは当社のサーバにてトレードが処理された際の時間のことです。</p>
                     <p class="hint"><strong>注意: </strong>Ends In/Outトレードは開始から終了までの取引期間中にTickが2未満である場合に、購入金額が返金されます。</p>
                 </div>
@@ -150,7 +150,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <div id="explain_higherlower" class="invisible">
                     <h3>判定レート</h3>
                     <p><strong>終値</strong>とは<strong>トレード終了時</strong>のスポット価格のことです。</p>
-                    <p>１日未満の取引期間を指定した場合、<strong>トレード終了時間</strong>は、 <strong>トレード開始時間</strong> から後に選択した分単位、及び時間単位で指定した時間に設定されます。１日以上の取引期間を指定した場合、トレード終了時間は取引日の最終時刻に設定されます。</p>
+                    <p><strong>取引可能時間</strong>は、取引期間開始時から取引終了時間までとなります。取引終了時間とは<strong>判定時刻2分前</strong>までで、取引終了時間を過ぎると新規購入注文＆売却取引は行えません。</p>
                     <p><strong>トレード開始時間</strong>とは当社のサーバにてトレードが処理された際の時間のことです。</p>
                     <p class="hint"><strong>注意: </strong>Higher/Lowerトレードは開始から終了までの取引期間中にTickが2未満である場合、購入金額が返金されます。</p>
                 </div>
@@ -173,7 +173,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     <p>
                         <strong>終値</strong>とは<strong>トレード終了時</strong>のスポット価格のことです。
                         <br />
-                        １日未満の取引期間を指定しトレード<strong>開始時間</strong>で"Now"を指定した場合、トレード<strong>終了時間</strong>は<strong>トレード開始時間</strong>に分単位、及び時間単位で指定した時間にプラスされたものになります。また１日以上の取引期間を指定した場合、該当トレード日の終了時間（0GMT）に設定されます。
+                        <strong>取引可能時間</strong>は、取引期間開始時から取引終了時間までとなります。取引<strong>終了時間</strong>とは<strong>判定時刻2分前</strong>までで、取引終了時間を過ぎると新規購入注文＆売却取引は行えません。
                         <br />
                         もし特定の<strong>終了時間</strong>を選択した場合は、トレードはその<strong>終了時間</strong>に終了します。
                     </p>
@@ -194,7 +194,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     <h3>取引期間</h3>
                     <p>この<strong>トレードの取引期間</strong>は、<strong>トレード開始時間</strong>の<strong>次のTick</strong>から<strong>トレード終了時間</strong>までとなります。</p>
                     <p><strong>トレード開始時間</strong>とは当社のサーバにてトレードが処理された際の時間のことです。</p>
-                    <p>１日未満の取引期間を指定した場合、<strong>トレード終了時間</strong>は、 <strong>トレード開始時間</strong> から後に選択した分単位、及び時間単位で指定した時間に設定されます。１日以上の取引期間を指定した場合、トレード終了時間は取引日の最終時刻に設定されます。</p>
+                    <p><strong>取引可能時間</strong>は、取引期間開始時から取引終了時間までとなります。取引終了時間とは<strong>判定時刻2分前</strong>までで、取引終了時間を過ぎると新規購入注文＆売却取引は行えません。</p>
                     <p class="hint"><strong>注意: </strong>Stays In/Goesトレードは開始から終了までの取引期間中にTickが2未満である場合、購入金額が返金されます。</p>
                 </div>
 
@@ -203,7 +203,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     <h3>取引期間</h3>
                     <p>この<strong>トレードの取引期間</strong>は、<strong>トレード開始時間</strong>の<strong>次のTick</strong>から<strong>トレード終了時間</strong>までとなります。</p>
                     <p><strong>トレード開始時間</strong>とは当社のサーバにてトレードが処理された際の時間のことです。</p>
-                    <p>１日未満の取引期間を指定した場合、<strong>トレード終了時間</strong>は、 <strong>トレード開始時間</strong> から後に選択した分単位、及び時間単位で指定した時間に設定されます。１日以上の取引期間を指定した場合、トレード終了時間は取引日の最終時刻に設定されます。</p>
+                    <p><strong>取引可能時間</strong>は、取引期間開始時から取引終了時間までとなります。取引終了時間とは<strong>判定時刻2分前</strong>までで、取引終了時間を過ぎると新規購入注文＆売却取引は行えません。</p>
                     <p class="hint"><strong>注意: </strong>Touch/No Touchトレードでは開始から終了までの取引期間中にTickが2未満である場合、購入金額が返金されます。</p>
                 </div>
 
