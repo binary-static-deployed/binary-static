@@ -158,8 +158,7 @@ fieldset {
   position: relative;
   border: 1px solid #DEDEDE;
   padding: 5px;
-  background: -ms-linear-gradient(top, #fff 30%, #F2F2F2 90%);
-  border-bottom: 1px solid transparent;
+  margin-bottom: 10px;
 }
 fieldset#formlayout {
   background: none;
@@ -581,31 +580,7 @@ p.no-para-margin {
   width: 90%;
 }
 #header #client-logged-out #btn_login {
-  color: #fff;
-  text-decoration: none;
-  text-align: center;
-  line-height: 100%;
-  background: #2E8836;
-  border-radius: 4px;
-  text-transform: capitalize;
-  padding: 10px 25px 10px 25px;
-  display: inline-block;
-  letter-spacing: 0.75px;
-  border: 0;
-  text-transform: uppercase;
-  padding: 0px 10px;
-  white-space: nowrap;
-  font-weight: normal;
-  font-size: 0.8em;
-  line-height: 2em;
-  margin: 0.8em 0;
-}
-#header #client-logged-out #btn_login:visited {
-  color: #fff;
-}
-#header #client-logged-out #btn_login:hover, #header #client-logged-out #btn_login:active {
-  text-decoration: none;
-  background-color: #14602B;
+  margin-bottom: 0;
 }
 #header #client-logged-out, #header #loginid-switch-form {
   text-align: right;
@@ -2329,15 +2304,18 @@ table .loss, table .lower {
   text-align: left;
   margin-bottom: 20px;
   box-shadow: 0 0 2px #DEDEDE;
+  direction: ltr;
 }
 .timeline .event .header {
   background: #F2F2F2;
   font-weight: bold;
   padding: 12px;
+  direction: ltr;
 }
 .timeline .event .event-body {
   border: 1px solid #F2F2F2;
   padding: 12px;
+  direction: ltr;
 }
 .timeline .event.featured .header {
   background: #e98024;
@@ -2479,6 +2457,7 @@ table .loss, table .lower {
 }
 .about-us .border-bottom {
   border-bottom: 1px solid #DEDEDE;
+  padding-bottom: 0;
 }
 .about-us .border-right-top {
   border-right: 1px solid #DEDEDE;
@@ -3552,6 +3531,7 @@ div.kineticjs-content {
 }
 #trading_socket_container .barrier_class input, #trading_socket_container #jhigh_barrier_row select, #trading_socket_container #jlow_barrier_row select, #trading_socket_container #jbarrier_row select, #trading_socket_container #period {
   width: 175px;
+  margin-right: 5px;
 }
 #trading_socket_container #period {
   font-size: 80%;
@@ -4045,6 +4025,10 @@ body .calls_recording {
 }
 body .all-hide {
   display: none !important;
+}
+body ul.checked li {
+  background-position: left;
+  padding-left: 35px;
 }
 
 body.EN .calls_recording {

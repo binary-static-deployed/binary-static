@@ -59,6 +59,7 @@
     "src/javascript/binary/common_functions/risk_classification.js",
     "src/javascript/binary/common_functions/session_duration_limit.js",
     "src/javascript/binary/common_functions/string_util.js",
+    "src/javascript/binary/common_functions/traffic_source.js",
     "src/javascript/binary/common_functions/valid_account_opening.js",
     "src/javascript/binary/common_functions/validation.js",
     "src/javascript/binary/components/date_picker.js",
