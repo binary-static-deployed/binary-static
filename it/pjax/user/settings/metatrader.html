@@ -17,7 +17,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
   <div id="metatrader">
-    <h1>MetaTrader Accounts Management</h1>
+    <h1>Gestione degli account MetaTrader</h1>
 
     <p id="errorMsg" class="notice-msg center-text invisible"></p>
 
@@ -25,23 +25,23 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <div class="gr-3">
             <div class="sidebar">
                 <ul class="sidebar-nav">
-                    <li id="nav-demo" class="selected"><a href="#demo">Demo Account</a></li>
+                    <li id="nav-demo" class="selected"><a href="#demo">Account demo</a></li>
                     <li id="nav-real"><a href="#real">Account reale</a></li>
                 </ul>
             </div>
         </div>
         <div class="gr-9">
             <div id="section-demo" class="section invisible">
-                <h3>Demo Account</h3>
+                <h3>Account demo</h3>
                 <p id="msg-new-account-demo" class="notice-msg center-text invisible"></p>
                 <form id="form-new-demo" class="invisible">
-                    <p>Create a MetaTrader account to trade on the MetaTrader 5 platform.</p>
+                    <p>Crea un account MetaTrader per fare trading sulla piattaforma MetaTrader 5.</p>
                     <div class="gr-row gr-padding-10">
-                        <div class="gr-6 form_label">Account Type</div>
+                        <div class="gr-6 form_label">Tipologia dell'account</div>
                         <div class="gr-6 form_label align-start account-type">Demo</div>
                     </div>
                     <div class="gr-row gr-padding-10 invisible">
-                        <div class="gr-6 form_label"><label for="ddlLeverage">Leverage</label></div>
+                        <div class="gr-6 form_label"><label for="ddlLeverage">Leva</label></div>
                         <div class="gr-6">
                             <select id="ddlLeverage">
                                 <option value="1">1</option>
@@ -57,7 +57,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <div class="gr-6"><input type="text" id="txtName" maxlength="30" /></div>
                     </div>
                     <div class="gr-row gr-padding-10">
-                        <div class="gr-6 form_label"><label for="txtMainPass">Main Password (trading access)</label></div>
+                        <div class="gr-6 form_label"><label for="txtMainPass">Password principale (accesso al trading)</label></div>
                         <div class="gr-6">
                             <input type="password" id="txtMainPass" class="password">
                             <div><meter id="password-meter" class="password-meter" value="" max="50" min="0" high="20" low="10" optimum="50"></meter></div>
@@ -65,11 +65,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         </div>
                     </div>
                     <div class="gr-row gr-padding-10">
-                        <div class="gr-6 form_label"><label for="txtMainPass2">Verify Main Password</label></div>
+                        <div class="gr-6 form_label"><label for="txtMainPass2">Verifica la password principale</label></div>
                         <div class="gr-6"><input type="password" id="txtMainPass2" /></div>
                     </div>
                     <div class="gr-row gr-padding-10">
-                        <div class="gr-6 form_label"><label for="txtInvestPass">Investor Password (read-only access)</label></div>
+                        <div class="gr-6 form_label"><label for="txtInvestPass">Password dell'investitore (accesso solo di lettura)</label></div>
                         <div class="gr-6"><input type="password" id="txtInvestPass" /></div>
                     </div>
                     <div class="gr-row gr-padding-10">
@@ -86,7 +86,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <h3>Account reale</h3>
                 <p id="msg-cannot-create-real" class="notice-msg center-text invisible"></p>
                 <div id="authenticate" class="center-text invisible">
-                    <p>To create a Real account for MetaTrader, you need to authenticate your Binary account:</p>
+                    <p>Per creare un account reale per MetaTrader, devi convalidare il tuo account Binary:</p>
                     <a class="button pjaxload" href="/it/user/authenticatews.html">
                         <span>Authenticate your account</span>
                     </a>
@@ -94,12 +94,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <p id="msg-new-account-real" class="notice-msg center-text invisible"></p>
                 <form id="form-new-real" class="invisible"></form>
                 <div id="details-real"></div>
-                <p id="msg-switch-to-deposit" class="notice-msg center-text invisible">To deposit or withdraw from your MetaTrader Real Account, switch to your Binary.com Real Account.</p>
+                <p id="msg-switch-to-deposit" class="notice-msg center-text invisible">Per depositare o prelevare fondi dal tuo account reale MetaTrader, passa al tuo account reale Binary.com.</p>
                 <div id="accordion" class="invisible">
-                    <h3>Deposit to MetaTrader account</h3>
+                    <h3>Deposita sull'account di MetaTrader</h3>
                     <div>
                         <form id="form-deposit-real">
-                            <p>Deposit funds into your MetaTrader account from your Binary account:</p>
+                            <p>Deposita fondi sul tuo account MetaTrader dal tuo account Binary:</p>
                             <div class="gr-row gr-padding-10">
                                 <div class="gr-6 form_label">Deposit from</div>
                                 <div class="gr-6 form_label align-start binary-login"></div>
@@ -121,10 +121,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                             </div>
                         </form>
                     </div>
-                    <h3>Withdraw from MetaTrader account</h3>
+                    <h3>Preleva dal tuo account MetaTrader</h3>
                     <div>
                         <form id="form-withdrawal-real">
-                            <p>Withdraw funds from your MetaTrader account into your Binary account:</p>
+                            <p>Preleva fondi dal tuo account MetaTrader sul tuo account Binary:</p>
                             <div class="gr-row gr-padding-10">
                                 <div class="gr-6 form_label">Withdraw from</div>
                                 <div class="gr-6 form_label align-start mt-login"></div>
