@@ -33,7 +33,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 					<label for="max_balance">最大帳戶現金餘額</label>
 				</div>
 				<div class="gr-8">
-					<input id="max_balance" type="text" maxlength="20" />
+					<input name="max_balance" id="max_balance" type="text" maxlength="20" />
 					<div class="hint">達到此限額後，您不能再存款。</div>
 				</div>
 			</div>
@@ -43,7 +43,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 					<label for="max_turnover">每日交易限額</label>
 				</div>
 				<div class="gr-8">
-					<input id="max_turnover" type="text" maxlength="20" />
+					<input name="max_turnover" id="max_turnover" type="text" maxlength="20" />
 					<div class="hint">每日最大累計合約買入量。</div>
 				</div>
 			</div>
@@ -53,7 +53,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 					<label for="max_losses">每日損失限額</label>
 				</div>
 				<div class="gr-8">
-					<input id="max_losses" type="text" maxlength="20" />
+					<input name="max_losses" id="max_losses" type="text" maxlength="20" />
 					<div class="hint">每日最大累計損失量。</div>
 				</div>
 			</div>
@@ -63,7 +63,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 					<label for="max_7day_turnover">7天期交易限額</label>
 				</div>
 				<div class="gr-8">
-					<input id="max_7day_turnover" type="text" maxlength="20" />
+					<input name="max_7day_turnover" id="max_7day_turnover" type="text" maxlength="20" />
 					<div class="hint">7天期最大累計合約買入量。</div>
 				</div>
 			</div>
@@ -73,7 +73,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 					<label for="max_7day_losses">7天期損失限額 </label>
 				</div>
 				<div class="gr-8">
-					<input id="max_7day_losses" type="text" maxlength="20" />
+					<input name="max_7day_losses" id="max_7day_losses" type="text" maxlength="20" />
 					<div class="hint">7天期最大累計損失量。</div>
 				</div>
 			</div>
@@ -83,7 +83,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 					<label for="max_30day_turnover">30天期交易限額 </label>
 				</div>
 				<div class="gr-8">
-					<input id="max_30day_turnover" type="text" maxlength="20" />
+					<input name="max_30day_turnover" id="max_30day_turnover" type="text" maxlength="20" />
 					<div class="hint">30天期最大累計合約買入量。</div>
 				</div>
 			</div>
@@ -93,7 +93,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 					<label for="max_30day_losses">30天期損失限額</label>
 				</div>
 				<div class="gr-8">
-					<input id="max_30day_losses" type="text" maxlength="20" />
+					<input name="max_30day_losses" id="max_30day_losses" type="text" maxlength="20" />
 					<div class="hint">30天期最大累計損失量。</div>
 				</div>
 			</div>
@@ -103,7 +103,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 					<label for="max_open_bets">最大未平倉頭寸數目</label>
 				</div>
 				<div class="gr-8">
-					<input id="max_open_bets" type="text" maxlength="4" />
+					<input name="max_open_bets" id="max_open_bets" type="text" maxlength="4" />
 				</div>
 			</div>
 
@@ -112,7 +112,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 					<label for="session_duration_limit">交易期持續時間限制，以分鐘作單位</label>
 				</div>
 				<div class="gr-8">
-					<input id="session_duration_limit" type="text" maxlength="5" />
+					<input name="session_duration_limit" id="session_duration_limit" type="text" maxlength="5" />
 					<div class="hint">在該時間後您將自動退出登入。</div>
 				</div>
 			</div>
@@ -122,11 +122,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 					<label for="timeout_until">時間已過。下次開啟時間為</label>
 				</div>
                 <div class="gr-3">
-					<input id="timeout_until_duration" type="text" maxlength="10" />
+					<input name="timeout_until_duration" id="timeout_until_duration" type="text" maxlength="10" />
 					<div class="hint nowrap">請輸入日期，格式為年-月-日 時:分(當地時間)。</div>
 				</div>
 				<div class="gr-5">
-                    <input id="timeout_until" type="text" maxlength="8" />
+                    <input name="timeout_until" id="timeout_until" type="text" maxlength="8" />
 				</div>
 			</div>
 
@@ -135,7 +135,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 					<label for="exclude_until">禁止我訪問本網站直到</label>
 				</div>
 				<div class="gr-8">
-					<input id="exclude_until" type="text" maxlength="10" />
+					<input name="exclude_until" id="exclude_until" type="text" maxlength="10" />
 					<div class="hint">請輸入日期，格式為年-月-日。</div>
 				</div>
 			</div>

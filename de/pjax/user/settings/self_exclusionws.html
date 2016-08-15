@@ -33,7 +33,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 					<label for="max_balance">Maximales Kontoguthaben</label>
 				</div>
 				<div class="gr-8">
-					<input id="max_balance" type="text" maxlength="20" />
+					<input name="max_balance" id="max_balance" type="text" maxlength="20" />
 					<div class="hint">Wenn dieses Limit erreicht wurde, können Sie keine weiteren Einzahlungen vornehmen.</div>
 				</div>
 			</div>
@@ -43,7 +43,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 					<label for="max_turnover">Tägliches Umsatzlimit</label>
 				</div>
 				<div class="gr-8">
-					<input id="max_turnover" type="text" maxlength="20" />
+					<input name="max_turnover" id="max_turnover" type="text" maxlength="20" />
 					<div class="hint">Maximaler Gesamterwerb von Kontrakten pro Tag.</div>
 				</div>
 			</div>
@@ -53,7 +53,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 					<label for="max_losses">Tageslimit für Verluste</label>
 				</div>
 				<div class="gr-8">
-					<input id="max_losses" type="text" maxlength="20" />
+					<input name="max_losses" id="max_losses" type="text" maxlength="20" />
 					<div class="hint">Maximal aufgelaufener Verlust pro Tag.</div>
 				</div>
 			</div>
@@ -63,7 +63,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 					<label for="max_7day_turnover">7-Tage Umsatzlimit</label>
 				</div>
 				<div class="gr-8">
-					<input id="max_7day_turnover" type="text" maxlength="20" />
+					<input name="max_7day_turnover" id="max_7day_turnover" type="text" maxlength="20" />
 					<div class="hint">Maximaler Gesamtkontrakterwerb über einen Zeitraum von 7 Tagen.</div>
 				</div>
 			</div>
@@ -73,7 +73,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 					<label for="max_7day_losses">7-Tage Limit für Verluste </label>
 				</div>
 				<div class="gr-8">
-					<input id="max_7day_losses" type="text" maxlength="20" />
+					<input name="max_7day_losses" id="max_7day_losses" type="text" maxlength="20" />
 					<div class="hint">Maximaler angesammelter Verlust über einen Zeitraum von 7 Tagen.</div>
 				</div>
 			</div>
@@ -83,7 +83,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 					<label for="max_30day_turnover">30 Tage Umsatzlimit </label>
 				</div>
 				<div class="gr-8">
-					<input id="max_30day_turnover" type="text" maxlength="20" />
+					<input name="max_30day_turnover" id="max_30day_turnover" type="text" maxlength="20" />
 					<div class="hint">Maximaler Gesamtkontrakterwerb über einen Zeitraum von 30 Tagen.</div>
 				</div>
 			</div>
@@ -93,7 +93,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 					<label for="max_30day_losses">30-Tage Limit für Verluste</label>
 				</div>
 				<div class="gr-8">
-					<input id="max_30day_losses" type="text" maxlength="20" />
+					<input name="max_30day_losses" id="max_30day_losses" type="text" maxlength="20" />
 					<div class="hint">Maximaler angesammelter Verlust über einen Zeitraum von 30 Tagen.</div>
 				</div>
 			</div>
@@ -103,7 +103,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 					<label for="max_open_bets">Maximale Anzahl offener Positionen</label>
 				</div>
 				<div class="gr-8">
-					<input id="max_open_bets" type="text" maxlength="4" />
+					<input name="max_open_bets" id="max_open_bets" type="text" maxlength="4" />
 				</div>
 			</div>
 
@@ -112,21 +112,21 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 					<label for="session_duration_limit">Limit der Sitzungsdauer in Minuten</label>
 				</div>
 				<div class="gr-8">
-					<input id="session_duration_limit" type="text" maxlength="5" />
+					<input name="session_duration_limit" id="session_duration_limit" type="text" maxlength="5" />
 					<div class="hint">Sie werden nach einer bestimmten Zeit automatisch abgemeldet.</div>
 				</div>
 			</div>
 
 			<div class="gr-row gr-padding-10 row clear ja-hide">
 				<div class="gr-4 form_label">
-					<label for="timeout_until">Time out until</label>
+					<label for="timeout_until">Timeout bis</label>
 				</div>
                 <div class="gr-3">
-					<input id="timeout_until_duration" type="text" maxlength="10" />
-					<div class="hint nowrap">Please enter date in the format YYYY-MM-DD HH:mm (local time).</div>
+					<input name="timeout_until_duration" id="timeout_until_duration" type="text" maxlength="10" />
+					<div class="hint nowrap">Bitte geben Sie das Datum im folgenden Format ein: JJJJ-MM-TT HH:mm (Ortszeit).</div>
 				</div>
 				<div class="gr-5">
-                    <input id="timeout_until" type="text" maxlength="8" />
+                    <input name="timeout_until" id="timeout_until" type="text" maxlength="8" />
 				</div>
 			</div>
 
@@ -135,7 +135,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 					<label for="exclude_until">Schließen Sie mich von der Website aus, bis</label>
 				</div>
 				<div class="gr-8">
-					<input id="exclude_until" type="text" maxlength="10" />
+					<input name="exclude_until" id="exclude_until" type="text" maxlength="10" />
 					<div class="hint">Bitte geben Sie das Datum im folgenden Format ein: JJJJ-MM-TT.</div>
 				</div>
 			</div>
