@@ -17,7 +17,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
   <div id="metatrader">
-    <h1>MetaTrader Accounts Management</h1>
+    <h1>إدارة حسابات الميتاتريدر</h1>
 
     <p id="errorMsg" class="notice-msg center-text invisible"></p>
 
@@ -35,10 +35,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <h3>Demo Account</h3>
                 <p id="msg-new-account-demo" class="notice-msg center-text invisible"></p>
                 <form id="form-new-demo" class="invisible">
-                    <p>Create a MetaTrader account to trade on the MetaTrader 5 platform.</p>
+                    <p>أنشيء حساب ميتاتريدر للتداول على منصة ميتاتريدر 5.</p>
                     <div class="gr-row gr-padding-10">
                         <div class="gr-6 form_label">Account Type</div>
-                        <div class="gr-6 form_label align-start account-type">Demo</div>
+                        <div class="gr-6 form_label align-start account-type">تجريبي</div>
                     </div>
                     <div class="gr-row gr-padding-10 invisible">
                         <div class="gr-6 form_label"><label for="ddlLeverage">Leverage</label></div>
@@ -57,7 +57,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <div class="gr-6"><input type="text" id="txtName" maxlength="30" /></div>
                     </div>
                     <div class="gr-row gr-padding-10">
-                        <div class="gr-6 form_label"><label for="txtMainPass">Main Password (trading access)</label></div>
+                        <div class="gr-6 form_label"><label for="txtMainPass">كلمة المرور الرئيسية (الوصول للتداول)</label></div>
                         <div class="gr-6">
                             <input type="password" id="txtMainPass" class="password">
                             <div><meter id="password-meter" class="password-meter" value="" max="50" min="0" high="20" low="10" optimum="50"></meter></div>
@@ -69,7 +69,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <div class="gr-6"><input type="password" id="txtMainPass2" /></div>
                     </div>
                     <div class="gr-row gr-padding-10">
-                        <div class="gr-6 form_label"><label for="txtInvestPass">Investor Password (read-only access)</label></div>
+                        <div class="gr-6 form_label"><label for="txtInvestPass">كلمة مرور المستثمر (الوصول للقراءة فقط)</label></div>
                         <div class="gr-6"><input type="password" id="txtInvestPass" /></div>
                     </div>
                     <div class="gr-row gr-padding-10">
@@ -86,7 +86,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <h3>حساب حقيقي</h3>
                 <p id="msg-cannot-create-real" class="notice-msg center-text invisible"></p>
                 <div id="authenticate" class="center-text invisible">
-                    <p>To create a Real account for MetaTrader, you need to authenticate your Binary account:</p>
+                    <p>لإنشاء حساب حقيقي للميتاتريدر, أنت بحاجة لتوثيق حسابك في Binary:</p>
                     <a class="button pjaxload" href="/ar/user/authenticatews.html">
                         <span>Authenticate your account</span>
                     </a>
@@ -94,12 +94,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <p id="msg-new-account-real" class="notice-msg center-text invisible"></p>
                 <form id="form-new-real" class="invisible"></form>
                 <div id="details-real"></div>
-                <p id="msg-switch-to-deposit" class="notice-msg center-text invisible">To deposit or withdraw from your MetaTrader Real Account, switch to your Binary.com Real Account.</p>
+                <p id="msg-switch-to-deposit" class="notice-msg center-text invisible">للإيداع أو السحب من حساب الميتاتريدر الحقيقي الخاص بك, قم بالتحول إلى حسابك الحقيقي في Binary.com.</p>
                 <div id="accordion" class="invisible">
-                    <h3>Deposit to MetaTrader account</h3>
+                    <h3>الإيداع في حساب الميتاتريدر</h3>
                     <div>
                         <form id="form-deposit-real">
-                            <p>Deposit funds into your MetaTrader account from your Binary account:</p>
+                            <p>إيداع الأموال في حساب ميتاتريدر الخاص بك من حسابك في Binary:</p>
                             <div class="gr-row gr-padding-10">
                                 <div class="gr-6 form_label">Deposit from</div>
                                 <div class="gr-6 form_label align-start binary-login"></div>
@@ -124,7 +124,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     <h3>Withdraw from MetaTrader account</h3>
                     <div>
                         <form id="form-withdrawal-real">
-                            <p>Withdraw funds from your MetaTrader account into your Binary account:</p>
+                            <p>قم بسحب الأموال من حسابك في ميتاتريدر إلى حسابك في Binary:</p>
                             <div class="gr-row gr-padding-10">
                                 <div class="gr-6 form_label">Withdraw from</div>
                                 <div class="gr-6 form_label align-start mt-login"></div>

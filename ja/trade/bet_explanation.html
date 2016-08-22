@@ -35,8 +35,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </div>
 
                 <div id="winning_endsinout" class="invisible">
-                    <p>「範囲内」を選択された場合、<strong>終値</strong>が バリア設定した<strong>上下両方のバリア価格</strong>の間に留まること、すなわちいずれのバリア価格にもタッチしなければペイアウトを獲得いただけます。トレード終了時間までの市場価格の動向は判定に影響を及ぼしません。</p>
-                    <p>「END-OUT」を選択された場合、 <strong>終値</strong>がバリア設定した<strong>上限バリア価格を上回る</strong>か、<strong>下限バリア価格を下回れば</strong>ペイアウトを獲得いただけます。同値は条件を満たしていないと判定されます。トレード終了時間までの市場価格の動向は判定に関係ありません。</p>
+                    <p>「END-IN」を選択された場合、判定時刻に<strong>判定レート</strong>が <strong>上限バリア未満かつ下限バリア以上</strong>の場合、ペイアウトを受け取れます。</p>
+                    <p>「END-OUT」を選択された場合、 <strong>判定レート</strong>が<strong>上限バリア以上</strong>もしくは、<strong>下限バリア未満の場合</strong>ペイアウトを受け取れます。</p>
                 </div>
 
                 <div id="winning_evenodd" class="invisible">
@@ -137,7 +137,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     <h3>判定レート</h3>
                     <p><strong>判定レート</strong>とは<strong>判定時刻時</strong>のスポット価格のことです。</p>
                     <p><strong>取引期間</strong>は、取引期間開始時から判定時刻までとなります。新規購入が可能な時間は<strong>判定時刻2分前</strong>までで、取引可能時間を過ぎると新規購入注文＆売却取引は行えません。</p>
-                    <p><strong>トレード開始時間</strong>とは当社のサーバにてトレードが処理された際の時間のことです。</p>
+                    <p><strong>取引開始時間</strong>とは回号の取引開始時刻のことです。各回号の詳細につきまして契約締結前交付書面をご確認ください。</p>
                     <p class="hint"><strong>注意: </strong>Ends In/Outトレードは開始から終了までの取引期間中にTickが2未満である場合に、購入金額が返金されます。</p>
                 </div>
 
@@ -150,8 +150,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <div id="explain_higherlower" class="invisible">
                     <h3>判定レート</h3>
                     <p><strong>判定レート</strong>とは<strong>判定時刻時</strong>のスポット価格のことです。</p>
-                    <p><strong>取引期間</strong>は、取引期間開始時から判定時刻までとなります。新規購入が可能な時間は<strong>判定時刻2分前</strong>までで、取引終可能時間を過ぎると新規購入注文＆売却取引は行えません。</p>
-                    <p><strong>トレード開始時間</strong>とは当社のサーバにてトレードが処理された際の時間のことです。</p>
+                    <p><strong>取引期間</strong>は、取引期間開始時から判定時刻までとなります。新規購入が可能な時間は<strong>判定時刻2分前</strong>までで、取引可能時間を過ぎると新規購入注文＆売却取引は行えません。</p>
+                    <p><strong>取引開始時間</strong>とは回号の取引開始時刻のことです。各回号の詳細につきまして契約締結前交付書面をご確認ください。</p>
                     <p class="hint"><strong>注意: </strong>Higher/Lowerトレードは開始から終了までの取引期間中にTickが2未満である場合、購入金額が返金されます。</p>
                 </div>
 
@@ -192,8 +192,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
                 <div id="explain_staysinout" class="invisible">
                     <h3>取引期間</h3>
-                    <p>この<strong>トレードの取引期間</strong>は、<strong>トレード開始時間</strong>の<strong>次のTick</strong>から<strong>トレード終了時間</strong>までとなります。</p>
-                    <p><strong>トレード開始時間</strong>とは当社のサーバにてトレードが処理された際の時間のことです。</p>
+                    <p><strong>取引期間</strong>は、<strong>取引開始時間直後</strong>の<strong>ティック</strong>から<strong>取引終了時間</strong>までとなります。</p>
+                    <p><strong>取引開始時間</strong>とは回号の取引開始時刻のことです。各回号の詳細につきまして契約締結前交付書面をご確認ください。</p>
                     <p><strong>取引期間</strong>は、取引期間開始時から判定時刻までとなります。新規購入が可能な時間は<strong>判定時刻2分前</strong>までで、取引可能時間を過ぎると新規購入注文＆売却取引は行えません。</p>
                     <p class="hint"><strong>注意: </strong>Stays In/Goesトレードは開始から終了までの取引期間中にTickが2未満である場合、購入金額が返金されます。</p>
                 </div>
@@ -201,8 +201,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <div id="explain_touchnotouch" class="invisible">
                     
                     <h3>取引期間</h3>
-                    <p>この<strong>トレードの取引期間</strong>は、<strong>トレード開始時間</strong>の<strong>次のTick</strong>から<strong>トレード終了時間</strong>までとなります。</p>
-                    <p><strong>トレード開始時間</strong>とは当社のサーバにてトレードが処理された際の時間のことです。</p>
+                    <p><strong>取引期間</strong>は、<strong>取引開始時間直後</strong>の<strong>ティック</strong>から<strong>取引終了時間</strong>までとなります。</p>
+                    <p><strong>取引開始時間</strong>とは回号の取引開始時刻のことです。各回号の詳細につきまして契約締結前交付書面をご確認ください。</p>
                     <p><strong>取引期間</strong>は、取引期間開始時から判定時刻までとなります。新規購入が可能な時間は<strong>判定時刻2分前</strong>までで、取引可能時間を過ぎると新規購入注文＆売却取引は行えません。</p>
                     <p class="hint"><strong>注意: </strong>Touch/No Touchトレードでは開始から終了までの取引期間中にTickが2未満である場合、購入金額が返金されます。</p>
                 </div>
