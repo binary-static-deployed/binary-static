@@ -65520,15 +65520,7 @@ pjax_config_page_require_auth("user/settings/assessmentws", function() {
 
             $(RealAccElements).removeClass('hidden');
         }
-        $('.JpAcc').removeClass('invisible')
-                   .removeClass('hidden');
 
-        $('#AnnualIncome, #FinancialAsset, #Occupation, #Equities, #Commodities,' +
-            '#ForeignCurrencyDeposit, #MarginFX, #InvestmentTrust, #PublicCorporationBond,' +
-            '#DerivativeTrading, #PurposeOfTrading, #HedgeAsset, #HedgeAssetAmount')
-            .on('change', function() {
-            changed = true;
-        });
         $(formID).removeClass('hidden');
     }
 
