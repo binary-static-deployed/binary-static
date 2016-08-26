@@ -9188,6 +9188,7 @@ if ( typeof noGlobal === strundefined ) {
 return jQuery;
 
 }));
+
 ;// ==ClosureCompiler==
 // @compilation_level SIMPLE_OPTIMIZATIONS
 
@@ -32337,6 +32338,7 @@ extend(Highcharts, {
 });
 
 }());
+
 ;/**
  * @license Highstock JS v2.1.3 (2015-02-27)
  * Exporting module
@@ -33101,6 +33103,7 @@ Chart.prototype.callbacks.push(function (chart) {
 
 
 }(Highcharts));
+
 ;//! moment.js
 //! version : 2.8.1
 //! authors : Tim Wood, Iskren Chernev, Moment.js contributors
@@ -35909,6 +35912,7 @@ Chart.prototype.callbacks.push(function (chart) {
         makeGlobal();
     }
 }).call(this);
+
 ;function done_typing(elem, config) {
     var onStart = config.start || function() {};
     var onStop  = config.stop  || function() {};
@@ -35940,6 +35944,7 @@ Chart.prototype.callbacks.push(function (chart) {
 if (typeof module !== 'undefined') {
     module.exports = done_typing;
 }
+
 ;/**
  * eventsource.js
  * Available under MIT License (MIT)
@@ -36410,6 +36415,7 @@ if (typeof module !== 'undefined') {
   }
 
 }(this));
+
 ;function formToObj(form) {
   var fields = formToArr(form);
 
@@ -36489,7 +36495,8 @@ if (typeof module !== 'undefined') {
 
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = formToObj;
-};// https://github.com/xbsoftware/enjoyhint
+}
+;// https://github.com/xbsoftware/enjoyhint
 // (+ some custom changes for binary.com)
 
 var EnjoyHint = function (_options) {
@@ -37529,7 +37536,8 @@ a.children=[];for(var b=this.getChildren(),c=b.length,d=0;c>d;d++){var e=b[d];a.
  * @author Ariel Flesler
  * @version 1.4.14
  */
-;(function(k){'use strict';k(['jquery'],function($){var j=$.scrollTo=function(a,b,c){return $(window).scrollTo(a,b,c)};j.defaults={axis:'xy',duration:0,limit:!0};j.window=function(a){return $(window)._scrollable()};$.fn._scrollable=function(){return this.map(function(){var a=this,isWin=!a.nodeName||$.inArray(a.nodeName.toLowerCase(),['iframe','#document','html','body'])!=-1;if(!isWin)return a;var b=(a.contentWindow||a).document||a.ownerDocument||a;return/webkit/i.test(navigator.userAgent)||b.compatMode=='BackCompat'?b.body:b.documentElement})};$.fn.scrollTo=function(f,g,h){if(typeof g=='object'){h=g;g=0}if(typeof h=='function')h={onAfter:h};if(f=='max')f=9e9;h=$.extend({},j.defaults,h);g=g||h.duration;h.queue=h.queue&&h.axis.length>1;if(h.queue)g/=2;h.offset=both(h.offset);h.over=both(h.over);return this._scrollable().each(function(){if(f==null)return;var d=this,$elem=$(d),targ=f,toff,attr={},win=$elem.is('html,body');switch(typeof targ){case'number':case'string':if(/^([+-]=?)?\d+(\.\d+)?(px|%)?$/.test(targ)){targ=both(targ);break}targ=win?$(targ):$(targ,this);if(!targ.length)return;case'object':if(targ.is||targ.style)toff=(targ=$(targ)).offset()}var e=$.isFunction(h.offset)&&h.offset(d,targ)||h.offset;$.each(h.axis.split(''),function(i,a){var b=a=='x'?'Left':'Top',pos=b.toLowerCase(),key='scroll'+b,old=d[key],max=j.max(d,a);if(toff){attr[key]=toff[pos]+(win?0:old-$elem.offset()[pos]);if(h.margin){attr[key]-=parseInt(targ.css('margin'+b))||0;attr[key]-=parseInt(targ.css('border'+b+'Width'))||0}attr[key]+=e[pos]||0;if(h.over[pos])attr[key]+=targ[a=='x'?'width':'height']()*h.over[pos]}else{var c=targ[pos];attr[key]=c.slice&&c.slice(-1)=='%'?parseFloat(c)/100*max:c}if(h.limit&&/^\d+$/.test(attr[key]))attr[key]=attr[key]<=0?0:Math.min(attr[key],max);if(!i&&h.queue){if(old!=attr[key])animate(h.onAfterFirst);delete attr[key]}});animate(h.onAfter);function animate(a){$elem.animate(attr,g,h.easing,a&&function(){a.call(this,targ,h)})}}).end()};j.max=function(a,b){var c=b=='x'?'Width':'Height',scroll='scroll'+c;if(!$(a).is('html,body'))return a[scroll]-$(a)[c.toLowerCase()]();var d='client'+c,html=a.ownerDocument.documentElement,body=a.ownerDocument.body;return Math.max(html[scroll],body[scroll])-Math.min(html[d],body[d])};function both(a){return $.isFunction(a)||$.isPlainObject(a)?a:{top:a,left:a}}return j})}(typeof define==='function'&&define.amd?define:function(a,b){if(typeof module!=='undefined'&&module.exports){module.exports=b(require('jquery'))}else{b(jQuery)}}));;/**
+;(function(k){'use strict';k(['jquery'],function($){var j=$.scrollTo=function(a,b,c){return $(window).scrollTo(a,b,c)};j.defaults={axis:'xy',duration:0,limit:!0};j.window=function(a){return $(window)._scrollable()};$.fn._scrollable=function(){return this.map(function(){var a=this,isWin=!a.nodeName||$.inArray(a.nodeName.toLowerCase(),['iframe','#document','html','body'])!=-1;if(!isWin)return a;var b=(a.contentWindow||a).document||a.ownerDocument||a;return/webkit/i.test(navigator.userAgent)||b.compatMode=='BackCompat'?b.body:b.documentElement})};$.fn.scrollTo=function(f,g,h){if(typeof g=='object'){h=g;g=0}if(typeof h=='function')h={onAfter:h};if(f=='max')f=9e9;h=$.extend({},j.defaults,h);g=g||h.duration;h.queue=h.queue&&h.axis.length>1;if(h.queue)g/=2;h.offset=both(h.offset);h.over=both(h.over);return this._scrollable().each(function(){if(f==null)return;var d=this,$elem=$(d),targ=f,toff,attr={},win=$elem.is('html,body');switch(typeof targ){case'number':case'string':if(/^([+-]=?)?\d+(\.\d+)?(px|%)?$/.test(targ)){targ=both(targ);break}targ=win?$(targ):$(targ,this);if(!targ.length)return;case'object':if(targ.is||targ.style)toff=(targ=$(targ)).offset()}var e=$.isFunction(h.offset)&&h.offset(d,targ)||h.offset;$.each(h.axis.split(''),function(i,a){var b=a=='x'?'Left':'Top',pos=b.toLowerCase(),key='scroll'+b,old=d[key],max=j.max(d,a);if(toff){attr[key]=toff[pos]+(win?0:old-$elem.offset()[pos]);if(h.margin){attr[key]-=parseInt(targ.css('margin'+b))||0;attr[key]-=parseInt(targ.css('border'+b+'Width'))||0}attr[key]+=e[pos]||0;if(h.over[pos])attr[key]+=targ[a=='x'?'width':'height']()*h.over[pos]}else{var c=targ[pos];attr[key]=c.slice&&c.slice(-1)=='%'?parseFloat(c)/100*max:c}if(h.limit&&/^\d+$/.test(attr[key]))attr[key]=attr[key]<=0?0:Math.min(attr[key],max);if(!i&&h.queue){if(old!=attr[key])animate(h.onAfterFirst);delete attr[key]}});animate(h.onAfter);function animate(a){$elem.animate(attr,g,h.easing,a&&function(){a.call(this,targ,h)})}}).end()};j.max=function(a,b){var c=b=='x'?'Width':'Height',scroll='scroll'+c;if(!$(a).is('html,body'))return a[scroll]-$(a)[c.toLowerCase()]();var d='client'+c,html=a.ownerDocument.documentElement,body=a.ownerDocument.body;return Math.max(html[scroll],body[scroll])-Math.min(html[d],body[d])};function both(a){return $.isFunction(a)||$.isPlainObject(a)?a:{top:a,left:a}}return j})}(typeof define==='function'&&define.amd?define:function(a,b){if(typeof module!=='undefined'&&module.exports){module.exports=b(require('jquery'))}else{b(jQuery)}}));
+;/**
  * A small plugin for getting the CSV of a rendered chart
  */
 /*global Highcharts, document */
@@ -37624,6 +37632,7 @@ a.children=[];for(var b=this.getChildren(),c=b.length,d=0;c>d;d++){var e=b[d];a.
         });
     }
 }(Highcharts));
+
 ;// jQuery.XDomainRequest.js
 // Author: Jason Moon - @JSONMOON
 // IE8+
@@ -37717,13 +37726,15 @@ if (!$.support.cors && $.ajaxTransport && window.XDomainRequest) {
   });
 }
 
-})(jQuery);;/**
+})(jQuery);
+;/**
  * Copyright (c) 2007-2012 Ariel Flesler - aflesler(at)gmail(dot)com | http://flesler.blogspot.com
  * Dual licensed under MIT and GPL.
  * @author Ariel Flesler
  * @version 1.4.3.1
  */
-;(function($){var h=$.scrollTo=function(a,b,c){$(window).scrollTo(a,b,c)};h.defaults={axis:'xy',duration:parseFloat($.fn.jquery)>=1.3?0:1,limit:true};h.window=function(a){return $(window)._scrollable()};$.fn._scrollable=function(){return this.map(function(){var a=this,isWin=!a.nodeName||$.inArray(a.nodeName.toLowerCase(),['iframe','#document','html','body'])!=-1;if(!isWin)return a;var b=(a.contentWindow||a).document||a.ownerDocument||a;return/webkit/i.test(navigator.userAgent)||b.compatMode=='BackCompat'?b.body:b.documentElement})};$.fn.scrollTo=function(e,f,g){if(typeof f=='object'){g=f;f=0}if(typeof g=='function')g={onAfter:g};if(e=='max')e=9e9;g=$.extend({},h.defaults,g);f=f||g.duration;g.queue=g.queue&&g.axis.length>1;if(g.queue)f/=2;g.offset=both(g.offset);g.over=both(g.over);return this._scrollable().each(function(){if(e==null)return;var d=this,$elem=$(d),targ=e,toff,attr={},win=$elem.is('html,body');switch(typeof targ){case'number':case'string':if(/^([+-]=)?\d+(\.\d+)?(px|%)?$/.test(targ)){targ=both(targ);break}targ=$(targ,this);if(!targ.length)return;case'object':if(targ.is||targ.style)toff=(targ=$(targ)).offset()}$.each(g.axis.split(''),function(i,a){var b=a=='x'?'Left':'Top',pos=b.toLowerCase(),key='scroll'+b,old=d[key],max=h.max(d,a);if(toff){attr[key]=toff[pos]+(win?0:old-$elem.offset()[pos]);if(g.margin){attr[key]-=parseInt(targ.css('margin'+b))||0;attr[key]-=parseInt(targ.css('border'+b+'Width'))||0}attr[key]+=g.offset[pos]||0;if(g.over[pos])attr[key]+=targ[a=='x'?'width':'height']()*g.over[pos]}else{var c=targ[pos];attr[key]=c.slice&&c.slice(-1)=='%'?parseFloat(c)/100*max:c}if(g.limit&&/^\d+$/.test(attr[key]))attr[key]=attr[key]<=0?0:Math.min(attr[key],max);if(!i&&g.queue){if(old!=attr[key])animate(g.onAfterFirst);delete attr[key]}});animate(g.onAfter);function animate(a){$elem.animate(attr,f,g.easing,a&&function(){a.call(this,e,g)})}}).end()};h.max=function(a,b){var c=b=='x'?'Width':'Height',scroll='scroll'+c;if(!$(a).is('html,body'))return a[scroll]-$(a)[c.toLowerCase()]();var d='client'+c,html=a.ownerDocument.documentElement,body=a.ownerDocument.body;return Math.max(html[scroll],body[scroll])-Math.min(html[d],body[d])};function both(a){return typeof a=='object'?a:{top:a,left:a}}})(jQuery);;/*
+;(function($){var h=$.scrollTo=function(a,b,c){$(window).scrollTo(a,b,c)};h.defaults={axis:'xy',duration:parseFloat($.fn.jquery)>=1.3?0:1,limit:true};h.window=function(a){return $(window)._scrollable()};$.fn._scrollable=function(){return this.map(function(){var a=this,isWin=!a.nodeName||$.inArray(a.nodeName.toLowerCase(),['iframe','#document','html','body'])!=-1;if(!isWin)return a;var b=(a.contentWindow||a).document||a.ownerDocument||a;return/webkit/i.test(navigator.userAgent)||b.compatMode=='BackCompat'?b.body:b.documentElement})};$.fn.scrollTo=function(e,f,g){if(typeof f=='object'){g=f;f=0}if(typeof g=='function')g={onAfter:g};if(e=='max')e=9e9;g=$.extend({},h.defaults,g);f=f||g.duration;g.queue=g.queue&&g.axis.length>1;if(g.queue)f/=2;g.offset=both(g.offset);g.over=both(g.over);return this._scrollable().each(function(){if(e==null)return;var d=this,$elem=$(d),targ=e,toff,attr={},win=$elem.is('html,body');switch(typeof targ){case'number':case'string':if(/^([+-]=)?\d+(\.\d+)?(px|%)?$/.test(targ)){targ=both(targ);break}targ=$(targ,this);if(!targ.length)return;case'object':if(targ.is||targ.style)toff=(targ=$(targ)).offset()}$.each(g.axis.split(''),function(i,a){var b=a=='x'?'Left':'Top',pos=b.toLowerCase(),key='scroll'+b,old=d[key],max=h.max(d,a);if(toff){attr[key]=toff[pos]+(win?0:old-$elem.offset()[pos]);if(g.margin){attr[key]-=parseInt(targ.css('margin'+b))||0;attr[key]-=parseInt(targ.css('border'+b+'Width'))||0}attr[key]+=g.offset[pos]||0;if(g.over[pos])attr[key]+=targ[a=='x'?'width':'height']()*g.over[pos]}else{var c=targ[pos];attr[key]=c.slice&&c.slice(-1)=='%'?parseFloat(c)/100*max:c}if(g.limit&&/^\d+$/.test(attr[key]))attr[key]=attr[key]<=0?0:Math.min(attr[key],max);if(!i&&g.queue){if(old!=attr[key])animate(g.onAfterFirst);delete attr[key]}});animate(g.onAfter);function animate(a){$elem.animate(attr,f,g.easing,a&&function(){a.call(this,e,g)})}}).end()};h.max=function(a,b){var c=b=='x'?'Width':'Height',scroll='scroll'+c;if(!$(a).is('html,body'))return a[scroll]-$(a)[c.toLowerCase()]();var d='client'+c,html=a.ownerDocument.documentElement,body=a.ownerDocument.body;return Math.max(html[scroll],body[scroll])-Math.min(html[d],body[d])};function both(a){return typeof a=='object'?a:{top:a,left:a}}})(jQuery);
+;/*
  * simplyScroll 2 - a scroll-tastic jQuery plugin
  *
  * http://logicbox.net/jquery/simplyscroll/
@@ -37749,7 +37760,8 @@ this.$items.find("a").length&&(this.supportsTouch=!1);if(this.isAuto&&this.o.pau
 function(a){a.stopPropagation();a.preventDefault();a=a.originalEvent.touches[0];a=d-(b.isHorizontal?a.pageX:a.pageY)+f;if(a<0)a=0;else if(a>b.posMax)a=b.posMax;b.$clip[0]["scroll"+b.scrollPos]=a;b.funcMovePause();b.paused=true})}else this.o.pauseButton&&(this.$btnPause=c(".simply-scroll-btn-pause",this.$container).bind("click",function(a){a.preventDefault();g()?c(this).addClass("active"):c(this).removeClass("active")}));this.funcMoveForward()}else this.$btnBack.addClass("simply-scroll-btn "+this.moveBackClass).bind(this.events.start,
 this.funcMoveBack).bind(this.events.end,this.funcMoveStop),this.$btnForward.addClass("simply-scroll-btn "+this.moveForwardClass).bind(this.events.start,this.funcMoveForward).bind(this.events.end,this.funcMoveStop),"end"==this.o.manualMode&&(!this.isRTL?this.$btnBack.addClass("disabled"):this.$btnForward.addClass("disabled"))},moveForward:function(){var a=this;this.movement="forward";null!==this.trigger&&this.$btnBack.removeClass("disabled");a.interval=setInterval(function(){a.$clip[0]["scroll"+a.scrollPos]<
 a.posMax-a.clipMax?a.$clip[0]["scroll"+a.scrollPos]+=a.o.speed:a.isLoop?a.resetPos():a.moveStop(a.movement)},a.intervalDelay)},moveBack:function(){var a=this;this.movement="back";null!==this.trigger&&this.$btnForward.removeClass("disabled");a.interval=setInterval(function(){a.$clip[0]["scroll"+a.scrollPos]>a.posMin?a.$clip[0]["scroll"+a.scrollPos]-=a.o.speed:a.isLoop?a.resetPos():a.moveStop(a.movement)},a.intervalDelay)},movePause:function(){clearInterval(this.interval)},moveStop:function(a){this.movePause();
-null!==this.trigger&&("undefined"!==typeof a&&c(this.trigger).addClass("disabled"),this.trigger=null);this.isAuto&&"bounce"==this.o.autoMode&&("forward"==a?this.moveBack():this.moveForward())},moveResume:function(){"forward"==this.movement?this.moveForward():this.moveBack()},resetPos:function(){this.$clip[0]["scroll"+this.scrollPos]=this.resetPosition}})})(jQuery,window);;/*
+null!==this.trigger&&("undefined"!==typeof a&&c(this.trigger).addClass("disabled"),this.trigger=null);this.isAuto&&"bounce"==this.o.autoMode&&("forward"==a?this.moveBack():this.moveForward())},moveResume:function(){"forward"==this.movement?this.moveForward():this.moveBack()},resetPos:function(){this.$clip[0]["scroll"+this.scrollPos]=this.resetPosition}})})(jQuery,window);
+;/*
 * Slides, A Slideshow Plugin for jQuery
 * Intructions: http://slidesjs.com
 * By: Nathan Searles, http://nathansearles.com
@@ -37769,6 +37781,7 @@ null!==this.trigger&&("undefined"!==typeof a&&c(this.trigger).addClass("disabled
 * limitations under the License.
 */
 (function(a){a.fn.slides=function(b){return b=a.extend({},a.fn.slides.option,b),this.each(function(){function w(g,h,i){if(!p&&o){switch(p=!0,b.animationStart(n+1),g){case"next":l=n,k=n+1,k=e===k?0:k,r=2*f,g=2*-f,n=k;break;case"prev":l=n,k=n-1,k=-1===k?e-1:k,r=0,g=0,n=k;break;case"pagination":k=parseInt(i,10),l=a("."+b.paginationClass+" li."+b.currentClass+" a",c).attr("href").match("[^#/]+$"),k>l?(r=2*f,g=2*-f):(r=0,g=0),n=k}"fade"===h?b.crossfade?d.children(":eq("+k+")",c).css({zIndex:10}).fadeIn(b.fadeSpeed,b.fadeEasing,function(){b.autoHeight?d.animate({height:d.children(":eq("+k+")",c).outerHeight()},b.autoHeightSpeed,function(){d.children(":eq("+l+")",c).css({display:"none",zIndex:0}),d.children(":eq("+k+")",c).css({zIndex:0}),b.animationComplete(k+1),p=!1}):(d.children(":eq("+l+")",c).css({display:"none",zIndex:0}),d.children(":eq("+k+")",c).css({zIndex:0}),b.animationComplete(k+1),p=!1)}):d.children(":eq("+l+")",c).fadeOut(b.fadeSpeed,b.fadeEasing,function(){b.autoHeight?d.animate({height:d.children(":eq("+k+")",c).outerHeight()},b.autoHeightSpeed,function(){d.children(":eq("+k+")",c).fadeIn(b.fadeSpeed,b.fadeEasing)}):d.children(":eq("+k+")",c).fadeIn(b.fadeSpeed,b.fadeEasing,function(){}),b.animationComplete(k+1),p=!1}):(d.children(":eq("+k+")").css({left:r,display:"block"}),b.autoHeight?d.animate({left:g,height:d.children(":eq("+k+")").outerHeight()},b.slideSpeed,b.slideEasing,function(){d.css({left:-f}),d.children(":eq("+k+")").css({left:f,zIndex:5}),d.children(":eq("+l+")").css({left:f,display:"none",zIndex:0}),b.animationComplete(k+1),p=!1}):d.animate({left:g},b.slideSpeed,b.slideEasing,function(){d.css({left:-f}),d.children(":eq("+k+")").css({left:f,zIndex:5}),d.children(":eq("+l+")").css({left:f,display:"none",zIndex:0}),b.animationComplete(k+1),p=!1})),b.pagination&&(a("."+b.paginationClass+" li."+b.currentClass,c).removeClass(b.currentClass),a("."+b.paginationClass+" li:eq("+k+")",c).addClass(b.currentClass))}}function x(){clearInterval(c.data("interval"))}function y(){b.pause?(clearTimeout(c.data("pause")),clearInterval(c.data("interval")),u=setTimeout(function(){clearTimeout(c.data("pause")),v=setInterval(function(){w("next",i)},b.play),c.data("interval",v)},b.pause),c.data("pause",u)):x()}a("."+b.container,a(this)).children().wrapAll('<div class="slides_control"/>');var o,p,q,r,t,u,v,c=a(this),d=a(".slides_control",c),e=d.children().size(),f=d.children().outerWidth(),g=d.children().outerHeight(),h=b.start-1,i=0>b.effect.indexOf(",")?b.effect:b.effect.replace(" ","").split(",")[0],j=0>b.effect.indexOf(",")?i:b.effect.replace(" ","").split(",")[1],k=0,l=0,m=0,n=0;if(2>e)return a("."+b.container,a(this)).fadeIn(b.fadeSpeed,b.fadeEasing,function(){o=!0,b.slidesLoaded()}),a("."+b.next+", ."+b.prev).fadeOut(0),!1;if(!(2>e)){if(0>h&&(h=0),h>e&&(h=e-1),b.start&&(n=h),b.randomize&&d.randomize(),a("."+b.container,c).css({overflow:"hidden",position:"relative"}),d.children().css({position:"absolute",top:0,left:d.children().outerWidth(),zIndex:0,display:"none"}),d.css({position:"relative",width:3*f,height:g,left:-f}),a("."+b.container,c).css({display:"block"}),b.autoHeight&&(d.children().css({height:"auto"}),d.animate({height:d.children(":eq("+h+")").outerHeight()},b.autoHeightSpeed)),b.preload&&d.find("img:eq("+h+")").length){a("."+b.container,c).css({background:"url("+b.preloadImage+") no-repeat 50% 50%"});var z=d.find("img:eq("+h+")").attr("src")+"?"+(new Date).getTime();t="slides_control"!=a("img",c).parent().attr("class")?d.children(":eq(0)")[0].tagName.toLowerCase():d.find("img:eq("+h+")"),d.find("img:eq("+h+")").attr("src",z).load(function(){d.find(t+":eq("+h+")").fadeIn(b.fadeSpeed,b.fadeEasing,function(){a(this).css({zIndex:5}),a("."+b.container,c).css({background:""}),o=!0,b.slidesLoaded()})})}else d.children(":eq("+h+")").fadeIn(b.fadeSpeed,b.fadeEasing,function(){o=!0,b.slidesLoaded()});b.bigTarget&&(d.children().css({cursor:"pointer"}),d.children().on("click",function(){return w("next",i),!1})),b.hoverPause&&b.play&&(d.bind("mouseover",function(){x()}),d.bind("mouseleave",function(){y()})),b.generateNextPrev&&(a("."+b.container,c).after('<a href="#" class="'+b.prev+'">Prev</a>'),a("."+b.prev,c).after('<a href="#" class="'+b.next+'">Next</a>')),a("."+b.next,c).on("click",function(a){a.preventDefault(),b.play&&y(),w("next",i)}),a("."+b.prev,c).on("click",function(a){a.preventDefault(),b.play&&y(),w("prev",i)}),b.generatePagination?(b.prependPagination?c.prepend("<ul class="+b.paginationClass+"></ul>"):c.append("<ul class="+b.paginationClass+"></ul>"),d.children().each(function(){a("."+b.paginationClass,c).append('<li><a href="#'+m+'">'+(m+1)+"</a></li>"),m++})):a("."+b.paginationClass+" li a",c).each(function(){a(this).attr("href","#"+m),m++}),a("."+b.paginationClass+" li:eq("+h+")",c).addClass(b.currentClass),a("."+b.paginationClass+" li a",c).on("click",function(){return b.play&&y(),q=a(this).attr("href").match("[^#/]+$"),n!=q&&w("pagination",j,q),!1}),a("a.link",c).on("click",function(){return b.play&&y(),q=a(this).attr("href").match("[^#/]+$")-1,n!=q&&w("pagination",j,q),!1}),b.play&&(v=setInterval(function(){w("next",i)},b.play),c.data("interval",v))}})},a.fn.slides.option={preload:!1,preloadImage:"/img/loading.gif",container:"slides_container",generateNextPrev:!1,next:"next",prev:"prev",pagination:!0,generatePagination:!0,prependPagination:!1,paginationClass:"pagination",currentClass:"current",fadeSpeed:350,fadeEasing:"",slideSpeed:350,slideEasing:"",start:1,effect:"slide",crossfade:!1,randomize:!1,play:0,pause:0,hoverPause:!1,autoHeight:!1,autoHeightSpeed:350,bigTarget:!1,animationStart:function(){},animationComplete:function(){},slidesLoaded:function(){}},a.fn.randomize=function(b){function c(){return Math.round(Math.random())-.5}return a(this).each(function(){var d=a(this),e=d.children(),f=e.length;if(f>1){e.hide();var g=[];for(i=0;f>i;i++)g[g.length]=i;g=g.sort(c),a.each(g,function(a,c){var f=e.eq(c),g=f.clone(!0);g.show().appendTo(d),void 0!==b&&b(f,g),f.remove()})}})}})(jQuery);
+
 ;/*
  * jQuery UI Timepicker
  *
@@ -39265,6 +39278,7 @@ null!==this.trigger&&("undefined"!==typeof a&&c(this.trigger).addClass("disabled
     window['TP_jQuery_' + tpuuid] = $;
 
 })(jQuery);
+
 ;/*! jQuery UI - v1.11.0 - 2014-08-11
 * http://jqueryui.com
 * Includes: core.js, widget.js, mouse.js, draggable.js, datepicker.js, tabs.js
@@ -44768,7 +44782,8 @@ var accordion = $.widget( "ui.accordion", {
 	}
 });
 
-}));;/**
+}));
+;/**
 *
 * jquery.sparkline.js
 *
@@ -47853,6 +47868,7 @@ var accordion = $.widget( "ui.accordion", {
 
 
 }))}(document, Math));
+
 ;(function($) {
     // Some named colors to work with
     // From Interface by Stefan Petre
@@ -48010,6 +48026,7 @@ var accordion = $.widget( "ui.accordion", {
     });
 
 })(jQuery);
+
 ;/*!
  * JavaScript Cookie v2.1.2
  * https://github.com/js-cookie/js-cookie
@@ -48161,6 +48178,7 @@ var accordion = $.widget( "ui.accordion", {
 
 	return init(function () {});
 }));
+
 ;/*!
 loadCSS: load a CSS file asynchronously.
 [c]2014 @scottjehl, Filament Group, Inc.
@@ -48189,6 +48207,7 @@ function loadCSS( href, before, media ){
 	} );
 	return ss;
  }
+
 ;/*! loadJS: load a JS file asynchronously. [c]2014 @scottjehl, Filament Group, Inc. (Based on http://goo.gl/REQGQ by Paul Irish). Licensed MIT */
 function loadJS( src ){
 	"use strict";
@@ -48198,6 +48217,7 @@ function loadJS( src ){
 	ref.parentNode.insertBefore( script, ref );
 	return script;
 }
+
 ;/*	
  * jQuery mmenu v4.2.2
  * @requires jQuery 1.7.0 or later
@@ -48281,9 +48301,11 @@ function loadJS( src ){
  * http://en.wikipedia.org/wiki/MIT_License
  * http://en.wikipedia.org/wiki/GNU_General_Public_License
  */
-!function(e){function s(e){switch(e){case 9:case 16:case 17:case 18:case 37:case 38:case 39:case 40:return!0}return!1}var n="mmenu",t="searchfield";e[n].prototype["_addon_"+t]=function(){var a=this,r=this.opts[t],o=e[n]._c,l=e[n]._d,d=e[n]._e;if(o.add("search hassearch noresults nosubresults counter"),d.add("search reset change"),"boolean"==typeof r&&(r={add:r,search:r}),"object"!=typeof r&&(r={}),r=e.extend(!0,{},e[n].defaults[t],r),r.add&&(e('<div class="'+o.search+'" />').prependTo(this.$menu).append('<input placeholder="'+r.placeholder+'" type="text" autocomplete="off" />'),r.noResults&&e("ul, ol",this.$menu).first().append('<li class="'+o.noresults+'">'+r.noResults+"</li>")),e("div."+o.search,this.$menu).length&&this.$menu.addClass(o.hassearch),r.search){var i=e("div."+o.search,this.$menu).find("input");if(i.length){var u=e("."+o.panel,this.$menu),h=e("."+o.list+"> li."+o.label,this.$menu),c=e("."+o.list+"> li",this.$menu).not("."+o.subtitle).not("."+o.label).not("."+o.noresults),f="> a";r.showLinksOnly||(f+=", > span"),i.off(d.keyup+" "+d.change).on(d.keyup,function(e){s(e.keyCode)||a.$menu.trigger(d.search)}).on(d.change,function(){a.$menu.trigger(d.search)}),this.$menu.off(d.reset+" "+d.search).on(d.reset+" "+d.search,function(e){e.stopPropagation()}).on(d.reset,function(){a.$menu.trigger(d.search,[""])}).on(d.search,function(s,n){"string"==typeof n?i.val(n):n=i.val(),n=n.toLowerCase(),u.scrollTop(0),c.add(h).addClass(o.hidden),c.each(function(){var s=e(this);e(f,s).text().toLowerCase().indexOf(n)>-1&&s.add(s.prevAll("."+o.label).first()).removeClass(o.hidden)}),e(u.get().reverse()).each(function(){var s=e(this),n=s.data(l.parent);if(n){var t=s.add(s.find("> ."+o.list)).find("> li").not("."+o.subtitle).not("."+o.label).not("."+o.hidden);t.length?n.removeClass(o.hidden).removeClass(o.nosubresults).prevAll("."+o.label).first().removeClass(o.hidden):(s.hasClass(o.current)&&n.trigger(d.open),n.addClass(o.nosubresults))}}),a.$menu[c.not("."+o.hidden).length?"removeClass":"addClass"](o.noresults),a.$menu.trigger(d.update)})}}},e[n].defaults[t]={add:!1,search:!1,showLinksOnly:!0,placeholder:"Search",noResults:"No results found."},e[n].addons=e[n].addons||[],e[n].addons.push(t)}(jQuery);;/*! modernizr 3.1.0 (Custom Build) | MIT *
+!function(e){function s(e){switch(e){case 9:case 16:case 17:case 18:case 37:case 38:case 39:case 40:return!0}return!1}var n="mmenu",t="searchfield";e[n].prototype["_addon_"+t]=function(){var a=this,r=this.opts[t],o=e[n]._c,l=e[n]._d,d=e[n]._e;if(o.add("search hassearch noresults nosubresults counter"),d.add("search reset change"),"boolean"==typeof r&&(r={add:r,search:r}),"object"!=typeof r&&(r={}),r=e.extend(!0,{},e[n].defaults[t],r),r.add&&(e('<div class="'+o.search+'" />').prependTo(this.$menu).append('<input placeholder="'+r.placeholder+'" type="text" autocomplete="off" />'),r.noResults&&e("ul, ol",this.$menu).first().append('<li class="'+o.noresults+'">'+r.noResults+"</li>")),e("div."+o.search,this.$menu).length&&this.$menu.addClass(o.hassearch),r.search){var i=e("div."+o.search,this.$menu).find("input");if(i.length){var u=e("."+o.panel,this.$menu),h=e("."+o.list+"> li."+o.label,this.$menu),c=e("."+o.list+"> li",this.$menu).not("."+o.subtitle).not("."+o.label).not("."+o.noresults),f="> a";r.showLinksOnly||(f+=", > span"),i.off(d.keyup+" "+d.change).on(d.keyup,function(e){s(e.keyCode)||a.$menu.trigger(d.search)}).on(d.change,function(){a.$menu.trigger(d.search)}),this.$menu.off(d.reset+" "+d.search).on(d.reset+" "+d.search,function(e){e.stopPropagation()}).on(d.reset,function(){a.$menu.trigger(d.search,[""])}).on(d.search,function(s,n){"string"==typeof n?i.val(n):n=i.val(),n=n.toLowerCase(),u.scrollTop(0),c.add(h).addClass(o.hidden),c.each(function(){var s=e(this);e(f,s).text().toLowerCase().indexOf(n)>-1&&s.add(s.prevAll("."+o.label).first()).removeClass(o.hidden)}),e(u.get().reverse()).each(function(){var s=e(this),n=s.data(l.parent);if(n){var t=s.add(s.find("> ."+o.list)).find("> li").not("."+o.subtitle).not("."+o.label).not("."+o.hidden);t.length?n.removeClass(o.hidden).removeClass(o.nosubresults).prevAll("."+o.label).first().removeClass(o.hidden):(s.hasClass(o.current)&&n.trigger(d.open),n.addClass(o.nosubresults))}}),a.$menu[c.not("."+o.hidden).length?"removeClass":"addClass"](o.noresults),a.$menu.trigger(d.update)})}}},e[n].defaults[t]={add:!1,search:!1,showLinksOnly:!0,placeholder:"Search",noResults:"No results found."},e[n].addons=e[n].addons||[],e[n].addons.push(t)}(jQuery);
+;/*! modernizr 3.1.0 (Custom Build) | MIT *
  * http://modernizr.com/download/?-inputtypes !*/
-!function(e,t,n){function a(e){var t=u.className,n=Modernizr._config.classPrefix||"";if(f&&(t=t.baseVal),Modernizr._config.enableJSClass){var a=new RegExp("(^|\\s)"+n+"no-js(\\s|$)");t=t.replace(a,"$1"+n+"js$2")}Modernizr._config.enableClasses&&(t+=" "+n+e.join(" "+n),f?u.className.baseVal=t:u.className=t)}function s(e,t){return typeof e===t}function i(){var e,t,n,a,i,o,c;for(var u in r)if(r.hasOwnProperty(u)){if(e=[],t=r[u],t.name&&(e.push(t.name.toLowerCase()),t.options&&t.options.aliases&&t.options.aliases.length))for(n=0;n<t.options.aliases.length;n++)e.push(t.options.aliases[n].toLowerCase());for(a=s(t.fn,"function")?t.fn():t.fn,i=0;i<e.length;i++)o=e[i],c=o.split("."),1===c.length?Modernizr[c[0]]=a:(!Modernizr[c[0]]||Modernizr[c[0]]instanceof Boolean||(Modernizr[c[0]]=new Boolean(Modernizr[c[0]])),Modernizr[c[0]][c[1]]=a),l.push((a?"":"no-")+c.join("-"))}}function o(){return"function"!=typeof t.createElement?t.createElement(arguments[0]):f?t.createElementNS.call(t,"http://www.w3.org/2000/svg",arguments[0]):t.createElement.apply(t,arguments)}var l=[],r=[],c={_version:"3.1.0",_config:{classPrefix:"",enableClasses:!0,enableJSClass:!0,usePrefixes:!0},_q:[],on:function(e,t){var n=this;setTimeout(function(){t(n[e])},0)},addTest:function(e,t,n){r.push({name:e,fn:t,options:n})},addAsyncTest:function(e){r.push({name:null,fn:e})}},Modernizr=function(){};Modernizr.prototype=c,Modernizr=new Modernizr;var u=t.documentElement,f="svg"===u.nodeName.toLowerCase(),p=o("input"),d="search tel url email datetime date month week time datetime-local number range color".split(" "),m={};Modernizr.inputtypes=function(e){for(var a,s,i,o=e.length,l=":)",r=0;o>r;r++)p.setAttribute("type",a=e[r]),i="text"!==p.type&&"style"in p,i&&(p.value=l,p.style.cssText="position:absolute;visibility:hidden;",/^range$/.test(a)&&p.style.WebkitAppearance!==n?(u.appendChild(p),s=t.defaultView,i=s.getComputedStyle&&"textfield"!==s.getComputedStyle(p,null).WebkitAppearance&&0!==p.offsetHeight,u.removeChild(p)):/^(search|tel)$/.test(a)||(i=/^(url|email|number)$/.test(a)?p.checkValidity&&p.checkValidity()===!1:p.value!=l)),m[e[r]]=!!i;return m}(d),i(),a(l),delete c.addTest,delete c.addAsyncTest;for(var h=0;h<Modernizr._q.length;h++)Modernizr._q[h]();e.Modernizr=Modernizr}(window,document);;// moment.js locale configuration
+!function(e,t,n){function a(e){var t=u.className,n=Modernizr._config.classPrefix||"";if(f&&(t=t.baseVal),Modernizr._config.enableJSClass){var a=new RegExp("(^|\\s)"+n+"no-js(\\s|$)");t=t.replace(a,"$1"+n+"js$2")}Modernizr._config.enableClasses&&(t+=" "+n+e.join(" "+n),f?u.className.baseVal=t:u.className=t)}function s(e,t){return typeof e===t}function i(){var e,t,n,a,i,o,c;for(var u in r)if(r.hasOwnProperty(u)){if(e=[],t=r[u],t.name&&(e.push(t.name.toLowerCase()),t.options&&t.options.aliases&&t.options.aliases.length))for(n=0;n<t.options.aliases.length;n++)e.push(t.options.aliases[n].toLowerCase());for(a=s(t.fn,"function")?t.fn():t.fn,i=0;i<e.length;i++)o=e[i],c=o.split("."),1===c.length?Modernizr[c[0]]=a:(!Modernizr[c[0]]||Modernizr[c[0]]instanceof Boolean||(Modernizr[c[0]]=new Boolean(Modernizr[c[0]])),Modernizr[c[0]][c[1]]=a),l.push((a?"":"no-")+c.join("-"))}}function o(){return"function"!=typeof t.createElement?t.createElement(arguments[0]):f?t.createElementNS.call(t,"http://www.w3.org/2000/svg",arguments[0]):t.createElement.apply(t,arguments)}var l=[],r=[],c={_version:"3.1.0",_config:{classPrefix:"",enableClasses:!0,enableJSClass:!0,usePrefixes:!0},_q:[],on:function(e,t){var n=this;setTimeout(function(){t(n[e])},0)},addTest:function(e,t,n){r.push({name:e,fn:t,options:n})},addAsyncTest:function(e){r.push({name:null,fn:e})}},Modernizr=function(){};Modernizr.prototype=c,Modernizr=new Modernizr;var u=t.documentElement,f="svg"===u.nodeName.toLowerCase(),p=o("input"),d="search tel url email datetime date month week time datetime-local number range color".split(" "),m={};Modernizr.inputtypes=function(e){for(var a,s,i,o=e.length,l=":)",r=0;o>r;r++)p.setAttribute("type",a=e[r]),i="text"!==p.type&&"style"in p,i&&(p.value=l,p.style.cssText="position:absolute;visibility:hidden;",/^range$/.test(a)&&p.style.WebkitAppearance!==n?(u.appendChild(p),s=t.defaultView,i=s.getComputedStyle&&"textfield"!==s.getComputedStyle(p,null).WebkitAppearance&&0!==p.offsetHeight,u.removeChild(p)):/^(search|tel)$/.test(a)||(i=/^(url|email|number)$/.test(a)?p.checkValidity&&p.checkValidity()===!1:p.value!=l)),m[e[r]]=!!i;return m}(d),i(),a(l),delete c.addTest,delete c.addAsyncTest;for(var h=0;h<Modernizr._q.length;h++)Modernizr._q[h]();e.Modernizr=Modernizr}(window,document);
+;// moment.js locale configuration
 // Locale: Arabic (ar)
 // Author: Abdel Said: https://github.com/abdelsaid
 // Changes in months, weekdays: Ahmed Elkhatib
@@ -48412,6 +48434,7 @@ function loadJS( src ){
         }
     });
 }));
+
 ;// moment.js locale configuration
 // locale : german (de)
 // author : lluchs : https://github.com/lluchs
@@ -48483,6 +48506,7 @@ function loadJS( src ){
         }
     });
 }));
+
 ;// moment.js locale configuration
 // locale : spanish (es)
 // author : Julio Napurí : https://github.com/julionc
@@ -48558,6 +48582,7 @@ function loadJS( src ){
         }
     });
 }));
+
 ;// moment.js locale configuration
 // locale : french (fr)
 // author : John Fischer : https://github.com/jfroffice
@@ -48616,6 +48641,7 @@ function loadJS( src ){
         }
     });
 }));
+
 ;// moment.js locale configuration
 // locale : Bahasa Indonesia (id)
 // author : Mohammad Satrio Utomo : https://github.com/tyok
@@ -48683,6 +48709,7 @@ function loadJS( src ){
         }
     });
 }));
+
 ;// moment.js locale configuration
 // locale : polish (pl)
 // author : Rafal Hirsz : https://github.com/evoL
@@ -48781,6 +48808,7 @@ function loadJS( src ){
         }
     });
 }));
+
 ;// moment.js locale configuration
 // locale : portuguese (pt)
 // author : Jefferson : https://github.com/jalex79
@@ -48841,6 +48869,7 @@ function loadJS( src ){
         }
     });
 }));
+
 ;// moment.js locale configuration
 // locale : russian (ru)
 // author : Viktorminator : https://github.com/Viktorminator
@@ -49007,6 +49036,7 @@ function loadJS( src ){
         }
     });
 }));
+
 ;// moment.js locale configuration
 // locale : chinese
 // author : suupic : https://github.com/suupic
@@ -49115,6 +49145,7 @@ function loadJS( src ){
         }
     });
 }));
+
 ;/**!
  * PJAX- Standalone (+ several custom changes for binary.com)
  *
@@ -49716,6 +49747,7 @@ function loadJS( src ){
 
 
 }).call({});
+
 ;var dv = (function() {
   function ok(v) {
     if (!(this instanceof ok)) return new ok(v);
@@ -49784,7 +49816,9 @@ function loadJS( src ){
 if (typeof module !== 'undefined') {
   module.exports = dv;
 }
-;var idd_codes = {"ne":"227","gg":null,"bd":"880","ki":"686","mm":"95","mc":"377","tr":"90","sj":null,"gl":"299","hn":"504","ug":"256","my":"60","nu":"683","ci":"225","ro":"40","tn":"216","dk":"45","nc":"687","co":"57","rw":"250","br":"55","aq":"672","bo":"591","cy":"357","st":"239","ck":"682","hm":null,"tc":"1649","bv":null,"ke":"254","mo":"853","ps":"970","gq":"240","ge":"995","dm":"1767","bf":"226","km":null,"ao":"244","af":"93","gr":"30","va":"379","ls":"266","mv":"960","tm":"993","is":"354","jm":"1876","mt":"356","pg":"675","ky":"1345","ga":"241","la":"856","gi":"350","bh":"973","ms":"1664","bt":"975","gb":"44","pn":"649","sv":"503","it":"39","wf":"681","mq":"596","sb":"677","hu":"36","za":"27","ly":"218","ng":"234","se":"46","gt":"502","uy":"598","ai":"1264","iq":"964","lu":"352","na":"264","ve":"58","pt":"351","il":"972","mh":"692","ba":"387","eg":"20","ph":"63","kg":"996","pf":"689","no":"47","um":null,"lv":"371","tf":null,"fr":"33","kz":"7","ma":"212","in":"91","id":"62","sr":"597","si":"386","re":null,"me":null,"om":"968","vg":"1284","by":"375","fi":"358","gs":null,"fj":"679","ir":"98","py":"595","pm":"508","sn":"221","li":"417","tz":"255","td":"235","sd":"249","cg":"242","pa":"507","au":"61","sl":"232","am":"374","tv":"688","gh":"233","us":"1","jo":"962","mr":"222","bi":"257","ee":"372","cd":"243","ye":"967","dz":"213","pk":"92","kn":"1869","cm":"237","bw":"267","mn":"976","lk":"94","gd":"1473","nz":"64","as":"684","ae":"971","lc":"1758","mg":"261","tk":"690","sc":"248","rs":"381","cn":"86","ru":null,"ag":"1268","mx":"52","cx":"618","sy":"963","cr":"506","vi":"1340","az":"994","ec":"593","sg":"65","kh":"855","mz":"258","bm":"1441","lb":"961","nr":"674","bz":"501","vu":"678","kw":"965","ml":"223","bj":"229","gf":"594","al":"355","mf":null,"uz":"998","pr":"1787","fk":"500","lr":"231","eh":"21","nf":null,"np":"977","do":"1809","ht":"509","mp":"1670","bs":"1242","gm":"220","mw":"265","to":"676","cu":"53","ch":"41","mu":"230","ni":"505","gu":"671","bg":"359","pw":"680","aw":"297","gy":"592","pl":"48","ca":null,"sk":"421","pe":"51","an":"599","ua":"380","ax":null,"gw":"245","es":"34","kr":"82","je":"441534","tt":"1868","fo":"298","yt":"269","cc":null,"kp":"850","bb":"1246","sh":"290","sa":"966","zm":"260","io":"246","th":"66","hk":"852","et":"251","ie":"353","so":"252","tl":"670","er":"291","tj":"992","cf":"236","im":"441624","cz":"420","mk":"389","lt":"370","de":"49","hr":"385","gn":"224","be":"32","qa":"974","vc":"1784","cv":"238","fm":"691","md":"373","jp":"81","cl":"56","tw":"886","ws":"685","ad":"376","sz":"268","bn":"673","at":"43","tg":"228","vn":"84","zw":"263","gp":"590","ar":"54","sm":"378","nl":"31","dj":"253","bl":null};;var texts_json = {};
+
+;var idd_codes = {"ne":"227","gg":null,"bd":"880","ki":"686","mm":"95","mc":"377","tr":"90","sj":null,"gl":"299","hn":"504","ug":"256","my":"60","nu":"683","ci":"225","ro":"40","tn":"216","dk":"45","nc":"687","co":"57","rw":"250","br":"55","aq":"672","bo":"591","cy":"357","st":"239","ck":"682","hm":null,"tc":"1649","bv":null,"ke":"254","mo":"853","ps":"970","gq":"240","ge":"995","dm":"1767","bf":"226","km":null,"ao":"244","af":"93","gr":"30","va":"379","ls":"266","mv":"960","tm":"993","is":"354","jm":"1876","mt":"356","pg":"675","ky":"1345","ga":"241","la":"856","gi":"350","bh":"973","ms":"1664","bt":"975","gb":"44","pn":"649","sv":"503","it":"39","wf":"681","mq":"596","sb":"677","hu":"36","za":"27","ly":"218","ng":"234","se":"46","gt":"502","uy":"598","ai":"1264","iq":"964","lu":"352","na":"264","ve":"58","pt":"351","il":"972","mh":"692","ba":"387","eg":"20","ph":"63","kg":"996","pf":"689","no":"47","um":null,"lv":"371","tf":null,"fr":"33","kz":"7","ma":"212","in":"91","id":"62","sr":"597","si":"386","re":null,"me":null,"om":"968","vg":"1284","by":"375","fi":"358","gs":null,"fj":"679","ir":"98","py":"595","pm":"508","sn":"221","li":"417","tz":"255","td":"235","sd":"249","cg":"242","pa":"507","au":"61","sl":"232","am":"374","tv":"688","gh":"233","us":"1","jo":"962","mr":"222","bi":"257","ee":"372","cd":"243","ye":"967","dz":"213","pk":"92","kn":"1869","cm":"237","bw":"267","mn":"976","lk":"94","gd":"1473","nz":"64","as":"684","ae":"971","lc":"1758","mg":"261","tk":"690","sc":"248","rs":"381","cn":"86","ru":null,"ag":"1268","mx":"52","cx":"618","sy":"963","cr":"506","vi":"1340","az":"994","ec":"593","sg":"65","kh":"855","mz":"258","bm":"1441","lb":"961","nr":"674","bz":"501","vu":"678","kw":"965","ml":"223","bj":"229","gf":"594","al":"355","mf":null,"uz":"998","pr":"1787","fk":"500","lr":"231","eh":"21","nf":null,"np":"977","do":"1809","ht":"509","mp":"1670","bs":"1242","gm":"220","mw":"265","to":"676","cu":"53","ch":"41","mu":"230","ni":"505","gu":"671","bg":"359","pw":"680","aw":"297","gy":"592","pl":"48","ca":null,"sk":"421","pe":"51","an":"599","ua":"380","ax":null,"gw":"245","es":"34","kr":"82","je":"441534","tt":"1868","fo":"298","yt":"269","cc":null,"kp":"850","bb":"1246","sh":"290","sa":"966","zm":"260","io":"246","th":"66","hk":"852","et":"251","ie":"353","so":"252","tl":"670","er":"291","tj":"992","cf":"236","im":"441624","cz":"420","mk":"389","lt":"370","de":"49","hr":"385","gn":"224","be":"32","qa":"974","vc":"1784","cv":"238","fm":"691","md":"373","jp":"81","cl":"56","tw":"886","ws":"685","ad":"376","sz":"268","bn":"673","at":"43","tg":"228","vn":"84","zw":"263","gp":"590","ar":"54","sm":"378","nl":"31","dj":"253","bl":null};
+;var texts_json = {};
 texts_json['EN'] = {"[ctx,minimum_duration,_for_example_minimum_15_seconds]min":"min"};
 texts_json['AR'] = {"Marketing_Executives":"مديري التسويق","Stop-loss":"وقف الخسارة","Your_request_to_withdraw_[_1]_[_2]_from_your_account_[_3]_to_Payment_Agent_[_4]_account_has_been_successfully_processed_":"تم معالجة  طلبك لسحب [_1] [_2] من حسابك [_3] لحساب وكيل الدفع [_4] بنجاح.","Purchase_Price":"سعر الشراء","Date":"تاريخ","Your_withdrawal_limit_is_[_1]_[_2]_":"حد السحب الخاص بك هو 1% 2%.","{JAPAN_ONLY}Where_broking_companies_show_bid_and_offer_prices_for_purchasing_and_sell-back_of_positions,_these_prices_may_become_further_apart_the_nearer_you_are_to_the_exercise_time_":"{اليابان فقط} أينما تظهر شركت الوساطة أسعار العرض والطلب للشراء وإعادة بيع المواقف, فقد تصبح هذه الأسعار علاوة على ذلك بعيدة كلما اقتربت أنت من وقت التمرين.","(Bejing/CST_-8_hours)":"(توقيت بكين ينقص 8 ساعات عن التوقيت المركزى)","When_you_click_'Ok'_you_will_be_excluded_from_trading_on_the_site_until_the_selected_date_":"عندما تضغط \"موافق\" سوف تستثنى من التداول على الموقع حتى التاريخ المحدد.","Closed":"مغلق","Quantitative_Developer":"مطور كمي","Contract_is_not_started_yet":"لم يتم بدء العقد حتى الآن","Please_check_your_email_to_retrieve_the_token_needed_to_reset_your_password_":"الرجاء التحقق من البريد الإلكتروني الخاص بك لاسترداد الرمز المميزالمطلوب إلى إعادة تعيين كلمة المرور الخاصة بك.","minutes":"دقائق","Exclude_time_cannot_be_for_more_than_5_years_":"وقت الإقصاء لا يمكن أن يكون لأكثر من 5 سنوات.","Contract":"عقد","Our_site_does_not_charge_any_transfer_fees_":"موقعنا لا تفرض أي رسوم نقل.","Mr":"السيد","Barrier":"حاجز","Indicative":"ارشادي","Level_of_Education":"مستوى التعليم","Wednesday":"الأربعاء","{JAPAN_ONLY}This_test_is_for_the_purpose_of_confirming_if_the_customers_have_basic_knowledge_related_to_options_trading__":"{اليابان فقط} هذا الإختبار لغرض التأكد إذا ما كان للعملاء معرفة أساسية متعلقة بتداول الخيارات.","Loss":"خسارة","Invalid_amount,_minimum_is":"قيمة غير صالحة، الحد الأدنى هو","Please_choose_which_currency_you_would_like_to_transact_in_":"رجاء قم باختيار العملة التى تود أن تتعامل بها.","Oct":"أكتوبر","Points":"نقاط","Stop_Loss_Level":"مستوى وقف الخسارة","Please_fill_in_the_Login_ID_and_Amount_you_wish_to_transfer_to_your_Client_in_the_form_below:":"يرجى ملء معرف تسجيل الدخول والمبلغ الذي ترغب في تحويله إلى عميلك في النموذج التالي:","Last_Used":"المستخدم أخيرا","Date_of_Birth":"تاريخ الميلاد","Tick":"حركة","Marketing":"التسويق","Details":"التفاصيل","There_was_a_problem_validating_your_personal_details__Please_fix_the_fields_[_1]here":"كانت هناك مشكلة في التحقق من صحة التفاصيل الشخصية الخاصة بك. يرجى إصلاح الحقول 1% هنا","Please_enter_a_number_between_0_and_[_1]":"يرجى إدخال رقم بين 0 و [_1]","Please_confirm_the_trade_on_your_statement_before_proceeding_":"الرجاء التأكد من التداول بكشف حسابك قبل المتابعة.","Save_as_PNG":"الحفظ كملف PNG","June":"يونيو","day":"يوم","Settings":"الإعدادات","An_additional_password_can_be_used_to_restrict_access_to_the_cashier_":"يمكن استخدام كلمة مرور إضافية لحظر الوصول لصفحة الصراف.","Reference_ID":"الرقم المرجعي","IP_Address":"عنوان IP","Contract_will_be_sold_at_the_prevailing_market_price_when_the_request_is_received_by_our_servers__This_price_may_differ_from_the_indicated_price_":"سيتم بيع العقد بسعر السوق السائد عندما تتلقى خوادمنا الطلب. قد يختلف هذا السعر عن السعر المشار إليه.","Stocks_trading_experience":"خبرة تداول الأسهم","Chart":"رسم بياني","Up/Down":"فوق/تحت","Health":"الصحة","Spot":"السعر","Barrier_offset":"حاجز تعويض","-_A_scanned_copy_of_a_utility_bill_or_bank_statement_(no_more_than_3_months_old)_":"- صورة ضوئية من فاتورة خدمات أو كشف حساب بنكي (يجب ألا يكون قد مضى عليها أكثر من ثلاثة أشهر).","True":"صحيح","Trading_Limits":"حدود التداول","Maximum_number_of_open_positions":"الحد الأقصى لعدد المعاملات المفتوحة","Name":"الإسم","Are_you_sure_that_you_want_to_permanently_delete_token":"هل أنت متأكد أنك تريد حذف الرمز المميز بشكل دائم","Payout":"العائد","hyphen":"واصلة","Please_confirm_the_transaction_details_in_order_to_complete_the_transfer:":"رجاء تأكيد تفاصيل المعاملة لأكمال التحويل:","Your_Client_will_receive_an_email_notification_informing_him/her_that_the_transfer_has_been_processed_":"سيتسلم عميلك إشعار إلكتروني ليعلمه أنه قد تم عمل التحويل.","Print_chart":"اطبع المخطط","5-10_million_JPY":"5 - 10 مليون ين","{JAPAN_ONLY}STAY-IN/BREAK-OUT":"{اليابان فقط} البقاء في/الهروب","letters":"حروف","Pension":"معاش","New_Password":"كلمة المرور الجديدة","Your_password_cannot_be_the_same_as_your_email":"كلمة السر لا يمكن أن تكون نفس البريد الإلكتروني الخاص بك","You_have_sold_this_contract_at_[_1]_[_2]":"أنت قمت ببيع هذا العقد عند 1% 2%","{JAPAN_ONLY}Even_if_all_details_of_the_binary_options_match_perfectly,_there_may_still_be_differences_in_the_prices_shown_by_different_broking_companies_":"{اليابان فقط} حتى إذا ما كانت جميع تفاصيل الخيارات الثنائية متطابقة تماماً, قد تكون هناك اختلافات في الأسعار المعروضة من قبل شركات الوساطة المختلفة.","November":"نوفمبر","Your_account_has_no_Login/Logout_activity_":"حسابك لا يوجد لديه دخول/خروج نشط.","6-10_transactions_in_the_past_12_months":"6 - 10 معاملات خلال الـ 12 شهرا الماضية","second":"ثانية","Compliance_Executive":"موظف امتثال تنفيذي","Please_select_a_payment_agent":"يرجى اختيار وكيل دفع","Never_Used":"لم تستخدم من قبل","Please_try_again_":"رجاء حاول مرة أخرى.","Score":"مجموع النقاط","Unlock_Cashier":"فتح الصراف","Deposit_is_done__Transaction_ID:":"تم الإيداع. معرف المعاملة:","Authorise_your_account_":"السماح للحساب الخاص بك.","Please_complete_the_following_financial_assessment_form_before_continuing_":"يرجى ملء استمارة التقييم المالي التالية قبل المتابعة.","Accounts_And_Payments_Executive":"الحسابات والمدفوعات التنفيذية","[_1]_[_2]_has_been_credited_to_your_Virtual_money_account_[_3]":"تم إضافة [_1] [_2] لحساب أموالك الإفتراضي [_3]","Your_details_have_been_updated_":"تم تحديث التفاصيل الخاصة بك.","password":"كلمة المرور","Purchase_Time":"وقت الشراء","-_A_scanned_copy_of_your_passport,_driving_licence_(provisional_or_full)_or_identity_card,_showing_your_name_and_date_of_birth_":"- نسخة من جواز سفرك، أو نسخة من رخصة قيادة (مؤقته أو كاملة) أو بطاقة تحقيق شخصية، تحمل اسمك وتاريخ ميلادك.","Session_duration_limit_cannot_be_more_than_6_weeks_":"الحد الأقصى لمدة الدورة لا يمكن أن يتجاوز 6 أسابيع.","3-5_years":"3 - 5 سنوات","Fr":"الجمعة","1-3_million_JPY":"1 - 3 مليون ين","Save_as_CSV":"الحفظ كملف CSV","Original_Low_Barrier":"حاجز منخفض أصلي","Copywriter":"المؤلف","This_contract_has_LOST":"لقد فقدت هذا العقد","Indices_trading_experience":"خبرة التداول بالمؤشرات","Statement":"كشف الحساب","Therefore_your_current_immediate_maximum_withdrawal_(subject_to_your_account_having_sufficient_funds)_is_[_1]_[_2]_(or_equivalent_in_other_currency)_":"لهذا فإن الحد الأقصى الحالي للسحب (شريطة أن يكون فى حسابك أموالا كافية) هو [_2] [_1] (أو ما يعادلها بالعملات الأخرى).","Reset_Password":"اعادة تعيين كلمة السر","Your_account_is_fully_authenticated__You_can_view_your_[_1]trading_limits_here":"تم توثيق حسابك بشكل كامل. يمكنك رؤية حدود التداول 1% الخاصة بك هنا","Contract_ID":"معرف العقد","Login":"تسجيل الدخول","Password_should_have_lower_and_uppercase_letters_with_numbers_":"يجب أن يكون لكلمة المرور أحرف تحتية واحرف علية مع أرقام.","Contract_Expiry":"انتهاء العقد","Tourism":"السياحة","Remaining_Time":"الوقت المتبقي","Your_[_1]_day_withdrawal_limit_is_currently_[_2]_[_3]_(or_equivalent_in_other_currency)_":"حد السحب 1% الخاص بك لليوم هو حالياً 2% 3% (أو ما يعادله من العملة الأخرى).","3-5_million_JPY":"3 - 5 مليون ين","comma":"فاصلة","Over_$500,001":"أكثر من 500,001 دولار","Other_financial_instruments_trading_experience":"خبرة التداول في الأدوات المالية الأخرى","Asset_Index":"مؤشر الأصول","Failed_to_reset_password__[_1],_please_retry_":"فشل في إعادة تعيين كلمة المرور. 1 %, يرجى إعادة المحاولة.","Exclude_time_must_be_after_today_":"يجب أن يكون وقت الاستبعاد بعد اليوم.","Profit/Loss_(points)":"الربح/الخسارة (نقاط)","login":"تسجيل الدخول","hours":"ساعات","Your_[_1]_account_is_unavailable__For_any_questions_please_contact_[_2]_":"حسابك 1% غير متاح. لأي استفسارات برجاء الاتصال ب 2%.","Estimated_Net_Worth":"قيمة الثروة الصافية المقدرة","Asset":"الأصول","Please_enter_a_date_that_is_at_least_6_months_from_now_":"رجاء إدخال تاريخ بعد الآن بستة أشهر على الأقل.","Previous":"سابق","Jul":"يوليو","Trading_and_Withdrawal_Limits":"حدود التداول والسحب","Over/Under":"أكثر من/تحت","Open_a_Financial_Account":"افتح حساب مالي","{JAPAN_ONLY}TOUCH_/NO-TOUCH":"{اليابان فقط} لمس/لا لمس","Short":"قصير","This_field_is_required_":"هذه الخانة مطلوبة.","Duration":"المدة","Minimum_of_[_1]_characters_required_":"الحد الأدنى المطلوب [_1] حرفا.","Please_follow_the_pattern_3_numbers,_a_dash,_followed_by_4_numbers_":"يرجى اتباع النمط 3 أرقام, داش (- أو شرطة), متبوعة بأربع أرقام.","loading___":"تحميل...","Closes":"يغلق","Real_Account":"حساب حقيقي","Contract_Confirmation":"تأكيد العقد","Last_digit_stats_for_the_latest_[_1]_ticks_on_[_2]":"آخر أرقام الإحصائيات لأحدث حركة % 1 في % 2","Resources":"مصادر","month":"شهر","Verification_Token":"رمز التحقق","View_your_statement":"اطلع على كشف الحساب الخاص بك","Barrier_Change":"تغيير الحاجز","Open":"يفتح","Now":"الآن","App_ID":"معرف التطبيق","This_contract_won":"هذا العقد رابح","Saturday":"السبت","Permissions":"أذونات","Previous_Day":"اليوم السابق","Ms":"آنسة","Long":"طويل","Matches/Differs":"يماثل/يختلف","Adjusted_Low_Barrier":"حاجز منخفض معدل","Failed":"فشل","[_1]_has_updated_its_[_2]__By_clicking_OK,_you_confirm_that_you_have_read_and_accepted_the_updated_[_2]_":"[_1] قامت بتحديث 2% الخاصة بها. بالنقر فوق موافق، فأنت تؤكد أنك قرأت ووافقت على 2% المحدثة.","Confirm":"تأكيد","Amount_per_point":"القيمة لكل نقطة","Original_Barrier":"حاجز أصلي","Low_Barrier":"حاجز منخفض","Sorry,_this_feature_is_available_to_virtual_accounts_only_":"عفواً، هذة الخاصية متاحة للحسابات الافتراضية فقط.","Week_of":"أسبوع","minimum_available_duration":"أقل مدة زمنية متاحة","The_two_passwords_that_you_entered_do_not_match_":"كلمتى المرور اللذين قمت بإدخالهم لا يتطابقوا.","Please_select_a_valid_date":"يرجى اختيار تاريخ صحيح","To_authenticate_your_account,_kindly_email_the_following_to_[_1]":"لتوثيق حسابك، يرجى إرسال ما يلي عبر البريد الإلكتروني إلى [_1]","Deposit_[_1]_[_2]_virtual_money_into_your_account_[_3]":"إيداع ٪ 1 ٪ 2 الأموال الافتراضية إلى حسابك 3٪","Cashier":"الصراف","Sorry,_an_error_occurred_while_processing_your_account_":"عفواً، حدث خطأ أثناء معالجة حسابك.","Please_[_1]_to_view_this_page":"يرجى 1% لمشاهدة هذه الصفحة","Predict_the_direction<br_/>and_purchase":"توقع الاتجاه<br />وقم بالشراء","{JAPAN_ONLY}To_invest_a_binary_options_investment_accurately,_the_customer_are_required_knowledge_and_experience_related_to_derivative_transactions_":"{اليابان فقط} لإستثمار استثمار دقيق في الخيارت الثنائية, يتطلب من العملاء المعرفة والخبرة المتعلقة بالمعاملات المالية المشتقة.","Nov":"نوفمبر","Maximum_daily_turnover":"الحد الأقصى لحجم التداول اليومي","When_you_click_\"Ok\"_you_will_be_excluded_from_trading_on_the_site_until_the_selected_date_":"عندما تضغط \"موافق\" سوف تستبعد من التداول على الموقع حتى التاريخ المحدد.","1-3_years":"1 - 3 سنوات","Adjust_trade_parameters":"ضبط معايير التداول","Please_input_a_valid_date":"رجاء إدخال تاريخ صالح","Sell_at_market":"قم بالبيع فى السوق","Sale_Price":"سعر البيع","Upgrade_to_a_Real_Account":"الترقية لحساب حقيقي","Keep_track_of_your_authorised_applications_":"تتبع التطبيقات المعتمدة الخاصة بك.","Transfer_to":"النقل إلى","Exit_Spot":"سعر الخروج","Tu":"الثلاثاء","Sorry,_you_have_entered_an_incorrect_cashier_password":"عفواً، لقد قمت بإدخال كلمة مرور صراف غير صحيحة","This_contract_was_affected_by_a_Corporate_Action_event_":"هذا العقد قد تأثر بحدث ناتج عن إجراءات الشركة.","Your_session_duration_limit_will_end_in_[_1]_seconds_":"ستنتهي مدة الجلسة الخاصة بك في غضون 1% ثانية.","Please_wait_<br_/>Your_request_is_being_processed_":"يرجى الانتظار.<br />يتم معالجة طلبك.","End_Time":"وقت النهاية","Human_Resource_Executive":"تنفيذي الموارد البشرية","Adjusted_High_Barrier":"حاجز عالي معدل","Price":"سعر","Customer_Support":"دعم العملاء","We_are_not_able_to_stream_live_prices_at_the_moment__To_enjoy_live_streaming_of_prices_try_refreshing_the_page,_if_you_get_this_issue_after_repeated_attempts_try_a_different_browser":"لا نستطيع بث الأسعار بث مباشر في الوقت الحالي. لتتمتع بخدمة البث المباشر للأسعار جرب إعادة تحميل الصفحة، إذا حدث هذا الأمر بعد عدة محاولات جرب متصفح آخر","Over_$1,000,000":"أكثر من 1,000,000 دولار","Jun":"يونيو","[_1]_Please_click_the_link_below_to_restart_the_password_recovery_process__If_you_require_further_assistance,_please_contact_our_Customer_Support_":"1% يرجى الضغط على الرابط أدناه لإعادة تشغيل عملية استرداد كلمة المرور. إذا كنت بحاجة إلى المزيد من المساعدة، الرجاء الاتصال بفريق دعم العملاء لدينا.","Net_profit":"صافي الربح","Net_Annual_Income":"صافي الدخل السنوي","You_did_not_change_anything_":"لم تغير أي شيء.","and":"و","Your_[_1]_accounts_are_unavailable__For_any_questions_please_contact_[_2]_":"حساباتك 1% غير متاحة. لأي استفسارات برجاء الاتصال ب 2%.","Self-Employed":"يعمل لحسابه الخاص","High_barrier_offset":"بُعد الحاجز العالي","The_maximum_number_of_tokens_([_1])_has_been_reached_":"لقد تم الوصول إلى الحد الأقصى لعدد الرموز المميزة ([_1]).","seconds":"ثوان","Sorry,_account_opening_is_unavailable_":"عفوا، فتح الحساب غير متاح.","Less_than_$100,000":"أقل من 100,000 دولار","Your_token_has_expired__Please_click_<a_class=\"pjaxload\"_href=\"[_1]\">here</a>_to_restart_the_verification_process_":"انتهت صلاحية الرمز الخاص بك. برجاء الضغط <a class=\"pjaxload\" href=\"[_1]\">هنا</a> لإعادة عملية التحقق.","Year":"عام","Update":"حدث","August":"أغسطس","Delete":"أحذف","Primary":"ابتدائي","We":"الأسبوع","Please_select":"يرجى اختيار","Anti-Fraud_Officer":"موظف لمكافحة الغش","Graphic_Designers":"مصممو جرافيك","Your_account_is_fully_authenticated_and_your_withdrawal_limits_have_been_lifted_":"تم توثيق حسابك بالكامل وحد السحب الخاص بك تم رفعه.","Invalid_amount,_maximum_is":"قيمة غير صالحة، الحد الأقصى هو","You_are_not_authorized_for_withdrawal_via_payment_agent_":"غير مصرح لك بالسحب بواسطة وكيل دفع.","May":"مايو","Friday":"الجمعة","Finance":"المالية","Password_score_is:_[_1]__Passing_score_is:_20_":"نقاط كلمة المرور: [_1]. النقاط للإجتياز: 20.","is_required__Current_spread":"مطلوب. السبريد الحالي","space":"المسافة","High_Barrier":"حاجز عالي","Please_enter_a_number_between_[_1]_":"الرجاء إدخال رقم بين % 1.","verification_token":"رمز التحقق","You_need_to_finish_all_20_questions_":"يجب عليك الإجابة على ال 20 سؤال.","April":"أبريل","Try_adding_more_letters_":"حاول إضافة المزيد من الأحرف.","Shop":"متجر","Save_as_JPEG":"الحفظ كملف JPEG","Your_current_balance_is":"رصيدك الحالي هو","Finish":"إنهاء","Even/Odd":"متساو/غير متجانس","Random":"عشوائي","Indices_trading_frequency":"معدل تداول المؤشرات","Contract_Sold":"بيع العقد","Return":"عائد","December":"ديسمبر","Forex_trading_experience":"خبرة تداول العملات الأجنبية","For_added_security,_please_check_your_email_to_retrieve_the_verification_token_":"لمزيد من الأمان, الرجاء التحقق من البريد الإلكتروني الخاص بك لاسترداد رمز التحقق.","period":"فترة","DevOps_Manager":"مدير ديفوبس","You_are_currently_logged_in_to_your_real_money_account_with_[_1]_([_2])_":"أنت حاليا قمت بتسجيل الدخول إلى حساب المال الحقيقي الخاص بك مع % 1 (% 2).","Trading_Times":"أوقات التداول","Monday":"الأثنين","Over_3_years":"أكثر من 3 سنوات","Accounting":"المحاسبة","Quality_Assurance":"ضمان الجودة","New_token_created_":"تم إنشاء رمز مميز جديد.","Affiliate":"الإنتساب","Your_provided_email_address_is_already_in_use_by_another_Login_ID__According_to_our_terms_and_conditions,_you_may_only_register_once_through_our_site__If_you_have_forgotten_the_password_of_your_existing_account,_please_<a_href=\"[_1]\">try_our_password_recovery_tool</a>_or_contact_customer_service_":"عنوان بريدك الإلكتروني المقدم مستخدم بالفعل من معرف تسجيل دخول آخر. وفقاً لشروطنا وأحكامنا، يمكنك أن تسجل مرة واحدة فقط من خلال موقعنا. إذا نسيت كلمة المرور الخاصة بحسابك الحالي، رجاء <a href=\"\">جرب أداة استعادة كلمة المرور الخاصة بنا</a> أو اتصل بخدمة العملاء.","Compliance":"الامتثال","Save_as_SVG":"الحفظ كملف SVG","Start_time":"وقت البدء","Low_barrier":"حاجز منخفض","Current_Level":"المستوى الحالي","Description":"الوصف","Password_is_strong":"كلمة المرور قوية","{JAPAN_ONLY}Option_prices_depend_on_the_spot_price,_the_time_to_expiry,_the_volatility_of_the_spot_rate_and_interest_rates_":"{اليابان فقط} خيار الأسعار يعتمد على السعر الفوري, وقت الإنقضاء, معدل تقلب السعر الفوري, وأسعار الفائدة.","Corporate_Action":"إجراء الشركة","Deposit_of":"إيداع","Marketing_Project_Manager":"مدير مشروع التسويق","Total_Cost":"التكلفة الإجمالية","Revoke_access":"إلغاء الوصول","March":"مارس","Administrator":"المسؤول","Construction":"الإنشاءات","Adjusted_Barrier":"الحاجز المعدل","30-50_million_JPY":"30 - 50 مليون ين","days":"أيام","Maximum_aggregate_payouts_on_open_positions":"الحد الأقصى لإجمالي عوائد المعاملات المفتوحة","Translator":"المترجم","Start_Time":"وقت البدء","Represents_the_maximum_number_of_outstanding_contracts_in_your_portfolio__Each_line_in_your_portfolio_counts_for_one_open_position__Once_the_maximum_is_reached,_you_will_not_be_able_to_open_new_positions_without_closing_an_existing_position_first_":"يمثل الحد الأقصى من العقود المعلقة فى محفظتك. كل سطر فى محفظتك يمثل معاملة مفتوحة. عندما يتم الوصول للحد الأقصى لن يعد بإمكانك أن تفتح معاملات جديدة دون أن تغلق معاملة موجودة أولاً.","Stays_In/Goes_Out":"يبقى بين/يخرج عن","Mar":"مارس","Proofreader":"مصحّح","Period":"فترة","Your_withdrawal_limit_is_[_1]_[_2]_(or_equivalent_in_other_currency)_":"حد السحب الخاص بك هو 1% 2% (أو ما يعادله بعملة أخرى).","Your_changes_have_been_updated_":"تم تحديث التغييرات الخاصة بك.","Explanation":"شرح","Login_ID":"معرف تسجيل الدخول","Other_financial_instruments_trading_frequency":"معدل التداول في الأدوات المالية الأخرى","Next":"التالي","Less_than_$25,000":"أقل من 25,000 دولار","Contract_Information":"معلومات العقد","Enter_the_barrier_in_terms_of_the_difference_from_the_spot_price__If_you_enter_+0_005,_then_you_will_be_purchasing_a_contract_with_a_barrier_0_005_higher_than_the_entry_spot__The_entry_spot_will_be_the_next_tick_after_your_order_has_been_received":"أدخل الحاجز بتحديد البعد بينه وبين سعر الإدخال. إذا أدخلت +0.005 فذلك يعنى أنك تشترى صفقة بحاجز أعلى من سعر الإدخال بـ 0.005. سعر الإدخال سيكون الحركة التالية بعد تسلم أمر الصفقة","Th":"الخميس","February":"فبراير","Action":"عمل","Your_request_to_transfer_[_1]_[_2]_from_[_3]_to_[_4]_has_been_successfully_processed_":"تم معالجة طلبك لتحويل [_1] [_2] من [_3] إلى [_4] بنجاح.","Your_transaction_reference_number_is_[_1]":"الرقم المرجعي لمعاملتك هو [_1]","Ref_":"مرجع","{JAPAN_ONLY}It_is_determined_the_customers_have_basic_knowledge_of_option_trading_by_the_results_of_the_knowledge_test__If_the_customers_start_trading,_the_customers_need_to_agree_not_have_lawsuit_despite_the_customer_are_shortage_of_knowledge_related_to_options_trading,_and_it_cause_damages,_we_admit_to_open_the_trading_account_":"{اليابان فقط} ثبت أن العملاء لديهم معرفة أساسية بتداول الخيارات من خلال نتائج اختبار المعرفة. إذا بدأ العملاء التداول, فإن العملاء بحاجة للموافقة بأن لا يكون لديهم شكوى على الرغم من نقص معرفة العملاء المتعلقة بتداول الخيارات, وأنها تسبب أضرار, علينا أن نعترف بفتح حساب تداول.","Balance":"رصيد","Secondary":"ثانوي","Purchase":"شراء","Current":"الحالية","Quantitative_Analysis":"التحليل الكمي","You_have_already_withdrawn_the_equivalent_of_[_1]_[_2]_":"لقد سحبت بالفعل ما يعادل 1% 2%.","Sa":"السبت","Financial_Assessment":"التقييم المالي","Stake":"الحصة","Maximum_account_cash_balance":"الحد الأقصى لرصيد الحساب النقدي","Forex_trading_frequency":"معدل تداول العملات الأجنبية","Profit":"أرباح","This_contract_has_WON":"هذا العقد رابح","You_have_not_granted_access_to_any_applications_":"أنت غير مسموح لك بالوصول لأي تطبيقات.","Su":"الأحد","Invalid_email_address":"عنوان البريد غير صحيح","[ctx,minimum_duration,_for_example_minimum_15_seconds]min":"minimum duration, for example minimum 15 seconds)%ctx)دقيقة","Questions":"الأسئلة","Sep":"سبتمبر","Binary_options_or_other_financial_derivatives_trading_frequency":"وتيرة تداول الخيارات الثنائية أو المشتقات المالية الأخرى","Due_to_recent_changes_in_the_regulations,_we_are_required_to_ask_our_clients_to_complete_the_following_Financial_Assessment__Please_note_that_you_will_not_be_able_to_continue_trading_until_this_is_completed_":"نظراً للتغيرات الأخيرة التي طرأت على اللوائح. فنحن مطالبون بمطالبة عملائنا بملء نموذج التقييم المالي التالي. يرجى ملاحظة أنك لن تكون قادر على مواصلة التداول حتى إكمال هذا النموذج.","Select_your_trade_type":"اختر نوع تداولك","View":"شاهد","Password_Reset":"إعادة تعيين كلمة المرور","Apr":"أبريل","Your_cashier_is_locked_as_per_your_request_-_to_unlock_it,_please_click_[_1]here":"الصراف الخاص بك مغلق بناءً على طلبك - لفتحه, برجاء الضغط 1% هنا","Waiting_for_entry_tick_":"بانتظار علامة الدخول.","Presents_the_maximum_aggregate_payouts_on_outstanding_contracts_in_your_portfolio__If_the_maximum_is_attained,_you_may_not_purchase_additional_contracts_without_first_closing_out_existing_positions_":"يمثل الحد الأقصى للعوائد الكلية على العقود المعلقة فى محفظتك. إذا تم الوصول للحد الأقصى لن يمكنك شراء عقود إضافية بدون قفل المعاملات الموجودة.","Jan":"يناير","not_available":"غير متاح","Internal_Audit":"المراجعة الداخلية","Senior_Front-End_Developer":"كبير مطوري الفرنت-اند","Back":"للخلف","Internal_Auditor":"مراجع حسابات داخلي","{JAPAN_ONLY}This_knowledge_test_is_required_by_law__As_we_provide_the_test,_we_know_customers_better_whether_the_customers_are_suitable_investors_to_be_carried_out_the_binary_options_trading,_and_customers_can_start_trading_with_us_":"{اليابان فقط} اختبار المعرفة هذا مطلوب من قبل القانون. ولأننا نقدم الإختبار, فنحن نعلم أن العملاء أفضل إذا ما كان العملاء مناسبين للمستثمرين لتنفيذ تداول الخيارات الثنائية, وبإمكان العملاء البدء في التداول معنا.","Aug":"أغسطس","Once_you_click_the_'Submit'_button,_the_funds_will_be_withdrawn_from_your_account_and_transferred_to_your_Client's_account_":"بمجرد النقر فوق الزر 'إرسال'، سوف تسحب من الحساب الخاص بك الأموال وتحويلها إلى حساب العميل الخاص بك.","Password":"كلمة مرور","Total_Profit/Loss":"إجمالي الربح/الخسارة","Sorry,_an_error_occurred_while_processing_your_request_":"عفواً، حدث خطأ أثناء معالجة طلبك.","1-2_years":"1 - 2 سنوات","Feb":"فبراير","Login_History":"تاريخ تسجيل الدخول","Income_Source":"مصدر الدخل","40_transactions_or_more_in_the_past_12_months":"40 معاملة أو أكثر خلال الـ 12 شهرا الماضية","Sorry,_this_feature_is_not_available_":"عفوا، هذه الميزة غير متوفرة.","Password_must_contains_at_least_1_digit,_1_uppercase_letter_and_1_lowercase_letter_":"يجب أن تحتوى كلمة المرور على الأقل 1 رقم, 1 أحرف كبيرة و 1 أحرف صغيرة.","minute":"دقيقة","There_was_some_invalid_character_in_an_input_field_":"كان هناك بعض الأحرف الغير صالحة في حقل الإدخال.","Mrs":"السيدة","Amount":"مبلغ","This_feature_is_not_relevant_to_virtual-money_accounts_":"هذه الميزة ليست ذات صلة بحسابات الأموال الافتراضية.","6_months_to_1_year":"6 أشهر إلى سنة واحدة","Authenticate":"التوثيق","Your_account_is_not_fully_authenticated__Please_visit_the_<a_href=\"[_1]\">authentication</a>_page_for_more_information_":"الحساب الخاص بك غير موثق بشكل كامل. يرجى زيارة صفحة<a href=\"[_1]\"> التوثيق </a>لمزيد من المعلومات.","Format:_yyyy-mm-dd_(not_required_for_virtual-money_accounts)":"تنسيق: yyyy-mm-dd (غير مطلوب لحسابات الأموال الافتراضية)","Never":"ابدأ","Select_your_underlying_asset":"اختر أصولك الأساسية","months":"شهور","Salaried_Employee":"موظف بأجر","Your_trading_statistics_since_[_1]_":"إحصائيات التداول الخاصة بك منذ 1%.","Quantitative_Analyst":"محلل كمي","years":"أعوام","You_have_already_withdrawn_the_equivalent_of_[_1]_[_2]_in_aggregate_over_the_last_[_3]_days_":"لقد سحبت بالفعل ما يعادل 1% 2% من الإجمالي على مدار 3% الثلاثة أيام الماضية.","To_create_a_real_account_for_MetaTrader,_<a_href=\"[_1]\">upgrade_to_[_2]_real_money_account</a>_":"لإنشاء حساب حقيقي للميتاتريدر, <a href=\"[_1]\">قم بالتحديث ل [_2] حساب مال حقيق</a>.","Upgrade_to_a_Financial_Account":"الترقية لحساب مالي","Entry_Level":"مستوى الدخول","Entry_Spot":"سعر الدخول","Date_(GMT)":"التاريخ (بتوقيت جرينتش)","Mo":"الأثنين","Profit_Table":"جدول الأرباح","Last_Digit_Stats":"احصائيات الرقم الأخير","{JAPAN_ONLY}It_prohibits_the_copying_of_the_questions___In_addition_,_You_agree_that_you_will_not_leak_to_third_party":"{اليابان فقط} يحظر نسخ الأسئلة, بالإضافة إلى, أنك توافق على أنك لن تسرب إلى طرف ثالث","My_Account":"حسابي","The_financial_trading_services_contained_within_this_site_are_only_suitable_for_customers_who_are_able_to_bear_the_loss_of_all_the_money_they_invest_and_who_understand_and_have_experience_of_the_risk_involved_in_the_acquistion_of_financial_contracts__Transactions_in_financial_contracts_carry_a_high_degree_of_risk__If_purchased_contracts_expire_worthless,_you_will_suffer_a_total_loss_of_your_investment,_which_consists_of_the_contract_premium_":"خدمات التداول المالي الواردة في هذا الموقع مناسبة فقط للعملاء القادرين على تحمل خسارة جميع الأموال التي يستثمرونها والذين يفهمون المخاطر التي تنطوي على حيازة العقود المالية ولديهم خبرة عنها. معاملات العقود المالية تنطوي على درجة عالية من المخاطرة. إذا انتهت صلاحية العقود المشتراه بدون أي قيمة ستتحمل خسارة كامل استثماراتك والتي تتضمن قيمة العقد.","The_Payment_Agent_facility_is_currently_not_available_in_your_country_":"وسيلة وكلاء الدفع غير متاحة حاليا في بلدك.","Original_High_Barrier":"حاجز عالي أصلي","Touch/No_Touch":"الوصول/عدم الوصول","Transfer_to_Login_ID":"التحويل إلى معرف تسجيل الدخول","There_was_a_problem_accessing_the_server_during_purchase_":"هناك مشكلة في الوصول إلى الخادم أثناء الشراء.","Applications":"تطبيقات","Exit_Spot_Time":"وقت سعر الخروج","apostrophe":"فاصلة","There_was_a_problem_accessing_the_server_":"حدثت مشكلة في التواصل مع الخادم.","There_was_an_error":"كان هناك خطأ","m":"دقيقة","Verification_code_format_incorrect_":"رمز التحقق غير صحيح.","Exit_Level":"مستوى الخروج","0-1_year":"0 - 1 سنة","Password_is_very_strong":"كلمة المرور قوية جداً","Deposit":"إيداع","Spot_Time":"الوقت المحدد","Ok":"حسنا","numbers":"أرقام","Please_enter_a_number_greater_or_equal_to_[_1]_":"الرجاء إدخال رقم أكبر أو يساوي % 1.","Old_password_is_wrong_":"كلمة المرور القديمة غير صحيحة.","Profit/Loss":"الربح/الخسارة","Ends_In/Out":"ينتهي بين/خارج","Try_adding_more_letters_or_numbers_":"حاول إضافة المزيد من الأحرف أو الأرقام.","Human_Resources":"الموارد البشرية","High_barrier":"حاجز مرتفع","Successful":"ناجح","Buy":"شراء","Portfolio":"المحفظة","Your_account_has_no_trading_activity_":"حسابك لا يوجد لديه تداول نشط.","f":"أف","Stocks_trading_frequency":"معدل تداول الأسهم","You_are_currently_logged_in_to_your_virtual_money_account_([_2])_":"أنت حاليا قمت بتسجيل الدخول الى حساب أموالك الافتراضية ([_2]).","Other":"آخر","Day":"يوم","Terms_&_Conditions":"الشروط والأحكام","Social_Media_Executive":"موظف وسائل الإعلام الاجتماعية","Your_settings_have_been_updated_successfully_":"تم تحديث إعداداتك بنجاح.","You_have_already_withdrawn_[_1]_[_2]_":"لقد سحبت بالفعل 1% 2%.","Only_[_1]_are_allowed_":"يسمح فقط بـ [_1].","If_you_need_assistance_feel_free_to_contact_our_[_1]Customer_Support":"إذا كنت بحاجة إلى المساعدة, فلا تتردد بالإتصال بفريق 1% دعم العملاء لدينا","Token":"رمز","Save_as_PDF":"الحفظ كملف PDF","Senior_Perl_Developer":"كبير مطوري بيرل","points":"نقاط","Sell":"بيع","An_error_occured_":"حدث خطأ.","No_Live_price_update":"لا يوجد تحديث مباشر للأسعار","10-30_million_JPY":"10 - 30 مليون ين","year":"عام","This_contract_lost":"هذا العقد خاسر","Lock_Cashier":"قفل الصراف","Please_enter_a_valid_amount_":"رجاء إدخال مبلغ صالح.","Step":"خطوة","Potential_Payout":"المردودات المحتملة","Date_and_Time":"التاريخ والوقت","We_are_not_accepting_accounts_from_residents_of_this_country_at_the_present_time_":"لا نقبل حسابات المقيمين في هذا البلد في الوقت الحالي.","Tuesday":"الثلاثاء","Zoom":"ارتفاع حاد فى الأسعار","Please_deposit_before_transfer_to_client_":"الرجاء إيداع قبل نقلها إلى العميل.","Please_submit_a_valid_[_1]_":"برجاء تقديم [_1] صالح.","Last_Digit_Prediction":"التنبؤ بالرقم الأخير","Information_Technology":"تكنولوجيا المعلومات","Miss":"آنسة","Month":"شهر","Commodities_trading_experience":"خبرة تداول السلع","Walkthrough_Guide":"الدليل المفصل","Invalid_date_of_birth_":"تاريخ الميلاد غير صحيح.","Settles":"يستقر","Your_password_has_been_successfully_reset__Please_log_into_your_account_using_your_new_password_":"تم إعادة تعيين كلمة المرور الخاصة بك بنجاح. يرجى أن تسجل الدخول لحسابك باستخدام كلمة مرورك الجديدة.","Password_is_moderate":"كلمة المرور متوسطة","Confirm_New_Password":"تأكيد كلمة المرور الجديدة","October":"أكتوبر","Please_check_your_email_for_the_value_of_this_token":"الرجاء التحقق من البريد الإلكتروني الخاص بك لقيمة الرمز المميز هذا","Number_of_ticks":"عدد الحركات","0-5_transactions_in_the_past_12_months":"0 - 5 معاملات خلال الـ 12 شهرا الماضية","Opens":"يفتح","You_must_accept_the_terms_and_conditions_to_open_an_account_":"يجب أن تقبل الشروط والأحكام قبل أن تفتح حساب.","Thursday":"الخميس","Commodities_trading_frequency":"معدل تداول السلع","Start_Trading":"بدء التداول","Your_transaction_reference_is":"الرقم المرجعي لمعاملتك هو","Virtual_Account":"حساب افتراضي","Browser":"المتصفح","Stop-type":"نوع الوقف","Binary_options_or_other_financial_derivatives_trading_experience":"الخيارات الثنائية أو غيرها من خبرات تداول المشتقات المالية","Your_cashier_is_locked_as_per_your_request_-_to_unlock_it,_please_enter_the_password_":"قسم الصراف الخاص بك مغلقا بناءاً على طلبك - لفتحه، يرجى إدخال كلمة المرور.","Please_enter_an_integer_value":"رجاء إدخال قيمة عددية صحيحة","Represents_the_maximum_volume_of_contracts_that_you_may_purchase_in_any_given_trading_day_":"يمثل الحد الأقصى لحجم العقود التي بإمكانك أن تشتريها في أي يوم تداول.","Upcoming_Events":"الأحداث القادمة","Education":"تعلم","Next_Day":"اليوم التالي","hour":"ساعة","New_password_is_same_as_old_password_":"كلمة المرور الجديدة هي نفس كلمة المرور القديمة.","Exercise_period":"فترة العمل","Try_adding_more_numbers_":"حاول إضافة مزيد من الأرقام.","July":"يوليو","Therefore_your_current_immediate_maximum_withdrawal_(subject_to_your_account_having_sufficient_funds)_is_[_1]_[_2]_":"لهذا فإن الحد الأقصى الحالي للسحب (شريطة أن يكون فى حسابك أموالا كافية) هو[_1] [_2].","Gaming_Account":"حساب الألعاب","Tertiary":"تعليم عالي","From":"من","ticks":"حركات","Investments_&_Dividends":"الاستثمارات وتوزيعات الأرباح","To":"إلى","50-100_million_JPY":"50 - 100 مليون ين","Higher/Lower":"أعلى/أسفل","Investment_Account":"حساب الاستثمار","Credit/Debit":"ائتمان/خصم","Note":"ملاحظة","Industry_of_Employment":"مجال العمل","details":"تفاصيل","Represents_the_maximum_amount_of_cash_that_you_may_hold_in_your_account___If_the_maximum_is_reached,_you_will_be_asked_to_withdraw_funds_":"يمثل الحد الأقصى لمقدار النقد الذي تستطيع أن تحتفظ به فى حسابك.  إذا تم الوصول للحد الأقصى سيُطلب منك أن تسحب الأموال.","Password_does_not_match_":"لا تطابق كلمة المرور.","Withdrawal_Limits":"حدود السحب","Failed_to_update_trade_description_":"فشل فى تحديث توصيف المعاملة التجارية.","Country_Manager":"مدير البلد","Select_your_market":"اختر السوق الخاص بك","Rise/Fall":"الصعود/الهبوط","Only_2_decimal_points_are_allowed_":"ويسمح فقط 2 النقاط العشرية.","Password_is_weak":"كلمة المرور ضعيفة","Sale_Date":"تاريخ البيع","Administrative_Executive":"التنفيذي الإداري","Exclude_time_cannot_be_less_than_6_months_":"وقت الاستبعاد لا يمكن أن يكون أقل من 6 أشهر.","Password_is_not_strong_enough_":"كلمة السر ليست قوية بما يكفي.","Item":"بند","Stop_Profit_Level":"مستوى وقف الربح","Low_barrier_offset":"تحديد حاجز منخفض","Potential_Profit":"الربح المحتمل","January":"يناير","Quality_Assurance_Engineer":"مهندس ضمان الجودة","Select_market":"اختر السوق","September":"سبتمبر","Dec":"ديسمبر","Status":"الحالة","Prices":"أسعار","Sunday":"الأحد","Global_Customer_Service_Representatives":"ممثلي خدمة العملاء العالمية","In/Out":"داخل/خارج","Limit":"حد","You_should_enter_between_[_1]_characters_":"يجب أن تدخل بين [_1] حرفا.","Jump_To":"الانتقال إلى"};
 texts_json['DE'] = {"Once_you_click_the_'Submit'_button,_the_funds_will_be_withdrawn_from_your_account_and_transferred_to_your_Client's_account_":"Wenn Sie auf \"Abschicken\" klicken, wird der Betrag von Ihrem Konto abgebucht und auf Ihr Kundenkonto überwiesen.","Password":"Passwort","Total_Profit/Loss":"Gesamter Gewinn/Verlust","1-2_years":"1-2 Jahre","Sorry,_an_error_occurred_while_processing_your_request_":"Es tut uns leid, bei der Bearbeitung Ihrer Anfrage ist ein Fehler aufgetreten.","Internal_Auditor":"Interner Revisor","Back":"Zurück","Senior_Front-End_Developer":"Leitender Frontend-Entwickler","Presents_the_maximum_aggregate_payouts_on_outstanding_contracts_in_your_portfolio__If_the_maximum_is_attained,_you_may_not_purchase_additional_contracts_without_first_closing_out_existing_positions_":"Stellt die maximalen Gesamtauszahlungen ausstehender Verträge Ihres Portfolios dar. Wenn das Maximum erreicht ist, können Sie keine zusätzlichen Verträge erwerben, ohne zunächst bestehende Positionen zu schließen.","not_available":"nicht vorhanden","Internal_Audit":"Interne Prüfung","Mrs":"Frau","There_was_some_invalid_character_in_an_input_field_":"Es ist ein ungültiges Zeichen in einem Eingabefeld vorhanden.","Amount":"Betrag","This_feature_is_not_relevant_to_virtual-money_accounts_":"Diese Funktion ist für virtuelle Geldkonten nicht relevant","Authenticate":"Authentifizieren","Your_account_is_not_fully_authenticated__Please_visit_the_<a_href=\"[_1]\">authentication</a>_page_for_more_information_":"Ihr Konto ist nicht vollständig bestätigt. Weitere Informationen erhalten Sie auf der <a href=\"[_1]\">Bestätigung</a> Seite.","Never":"Nie","Format:_yyyy-mm-dd_(not_required_for_virtual-money_accounts)":"Format: jjjj-mm-tt (bei virtuellen Konten nicht erforderlich)","minute":"Minute","Sorry,_this_feature_is_not_available_":"Leider ist diese Funktion nicht vorhanden.","Password_must_contains_at_least_1_digit,_1_uppercase_letter_and_1_lowercase_letter_":"Das Passwort muss mindestens 1 Zahl, 1 Großbuchstaben und 1 Kleinbuchstaben enthalten.","Login_History":"Login-Verlauf","Income_Source":"Einkommensquelle","40_transactions_or_more_in_the_past_12_months":"40 Transaktionen, oder mehr, in den letzten 12 Monaten","Upgrade_to_a_Financial_Account":"In ein Finanzkonto ändern","Entry_Level":"Einstiegshöhe","Entry_Spot":"Startkurs","Your_trading_statistics_since_[_1]_":"Ihre Trading-Statistiken seit [_1].","Quantitative_Analyst":"Quantitativer Analyst","Are_you_sure_that_you_want_to_permanently_revoke_access_to_application":"Sind Sie sicher, dass Sie den Zugang endgültig widerrufen möchten","years":"Jahre","Start_trading_with_your_Demo_Account":"Jetzt mit dem Handeln von Ihrem Demo Konto beginnen","You_have_already_withdrawn_the_equivalent_of_[_1]_[_2]_in_aggregate_over_the_last_[_3]_days_":"Sie haben bereits den Gegenwert von [_1] [_2]  abgehoben, der sich in den letzten [_3] Tagen angesammelt hat.","To_create_a_real_account_for_MetaTrader,_<a_href=\"[_1]\">upgrade_to_[_2]_real_money_account</a>_":"<a href=\"[_1]\">Erweitern Sie auf ein [_2] Echtgeldkonto</a>, um ein Echtgeldkonto für MetaTrader zu erstellen.","Salaried_Employee":"Abhängig Beschäftigte/r","Margin_FX":"Margen FX","Select_your_underlying_asset":"Wählen Sie Ihren Basiswert aus","months":"Monate","Deposit":"Einzahlung","Spot_Time":"Kassa-Zeit","numbers":"Zahlen","Please_enter_a_number_greater_or_equal_to_[_1]_":"Bitte geben Sie eine Zahl größer oder gleich groß wie [_1] ein.","Old_password_is_wrong_":"Altes Passwort ist falsch.","m":"M","Verification_code_format_incorrect_":"Format des Verifikationscodes falsch.","Exit_Level":"Ausstiegshöhe","0-1_year":"0-1 Jahre","Password_is_very_strong":"Passwort ist sehr stark","Transfer_to_Login_ID":"Wechsel zur Login ID","There_was_a_problem_accessing_the_server_during_purchase_":"Während des Kaufs ist ein Problem beim Zugriff auf den Server aufgetreten.","Applications":"Anwendungen","There_was_a_problem_accessing_the_server_":"Es gab ein Problem beim Zugriff auf den Server.","Exit_Spot_Time":"Schlusskurszeit","apostrophe":"Apostroph","There_was_an_error":"Es ist ein Fehler aufgetreten","Date_(GMT)":"Datum (GMT)","Last_Digit_Stats":"Statistiken der Letzten Stelle","Profit_Table":"Gewinntabelle","My_Account":"Mein Konto","The_Payment_Agent_facility_is_currently_not_available_in_your_country_":"In Ihrem Land ist derzeit kein Zahlungsagent vorhanden.","The_financial_trading_services_contained_within_this_site_are_only_suitable_for_customers_who_are_able_to_bear_the_loss_of_all_the_money_they_invest_and_who_understand_and_have_experience_of_the_risk_involved_in_the_acquistion_of_financial_contracts__Transactions_in_financial_contracts_carry_a_high_degree_of_risk__If_purchased_contracts_expire_worthless,_you_will_suffer_a_total_loss_of_your_investment,_which_consists_of_the_contract_premium_":"Die Finanzhandelsdienste, die diese Site enthält, eignen sich nur für Kunden, die einen Verlust ihres gesamten investierten Geldes verkraften können und die die Risiken erkennen, die mit dem Erwerb von Finanzverträgen im Zusammenhang stehen und damit Erfahrung haben. Transaktionen mit Finanzkontrakten beinhalten ein hohes Risiko. Wenn erworbene Kontrakte wertlos auslaufen, geht Ihre gesamte Investition, die aus der Kontraktprämie besteht, verloren.","Original_High_Barrier":"Ursprüngliche obere Grenze","Touch/No_Touch":"Erreicht","Save_as_SVG":"Als SVG speichern","Start_time":"Startzeit","Accounting":"Buchhaltung","Over_3_years":"Über 3 Jahre","Quality_Assurance":"Qualitätssicherung","New_token_created_":"Neuer Token generiert.","Withdrawal_is_done__Transaction_ID:":"Auszahlung erledigt. Transaktion ID:","Affiliate":"Geschäftspartner","Your_provided_email_address_is_already_in_use_by_another_Login_ID__According_to_our_terms_and_conditions,_you_may_only_register_once_through_our_site__If_you_have_forgotten_the_password_of_your_existing_account,_please_<a_href=\"[_1]\">try_our_password_recovery_tool</a>_or_contact_customer_service_":"Sie haben eine E-Mail Adresse angegeben, die schon von einer anderen Login ID verwendet wird. Gemäß unserer Allgemeinen Geschäftsbedingungen dürfen Sie sich nur ein Mal auf unserer Site anmelden. Wenn Sie Ihr Passwort für Ihr bestehendes Konto vergessen haben, rufen Sie bitte  <a href=\"[_1]\">unser Passwort Wiederherstellungstool auf</a> oder setzen sich mit dem Kundendienst in Verbindung.","For_added_security,_please_check_your_email_to_retrieve_the_verification_token_":"Bitte sehen Sie zur zusätzlichen Sicherheit bei Ihren E-Mails nach, um den Verfikationstoken abzurufen.","You_are_currently_logged_in_to_your_real_money_account_with_[_1]_([_2])_":"Sie sind derzeit in Ihr Echtgeldkonto bei [_1] ([_2]) eingeloggt.","period":"Zeitraum","Trading_Times":"Börsenzeiten","Monday":"Montag","December":"Dezember","Forex_trading_experience":"Devisenhandelserfahrung","Proofreader":"Korrektor","Period":"Zeitraum","Your_changes_have_been_updated_":"Ihre Änderungen wurden aktualisiert.","Your_withdrawal_limit_is_[_1]_[_2]_(or_equivalent_in_other_currency)_":"Ihr Auszahlungslimit beträgt  [_1] [_2] (oder Gegenwert in anderer Währung).","Explanation":"Erläuterung","days":"Tage","Maximum_aggregate_payouts_on_open_positions":"Maximale Gesamtauszahlungen auf offene Positionen","Translator":"Übersetzer","Start_Time":"Startzeit","Stays_In/Goes_Out":"Bleibt in/Geht außerhalb","Represents_the_maximum_number_of_outstanding_contracts_in_your_portfolio__Each_line_in_your_portfolio_counts_for_one_open_position__Once_the_maximum_is_reached,_you_will_not_be_able_to_open_new_positions_without_closing_an_existing_position_first_":"Stellt die maximale Anzahl an ausstehenden Verträgen Ihres Portfolios dar. Jede Linie Ihres Portfolios steht für eine offene Position. Wenn das Maximum erreicht wird, können Sie keine neuen Positionen öffnen, ohne zuvor eine bereits bestehende Position zu schließen.","Mar":"Mär","Corporate_Action":"Unternehmenshandlung","Marketing_Project_Manager":"Marketing Projektmanager","Deposit_of":"Einzahlung in Höhe von","Total_Cost":"Gesamtkosten","Revoke_access":"Zugang widerrufen","March":"März","Adjusted_Barrier":"Veränderte Grenze","Construction":"Aufbau","Low_barrier":"Untere Schwelle","Current_Level":"Aktuelle Höhe","Description":"Beschreibung","Password_is_strong":"Passwort ist stark","Purchase":"Kauf","Current":"Derzeit","You_have_already_withdrawn_the_equivalent_of_[_1]_[_2]_":"Sie haben bereits den Gegenwert von [_1] [_2] abgehoben.","Quantitative_Analysis":"Quantitative Analyse","Financial_Assessment":"Finanzielle Beurteilung","Your_transaction_reference_number_is_[_1]":"Ihre Überweisungsnummer ist [_1]","Balance":"Guthaben","Secondary":"Sekundäre/r","Th":"Do","Action":"Handlung","February":"Februar","Your_request_to_transfer_[_1]_[_2]_from_[_3]_to_[_4]_has_been_successfully_processed_":"Ihr Auftrag [_1] [_2] von [_3] an [_4] zu überweisen, wurde erfolgreich bearbeitet.","Other_financial_instruments_trading_frequency":"Handelshäufigkeit von anderen Finanzinstrumenten","Next":"Weiter","Less_than_$25,000":"Weniger als 25.000 $","Enter_the_barrier_in_terms_of_the_difference_from_the_spot_price__If_you_enter_+0_005,_then_you_will_be_purchasing_a_contract_with_a_barrier_0_005_higher_than_the_entry_spot__The_entry_spot_will_be_the_next_tick_after_your_order_has_been_received":"Geben Sie die Schwelle für die Differenz zum Kassakurs an. Wenn Sie +0,005 eingeben, erwerben Sie einen Kontrakt mit einer 0,005 höheren Schwelle als der Startkurs. Der Startkurs ist der nächste Tick nachdem Ihr Auftrag eingegangen ist","Contract_Information":"Kontraktinformation","Password_Reset":"Passwort Zurücksetzung","Your_cashier_is_locked_as_per_your_request_-_to_unlock_it,_please_click_[_1]here":"Ihre Kasse wurde auf Ihren Antrag hin gesperrt - um Sie wieder zu entsperren, klicken Sie bitte [_1] hier","Waiting_for_entry_tick_":"Warten auf den Eingangstick.","Binary_options_or_other_financial_derivatives_trading_frequency":"Handelshäufigkeit mit Binären Optionen oder anderen Finanzderivaten","Due_to_recent_changes_in_the_regulations,_we_are_required_to_ask_our_clients_to_complete_the_following_Financial_Assessment__Please_note_that_you_will_not_be_able_to_continue_trading_until_this_is_completed_":"Wegen der kürzlich vorgenommenen Änderungen der Vorschriften sind wir gezwungen, unsere Kunden zu bitten, die folgende Finanzielle Beurteilung auszufüllen. Bitte beachten Sie, dass Sie, bis diese ausgefüllt ist, nicht weiter Handel treiben können.","Select_your_trade_type":"Wählen Sie Ihren Trade-Typ aus","View":"Ansehen","You_have_not_granted_access_to_any_applications_":"Sie haben keinen Zugriff auf Anwendungen gewährt.","Su":"So","Invalid_email_address":"Falsche E-Mail Adresse","[ctx,minimum_duration,_for_example_minimum_15_seconds]min":"Minuten","Questions":"Fragen","Stake":"Einsatz","Maximum_account_cash_balance":"Maximales Kontoguthaben","Forex_trading_frequency":"Devisenhandelshäufigkeit","Profit":"Rendite","This_contract_has_WON":"Dieser Kontrakt hat GEWONNEN","hour":"Stunde","New_password_is_same_as_old_password_":"Das neue Passwort ist das gleiche wie das alte Passwort.","Represents_the_maximum_volume_of_contracts_that_you_may_purchase_in_any_given_trading_day_":"Stellt das maximale Volumen an Kontrakten dar, die Sie an einem einzelnen Börsentag erwerben können.","Upcoming_Events":"Bevorstehende Events","Education":"Ausbildung","Next_Day":"Nächster Tag","Your_transaction_reference_is":"Ihre Überweisungsreferenz lautet","Virtual_Account":"Virtuelles Konto","Stop-type":"Stopp-Art","Binary_options_or_other_financial_derivatives_trading_experience":"Erfahrung mit Binären Optionen oder Handel mit anderen Finanzderivaten","Your_cashier_is_locked_as_per_your_request_-_to_unlock_it,_please_enter_the_password_":"Ihre Kasse ist auf Ihren Antrag hin gesperrt - um Sie zu entsperren, geben Sie bitte das Passwort ein.","Please_enter_an_integer_value":"Bitte geben Sie einen ganzzahligen Wert ein","Commodities_trading_frequency":"Rohstoffe Handelshäufigkeit","Start_Trading":"Handel beginnen","Select_your_market":"Wählen Sie Ihren Markt","Investment_Account":"Investmentkonto","Credit/Debit":"Gutschrift/Lastschrift","Note":"Anmerkung","Industry_of_Employment":"Beschäftigungsbranche","details":"Angaben","Represents_the_maximum_amount_of_cash_that_you_may_hold_in_your_account___If_the_maximum_is_reached,_you_will_be_asked_to_withdraw_funds_":"Stellt den maximalen Bargeldbetrag dar, den Sie auf Ihrem Konto haben dürfen. Wenn das Maximum erreicht wird, werden Sie gebeten, Gelder abzuheben.","Password_does_not_match_":"Passwort stimmt nicht überein.","Weekday":"Wochentag","Withdrawal_Limits":"Abhebungslimits","Failed_to_update_trade_description_":"Aktualisierung der Kontraktbeschreibung fehlgeschlagen.","Country_Manager":"Ländermanager","Exercise_period":"Ausübungszeitraum","Try_adding_more_numbers_":"Versuchen Sie, mehr Zahlen hinzuzufügen.","July":"Juli","Therefore_your_current_immediate_maximum_withdrawal_(subject_to_your_account_having_sufficient_funds)_is_[_1]_[_2]_":"Daher beträgt Ihre derzeitige maximale Sofortabhebung (vorausgesetzt Ihr Konto hat ein ausreichendes Guthaben) [_1] [_2].","Gaming_Account":"Spielkonto","Tertiary":"Tertiär","From":"Von","ticks":"Ticks","Investments_&_Dividends":"Investitionen & Dividenden","To":"An","Higher/Lower":"Höher/Tiefer","Potential_Profit":"Möglicher Gewinn","January":"Januar","Quality_Assurance_Engineer":"Qualitätssicherungsingenieur","Stop_Profit_Level":"Stop Profit Höhe","Low_barrier_offset":"Verschiebung der unteren Schwelle","Sale_Date":"Verkaufsdatum","Exclude_time_cannot_be_less_than_6_months_":"Die Ausschlusszeit darf nicht kürzer als 6 Monate sein.","Administrative_Executive":"Verwaltungsleiter","Item":"Posten","Password_is_not_strong_enough_":"Passwort ist nicht stark genug.","Rise/Fall":"Steigen/Fallen","Only_2_decimal_points_are_allowed_":"Es sind nur 2 Dezimalstellen erlaubt.","Password_is_weak":"Passwort ist schwach","In/Out":"Innerhalb/Außerhalb","You_should_enter_between_[_1]_characters_":"Sie müssen zwischen [_1] Zeichen eingeben.","Jump_To":"Springen zu","Sunday":"Sonntag","Global_Customer_Service_Representatives":"Globale Kundendienstmitarbeiter","Dec":"Dez","Prices":"Kurse","Select_market":"Wählen Sie den Markt","Other":"Sonstiges","Day":"Tag","Your_account_has_no_trading_activity_":"Ihr Konto hat keine Handelsaktivität.","Stocks_trading_frequency":"Aktienhandelshäufigkeit","You_are_currently_logged_in_to_your_virtual_money_account_([_2])_":"Sie sind derzeit in Ihr virtuelles Geld Konto (2%) eingeloggt.","Ends_In/Out":"Endet innerhalb/außerhalb","Try_adding_more_letters_or_numbers_":"Versuchen Sie mehr Buchstaben oder Zahlen hinzuzufügen.","$100,000_-_$500,000":"$100.000 - $500.000","Human_Resources":"Personalabteilung","High_barrier":"Hohe Schwelle","Buy":"Kaufen","Successful":"Erfolgreich","Profit/Loss":"Gewinn/Verlust","This_contract_lost":"Dieser Kontrakt verlor","Lock_Cashier":"Kasse blockieren","Please_enter_a_valid_amount_":"Bitte geben Sie einen gültigen Betrag ein.","Step":"Schritt","points":"Punkte","Senior_Perl_Developer":"Leitender Perl-Entwickler","Sell":"Verkaufen","An_error_occured_":"Es ist ein Fehler aufgetreten.","No_Live_price_update":"Keine Live Kursaktualisierung","year":"Jahr","Your_settings_have_been_updated_successfully_":"Ihre Einstellungen wurden erfolgreich aktualisiert.","You_have_already_withdrawn_[_1]_[_2]_":"Sie haben bereits [_1] [_2] abgehoben.","Only_[_1]_are_allowed_":"Es sind nur [_1] erlaubt.","If_you_need_assistance_feel_free_to_contact_our_[_1]Customer_Support":"Sollten Sie Hilfe benötigen, können Sie sich gerne mit unserer [_1]Kundenbetreuung in Verbindung setzen","Save_as_PDF":"Als PDF speichern","Terms_&_Conditions":"Allgemeine Geschäftsbedingungen","Contract_purchased_with_app_ID":"Kontrakt mit App ID erworben","Targeting_short-term_profits":"Auf kurzfristige Gewinne gerichtet","Social_Media_Executive":"Leitender Angestellter für Soziale Medien","Last_Digit_Prediction":"Voraussage der Letzten Stelle","Information_Technology":"Informationstechnologie","Month":"Monat","Miss":"Verpasst","Commodities_trading_experience":"Rohstoff Handelserfahrung","$25,000_-_$100,000":"$25.000 - $100.000","We_are_not_accepting_accounts_from_residents_of_this_country_at_the_present_time_":"Derzeit lehnen wir die Eröffnung von Konten für Einwohner dieses Landes ab.","Tuesday":"Dienstag","Please_submit_a_valid_[_1]_":"Bitte übermitteln Sie eine gültige [_1].","Please_deposit_before_transfer_to_client_":"Bitte einzahlen, bevor Sie an den Kunden überweisen.","Date_and_Time":"Datum und Zeit","Congratulations!_Your_account_has_been_created_":"Herzlichen Glückwunsch! Ihr Konto wurde erstellt.","Contract_/_Temporary_/_Part_Time":"Vertrag / Befristet / Teilzeit","Potential_Payout":"Mögliche Auszahlung","Opens":"Öffnet","0-5_transactions_in_the_past_12_months":"0-5 Transaktionen in den letzten 12 Monaten","You_must_accept_the_terms_and_conditions_to_open_an_account_":"Sie müssen die Geschäftsbedingungen akzeptieren, um ein Konto eröffnen zu können.","Thursday":"Donnerstag","October":"Oktober","Please_check_your_email_for_the_value_of_this_token":"Bitte überprüfen Sie für den Wert dieses Token Ihren E-Mail Eingang","Number_of_ticks":"Anzahl der Ticks","Confirm_New_Password":"Neues Passwort bestätigen","Walkthrough_Guide":"Kompletter Leitfaden","Invalid_date_of_birth_":"Falsches Geburtsdatum.","Settles":"Begleicht","Password_is_moderate":"Passwort ist moderat","Your_password_has_been_successfully_reset__Please_log_into_your_account_using_your_new_password_":"Ihr Passwort wurde erfolgreich zurückgesetzt. Bitte loggen Sie mit Ihrem neuen Passwort in Ihr Konto ein.","Never_Used":"Nie verwendet","Please_try_again_":"Bitte versuchen Sie es erneut.","Unlock_Cashier":"Kasse entsperren","Compliance_Executive":"Compliancebeauftragter","Please_select_a_payment_agent":"Bitte wählen Sie einen Zahlungsagent aus","Your_account_has_no_Login/Logout_activity_":"Ihr Konto hat keine Anmelde- und/oder Abmeldeaktivität.","6-10_transactions_in_the_past_12_months":"6-10 Transaktionen in den letzten 12 Monaten","second":"Sekunde","Print_chart":"Chart drucken","letters":"Buchstaben","Pension":"Rente/Pension","New_Password":"Neues Passwort","You_have_sold_this_contract_at_[_1]_[_2]":"Sie haben diesen Kontrakt für [_1] [_2] verkauft","Current_Time":"Aktuelle Zeit","Your_password_cannot_be_the_same_as_your_email":"Ihr Passwort kann nicht wie Ihre E-Mail Adresse lauten","password":"Passwort","Purchase_Time":"Kaufuhrzeit","Session_duration_limit_cannot_be_more_than_6_weeks_":"Die Sitzungsdauer kann nicht mehr als 6 Wochen betragen.","-_A_scanned_copy_of_your_passport,_driving_licence_(provisional_or_full)_or_identity_card,_showing_your_name_and_date_of_birth_":"- Eine gescannte Kopie Ihres Reisepasses, gültigen Führerscheins (vorläufig oder endgültig) oder Personalausweises, auf der Ihr Name und das Geburtsdatum erkennbar sind.","[_1]_[_2]_has_been_credited_to_your_Virtual_money_account_[_3]":"[_1] [_2] wurden Ihrem virtuellen Geldkonto [_3] gutgeschrieben","Your_details_have_been_updated_":"Ihre Angaben wurden aktualisiert.","Please_complete_the_following_financial_assessment_form_before_continuing_":"Bevor Sie fortfahren, füllen Sie bitte das nachfolgende finanzielle Beurteilungsformular aus.","Download_MetaTrader":"MetaTrader herunterladen","Accounts_And_Payments_Executive":"Buchhaltungs- & Zahlungsverkehrsleiter","Deposit_is_done__Transaction_ID:":"Einzahlung vorgenommen. Überweisungs-ID:","Authorise_your_account_":"Autorisieren Sie Ihr Konto.","Remaining_Time":"Verbleibende Zeit","Your_[_1]_day_withdrawal_limit_is_currently_[_2]_[_3]_(or_equivalent_in_other_currency)_":"Ihr [_1] Tage Abhebelimit beträgt derzeit [_2] [_3] (oder Gegenwert in einer anderen Währung).","comma":"Komma","Over_$500,001":"Über $ 500.001","Password_should_have_lower_and_uppercase_letters_with_numbers_":"Das Passwort muss Klein- und Großbuchstaben sowie Zahlen enthalten.","Contract_Expiry":"Kontraktauslauf","Tourism":"Tourismus","Therefore_your_current_immediate_maximum_withdrawal_(subject_to_your_account_having_sufficient_funds)_is_[_1]_[_2]_(or_equivalent_in_other_currency)_":"Daher ist Ihr aktuelles sofortiges Maximum für eine Abhebung (sofern Ihr Konto über ausreichend Guthaben verfügt) EUR [_1] [_2] (oder Gegenwert in einer anderen Währung).","Reset_Password":"Passwort zurücksetzen","Your_account_is_fully_authenticated__You_can_view_your_[_1]trading_limits_here":"Ihr Konto ist vollständig authentifiziert. Ihre [_1] Handelslimits sind hier ersichtlich","Contract_ID":"Kontrakt ID","Save_as_CSV":"Als CSV speichern","Original_Low_Barrier":"Ursprüngliche untere Grenze","This_contract_has_LOST":"Dieser Kontrakt hat VERLOREN","Indices_trading_experience":"Indizes Handelserfahrung","Statement":"Abrechnung","Please_enter_a_date_that_is_at_least_6_months_from_now_":"Bitte geben Sie ein Datum ein, das mindestens 6 Monate in der Zukunft liegt.","Your_[_1]_account_is_unavailable__For_any_questions_please_contact_[_2]_":"Ihr [_1] Konto ist nicht verfügbar. Bei Fragen hierzu setzen Sie sich bitte mit [_2] in Verbindung.","Estimated_Net_Worth":"Geschätzter Nettowert","Asset":"Kapital","Profit/Loss_(points)":"Gewinn/Verlust (Punkte)","login":"Login","hours":"Stunden","Other_financial_instruments_trading_experience":"Handelserfahrung mit anderen Finanzinstrumenten","Asset_Index":"Vermögensindex","Failed_to_reset_password__[_1],_please_retry_":"Das Zurücksetzen des Passworts ist fehlgeschlagen. [_1], bitte erneut versuchen.","Exclude_time_must_be_after_today_":"Die Ausschlusszeit muss nach dem heutigen Tag beginnen.","Contract":"Kontrakt","Mr":"Herr","Our_site_does_not_charge_any_transfer_fees_":"Unsere Site berechnet keine Überweisungsgebühren.","Barrier":"Schwelle","Indicative":"Indikativ","Level_of_Education":"Ausbildungsgrad","Contract_is_not_started_yet":"Kontrakt ist noch nicht gestartet","Please_check_your_email_to_retrieve_the_token_needed_to_reset_your_password_":"Bitte überprüfen Sie Ihren E-Mail Eingang, um den Token, der für die Zurücksetzung Ihres Passworts nötig ist, abzurufen.","minutes":"Minuten","Exclude_time_cannot_be_for_more_than_5_years_":"Die Ausschlusszeit darf nicht länger als 5 Jahre sein.","Your_withdrawal_limit_is_[_1]_[_2]_":"Ihr Abhebelimit beträgt  [_1] [_2].","Date":"Datum","(Bejing/CST_-8_hours)":"(Peking/CST -8 Stunden)","When_you_click_'Ok'_you_will_be_excluded_from_trading_on_the_site_until_the_selected_date_":"Wenn Sie auf 'Ok' klicken, werden Sie bis zum ausgewählten Datum vom Handel auf dieser Site ausgeschlossen.","Closed":"Geschlossen","Quantitative_Developer":"Quantitativer Entwickler","Marketing_Executives":"Marketingleiter","Stop-loss":"Stop-Loss","Your_request_to_withdraw_[_1]_[_2]_from_your_account_[_3]_to_Payment_Agent_[_4]_account_has_been_successfully_processed_":"Ihr Auftrag, [_1] [_2] von Ihrem Konto [_3] auf das Konto des Zahlungsagent [_4] zu überweisen, wurde erfolgreich bearbeitet.","Purchase_Price":"Kaufpreis","Details":"Angaben","Stop_Loss_Level":"Stop Loss Höhe","Please_fill_in_the_Login_ID_and_Amount_you_wish_to_transfer_to_your_Client_in_the_form_below:":"Bitte tragen Sie im nachfolgenden Formular die Login ID und den Betrag ein, den Sie Ihrem Kunden überweisen möchten:","Last_Used":"Zuletzt verwendet","$250,000_-_$1,000,000":"$250.000-$1.000.000","Date_of_Birth":"Geburtsdatum","Loss":"Verlust","Oct":"Okt","Please_choose_which_currency_you_would_like_to_transact_in_":"Bitte wählen Sie die Währung aus, in der Sie Transaktionen abwickeln möchten.","Invalid_amount,_minimum_is":"Ungültiger Betrag, das Minimum ist","Points":"Punkte","Wednesday":"Mittwoch","Chart":"Diagramm","Up/Down":"Auf/Ab","Health":"Befinden","Spot":"Kassakurs","Reference_ID":"Referenznr.","Contract_will_be_sold_at_the_prevailing_market_price_when_the_request_is_received_by_our_servers__This_price_may_differ_from_the_indicated_price_":"Der Kontrakt wird, sobald der Auftrag von unseren Servern empfangen wurde, zum dann geltenden Marktkurs verkauft. Dieser Kurs kann von den angegebenen Kursen abweichen.","IP_Address":"IP-Adresse","Stocks_trading_experience":"Aktienhandelserfahrung","Please_confirm_the_trade_on_your_statement_before_proceeding_":"Bevor Sie fortfahren, bestätigen Sie bitte das Geschäft in Ihrem Auszug.","Save_as_PNG":"Als PNG speichern","June":"Juni","day":"Tag","Settings":"Einstellungen","An_additional_password_can_be_used_to_restrict_access_to_the_cashier_":"Es darf ein zusätzliches Passwort verwendet werden, um den Zugang zum Kassensabschnitt zu beschränken.","There_was_a_problem_validating_your_personal_details__Please_fix_the_fields_[_1]here":"Bei der Bestätigung Ihrer personenbezogenen Daten ist ein Problem aufgetreten. Bitte berichtigen Sie diese Felder [_1]hier","Please_enter_a_number_between_0_and_[_1]":"Bitte geben Sie eine Zahl zwischen 0 und [_1] ein","hyphen":"Trennungsstrich","Are_you_sure_that_you_want_to_permanently_delete_token":"Sind Sie sicher, dass Sie den Token endgültig löschen möchten?","Payout":"Auszahlung","Your_new_account_has_been_created_":"Ihr neues Konto wurde erstellt.","Please_confirm_the_transaction_details_in_order_to_complete_the_transfer:":"Bitte bestätigen Sie die Transaktionsdaten, um den Transfer zu vervollständigen:","Your_Client_will_receive_an_email_notification_informing_him/her_that_the_transfer_has_been_processed_":"Ihr Kunde wird eine E-Mail Benachrichtigung erhalten, in der er/sie darüber informiert wird, dass die Überweisung bearbeitet wurde.","Trading_Limits":"Handelslimits","Maximum_number_of_open_positions":"Maximale Anzahl offener Positionen","-_A_scanned_copy_of_a_utility_bill_or_bank_statement_(no_more_than_3_months_old)_":"- Eine gescannte Kopie einer Abrechnung öffentlicher Versorgungsbetriebe oder eines Bankkontoauszuges (nicht älter als 3 Monate).","True":"Wahr","{JAPAN_ONLY}Prices_for_currency_options_are_calculated_relative_the_value_of_theunderlying_spot_price,_and_are_dependant_on_multiple_factors_which_may_vary_":"{JAPAN ONLY}Price of OTC currency option is the calculated value based on multiple elements and is determined by relative trading basically.","Start_trading_with_your_Real_Account":"Jetzt mit dem Handeln von Ihrem Echtgeldkonto beginnen","Barrier_offset":"Schwellenverschiebung","Adjusted_High_Barrier":"Angepasste obere Grenze","Price":"Kurs","Customer_Support":"Kundendienst","We_are_not_able_to_stream_live_prices_at_the_moment__To_enjoy_live_streaming_of_prices_try_refreshing_the_page,_if_you_get_this_issue_after_repeated_attempts_try_a_different_browser":"Wir können zu diesem Zeitpunkt keine Kurse live anzeigen. Zur Ansicht der Echtzeitanzeige der Kurse sollten Sie diese Seite über den Browser aktualisieren. Wenn das Problem nach wiederholten Aktualisierungen der Seite weiter besteht, sollten Sie einen anderen Browser ausprobieren","Over_$1,000,000":"Über $1.000.000","[_1]_Please_click_the_link_below_to_restart_the_password_recovery_process__If_you_require_further_assistance,_please_contact_our_Customer_Support_":"[_1] Bitte klicken Sie auf den nachfolgenden Link, um den Passwort Erneuerungsprozess zu starten. Wenn Sie weitere Unterstützung benötigen, setzen Sie sich bitte mit unserem Kundensupport in Verbindung.","This_contract_was_affected_by_a_Corporate_Action_event_":"Dieser Kontrakt ist von einer Unternehmenshandlung betroffen.","Your_session_duration_limit_will_end_in_[_1]_seconds_":"Das Limit Ihrer Sitzungsdauer endet in [_1] Sekunden.","End_Time":"Endzeit","Please_wait_<br_/>Your_request_is_being_processed_":"Bitte warten Sie.<br />Ihre Anfrage wird bearbeitet.","Human_Resource_Executive":"Personalmanager","Exit_Spot":"Schlusskurs","Tu":"Di","Sorry,_you_have_entered_an_incorrect_cashier_password":"Es tut uns leid, aber Sie haben ein ungültiges Kassen-Passwort eingegeben","Sale_Price":"Verkaufskurs","Sell_at_market":"Zum Börsenkurs verkaufen","Upgrade_to_a_Real_Account":"Erweitern Sie auf ein Echtgeldkonto","Keep_track_of_your_authorised_applications_":"Verfolgen Sie Ihre genehmigten Anwendungen.","Transfer_to":"Überweisung an","Year":"Jahr","Update":"Aktualisieren","Sorry,_account_opening_is_unavailable_":"Leider ist die Kontoeröffnung nicht möglich.","Less_than_$100,000":"Weniger als 100.000 $","Your_token_has_expired__Please_click_<a_class=\"pjaxload\"_href=\"[_1]\">here</a>_to_restart_the_verification_process_":"Ihr Token ist abgelaufen. Bitte klicken Sie <a class=\"pjaxload\" href=\"[_1]\">hier</a>, um den Verfikationsprozess zu wiederholen.","High_barrier_offset":"Hohe Schwellenverschiebung","The_maximum_number_of_tokens_([_1])_has_been_reached_":"Die Höchstzahl an Token ([_1]) wurde erreicht.","seconds":"Sekunden","Net_Annual_Income":"Nettojahreseinkommen","and":"und","You_did_not_change_anything_":"Sie haben nichts geändert.","Net_profit":"Nettogewinn","Your_[_1]_accounts_are_unavailable__For_any_questions_please_contact_[_2]_":"Ihre [_1] Konten sind nicht verfügbar. Bei Fragen hierzu setzen Sie sich bitte mit [_2] in Verbindung.","Self-Employed":"Selbstständig","is_required__Current_spread":"ist erforderlich. Aktueller Spread","Password_score_is:_[_1]__Passing_score_is:_20_":"Passwort Punktzahl ist: [_1]. Mindestpunktzahl ist: 20.","space":"Bereich","May":"Mai","You_are_not_authorized_for_withdrawal_via_payment_agent_":"Sie sind nicht befugt, eine Auszahlung über einen Zahlungsagent zu tätigen.","Friday":"Freitag","Finance":"Finanzen","Please_select":"Bitte wählen Sie","Anti-Fraud_Officer":"Betrugsbekämpfungsbeauftragter","Graphic_Designers":"Grafikdesigner","Your_account_is_fully_authenticated_and_your_withdrawal_limits_have_been_lifted_":"Ihr Konto ist vollständig authentifiziert und Ihr Abhebelimit wurde angehoben.","Invalid_amount,_maximum_is":"Ungültiger Betrag, das Maximum ist","Both_the_above":"Beide obige","Primary":"Primär","Delete":"Löschen","We":"Mi","$100,000_-_$250,000":"$100.000 - $250.000","Indices_trading_frequency":"Indizes Handelshäufigkeit","Contract_Sold":"Kontrakt verkauft","Return":"Rendite","Even/Odd":"Gerade/ungerade","Try_adding_more_letters_":"Versuchen Sie mehr Buchstaben hinzuzufügen.","Save_as_JPEG":"Als JPEG speichern","Your_current_balance_is":"Ihr aktuelles Guthaben beträgt","Finish":"Beenden","High_Barrier":"Hohe Schwelle","Please_enter_a_number_between_[_1]_":"Bitte geben Sie eine Zahl zwischen [_1] ein.","verification_token":"Verifikationstoken","You_need_to_finish_all_20_questions_":"Sie müssen alle 20 Fragen beantworten.","Closes":"Schließt","Real_Account":"Echtes Konto","Contract_Confirmation":"Vertragsbestätigung","Last_digit_stats_for_the_latest_[_1]_ticks_on_[_2]":"Letzte Stellen Statistik der letzten [_1] Ticks von [_2]","Duration":"Laufzeit","Minimum_of_[_1]_characters_required_":"Mindestens [_1] Zeichen sind erforderlich.","Please_follow_the_pattern_3_numbers,_a_dash,_followed_by_4_numbers_":"Bitte befolgen Sie dieses Muster: 3 Zahlen, ein Bindestrich, gefolgt von 4 Zahlen.","loading___":"wird geladen...","Trading_and_Withdrawal_Limits":"Handels- und Abhebelimits","Over/Under":"Über/Unter","Open_a_Financial_Account":"Eröffnen Sie ein Finanzkonto","Short":"Kurz","This_field_is_required_":"Dieses Feld ist erforderlich.","Previous":"Vorige","Permissions":"Berechtigungen","Previous_Day":"Vorheriger Tag","False":"Falsch","Saturday":"Samstag","Barrier_Change":"Grenzänderung","Open":"Offen","Now":"Jetzt","This_contract_won":"Dieser Vertrag gewann","Resources":"Quellen","month":"Monat","Verification_Token":"Verifikationstoken","View_your_statement":"Ihre Abrechnung ansehen","To_authenticate_your_account,_kindly_email_the_following_to_[_1]":"Um Ihr Konto zu authentifizieren, übersenden Sie uns bitte per E-Mail gescannte Kopien von Folgendem an [_1]","Low_Barrier":"Untere Schwelle","Sorry,_this_feature_is_available_to_virtual_accounts_only_":"Leider steht diese Funktion nur für virtuelle Konten zur Verfügung.","Week_of":"Woche von","The_two_passwords_that_you_entered_do_not_match_":"Die beiden Passwörter, die Sie eingegeben haben, stimmen nicht überein.","minimum_available_duration":"kürzeste vorhandene Dauer","Please_select_a_valid_date":"Bitte wählen Sie ein gültiges Datum aus","Adjusted_Low_Barrier":"Angepasste untere Grenze","To_create_a_real_account_for_MetaTrader,_switch_to_your_[_1]_real_money_account_":"Um ein Echtgeldkonto für MetaTrader zu erstellen, wechseln Sie bitte zu Ihrem [_1] Echtgeldkonto.","[_1]_has_updated_its_[_2]__By_clicking_OK,_you_confirm_that_you_have_read_and_accepted_the_updated_[_2]_":"[_1] hat seine [_2] aktualisiert. Wenn Sie auf OK klicken, bestätigen Sie, dass Sie die aktualisierten [_2] zur Kenntnis genommen haben.","Failed":"Fehlgeschlagen","Confirm":"Bestätigen","Amount_per_point":"Betrag je Punkt","Original_Barrier":"Ursprüngliche Grenze","Ms":"Frl.","Long":"Lang","Matches/Differs":"Gleich/Verschieden","Please_input_a_valid_date":"Bitte geben Sie ein gültiges Datum ein","Adjust_trade_parameters":"Anpassen von Handelsparametern","Maximum_daily_turnover":"Maximaler Tagesumsatz","When_you_click_\"Ok\"_you_will_be_excluded_from_trading_on_the_site_until_the_selected_date_":"Wenn Sie auf 'Ok' klicken, werden Sie bis zum ausgewählten Datum vom Handel auf dieser Site ausgeschlossen.","Please_[_1]_to_view_this_page":"Bitte [_1], um diese Seite anzuzeigen","Sorry,_an_error_occurred_while_processing_your_account_":"Es tut uns leid, bei der Bearbeitung Ihres Kontos ist ein Fehler aufgetreten.","Predict_the_direction<br_/>and_purchase":"Sagen Sie die Richtung voraus<br />und kaufen Sie","Deposit_[_1]_[_2]_virtual_money_into_your_account_[_3]":"Zahlen Sie [_1] [_2] virtuelles Geld auf Ihr Konto [_3] ein","Cashier":"Kasse"};
@@ -49799,7 +49833,9 @@ texts_json['VI'] = {"Password_must_contains_at_least_1_digit,_1_uppercase_letter
 texts_json['JA'] = {"points":"ポイント","Senior_Perl_Developer":"シニアPerl開発者","An_error_occured_":"エラーが発生しました","Sell":"売却","No_Live_price_update":"最新価格の更新がありません","10-30_million_JPY":"1,000〜3,000万円","year":"年","This_contract_lost":"このトレードは負け判定","Lock_Cashier":"入出金をロック","{JAPAN_ONLY}If_you_buy_a_currency_binary_option_at_a_price_of_500_yen,_and_the_judgment_price_meets_the_conditions_so_you_receive_a_payout_of_1,000_yen,_then_your_profit_can_be_calculated_500_yen_after_subtracting_the_500_yen_that_was_paid_as_a_fee_to_the_option_seller_":"ペイアウト1,000円のバイナリーコールオプションを500円で購入し、判定の結果、権利行使条件が満たされた場合には、買い手は売り手からペイアウトとして1,000円を受け取り、したがって買い手の損益は、売り手に支払った500円のオプション料を差し引き500円の利益となる。","Please_enter_a_valid_amount_":"有効な値をご入力して下さい。","Step":"ステップ","Terms_&_Conditions":"取引規約","Contract_purchased_with_app_ID":"アプリケーションIDで購入されたトレード","Less_than_6_months":"6ヶ月未満","Targeting_short-term_profits":"短期利益を目標にする","Social_Media_Executive":"ソーシャルメディア管理者","Your_settings_have_been_updated_successfully_":"設定が正しく更新されました。","Only_[_1]_are_allowed_":"[_1]のみご利用いただけます。","You_have_already_withdrawn_[_1]_[_2]_":"既に[_1] [_2]を出金されています。","Save_as_PDF":"PDFで保存","Token":"トークン","If_you_need_assistance_feel_free_to_contact_our_[_1]Customer_Support":"ご不明な点がございましたら、[_1]当社カスタマーサポートチームまでお気軽にお問い合わせ下さい。","{JAPAN_ONLY}Section_1:_Structure":"第1章：構成","Portfolio":"ポジション一覧","f":"女性","Your_account_has_no_trading_activity_":"取引履歴はありません","Stocks_trading_frequency":"株式取引の頻度","{JAPAN_ONLY}HIGH/LOW":"ラダーHIGH/ラダーLOW","{JAPAN_ONLY}A_binary_option_which_is_in-the-money_will_have_a_higher_value_than_an_option_that_is_out-of-the-money_because_there_will_be_a_higher_probability_of_receiving_the_payout_amount_":"インザマネーのバイナリーオプションは、ペイアウトを受け取る確率が高いため、アウトオブザマネーのバイナリーオプションよりも価格が高い。","{JAPAN_ONLY}About_OTC_currency_for_binary_options_trading,_summarizes_the_profit_and_loss_result_of_all_transactions_that_have_been_made_between_the_customer,_to_publish_the_information_in_the_company's_home_page,_at_any_time_while_the_customer_is_doing_the_transaction_before_the_start,_or_the_transaction,_the_information_Make_sure,_for_that_you're_willing_to_trade_under_the_calm_judgment,_we_are_committed_to_a_variety_of_environmental_improvement_":"店頭通貨バイナリーオプション取引については、顧客との間で行われた全取引の損益結果をまとめ、自社のホームページにおいて情報を公開し、顧客が取引開始前、あるいは取引を行っている間いつでも、その情報を確認し、冷静な判断の下にお取引いただけるための、様々な環境整備に努めている。","{JAPAN_ONLY}A__Net_Settlement_type_of_option_is_one_where_the_underlying_asset_does_not_include_yen,_but_the_option_fee_and_settlement_are_paid_in_yen;_it_therefore_requires_some_definition_of_how_the_settlement_amounts_will_be_calculated_and_converted_to_yen_":"円以外の通貨ペアを原資産とする差金決済型の通貨オプションであって、オプション料や権利行使時の決済が円により行われるものは、対象とする通貨ペアによる決済額を算出し、円転のための計算をして金額を確定する仕組みとなっている。","You_are_currently_logged_in_to_your_virtual_money_account_([_2])_":"現在デモ口座([_2])にログインしています。","Public_worker":"公務員","{JAPAN_ONLY}[_1]_[_2]_payout_if_[_3]_touches_Exercise_price_through_close_on_[_4]_":"[_3]のTOUCHは、取引期間([_4])が終了するまでバリア価格にタッチした場合、ペイアウト発生","Other":"その他","Day":"日","Profit/Loss":"損益","Student":"学生","{JAPAN_ONLY}Because_option_prices_are_determined_by_the_probability_of_being_exercised,_it_cannot_be_said_that_cheaper_options_have_any_natural_advantage_over_expensive_options_":"権利行使により利益が得られる確率を踏まえれば、一概にオプション価格が安いものが有利とはいえない。","Over_5_years":"6年以上","Try_adding_more_letters_or_numbers_":"さらに文字と数字を追加してみてください。","{JAPAN_ONLY}If_you_buy_a_currency_binary_put_option_at_a_price_of_500_yen,_with_an_underlying_of_dollar_against_yen,_the_payout_is_1,000_yen,_and_the_strike_price_is_100,_then_if_the_judgment_price_at_exercise_time_is_99,_you_will_receive_a_payout_1,000_yen_from_the_seller_of_the_option_":"権利行使価格１ドル100円、ペイアウト1,000円のドル円のプットバイナリーオプションを500円で購入し、判定レートが１ドル９９円となり権利行使が行われ、1,000円のペイアウトを受け取った。","{JAPAN_ONLY}For_a_put_option,_if_the_underlying_asset_price_is_higher_than_the_option_exercise_price,_it_is_known_as_an_in-the-money_option_":"プットオプションにおいて、原資産の価格が権利行使価格を上回っている状態をインザマネーという。","Ends_In/Out":"END-IN/END-OUT","Human_Resources":"人事","High_barrier":"上限バリア","Successful":"成功しました","Buy":"購入","{JAPAN_ONLY}The_exit_price_is_important_in_binary_options__In_case_of_handling_the_OTC_currency-related_binary_options_trading_for_private_individuals,_the_broker_company_must_perform_inspections_of_the_exit_prices_which_have_been_used_for_determining_option_payout,_and_must_check_whether_there_is_an_error_in_the_data_in_cases_where_that_the_company_has_used_rated_data_provided_by_third_company_":"バイナリーオプション取引では、判定価格が重要である。個人向け店頭通貨関連バイナリーオプション取引を取り扱う場合には、自社が決定する判定価格について、ミスや作為的な操作が行われていないか自ら点検するほか、第三者の提供するレートデータを用いる場合でも、データに誤りがないか点検している。","{JAPAN_ONLY}If_you_believe_the_underlying_asset_price_will_be_only_moderately_volatile,_you_could_still_benefit_by_buying_both_a_call_and_put_option_with_exercise_prices_that_are_above_and_below_the_exercise_price_":"原資産価格の騰落幅が小さいと予測し、上昇、下落、いずれの方向に動いても利益を得るため、原資産価格より権利行使価格が高いコールオプションと原資産価格より権利行使価が低いプットオプションの２つのオプションを合わせて付与した。","October":"１０月","Please_check_your_email_for_the_value_of_this_token":"Eメールアドレスをご確認ください","Number_of_ticks":"Tickの総数","0-5_transactions_in_the_past_12_months":"過去12ヶ月で0-5のお取引","Opens":"取引開始時間","{JAPAN_ONLY}If_you_believe_the_underlying_asset_price_will_move_by_a_large_amount_in_either_direction,_you_can_benefit_by_buying_both_a_call_and_a_put_option,_with_the_exercise_prices_set_above_and_below_the_current_underlying_price_":"原資産価格が大きく騰落することを予測し、上昇、下落、いずれの方向に動いても利益を得るため、原資産価格より権利行使価格が高いコールオプションと原資産価格より権利行使価格が低いプットオプションの２つのオプションを合わせて取得した。","You_must_accept_the_terms_and_conditions_to_open_an_account_":"ご口座を開設されるにあたりご利用規約に承諾しなければなりません。","Thursday":"木曜日","Walkthrough_Guide":"チュートリアルガイド","Settles":"約定時間","Invalid_date_of_birth_":"生年月日が無効です。","{JAPAN_ONLY}If_the_exercise_period_passes_without_the_option_being_exercised_by_the_buyer,_the_option_premium_received_by_the_seller_will_be_the_profit_made_on_the_trade_":"権利行使期限が到来し、権利行使が行われないオプションは消滅するため、所有するオプションは価値がなくなる。","Password_is_moderate":"パスワード強度は中です","Your_password_has_been_successfully_reset__Please_log_into_your_account_using_your_new_password_":"お客さまパスワードの再設定完了いたしました。新しいパスワードで口座にログインしてください。","{JAPAN_ONLY}A_binary_option_price_cannot_exceed_the_payout_amount_":"バイナリーオプションの価格はペイアウト額を上回ることはない。","Confirm_New_Password":"新しいパスワード（確認用）","Tuesday":"火曜日","We_are_not_accepting_accounts_from_residents_of_this_country_at_the_present_time_":"現在当社ではこの国の居住者からの口座開設を承ることができません。","{JAPAN_ONLY}A_Currency_Option_confers_the_right_to_sell_one_currency_in_exchange_for_another_currency_as_the_underlying_asset__For_example,_the_right_to_sell_Yen_and_buy_Dollars_is_known_as_a_Yen_Put_/_Dollar_Call_Option,_or_just_Yen_Put_for_short;_and_the_opposite_right_to_buy_Yen_and_sell_Dollar_is_called_a_Yen_Call_/_Dollar_Put_Option,_or_just_Yen_Call_for_short_":"通貨オプションとは、通貨を原資産とし、一方の通貨を売って、他方の通貨を買う権利である。たとえば円とドルをペアとする場合、円を売ってドルを買うものを、円プット／ドルコールオプション、略してドルコールオプションと呼び、ドルを売って円を買うものを、円コール／ドルプットオプション、略してドルプットオプションと呼ぶ。","Zoom":"ズーム","{JAPAN_ONLY}Option_prices_are_normally_dependant_on_elements_such_as_the_underlying_asset_price,_the_exercise_price,_the_length_of_time_until_the_exercise_point,_volatility,_and_interest_rates__However,_when_the_remaining_time_to_the_exercise_point_is_very_short,_there_is_no_need_to_consider_these_when_managing_option_trading_risk,_as_all_these_elements_are_constant_":"オプションの価格を形成する要素には原資産の価格、権利行使価格、権利行使期限までの期間の長さ、ボラティリティ、金利があるが、権利行使期限までの期間が短いオプションの場合、それぞれの要素はオプションの権利行使期限まで一定であるので、オプション取引のリスクを管理するときには、特に考慮する必要はない。","Please_deposit_before_transfer_to_client_":"お客さまへ送金される前にご入金をしてください。","Please_submit_a_valid_[_1]_":"有効な[_1]をご提出ください。","Information_Technology":"情報技術","Last_Digit_Prediction":"下一桁の数字を予想","Month":"月","Commodities_trading_experience":"コモディティ取引のご経験","Contract_/_Temporary_/_Part_Time":"契約/臨時/パートタイム","Potential_Payout":"ペイアウト","{JAPAN_ONLY}In_Japan_there_are_defined_trading_periods_for_binary_options_must_be_2_hours_or_longer,_and_all_trades_must_be_conducted_at_the_start_of_each_trading_period_":"バイナリーオプションの取引期間（満期）は2時間以上であり、全ての取引は取引期間の開始時点で成立し、成立したポジションは、判定によってのみ決済となる。","Housewife_/_Househusband":"主婦/主夫","Congratulations!_Your_account_has_been_created_":"おめでとうございます！口座の作成が完了しました。","Date_and_Time":"日時","{JAPAN_ONLY}Even_if_the_option_is_exercise_or_not_exercised,_the_original_option_premium_remains_with_the_option_seller_":"権利行使期限が到来し、権利行使が行われないオプションは消滅するが、売り手が受け取ったオプション料はそのまま売り手のものとなる。","{JAPAN_ONLY}It_is_possible_to_use_two_binary_options_to_make_a_profit_if_the_asset_price_settles_outside_the_two_strikes__It_is_also_possible_to_buy_a_single_range_option_that_will_achieve_the_same_result_":"２つのオプションを用い、権利行使価格の高いバイナリーコールオプションと権利行使価格の低いバイナリープットオプションを取得すれば、判定レートが２つのオプションの権利行使価格で作られた価格帯の外となった場合に収益が得られ、判定レートが所定の価格帯の外であった場合にペイアウトとなるレンジバイナリーオプションに似た投資を行うことができる。","Select_your_market":"取引市場を選択","Exercise_period":"権利行使期間","Others":"その他","Therefore_your_current_immediate_maximum_withdrawal_(subject_to_your_account_having_sufficient_funds)_is_[_1]_[_2]_":"そのため、現在即座にご出金いただける限度額（ただし、口座残高が不足していない場合）は[_1] [_2]です。","July":"７月","Try_adding_more_numbers_":"さらに数字を追加してみてください。","From":"開始","Tertiary":"第三の","Gaming_Account":"ゲームアカウント","50-100_million_JPY":"5,000万円〜1億円","To":"終了","Higher/Lower":"ラダーHIGH/ラダーLOW","Investments_&_Dividends":"投資と配当","ticks":"Tick","Credit/Debit":"支払/受取","Investment_Account":"投資口座","Note":"注意","Password_does_not_match_":"パスワードが一致しません。","Weekday":"平日","Withdrawal_Limits":"出金限度額","Industry_of_Employment":"雇用産業","details":"詳細","{JAPAN_ONLY}hour":"時間","{JAPAN_ONLY}[_1]_[_2]_payout_if_[_3]_stays_between_low_and_high_values_of_Exercise_price_through_close_on_[_4]_":"[_3]のSTAY-INは取引期間中([_4])に上限バリア未満かつ下限バリア超過を維持した場合、ペイアウト発生","Over_100_million_JPY":"1億を超える","Represents_the_maximum_amount_of_cash_that_you_may_hold_in_your_account___If_the_maximum_is_reached,_you_will_be_asked_to_withdraw_funds_":"口座で保有可能な口座残高の限度額を示します。限度額を超えた場合は出金手続きをお願いいたします。","Country_Manager":"カントリーマネージャー","Failed_to_update_trade_description_":"トレード内容の更新ができませんでした。","{JAPAN_ONLY}[_1]_[_2]_payout_if_[_3]_is_strictly_lower_than_Exercise_price_at_close_on_[_4]_":"[_3]のラダーLOWは、判定時刻([_4])の時点でバリア価格未満の場合、ペイアウト発生","Represents_the_maximum_volume_of_contracts_that_you_may_purchase_in_any_given_trading_day_":"購入可能な１日あたりのトレードの総額を示します。","Education":"お役立ち情報","Upcoming_Events":"取引短縮日","{JAPAN_ONLY}Section_4:_Risk":"第4章：リスク","Next_Day":"翌日","hour":"時間","New_password_is_same_as_old_password_":"新しいパスワードが旧パスワードと同じです。","Commodities_trading_frequency":"コモデティ取引頻度","Start_Trading":"トレード開始","{JAPAN_ONLY}Sorry,_you_have_failed_the_test,_please_try_again_after_24_hours_":"残念ながら、合格点に達しませんでした。24時間以降（週末を除く）に再受験してください。","Browser":"ブラウザ","Virtual_Account":"デモ口座番号","Your_transaction_reference_is":"トレード参照番号：","{JAPAN_ONLY}If_implied_volatility_increases_then_the_prices_of_both_call_and_put_types_of_plain_vanilla_options_will_increase_":"オプションの価値は、ボラティリティが上昇すれば、コールオプションもプットオプションも共に上昇する。","{JAPAN_ONLY}The_Exit_Price_is_the_price_that_is_observed_at_the_judgment_time,_and_is_used_to_determine_whether_a_payout_should_be_made_":"判定レートとは、権利行使時点の原資産価格であり、権利行使価格と比較し、ペイアウトの有無を判断するための価格をいう。","Stop-type":"ストップタイプ","Your_cashier_is_locked_as_per_your_request_-_to_unlock_it,_please_enter_the_password_":"お客様のキャッシャーはリクエストにより、ロックされました。 - 解除するにはパスワードをご入力ください。","Please_enter_an_integer_value":"半角で数値をご入力して下さい","Binary_options_or_other_financial_derivatives_trading_experience":"バイナリーオプションまたはその他金融デリバティブ取引のご経験","Sunday":"日曜日","{JAPAN_ONLY}[_1]_[_2]_payout_if_[_3]_ends_on_or_between_low_and_high_values_of_Exercise_price_at_close_on_[_4]_":"[_3]のEND-INは、判定時刻([_4])の時点で上限バリア未満かつ下限バリア以上で、ペイアウト発生","{JAPAN_ONLY}For_an_individual_investor,_all_profits_from_OTC_currency_options_trading_are_tax-free_":"個人投資者の場合、通貨関連店頭オプション取引の利益は全て非課税である。","Global_Customer_Service_Representatives":"グローバル・カスタマーサポート担当","In/Out":"レンジ","{JAPAN_ONLY}If_the_exercise_prices_and_exercise_times_are_the_same_for_an_American_style_and_European_style_option,_then_the_American_style_option_will_have_a_higher_price_":"権利行使価格、権利行使期間が同一のヨーロピアンタイプとアメリカンタイプのオプションでは、アメリカンタイプの方がオプション価格は高い。","You_should_enter_between_[_1]_characters_":"[_1]文字以内でご入力ください","Jump_To":"Xへ移動する","Limit":"制限","Select_market":"取引市場を選択","September":"９月","{JAPAN_ONLY}Price_of_call_option_will_be_lower_interest_rates_of_the_underlying_assets_is_low,_but_the_price_of_the_put_option,_go_up_when_the_interest_rates_of_the_underlying_assets_is_low_":"コールオプションの価格は原資産の金利が低くなると下がるが、プットオプションの価格は、原資産の金利が低くなると上がる。","{JAPAN_ONLY}An_option_price_is_the_sum_of_the_intrinsic-value_and_the_time-value_":"オプション価格は本源的価値に時間的価値を加えた値である。","{JAPAN_ONLY}If_the_buyer_of_an_option_does_not_exercise_the_option_rights,_there_will_be_no_fee_payable_to_the_option_seller_":"オプションの買い手は、権利行使をしなかった場合には、オプションの売り手にオプション料を支払わない。","Dec":"12","Status":"金融資産","Prices":"価格","{JAPAN_ONLY}In_case_of_the_right_to_buy_the_underlying_asset_(call_option),_when_the_underlying_asset_price_falls,_the_option_price_will_increase_":"原資産を買う権利（コールオプション）の場合、原資産価格が下落すると、オプションの価格は高くなる。","Stop_Profit_Level":"利益ストップレベル","{JAPAN_ONLY}Unlike_a_plain_vanilla_option,_an_in-the-money_binary_option_will_have_a_lower_price,_the_further_away_it_is_from_the_exercise_point_":"バイナリーオプションの場合、バニラオプションとは異なり、インザマネーのときには、残存期間が長くなるほど、オプション価格は低くなる。","{JAPAN_ONLY}For_a_call_option,_if_the_price_of_the_underlying_asset_is_higher_than_the_option_exercise_price,_it_is_know_as_an_in-the-money_option_":"コールオプションにおいて、原資産の価格が権利行使価格を上回っている状態をインザマネーという。","{JAPAN_ONLY}There_are_some_types_of_Binary_Option,_such_as_Range_Binary_Options,_Touch_or_No-Touch_Binary_Options,_that_are_exceptions_to_the_general_rule_where_payment_is_made_at_a_known_exercise_time__For_these_types_of_option_a_payment_is_made_automatically_at_Exit_Time_when_certain_conditions_have_been_met_":"バイナリーオプションには、オプションの満期を権利行使時刻として定め、権利行使時刻に自動的に権利行使が行われ、オプションの買い手にペイアウトが支払われる一般的なバイナリーオプションのほか、レンジバイナリーオプション、タッチバイナリーオプション、ノータッチバイナリーオプションなどの複数の種類がある。","{JAPAN_ONLY}Option_prices_are_normally_dependant_on_elements_such_as_the_underlying_asset_price,_the_exercise_price,_the_length_of_time_until_the_exercise_point,_volatility,_and_interest_rates__Apart_from_the_fixed_exercise_price,_all_other_elements_are_changing_constantly,_so_an_understanding_of_the_relationships_between_each_element_and_changes_in_the_options_price_is_necessary_for_the_management_of_options_trading_risk_":"オプションの価格を形成する要素には原資産の価格、権利行使価格、権利行使期限までの期間の長さ、ボラティリティ、金利があるが、権利行使価格を除き、他の要素は刻々と変化し、オプションの価格も変化する。したがってオプション取引のリスクを管理していくためには、それぞれの要素の変化とオプション価格の変化の関係を理解する必要がある。","Low_barrier_offset":"下限追加バリア値","Potential_Profit":"期待利益","Quality_Assurance_Engineer":"品質保証(QA)エンジニア","January":"１月","Rise/Fall":"アップ/ダウン","Password_is_weak":"パスワード強度は弱です","Only_2_decimal_points_are_allowed_":"小数点以下2桁のみご利用いただけます。","Sale_Date":"売却/判定時刻","Administrative_Executive":"部門管理者","Password_is_not_strong_enough_":"パスワード強度が十分ではありません。","Exclude_time_cannot_be_less_than_6_months_":"5ヶ月以下の除外時間を設定することはできません。","Item":"項目","Self-employed":"自営業","{JAPAN_ONLY}Congratulations,_you_have_pass_the_test,_our_Customer_Support_will_contact_you_shortly_":"おめでとうございます。テストに合格されましたので、カスタマーサポートよりメールにて口座開設の次のステップについてご連絡させていただきます。","days":"日","Maximum_aggregate_payouts_on_open_positions":"オープン中ポジションに対する払い戻し金額の最高総額","Start_Time":"取引時刻","Translator":"翻訳者","Mar":"3","Stays_In/Goes_Out":"STAY-IN/BREAK-OUT","Represents_the_maximum_number_of_outstanding_contracts_in_your_portfolio__Each_line_in_your_portfolio_counts_for_one_open_position__Once_the_maximum_is_reached,_you_will_not_be_able_to_open_new_positions_without_closing_an_existing_position_first_":"未決済分のトレード総数を示し、各行を１件分の未決済分のオープン中のポジションとしてカウントします。最高件数を超えた場合、オープン中のトレードを閉じて頂くことで新たなトレードの購入が可能になります。","Proofreader":"校正者","Period":"期間","Your_withdrawal_limit_is_[_1]_[_2]_(or_equivalent_in_other_currency)_":"お客さまの出金限度額は [_1] [_2] です。限度額以上の出金額をご希望される場合は、本人確認が必要となります。","Your_changes_have_been_updated_":"変更が更新されました。","Explanation":"取引概要","{JAPAN_ONLY}Payout_Amount":"ペイアウト金額","Login_ID":"ログインID","Low_barrier":"下限バリア","Current_Level":"現在のレベル","Password_is_strong":"パスワード強度は強です","Description":"取引内容","Total_Cost":"合計投資額","Marketing_Project_Manager":"マーケティングプロジェクトマネージャー","Deposit_of":"Xのご入金","{JAPAN_ONLY}Option_prices_depend_on_the_spot_price,_the_time_to_expiry,_the_volatility_of_the_spot_rate_and_interest_rates_":"店頭バイナリーオプション取引の場合、金融商品取引業者等が破たんすると、オプションの条件がインザマネーになっていたとしても権利行使が行えない可能性がある。","Corporate_Action":"企業活動","Administrator":"管理者","Revoke_access":"アクセス権の取消","March":"３月","{JAPAN_ONLY}Implied_volatility_is_a_prediction_of_the_future_rate_of_change_in_the_underlying_asset_":"インプライドボラティリティとは、原資産に対する将来の変動率を予測したボラティリティのことである。","Construction":"設営","Adjusted_Barrier":"調整バリア","30-50_million_JPY":"3,000〜5,000万円","New_token_created_":"新しいトークンが作成されました。","Quality_Assurance":"品質保証","Over_3_years":"3年以上","Accounting":"会計","{JAPAN_ONLY}The_payout_is_the_amount_that_the_option_seller_must_pay_to_the_buyer_if_the_buyer_exercises_his_right_when_the_conditions_for_a_payout_have_been_satisfied_":"ペイアウトとは、バイナリーオプションにおいて、あらかじめ定められた権利行使条件を満たし、権利行使が行われた結果、オプションの売り手が買い手にあらかじめ定めた金銭を支払うことをいい、支払われる額をペイアウト額という。","Withdrawal_is_done__Transaction_ID:":"ご出金が完了しました。取引参照ID：","Your_provided_email_address_is_already_in_use_by_another_Login_ID__According_to_our_terms_and_conditions,_you_may_only_register_once_through_our_site__If_you_have_forgotten_the_password_of_your_existing_account,_please_<a_href=\"[_1]\">try_our_password_recovery_tool</a>_or_contact_customer_service_":"ご入力いただいたメールアドレスは既に他のログインIDで使用されています。弊社の利用規約に基づき、複数のアカウント保持は禁止されております。パスワードをお忘れの場合は、<a href=\"[_1]\">こちら</a>からパスワードを再発行して頂くか、カスタマーサポートまでご連絡下さい。","Affiliate":"アフィリエイト","Compliance":"コンプライアンス","Save_as_SVG":"SVGで保存","{JAPAN_ONLY}In_general_a_binary_option_price_will_not_exceed_the_payout_amount_":"一般的には、インザマネーのバイナリーオプションの価格は、ペイアウト額を上回ることはない。","Start_time":"開始時間","December":"１２月","Forex_trading_experience":"外国為替取引のご経験","For_added_security,_please_check_your_email_to_retrieve_the_verification_token_":"セキュリティチェックのため、メールをご確認いただきワンタイムパスワードを取得してください。","{JAPAN_ONLY}Touches":"TOUCH","Monday":"月曜日","Trading_Times":"トレード対応時間","DevOps_Manager":"DevOps マネージャー","You_are_currently_logged_in_to_your_real_money_account_with_[_1]_([_2])_":"現在リアルマネー口座[_1] ([_2])にログインしています。","{JAPAN_ONLY}years":"年","period":"期間","No_experience":"ご経験がない","Sep":"9","Due_to_recent_changes_in_the_regulations,_we_are_required_to_ask_our_clients_to_complete_the_following_Financial_Assessment__Please_note_that_you_will_not_be_able_to_continue_trading_until_this_is_completed_":"規制変更により、下記財務評価にご記入頂く必要があります。こちらが完了しない限り、お取引を引き続きご利用いただけませんのでご注意ください。","{JAPAN_ONLY}The_Black-Scholes_model_is_widely_used_to_calculate_theoretical_option_prices_":"オプション価格の理論式として、ブラック・ショールズ・モデルが広く用いられている。","Binary_options_or_other_financial_derivatives_trading_frequency":"バイナリーオプションまたはその他金融デリバティブ取引の頻度","{JAPAN_ONLY}In_case_of_the_right_to_sell_the_underlying_asset_(put_option),_when_the_underlying_asset_price_rises,_the_option_price_will_increase_":"原資産を売る権利（プットオプション）の場合、原資産価格が上昇すると、オプションの価格は高くなる。","View":"表示","Select_your_trade_type":"取引タイプを選択して下さい","Apr":"4","Password_Reset":"パスワード再設定","Your_cashier_is_locked_as_per_your_request_-_to_unlock_it,_please_click_[_1]here":"お客さまの入出金はリクエストによりロックされました。 - 解除するには[_1]こちらをクリックしてください。","Waiting_for_entry_tick_":"エントリーTickを検出中です・・・","Stake":"購入価格","{JAPAN_ONLY}A_binary_put_options_buyer_will_benefit_from_a_correct_prediction_that_the_asset_price_will_rise_above_the_strike_price_by_the_judgment_time_":"判定時刻に、原資産価格が権利行使価格よりも上昇していると予測し、バイナリープットオプションを購入した。","Forex_trading_frequency":"外国為替取引の頻度","Maximum_account_cash_balance":"口座預託額の上限額","This_contract_has_WON":"このトレードは勝ち判定です","Profit":"利益","Su":"日曜日","You_have_not_granted_access_to_any_applications_":"アプリケーションへのアクセス権限がありません。","{JAPAN_ONLY}Dear_customer,_you_are_not_allowed_to_take_knowledge_test_until_[_1]__Last_test_taken_at_[_2]_":"お客さまへ\n\n現在、知識確認テストの受験を行うことができません。[_1]以降に再受験してください。前回受験日[_2]","[ctx,minimum_duration,_for_example_minimum_15_seconds]min":"%ctx(最短期間, 例： 最短 15 秒）分","Invalid_email_address":"無効なEメールアドレス","Questions":"問題","Your_transaction_reference_number_is_[_1]":"決済の参照番号は[_1]です","{JAPAN_ONLY}It_cannot_be_said_that_binary_options_trading_is_unconditionally_advanteous_over_regular_spot_fx_trading,_because_investors_may_lose_all_of_their_investment_whereas_in_spot_fx_trading_there_will_still_be_some_value_in_the_trading_position_":"投資者に不利な方向に動いた場合には、バイナリーオプションが投資額を全額失うのに比べ、ＦＸは投資額の一部が残る場合があるので、一概にバイナリーオプションが有利とはいえない。","{JAPAN_ONLY}Options_are_said_to_be_leveraged_products_because_in_the_case_of_large_moves_in_the_underlying_asset_price,_the_values_of_the_options_can_increase_by_large_amounts_compared_to_the_price_paid_for_the_option_":"オプションのレバレッジ効果により、買い手はオプション料に比べ数倍の利益が得られる可能性があるが損失はオプション料に限られ、逆に売り手は利益がオプション料に限られるが損失はオプション料の数倍となる可能性がある。","{JAPAN_ONLY}It_is_determined_the_customers_have_basic_knowledge_of_option_trading_by_the_results_of_the_knowledge_test__If_the_customers_start_trading,_the_customers_need_to_agree_not_have_lawsuit_despite_the_customer_are_shortage_of_knowledge_related_to_options_trading,_and_it_cause_damages,_we_admit_to_open_the_trading_account_":"本テストの結果により適正と判断し、取引を開始する場合は、その後当社との間に取引上のトラブルが生じたとしても、オプション取引に関わる知識が不足していたにも関わらず当社が取引を認めたことを訴因とはしないことに同意いただくものとします。","Ref_":"約定番号","{JAPAN_ONLY}For_a_call_option,_if_the_price_of_the_underlying_asset_is_higher_than_the_option_exercise_price,_it_is_know_as_an_out-of-the-money_option_":"コールオプションにおいて、原資産の価格が権利行使価格を上回っている状態をアウトオブザマネーという。","Balance":"口座残高","Secondary":"第二","{JAPAN_ONLY}In_contrast_to_other_types_of_FX_options,_short_positions_in_FX_Binary_Options_cannot_be_closed-out_as_they_are_not_subject_to_loss-cut_regulations_":"通貨関連バイナリーオプションのショートポジションは、他の通貨関連オプションのショートポジションとは異なり、ロスカット規制の対象となる金融商品ではないため、ロスカットされることはない。","Current":"現在","Purchase":"購入","Quantitative_Analysis":"計量分析","You_have_already_withdrawn_the_equivalent_of_[_1]_[_2]_":"[_1] [_2] と同等の金額を既に出金されています。","Financial_Assessment":"財務評価","{JAPAN_ONLY}There_are_two_types_of_option_delivery:_One_requires_exchanging_the_underlying_asset,_and_the_other_requires_a_payment_which_depends_on_the_difference_between_the_fair_market_price_and_the_exercise_price__A_Binary_Option_is_the_second_type_where_if_the_fair_market_price_meets_certain_conditions_with_respect_to_the_exercise_price,_then_an_agreed_fixed_amount_will_be_paid_to_the_option_buyer_":"オプションには、権利行使によって、実際に原資産を受け渡すものと、原資産の時価と権利行使価格の差額を授受するものがある。このうち、原資産の時価と権利行使価格が一定の条件を満たした場合には一定の金銭を支払うものをバイナリーオプションと呼ぶ。","Sa":"土曜日","Other_financial_instruments_trading_frequency":"その他金融商品取引の頻度","Next":"次","Less_than_$25,000":"$25,000未満","{JAPAN_ONLY}Take_knowledge_test":"知識確認テストを受ける","Contract_Information":"約定通知","Enter_the_barrier_in_terms_of_the_difference_from_the_spot_price__If_you_enter_+0_005,_then_you_will_be_purchasing_a_contract_with_a_barrier_0_005_higher_than_the_entry_spot__The_entry_spot_will_be_the_next_tick_after_your_order_has_been_received":"スポット価格に差異を付加する目的でバリア値を設定しましょう。もしバリア値として+0.005を設定した場合はスポット価格より0.005高値のバリアが設定されたトレードを購入することになります。尚、スポット価格は注文を受けた次のTickが採用されます。","Th":"木曜日","Action":"売買","February":"２月","{JAPAN_ONLY}A_binary_put_option_buyer_will_benefit_from_a_correct_prediction_that_the_asset_price_will_decline_to_below_the_strike_price_by_the_judgment_time_":"判定時刻に、原資産価格が権利行使価格よりも下落していると予測し、バイナリープットオプションを購入した。","{JAPAN_ONLY}For_a_currency_binary_option_which_has_the_underlying_exchange_rate_of_dollars_against_yen,_the_right_to_receive_a_payout_if_the_yen_becomes_weaker_is_known_as_a_dollar-put_binary_option_":"通貨バイナリーオプションのうち、例えばドル円を原資産とし、円安になればペイアウトを受け取る権利は、ドル円のバイナリープットオプションと呼ぶ。","Your_request_to_transfer_[_1]_[_2]_from_[_3]_to_[_4]_has_been_successfully_processed_":"[_3]から[_4]へのご送金[_1] [_2]リクエストが正常に処理されました。","minute":"分","There_was_some_invalid_character_in_an_input_field_":"入力された文字に使用できない文字が含まれています。","Amount":"金額","Authenticate":"口座アップグレード","{JAPAN_ONLY}Stays_Between":"STAY-IN","{JAPAN_ONLY}The_seller_of_an_option_should_receive_the_option_premium_from_the_buyer,_even_if_the_buyer_waives_the_right_to_exercise_the_option_":"オプションの売り手は、買い手が権利行使を放棄した場合でも、買い手からオプション料を受け取ることができる。","6_months_to_1_year":"6ヶ月から1年","This_feature_is_not_relevant_to_virtual-money_accounts_":"この機能は、デモ口座ではご利用頂けません。","Never":"決してありません","Your_account_is_not_fully_authenticated__Please_visit_the_<a_href=\"[_1]\">authentication</a>_page_for_more_information_":"口座の認証はまだ完了しておりません。詳細に関しましては<a href=\"[_1]\">認証</a> ページをご覧ください。","Format:_yyyy-mm-dd_(not_required_for_virtual-money_accounts)":"形式：年月日（デモ口座の方はご必要ありません）","{JAPAN_ONLY}Delta_refers_to__a_percentage_change_of_the_option_price_with_respect_to_the_change_in_the_underlying_asset_price_":"デルタとは、原資産価格の変化に対するオプション価値の変動割合をいう。","{JAPAN_ONLY}As_the_time_to_the_exercise_point_shortens,_the_time-value_of_a_plain_vanilla_option_decreases_":"時間的価値は、オプションの権利行使期限までの時間が短くなるほど減少する。","{JAPAN_ONLY}If_the_underlying_asset_price_is_100_yen,_the_exercise_price_is_80_yen,_and_the_call_option_price_is_45_yen,_then_it_can_be_said_that_the_option's_intrinsic-value_is_20_yen,_and_its_time-value_is_25_yen_":"原資産価格100円、権利行使価格80円、オプション価格45円のときのコールオプションの本源的価値と時間的価値は本源的価値＝20円、時間的価値＝25円である。","Feb":"2","{JAPAN_ONLY}Price_of_OTC_currency_option_is_the_calculated_value_based_on_multiple_elements_and_is_determined_by_relative_trading_basically_":"店頭通貨オプションの価格は、複数の要素に基づく計算値であり、基本的には相対取引で価格は決定される。","Login_History":"ログイン履歴","40_transactions_or_more_in_the_past_12_months":"過去12ヶ月で40以上のお取引","Income_Source":"収入源","Password_must_contains_at_least_1_digit,_1_uppercase_letter_and_1_lowercase_letter_":"数字、大文字、小文字を各1字以上含めるようにしてください。","Sorry,_this_feature_is_not_available_":"申し訳ございませんが、この機能はご利用いただけません。","{JAPAN_ONLY}In_OTC_currency_binary_options_trading,_if_the_exchange_rate_during_the_trading_period_moves_by_more_than_expected_in_one_direction,_and_there_are_no_longer_any_exercise_prices_which_can_continue_to_trade,_it_is_possible_under_certain_conditions_to_add_further_exercise_prices__However,_even_when_further_exercise_price_have_been_added,_the_prices_of_the_original_options_will_not_be_affected_":"店頭通貨バイナリーオプション取引では、取引期間中の為替レートが一方向に想定以上に動き、アットザマネー周辺で適切な取引が継続できる権利行使価格が無くなった場合には、途中で権利行使価格を追加することがある。ただし、権利行使価格が追加された場合であっても、それまで利用した権利行使価格は引き続き取引を行い、またその取引価格が、権利行使価格の追加の影響を受けることはない。","Internal_Auditor":"内部監査","Back":"戻る","{JAPAN_ONLY}This_knowledge_test_is_required_by_law__As_we_provide_the_test,_we_know_customers_better_whether_the_customers_are_suitable_investors_to_be_carried_out_the_binary_options_trading,_and_customers_can_start_trading_with_us_":"この知識確認テストは、法令で義務付けられており、当社がお客様の事を知り、お客様がバイナリーオプション取引を行うことに適した投資者がどうかを判断したうえで、お客様との取引を開始するためのものです。","Aug":"8","Password":"パスワード","Once_you_click_the_'Submit'_button,_the_funds_will_be_withdrawn_from_your_account_and_transferred_to_your_Client's_account_":"一旦「送信」ボタンをクリックされますと、資金はお客さまの口座から出金され、お客さまの顧客の口座に送金されます。","1-2_years":"1-2年","Sorry,_an_error_occurred_while_processing_your_request_":"申し訳ございませんが、リクエスト処理中にエラーが発生しました。","Total_Profit/Loss":"合計　損益(JPY)","{JAPAN_ONLY}A_bought_or_sold_binary_option_may_be_closed-out_before_exercise_time_by_selling_or_buying-back_the_option,_or_alternatively_by_cancelling_":"購入したバイナリーオプションは、反対売買（又は解約）により、判定時刻より前に決済することができる。","Jan":"1","Presents_the_maximum_aggregate_payouts_on_outstanding_contracts_in_your_portfolio__If_the_maximum_is_attained,_you_may_not_purchase_additional_contracts_without_first_closing_out_existing_positions_":"ポジション一覧ページ内に存在する未決済分のポジションに対する払い戻し金額の最高総額を示します。最高総額を超えた場合、保有中のオープンポジションを決済されるまで新規注文を行えません。","not_available":"利用不可","Internal_Audit":"内部監査","Senior_Front-End_Developer":"シニアフロントエンド開発者","{JAPAN_ONLY}If_the_probablility_of_a_payout_is_50%_then_when_the_potential_payout_is_less_than_100%_of_the_price_paid_for_the_option,_the_expected_return_on_the_investment_will_be_less_than_100%_":"ペイアウトを受け取る確率が50％、投資額に対するペイアウトの倍率が2倍を下回る場合の期待収益率は1倍を下回り、予測回収額は投資額を下回る。","{JAPAN_ONLY}Section_3:_Outline":"第3章：概要","Verification_code_format_incorrect_":"ワンタイムパスワードの形式が不適切です。","m":"男性","Exit_Level":"判定レベル","0-1_year":"0~1年","{JAPAN_ONLY}FX_Rate":"通貨ペア","Password_is_very_strong":"パスワード強度は最強です","{JAPAN_ONLY}It_is_possible_to_use_two_binary_options_to_make_a_profit_if_the_asset_price_settles_inbetween_the_two_strikes__It_is_also_possible_to_buy_a_single_range_option_that_will_achieve_the_same_result_":"２つのオプションを用い、権利行使価格の高いバイナリープットオプションと権利行使価格の低いバイナリーコールオプションを取得すれば、判定レートが２つのオプションの権利行使価格の間となった場合に収益が得られ、判定レートが所定の価格帯の中であった場合にペイアウトとなるレンジバイナリーオプションに似た投資を行うことができる。","Deposit":"入金","Please_enter_a_number_greater_or_equal_to_[_1]_":"[_1]以上の数字を入力してください。","numbers":"数字","Spot_Time":"スポットタイム","Old_password_is_wrong_":"旧パスワードの値が不正です。","{JAPAN_ONLY}[_1]_[_2]_payout_if_[_3]_ends_otside_low_and_high_values_of_Exercise_price_at_close_on_[_4]_":"[_3]のEND-OUTは、判定時刻([_4])の時点で上限バリア以上もしくは下限バリア未満で、ペイアウト発生","{JAPAN_ONLY}weeks":"週間","Date_(GMT)":"日付 (GMT)","{JAPAN_ONLY}It_prohibits_the_copying_of_the_questions___In_addition_,_You_agree_that_you_will_not_leak_to_third_party":"問題の複写を禁止します。また、第三者に漏えいしないことに同意いただくものとします。","My_Account":"口座情報","Last_Digit_Stats":"下一桁ステータス","Mo":"月曜日","Profit_Table":"取引明細","Touch/No_Touch":"TOUCH/NO-TOUCH","The_Payment_Agent_facility_is_currently_not_available_in_your_country_":"その決済サービスは、お客さまのお住まいの国では現在ご利用いただけません。","The_financial_trading_services_contained_within_this_site_are_only_suitable_for_customers_who_are_able_to_bear_the_loss_of_all_the_money_they_invest_and_who_understand_and_have_experience_of_the_risk_involved_in_the_acquistion_of_financial_contracts__Transactions_in_financial_contracts_carry_a_high_degree_of_risk__If_purchased_contracts_expire_worthless,_you_will_suffer_a_total_loss_of_your_investment,_which_consists_of_the_contract_premium_":"当社における金融トレードは、投資された資金が全て失われる可能性があることをご理解出来る方、及び金融トレードにおけるあらゆるリスクを熟知されご経験されている方に対してのみ適切なサービスになります。金融トレードの売買は高いリスクを伴います。もし購入したトレードが負け判定となった場合は、購入価格も含め投資された資金が全て失われる可能性があります。","Original_High_Barrier":"オリジナル高バリア","There_was_a_problem_accessing_the_server_during_purchase_":"購入時にサーバーアクセスのエラーが発生がしました。","Applications":"アプリケーション","There_was_a_problem_accessing_the_server_":"サーバーアクセスにエラーが発生しました。","Exit_Spot_Time":"判定時間","apostrophe":"アポストロフィ","There_was_an_error":"エラーが発生しました","Are_you_sure_that_you_want_to_permanently_revoke_access_to_application":"アプリケーションへのアクセスを完全に削除してもよろしいですか？","{JAPAN_ONLY}As_the_exercise_deadline_approaches,_the_price_of_an_out-of-the-money_binary_option_will_move_towards_zero_":"権利行使期限が近づくにつれて、アウトオブザマネーのバイナリーオプションの価格はゼロに近づく。","Quantitative_Analyst":"計量分析者","Your_trading_statistics_since_[_1]_":"[_1]からのお取引統計情報","You_have_already_withdrawn_the_equivalent_of_[_1]_[_2]_in_aggregate_over_the_last_[_3]_days_":"直近[_3]日間に累計[_1] [_2] と同等の金額を既に出金されています。","Start_trading_with_your_Demo_Account":"デモ口座でお取引をはじめる","years":"年","To_create_a_real_account_for_MetaTrader,_<a_href=\"[_1]\">upgrade_to_[_2]_real_money_account</a>_":"MetaTraderのリアル口座を作成するには、<a href=\"[_1]\">[_2]リアル口座へアップグレード</a>いただく必要があります。","Entry_Level":"エントリーレベル","Upgrade_to_a_Financial_Account":"金融口座へアップグレード","Entry_Spot":"取引時レート","Targeting_medium-term_/_long-term_profits":"中期利益/長期利益を目標にする","Select_your_underlying_asset":"原資産を選択して下さい","{JAPAN_ONLY}The_price_of_an_option_can_be_affected_by_the_underlying_asset_price,_by_the_volatility_rate_of_the_underlying_asset,_or_by_the_time_remaining_to_the_exercise_time_":"オプションの価格は、原資産の価格、原資産の価格変動率、権利行使期限までの時間、金利のいずれの影響を受ける。","months":"月","Transaction_performed_by":"xxxによって取引が実行されました","{JAPAN_ONLY}minutes":"分","Salaried_Employee":"サラリーマン","Margin_FX":"外国為替証拠金取引","{JAPAN_ONLY}A_modified_version_of_the_Black-Scholes_model_is_widely_used_to_calculate_the_theoretical_prices_of_binary_options_":"バイナリーオプションの理論価格計算には、ブラック・ショールズ・モデルを修正した計算モデルが広く用いられている。","{JAPAN_ONLY}When_buying_a_vanilla_put_option,_the_break-even_price_at_the_exercise_point_is_the_strike_price_minus_the_option_price_paid_in_units_of_the_underlying_":"プットオプションの買いでは、権利行使価格に原資産1単位当たりのオプション料を減算した価格が損益分岐点である。","{JAPAN_ONLY}minute":"分","Saturday":"土曜日","Permissions":"アクセス許可","{JAPAN_ONLY}Price_of_the_option,_the_price_of_the_underlying_asset,_price_fluctuation_rate_of_the_underlying_assets,_the_time_until_the_exercise_date,_subject_to_any_of_the_impact_of_interest_rates_":"店頭バイナリーオプション取引の場合、金融商品取引業者等が破たんすると、オプションの条件がインザマネーになっていたとしても権利行使が行えない可能性がある。","Previous_Day":"前日","Foreign_currency_deposit":"外貨預金","{JAPAN_ONLY}If_you_sell_a_currency_binary_call_option_at_a_price_of_500_yen,_with_an_underlying_of_dollar_against_yen,_the_payout_is_1,000_yen,_and_the_strike_price_is_100,_then_if_the_judgment_price_at_exercise_time_is_99,_you_will_need_to_payout_1,000_yen_to_the_buyer_of_the_option_":"権利行使価格１ドル100円、ペイアウト1,000円のドル円のコールバイナリーオプションの購入代金500円を受け取り、判定レートが１ドル９９円となり権利行使が行われ、1,000円のペイアウトを支払った。","False":"誤","Resources":"取引参考情報","month":"月","{JAPAN_ONLY}As_the_expected_volatility_of_the_underlying_asset_increases,_a_plain_vanilla_option_price_will_move_higher_":"原資産の予測される価格変動率が高いほど、オプションの価格は高くなる。","View_your_statement":"取引残高を表示","Verification_Token":"ワンタイムパスワード","{JAPAN_ONLY}Binary_options_have_lower_risk_than_vanilla_options_for_option_sellers,_because_with_binary_options_the_maximum_loss_is_fixed_":"バイナリーオプションは、売り手の損失が限定されており、バニラオプションに比べ、ローリスクハイリターンな取引といえる。","Barrier_Change":"バリア値の変更","{JAPAN_ONLY}A_Covered_option_position_is_where_you_hold_an_offsetting_position_in_the_underlying_asset_":"カバ－ド・オプションとはオプションの売りポジションをカバ－するような原資産を保有し、オプションを売ることである。","App_ID":"アプリケーション ID","{JAPAN_ONLY}If_you_sell_a_currency_binary_put_option_at_a_price_of_500_yen,_with_an_underlying_of_dollar_against_yen,_the_payout_is_1,000_yen,_and_the_strike_price_is_100,_then_if_the_judgment_price_at_exercise_time_is_99,_you_will_need_to_payout_1,000_yen_to_the_buyer_of_the_option_":"権利行使価格１ドル100円、ペイアウト1,000円のドル円のプットバイナリーオプションの購入代金500円を受け取り、判定レートが１ドル９９円となり権利行使が行われ、1,000円のペイアウトを支払った。","This_contract_won":"このトレードは勝ち判定","Duration":"取引期間","Minimum_of_[_1]_characters_required_":"[_1]文字以上でご入力ください。","loading___":"読み込み中","Director":"取締役","Please_follow_the_pattern_3_numbers,_a_dash,_followed_by_4_numbers_":"ハイフンを入れて半角で入力してください","Closes":"取引終了時間","Real_Account":"リアル口座番号","Contract_Confirmation":"トレード確定","Last_digit_stats_for_the_latest_[_1]_ticks_on_[_2]":"[_2]の最新[_1] tickの下一桁統計","Jul":"7","Previous":"戻る","{JAPAN_ONLY}The_price_of_a_binary_option_is_affected_by_not_only_the_change_in_the_underlying_asset_price,_but_also_the_change_in_remaining_time_to_the_exercise_point_":"バイナリーオプションの価格は、原資産価格の変化の影響を受けるとともに、権利行使期限までの残存時間の変化の影響も受ける。","{JAPAN_ONLY}TOUCH_/NO-TOUCH":"TOUCH/NO-TOUCH","Over/Under":"以上/以下","Open_a_Financial_Account":"金融口座の開設","Trading_and_Withdrawal_Limits":"取引及び出金限度額","Short":"ショート","This_field_is_required_":"この項目は必須です。","{JAPAN_ONLY}Section_2:_Method":"第2章：方法","{JAPAN_ONLY}To_invest_a_binary_options_investment_accurately,_the_customer_are_required_knowledge_and_experience_related_to_derivative_transactions_":"バイナリーオプション投資を的確に行うにはオプション取引などデリバティブ取引に関わる知識や経験が必要です。","Nov":"11","Maximum_daily_turnover":"１日の取引数量限度額","{JAPAN_ONLY}If_the_buyer_of_an_option_waives_his_right_to_exercise,_a_transaction_in_the_underlying_asset_will_not_be_dealt_between_the_seller_and_the_buyer_":"オプションの買い手は、権利を放棄することができる。放棄した場合には、オプションの売り手との間での原資産の売買は成立しない。","{JAPAN_ONLY}END-IN/END-OUT":"END-IN/END-OUT","1-3_years":"1〜3年","When_you_click_\"Ok\"_you_will_be_excluded_from_trading_on_the_site_until_the_selected_date_":"\"Ok\"をクリックすると、選択した日付までこのサイトでのトレードができなくなります。","Adjust_trade_parameters":"取引期間を選択して頂き購入希望ロット数を入力して下さい。","Please_input_a_valid_date":"有効な日にちを入力して下さい。","{JAPAN_ONLY}For_an_out-of-the-money_option,_the_further_away_from_the_underlying_asset_price_that_the_option_exercise_price_is,_the_lower_the_price_of_the_option_will_be_":"アウトオブザマネーのオプションでは、原資産価格が権利行使価格から離れるほど、オプション価格は低くなる。","Cashier":"入出金","Deposit_[_1]_[_2]_virtual_money_into_your_account_[_3]":"[_1] [_2]のバーチャルマネーをアカウント[_3]へ入金する","{JAPAN_ONLY}Options_may_be_European_or_American_style_of_exercise,_and_those_which_can_be_exercised_at_only_one_expiry_time_are_the_European_style_options_":"オプション取引にはヨ－ロピアンタイプとアメリカンタイプがあり、権利行使期間の満期時だけに権利行使できるものをヨーロピアンタイプという。","Please_[_1]_to_view_this_page":"ご利用頂くためにはログインが必要です","Sorry,_an_error_occurred_while_processing_your_account_":"申し訳ございませんが、処理中にエラーが発生しました。","Predict_the_direction<br_/>and_purchase":"方向性<br />を予測して購入","Sorry,_this_feature_is_available_to_virtual_accounts_only_":"申し訳ございません。この機能はデモ口座のみでご利用頂けます。","Low_Barrier":"下限バリア","Week_of":"週","minimum_available_duration":"最短取引期間","The_two_passwords_that_you_entered_do_not_match_":"入力頂いたパスワードと一致しません。","{JAPAN_ONLY}Historical_volatility_is_a_prediction_of_the_future_rate_of_change_in_the_underlying_asset_":"ヒストリカルボラティリティとは、原資産に対する将来の変動率を予測したボラティリティのことである。","{JAPAN_ONLY}The_Exercise_Price_is_the_level_at_which_the_option_buyer_has_the_right_to_trade_the_underlying,_and_is_also_used_for_binary_options_to_determine_whether_the_buyer_should_receive_a_payout_":"権利行使価格とは、権利行使により原資産を購入または売却する価格であり、バイナリーオプションの場合には、ペイアウトの発生の有無を判断する基準価格である。","Please_select_a_valid_date":"有効な日付を選択してください","{JAPAN_ONLY}For_both_call_and_put_options,_if_the_underlying_asset_price_is_the_same_as_the_exercise_price,_it_is_known_as_an_at-the-money_option_":"コールオプション、プットオプション共に、原資産の価格が権利行使価格と同じ状態をアットザマネーという。","To_authenticate_your_account,_kindly_email_the_following_to_[_1]":"お客さまの口座を認証いただくには、[_1]へメールを送信してください。","Matches/Differs":"マッチ/アンマッチ","Long":"ロング","{JAPAN_ONLY}year":"年","To_create_a_real_account_for_MetaTrader,_switch_to_your_[_1]_real_money_account_":"MetaTraderのリアル口座を作成いただくには、[_1]リアル口座へ切り替えてください。","{JAPAN_ONLY}For_a_plain_vanilla_option,_as_the_time_to_the_exercise_point_shortens,_the_price_of_the_option_will_decrease_":"権利行使期限までの残り時間が短くなるほど、オプションの価格は低くなる。","Adjusted_Low_Barrier":"調整低バリア","Confirm":"決定","[_1]_has_updated_its_[_2]__By_clicking_OK,_you_confirm_that_you_have_read_and_accepted_the_updated_[_2]_":"[_1]が[_2]を改定いたします。当社でお取引なさっているお客さまにおいて、改定後の[_2]の内容を必ずご確認いただく必要がございます。原則、改定後の書面の内容をご確認いただきOKボタンを押して頂くまで、お取引できなくなりますので、お取引の際ご注意ください。","Failed":"失敗しました","Amount_per_point":"ポイントごとの金額","{JAPAN_ONLY}week":"週間","Original_Barrier":"オリジナルバリア","Sorry,_account_opening_is_unavailable_":"申し訳ございませんが、口座開設をご利用いただけません。","{JAPAN_ONLY}Goes_Outside":"BREAK-OUT","Less_than_$100,000":"$100,000未満","Your_token_has_expired__Please_click_<a_class=\"pjaxload\"_href=\"[_1]\">here</a>_to_restart_the_verification_process_":"ワンタイムパスワードの有効期限が切れています。再度、<a class=\"pjaxload\" href=\"[_1]\">「最初からやり直し」</a> をクリックしてワンタイムパスワードを発行して下さい。","Year":"年","{JAPAN_ONLY}A_Binary_Option_contains_the_right_for_the_buyer_to_receive_a_certain_fixed_amount_if_the_market_price_reaches_the_exercise_price_by_the_exercise_time,_but_it_does_not_contain_any_rights_to_sell_or_buy_the_underlying_asset_":"バイナリーオプションは、権利行使期日の原資産価格が権利行使価格に達した場合、あらかじめ定めた一定額のペイアウトを受け取ることのできる権利であり、対象となる原資産を売買する権利ではない。","Update":"更新","{JAPAN_ONLY}There_are_many_types_of_Binary_Option,_including_some_such_as_Range_Binary_Options_and_Touch_or_No-Touch_Binary_Options_which_do_not_always_require_automatic_payment_at_Exercise_Time_and_which_will_be_settled_earlier_if_certain_conditions_have_been_met__However,_in_all_cases,_for_a_payment_to_be_required,_the_option_must_end_In_The_Money_":"バイナリーオプションには、単にオプションの満期を権利行使時刻として定め、権利行使時刻にインザマネーの場合に限り自動的に権利行使が行われ、オプションの買い手にペイアウトが支払われる、一般的な内容のもののほか、レンジバイナリーオプションやタッチバイナリーオプション、ノータッチバイナリーオプションなどの複数の種類がある。","August":"８月","Net_Annual_Income":"年間純収入","and":"かつ","Net_profit":"純利益","You_did_not_change_anything_":"変更はありません。","Your_[_1]_accounts_are_unavailable__For_any_questions_please_contact_[_2]_":"お客さまのご口座[_1]はご利用いただけません。ご不明な点がございましたら[_2]までご連絡ください。","Self-Employed":"自営業","{JAPAN_ONLY}The_particular_details_of_binary_options_are_all_the_same,_no_matter_which_broking_company_you_trade_with_":"店頭バイナリーオプションの金融商品としての内容は、取扱金融商品取引業者が異なっても同じである。","{JAPAN_ONLY}days":"日","{JAPAN_ONLY}The_price_of_OTC_binary_options_of_the_same_conditions,_(sometimes)_the_price_varies_depending_on_transactions_dealers_handling_financial_instruments_business_":"同一条件の店頭バイナリーオプションの価格は、取扱金融商品取引業者により価格が異なる（場合がある）。","High_barrier_offset":"上限追加バリア値","The_maximum_number_of_tokens_([_1])_has_been_reached_":"トークンの最大数([_1]) に達しました。","seconds":"秒","Your_session_duration_limit_will_end_in_[_1]_seconds_":"お客様の取引継続時間制限は[_1]秒後に終了します。","{JAPAN_ONLY}For_an_in-the-money_option,_the_further_away_from_the_underlying_asset_price_that_the_option_exercise_price_is,_the_lower_the_price_of_the_option_will_be_":"インザマネーのオプションでは、原資産価格が権利行使価格から離れるほど、オプション価格は低くなる。","Please_wait_<br_/>Your_request_is_being_processed_":"少々お待ち下さい。<br />リクエストを処理中です。","End_Time":"判定時刻","This_contract_was_affected_by_a_Corporate_Action_event_":"この契約は、コーポレートアクションの影響を受けていました。","{JAPAN_ONLY}[_1]_[_2]_payout_if_[_3]_does_not_touch_Exercise_price_through_close_on_[_4]_":"[_3]のTOUCHは、取引期間([_4])が終了するまでにバリア価格にタッチしない場合、ペイアウト発生","Human_Resource_Executive":"人材管理","Price":"価格","Adjusted_High_Barrier":"調整高バリア","Customer_Support":"カスタマーサポート","We_are_not_able_to_stream_live_prices_at_the_moment__To_enjoy_live_streaming_of_prices_try_refreshing_the_page,_if_you_get_this_issue_after_repeated_attempts_try_a_different_browser":"現在、価格情報を更新することはできません。価格情報を更新したい場合は、このページを更新して下さい。状況が改善されない場合は、他のブラウザをお試しください。","[_1]_Please_click_the_link_below_to_restart_the_password_recovery_process__If_you_require_further_assistance,_please_contact_our_Customer_Support_":"[_1]下記リンクをクリックしてパスワードの再設定を再度お試しください。サポートが必要な場合は、 カスタマーサポートまでご連絡ください。","Over_$1,000,000":"$1,000,000以上","Jun":"6","{JAPAN_ONLY}A_binary_call_option_buyer_will_benefit_from_a_correct_prediction_that_the_asset_price_will_decline_to_below_the_strike_price_by_the_judgment_time_":"判定時刻に、原資産価格が権利行使価格よりも下落していると予測し、バイナリーコールオプションを購入した。","Upgrade_to_a_Real_Account":"リアル口座へアップグレード","Sell_at_market":"売却","Sale_Price":"決済価格(JPY)","Keep_track_of_your_authorised_applications_":"認証済みアプリケーションを引き続き追跡してください。","{JAPAN_ONLY}If_you_buy_a_currency_binary_call_option_at_a_price_of_500_yen,_with_an_underlying_of_dollar_against_yen,_the_payout_is_1,000_yen,_and_the_strike_price_is_100,_then_if_the_judgment_price_at_exercise_time_is_99,_you_will_receive_a_payout_1,000_yen_from_the_seller_of_the_option_":"権利行使価格１ドル100円、ペイアウト1,000円のドル円のコールバイナリーオプションを500円で購入し、判定レートが１ドル９９円となり権利行使が行われ、1,000円のペイアウトを受け取った。","Exit_Spot":"判定レート","{JAPAN_ONLY}The_seller_of_a_vanilla_option_can_not_choose_whether_to_exercise_the_option_or_not__His_profit_is_limited_to_the_price_received_for_the_option,_whereas_his_potential_loss_is_unlimited_and_could_be_substantial_":"バニラオプションの売り手は、利益額はオプション料に限定される一方、原資産価格と権利行使価格の差が損失となるので、原資産価格が無限大とすれば、その損失額も無限大となる。","Sorry,_you_have_entered_an_incorrect_cashier_password":"申し訳ございませんが、ご入力頂いた入出金パスワードに誤りがあります","Tu":"木曜日","{JAPAN_ONLY}Option_Type":"オプションタイプ","Random":"ランダム","Even/Odd":"偶数/奇数","Contract_Sold":"売却","Indices_trading_frequency":"インデックス取引の頻度","Return":"リターン率","Please_enter_a_number_between_[_1]_":"[_1]の間の数字を入力してください。","High_Barrier":"上限バリア","You_need_to_finish_all_20_questions_":"まだ、未回答の問題があります。","verification_token":"ワンタイムパスワード","Try_adding_more_letters_":"文字をさらに追加してみてください。","April":"４月","Shop":"ショップ","Finish":"完了","Save_as_JPEG":"JPEGで保存","Your_current_balance_is":"お客さまの現在の残高はxxxです。","{JAPAN_ONLY}Lower":"LOW","{JAPAN_ONLY}[_1]_[_2]_payout_if_[_3]_goes_ouside_of_low_and_high_values_of_Exercise_price_through_close_on_[_4]_":"[_3]のBREAK-OUTは、取引期間中([_4])に上限バリア以上もしくは下限バリア以下の場合、ペイアウト発生","You_are_not_authorized_for_withdrawal_via_payment_agent_":"お客さまは決済サービスでのご出金が許可されていません。","May":"5","{JAPAN_ONLY}Higher":"HIGH","Office_worker":"会社員","Finance":"金融","Hedging":"ヘッジ","Friday":"金曜日","Password_score_is:_[_1]__Passing_score_is:_20_":"パスワードスコア：[_1]　合格スコア：20","is_required__Current_spread":"のご入金が必要です。現在のスプレッド","{JAPAN_ONLY}Ends_Between":"END-IN","space":"スペース","{JAPAN_ONLY}If_an_option_buyer_wishes_to_exercise_the_option_rights,_the_seller_may_still_reject_the_deal_":"オプションの売り手は、買い手が権利を行使した場合には、その決済を拒否することができる。","Both_the_above":"上記の両方","We":"水曜日","Primary":"主要","Delete":"消去","{JAPAN_ONLY}Knowledge_Test":"知識確認テスト","{JAPAN_ONLY}A_binary_option_which_is_out-of-the-money_will_have_a_lower_price_than_an_option_which_is_in-the-money_because_the_probability_of_receiving_the_payout_amount_is_lower_":"アウトオブザマネーのバイナリーオプションは、ペイアウトを受け取る確率が低いため、インザマネーのバイナリーオプションよりも価格が低い。","Anti-Fraud_Officer":"不正対策局","{JAPAN_ONLY}To_avoid_or_hedge_the_future_price_of_an_underlying_asset_which_you_hold,_you_should_buy_a_call_option_":"保有する原資産の今後の価格下落を回避（ヘッジ）するため、原資産のコールオプションを取得した。","Please_select":"選択して下さい","Graphic_Designers":"グラフィックデデザイナー","Invalid_amount,_maximum_is":"無効な値です。最大はXXXです。","Your_account_is_fully_authenticated_and_your_withdrawal_limits_have_been_lifted_":"お客さまのご口座はアップグレード済みですので、ご出金制限が引き上げられました。","Stop_Loss_Level":"損切りレベル","Please_fill_in_the_Login_ID_and_Amount_you_wish_to_transfer_to_your_Client_in_the_form_below:":"下記フォームにログインIDとご希望の送金額をご入力ださい。","Unemployed":"無職","Last_Used":"最後に使用したもの","Date_of_Birth":"生年月日","Marketing":"マーケティング","{JAPAN_ONLY}An_option_holder_must_buy_(_or_sell_)_the_underlying_asset_at_a_predetermined_price_within_a_specified_period_(_or_at_a_specific_time_)_":"オプションとは、一定の期間内（又は特定の期日）に、あらかじめ定めた価格によって原資産を買い取る（又は売り渡す）ことができる権利をいい、オプションの所有者は、一定の期間内（又は特定の期日）には、あらかじめ定めた価格によって原資産を必ず買い取らなければ（又は売り渡さなければ）ならない。","Details":"お客さま基本情報","{JAPAN_ONLY}If_you_sell_a_currency_binary_option_at_a_price_of_500_yen,_and_the_judgment_price_meets_the_conditions_so_you_need_to_payout_1,000_yen,_then_your_profit_will_be_minus_500_yen_after_subtracting_the_500_yen_that_was_received_as_a_fee_from_the_option_buyer_":"ペイアウト1,000円のバイナリーコールオプションを500円で売却取引し、判定の結果、権利行使条件が満たされた場合には、売り手は買い手に対するペイアウトとして1,000円を支払わなければならず、したがって売り手の損益は、買い手から受け取った500円と差し引き500円の損失となる。","Wednesday":"水曜日","Loss":"損益","{JAPAN_ONLY}Using_binary_options_for_hedging_a_position_in_the_underlying_asset_means_that_only_part_of_the_loss_or_gain_can_be_hedged,_because_the_payout_amount_is_fixed_":"ペイアウトは固定されているので、バイナリーオプションを利用したヘッジは、ヘッジ対象資産の損失の一部を補うものとして行う必要がある。","{JAPAN_ONLY}This_test_is_for_the_purpose_of_confirming_if_the_customers_have_basic_knowledge_related_to_options_trading__":"本テストはオプション取引に関わる基礎的な知識の有無を確認する目的で行われます。","{JAPAN_ONLY}The_maximum_loss_for_the_buyer_of_an_option_is_the_price_paid,_and_the_maximium_loss_for_the_option_seller_will_be_the_payout_amount_minus_the_opion_price_he_received_":"バイナリーオプションの買い手の最大損失額はオプション料であり、売り手の最大損失額はペイアウト額からオプション料を差し引いた額となる。","Please_choose_which_currency_you_would_like_to_transact_in_":"日本円にてお手続きできます","Oct":"10","Invalid_amount,_minimum_is":"無効な値です。最小","Points":"ポイント","{JAPAN_ONLY}Although_customers_and_brokers_will_set_limits_on_customers_trading_losses,_even_if_those_losses_are_exceeded,_it_is_the_customer's_responsibility_to_close_the_position_and_so_mandatory_loss-cuts_will_not_be_executed_by_the_broker_company_":"各業者は顧客との取引に限度額を定めているが、顧客の一定期間の取引額や損失額、顧客が保有する建玉が基準を超えた場合であっても、顧客との取引を中断あるいは中止することはない。","Please_check_your_email_to_retrieve_the_token_needed_to_reset_your_password_":"パスワードの再設定にはワンタイムパスワードが必要となりますので、メールをご確認ください。","Contract_is_not_started_yet":"トレードはまだ開始していません","Exclude_time_cannot_be_for_more_than_5_years_":"6年以上の除外期間は設定することはできません。","minutes":"分","Contract":"トレード","Barrier":"バリア価格","Our_site_does_not_charge_any_transfer_fees_":"当サイトはご入金、及びご出金時に手数料を請求することはありません。","Indicative":"参考売却価格","{JAPAN_ONLY}months":"ヶ月","{JAPAN_ONLY}Section_5:_Calculation":"第5章：算出","Level_of_Education":"能力レベル","Marketing_Executives":"マーケティング担当役員","Stop-loss":"損切り","Purchase_Price":"購入金額(JPY)","Your_request_to_withdraw_[_1]_[_2]_from_your_account_[_3]_to_Payment_Agent_[_4]_account_has_been_successfully_processed_":"お客さまのご口座[_3]から決済サービス[_4]口座へ[_1] [_2]の出金リクエストが正常に処理されました。","{JAPAN_ONLY}Does_Not_Touch":"NO-TOUCH","{JAPAN_ONLY}Where_broking_companies_show_bid_and_offer_prices_for_purchasing_and_sell-back_of_positions,_these_prices_may_become_further_apart_the_nearer_you_are_to_the_exercise_time_":"次の文章のうち、金融商品の店頭取引の価格について、金融商品取引業者が買値と売値（又は買戻取価格、解約価格）の２つの価格をお客さまに提示する場合、一般的には２つの価格には差（スプレッド）がある。このスプレッドはオプションの期限が近付くと広がる傾向がある。","Your_withdrawal_limit_is_[_1]_[_2]_":"お客さまの出金限度額は[_1] [_2]です。限度額以上の出金額をご希望される場合は、本人確認が必要となります。","Date":"取引時刻","(Bejing/CST_-8_hours)":"(北京/CST -8時間)","When_you_click_'Ok'_you_will_be_excluded_from_trading_on_the_site_until_the_selected_date_":"'Ok'をクリックすると、選択した日付までこのサイトでのトレードができなくなります。","Quantitative_Developer":"計量開発者","Closed":"終了","Trading_Limits":"取引上限について","{JAPAN_ONLY}[_1]_[_2]_payout_if_[_3]_is_strictly_higher_or_equal_than_Exercise_price_at_close__on_[_4]_":"[_3]のラダーHIGHは、判定時刻([_4])の時点でバリア価格以上の場合、ペイアウト発生","Maximum_number_of_open_positions":"最大保有ポジション","Name":"お名前","hyphen":"ハイフン","Are_you_sure_that_you_want_to_permanently_delete_token":"トークンを完全に削除してもよろしいですか？","Payout":"ペイアウト","Your_new_account_has_been_created_":"新しい口座の作成が完了しました。","{JAPAN_ONLY}day":"日","Please_confirm_the_transaction_details_in_order_to_complete_the_transfer:":"送金を完了するために、取引明細をご確認ください。","Your_Client_will_receive_an_email_notification_informing_him/her_that_the_transfer_has_been_processed_":"あなたのクライアントに送金が処理されたことをお知らせする通知メールが届きます。","{JAPAN_ONLY}Trading_Period":"取引期間","{JAPAN_ONLY}Prices_for_currency_options_are_calculated_relative_the_value_of_theunderlying_spot_price,_and_are_dependant_on_multiple_factors_which_may_vary_":"店頭通貨オプションの価格は、複数の要素に基づく計算値であり、基本的には相対取引で価格は決定される。","Start_trading_with_your_Real_Account":"リアル口座でお取引を開始する","Barrier_offset":"追加バリア値","-_A_scanned_copy_of_a_utility_bill_or_bank_statement_(no_more_than_3_months_old)_":"公共料金の請求書または銀行明細書をスキャンしたコピー（発行３ヶ月以内のものに限ります）。","True":"正","IP_Address":"IPアドレス","Contract_will_be_sold_at_the_prevailing_market_price_when_the_request_is_received_by_our_servers__This_price_may_differ_from_the_indicated_price_":"当社のサーバがリクエストを受理した時点での市場価格で売却取引が成立します。実際の約定価格と発注時の表示価格と異なる場合があります。","Reference_ID":"約定番号","{JAPAN_ONLY}Ends_Outside":"END-OUT","Stocks_trading_experience":"株式取引のご経験","{JAPAN_ONLY}The_buyer_of_a_vanilla_option_can_choose_whether_to_exercise_the_option_or_not__His_loss_is_limited_to_the_price_paid_for_the_option,_whereas_his_potential_profit_is_unlimited_":"バニラオプションの買い手は、自分に不利なときには権利放棄するので、買い手の最大損失額はオプション料、利益額は原資産価格と権利行使価格の差からオプション料を引いた額となり、原資産価格が無限大ならば、利益も無限大となる。","Up/Down":"ラダー","{JAPAN_ONLY}In_general_the_price_of_a_binary_option_will_be_lower_than_the_price_of_a_plain_vanilla_option_because_the_payout_amount_is_fixed_":"一般的には、バイナリーオプションの価格は、ペイアウト額が固定されるので、バニラオプションの価格と比べて低くなる。","Chart":"チャート","Health":"健全性","Spot":"スポットレート","There_was_a_problem_validating_your_personal_details__Please_fix_the_fields_[_1]here":"個人情報の確認において問題が発生しました。[_1]こちらから項目を修正してください。","{JAPAN_ONLY}Knowledge_Test_Result":"知識確認テスト結果","{JAPAN_ONLY}As_the_exercise_deadline_approaches,_the_price_of_an_in-the-money_binary_option_will_move_towards_the_payout_amount_":"権利行使期限が近づくにつれて、インザマネーのバイナリーオプションの価格は、ペイアウトの金額に近づく。","Please_enter_a_number_between_0_and_[_1]":"0から[_1]の数字を入力してください","June":"６月","Please_confirm_the_trade_on_your_statement_before_proceeding_":"続行する前に、お客さまの取引明細書をご確認ください。","Save_as_PNG":"PNGで保存","day":"日","Settings":"各種設定","An_additional_password_can_be_used_to_restrict_access_to_the_cashier_":"入出金へのアクセスを制限するために、追加パスワードを使用することができます。","{JAPAN_ONLY}Regarding_to_the_OTC_price_of_financial_instruments,_in_case_that_financial_instruments_business_operator_suggests_both_of__bid_and_ask_price_(or_trading_price_and_cancellation_price),_generally_there_is_a_difference_of_them__This_option_will_be_wider_as_the_expiration_approaches_":"次の文章のうち、金融商品の店頭取引の価格について、金融商品取引業者が買値と売値（又は買戻取価格、解約価格）の２つの価格をお客さまに提示する場合、一般的には２つの価格には差（スプレッド）がある。このスプレッドはオプションの期限が近付くと広がる傾向がある。","[_1]_[_2]_has_been_credited_to_your_Virtual_money_account_[_3]":"[_1] [_2]がデモ口座[_3]に付与されました","{JAPAN_ONLY}Even_though_losses_in_binary_options_are_limited,_it_is_still_necessary_to_take_care_not_to_engage_in_excessive_speculative_trading_and_to_moderate_your_transactions_volume_":"バイナリーオプションは損失が限定的であるが、投資者自身の資産などを踏まえ、過度の投機的な取引とならぬよう、節度ある取引を心がける必要がある。","Your_details_have_been_updated_":"お客さまの詳細が更新されました。","password":"パスワード","{JAPAN_ONLY}For_an_individual_investor,_profits_and_losses_from_OTC_currency_options_traing_cannot_be_combined_with_profits_and_losses_from_margin_FX_and_securities-related_OTC_options_":"個人投資者の場合、通貨関連店頭オプション取引の損益は、ＦＸや有価証券関連店頭オプションの損益と通算することができない。","-_A_scanned_copy_of_your_passport,_driving_licence_(provisional_or_full)_or_identity_card,_showing_your_name_and_date_of_birth_":"氏名と生年月日が表示されているパスポートか運転免許証、または住民基本台帳カードをスキャンしたコピー","Session_duration_limit_cannot_be_more_than_6_weeks_":"セッション期間制限は7週間以上に設定できません。","Purchase_Time":"購入時間","3-5_years":"3〜5年","{JAPAN_ONLY}For_a_currency_binary_option_with_the_underlying_exchange_rate_of_dollars_against_yen,_the_right_to_receive_a_payout_if_the_yen_becomes_stronger_is_known_as_a_dollar-put_binary_option_":"通貨バイナリーオプションのうち、例えばドル円を原資産とし、円高になればペイアウトを受け取る権利は、ドル円のバイナリープットオプションと呼ぶ。","Fr":"金曜日","Deposit_is_done__Transaction_ID:":"入金が完了しました。取引参照ID：","Authorise_your_account_":"アカウント認証","{JAPAN_ONLY}A_Currency_Binary_Option_is_one_where_there_is_a_target_for_a_particular_currency_pair,_so_a_strike_price_for_the_exchange_rate_is_agreed,_and_a_payout_will_be_due_if_the_judgment_price_meets_the_conditions_of_being_over_or_under_the_target_strike_price,_depending_on_the_option_type,_by_the_exercise_time_":"通貨バイナリーオプションは、通貨ペアを対象とし、通貨ペアの交換レートを権利行使価格として、権利行使時点の両通貨のレートが権利行使価格を上回るか、下回るかにより、権利行使によるペイアウトの有無を判定し、決済するオプションである。たとえば、ドル円のコールバイナリーオプションは、ドルを基準とし、権利行使価格に対して判定価格がドル高＝円安となればペイアウトとなり、判定価格がドル安＝円高となればペイアウトは発生しない。","{JAPAN_ONLY}Dear_customer,_you've_already_completed_the_knowledge_test,_please_proceed_to_next_step_":"お客さまへ\n\n既に知識確認テストは完了しています。送信済みのメールを確認の上、口座開設の手続きを進めてください。","Download_MetaTrader":"MetaTraderをダウンロード","Please_complete_the_following_financial_assessment_form_before_continuing_":"続行される前に下記財務評価書にご記入をお願いします。","{JAPAN_ONLY}The_test_is_unavailable_now,_test_can_only_be_taken_again_on_next_business_day_with_respect_of_most_recent_test_":"現在テストを受験いただけません。前回のテストの翌営業日に再度受験いただけます。","{JAPAN_ONLY}A_binary_call_options_buyer_will_benefit_from_a_correct_prediction_that_the_asset_price_will_rise_above_the_strike_price_by_the_judgment_time_":"判定時刻に、原資産価格が権利行使価格よりも下落していると予測し、バイナリーコールオプションを売却取引した。","Accounts_And_Payments_Executive":"顧客・支払担当者","Compliance_Executive":"コンプライアンス・エグゼクティブ","Please_select_a_payment_agent":"決済サービスを選択してください。","Never_Used":"使用されることはありません。","Please_try_again_":"再びお試し下さい。","Score":"スコア","Unlock_Cashier":"入出金ロック解除","Print_chart":"チャートを印刷","5-10_million_JPY":"500〜1,000万円","New_Password":"新しいパスワード","Pension":"年金","{JAPAN_ONLY}STAY-IN/BREAK-OUT":"STAY-IN/BREAK-OUT","letters":"文字","Current_Time":"現在時刻：","You_have_sold_this_contract_at_[_1]_[_2]":"[_1] [_2]でこのトレードを売却しました","Your_password_cannot_be_the_same_as_your_email":"パスワードはEメールと同じものにはできません。","{JAPAN_ONLY}Even_if_all_details_of_the_binary_options_match_perfectly,_there_may_still_be_differences_in_the_prices_shown_by_different_broking_companies_":"同一条件の店頭バイナリーオプションの価格は、取扱金融商品取引業者により価格が異なる（場合がある）。","Your_account_has_no_Login/Logout_activity_":"お客さまのご口座はログイン/ログアウトのアクティビティはございません。","{JAPAN_ONLY}hours":"時間","November":"１１月","second":"秒","6-10_transactions_in_the_past_12_months":"過去12ヶ月で6~10のお取引","Your_[_1]_account_is_unavailable__For_any_questions_please_contact_[_2]_":"お客さまのご口座[_1]はご利用いただけません。ご不明な点がございましたら[_2]までご連絡下さい。","{JAPAN_ONLY}When_buying_a_vanilla_call_option,_the_break-even_price_at_the_exercise_point_is_the_strike_price_plus_the_option_price_paid_in_units_of_the_underlying_":"コールオプションの買いでは、権利行使価格に原資産１単位当たりのオプション料を加算した価格が損益分岐点である。","Estimated_Net_Worth":"推定純資産","Asset":"取引対象","Please_enter_a_date_that_is_at_least_6_months_from_now_":"現在から最低６ヶ月先の日付を入力して下さい。","Asset_Index":"取引期間データ","{JAPAN_ONLY}Please_complete_the_following_questions_":"知識確認テスト用ディスクレーマー","Other_financial_instruments_trading_experience":"その他金融商品取引のご経験","Exclude_time_must_be_after_today_":"制限時間は明日以降として設定して下さい。","Failed_to_reset_password__[_1],_please_retry_":"パスワードの再設定に失敗しました。[_1]、再度お試しください。","Profit/Loss_(points)":"損益（ポイント）","login":"ログイン","hours":"時間","{JAPAN_ONLY}month":"月","Login":"ログイン","Less_than_1_million_JPY":"100万円未満","Password_should_have_lower_and_uppercase_letters_with_numbers_":"大文字と小文字を含む英字と数字を組み合わせる必要があります","Tourism":"ご利用方法","Contract_Expiry":"取引終了","Remaining_Time":"残り時間","{JAPAN_ONLY}Short_positions_in_FX_Binary_Options_must_be_covered_by_initial_margin_and_any_further_losses_must_be_covered_by_further_margin_deposits_":"通貨関連バイナリーオプションのショートポジションは、あらかじめ必要証拠金を業者に預託して取引を行い、取引成立後に証拠金が不足した場合には追加証拠金を業者に預託する必要がある。","Your_[_1]_day_withdrawal_limit_is_currently_[_2]_[_3]_(or_equivalent_in_other_currency)_":"お客さまの[_1]日の出金限度額は現在[_2] [_3]です。限度額以上の出金額をご希望される場合、本人確認が必要となります。","Over_$500,001":"$500,001以上","comma":"読点","{JAPAN_ONLY}The_price_of_a_vanilla_call_option_will_be_lower_when_price_of_the_underlying_asset_is_low,_but_the_price_of_the_put_option_will_be_higher_when_the_price_of_the_underlying_asset_is_low_":"コールオプションの価格は原資産の金利が低くなると下がるが、プットオプションの価格は、原資産の金利が低くなると上がる。","3-5_million_JPY":"300〜500万円","Save_as_CSV":"CSVへ保存","1-3_million_JPY":"100〜300万円","Original_Low_Barrier":"オリジナル低バリア","This_contract_has_LOST":"このトレードは負け判定です","{JAPAN_ONLY}Unless_special_arrangements_are_made,_cooling-off_will_not_be_available_after_OTC_binary_options_trading_contract_has_been_made_":"特別の取り決めがなされる場合を除き、店頭バイナリーオプション取引契約成立（約定）後においてクーリングオフを行うことはできない。","Copywriter":"コピーライター","Statement":"口座残高","Indices_trading_experience":"インデックス取引のご経験","{JAPAN_ONLY}For_a_put_option,_if_the_underlying_asset_price_is_lower_than_the_option_exercise_price,_it_is_known_as_an_out-of-the-money_option_":"プットオプションにおいて、原資産の価格が権利行使価格を下回っている状態をアウトオブザマネーという。","{JAPAN_ONLY}To_compensate_for_any_rise_in_the_price_of_an_underlying_asset_that_you_intend_to_buy_in_future,_you_should_buy_a_call_option_":"将来取得する予定の原資産の値上がりを補うため、原資産のコールオプションを取得した。","Therefore_your_current_immediate_maximum_withdrawal_(subject_to_your_account_having_sufficient_funds)_is_[_1]_[_2]_(or_equivalent_in_other_currency)_":"そのため、現在即座にご出金いただける限度金額（ただし、ご口座残高が不足していない場合）は[_1] [_2]です。","Reset_Password":"パスワード再設定","{JAPAN_ONLY}The_time-value_of_an_option_represents_the_expected_value_of_the_option_at_the_exercise_point,_and_may_be_positive,_even_when_the_intrinsic-value_is_zero_":"時間的価値は、オプションの残存期間を対象とした、将来の期待値であり、本源的価値がゼロであっても時間的価値はプラスとなる。","Your_account_is_fully_authenticated__You_can_view_your_[_1]trading_limits_here":"お客さまのご口座のアップグレードが完了しました。ご口座[_1]のご利用上限の内容をこちらからご確認頂けます。","Contract_ID":"トレード ID"};
 texts_json['ZH_CN'] = {"Name":"姓名","Trading_Limits":"交易限制","Maximum_number_of_open_positions":"最大未平仓头寸数目","Please_confirm_the_transaction_details_in_order_to_complete_the_transfer:":"请确认交易详情以完成转账：","Your_Client_will_receive_an_email_notification_informing_him/her_that_the_transfer_has_been_processed_":"您的客户将收到电子邮件通知，告知其转账交易已处理。","Are_you_sure_that_you_want_to_permanently_delete_token":"确定要永久删除令牌吗","Payout":"赔付","hyphen":"连字符","Your_new_account_has_been_created_":"您已开立新账户。","Barrier_offset":"障碍位移","Start_trading_with_your_Real_Account":"立即开始在MetaTrader 5平台交易","-_A_scanned_copy_of_a_utility_bill_or_bank_statement_(no_more_than_3_months_old)_":"水电煤账单或银行月结单扫描件（日期不得超过3个月）。","Reference_ID":"参考编号","Contract_will_be_sold_at_the_prevailing_market_price_when_the_request_is_received_by_our_servers__This_price_may_differ_from_the_indicated_price_":"合约将在我们服务器收到请求时，以当时的市场价格卖出。此价格可能与报价有差异。","IP_Address":"IP 地址","Stocks_trading_experience":"股票交易经验","Health":"健康","Spot":"现价","Up/Down":"涨/跌","Chart":"图表","Please_enter_a_number_between_0_and_[_1]":"请输入0和[_1]之间的数字","There_was_a_problem_validating_your_personal_details__Please_fix_the_fields_[_1]here":"您的个人资料验证出了问题。请在此更正 [_1] 字段","An_additional_password_can_be_used_to_restrict_access_to_the_cashier_":"可使用额外密码来限制对收银台的访问。","Settings":"设置","Please_confirm_the_trade_on_your_statement_before_proceeding_":"继续执行之前，请在您的声明上确认此项交易。","Save_as_PNG":"另存为PNG","June":"六月","day":"天","Last_Used":"上一次使用","Date_of_Birth":"出生日期","Tick":"跳动点","Please_fill_in_the_Login_ID_and_Amount_you_wish_to_transfer_to_your_Client_in_the_form_below:":"请在下表中填写登录 ID 以及要转给客户的金额：","Stop_Loss_Level":"止损价位","Details":"详情","Marketing":"市场营销","Wednesday":"星期三","Invalid_amount,_minimum_is":"无效金额，最小金额是","Please_choose_which_currency_you_would_like_to_transact_in_":"请选择您想要交易的货币。","Oct":"十月","Points":"点","Loss":"亏损","minutes":"分钟","Exclude_time_cannot_be_for_more_than_5_years_":"禁止时间不能超过5年。","Please_check_your_email_to_retrieve_the_token_needed_to_reset_your_password_":"请检查您的电邮领取重设密码所须的令牌号。","Contract_is_not_started_yet":"合约还未开始","Indicative":"指示性","Level_of_Education":"教育水平","Contract":"合约","Our_site_does_not_charge_any_transfer_fees_":"我们网站不收取任何转账费用。","Mr":"先生","Barrier":"障碍","Your_request_to_withdraw_[_1]_[_2]_from_your_account_[_3]_to_Payment_Agent_[_4]_account_has_been_successfully_processed_":"您从 [_3] 账户提取 [_1] [_2] 到支付代理 [_4]账户的请求已成功处理。","Purchase_Price":"买入价格","Marketing_Executives":"市场执行","Stop-loss":"止损","Closed":"收盘","Quantitative_Developer":"量化开发员","Your_withdrawal_limit_is_[_1]_[_2]_":"您的取款限额是 [_1] [_2]。","Date":"日期","(Bejing/CST_-8_hours)":"（北京/CST -8 小时）","When_you_click_'Ok'_you_will_be_excluded_from_trading_on_the_site_until_the_selected_date_":"当您点选“Ok”后，您将被禁止在此网站交易，直到选定期限结束为止。","Estimated_Net_Worth":"估计净值","Asset":"资产","Your_[_1]_account_is_unavailable__For_any_questions_please_contact_[_2]_":"您的[_1] 账户不可用。如有任何问题，请联系[_2]。","Please_enter_a_date_that_is_at_least_6_months_from_now_":"请输入至少6个月后的日期。","Failed_to_reset_password__[_1],_please_retry_":"无法重设密码。[_1]，请重试。","Exclude_time_must_be_after_today_":"禁止时间必须在今日之后。","Other_financial_instruments_trading_experience":"其他金融工具交易体验","Asset_Index":"资产指数","hours":"小时","Profit/Loss_(points)":"利润/亏损（点）","login":"登录","Contract_Expiry":"合约到期日","Tourism":"旅游","Login":"登录","Password_should_have_lower_and_uppercase_letters_with_numbers_":"密码须包含大小写字母与数字。","Over_$500,001":"大于$500,001","comma":"逗号","Remaining_Time":"剩余时间","Your_[_1]_day_withdrawal_limit_is_currently_[_2]_[_3]_(or_equivalent_in_other_currency)_":"您的 [_1] 天取款限额目前为 [_2] [_3] （或其他货币的等值）。","Copywriter":"文案","This_contract_has_LOST":"此合约输了","Indices_trading_experience":"指数交易经验","Statement":"账单","Save_as_CSV":"另存为CSV","Original_Low_Barrier":"原低障碍","Your_account_is_fully_authenticated__You_can_view_your_[_1]trading_limits_here":"您的账户已经通过验证。您可在此查看您的 [_1] 交易限额","Contract_ID":"合约编号","Therefore_your_current_immediate_maximum_withdrawal_(subject_to_your_account_having_sufficient_funds)_is_[_1]_[_2]_(or_equivalent_in_other_currency)_":"因此您当前的即时最高取款额（要求您的账户有充足资金）为[_1] [_2]（或其他等值货币）。","Reset_Password":"重置密码","Your_details_have_been_updated_":"您的个人信息已成功更新。","[_1]_[_2]_has_been_credited_to_your_Virtual_money_account_[_3]":"[_1] [_2] 已记入您的虚拟资金账户[_3]","Fr":"星期五","password":"密码","Purchase_Time":"买入时间","-_A_scanned_copy_of_your_passport,_driving_licence_(provisional_or_full)_or_identity_card,_showing_your_name_and_date_of_birth_":"显示您名字和出生日期的护照、驾照（临时或永久）或身份证的扫描件。","Session_duration_limit_cannot_be_more_than_6_weeks_":"交易期持续时间限制不能大于 6周。","Authorise_your_account_":"授权您的账户。","Deposit_is_done__Transaction_ID:":"已经完成存款。交易ID：","Accounts_And_Payments_Executive":"账户与支付执行员","Please_complete_the_following_financial_assessment_form_before_continuing_":"继续操作前请填写以下财务评估表格。","Download_MetaTrader":"下载MetaTrader","Compliance_Executive":"法律执行员","Please_select_a_payment_agent":"请选择支付代理","Unlock_Cashier":"解锁收银台","Never_Used":"从未使用过","Please_try_again_":"请重试。","letters":"信件","Pension":"养老金","New_Password":"新密码","You_have_sold_this_contract_at_[_1]_[_2]":"您已经以 [_1] [_2] 卖出此合约","Your_password_cannot_be_the_same_as_your_email":"您的密码不可与电子邮件相同","Current_Time":"当前时间","Print_chart":"打印图表","6-10_transactions_in_the_past_12_months":"过去12个月内6-10次交易","second":"秒","November":"十一月","Your_account_has_no_Login/Logout_activity_":"您的账户无交易活动。","Maximum_daily_turnover":"最大日成交量","When_you_click_\"Ok\"_you_will_be_excluded_from_trading_on_the_site_until_the_selected_date_":"当您点选“Ok”后，您将被禁止在此网站交易，直到选定期限结束为止。","Nov":"十一月","Please_input_a_valid_date":"请输入有效日期","Adjust_trade_parameters":"调整交易参数","Deposit_[_1]_[_2]_virtual_money_into_your_account_[_3]":"将[_1] [_2]虚拟资金存入您的账户[_3]","Cashier":"收银台","Predict_the_direction<br_/>and_purchase":"预测价格走向<br />并购入","Please_[_1]_to_view_this_page":"要查看此页面请[_1]","Sorry,_an_error_occurred_while_processing_your_account_":"对不起，您的账户处理发生错误。","The_two_passwords_that_you_entered_do_not_match_":"两次输入的密码不一致。","minimum_available_duration":"最短可用期限","Please_select_a_valid_date":"请选择ั有效日期","Low_Barrier":"低障碍","Sorry,_this_feature_is_available_to_virtual_accounts_only_":"对不起，此功能仅适用虚拟账户。","Week_of":"周","To_authenticate_your_account,_kindly_email_the_following_to_[_1]":"为验证您的账号，请将以下内容通过电子邮件发送到[_1]","Long":"长仓","Matches/Differs":"符合/相差","Ms":"女士","Amount_per_point":"每点之金额","Original_Barrier":"原障碍","To_create_a_real_account_for_MetaTrader,_switch_to_your_[_1]_real_money_account_":"要开立MetaTrader真实资金账户，请先切换到[_1]真实资金账户。","Adjusted_Low_Barrier":"经调整低障碍","Failed":"失败","[_1]_has_updated_its_[_2]__By_clicking_OK,_you_confirm_that_you_have_read_and_accepted_the_updated_[_2]_":"[_1]已经更新了[_2]。通过点击OK键，您确认已经阅读并接受更新的[_2]条款和条件。","Confirm":"确认","Saturday":"周六","Previous_Day":"前一天","Permissions":"权限","Verification_Token":"验证令牌","View_your_statement":"查看您的账单","Resources":"资源","month":"月份","Open":"开盘","Now":"现在","App_ID":"应用程序ID","This_contract_won":"此合约获利","Barrier_Change":"障碍变更","Please_follow_the_pattern_3_numbers,_a_dash,_followed_by_4_numbers_":"请按照以下格式填写：3个数字，1个短划线，加上4个数字。","loading___":"加载中……","Duration":"期限","Minimum_of_[_1]_characters_required_":"需至少[_1] 个字符。","Contract_Confirmation":"合约确认","Last_digit_stats_for_the_latest_[_1]_ticks_on_[_2]":"显示 [_2] 最新 [_1] 跳点的最后统计数字","Closes":"收盘","Real_Account":"真实账户","Previous":"之前","Jul":"七月","This_field_is_required_":"此字段为必填项。","Trading_and_Withdrawal_Limits":"交易和取款限额","Open_a_Financial_Account":"开设金融账户","Over/Under":"大于/小于","Short":"短仓","Even/Odd":"偶/奇","Random":"随机","Indices_trading_frequency":"指数交易频率","Contract_Sold":"售出合约","Return":"回报","verification_token":"验证令牌","You_need_to_finish_all_20_questions_":"必须答复全部20个问题。","High_Barrier":"高障碍","Please_enter_a_number_between_[_1]_":"请输入[_1]之间的数字。","Save_as_JPEG":"另存为JPEG","Your_current_balance_is":"您当前的余额为","Finish":"完成","April":"四月","Try_adding_more_letters_":"试添加更多字母。","Shop":"商店","You_are_not_authorized_for_withdrawal_via_payment_agent_":"您无权通过付款代理取款。","May":"五月","Friday":"星期五","Finance":"金融","space":"空间","is_required__Current_spread":"必须。当前价差","Password_score_is:_[_1]__Passing_score_is:_20_":"密码积分是： [_1]。通过积分是: 20。","Delete":"删除","Primary":"主要","We":"星期三","Your_account_is_fully_authenticated_and_your_withdrawal_limits_have_been_lifted_":"您的账户已经得到完全验证，且您的取款限额已经取消。","Invalid_amount,_maximum_is":"无效金额，最大金额是","Please_select":"请选择","Anti-Fraud_Officer":"反欺诈主任","Graphic_Designers":"平面设计师","Your_token_has_expired__Please_click_<a_class=\"pjaxload\"_href=\"[_1]\">here</a>_to_restart_the_verification_process_":"您的令牌已过期。请点击<a class=\"pjaxload\" href=\"[_1]\">此处</a>重启验证程序。","Sorry,_account_opening_is_unavailable_":"对不起，不可开立账户。","Less_than_$100,000":"少于$100,000","Update":"更新","August":"八月","Year":"年","Self-Employed":"个体经营","You_did_not_change_anything_":"您没作任何更改。","Net_Annual_Income":"年净收入","and":"以及","Net_profit":"净收益","Your_[_1]_accounts_are_unavailable__For_any_questions_please_contact_[_2]_":"您的[_1]账户不可用。如有任何问题，请联系[_2]。","The_maximum_number_of_tokens_([_1])_has_been_reached_":"已达令牌 ([_1]) 最大限数。","seconds":"秒","High_barrier_offset":"高障碍位移","Human_Resource_Executive":"人力资源执行","This_contract_was_affected_by_a_Corporate_Action_event_":"该合约已受共同行为事件影响。","Your_session_duration_limit_will_end_in_[_1]_seconds_":"交易期持续时间限制将于[_1]秒内结束。","Please_wait_<br_/>Your_request_is_being_processed_":"请稍候。<br />您的请求正在处理中。","End_Time":"结束时间","We_are_not_able_to_stream_live_prices_at_the_moment__To_enjoy_live_streaming_of_prices_try_refreshing_the_page,_if_you_get_this_issue_after_repeated_attempts_try_a_different_browser":"目前，我们不能够串流实时价格。要获得价格的实时串流，请尝试刷新页面，如果多次尝试后此问题依然存在，请换一个浏览器","Jun":"六月","Over_$1,000,000":"大于$1,000,000","[_1]_Please_click_the_link_below_to_restart_the_password_recovery_process__If_you_require_further_assistance,_please_contact_our_Customer_Support_":"[_1] 请点击以下链接重启密码恢复过程。如果需要帮助，请联系客服部。","Adjusted_High_Barrier":"经调整高障碍","Price":"价格","Customer_Support":"客户支持","Transfer_to":"转给","Sell_at_market":"按市价卖出","Sale_Price":"卖出价格","Upgrade_to_a_Real_Account":"升级到真实账户","Keep_track_of_your_authorised_applications_":"跟踪您的授权应用程序。","Tu":"星期二","Sorry,_you_have_entered_an_incorrect_cashier_password":"对不起，您输入的收银台密码不正确","Exit_Spot":"退市现价","Select_your_trade_type":"选择交易类型","View":"查看","Sep":"九月","Binary_options_or_other_financial_derivatives_trading_frequency":"二元期权或其他金融衍生品交易频率","Due_to_recent_changes_in_the_regulations,_we_are_required_to_ask_our_clients_to_complete_the_following_Financial_Assessment__Please_note_that_you_will_not_be_able_to_continue_trading_until_this_is_completed_":"由于最近的法规变更，客户必须填写以下金融评估。您须填写完成才能继续交易。","Waiting_for_entry_tick_":"正在等待进场跳动点。","Password_Reset":"重设密码","Apr":"四月","Your_cashier_is_locked_as_per_your_request_-_to_unlock_it,_please_click_[_1]here":"根据您的请求，您的收银台已被锁定 - 如需解除锁定，请点击此处","Maximum_account_cash_balance":"最大账户现金余额","Forex_trading_frequency":"外汇交易频率","Profit":"利润","This_contract_has_WON":"此合约赢了","Stake":"投注资金","Invalid_email_address":"无效的电子邮件地址","[ctx,minimum_duration,_for_example_minimum_15_seconds]min":"分钟","Questions":"问题","You_have_not_granted_access_to_any_applications_":"您没有访问任何应用程序的权限。","Su":"星期日","Balance":"余额","Secondary":"次要","Your_transaction_reference_number_is_[_1]":"您的交易参考号是 [_1]","Ref_":"参考","Sa":"星期六","Financial_Assessment":"金融评估","Purchase":"买入","Current":"当前","You_have_already_withdrawn_the_equivalent_of_[_1]_[_2]_":"您已提取 [_1] [_2] 的等值。","Quantitative_Analysis":"量化分析","Contract_Information":"合约信息","Enter_the_barrier_in_terms_of_the_difference_from_the_spot_price__If_you_enter_+0_005,_then_you_will_be_purchasing_a_contract_with_a_barrier_0_005_higher_than_the_entry_spot__The_entry_spot_will_be_the_next_tick_after_your_order_has_been_received":"请按与现货价格差额的形式输入障碍水平。如果您输入 +0.005 ，那么您将买入障碍水平比入市现价高 0.005 的合约。入市现价为收到您订单之后的下一个价格","Other_financial_instruments_trading_frequency":"其他金融工具交易频率","Less_than_$25,000":"少于$25,000","Next":"下一页","Your_request_to_transfer_[_1]_[_2]_from_[_3]_to_[_4]_has_been_successfully_processed_":"您从 [_3] 转账 [_1][_2] 到 [_4] 的请求已成功处理。","Th":"星期四","February":"二月","Action":"操作","Translator":"翻译","Start_Time":"开始时间","Represents_the_maximum_number_of_outstanding_contracts_in_your_portfolio__Each_line_in_your_portfolio_counts_for_one_open_position__Once_the_maximum_is_reached,_you_will_not_be_able_to_open_new_positions_without_closing_an_existing_position_first_":"表示您的投资组合中未平仓合约的最大数量。您投资组合中的每一行都算作是一个未平仓头寸。一旦达到该最大值，您在开设新头寸之前需要先结束一个现有头寸。","Stays_In/Goes_Out":"“保持在范围之内/超出范围之外”","Mar":"三月","days":"天","Maximum_aggregate_payouts_on_open_positions":"未平仓头寸的最大赔付总额","Explanation":"说明","Login_ID":"登录 ID","Proofreader":"校对员","Period":"周期","Your_changes_have_been_updated_":"您的更改已成功更新。","Your_withdrawal_limit_is_[_1]_[_2]_(or_equivalent_in_other_currency)_":"您的取款限额为 [_1] [_2] (或其他货币的等值 ）。","Current_Level":"当前价位","Description":"说明","Password_is_strong":"密码安全级别高","Low_barrier":"低障碍","Construction":"建筑","Adjusted_Barrier":"经调整障碍","Corporate_Action":"共同行为","Deposit_of":"存款","Marketing_Project_Manager":"营销项目经理","Total_Cost":"成本总计","March":"三月","Revoke_access":"撤销访问权限","Administrator":"管理员","Withdrawal_is_done__Transaction_ID:":"已经完成提款。交易ID:","Affiliate":"联盟","Your_provided_email_address_is_already_in_use_by_another_Login_ID__According_to_our_terms_and_conditions,_you_may_only_register_once_through_our_site__If_you_have_forgotten_the_password_of_your_existing_account,_please_<a_href=\"[_1]\">try_our_password_recovery_tool</a>_or_contact_customer_service_":"您的电邮地址已被注册。根据我们的使用条款和条件，您只能在本网站注册一次。如果您忘记了现有账户的密码，请 <a href=\"[_1]\">尝试密码恢复工具</a>或联系客服人员。","Over_3_years":"3年以上","Accounting":"会计","Quality_Assurance":"质量保证","New_token_created_":"已创建新口令牌。","Save_as_SVG":"另存为SVG","Start_time":"开始时间","Compliance":"法规遵从性","December":"十二月","Forex_trading_experience":"外汇交易经验","period":"周期","DevOps_Manager":"DevOps 经理 / 团队领导","You_are_currently_logged_in_to_your_real_money_account_with_[_1]_([_2])_":"您已登录您的 [_1]([_2])真实资金账户。","Trading_Times":"交易时间","Monday":"星期一","For_added_security,_please_check_your_email_to_retrieve_the_verification_token_":"为提高安全保障，请查看邮件并提取验证令牌。","Password_is_very_strong":"密码安全级别非常高","m":"月","Verification_code_format_incorrect_":"验证码格式不正确。","Exit_Level":"退出价位","0-1_year":"0-1 年","Old_password_is_wrong_":"旧密码不正确。","Deposit":"存款","Ok":"确定","Spot_Time":"现货时间","Please_enter_a_number_greater_or_equal_to_[_1]_":"请输入大于或等于[_1]的数字。","numbers":"号码","Original_High_Barrier":"原高障碍","The_financial_trading_services_contained_within_this_site_are_only_suitable_for_customers_who_are_able_to_bear_the_loss_of_all_the_money_they_invest_and_who_understand_and_have_experience_of_the_risk_involved_in_the_acquistion_of_financial_contracts__Transactions_in_financial_contracts_carry_a_high_degree_of_risk__If_purchased_contracts_expire_worthless,_you_will_suffer_a_total_loss_of_your_investment,_which_consists_of_the_contract_premium_":"本网站包含的金融交易服务仅适合这样的客户：能够承受全部投入资金亏损的风险，了解购买金融合约的风险并具有相关经验。金融合约交易有很高的风险。如果购买的合约到期时一文不值，您将损失全部投资，包括合约费用。","The_Payment_Agent_facility_is_currently_not_available_in_your_country_":"您的国家无可用支付代理设施。","Touch/No_Touch":"触及/未触及","Date_(GMT)":"日期 （格林尼治标准时间）","Last_Digit_Stats":"最后数字的统计数据","Mo":"星期一","Profit_Table":"利润表","My_Account":"我的账户","There_was_an_error":"出现错误","Transfer_to_Login_ID":"转给登录 ID","There_was_a_problem_accessing_the_server_during_purchase_":"买入时服务器访问发生问题。","Applications":"应用程序","Exit_Spot_Time":"退市现价时间","There_was_a_problem_accessing_the_server_":"服务器访问发生问题。","apostrophe":"撇号","years":"年","You_have_already_withdrawn_the_equivalent_of_[_1]_[_2]_in_aggregate_over_the_last_[_3]_days_":"过去 [_3] 天里您已累计提取 [_1] [_2] 的等值。","Start_trading_with_your_Demo_Account":"立即开始在模拟账户交易","To_create_a_real_account_for_MetaTrader,_<a_href=\"[_1]\">upgrade_to_[_2]_real_money_account</a>_":"开立MetaTrader真实资金账户前，<a href=\"[_1]\">请先升级为[_2]真实资金账户</a>。","Your_trading_statistics_since_[_1]_":"您自 [_1] 至今的交易统计。","Quantitative_Analyst":"量化分析员","Are_you_sure_that_you_want_to_permanently_revoke_access_to_application":"确定要永久废除应用程序访问权限吗","Entry_Spot":"入市现价","Entry_Level":"进场价位","Upgrade_to_a_Financial_Account":"升级到金融账户","months":"月份","Select_your_underlying_asset":"选择基础资产","Transaction_performed_by":"交易执行者为","Salaried_Employee":"受薪雇员","minute":"分钟","This_feature_is_not_relevant_to_virtual-money_accounts_":"此功能不适用于虚拟资金账户。","Authenticate":"验证","Never":"从未","Your_account_is_not_fully_authenticated__Please_visit_the_<a_href=\"[_1]\">authentication</a>_page_for_more_information_":"您的账户未完全验证。欲知详情请访问<a href=\"[_1]\">验证</a>页面。","Format:_yyyy-mm-dd_(not_required_for_virtual-money_accounts)":"格式：年-月-日（虚拟资金账户不需要）","There_was_some_invalid_character_in_an_input_field_":"某字段的输入字符无效。","Mrs":"女士","Amount":"金额","Login_History":"登录历史","Income_Source":"收入来源","40_transactions_or_more_in_the_past_12_months":"过去12个月内40次交易或以上","Feb":"二月","Sorry,_this_feature_is_not_available_":"对不起，此功能不可用。","Password_must_contains_at_least_1_digit,_1_uppercase_letter_and_1_lowercase_letter_":"密码必须包含至少1 数字、1大写字母和1小写字母。","Aug":"八月","Internal_Auditor":"内部审计员","Back":"返回","Total_Profit/Loss":"利润/亏损合计","Sorry,_an_error_occurred_while_processing_your_request_":"对不起，您的请求处理发生错误。","1-2_years":"1-2 年","Once_you_click_the_'Submit'_button,_the_funds_will_be_withdrawn_from_your_account_and_transferred_to_your_Client's_account_":"一旦您点击“提交”按钮，资金将从您的账户转至客户的账户。","Password":"密码","not_available":"不可使用","Internal_Audit":"内部审计","Presents_the_maximum_aggregate_payouts_on_outstanding_contracts_in_your_portfolio__If_the_maximum_is_attained,_you_may_not_purchase_additional_contracts_without_first_closing_out_existing_positions_":"显示您证券组合中未平仓合约的最大总赔付额。如果达到该最大值，那么您在购买更多合约之前需要对现有头寸进行平仓。","Jan":"一月","Senior_Front-End_Developer":"高级前端程序员","Please_check_your_email_for_the_value_of_this_token":"请检查您的电邮领取此令牌号","Number_of_ticks":"跳动点数目","October":"十月","Thursday":"星期四","Opens":"开盘","0-5_transactions_in_the_past_12_months":"过去12个月内0-5次交易","You_must_accept_the_terms_and_conditions_to_open_an_account_":"您必须接受条款和条件才能开户。","Settles":"结算","Invalid_date_of_birth_":"出生日期无效。","Password_is_moderate":"密码安全级别中等","Your_password_has_been_successfully_reset__Please_log_into_your_account_using_your_new_password_":"您的密码已成功重置。请用新密码登录您的账户。","Walkthrough_Guide":"攻略指南","Confirm_New_Password":"确认新密码","Please_deposit_before_transfer_to_client_":"给客户转账前请先存款。","Please_submit_a_valid_[_1]_":"请提交有效的 [_1]。","Tuesday":"星期二","We_are_not_accepting_accounts_from_residents_of_this_country_at_the_present_time_":"目前不接受来自该国居民的账户。","Zoom":"缩放","Commodities_trading_experience":"大宗商品交易经验","Last_Digit_Prediction":"最后数字的预测","Information_Technology":"信息技术","Month":"月份","Miss":"遗漏","Potential_Payout":"可能的赔付额","Date_and_Time":"日期和时间","Congratulations!_Your_account_has_been_created_":"恭喜! 您已成功开立账户。","No_Live_price_update":"无实时价格更新","year":"年","Senior_Perl_Developer":"高级 (Perl) 程序员","points":"点","An_error_occured_":"发生错误。","Sell":"卖出","Please_enter_a_valid_amount_":"请输入有效金额。","Step":"步骤","This_contract_lost":"此合约亏损","Lock_Cashier":"锁定收银台","Social_Media_Executive":"社交媒体执行","Terms_&_Conditions":"条款和条件","Contract_purchased_with_app_ID":"使用应用程序ID买入合约","If_you_need_assistance_feel_free_to_contact_our_[_1]Customer_Support":"如果您需要帮助，请联系我们的 [_1]客服部","Token":"令牌","Save_as_PDF":"另存为PDF","Your_settings_have_been_updated_successfully_":"您的设置已成功更新。","You_have_already_withdrawn_[_1]_[_2]_":"您已提取[_1] [_2]。","Only_[_1]_are_allowed_":"只允许 [_1] 。","Stocks_trading_frequency":"股票交易频率","You_are_currently_logged_in_to_your_virtual_money_account_([_2])_":"您已登录您的虚拟资金账户([_2])。","Portfolio":"投资组合","Your_account_has_no_trading_activity_":"您的账户无交易活动。","Day":"天","Other":"其它","Profit/Loss":"利润/亏损","High_barrier":"高障碍","Human_Resources":"人力资源","Successful":"成功","Buy":"买入","Ends_In/Out":"“范围之内/之外”收盘","Try_adding_more_letters_or_numbers_":"请试添加字母或数字。","Global_Customer_Service_Representatives":"客服代表","Sunday":"周日","Limit":"限额","You_should_enter_between_[_1]_characters_":"您最多只能输入 [_1]  个字符。","Jump_To":"跳至","In/Out":"“范围之内/之外”","Select_market":"选择市场","September":"九月","Dec":"十二月","Prices":"价格","Status":"统计","Low_barrier_offset":"低障碍位移","Stop_Profit_Level":"止盈价位","Quality_Assurance_Engineer":"质量保证工程师","January":"一月","Potential_Profit":"潜在利润","Only_2_decimal_points_are_allowed_":"只允许 2 个小数位。","Password_is_weak":"密码安全级别弱","Rise/Fall":"上涨/下跌","Administrative_Executive":"行政管理执行员","Exclude_time_cannot_be_less_than_6_months_":"禁止时间不能少于6个月。","Item":"项目","Password_is_not_strong_enough_":"密码安全度不够。","Sale_Date":"卖出日期","Select_your_market":"选择市场","Gaming_Account":"博彩账户","From":"来自","Tertiary":"三级","Investments_&_Dividends":"投资与分红","ticks":"跳动点","To":"到","Higher/Lower":"“高于/低于”","Exercise_period":"练习期间","Try_adding_more_numbers_":"试添加更多数字。","Therefore_your_current_immediate_maximum_withdrawal_(subject_to_your_account_having_sufficient_funds)_is_[_1]_[_2]_":"因此，您当前可即时提取的最大金额（要求您的帐户有足够资金）为 [_1] [_2]。","July":"七月","details":"详情","Represents_the_maximum_amount_of_cash_that_you_may_hold_in_your_account___If_the_maximum_is_reached,_you_will_be_asked_to_withdraw_funds_":"代表您的账户中可持有的最高现金额度。如果达到该最高额度，您将被要求提取资金。","Industry_of_Employment":"职业领域","Withdrawal_Limits":"取款限额","Password_does_not_match_":"密码不相符。","Weekday":"交易日","Failed_to_update_trade_description_":"无法更新交易描述。","Country_Manager":"区域经理","Investment_Account":"投资账户","Credit/Debit":"借方/贷方","Note":"附注","Upcoming_Events":"未来事件","Education":"教育","Next_Day":"第二天","Represents_the_maximum_volume_of_contracts_that_you_may_purchase_in_any_given_trading_day_":"表示任一既定交易日您可以买入的最大合约数量。","New_password_is_same_as_old_password_":"新密码与旧密码相同。","hour":"小时","Start_Trading":"开始交易","Commodities_trading_frequency":"大宗商品交易频率","Stop-type":"停止类型","Binary_options_or_other_financial_derivatives_trading_experience":"二元期权或其他金融衍生品交易经验","Please_enter_an_integer_value":"请输入整数","Your_cashier_is_locked_as_per_your_request_-_to_unlock_it,_please_enter_the_password_":"根据您的请求，您的收银台已被锁定 - 如需解除锁定，请输入密码。","Your_transaction_reference_is":"您的交易参考号是","Browser":"浏览器","Virtual_Account":"虚拟账户"};
 texts_json['ZH_TW'] = {"Predict_the_direction<br_/>and_purchase":"預測價格走向<br />並購入","Sorry,_an_error_occurred_while_processing_your_account_":"對不起，在處理您的帳戶時出錯。","Please_[_1]_to_view_this_page":"要查看此頁面，請 [_1] t","Deposit_[_1]_[_2]_virtual_money_into_your_account_[_3]":"將 [_1] [_2] 虛擬資金存入您的帳戶[_3]","Cashier":"收銀台","Please_input_a_valid_date":"請輸入有效日期","Adjust_trade_parameters":"調整交易參數","When_you_click_\"Ok\"_you_will_be_excluded_from_trading_on_the_site_until_the_selected_date_":"當您點選「Ok」後，您將被禁止在此網站交易，直到選定期限結束為止。","Maximum_daily_turnover":"最大日成交量","Nov":"十一月","Original_Barrier":"原障礙","Amount_per_point":"每點之金額","[_1]_has_updated_its_[_2]__By_clicking_OK,_you_confirm_that_you_have_read_and_accepted_the_updated_[_2]_":"[_1]已經更新了其[_2]條款和條件。通過點選OK按鈕，您確定已經閱讀和接受此更新[_2]條款和條件。","Failed":"失敗","Confirm":"確認","To_create_a_real_account_for_MetaTrader,_switch_to_your_[_1]_real_money_account_":"要開立MetaTrader真實資金帳戶，請先切換到[_1]真實資金帳戶。","Adjusted_Low_Barrier":"經調整低障礙","Long":"長倉","Matches/Differs":"相符/差異","Ms":"女士","To_authenticate_your_account,_kindly_email_the_following_to_[_1]":"為驗證您的帳號，請將以下通過電子郵件傳到[_1]","Please_select_a_valid_date":"請選擇有效日期","minimum_available_duration":"最短可用期限","The_two_passwords_that_you_entered_do_not_match_":"兩次輸入的密碼不相符。","Week_of":"週","Low_Barrier":"低障礙","Sorry,_this_feature_is_available_to_virtual_accounts_only_":"對不起，此功能僅適用虛擬帳戶。","This_contract_won":"此合約獲利","App_ID":"應用程式ID","Open":"開盤","Now":"現在","Barrier_Change":"障礙變更","Verification_Token":"驗證權杖","View_your_statement":"檢視您的帳單","month":"月份","Resources":"資源","Previous_Day":"前一天","Permissions":"權限","Saturday":"星期六","This_field_is_required_":"此為必填欄位。","Short":"短倉","Trading_and_Withdrawal_Limits":"交易和取款限額","Over/Under":"大於/小於","Open_a_Financial_Account":"開設金融帳戶","Previous":"之前","Jul":"七月","Last_digit_stats_for_the_latest_[_1]_ticks_on_[_2]":"顯示 [_2] 最新 [_1] 跳點之最後統計數字","Contract_Confirmation":"合約確認","Real_Account":"真實帳戶","Closes":"收盤","Please_follow_the_pattern_3_numbers,_a_dash,_followed_by_4_numbers_":"請依照此模式:3個數字，一破折號，接着是4個數字。","loading___":"載入中……","Minimum_of_[_1]_characters_required_":"需至少[_1] 個字元。","Duration":"期限","Your_current_balance_is":"您目前餘額有","Save_as_JPEG":"以JPEG格式儲存","Finish":"完成","Shop":"商店","April":"四月","Try_adding_more_letters_":"試新增更多字母。","verification_token":"驗證權杖","You_need_to_finish_all_20_questions_":"必須答覆全部20個問題。","High_Barrier":"高障礙","Please_enter_a_number_between_[_1]_":"請輸入[_1]之間的數字。","Return":"回報","Contract_Sold":"售出合約","Indices_trading_frequency":"指數交易頻率","Random":"隨機","Even/Odd":"偶/奇","Your_account_is_fully_authenticated_and_your_withdrawal_limits_have_been_lifted_":"您的帳戶已經得到完全驗證，且您的取款限額已經取消。","Invalid_amount,_maximum_is":"無效金額，最大是","Graphic_Designers":"平面設計師","Please_select":"請選擇","Anti-Fraud_Officer":"反欺詐專員","Primary":"主要","Delete":"刪除","We":"星期三","space":"空間","Password_score_is:_[_1]__Passing_score_is:_20_":"密碼積分是: [_1]。通過積分是: 20。","is_required__Current_spread":"為必要。目前價差","Finance":"金融","Friday":"星期五","You_are_not_authorized_for_withdrawal_via_payment_agent_":"您未經授權通過付款代理取款。","May":"五月","seconds":"秒","The_maximum_number_of_tokens_([_1])_has_been_reached_":"已達權杖 ([_1]) 最大限數。","High_barrier_offset":"高障礙位移","Self-Employed":"自雇者","Your_[_1]_accounts_are_unavailable__For_any_questions_please_contact_[_2]_":"您的[_1]帳戶不可用。如有任何問題，請聯繫[_2]。","Net_Annual_Income":"年淨收入","and":"以及","Net_profit":"淨收益","You_did_not_change_anything_":"您沒做任何更改。","August":"八月","Update":"更新","Year":"年","Your_token_has_expired__Please_click_<a_class=\"pjaxload\"_href=\"[_1]\">here</a>_to_restart_the_verification_process_":"您的權杖已過期。請點選<a class=\"pjaxload\" href=\"[_1]\">此處</a>重啟驗證程序。","Less_than_$100,000":"少於$100,000","Sorry,_account_opening_is_unavailable_":"對不起，不可開立帳號。","Tu":"星期二","Sorry,_you_have_entered_an_incorrect_cashier_password":"對不起，您輸入的收銀台密碼不正確","Exit_Spot":"退市現價","Transfer_to":"轉給","Keep_track_of_your_authorised_applications_":"跟蹤您的授權應用程式。","Sell_at_market":"按市價賣出","Sale_Price":"賣出價格","Upgrade_to_a_Real_Account":"升級到真實帳戶","Jun":"六月","Over_$1,000,000":"大於$1,000,000","[_1]_Please_click_the_link_below_to_restart_the_password_recovery_process__If_you_require_further_assistance,_please_contact_our_Customer_Support_":"[_1] 請點選以下連結重啟密碼恢復過程。如需要幫助，請聯繫我們的客服部。","We_are_not_able_to_stream_live_prices_at_the_moment__To_enjoy_live_streaming_of_prices_try_refreshing_the_page,_if_you_get_this_issue_after_repeated_attempts_try_a_different_browser":"目前我們不能夠串流即時價格。要獲得價格的即時串流請試重新整理頁面，如果經過反复嘗試還是存在此問題，請換一個瀏覽器","Customer_Support":"客戶支援","Adjusted_High_Barrier":"經調整高障礙","Price":"價格","Human_Resource_Executive":"人力資源專員","This_contract_was_affected_by_a_Corporate_Action_event_":"該合約已受共同決議事件影響。","End_Time":"結束時間","Your_session_duration_limit_will_end_in_[_1]_seconds_":"交易期持續時間限制將於[_1]秒內結束。","Please_wait_<br_/>Your_request_is_being_processed_":"請稍候。 <br />您的要求正在處理中。","-_A_scanned_copy_of_a_utility_bill_or_bank_statement_(no_more_than_3_months_old)_":"水電煤帳單或銀行月結單掃描件（日期不得超過3個月）。","Barrier_offset":"障礙位移","Start_trading_with_your_Real_Account":"開始使用真實資金帳戶交易","Your_Client_will_receive_an_email_notification_informing_him/her_that_the_transfer_has_been_processed_":"您的客戶將收到電子郵件通知，告知其轉帳交易已處理。","{JAPAN_ONLY}Trading_Period":"{JAPAN ONLY}Trading Guide","Please_confirm_the_transaction_details_in_order_to_complete_the_transfer:":"請確認交易詳細資料以完成轉帳：","Your_new_account_has_been_created_":"已成功開立新帳戶。","Are_you_sure_that_you_want_to_permanently_delete_token":"確定要永久刪除權杖嗎","Payout":"賠付","hyphen":"連字號","Name":"姓名","Maximum_number_of_open_positions":"最大未平倉頭寸數目","Trading_Limits":"交易限制","An_additional_password_can_be_used_to_restrict_access_to_the_cashier_":"可使用額外密碼來限制對收銀台的存取。","Settings":"設定","day":"天","Save_as_PNG":"以PNG格式儲存","Please_confirm_the_trade_on_your_statement_before_proceeding_":"繼續操作前，請在您的聲明上確認此項交易。","June":"六月","Please_enter_a_number_between_0_and_[_1]":"請輸入0和[_1]之間的數字","There_was_a_problem_validating_your_personal_details__Please_fix_the_fields_[_1]here":"您的個人資料驗證出了問題。請在此更正 [_1]欄位","Spot":"現價","Health":"健康","Chart":"圖表","Up/Down":"漲/跌","Stocks_trading_experience":"股票交易經驗","Reference_ID":"身份參考號","Contract_will_be_sold_at_the_prevailing_market_price_when_the_request_is_received_by_our_servers__This_price_may_differ_from_the_indicated_price_":"合約將在我們伺服器收到要求時以當時的市場價格賣出。此價格可能會與報價有差異。","IP_Address":"IP地址","Points":"點","Please_choose_which_currency_you_would_like_to_transact_in_":"請選擇您想要交易的外匯。","Invalid_amount,_minimum_is":"無效金額，最小是","Oct":"十月","Loss":"虧損","Wednesday":"星期三","Details":"詳細資料","Marketing":"市場行銷","Date_of_Birth":"出生日期","Tick":"跳動點","Last_Used":"最近一次使用","Please_fill_in_the_Login_ID_and_Amount_you_wish_to_transfer_to_your_Client_in_the_form_below:":"請在下表中填寫登入ID 以及您希望轉給客戶的金額：","Stop_Loss_Level":"止損價位","Closed":"已收盤","Quantitative_Developer":"量化開發員","When_you_click_'Ok'_you_will_be_excluded_from_trading_on_the_site_until_the_selected_date_":"當您點選「Ok」後，您將被禁止在此網站交易，直到選定期限結束為止。","Date":"日期","Your_withdrawal_limit_is_[_1]_[_2]_":"您的取款限額是[_1] [_2]。","(Bejing/CST_-8_hours)":"（北京/CST -8 小時）","Your_request_to_withdraw_[_1]_[_2]_from_your_account_[_3]_to_Payment_Agent_[_4]_account_has_been_successfully_processed_":"您從 [_3] 帳戶提取[_1] [_2] 到付款代理 [_4] 帳戶的要求已成功處理。","Purchase_Price":"買入價格","Stop-loss":"止損","Marketing_Executives":"市場行銷專員","Level_of_Education":"教育水平","Indicative":"指示性","Mr":"先生","Our_site_does_not_charge_any_transfer_fees_":"我們網站不收取任何轉帳費用。","Barrier":"障礙","Contract":"合約","Exclude_time_cannot_be_for_more_than_5_years_":"禁止時間不能超過5年。","minutes":"分鐘","Please_check_your_email_to_retrieve_the_token_needed_to_reset_your_password_":"請檢查您的電郵領取重設密碼所需的權杖編號。","Contract_is_not_started_yet":"合約尚未開始","hours":"小時","login":"登入","Profit/Loss_(points)":"利潤/虧損(點)","Failed_to_reset_password__[_1],_please_retry_":"無法重設密碼。[_1]，請重試。","Exclude_time_must_be_after_today_":"禁止時間必須在今日之後。","Other_financial_instruments_trading_experience":"其它金融工具交易經驗","Asset_Index":"資產指數","Please_enter_a_date_that_is_at_least_6_months_from_now_":"請輸入至少6個月後的日期。","Asset":"資產","Estimated_Net_Worth":"估計淨值","Your_[_1]_account_is_unavailable__For_any_questions_please_contact_[_2]_":"您的[_1]帳戶不可用。如有任何問題，請聯繫[_2]。","Contract_ID":"合約編號","Your_account_is_fully_authenticated__You_can_view_your_[_1]trading_limits_here":"您的帳戶已經通過驗證。您可在此檢視您的 [_1] 交易限額","Reset_Password":"重設密碼","Therefore_your_current_immediate_maximum_withdrawal_(subject_to_your_account_having_sufficient_funds)_is_[_1]_[_2]_(or_equivalent_in_other_currency)_":"因此您目前的即時最高取款額（要求您的帳戶有充足資金）為 [_1] [_2]（或其他等值貨幣)。","Indices_trading_experience":"指數交易經驗","Statement":"帳單","Copywriter":"文案","This_contract_has_LOST":"此合約輸了","Original_Low_Barrier":"原低障礙","Save_as_CSV":"以CSV格式儲存","Over_$500,001":"大於$500,001","comma":"逗號","Your_[_1]_day_withdrawal_limit_is_currently_[_2]_[_3]_(or_equivalent_in_other_currency)_":"您的 [_1] 天取款限額目前為 [_2] [_3]（或其他貨幣的等值）。","Remaining_Time":"剩餘時間","Contract_Expiry":"合約已到期","Tourism":"旅遊","Password_should_have_lower_and_uppercase_letters_with_numbers_":"密碼須包含大小寫字母與數字。","Login":"登入","Accounts_And_Payments_Executive":"帳戶和付款執行員","Please_complete_the_following_financial_assessment_form_before_continuing_":"繼續操作前請填寫以下財務評估表格。","Download_MetaTrader":"下載MetaTrader","Authorise_your_account_":"入您的帳戶。","Deposit_is_done__Transaction_ID:":"已經完成存款。交易ID:","Fr":"星期五","Purchase_Time":"買入時間","Session_duration_limit_cannot_be_more_than_6_weeks_":"交易期持續時間限制不能大於6週。","-_A_scanned_copy_of_your_passport,_driving_licence_(provisional_or_full)_or_identity_card,_showing_your_name_and_date_of_birth_":"顯示您名字和出生日期的護照、駕照（臨時或永久）或身份證的掃描件。","password":"密碼","Your_details_have_been_updated_":"您的個人資訊已成功更新。","[_1]_[_2]_has_been_credited_to_your_Virtual_money_account_[_3]":" [_1] [_2]已記入您的虛擬資金帳戶 [_3]","6-10_transactions_in_the_past_12_months":"過去12個月內6-10次交易","second":"秒","November":"十一月","Your_account_has_no_Login/Logout_activity_":"您的帳戶沒有登入/登出活動。","Your_password_cannot_be_the_same_as_your_email":"您的密碼不可與電子郵件相同","You_have_sold_this_contract_at_[_1]_[_2]":"您已經以 [_1] [_2] 賣出此合約","Current_Time":"目前時間","letters":"字母","New_Password":"新密碼","Pension":"退休金","Print_chart":"列印圖表","Unlock_Cashier":"解鎖收銀台","Please_try_again_":"請重試。","Never_Used":"從未使用過","Please_select_a_payment_agent":"請選擇付款代理","Compliance_Executive":"法務專員","Confirm_New_Password":"確認新密碼","Your_password_has_been_successfully_reset__Please_log_into_your_account_using_your_new_password_":"您的密碼已成功重設。請用新密碼登入您的帳戶。","Password_is_moderate":"密碼安全級適中","Settles":"結算","Invalid_date_of_birth_":"出生日期無效。","Walkthrough_Guide":"攻略指南","Thursday":"星期四","You_must_accept_the_terms_and_conditions_to_open_an_account_":"您必須接受條款和條件才能開戶。","Opens":"開盤","0-5_transactions_in_the_past_12_months":"過去12個月內0-5次交易","Number_of_ticks":"跳動點數目","Please_check_your_email_for_the_value_of_this_token":"請檢查您的電郵領取此權杖編號","October":"十月","Date_and_Time":"日期和時間","Congratulations!_Your_account_has_been_created_":"恭喜! 您已成功開立帳戶。","Potential_Payout":"可能的賠付額","Commodities_trading_experience":"商品交易經驗","Miss":"遺漏","Month":"月份","Last_Digit_Prediction":"最後數字的預測","Information_Technology":"資訊技術","Please_submit_a_valid_[_1]_":"請提交有效的 [_1]。","Please_deposit_before_transfer_to_client_":"給客戶轉帳前請先存款。","Zoom":"縮放","We_are_not_accepting_accounts_from_residents_of_this_country_at_the_present_time_":"目前不接受來自該國居民的帳戶。","Tuesday":"星期二","If_you_need_assistance_feel_free_to_contact_our_[_1]Customer_Support":"如果您需要幫助，請聯繫我們的 [_1]客服部","Token":"權杖","Save_as_PDF":"以PDF格式儲存","You_have_already_withdrawn_[_1]_[_2]_":"您已提取 [_1] [_2]。","Only_[_1]_are_allowed_":"只允許 [_1] 。","Your_settings_have_been_updated_successfully_":"您的設定已成功更新。","Social_Media_Executive":"社交媒體專員","Contract_purchased_with_app_ID":"以應用程式ID買入合約","Terms_&_Conditions":"條款和條件","Step":"步驟","Please_enter_a_valid_amount_":"請輸入有效金額。","Lock_Cashier":"鎖定收銀台","This_contract_lost":"此合約虧損","year":"年","No_Live_price_update":"無即時價格更新","An_error_occured_":"發生錯誤。","Sell":"賣出","points":"點","Senior_Perl_Developer":"高級 Perl 開發人員","Buy":"買入","Successful":"成功","Human_Resources":"人力資源","High_barrier":"高障礙","Ends_In/Out":"收盤價在「範圍之內/之外」","Try_adding_more_letters_or_numbers_":"請試新增字母或數字。","Profit/Loss":"利潤/虧損","Day":"天","Other":"其它","You_are_currently_logged_in_to_your_virtual_money_account_([_2])_":"您現已登入您的虛擬資金帳戶([_2])。","Stocks_trading_frequency":"股票交易頻率","Your_account_has_no_trading_activity_":"您的帳號沒有交易活動。","Portfolio":"投資組合","Status":"狀況","Prices":"價格","Dec":"十二月","September":"九月","Select_market":"選擇市場","You_should_enter_between_[_1]_characters_":"您最多只能輸入 [_1] 個字元。","Limit":"限額","Jump_To":"跳至","In/Out":"「範圍之內/之外」","Global_Customer_Service_Representatives":"全球客戶服務代表","Sunday":"星期日","Administrative_Executive":"行政專員","Exclude_time_cannot_be_less_than_6_months_":"禁止時間不能少於6個月。","Password_is_not_strong_enough_":"密碼安全度不夠。","Item":"項目","Sale_Date":"賣出日期","Only_2_decimal_points_are_allowed_":"只允許小數點后兩位。","Password_is_weak":"密碼安全度低","Rise/Fall":"「上漲/下跌」合約","January":"一月","Quality_Assurance_Engineer":"品質保證工程師","Potential_Profit":"潛在利潤","Low_barrier_offset":"低障礙位移","Stop_Profit_Level":"止盈價位","Failed_to_update_trade_description_":"無法更新交易描述。","Country_Manager":"區域經理","Represents_the_maximum_amount_of_cash_that_you_may_hold_in_your_account___If_the_maximum_is_reached,_you_will_be_asked_to_withdraw_funds_":"表示您的帳戶中可持有的最高現金額。如果達到該最高額，將會要求您提取資金。","details":"詳細資料","Industry_of_Employment":"職業領域","Password_does_not_match_":"密碼不相符。","Weekday":"交易日","Withdrawal_Limits":"取款限額","Note":"備註","Credit/Debit":"借記/貸記","Investment_Account":"投資帳戶","Investments_&_Dividends":"投資與分紅","ticks":"跳動點","To":"到","Higher/Lower":"「高於/低於」","Gaming_Account":"博彩帳戶","From":"來自","Tertiary":"三級","Try_adding_more_numbers_":"試新增更多數字。","July":"七月","Therefore_your_current_immediate_maximum_withdrawal_(subject_to_your_account_having_sufficient_funds)_is_[_1]_[_2]_":"因此您目前的即時最高取款額（要求您的帳戶有充足資金）為[_1] [_2]。","Exercise_period":"練習期間","Select_your_market":"選擇您的市場","Binary_options_or_other_financial_derivatives_trading_experience":"二元期權或其他金融衍生品交易經驗","Please_enter_an_integer_value":"請輸入整數","Your_cashier_is_locked_as_per_your_request_-_to_unlock_it,_please_enter_the_password_":"根據您的請求，您的收銀台已被鎖定- 如需解除鎖定，請輸入密碼。","Stop-type":"停止類型","Your_transaction_reference_is":"您的交易參考號是","Browser":"瀏覽","Virtual_Account":"虛擬帳戶","Start_Trading":"開始交易","Commodities_trading_frequency":"商品交易頻率","New_password_is_same_as_old_password_":"新密碼與舊密碼相同。","hour":"小時","Next_Day":"第二天","Upcoming_Events":"未來事件","Education":"教育","Represents_the_maximum_volume_of_contracts_that_you_may_purchase_in_any_given_trading_day_":"表示任一指定交易日您可以買入的最大合約數量。","Questions":"問題","Invalid_email_address":"無效的電子郵件地址","[ctx,minimum_duration,_for_example_minimum_15_seconds]min":"分鐘","You_have_not_granted_access_to_any_applications_":"您未獲權限存取任何應用程式。","Su":"星期日","This_contract_has_WON":"此合約贏了","Profit":"利潤","Maximum_account_cash_balance":"最大帳戶現金餘額","Forex_trading_frequency":"外匯交易頻率","Stake":"投注資金","Waiting_for_entry_tick_":"等待買入價跳動。","Your_cashier_is_locked_as_per_your_request_-_to_unlock_it,_please_click_[_1]here":"根據您的要求，您的收銀台已被鎖定- 如需解除鎖定，請點選此處","Apr":"四月","Password_Reset":"重設密碼","Select_your_trade_type":"選取交易類型","View":"檢視","Binary_options_or_other_financial_derivatives_trading_frequency":"二元期權或其它金融衍生品交易頻率","Due_to_recent_changes_in_the_regulations,_we_are_required_to_ask_our_clients_to_complete_the_following_Financial_Assessment__Please_note_that_you_will_not_be_able_to_continue_trading_until_this_is_completed_":"由於最近的法規變更，客戶必須填寫以下金融評估。您須填寫完成才能繼續交易。","Sep":"九月","Your_request_to_transfer_[_1]_[_2]_from_[_3]_to_[_4]_has_been_successfully_processed_":"您從[_3] 轉帳[_1][_2] 到[_4] 的要求已成功處理。","February":"二月","Action":"動作","Th":"星期四","Enter_the_barrier_in_terms_of_the_difference_from_the_spot_price__If_you_enter_+0_005,_then_you_will_be_purchasing_a_contract_with_a_barrier_0_005_higher_than_the_entry_spot__The_entry_spot_will_be_the_next_tick_after_your_order_has_been_received":"請按與現貨價格差額的形式輸入障礙水平。如果您輸入+0.005 ，那麼您將買入障礙水平比入市現價高0.005 的合約。入市現價為收到您訂單之後的下一個價格","Contract_Information":"合約確認","Next":"下一頁","Less_than_$25,000":"少於$25,000","Other_financial_instruments_trading_frequency":"其他金融工具交易頻率","Sa":"星期六","Financial_Assessment":"金融評估","Quantitative_Analysis":"量化分析","You_have_already_withdrawn_the_equivalent_of_[_1]_[_2]_":"您已提取 [_1] [_2] 的等值。","Purchase":"買入","Current":"目前","Secondary":"次要","Balance":"餘額","Ref_":"參考","Your_transaction_reference_number_is_[_1]":"您的交易號是 [_1]","Adjusted_Barrier":"經調整障礙","Construction":"建構","Revoke_access":"撤銷存取權限","March":"三月","Administrator":"管理員","Corporate_Action":"共同決議","Marketing_Project_Manager":"市場行銷項目經理","Total_Cost":"成本總計","Deposit_of":"存款","Description":"描述","Password_is_strong":"密碼安全度高","Current_Level":"目前價位","Low_barrier":"低障礙","Login_ID":"登入 ID","Explanation":"說明","Your_withdrawal_limit_is_[_1]_[_2]_(or_equivalent_in_other_currency)_":"您的取款限額為 [_1] [_2]（或其他貨幣的等值）。","Your_changes_have_been_updated_":"您的更改已成功更新。","Proofreader":"校對員","Period":"週期","Stays_In/Goes_Out":"「保持在範圍之內/超出範圍之外」","Represents_the_maximum_number_of_outstanding_contracts_in_your_portfolio__Each_line_in_your_portfolio_counts_for_one_open_position__Once_the_maximum_is_reached,_you_will_not_be_able_to_open_new_positions_without_closing_an_existing_position_first_":"表示您的投資組合中未平倉合約的最大數量。您投資組合中的每一行都算作是一個未平倉頭寸。一旦達到該最大值，在開設新頭寸之前您需要先了結一個現有頭寸。","Mar":"三月","Translator":"翻譯員","Start_Time":"開始時間","Maximum_aggregate_payouts_on_open_positions":"未平倉頭寸的最大賠付總額","days":"天","period":"週期","DevOps_Manager":"DevOps 經理","You_are_currently_logged_in_to_your_real_money_account_with_[_1]_([_2])_":"您現已登入您的 [_1]([_2])真實資金帳戶。","Monday":"星期一","Trading_Times":"交易時間","For_added_security,_please_check_your_email_to_retrieve_the_verification_token_":"為提高安全保障，請檢視郵件並提取驗證權杖。","Forex_trading_experience":"外匯交易經驗","December":"十二月","Start_time":"開始時間","Save_as_SVG":"以SVG格式儲存","Compliance":"法律事務","Affiliate":"聯盟","Your_provided_email_address_is_already_in_use_by_another_Login_ID__According_to_our_terms_and_conditions,_you_may_only_register_once_through_our_site__If_you_have_forgotten_the_password_of_your_existing_account,_please_<a_href=\"[_1]\">try_our_password_recovery_tool</a>_or_contact_customer_service_":"您所輸入的電郵地址已經被另外的登入ID使用。根據我們的使用條款和條件，您只能在我們的網站註冊一次。如果您忘記了目前帳戶的密碼，請<a href=\"[_1]\">嘗試我們的密碼復原工具</a>或聯繫我們的客服人員。","Withdrawal_is_done__Transaction_ID:":"已經完成提款。交易 ID:","Accounting":"會計","Over_3_years":"3年以上","New_token_created_":"已建立新權杖。","Quality_Assurance":"品質保證","There_was_an_error":"出現錯誤","Exit_Spot_Time":"退市現價時間","There_was_a_problem_accessing_the_server_":"伺服器存取出了問題。","apostrophe":"單引號","Transfer_to_Login_ID":"轉給登入 ID","There_was_a_problem_accessing_the_server_during_purchase_":"買入時伺服器存取出了問題。","Applications":"應用程式","The_Payment_Agent_facility_is_currently_not_available_in_your_country_":"目前您的國家無可用付款代理設施。","The_financial_trading_services_contained_within_this_site_are_only_suitable_for_customers_who_are_able_to_bear_the_loss_of_all_the_money_they_invest_and_who_understand_and_have_experience_of_the_risk_involved_in_the_acquistion_of_financial_contracts__Transactions_in_financial_contracts_carry_a_high_degree_of_risk__If_purchased_contracts_expire_worthless,_you_will_suffer_a_total_loss_of_your_investment,_which_consists_of_the_contract_premium_":"本網站所涵蓋的金融交易服務僅適合這樣的客戶：能夠承受全部投入資金虧損的風險，了解購買金融合約所蘊含的風險並擁有相關的風險經歷。金融合約交易涉及很大的風險。如果所購買的合約到期時一文不值，您的投資將完全損失，其中還包括合約費用。","Original_High_Barrier":"原高障礙","Touch/No_Touch":"觸及/未觸及","Profit_Table":"利潤表","Last_Digit_Stats":"最後數字的統計資料","Mo":"星期一","My_Account":"我的帳戶","Date_(GMT)":"日期（格林尼治標準時間）","Old_password_is_wrong_":"舊密碼不正確。","Spot_Time":"現貨時間","Ok":"確定","numbers":"號碼","Please_enter_a_number_greater_or_equal_to_[_1]_":"請輸入大於或相等於[_1]之數字。","Deposit":"存款","Password_is_very_strong":"密碼安全度很高","Exit_Level":"退出價位","0-1_year":"0-1 年","Verification_code_format_incorrect_":"驗證碼格式不正確。","m":"月","Salaried_Employee":"支薪員工","Transaction_performed_by":"交易執行者為","months":"月份","Select_your_underlying_asset":"選擇標的資產","Entry_Spot":"入市現價","Upgrade_to_a_Financial_Account":"升級到金融帳戶","Entry_Level":"進場價位","To_create_a_real_account_for_MetaTrader,_<a_href=\"[_1]\">upgrade_to_[_2]_real_money_account</a>_":"要開立MetaTrader真實資金帳戶，<a href=\"[_1]\">請先升級為[_2]真實資金帳戶</a>。","years":"年","Start_trading_with_your_Demo_Account":"開始使用模擬帳戶交易","You_have_already_withdrawn_the_equivalent_of_[_1]_[_2]_in_aggregate_over_the_last_[_3]_days_":"過去 [_3] 天裡您已累計提取 [_1] [_2] 的等值。","Your_trading_statistics_since_[_1]_":"您自 [_1] 至今的交易統計。","Quantitative_Analyst":"量化分析員","Are_you_sure_that_you_want_to_permanently_revoke_access_to_application":"確定要永久廢除應用程式存取權限嗎","Password_must_contains_at_least_1_digit,_1_uppercase_letter_and_1_lowercase_letter_":"密碼必須包含至少1數字、1大寫字母和1小寫字母。","Sorry,_this_feature_is_not_available_":"對不起，此功能不可用。","Income_Source":"收入來源","40_transactions_or_more_in_the_past_12_months":"過去12個月內40次交易或以上","Login_History":"登入歷史","Feb":"二月","Format:_yyyy-mm-dd_(not_required_for_virtual-money_accounts)":"格式:年-月-日(虛擬資金帳戶不需要)","Your_account_is_not_fully_authenticated__Please_visit_the_<a_href=\"[_1]\">authentication</a>_page_for_more_information_":"您的帳戶未完全驗證。欲知詳情請檢視<a href=\"[_1]\">驗證</a>頁面。","Never":"從未","This_feature_is_not_relevant_to_virtual-money_accounts_":"此功能不適用於虛擬資金帳戶。","Authenticate":"驗證","Amount":"金額","There_was_some_invalid_character_in_an_input_field_":"某字欄的輸入字元無效。","Mrs":"夫人","minute":"分鐘","Senior_Front-End_Developer":"高級前端開發人員","Internal_Audit":"內部審計","not_available":"不可使用","Presents_the_maximum_aggregate_payouts_on_outstanding_contracts_in_your_portfolio__If_the_maximum_is_attained,_you_may_not_purchase_additional_contracts_without_first_closing_out_existing_positions_":"表示您證券組合中未平倉合約的最大總賠付額。如果達到該最大值，那麼您在購買更多合約之前需要先對現有頭寸進行平倉。","Jan":"一月","Total_Profit/Loss":"利潤/虧損合計","Sorry,_an_error_occurred_while_processing_your_request_":"對不起，在處理您的請求時發生錯誤。","1-2_years":"1-2 年","Once_you_click_the_'Submit'_button,_the_funds_will_be_withdrawn_from_your_account_and_transferred_to_your_Client's_account_":"一旦您點擊「送出」按鈕，資金將從您的帳戶取出並轉至您客戶的帳戶。","Password":"密碼","Aug":"八月","Back":"返回","Internal_Auditor":"內部審計員"};
-;var markets_list = ["forex","indices","stocks","commodities","volidx"]; var markets_json = {"commodities":{"submarkets":[{"instruments":[{"value":"frxXAUUSD","label":"Gold/USD"},{"value":"frxXPDUSD","label":"Palladium/USD"},{"value":"frxXPTUSD","label":"Platinum/USD"},{"value":"frxXAGUSD","label":"Silver/USD"}],"name":"metals","label":"Metals"},{"instruments":[{"value":"frxBROUSD","label":"Oil/USD"}],"name":"energy","label":"Energy"}],"label":"Commodities"},"volidx":{"submarkets":[{"instruments":[{"value":"R_100","label":"Volatility 100 Index"},{"value":"R_25","label":"Volatility 25 Index"},{"value":"R_50","label":"Volatility 50 Index"},{"value":"R_75","label":"Volatility 75 Index"}],"name":"random_index","label":"Continuous Indices"},{"instruments":[{"value":"RDBEAR","label":"Bear Market Index"},{"value":"RDBULL","label":"Bull Market Index"}],"name":"random_daily","label":"Daily Reset Indices"},{"instruments":[],"name":"random_nightly","label":"Nocturnes"}],"label":"Volatility Indices"},"forex":{"submarkets":[{"instruments":[{"value":"frxAUDJPY","label":"AUD/JPY"},{"value":"frxAUDUSD","label":"AUD/USD"},{"value":"frxEURAUD","label":"EUR/AUD"},{"value":"frxEURCAD","label":"EUR/CAD"},{"value":"frxEURCHF","label":"EUR/CHF"},{"value":"frxEURGBP","label":"EUR/GBP"},{"value":"frxEURJPY","label":"EUR/JPY"},{"value":"frxEURUSD","label":"EUR/USD"},{"value":"frxGBPAUD","label":"GBP/AUD"},{"value":"frxGBPJPY","label":"GBP/JPY"},{"value":"frxGBPUSD","label":"GBP/USD"},{"value":"frxUSDCAD","label":"USD/CAD"},{"value":"frxUSDCHF","label":"USD/CHF"},{"value":"frxUSDJPY","label":"USD/JPY"}],"name":"major_pairs","label":"Major Pairs"},{"instruments":[{"value":"frxAUDCAD","label":"AUD/CAD"},{"value":"frxAUDCHF","label":"AUD/CHF"},{"value":"frxAUDNZD","label":"AUD/NZD"},{"value":"frxAUDPLN","label":"AUD/PLN"},{"value":"frxEURNZD","label":"EUR/NZD"},{"value":"frxGBPCAD","label":"GBP/CAD"},{"value":"frxGBPCHF","label":"GBP/CHF"},{"value":"frxGBPNOK","label":"GBP/NOK"},{"value":"frxGBPNZD","label":"GBP/NZD"},{"value":"frxGBPPLN","label":"GBP/PLN"},{"value":"frxNZDJPY","label":"NZD/JPY"},{"value":"frxNZDUSD","label":"NZD/USD"},{"value":"frxUSDMXN","label":"USD/MXN"},{"value":"frxUSDNOK","label":"USD/NOK"},{"value":"frxUSDPLN","label":"USD/PLN"},{"value":"frxUSDSEK","label":"USD/SEK"}],"name":"minor_pairs","label":"Minor Pairs"},{"instruments":[{"value":"WLDAUD","label":"AUD Index"},{"value":"WLDEUR","label":"EUR Index"},{"value":"WLDGBP","label":"GBP Index"},{"value":"WLDUSD","label":"USD Index"}],"name":"smart_fx","label":"Smart FX"}],"label":"Forex"},"stocks":{"submarkets":[{"instruments":[{"value":"AUANZ","label":"ANZ Banking Group"},{"value":"AUBHP","label":"BHP Billiton"},{"value":"AUCBA","label":"Commonwealth Bank"},{"value":"AUMQG","label":"Macquarie Group"},{"value":"AUQAN","label":"Qantas Airways"}],"name":"au_otc_stock","label":"Australia"},{"instruments":[{"value":"DEALV","label":"Allianz SE"},{"value":"DEBAYER","label":"Bayer AG"},{"value":"DEDAI","label":"Daimler AG"},{"value":"DESIE","label":"Siemens AG"},{"value":"DEVOWGEN","label":"Volkswagen AG"}],"name":"ge_otc_stock","label":"Germany"},{"instruments":[{"value":"UKBARC","label":"Barclays"},{"value":"UKBATS","label":"British American Tobacco"},{"value":"UKGSK","label":"GlaxoSmithKline"},{"value":"UKHSBA","label":"HSBC Holdings"},{"value":"UKVOD","label":"Vodafone Group"}],"name":"uk_otc_stock","label":"UK"},{"instruments":[{"value":"USGOOG","label":"Alphabet Inc"},{"value":"USAMZN","label":"Amazon.com Inc"},{"value":"USAAPL","label":"Apple Inc"},{"value":"USCT","label":"Citigroup Inc"},{"value":"USKO","label":"Coca-Cola Co"},{"value":"USXOM","label":"Exxon Mobil Corp"},{"value":"USFB","label":"Facebook Inc"},{"value":"USGE","label":"General Electric Co"},{"value":"USMSFT","label":"Microsoft Corp"},{"value":"USPFE","label":"Pfizer Inc"}],"name":"us_otc_stock","label":"US"}],"label":"OTC Stocks"},"indices":{"submarkets":[{"instruments":[{"value":"AS51","label":"Australian Index"},{"value":"BSESENSEX30","label":"Bombay Index"},{"value":"HSI","label":"Hong Kong Index"},{"value":"JCI","label":"Jakarta Index"},{"value":"N225","label":"Japanese Index"},{"value":"STI","label":"Singapore Index"}],"name":"asia_oceania","label":"Asia/Oceania"},{"instruments":[{"value":"BFX","label":"Belgian Index"},{"value":"AEX","label":"Dutch Index"},{"value":"FCHI","label":"French Index"},{"value":"GDAXI","label":"German Index"},{"value":"ISEQ","label":"Irish Index"},{"value":"OBX","label":"Norwegian Index"},{"value":"TOP40","label":"South African Index"},{"value":"SSMI","label":"Swiss Index"}],"name":"europe_africa","label":"Europe/Africa"},{"instruments":[{"value":"SPC","label":"US Index"},{"value":"DJI","label":"Wall Street Index"}],"name":"americas","label":"Americas"},{"instruments":[],"name":"smart_index","label":"Smart Indices"},{"instruments":[{"value":"DFMGI","label":"Dubai Index"}],"name":"middle_east","label":"Middle East"},{"instruments":[],"name":"otc_index","label":"OTC Indices"}],"label":"Indices"}};;/*
+
+;var markets_list = ["forex","indices","stocks","commodities","volidx"]; var markets_json = {"commodities":{"submarkets":[{"instruments":[{"value":"frxXAUUSD","label":"Gold/USD"},{"value":"frxXPDUSD","label":"Palladium/USD"},{"value":"frxXPTUSD","label":"Platinum/USD"},{"value":"frxXAGUSD","label":"Silver/USD"}],"name":"metals","label":"Metals"},{"instruments":[{"value":"frxBROUSD","label":"Oil/USD"}],"name":"energy","label":"Energy"}],"label":"Commodities"},"volidx":{"submarkets":[{"instruments":[{"value":"R_100","label":"Volatility 100 Index"},{"value":"R_25","label":"Volatility 25 Index"},{"value":"R_50","label":"Volatility 50 Index"},{"value":"R_75","label":"Volatility 75 Index"}],"name":"random_index","label":"Continuous Indices"},{"instruments":[{"value":"RDBEAR","label":"Bear Market Index"},{"value":"RDBULL","label":"Bull Market Index"}],"name":"random_daily","label":"Daily Reset Indices"},{"instruments":[],"name":"random_nightly","label":"Nocturnes"}],"label":"Volatility Indices"},"forex":{"submarkets":[{"instruments":[{"value":"frxAUDJPY","label":"AUD/JPY"},{"value":"frxAUDUSD","label":"AUD/USD"},{"value":"frxEURAUD","label":"EUR/AUD"},{"value":"frxEURCAD","label":"EUR/CAD"},{"value":"frxEURCHF","label":"EUR/CHF"},{"value":"frxEURGBP","label":"EUR/GBP"},{"value":"frxEURJPY","label":"EUR/JPY"},{"value":"frxEURUSD","label":"EUR/USD"},{"value":"frxGBPAUD","label":"GBP/AUD"},{"value":"frxGBPJPY","label":"GBP/JPY"},{"value":"frxGBPUSD","label":"GBP/USD"},{"value":"frxUSDCAD","label":"USD/CAD"},{"value":"frxUSDCHF","label":"USD/CHF"},{"value":"frxUSDJPY","label":"USD/JPY"}],"name":"major_pairs","label":"Major Pairs"},{"instruments":[{"value":"frxAUDCAD","label":"AUD/CAD"},{"value":"frxAUDCHF","label":"AUD/CHF"},{"value":"frxAUDNZD","label":"AUD/NZD"},{"value":"frxAUDPLN","label":"AUD/PLN"},{"value":"frxEURNZD","label":"EUR/NZD"},{"value":"frxGBPCAD","label":"GBP/CAD"},{"value":"frxGBPCHF","label":"GBP/CHF"},{"value":"frxGBPNOK","label":"GBP/NOK"},{"value":"frxGBPNZD","label":"GBP/NZD"},{"value":"frxGBPPLN","label":"GBP/PLN"},{"value":"frxNZDJPY","label":"NZD/JPY"},{"value":"frxNZDUSD","label":"NZD/USD"},{"value":"frxUSDMXN","label":"USD/MXN"},{"value":"frxUSDNOK","label":"USD/NOK"},{"value":"frxUSDPLN","label":"USD/PLN"},{"value":"frxUSDSEK","label":"USD/SEK"}],"name":"minor_pairs","label":"Minor Pairs"},{"instruments":[{"value":"WLDAUD","label":"AUD Index"},{"value":"WLDEUR","label":"EUR Index"},{"value":"WLDGBP","label":"GBP Index"},{"value":"WLDUSD","label":"USD Index"}],"name":"smart_fx","label":"Smart FX"}],"label":"Forex"},"stocks":{"submarkets":[{"instruments":[{"value":"AUANZ","label":"ANZ Banking Group"},{"value":"AUBHP","label":"BHP Billiton"},{"value":"AUCBA","label":"Commonwealth Bank"},{"value":"AUMQG","label":"Macquarie Group"},{"value":"AUQAN","label":"Qantas Airways"}],"name":"au_otc_stock","label":"Australia"},{"instruments":[{"value":"DEALV","label":"Allianz SE"},{"value":"DEBAYER","label":"Bayer AG"},{"value":"DEDAI","label":"Daimler AG"},{"value":"DESIE","label":"Siemens AG"},{"value":"DEVOWGEN","label":"Volkswagen AG"}],"name":"ge_otc_stock","label":"Germany"},{"instruments":[{"value":"UKBARC","label":"Barclays"},{"value":"UKBATS","label":"British American Tobacco"},{"value":"UKGSK","label":"GlaxoSmithKline"},{"value":"UKHSBA","label":"HSBC Holdings"},{"value":"UKVOD","label":"Vodafone Group"}],"name":"uk_otc_stock","label":"UK"},{"instruments":[{"value":"USGOOG","label":"Alphabet Inc"},{"value":"USAMZN","label":"Amazon.com Inc"},{"value":"USAAPL","label":"Apple Inc"},{"value":"USCT","label":"Citigroup Inc"},{"value":"USKO","label":"Coca-Cola Co"},{"value":"USXOM","label":"Exxon Mobil Corp"},{"value":"USFB","label":"Facebook Inc"},{"value":"USGE","label":"General Electric Co"},{"value":"USMSFT","label":"Microsoft Corp"},{"value":"USPFE","label":"Pfizer Inc"}],"name":"us_otc_stock","label":"US"}],"label":"OTC Stocks"},"indices":{"submarkets":[{"instruments":[{"value":"AS51","label":"Australian Index"},{"value":"BSESENSEX30","label":"Bombay Index"},{"value":"HSI","label":"Hong Kong Index"},{"value":"JCI","label":"Jakarta Index"},{"value":"N225","label":"Japanese Index"},{"value":"STI","label":"Singapore Index"}],"name":"asia_oceania","label":"Asia/Oceania"},{"instruments":[{"value":"BFX","label":"Belgian Index"},{"value":"AEX","label":"Dutch Index"},{"value":"FCHI","label":"French Index"},{"value":"GDAXI","label":"German Index"},{"value":"ISEQ","label":"Irish Index"},{"value":"OBX","label":"Norwegian Index"},{"value":"TOP40","label":"South African Index"},{"value":"SSMI","label":"Swiss Index"}],"name":"europe_africa","label":"Europe/Africa"},{"instruments":[{"value":"SPC","label":"US Index"},{"value":"DJI","label":"Wall Street Index"}],"name":"americas","label":"Americas"},{"instruments":[],"name":"smart_index","label":"Smart Indices"},{"instruments":[{"value":"DFMGI","label":"Dubai Index"}],"name":"middle_east","label":"Middle East"},{"instruments":[],"name":"otc_index","label":"OTC Indices"}],"label":"Indices"}};
+;/*
  * Configuration values needed in js codes
  *
  * NOTE:
@@ -49841,6 +49877,7 @@ function getSocketURL() {
     }
     return 'wss://' + server_url + '/websockets/v3';
 }
+
 ;var LoggedInHandler = (function() {
     "use strict";
 
@@ -49920,6 +49957,7 @@ function getSocketURL() {
         init: init,
     };
 }());
+
 ;var Login = (function() {
     "use strict";
 
@@ -49952,6 +49990,7 @@ function getSocketURL() {
         login_url        : login_url,
     };
 }());
+
 ;var Markets = function(markets, market_symbols) { 
     this.all = [];
     var market_count = markets.length;
@@ -50079,6 +50118,7 @@ SubMarket.prototype = {
         return;
     },
 };
+
 ;var MenuContent = (function () {
     var listeners_events = [];
 
@@ -50238,6 +50278,7 @@ SubMarket.prototype = {
 
     return that;
 })();
+
 ;(function () {
     'use strict';
 
@@ -50253,6 +50294,7 @@ SubMarket.prototype = {
         }
     };
 })();
+
 ;var text;
 var clock_started = false;
 
@@ -51428,6 +51470,7 @@ Page.prototype = {
         }
     },
 };
+
 ;//For object shape coherence we create named objects to be inserted into the queue.
 var URLPjaxQueueElement = function(exec_function, url) {
     this.method = exec_function;
@@ -51596,6 +51639,7 @@ var pjax_config_page_require_auth = function(url, exec) {
 
 init_pjax(); //Pjax-standalone will wait for on load event before attaching.
 $(function() { onLoad.fire(); });
+
 ;var isStorageSupported = function(storage) {
     if(typeof storage === 'undefined') {
         return false;
@@ -51722,6 +51766,7 @@ if (typeof module !== 'undefined') {
         Localizable: Localizable
     };
 }
+
 ;//////////////////////////////////////////////////////////////////
 // Purpose: Write loading image to a container for ajax request
 // Parameters:
@@ -52024,6 +52069,7 @@ if (typeof module !== 'undefined') {
         parseLoginIDList: parseLoginIDList,
     };
 }
+
 ;// for IE (before 10) we use a jquery plugin called jQuery.XDomainRequest. Explained here,
 //http://stackoverflow.com/questions/11487216/cors-with-jquery-and-xdomainrequest-in-ie8-9
 //
@@ -52293,6 +52339,7 @@ for (var key in texts_json) {
 
 // make markets object
 var markets = new Markets(markets_list, markets_json);
+
 ;var ActiveSymbols = (function () {
     'use strict';
 
@@ -52448,6 +52495,7 @@ var markets = new Markets(markets_list, markets_json);
     }
     return activeSymbols;
 })();
+
 ;var Button = (function(){
     "use strict";
     function createBinaryStyledButton(){
@@ -52462,6 +52510,7 @@ var markets = new Markets(markets_list, markets_json);
         createBinaryStyledButton: createBinaryStyledButton
     };
 }());
+
 ;var FlexTableUI = function(config) {
     this.config = config;
     this.id = config.id;
@@ -52516,6 +52565,7 @@ FlexTableUI.prototype = {
         $('#' + this.id + '> tfoot').hide();
     }
 };
+
 ;var PasswordMeter = (function(){
     'use strict';
 
@@ -52548,6 +52598,7 @@ FlexTableUI.prototype = {
         updateMeter: updateMeter
     };
 }());
+
 ;var Table = (function(){
     "use strict";
     /***
@@ -52680,9 +52731,11 @@ FlexTableUI.prototype = {
         appendTableBody: appendTableBody
     };
 }());
+
 ;var CommonData = {
     getLoginToken: function() { return Cookies.get('login'); }
 };
+
 ;/* jshint ignore:start */
 if (typeof window === 'undefined') {
     Element = function() {};
@@ -52705,6 +52758,7 @@ var Compatibility = (function() {
     return external;
 }());
 /* jshint ignore:end */
+
 ;function format_money(currency, amount) {
     var symbol = format_money.map[currency];
     if (symbol === undefined) {
@@ -52729,6 +52783,7 @@ if (typeof module !== 'undefined') {
         format_money: format_money,
     };
 }
+
 ;function onlyNumericOnKeypress(ev) {
     var key = ev.keyCode;
     var char = String.fromCharCode(ev.which);
@@ -52741,6 +52796,7 @@ if (typeof module !== 'undefined') {
         ev.preventDefault();
     }
 }
+
 ;var sidebar_scroll = function(elm_selector) {
     elm_selector.on('click', '#sidebar-nav li', function() {
         var clicked_li = $(this);
@@ -53324,6 +53380,7 @@ try {
 } catch(e) {
   window.attachEvent("onload", $buo_f);
 }
+
 ;var buildOauthApps = function(data) {
     var oauth_apps = {};
     for (var i = 0; i < data.length; i++) {
@@ -53364,6 +53421,7 @@ var showTooltip = function(app_id, oauth_app_id) {
         : ''
     );
 };
+
 ;/*
  *  This is developed to simplify the usage of enjoyhint (https://github.com/xbsoftware/enjoyhint)
  *
@@ -53522,6 +53580,7 @@ var Guide = (function() {
 		init: init
 	};
 })();
+
 ;/* ************************************************************
 Created: 20060120
 Author:  Steve Moitozo <god at zilla dot us> -- geekwisdom.com
@@ -53697,6 +53756,7 @@ function testPassword(passwd)
   var array = [intScore, strVerdict];
   return array;
 }
+
 ;RiskClassification = (function() {
   'use strict';
 
@@ -53765,6 +53825,7 @@ function testPassword(passwd)
     cleanup: cleanup
   };
 }());
+
 ;var SessionDurationLimit = (function() {
     'use strict';
 
@@ -53831,6 +53892,7 @@ function testPassword(passwd)
         exclusionResponseHandler: exclusionResponseHandler,
     };
 }());
+
 ;var StringUtil = (function(){
     function toTitleCase(str){
         return str.replace(/\w[^\s\/\\]*/g, function(txt){
@@ -53877,6 +53939,7 @@ function testPassword(passwd)
 
     return external;
 }());
+
 ;/*
  * Handles utm parameters/referrer to use on signup
  * 
@@ -53905,7 +53968,11 @@ var TrafficSource = (function(){
 
     var getData = function() {
         initCookie();
-        return cookie.value;
+        var data = cookie.value;
+        Object.keys(data).map(function(key) {
+            data[key] = (data[key] || '').replace(/[^a-zA-Z0-9\s\-\.\_]/gi, '').substring(0, 100);
+        });
+        return data;
     };
 
     var getSource = function(utm_data) {
@@ -53928,9 +53995,14 @@ var TrafficSource = (function(){
             });
         }
 
-        if(document.referrer && !current_values.referrer && !params.utm_source && !current_values.utm_source) {
-            var referrer = (new URL(document.referrer)).location.hostname;
-            cookie.set('referrer', referrer);
+        var doc_ref  = document.referrer,
+            referrer = localStorage.getItem('index_referrer') || doc_ref;
+        localStorage.removeItem('index_referrer');
+        if(doc_ref && !(new RegExp(window.location.hostname, 'i')).test(doc_ref)) {
+            referrer = doc_ref;
+        }
+        if(referrer && !current_values.referrer && !params.utm_source && !current_values.utm_source) {
+            cookie.set('referrer', (new URL(referrer)).location.hostname);
         }
     };
 
@@ -53946,6 +54018,7 @@ var TrafficSource = (function(){
         getSource: getSource,
     };
 })();
+
 ;var ValidAccountOpening = (function(){
   var redirectCookie = function() {
     if (page.client.show_login_if_logout(true)) {
@@ -54075,6 +54148,7 @@ var TrafficSource = (function(){
     checkAnswer: checkAnswer
   };
 }());
+
 ;var Validate = (function(){
   var errorCounter = 0;
 
@@ -54295,6 +54369,7 @@ function showPasswordError(password) {
 
   return errMsgs;
 }
+
 ;var ValidateV2 = (function() {
     function err() {
         return Content.errorMessage.apply(Content, arguments);
@@ -54416,6 +54491,7 @@ function showPasswordError(password) {
         lengthRange: lengthRange,
     };
 })();
+
 ;DatePicker = function(component_id, select_type) {
     this.component_id = component_id;
     this.select_type = (typeof select_type === "undefined") ? "date" : select_type;
@@ -54495,6 +54571,7 @@ DatePicker.prototype = {
         return config;
     },
 };
+
 ;DatePicker.SelectedDates = function(component_id, select_type) {
     this.component_id = component_id;
     this._super = new DatePicker(component_id, select_type);
@@ -54614,6 +54691,7 @@ DatePicker.SelectedDates.prototype = {
 //        return localizations;
 //    },
 };
+
 ;TimePicker = function(component_id) {
     this.component_id = component_id;
 };
@@ -54694,6 +54772,7 @@ TimePicker.prototype = {
         return config;
     },
 };
+
 ;window._trackJs = {
     onError: function(payload, error) {
 
@@ -54740,6 +54819,7 @@ TimePicker.prototype = {
 
 // if Track:js is already loaded, we need to initialize it
 if (typeof trackJs !== 'undefined') trackJs.configure(window._trackJs);
+
 ;pjax_config_page("endpoint", function(){
     return {
         onLoad: function() {
@@ -54763,6 +54843,7 @@ if (typeof trackJs !== 'undefined') trackJs.configure(window._trackJs);
         }
     };
 });
+
 ;pjax_config_page('/get-started-jp', function() {
     return {
         onLoad: function() {
@@ -54802,6 +54883,7 @@ if (typeof trackJs !== 'undefined') trackJs.configure(window._trackJs);
         }
     };
 });
+
 ;var JobDetails = (function() {
     var dept, depts, sections;
 
@@ -54905,6 +54987,7 @@ pjax_config_page('/open-positions/job-details', function() {
         }
     };
 });
+
 ;pjax_config_page('/\?.+|/home', function() {
     return {
         onLoad: function() {
@@ -55065,6 +55148,7 @@ pjax_config_page('/(us_patents|responsible-trading|partners)', function() {
         }
     };
 });
+
 ;var ValidationUI = {
     clear: function() {
         $('.errorfield[data-is-error-field]').remove();
@@ -55218,6 +55302,7 @@ bind_validation.simple = function(form, opts) {
         },
     });
 };
+
 ;var account_transferws = (function(){
     "use strict";
     var $form ;
@@ -55496,6 +55581,7 @@ pjax_config_page_require_auth("account/account_transferws", function() {
         }
     };
 });
+
 ;var Cashier = (function() {
     "use strict";
 
@@ -55550,6 +55636,7 @@ pjax_config_page("/cashier/payment_methods", function(){
         }
     };
 });
+
 ;var ForwardWS = (function() {
   function init() {
     Content.populate();
@@ -55719,6 +55806,7 @@ pjax_config_page_require_auth("cashier/forwardws", function() {
         }
     };
 });
+
 ;var PaymentAgentListWS = (function() {
     "use strict";
 
@@ -55881,6 +55969,7 @@ pjax_config_page("payment_agent_listws", function() {
         }
     };
 });
+
 ;var PaymentAgentWithdrawWS = (function() {
     "use strict";
 
@@ -56202,6 +56291,7 @@ pjax_config_page_require_auth("paymentagent/withdrawws", function() {
         }
     };
 });
+
 ;var AssetIndexData = (function() {
     "use strict";
 
@@ -56238,6 +56328,7 @@ pjax_config_page_require_auth("paymentagent/withdrawws", function() {
         responseHandler: responseHandler
     };
 }());
+
 ;var AssetIndexUI = (function() {
     "use strict";
 
@@ -56356,6 +56447,7 @@ pjax_config_page_require_auth("paymentagent/withdrawws", function() {
         }
     };
 }());
+
 ;var AssetIndex = (function() {
     "use strict";
 
@@ -56438,6 +56530,7 @@ pjax_config_page_require_auth("paymentagent/withdrawws", function() {
     }
     return external;
 }());
+
 ;var MarketTimesData = (function() {
     "use strict";
 
@@ -56476,6 +56569,7 @@ pjax_config_page_require_auth("paymentagent/withdrawws", function() {
         responseHandler: responseHandler
     };
 }());
+
 ;var MarketTimesUI = (function() {
     "use strict";
 
@@ -56634,6 +56728,7 @@ pjax_config_page_require_auth("paymentagent/withdrawws", function() {
         }
     };
 }());
+
 ;var MarketTimes = (function() {
     "use strict";
 
@@ -56651,6 +56746,7 @@ pjax_config_page_require_auth("paymentagent/withdrawws", function() {
     }
     return external;
 }());
+
 ;/*
  * It provides a abstraction layer over native javascript Websocket.
  *
@@ -56982,6 +57078,7 @@ function BinarySocketClass() {
 }
 
 var BinarySocket = new BinarySocketClass();
+
 ;/*
  * This file contains the code related to loading of trading page bottom analysis
  * content. It will contain jquery so as to compatible with old code and less rewrite
@@ -57218,6 +57315,7 @@ var TradingAnalysis = (function() {
     };
 
 })();
+
 ;/*
  * Handles barrier processing and display
  *
@@ -57383,6 +57481,7 @@ var Barriers = (function () {
         validateBarrier: validateBarrier
     };
 })();
+
 ;TradingAnalysis.DigitInfoWS = function() {
     this.chart_config = {
         chart: {
@@ -57661,6 +57760,7 @@ TradingAnalysis.DigitInfoWS.prototype = {
 };
 
 TradingAnalysis.tab_last_digitws = new TradingAnalysis.DigitInfoWS();
+
 ;var Highchart = (function() {
   var chart, options, chart_forget, responseID, contract, contract_ended, contracts_for_send, history_send, entry_tick_barrier_drawn, initialized, chart_delayed, chart_subscribed, request, min_point, max_point, start_time, purchase_time, now_time, end_time, entry_tick_time, is_sold, sell_time, sell_spot_time, is_expired, exit_tick_time, exit_time;
   function init_once() {
@@ -58304,6 +58404,7 @@ TradingAnalysis.tab_last_digitws = new TradingAnalysis.DigitInfoWS();
     dispatch     : dispatch
   };
 }());
+
 ;/*
  * This contains common functions we need for processing the response
  */
@@ -59221,6 +59322,7 @@ if (typeof module !== 'undefined') {
         addComma: addComma
     };
 }
+
 ;var Content = (function() {
     'use strict';
 
@@ -59536,6 +59638,7 @@ if (typeof module !== 'undefined') {
     };
 
 })();
+
 ;/*
  * Contract object mocks the trading form we have on our website
  * It parses the contracts json we get from socket.send({contracts_for: 'R_50'})
@@ -59730,6 +59833,7 @@ var Contract = (function() {
     };
 
 })();
+
 ;/*
  * Handles currency display
  *
@@ -59767,6 +59871,7 @@ function displayCurrencies(selected) {
     target.appendChild(fragment);
     Defaults.set('currency', target.value);
 }
+
 ;/*
  * Handles trading page default values
  * 
@@ -59842,6 +59947,7 @@ var Defaults = (function(){
         clear : function(){params = {};}
     };
 })();
+
 ;/*
  * Handles duration processing display
  *
@@ -60237,6 +60343,7 @@ var Durations = (function(){
         validateMinDurationAmount: validateMinDurationAmount
     };
 })();
+
 ;/*
  * TradingEvents object contains all the event handler function required for
  * websocket trading page
@@ -60763,6 +60870,7 @@ var TradingEvents = (function () {
         onDurationUnitChange: onDurationUnitChange
     };
 })();
+
 ;/*
  * This Message object process the response from server and fire
  * events based on type of response
@@ -60828,6 +60936,7 @@ var Message = (function () {
     };
 
 })();
+
 ;/*
  * Price object handles all the functions we need to display prices
  *
@@ -61109,6 +61218,7 @@ var Price = (function() {
     };
 
 })();
+
 ;/*
  * This function process the active symbols to get markets
  * and underlying list
@@ -61472,6 +61582,7 @@ function processTradingTimes(response) {
 
     processPriceRequest();
 }
+
 ;/*
  * Purchase object that handles all the functions related to
  * contract purchase response
@@ -61715,6 +61826,7 @@ var Purchase = (function () {
     };
 
 })();
+
 ;/*
  * Handles start time display
  *
@@ -61833,6 +61945,7 @@ var StartDates = (function(){
     };
 
 })();
+
 ;/*
  * Symbols object parses the active_symbols json that we get from socket.send({active_symbols: 'brief'}
  * and outputs in usable form, it gives markets, underlyings
@@ -61881,6 +61994,7 @@ var Symbols = (function () {
     };
 
 })();
+
 ;/*
  * Tick object handles all the process/display related to tick streaming
  *
@@ -62008,6 +62122,7 @@ var Tick = (function() {
         processHistory: processHistory
     };
 })();
+
 ;var TickDisplay = function() {
     return {
         initialize: function(data) {
@@ -62396,6 +62511,7 @@ WSTickDisplay.updateChart = function(data, contract) {
       WSTickDisplay.dispatch(data);
     }
 };
+
 ;var TradePage = (function(){
 
   var trading_page = 0, events_initialized = 0;
@@ -62467,6 +62583,7 @@ WSTickDisplay.updateChart = function(data, contract) {
     is_trading_page: function(){return trading_page;}
   };
 })();
+
 ;pjax_config_page_require_auth("user/authenticatews", function(){
     return {
         onLoad: function() {
@@ -62507,6 +62624,7 @@ WSTickDisplay.updateChart = function(data, contract) {
         }
     };
 });
+
 ;var PasswordWS = (function(){
     var $form, $result;
 
@@ -62619,6 +62737,7 @@ pjax_config_page_require_auth('user/change_password', function() {
         }
     };
 });
+
 ;pjax_config_page_require_auth("paymentagent/transferws", function(){
     return {
         onLoad: function() {
@@ -62639,6 +62758,7 @@ pjax_config_page_require_auth('user/change_password', function() {
         }
     };
 });
+
 ;var PaymentAgentTransferData = (function () {
     "use strict";
     function transfer(transferTo, currency, amount, toDryRun) {
@@ -62656,6 +62776,7 @@ pjax_config_page_require_auth('user/change_password', function() {
         transfer: transfer
     };
 }());
+
 ;var PaymentAgentTransfer = (function () {
     var hiddenClass = 'invisible',
         paymentagent;
@@ -62842,6 +62963,7 @@ pjax_config_page_require_auth('user/change_password', function() {
         paymentAgentTransferHandler: paymentAgentTransferHandler
     };
 }());
+
 ;var PaymentAgentTransferUI = (function () {
     "use strict";
     var hiddenClass = 'invisible';
@@ -62918,6 +63040,7 @@ pjax_config_page_require_auth('user/change_password', function() {
         updateDoneView: updateDoneView
     };
 }());
+
 ;var Portfolio = (function(){
     'use strict';
 
@@ -62984,6 +63107,7 @@ pjax_config_page_require_auth('user/change_password', function() {
 
     return external;
 }());
+
 ;var PortfolioWS =  (function() {
     'use strict';
 
@@ -63185,6 +63309,7 @@ pjax_config_page_require_auth('user/change_password', function() {
     };
 
 })();
+
 ;var ProfitTable = (function(){
     'use strict';
     var Compatibility = typeof window !== 'undefined' ? window.Compatibility : require('../../../common_functions/compatibility');
@@ -63221,6 +63346,7 @@ pjax_config_page_require_auth('user/change_password', function() {
 
     return external;
 }());
+
 ;var ProfitTableData = (function(){
 
     function initSocket(){
@@ -63256,6 +63382,7 @@ pjax_config_page_require_auth('user/change_password', function() {
         initSocket: initSocket
     };
 }());
+
 ;var ProfitTableWS = (function () {
     var batchSize,
         chunkSize,
@@ -63377,6 +63504,7 @@ pjax_config_page_require_auth('user/change_password', function() {
         clean: initTable
     };
 }());
+
 ;var ProfitTableUI = (function(){
     "use strict";
 
@@ -63498,6 +63626,7 @@ pjax_config_page_require_auth('user/change_password', function() {
         }
     };
 }());
+
 ;var SettingsWS = (function() {
     "use strict";
 
@@ -63541,6 +63670,7 @@ pjax_config_page_require_auth("settingsws", function() {
         }
     };
 });
+
 ;var APITokenWS = (function() {
     "use strict";
 
@@ -63768,6 +63898,7 @@ pjax_config_page_require_auth("settingsws", function() {
         init: init,
     };
 }());
+
 ;pjax_config_page_require_auth("user/settings/authorised_appsws", function(){
     return {
         onLoad: function() {
@@ -63782,6 +63913,7 @@ pjax_config_page_require_auth("settingsws", function() {
         }
     };
 });
+
 ;var ApplicationsData = (function(){
     "use strict";
 
@@ -63821,6 +63953,7 @@ pjax_config_page_require_auth("settingsws", function() {
         list: list,
     };
 }());
+
 ;var Applications = (function() {
     "use strict";
 
@@ -63849,6 +63982,7 @@ pjax_config_page_require_auth("settingsws", function() {
         clean: clean,
     };
 })();
+
 ;var ApplicationsUI = (function(){
     'use strict';
     var containerSelector = '#applications-ws-container';
@@ -63937,6 +64071,7 @@ pjax_config_page_require_auth("settingsws", function() {
         displayError: displayError,
     };
 }());
+
 ;var FinancialAssessmentws = (function(){
    "use strict";
 
@@ -64099,6 +64234,7 @@ pjax_config_page_require_auth("user/settings/assessmentws", function() {
         }
     };
 });
+
 ;pjax_config_page_require_auth("user/settings/iphistoryws", function(){
     return {
         onLoad: function() {
@@ -64113,6 +64249,7 @@ pjax_config_page_require_auth("user/settings/assessmentws", function() {
         }
     };
 });
+
 ;var IPHistoryData = (function() {
     function parse_ua(user_agent) {
         // Table of UA-values (and precedences) from:
@@ -64183,6 +64320,7 @@ pjax_config_page_require_auth("user/settings/assessmentws", function() {
 
     return external;
 })();
+
 ;var IPHistory = (function() {
     'use strict';
 
@@ -64211,6 +64349,7 @@ pjax_config_page_require_auth("user/settings/assessmentws", function() {
         clean: clean,
     };
 })();
+
 ;var IPHistoryUI = (function() {
     'use strict';
 
@@ -64279,6 +64418,7 @@ pjax_config_page_require_auth("user/settings/assessmentws", function() {
         displayError: displayError,
     };
 }());
+
 ;pjax_config_page_require_auth("limitsws", function(){
     return {
         onLoad: function() {
@@ -64315,6 +64455,7 @@ pjax_config_page_require_auth("user/settings/assessmentws", function() {
         }
     };
 });
+
 ;var LimitsWS = (function(){
     "use strict";
 
@@ -64382,6 +64523,7 @@ pjax_config_page_require_auth("user/settings/assessmentws", function() {
         clean: initTable
     };
 }());
+
 ;var LimitsUI = (function(){
     "use strict";
 
@@ -64470,6 +64612,7 @@ pjax_config_page_require_auth("user/settings/assessmentws", function() {
         fillLimitsTable: fillLimitsTable
     };
 }());
+
 ;var MetaTrader = (function(){
     'use strict';
 
@@ -64529,6 +64672,7 @@ pjax_config_page_require_auth("user/settings/assessmentws", function() {
         validateAmount  : validateAmount,
     };
 }());
+
 ;var MetaTraderData = (function() {
     "use strict";
 
@@ -64625,6 +64769,7 @@ pjax_config_page_require_auth("user/settings/assessmentws", function() {
         requestLandingCompany: requestLandingCompany,
     };
 }());
+
 ;var MetaTraderUI = (function() {
     "use strict";
 
@@ -65066,6 +65211,7 @@ pjax_config_page_require_auth("user/settings/assessmentws", function() {
         responseLandingCompany : responseLandingCompany,
     };
 }());
+
 ;var SelfExclusionWS = (function() {
     "use strict";
 
@@ -65410,6 +65556,7 @@ pjax_config_page_require_auth("user/settings/assessmentws", function() {
         init: init,
     };
 }());
+
 ;var SettingsDetailsWS = (function() {
     "use strict";
 
@@ -65701,6 +65848,7 @@ pjax_config_page_require_auth("settings/detailsws", function() {
         }
     };
 });
+
 ;var SecurityWS = (function() {
     "use strict";
     var $form;
@@ -65883,6 +66031,7 @@ pjax_config_page_require_auth("settings/detailsws", function() {
         init: init,
     };
 })();
+
 ;var Statement = (function(){
     'use strict';
     var Compatibility = typeof window !== 'undefined' ? window.Compatibility : require('../../../common_functions/compatibility');
@@ -65939,6 +66088,7 @@ pjax_config_page_require_auth("settings/detailsws", function() {
 
     return external;
 }());
+
 ;var StatementData = (function(){
     var hasOlder = true;
 
@@ -65974,6 +66124,7 @@ pjax_config_page_require_auth("settings/detailsws", function() {
         hasOlder: hasOlder
     };
 }());
+
 ;var StatementWS = (function(){
     "use strict";
 
@@ -66113,6 +66264,7 @@ pjax_config_page_require_auth("settings/detailsws", function() {
         clean: cleanStatementPageState
     };
 }());
+
 ;var StatementUI = (function(){
     "use strict";
     var tableID = "statement-table";
@@ -66205,6 +66357,7 @@ pjax_config_page_require_auth("settings/detailsws", function() {
         }
     };
 }());
+
 ;var TopUpVirtualWS = (function() {
 	"use strict";
 
@@ -66295,6 +66448,7 @@ pjax_config_page_require_auth("top_up_virtualws", function() {
         }
     };
 });
+
 ;pjax_config_page('user/lost_passwordws', function() {
     return {
         onLoad: function() {
@@ -66308,6 +66462,7 @@ pjax_config_page_require_auth("top_up_virtualws", function() {
         }
     };
 });
+
 ;var LostPassword = (function() {
     'use strict';
 
@@ -66366,6 +66521,7 @@ pjax_config_page_require_auth("top_up_virtualws", function() {
         init: init
     };
 }());
+
 ;var MyAccountWS = (function() {
     "use strict";
 
@@ -66557,6 +66713,7 @@ pjax_config_page_require_auth("user/my_accountws", function() {
         }
     };
 });
+
 ;pjax_config_page_require_auth("new_account/maltainvestws", function(){
   return {
     onLoad: function() {
@@ -66607,6 +66764,7 @@ pjax_config_page_require_auth("user/my_accountws", function() {
     }
   };
 });
+
 ;var FinancialAccOpeningData = (function(){
     function getRealAcc(elementObj){
         var req = {
@@ -66663,6 +66821,7 @@ pjax_config_page_require_auth("user/my_accountws", function() {
         getRealAcc: getRealAcc
     };
 }());
+
 ;var FinancialAccOpeningUI = (function(){
   "use strict";
 
@@ -66802,6 +66961,7 @@ pjax_config_page_require_auth("user/my_accountws", function() {
     checkValidity: checkValidity
   };
 })();
+
 ;pjax_config_page("new_account/japanws", function(){
   return {
     onLoad: function() {
@@ -66836,6 +66996,7 @@ pjax_config_page_require_auth("user/my_accountws", function() {
     }
   };
 });
+
 ;var JapanAccOpeningData = (function(){
     function getJapanAcc(elementObj){
         var req = {
@@ -66890,6 +67051,7 @@ pjax_config_page_require_auth("user/my_accountws", function() {
         getJapanAcc: getJapanAcc
     };
 }());
+
 ;var JapanAccOpeningUI = function () {
   "use strict";
 
@@ -67071,6 +67233,7 @@ pjax_config_page_require_auth("user/my_accountws", function() {
       fireRequest: fireRequest,
   };
 }();
+
 ;pjax_config_page("new_account/realws", function(){
   return {
     onLoad: function() {
@@ -67104,6 +67267,7 @@ pjax_config_page_require_auth("user/my_accountws", function() {
     }
   };
 });
+
 ;var RealAccOpeningData = (function(){
     function getRealAcc(elementObj){
         var req = {
@@ -67134,6 +67298,7 @@ pjax_config_page_require_auth("user/my_accountws", function() {
         getRealAcc: getRealAcc
     };
 }());
+
 ;var RealAccOpeningUI = (function(){
   "use strict";
 
@@ -67238,6 +67403,7 @@ pjax_config_page_require_auth("user/my_accountws", function() {
     checkValidity: checkValidity
   };
 })();
+
 ;pjax_config_page("new_account/virtualws", function() {
     function onSuccess(res) {
         var new_account = res.new_account_virtual;
@@ -67326,6 +67492,7 @@ pjax_config_page_require_auth("user/my_accountws", function() {
         }
     };
 });
+
 ;var VirtualAccOpeningData = (function(){
     "use strict";
 
@@ -67390,6 +67557,7 @@ pjax_config_page_require_auth("user/my_accountws", function() {
         handler:    handler,
     };
 }());
+
 ;var RealityCheckData = (function () {
     'use strict';
 
@@ -67506,6 +67674,7 @@ pjax_config_page_require_auth("user/my_accountws", function() {
         triggerCloseEvent: triggerCloseEvent
     };
 }());
+
 ;var RealityCheck = (function () {
     'use strict';
     var hiddenClass = 'invisible';
@@ -67633,6 +67802,7 @@ pjax_config_page_require_auth("user/my_accountws", function() {
         sendAccountStatus: sendAccountStatus
     };
 }());
+
 ;var RealityCheckUI = (function () {
     'use strict';
 
@@ -67751,6 +67921,7 @@ pjax_config_page_require_auth("user/my_accountws", function() {
         closePopUp: closePopUp
     };
 }());
+
 ;pjax_config_page('user/reset_passwordws', function() {
     return {
         onLoad: function() {
@@ -67764,6 +67935,7 @@ pjax_config_page_require_auth("user/my_accountws", function() {
         }
     };
 });
+
 ;var ResetPassword = (function () {
     'use strict';
 
@@ -67950,6 +68122,7 @@ pjax_config_page_require_auth("user/my_accountws", function() {
         init: init
     };
 }());
+
 ;var TNCApproval = (function() {
     "use strict";
 
@@ -68061,6 +68234,7 @@ pjax_config_page_require_auth("tnc_approvalws", function() {
         }
     };
 });
+
 ;function submit_email() {
     Content.populate();
     var form = $('#verify-email-form')[0];
@@ -68108,6 +68282,7 @@ pjax_config_page_require_auth("tnc_approvalws", function() {
         BinarySocket.send({verify_email: email, type: 'account_opening'});
     }
 }
+
 ;var ViewPopupUI = (function() {
     var _container = null;
     return {
@@ -68242,6 +68417,7 @@ pjax_config_page_require_auth("tnc_approvalws", function() {
         },
     };
 }());
+
 ;var ViewPopupWS = (function() {
     "use strict";
 
@@ -68933,6 +69109,7 @@ pjax_config_page("profit_tablews|statementws|portfoliows|trading", function() {
         }
     };
 });
+
 ;var ViewBalance = (function () {
     function init(){
         BinarySocket.init(1);
@@ -68942,6 +69119,7 @@ pjax_config_page("profit_tablews|statementws|portfoliows|trading", function() {
         init: init
     };
 }());
+
 ;var ViewBalanceUI = (function(){
 
     function updateBalances(response){
@@ -68967,6 +69145,7 @@ pjax_config_page("profit_tablews|statementws|portfoliows|trading", function() {
         updateBalances: updateBalances
     };
 }());
+
 ;pjax_config_page_require_auth("user/profit_table", function(){
     return {
         onLoad: function() {
@@ -69047,6 +69226,7 @@ pjax_config_page_require_auth("user/settings/securityws", function() {
         }
     };
 });
+
 ;pjax_config_page_require_auth("new_account/knowledge_testws", function(){
     return {
         onLoad: function() {
@@ -69054,6 +69234,7 @@ pjax_config_page_require_auth("user/settings/securityws", function() {
         }
     };
 });
+
 ;var KnowledgeTestData = (function() {
     "use strict";
     var questions = {
@@ -69579,6 +69760,7 @@ pjax_config_page_require_auth("user/settings/securityws", function() {
         sendResult: sendResult
     };
 }());
+
 ;var KnowledgeTest = (function() {
     "use strict";
 
@@ -69774,6 +69956,7 @@ pjax_config_page_require_auth("user/settings/securityws", function() {
         showKnowledgeTestTopBarIfValid: showKnowledgeTestTopBarIfValid
     };
 }());
+
 ;var KnowledgeTestUI = (function () {
     "use strict";
 
@@ -69897,6 +70080,7 @@ pjax_config_page_require_auth("user/settings/securityws", function() {
         createKnowledgeTestLink: createKnowledgeTestLink,
     };
 }());
+
 ;var JPTradePage = (function() {
 
   var scriptUrl = 'https://binary-com.github.io/japanui/dist/bundle.js';
@@ -69949,6 +70133,7 @@ pjax_config_page_require_auth("user/settings/securityws", function() {
     }
   };
 })();
+
 ;var JapanPortfolio = (function() {
 
   var $portfolio;
@@ -70003,6 +70188,7 @@ pjax_config_page_require_auth("user/settings/securityws", function() {
     isActive: isActive,
   };
 })();
+
 ;var PricingDetails = function() {
     return {
         register: function() {

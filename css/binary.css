@@ -2250,6 +2250,8 @@ table .loss, table .lower {
   background: #F2F2F2;
   font-weight: bold;
   padding: 12px;
+  border-top: none;
+  border-bottom: none;
   direction: ltr;
 }
 .timeline .event .event-body {
