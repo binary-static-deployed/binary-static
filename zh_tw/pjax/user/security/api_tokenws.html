@@ -1,0 +1,84 @@
+<div id="content" class="api_tokenws-content">
+        <!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-MZWFF7"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script data-cfasync="false">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MZWFF7');</script>
+<!-- End Google Tag Manager -->
+        <div id="page_info" style="display:none;">
+            <title>API權杖 | Binary.com</title>
+            <div id="content_class">api_tokenws-content</div>
+        </div>
+        
+        <div class="container">
+
+
+  <div id="api_token" class="api_token">
+    <h1>API權杖</h1>
+
+    <p>首先您必須生成API權杖才能夠存取我們的行動應用程式和其他第三方應用程式。</p>
+    <ul class="bullet">
+      <li>僅點選「建立」鍵即可生成權杖，然後複製粘貼到應用程式。</li>
+      <li>根據個人使用能力意願選擇所需的特定API權杖。</li>
+    </ul>
+
+    <div id="token_form" class="gr-12 gr-padding-10">
+        <form class="form rbox" id="frmNewToken">
+            <fieldset>
+                <legend>新增新權杖</legend>
+
+                <div class="gr-row gr-padding-10">
+                    <div class="gr-4 form_label">
+                        <label for="txtName">選擇名稱:</label>
+                    </div>
+                    <div class="gr-8">
+                        <input name="name" id="txtName" type="text" maxlength="32" />
+                    </div>
+                </div>
+
+                <div class="gr-row gr-padding-10">
+                    <div class="gr-4 form_label">
+                        <label for="scopes">選擇範圍:</label>
+                    </div>
+                    <div class="gr-8">
+                        <input id="scopes" type="checkbox" name="scopes[]" value="read" checked="checked" readonly="readonly" />
+                          <label for="scopes" data-balloon="可用於檢視帳戶活動，包括設定、限額、資產負債表、交易購入歷史等。" data-balloon-length="xlarge">閱讀</label>
+                        <input id="scopes-trade" type="checkbox" name="scopes[]" value="trade" />
+                          <label for="scopes-trade" data-balloon="可用於合同購入與售出、給到期的購入合同延期、及給虛擬金錢帳戶存入資金。" data-balloon-length="xlarge">交易</label>
+                        <input id="scopes-payments" type="checkbox" name="scopes[]" value="payments" />
+                          <label for="scopes-payments" data-balloon="可用於開帳戶、設定、權杖用法管理等。" data-balloon-length="xlarge">支付</label>
+                        <input id="scopes-admin" type="checkbox" name="scopes[]" value="admin" />
+                          <label for="scopes-admin" data-balloon="用途包括為付款代理取款、帳戶轉賬、及設定/刪除收銀台密碼。" data-balloon-length="xlarge">管理中心</label>
+                    </div>
+                </div>
+
+                <div class="gr-row">
+                    <div class="gr-4"></div>
+                    <div class="gr-8">
+                        <div id="formMessage"></div>
+                    </div>
+                </div>
+
+                <div class="gr-row">
+                    <div class="gr-4"></div>
+                    <div class="gr-8">
+                        <span class="button">
+                            <button class="button" id="btnCreate">新增</button>
+                        </span>
+                    </div>
+                </div>
+
+            </fieldset>
+        </form>
+    </div>
+
+    <div id="token_message" class="gr-12 gr-padding-10 center-text invisible">
+        <p></p>
+    </div>
+
+    <div id="tokens_list" class="gr-12 gr-parent gr-padding-10">
+    </div>
+</div>

@@ -22,12 +22,48 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <h1>收银台</h1>
     </div>
 
+    <div class="gr-12 gr-padding-10 table-body by_client_type client_virtual with_login_cookies invisible gr-parent">
+        <div class="gr-padding-10">
+            <h3>获取更多虚拟资金</h3>
+        </div>
+        <div class="gr-row">
+            <div class="gr-12">
+                <div class="gr-row">
+                    <div class="gr-2 gr-4-m">
+                        <img class="responsive charting-page-icon" id="virtual_money_icon" src="/images/pages/cashier/virtual_topup.svg" />
+                    </div>
+                    <div class="gr-5 gr-12-m">
+                        <span class="ja-hide">如果虚拟资金余额低于1,000.00美元，您可请求获取更多虚拟资金。</span>
+                        <p class="hidden ja-show">如果虚拟资金余额低于100,000日元，您可请求获取更多虚拟资金。</span>
+                    </div>
+                    <div class="gr-5 gr-12-m">
+                        <div class="gr-padding-10 by_client_type client_virtual with_login_cookies invisible gr-parent">
+                            <a class="pjaxload button button_large by_client_type client_virtual with_login_cookies invisible" href="/zh_cn/cashier/top_up_virtualws.html" id="VRT_topup_link">
+                                <span class="ja-hide">获取10,000.00美元</span>
+                                <span class="hidden ja-show">获取1,000,000日元</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="gr-12 gr-padding-10 by_client_type client_virtual with_login_cookies invisible">
+        <span></span>
+    </div>
+
     <div class="gr-12 gr-padding-10 table-body">
-        <div class="gr-padding-10 invisible">
+        <div class="gr-padding-10 invisible gr-parent">
             <p class="notice-msg by_client_type client_real with_login_cookies">
                 取款已锁定。欲知详情，请 <a class="pjaxload" href="/zh_cn/contact.html">联系我们</a>。
             </p>
         </div>
+        <p class="center-text invisible" id="authenticate_button">
+            <a class="button pjaxload" href="/zh_cn/user/authenticatews.html">
+                <span>验证您的账户</span>
+            </a>
+        </p>
         <div class="gr-padding-10">
             <h3>银行电汇、信用卡、电子现金钱包</h3>
         </div>
@@ -41,15 +77,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         </a>
                     </div>
                     <div class="gr-5 gr-12-m">
-                        <p>通过银行电汇、信用卡或电子现金钱包向您的账户存款或提款。</p>
+                        <span>通过银行电汇、信用卡或电子现金钱包向您的账户存款或提款。</span>
                         <a class="pjaxload ja-hide" href="/zh_cn/cashier/payment_methods.html" id="view_payment_methods">
-                            查看可用支付方式
+                            <p>查看可用支付方式</p>
                         </a>
                     </div>
                     <div class="gr-5 gr-12-m">
-                        <div class="gr-padding-10 by_client_type client_real with_login_cookies invisible">
+                        <div class="gr-padding-10 by_client_type client_real with_login_cookies invisible gr-parent">
                             <a class="pjaxload button button_large by_client_type client_real with_login_cookies invisible" href="/zh_cn/cashier/forwardws.html#deposit">
-                                <span>存款</span>
+                                <span class="deposit">存款</span>
                             </a>
                         </div>
                         <div class="gr-padding-10 by_client_type client_real with_login_cookies invisible">
@@ -81,15 +117,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </a>
             </div>
             <div class="gr-5 gr-12-m">
-                <p>Binary.com不支持的电子现金方式或本地货币。</p>
+                <span>Binary.com不支持的电子现金方式或本地货币。</span>
                 <p class="faded">
                     注意：您必须完全通过付款代理存款才可使用付款代理提款
                 </p>
             </div>
             <div class="gr-5 gr-12-m">
-                <div class="gr-padding-10">
+                <div class="gr-padding-10 gr-parent">
                     <a class="pjaxload button button_large by_client_type client_real with_login_cookies invisible" href="/zh_cn/cashier/payment_agent_listws.html">
-                        <span>存款</span>
+                        <span class="deposit">存款</span>
                     </a>
                 </div>
                 <div class="gr-padding-10">
@@ -101,7 +137,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </div>
     </div>
 
-    <div class="gr-12 gr-padding-10 table-body ja-hide" id="account-transfer-section">
+    <div class="gr-12 gr-padding-10 table-body ja-hide invisible" id="account-transfer-section">
         <div class="gr-row">
             <div class="gr-2 gr-4-m">
                 <a class="pjaxload" href="/zh_cn/account/account_transferws.html" id="account_transfer">
@@ -109,10 +145,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </a>
             </div>
             <div class="gr-5 gr-12-m">
-                <p>在您的博彩和金融账户之间进行转账。</p>
+                <span>在您的博彩和金融账户之间进行转账。</span>
             </div>
             <div class="gr-5 gr-12-m">
-                <div class="gr-padding-10">
+                <div class="gr-padding-10 gr-parent">
                     <a class="button button_large by_client_type client_real with_login_cookies invisible" href="/zh_cn/account/account_transferws.html">
                         <span class="withdraw">转账</span>
                     </a>

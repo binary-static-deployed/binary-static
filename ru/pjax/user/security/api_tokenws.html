@@ -1,0 +1,84 @@
+<div id="content" class="api_tokenws-content">
+        <!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-MZWFF7"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script data-cfasync="false">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MZWFF7');</script>
+<!-- End Google Tag Manager -->
+        <div id="page_info" style="display:none;">
+            <title>Ключ API | Binary.com</title>
+            <div id="content_class">api_tokenws-content</div>
+        </div>
+        
+        <div class="container">
+
+
+  <div id="api_token" class="api_token">
+    <h1>Ключ API</h1>
+
+    <p>Чтобы получить доступ к нашим мобильным приложениям и другим сторонним приложениям, нужно сначала сгенерировать ключ API.</p>
+    <ul class="bullet">
+      <li>Просто нажмите кнопку "Создать," чтобы сгенерировать ключ; затем скопируйте и вставьте его в приложение.</li>
+      <li>Выберите определённый тип нужного Вам ключа API, согласно параметрам, которые Вы хотите активировать.</li>
+    </ul>
+
+    <div id="token_form" class="gr-12 gr-padding-10">
+        <form class="form rbox" id="frmNewToken">
+            <fieldset>
+                <legend>Создать новый ключ</legend>
+
+                <div class="gr-row gr-padding-10">
+                    <div class="gr-4 form_label">
+                        <label for="txtName">Выберите имя:</label>
+                    </div>
+                    <div class="gr-8">
+                        <input name="name" id="txtName" type="text" maxlength="32" />
+                    </div>
+                </div>
+
+                <div class="gr-row gr-padding-10">
+                    <div class="gr-4 form_label">
+                        <label for="scopes">Выберите условия:</label>
+                    </div>
+                    <div class="gr-8">
+                        <input id="scopes" type="checkbox" name="scopes[]" value="read" checked="checked" readonly="readonly" />
+                          <label for="scopes" data-balloon="Может использоваться для просмотра активности на счету, в том числе настроек, лимитов, баланса, истории торговли и др." data-balloon-length="xlarge">Читать</label>
+                        <input id="scopes-trade" type="checkbox" name="scopes[]" value="trade" />
+                          <label for="scopes-trade" data-balloon="Может использоваться для покупки и продажи контрактов, возобновления покупки закончившихся сделок, а также пополнения демо-счетов." data-balloon-length="xlarge">Торговля</label>
+                        <input id="scopes-payments" type="checkbox" name="scopes[]" value="payments" />
+                          <label for="scopes-payments" data-balloon="Может использоваться для открытия счетов, создания настроек, управления ключом и других действий." data-balloon-length="xlarge">Платежи</label>
+                        <input id="scopes-admin" type="checkbox" name="scopes[]" value="admin" />
+                          <label for="scopes-admin" data-balloon="Может использоваться для вывода денег через платёжных агентов, перевода средств между счетами, установки / изменения паролей для Кассы." data-balloon-length="xlarge">Администратор</label>
+                    </div>
+                </div>
+
+                <div class="gr-row">
+                    <div class="gr-4"></div>
+                    <div class="gr-8">
+                        <div id="formMessage"></div>
+                    </div>
+                </div>
+
+                <div class="gr-row">
+                    <div class="gr-4"></div>
+                    <div class="gr-8">
+                        <span class="button">
+                            <button class="button" id="btnCreate">Создать</button>
+                        </span>
+                    </div>
+                </div>
+
+            </fieldset>
+        </form>
+    </div>
+
+    <div id="token_message" class="gr-12 gr-padding-10 center-text invisible">
+        <p></p>
+    </div>
+
+    <div id="tokens_list" class="gr-12 gr-parent gr-padding-10">
+    </div>
+</div>

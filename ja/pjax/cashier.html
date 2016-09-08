@@ -22,12 +22,48 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <h1>入出金</h1>
     </div>
 
+    <div class="gr-12 gr-padding-10 table-body by_client_type client_virtual with_login_cookies invisible gr-parent">
+        <div class="gr-padding-10">
+            <h3>もっとバーチャルマネーを入手する</h3>
+        </div>
+        <div class="gr-row">
+            <div class="gr-12">
+                <div class="gr-row">
+                    <div class="gr-2 gr-4-m">
+                        <img class="responsive charting-page-icon" id="virtual_money_icon" src="/images/pages/cashier/virtual_topup.svg" />
+                    </div>
+                    <div class="gr-5 gr-12-m">
+                        <span class="ja-hide">お客様のバーチャルマネー残高がUSD 1,000.00を下回る場合、バーチャルマネーの追加リクエストが可能です。</span>
+                        <p class="hidden ja-show">お客様のバーチャルマネー残高が100,000円を下回る場合、バーチャルマネーの追加リクエストが可能です。</span>
+                    </div>
+                    <div class="gr-5 gr-12-m">
+                        <div class="gr-padding-10 by_client_type client_virtual with_login_cookies invisible gr-parent">
+                            <a class="pjaxload button button_large by_client_type client_virtual with_login_cookies invisible" href="/ja/cashier/top_up_virtualws.html" id="VRT_topup_link">
+                                <span class="ja-hide">USD 10,000.00をゲットする</span>
+                                <span class="hidden ja-show">1,000,000円を入手する</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="gr-12 gr-padding-10 by_client_type client_virtual with_login_cookies invisible">
+        <span></span>
+    </div>
+
     <div class="gr-12 gr-padding-10 table-body">
-        <div class="gr-padding-10 invisible">
+        <div class="gr-padding-10 invisible gr-parent">
             <p class="notice-msg by_client_type client_real with_login_cookies">
                 出金アクションにロックがかかっています。詳細については<a class="pjaxload" href="/ja/contact.html">当社までお問い合わせ</a>ください。
             </p>
         </div>
+        <p class="center-text invisible" id="authenticate_button">
+            <a class="button pjaxload" href="/ja/user/authenticatews.html">
+                <span>お客さまのアカウント認証</span>
+            </a>
+        </p>
         <div class="gr-padding-10">
             <h3>銀行振込にて対応しております</h3>
         </div>
@@ -41,15 +77,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         </a>
                     </div>
                     <div class="gr-5 gr-12-m">
-                        <p>銀行振込によりお客さまの口座に入出金を行います</p>
+                        <span>銀行振込によりお客さまの口座に入出金を行います</span>
                         <a class="pjaxload ja-hide" href="/ja/cashier/payment_methods.html" id="view_payment_methods">
-                            ご利用できる決済方法を確認する
+                            <p>ご利用できる決済方法を確認する</p>
                         </a>
                     </div>
                     <div class="gr-5 gr-12-m">
-                        <div class="gr-padding-10 by_client_type client_real with_login_cookies invisible">
+                        <div class="gr-padding-10 by_client_type client_real with_login_cookies invisible gr-parent">
                             <a class="pjaxload button button_large by_client_type client_real with_login_cookies invisible" href="/ja/cashier/forwardws.html#deposit">
-                                <span>入金</span>
+                                <span class="deposit">入金</span>
                             </a>
                         </div>
                         <div class="gr-padding-10 by_client_type client_real with_login_cookies invisible">
@@ -81,15 +117,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </a>
             </div>
             <div class="gr-5 gr-12-m">
-                <p>eキャッシュの手段または現地通貨がBinary.comでは対応していません。</p>
+                <span>eキャッシュの手段または現地通貨がBinary.comでは対応していません。</span>
                 <p class="faded">
                     ご注意：決済サービスでのご出金は、ご入金の際に決済サービスをご利用いただいた場合にのみご利用いただけます。
                 </p>
             </div>
             <div class="gr-5 gr-12-m">
-                <div class="gr-padding-10">
+                <div class="gr-padding-10 gr-parent">
                     <a class="pjaxload button button_large by_client_type client_real with_login_cookies invisible" href="/ja/cashier/payment_agent_listws.html">
-                        <span>入金</span>
+                        <span class="deposit">入金</span>
                     </a>
                 </div>
                 <div class="gr-padding-10">
@@ -101,7 +137,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </div>
     </div>
 
-    <div class="gr-12 gr-padding-10 table-body ja-hide" id="account-transfer-section">
+    <div class="gr-12 gr-padding-10 table-body ja-hide invisible" id="account-transfer-section">
         <div class="gr-row">
             <div class="gr-2 gr-4-m">
                 <a class="pjaxload" href="/ja/account/account_transferws.html" id="account_transfer">
@@ -109,10 +145,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </a>
             </div>
             <div class="gr-5 gr-12-m">
-                <p>お客さまのゲーム口座と金融口座間での送金</p>
+                <span>お客さまのゲーム口座と金融口座間での送金</span>
             </div>
             <div class="gr-5 gr-12-m">
-                <div class="gr-padding-10">
+                <div class="gr-padding-10 gr-parent">
                     <a class="button button_large by_client_type client_real with_login_cookies invisible" href="/ja/account/account_transferws.html">
                         <span class="withdraw">送金</span>
                     </a>

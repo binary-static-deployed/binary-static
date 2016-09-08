@@ -41,14 +41,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <p>Keine offenen Positionen.</p>
         </div>
 
-        <table class="flex-table" id="portfolio-table">
+        <table id="portfolio-table">
             <thead>
-                <tr class="flex-tr">
-                    <th class="ref flex-tr-child">Ref.</th>
-                    <th class="payout flex-tr-child">Mögliche Auszahlung</th>
-                    <th class="details flex-tr-child">Kontraktdaten</th>
-                    <th class="purchase flex-tr-child">Kauf</th>
-                    <th class="indicative flex-tr-child">Indikativ</th>
+                <tr>
+                    <th class="ref">Ref.</th>
+                    <th class="payout">Mögliche Auszahlung</th>
+                    <th class="details">Kontraktdaten</th>
+                    <th class="purchase">Kauf</th>
+                    <th class="indicative">Indikativ</th>
                     <th class="button"></th>
                 </tr>
             </thead>
@@ -56,10 +56,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <tbody id="portfolio-body"></tbody>
 
             <tfoot>
-                <tr class="flex-tr">
-                    <th class="ref flex-tr-child" colspan="3"></th>
-                    <th class="cost flex-tr-child" id="cost-of-open-positions"></th>
-                    <th class="value flex-tr-child" id="value-of-open-positions" colspan="2"></th>
+                <tr>
+                    <th class="ref" colspan="3"></th>
+                    <th class="cost" id="cost-of-open-positions"></th>
+                    <th class="value" id="value-of-open-positions" colspan="2"></th>
                 </tr>
             </tfoot>
         </table>

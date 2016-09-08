@@ -1,0 +1,84 @@
+<div id="content" class="api_tokenws-content">
+        <!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-MZWFF7"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script data-cfasync="false">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MZWFF7');</script>
+<!-- End Google Tag Manager -->
+        <div id="page_info" style="display:none;">
+            <title>API Token | Binary.com</title>
+            <div id="content_class">api_tokenws-content</div>
+        </div>
+        
+        <div class="container">
+
+
+  <div id="api_token" class="api_token">
+    <h1>API Token</h1>
+
+    <p>من أجل الوصول إلى تطبيقات الجوال لدينا وغيرها من تطبيقات الطرف الثالث، سوف تحتاج أولاً إلى إنشاء رمز API.</p>
+    <ul class="bullet">
+      <li>أنقر ببساطة على "إنشاء" للحصول على الرمز الخاص بك; ثم انسخه والصقه في التطبيق.</li>
+      <li>اختر نوع محدد من الرمز المميز API التي تحتاج إليها، استناداً إلى القدرات التي ترغب في جعلها متوفرة.</li>
+    </ul>
+
+    <div id="token_form" class="gr-12 gr-padding-10">
+        <form class="form rbox" id="frmNewToken">
+            <fieldset>
+                <legend>إنشاء رمز جديد</legend>
+
+                <div class="gr-row gr-padding-10">
+                    <div class="gr-4 form_label">
+                        <label for="txtName">اختر اسم:</label>
+                    </div>
+                    <div class="gr-8">
+                        <input name="name" id="txtName" type="text" maxlength="32" />
+                    </div>
+                </div>
+
+                <div class="gr-row gr-padding-10">
+                    <div class="gr-4 form_label">
+                        <label for="scopes">اختر النطاقات:</label>
+                    </div>
+                    <div class="gr-8">
+                        <input id="scopes" type="checkbox" name="scopes[]" value="read" checked="checked" readonly="readonly" />
+                          <label for="scopes" data-balloon="يمكن استخدامها لعرض نشاط الحساب، بما في ذلك إعدادات وحدود وموازين، وتاريخ الشراء التجارة وأكثر." data-balloon-length="xlarge">أقرأ</label>
+                        <input id="scopes-trade" type="checkbox" name="scopes[]" value="trade" />
+                          <label for="scopes-trade" data-balloon="يمكن استخدامها لشراء وبيع العقود، وتجديد مشتريات منتهية الصلاحية، وأعلى متابعة حسابات الأموال الافتراضية." data-balloon-length="xlarge">التداول</label>
+                        <input id="scopes-payments" type="checkbox" name="scopes[]" value="payments" />
+                          <label for="scopes-payments" data-balloon="يمكن استخدامها لفتح الحسابات، وتعيين إعدادات، إدارة استخدام الرمز المميز، وأكثر." data-balloon-length="xlarge">المدفوعات</label>
+                        <input id="scopes-admin" type="checkbox" name="scopes[]" value="admin" />
+                          <label for="scopes-admin" data-balloon="يمكن استخدامها للسحب لعملاء الدفع، تحويل الأموال بين الحسابات ، وحدد/ كلمات سر واضحة للصراف." data-balloon-length="xlarge">المشرف</label>
+                    </div>
+                </div>
+
+                <div class="gr-row">
+                    <div class="gr-4"></div>
+                    <div class="gr-8">
+                        <div id="formMessage"></div>
+                    </div>
+                </div>
+
+                <div class="gr-row">
+                    <div class="gr-4"></div>
+                    <div class="gr-8">
+                        <span class="button">
+                            <button class="button" id="btnCreate">أنشيء</button>
+                        </span>
+                    </div>
+                </div>
+
+            </fieldset>
+        </form>
+    </div>
+
+    <div id="token_message" class="gr-12 gr-padding-10 center-text invisible">
+        <p></p>
+    </div>
+
+    <div id="tokens_list" class="gr-12 gr-parent gr-padding-10">
+    </div>
+</div>

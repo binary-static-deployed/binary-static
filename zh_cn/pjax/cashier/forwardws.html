@@ -22,7 +22,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     <div id="deposit-withdraw-message" style="display:none">
       <p id="cashier-locked-message" class="messages">
-        根据您的请求，您的收银台已被锁定 - 如需解除锁定，请点击<a class="pjaxload" href="/zh_cn/user/settings/securityws.html">此处</a>。
+        根据您的请求，您的收银台已被锁定 - 如需解除锁定，请点击<a class="pjaxload" href="/zh_cn/user/security/cashier_passwordws.html">此处</a>。
       </p>
       <p id="check-email-message" class="messages">为提高安全保障，请查看邮件并提取验证令牌。</p>
       <p id="choose-currency-message" class="messages">请选择您想要交易的货币。</p>
@@ -37,9 +37,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </div>
 
     <div id="deposit-withdraw-error" class="error-msg" style="display:none">
-      <p id="withdrawal-locked-error" class="error_messages">
-        取款已锁定。欲知详情，请 <a class="pjaxload" href="/zh_cn/contact.html">联系我们</a>。
-      </p>
+        <p id="withdrawal-locked-error" class="error_messages">
+            取款已锁定。欲知详情，请 <a class="pjaxload" href="/zh_cn/contact.html">联系我们</a>。
+        </p>
+        <p id="deposit-locked-error" class="error_messages">
+            存款已锁定。欲知详情，请 <a class="pjaxload" href="/zh_cn/contact.html">联系我们</a>。
+        </p>
+        <p id="cashier-locked-error" class="error_messages">
+            收银台已锁定。欲知详情，请 <a class="pjaxload" href="/zh_cn/contact.html">联系我们</a>。
+        </p>
       <p id="custom-error" class="error_messages"></p>
     </div>
 

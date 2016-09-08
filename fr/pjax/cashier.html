@@ -22,12 +22,48 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <h1>Caisse</h1>
     </div>
 
+    <div class="gr-12 gr-padding-10 table-body by_client_type client_virtual with_login_cookies invisible gr-parent">
+        <div class="gr-padding-10">
+            <h3>Get more virtual money</h3>
+        </div>
+        <div class="gr-row">
+            <div class="gr-12">
+                <div class="gr-row">
+                    <div class="gr-2 gr-4-m">
+                        <img class="responsive charting-page-icon" id="virtual_money_icon" src="/images/pages/cashier/virtual_topup.svg" />
+                    </div>
+                    <div class="gr-5 gr-12-m">
+                        <span class="ja-hide">You can request more virtual money if your virtual balance falls below USD 1,000.00.</span>
+                        <p class="hidden ja-show">You can request more virtual money if your virtual balance falls below JPY 100,000.</span>
+                    </div>
+                    <div class="gr-5 gr-12-m">
+                        <div class="gr-padding-10 by_client_type client_virtual with_login_cookies invisible gr-parent">
+                            <a class="pjaxload button button_large by_client_type client_virtual with_login_cookies invisible" href="/fr/cashier/top_up_virtualws.html" id="VRT_topup_link">
+                                <span class="ja-hide">Get USD 10,000.00</span>
+                                <span class="hidden ja-show">Get JPY 1,000,000</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="gr-12 gr-padding-10 by_client_type client_virtual with_login_cookies invisible">
+        <span></span>
+    </div>
+
     <div class="gr-12 gr-padding-10 table-body">
-        <div class="gr-padding-10 invisible">
+        <div class="gr-padding-10 invisible gr-parent">
             <p class="notice-msg by_client_type client_real with_login_cookies">
                 Withdrawal is locked, please <a class="pjaxload" href="/fr/contact.html">contact us</a> for more information.
             </p>
         </div>
+        <p class="center-text invisible" id="authenticate_button">
+            <a class="button pjaxload" href="/fr/user/authenticatews.html">
+                <span>Authentifier votre compte</span>
+            </a>
+        </p>
         <div class="gr-padding-10">
             <h3>Virement bancaire, carte de crédit, services de paiement en ligne</h3>
         </div>
@@ -41,15 +77,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         </a>
                     </div>
                     <div class="gr-5 gr-12-m">
-                        <p>Dépôt ou retrait vers votre compte par transfer bancaire, carte de crédit ou portefeuille e-cash.</p>
+                        <span>Dépôt ou retrait vers votre compte par transfer bancaire, carte de crédit ou portefeuille e-cash.</span>
                         <a class="pjaxload ja-hide" href="/fr/cashier/payment_methods.html" id="view_payment_methods">
-                            Voir moyens de paiement disponibles
+                            <p>Voir moyens de paiement disponibles</p>
                         </a>
                     </div>
                     <div class="gr-5 gr-12-m">
-                        <div class="gr-padding-10 by_client_type client_real with_login_cookies invisible">
+                        <div class="gr-padding-10 by_client_type client_real with_login_cookies invisible gr-parent">
                             <a class="pjaxload button button_large by_client_type client_real with_login_cookies invisible" href="/fr/cashier/forwardws.html#deposit">
-                                <span>Dépôt</span>
+                                <span class="deposit">Dépôt</span>
                             </a>
                         </div>
                         <div class="gr-padding-10 by_client_type client_real with_login_cookies invisible">
@@ -72,7 +108,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     <div class="gr-12 gr-padding-10 table-body ja-hide payment-agent" id="payment-agent-section">
         <div class="gr-padding-10">
-            <h3>Agent de Paiement</h3>
+            <h3>Agent de paiement</h3>
         </div>
         <div class="gr-row">
             <div class="gr-2 gr-4-m">
@@ -81,15 +117,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </a>
             </div>
             <div class="gr-5 gr-12-m">
-                <p>Pour les services de paiement électronique ou les devises locales non prises en charge par Binary.com.</p>
+                <span>Pour les services de paiement électronique ou les devises locales non prises en charge par Binary.com.</span>
                 <p class="faded">
-                    N.B. Les retraits par le biais d'un agent de paiement ne sont disponibles que si vous effectuez exclusivement vos dépôts par le biais d'un agent de paiement
+                    N.B. Le retrait par agent de paiement n'est disponible que si vous effectuez vos dépôts uniquement par le biais d'un agent de paiement.
                 </p>
             </div>
             <div class="gr-5 gr-12-m">
-                <div class="gr-padding-10">
+                <div class="gr-padding-10 gr-parent">
                     <a class="pjaxload button button_large by_client_type client_real with_login_cookies invisible" href="/fr/cashier/payment_agent_listws.html">
-                        <span>Dépôt</span>
+                        <span class="deposit">Dépôt</span>
                     </a>
                 </div>
                 <div class="gr-padding-10">
@@ -101,7 +137,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </div>
     </div>
 
-    <div class="gr-12 gr-padding-10 table-body ja-hide" id="account-transfer-section">
+    <div class="gr-12 gr-padding-10 table-body ja-hide invisible" id="account-transfer-section">
         <div class="gr-row">
             <div class="gr-2 gr-4-m">
                 <a class="pjaxload" href="/fr/account/account_transferws.html" id="account_transfer">
@@ -109,10 +145,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </a>
             </div>
             <div class="gr-5 gr-12-m">
-                <p>Transfert entre votre compte de jeu et financier.</p>
+                <span>Transfert entre votre compte de jeu et financier.</span>
             </div>
             <div class="gr-5 gr-12-m">
-                <div class="gr-padding-10">
+                <div class="gr-padding-10 gr-parent">
                     <a class="button button_large by_client_type client_real with_login_cookies invisible" href="/fr/account/account_transferws.html">
                         <span class="withdraw">Transfert</span>
                     </a>

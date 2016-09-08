@@ -207,14 +207,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <p>現在、保有ポジションはありません。</p>
         </div>
 
-        <table class="flex-table" id="portfolio-table">
+        <table id="portfolio-table">
             <thead>
-                <tr class="flex-tr">
-                    <th class="ref flex-tr-child">約定番号</th>
-                    <th class="payout flex-tr-child">ペイアウト</th>
-                    <th class="details flex-tr-child">トレード詳細情報</th>
-                    <th class="purchase flex-tr-child">購入</th>
-                    <th class="indicative flex-tr-child">参考売却価格</th>
+                <tr>
+                    <th class="ref">約定番号</th>
+                    <th class="payout">ペイアウト</th>
+                    <th class="details">トレード詳細情報</th>
+                    <th class="purchase">購入</th>
+                    <th class="indicative">参考売却価格</th>
                     <th class="button"></th>
                 </tr>
             </thead>
@@ -222,10 +222,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <tbody id="portfolio-body"></tbody>
 
             <tfoot>
-                <tr class="flex-tr">
-                    <th class="ref flex-tr-child" colspan="3"></th>
-                    <th class="cost flex-tr-child" id="cost-of-open-positions"></th>
-                    <th class="value flex-tr-child" id="value-of-open-positions" colspan="2"></th>
+                <tr>
+                    <th class="ref" colspan="3"></th>
+                    <th class="cost" id="cost-of-open-positions"></th>
+                    <th class="value" id="value-of-open-positions" colspan="2"></th>
                 </tr>
             </tfoot>
         </table>
@@ -236,7 +236,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       </div>
       <div id="contract_prices_container" class="col row-inner">
          <div id="contract_confirmation_container" class="overlay_container col">
-            <a class="close" id="close_confirmation_container">x</a>
+            <a class="close" id="close_confirmation_container"></a>
             <div id="confirmation_message_container">
                <div id="confirmation_message">
                   <h3 id="contract_purchase_heading"></h3>
@@ -249,7 +249,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   <div id="contract_purchase_barrier"></div>
                   <div id="contract_purchase_reference"></div>
                   <div class="button">
-                     <button id="contract_purchase_button" class="button open_contract_detailsws"></button>
+                     <span id="contract_purchase_button" class="button open_contract_detailsws"></span>
                   </div>
                   <div id="contract_purchase_spots"></div>
                   <div id="tick_chart"></div>
@@ -278,7 +278,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                           </div>
                         </div>
                         <div class="contract_purchase button">
-                           <button class="purchase_button contract_description no-underline" id="purchase_button_top" data-balloon-length="xlarge" value="purchase"></button>
+                           <span class="purchase_button contract_description no-underline" id="purchase_button_top" data-balloon-length="xlarge" value="purchase"></span>
                         </div>
                       </span>
                   </div>
@@ -302,7 +302,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                           </div>
                         </div>
                         <div class="contract_purchase button">
-                          <button class="purchase_button contract_description no-underline" id="purchase_button_bottom" data-balloon-length="xlarge" value="purchase"></button>
+                          <span class="purchase_button contract_description no-underline" id="purchase_button_bottom" data-balloon-length="xlarge" value="purchase"></span>
                         </div>
                       </span>
                   </div>

@@ -22,7 +22,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     <div id="deposit-withdraw-message" style="display:none">
       <p id="cashier-locked-message" class="messages">
-        Ihre Kasse wurde auf Ihren Antrag hin gesperrt - um Sie wieder zu entsperren, bitte <a class="pjaxload" href="/de/user/settings/securityws.html">hier</a>anklicken.
+        Ihre Kasse wurde auf Ihren Antrag hin gesperrt - um Sie wieder zu entsperren, bitte <a class="pjaxload" href="/de/user/security/cashier_passwordws.html">hier</a>anklicken.
       </p>
       <p id="check-email-message" class="messages">Bitte sehen Sie zur zusätzlichen Sicherheit bei Ihren E-Mails nach, um den Verfikationstoken abzurufen.</p>
       <p id="choose-currency-message" class="messages">Bitte wählen Sie die Währung aus, in der Sie Transaktionen abwickeln möchten.</p>
@@ -37,9 +37,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </div>
 
     <div id="deposit-withdraw-error" class="error-msg" style="display:none">
-      <p id="withdrawal-locked-error" class="error_messages">
-        Withdrawal is locked, please <a class="pjaxload" href="/de/contact.html">contact us</a> for more information.
-      </p>
+        <p id="withdrawal-locked-error" class="error_messages">
+            Auszahlung ist gesperrt, bitte <a class="pjaxload" href="/de/contact.html">setzen Sie sich mit uns in Verbindung</a>, um mehr Informationen zu erhalten.
+        </p>
+        <p id="deposit-locked-error" class="error_messages">
+            Einzahlungen ist gesperrt, bitte<a class="pjaxload" href="/de/contact.html">setzen Sie sich mit uns in Verbindung</a>, um weitere Informationen zu erhalten.
+        </p>
+        <p id="cashier-locked-error" class="error_messages">
+            Kasse ist gesperrt, bitte <a class="pjaxload" href="/de/contact.html">setzen Sie sich mit uns in Verbindung</a>, um mehr Informationen zu erhalten.
+        </p>
       <p id="custom-error" class="error_messages"></p>
     </div>
 

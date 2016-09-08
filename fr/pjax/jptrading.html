@@ -73,12 +73,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <div id="portfolio-content" class="invisible">
         <div class="gr-parent gr-padding-10">
             <div class="gr-hide-m gr-hide-p">
-                 
+                Solde du compte : 
                 <span class="loading" id="portfolio-balance"></span>
 
                 <!-- If the account balance is zero we show the following button, otherwise we remove it -->
                 <a href="/fr/cashier/forwardws.html#deposit" id="if-balance-zero" class="invisible button button_large by_client_type client_real with_login_cookies">
-                    <span>Faire un Dépôt</span>
+                    <span>Effectuer un dépôt</span>
                 </a>
             </div>
         </div>
@@ -87,14 +87,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <p>Pas de positions ouvertes.</p>
         </div>
 
-        <table class="flex-table" id="portfolio-table">
+        <table id="portfolio-table">
             <thead>
-                <tr class="flex-tr">
-                    <th class="ref flex-tr-child">Réf.</th>
-                    <th class="payout flex-tr-child">Gain Potentiel</th>
-                    <th class="details flex-tr-child">Détails du contrat</th>
-                    <th class="purchase flex-tr-child">Achat</th>
-                    <th class="indicative flex-tr-child">Indicatif</th>
+                <tr>
+                    <th class="ref">Réf.</th>
+                    <th class="payout">Paiement potentiel</th>
+                    <th class="details">Détails relatifs au contrat</th>
+                    <th class="purchase">Achat</th>
+                    <th class="indicative">Indicatif</th>
                     <th class="button"></th>
                 </tr>
             </thead>
@@ -102,10 +102,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <tbody id="portfolio-body"></tbody>
 
             <tfoot>
-                <tr class="flex-tr">
-                    <th class="ref flex-tr-child" colspan="3"></th>
-                    <th class="cost flex-tr-child" id="cost-of-open-positions"></th>
-                    <th class="value flex-tr-child" id="value-of-open-positions" colspan="2"></th>
+                <tr>
+                    <th class="ref" colspan="3"></th>
+                    <th class="cost" id="cost-of-open-positions"></th>
+                    <th class="value" id="value-of-open-positions" colspan="2"></th>
                 </tr>
             </tfoot>
         </table>

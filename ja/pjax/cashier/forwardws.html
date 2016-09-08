@@ -22,7 +22,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     <div id="deposit-withdraw-message" style="display:none">
       <p id="cashier-locked-message" class="messages">
-        お客様の入出金はリクエストによりロックしました。 - 解除するには<a href="/ja/user/settings/securityws.html">こちらをクリック</a>してください。
+        お客様の入出金はリクエストによりロックしました。 - 解除するには<a href="/ja/user/security/cashier_passwordws.html">こちらをクリック</a>してください。
       </p>
       <p id="check-email-message" class="messages">セキュリティチェックのため、メールをご確認いただきワンタイムパスワードを取得してください。</p>
       <p id="choose-currency-message" class="messages">日本円にてお手続きできます</p>
@@ -37,9 +37,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </div>
 
     <div id="deposit-withdraw-error" class="error-msg" style="display:none">
-      <p id="withdrawal-locked-error" class="error_messages">
-        出金アクションにロックがかかっています。詳細については<a class="pjaxload" href="/ja/contact.html">当社までお問い合わせ</a>ください。
-      </p>
+        <p id="withdrawal-locked-error" class="error_messages">
+            出金アクションにロックがかかっています。詳細については<a class="pjaxload" href="/ja/contact.html">当社までお問い合わせ</a>ください。
+        </p>
+        <p id="deposit-locked-error" class="error_messages">
+            出金口座にロックがかかっています。詳細については<a class="pjaxload" href="/ja/contact.html">当社までお問い合わせ</a>ください。
+        </p>
+        <p id="cashier-locked-error" class="error_messages">
+            出金口座にロックがかかっています。詳細については<a class="pjaxload" href="/ja/contact.html">当社までお問い合わせ</a>ください。
+        </p>
       <p id="custom-error" class="error_messages"></p>
     </div>
 
