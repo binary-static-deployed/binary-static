@@ -207,37 +207,47 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                     <div class="gr-12">
                                         <div class="gr-row">
                                             <div class="gr-4 gr-12-m" id="contract_purchase_profit_list">
-                                                <div class="gr-row chart-values">
-                                                    <div class="gr-adapt">
-                                                        <div id="chart_values_tick">跳動點</div>
-                                                        <div id="chart_values_time">時間</div>
-                                                        <div id="chart_values_price">價格</div>
-                                                    </div>
-                                                    <div class="gr-grow values">
-                                                        <div id="chart_values_tick_value"></div>
-                                                        <div id="chart_values_time_value"></div>
-                                                        <div id="chart_values_price_value"></div>
-                                                    </div>
+                                                <div id="chart-values">
+                                                    <table>
+                                                        <tr>
+                                                            <td id="chart_values_tick">跳動點</td>
+                                                            <td id="chart_values_tick_value"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td id="chart_values_time">時間</td>
+                                                            <td id="chart_values_time_value"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td id="chart_values_price">價格</td>
+                                                            <td id="chart_values_price_value"></td>
+                                                        </tr>
+                                                    </table>
                                                 </div>
-                                                <div class="gr-row" id="contract-values">
-                                                    <div class="gr-adapt">
-                                                        <div id="contract_purchase_cost"></div>
-                                                        <div id="contract_purchase_payout"></div>
-                                                        <div id="contract_purchase_barrier"></div>
-                                                        <div id="contract_purchase_profit"></div>
-                                                    </div>
-                                                    <div class="gr-grow values">
-                                                        <div id="contract_purchase_cost_value"></div>
-                                                        <div id="contract_purchase_payout_value"></div>
-                                                        <div id="contract_purchase_barrier_value"></div>
-                                                        <div id="contract_purchase_profit_value"></div>
-                                                    </div>
+                                                <div id="contract-values">
+                                                    <table>
+                                                        <tr>
+                                                            <td id="contract_purchase_cost"></td>
+                                                            <td id="contract_purchase_cost_value"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td id="contract_purchase_payout"></td>
+                                                            <td id="contract_purchase_payout_value"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td id="contract_purchase_barrier"></td>
+                                                            <td id="contract_purchase_barrier_value"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td id="contract_purchase_profit"></td>
+                                                            <td id="contract_purchase_profit_value"></td>
+                                                        </tr>
+                                                    </table>
                                                 </div>
                                                 <div class="contract_purchase_reference gr-hide-m"></div>
                                             </div>
                                             <div class="gr-8 gr-12-m gr-no-gutter" id="contract_purchase_description_section">
                                                 <div id="contract_purchase_descr"></div>
-                                                <button id="contract_purchase_button" class="button open_contract_detailsws">View Details</button>
+                                                <button id="contract_purchase_button" class="button open_contract_detailsws">檢視詳細資料</button>
                                                 <div id="contract_purchase_spots">
                                                     <div id="current_tick_number"></div>
                                                     <div id="current_tick_spot"></div>
@@ -247,7 +257,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                             </div>
                                         </div>
                                     </div>
-                                    <button id="contract_purchase_new_trade" class="button gr-hide gr-show-m">New Trade</button>
+                                    <button id="contract_purchase_new_trade" class="button gr-hide gr-show-m">新交易</button>
                                     <div class="contract_purchase_reference gr-hide gr-show-m"></div>
                                     <div class="invisible" id="contract_purchase_balance"></div>
                                 </div>
@@ -353,7 +363,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <p class="error-msg" id="chart-error"></p>
                 <div id="trade_live_chart">
                     <table><tr><td>
-                        <iframe src="" width="100%" height="100%" id="chart_frame" style="overflow-y : hidden;" scrolling="no"></iframe>
+                        <iframe src="" width="100%" height="99%" id="chart_frame" style="overflow-y : hidden;" scrolling="no"></iframe>
                     </td></tr></table>
                 </div>
             </div>
@@ -367,15 +377,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     <div id="portfolio-content" class="invisible">
         <div class="gr-parent gr-padding-10">
-            <div class="gr-hide-m gr-hide-p">
-                帳戶餘額： 
-                <span class="loading" id="portfolio-balance"></span>
+            帳戶餘額： 
+            <span class="loading" id="portfolio-balance"></span>
 
-                <!-- If the account balance is zero we show the following button, otherwise we remove it -->
-                <a href="/zh_tw/cashier/forwardws.html#deposit" id="if-balance-zero" class="invisible button button_large by_client_type client_real with_login_cookies">
-                    <span>存入資金</span>
-                </a>
-            </div>
+            <!-- If the account balance is zero we show the following button, otherwise we remove it -->
+            <a href="/zh_tw/cashier/forwardws.html#deposit" id="if-balance-zero" class="invisible button button_large by_client_type client_real with_login_cookies">
+                <span>存入資金</span>
+            </a>
         </div>
 
         <div id="portfolio-no-contract">
@@ -398,7 +406,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
             <tfoot>
                 <tr>
-                    <th class="ref" colspan="3"></th>
+                    <th>總計</th>
+                    <th class="ref" colspan="2"></th>
                     <th class="cost" id="cost-of-open-positions"></th>
                     <th class="value" id="value-of-open-positions" colspan="2"></th>
                 </tr>

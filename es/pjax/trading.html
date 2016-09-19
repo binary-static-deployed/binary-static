@@ -192,15 +192,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     <div id="portfolio-content" class="invisible">
         <div class="gr-parent gr-padding-10">
-            <div class="gr-hide-m gr-hide-p">
-                Saldo de la cuenta: 
-                <span class="loading" id="portfolio-balance"></span>
+            Saldo de la cuenta: 
+            <span class="loading" id="portfolio-balance"></span>
 
-                <!-- If the account balance is zero we show the following button, otherwise we remove it -->
-                <a href="/es/cashier/forwardws.html#deposit" id="if-balance-zero" class="invisible button button_large by_client_type client_real with_login_cookies">
-                    <span>Haga un depósito</span>
-                </a>
-            </div>
+            <!-- If the account balance is zero we show the following button, otherwise we remove it -->
+            <a href="/es/cashier/forwardws.html#deposit" id="if-balance-zero" class="invisible button button_large by_client_type client_real with_login_cookies">
+                <span>Haga un depósito</span>
+            </a>
         </div>
 
         <div id="portfolio-no-contract">
@@ -223,7 +221,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
             <tfoot>
                 <tr>
-                    <th class="ref" colspan="3"></th>
+                    <th>Total</th>
+                    <th class="ref" colspan="2"></th>
                     <th class="cost" id="cost-of-open-positions"></th>
                     <th class="value" id="value-of-open-positions" colspan="2"></th>
                 </tr>

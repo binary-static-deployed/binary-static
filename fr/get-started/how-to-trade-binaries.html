@@ -23,7 +23,7 @@
         <meta property="og:type" content="website" />
         <meta property="og:image" content="/images/common/og_image.gif" />
 
-        <title>Comment faire du Trading d'options binaires ? | Binary.com</title>
+        <title>Comment négocier les options binaires ? | Binary.com</title>
 
         <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-touch-icon-57x57.png">
         <link rel="apple-touch-icon" sizes="114x114" href="/images/favicons/apple-touch-icon-114x114.png">
@@ -55,14 +55,10 @@
           <link rel="alternate" href="/zh_cn/get-started/how-to-trade-binaries.html" hreflang="ZH_CN" /> 
           <link rel="alternate" href="/zh_tw/get-started/how-to-trade-binaries.html" hreflang="ZH_TW" /> 
         
-         <link rel="stylesheet" href="/css/binary.min.css?r5qza98y">
-         <link rel="stylesheet" href="https://style.binary.com/binary.css?r5qza98y">
+         <link rel="stylesheet" href="/css/binary.min.css?r3ttb9hd">
+         <link rel="stylesheet" href="https://style.binary.com/binary.css?r3ttb9hd">
         
-        <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=Array.prototype.includes,String.prototype.includes&unknown=polyfill"></script>
-<script>
-    //A global variable required to initialize Page object.
-    window.page_params = {settings: {"arr_all_currencies":["USD","EUR","GBP","AUD"],"valid_loginids":"MX|MF|VRTC|MLT|CR|FOG|VRTJ|JP","streaming_server":"www.binary.com","broker":"CR","image_link":{"livechaticon":"/images/pages/contact/chat-icon.svg","down":"/images/javascript/down_arrow_1.gif","calendar_icon":"/images/common/calendar_icon_1.png","up":"/images/javascript/up_arrow_1.gif","hourglass":"/images/common/hourglass_1.gif"},"enable_relative_barrier":"true"}};
-</script>  <script src='/js/binary.min.js?r5qza98y' defer async></script>
+        <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=Array.prototype.includes,String.prototype.includes,Symbol,Promise,Object.assign&unknown=polyfill"></script>  <script src='/js/binary.min.js?r3ttb9hd' defer async></script>
     </head>
 
 
@@ -113,7 +109,7 @@
             <div class='gr-12'>
                 <div class='gr-row gr-row-align-middle'>
                     <div class='gr-3 gr-2-m gr-2-p gr-padding-10'>
-                        <a id="logo" class="pjaxload" href="/fr/home.html">
+                        <a id="logo" href="javascript:;">
                             <div class='gr-row'>
                                 <div class='gr-3 gr-12-m gr-12-p gr-no-gutter'>
                                     <img class='responsive' src="/images/pages/binary-symbol-logo.svg" />
@@ -174,15 +170,15 @@
                                 </a>
                                 <ul>
                                     <a class="link with_login_cookies pjaxload" href="/fr/user/settingsws.html">
-                                        <li class="topMenuProfile">Profile</li>
+                                        <li class="topMenuProfile">Profil</li>
                                     </a>
                                     <a class="link with_login_cookies pjaxload" href="/fr/user/securityws.html">
-                                        <li class="topMenuSecurity">Security & Limits</li>
+                                        <li class="topMenuSecurity">Sécurité et limitations</li>
                                     </a>
                                     <div class="separator-line-thin-gray"></div>
                                     <div class="login-id-list"></div>
                                     <a href="javascript:;" id="btn_logout" class="logout">
-                                        <li>Sign out</li>
+                                        <li>Déconnexion</li>
                                     </a>
                                 </ul>
                             </li>
@@ -192,7 +188,7 @@
                     <div id="client-logged-out" class="gr-3 gr-8-m gr-8-p gr-no-gutter by_client_type client_logged_out invisible gr-padding-10">
                         <a id="btn_login" class="button" href="javascript:;"><span>Connexion</span></a>
                     </div>
-                    <div class='gr-hide gr-show-m gr-2-m gr-show-p gr-1-p gr-no-gutter-mobile align-end gr-padding-20'>
+                    <div class='gr-hide gr-show-m gr-2-m gr-show-p gr-1-p gr-no-gutter-mobile align-end'>
                         <div id='mobile-menu-icon-container'>
                             <a href='#mobile-menu' id='mobile-menu-icon'>
                                 <img class='responsive' src="/images/pages/binary-mobile-menu.svg"/>
@@ -219,7 +215,7 @@
                 </li>  <li id="topMenuCashier" class="item ">
                     <a class="link pjaxload" target="" href="/fr/cashier.html">Caisse</a>
                     
-                </li>  <li id="topMenuResources" class="item ">
+                </li>  <li id="topMenuResources" class="item ja-hide">
                     <a class="link pjaxload" target="" href="/fr/resources.html">Ressources</a>
                     
                         <ul class="sub_items">  <li id="topMenuAssetIndex" class="sub_item ja-hide">
@@ -229,7 +225,7 @@
                             </li>  </ul>
                     
                 </li>  <li id="topMenuShop" class="item ja-hide">
-                    <a class="link" target="_blank" href="https://shop.binary.com">Shop</a>
+                    <a class="link" target="_blank" href="https://shop.binary.com">Boutique</a>
                     
                 </li>  <li id="topMenuPaymentAgent" class="item invisible">
                     <a class="link pjaxload" target="" href="/fr/paymentagent/transferws.html">Agent de paiement</a>
@@ -264,7 +260,7 @@
             </li>  <li id="topMenuCashier" class="item">
                 <a class="pjaxload link pjaxload" href="/fr/cashier.html">Caisse</a>
                 
-            </li>  <li id="topMenuResources" class="item">
+            </li>  <li id="topMenuResources" class="item ja-hide">
                 <a class="pjaxload link pjaxload" href="/fr/resources.html">Ressources</a>
                 
                     <ul class="sub_items">  <li id="topMenuAssetIndex" class="sub_item ja-hide">
@@ -274,7 +270,7 @@
                         </li>  </ul>
                 
             </li>  <li id="topMenuShop" class="item ja-hide">
-                <a class="pjaxload link " href="https://shop.binary.com">Shop</a>
+                <a class="pjaxload link " href="https://shop.binary.com">Boutique</a>
                 
             </li>  <li id="topMenuPaymentAgent" class="item invisible">
                 <a class="pjaxload link pjaxload" href="/fr/paymentagent/transferws.html">Agent de paiement</a>
@@ -301,7 +297,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-MZWFF7');</script>
 <!-- End Google Tag Manager -->
         <div id="page_info" style="display:none;">
-            <title>Comment faire du Trading d'options binaires ? | Binary.com</title>
+            <title>Comment négocier les options binaires ? | Binary.com</title>
             <div id="content_class">how-to-trade-binaries-content</div>
         </div>
         
@@ -313,15 +309,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div class="gr-3 gr-hide-m">
     <div class="sidebar-left">
       <ul class="nav">
-          <li><a class="pjaxload" href="/fr/get-started/what-is-binary-trading.html">Pourquoi choisir le trading binaire ?</a></li>
-          <li><a class="pjaxload" href="/fr/get-started/types-of-trades.html">Types de trades</a></li>
+          <li><a class="pjaxload" href="/fr/get-started/what-is-binary-trading.html">Pourquoi choisir les options binaires ?</a></li>
+          <li><a class="pjaxload" href="/fr/get-started/types-of-trades.html">Types d'options</a></li>
           <li><a class="pjaxload" href="/fr/get-started/binary-options-basics.html">Les bases du trading d'options binaires</a></li>
           <li><a class="pjaxload" href="/fr/get-started/benefits-of-trading-binaries.html">Avantages du trading binaire</a></li>
           <li><a class="pjaxload" href="/fr/get-started/how-to-trade-binaries.html">Comment négocier les options binaires ?</a></li>
-          <li class="ja-hide"><a class="pjaxload" href="/fr/get-started/volidx-markets.html">How to trade the Volatility Indices markets?</a></li>
+          <li class="ja-hide"><a class="pjaxload" href="/fr/get-started/volidx-markets.html">Comment négocier les indices de volatilité ?</a></li>
           <li class="ja-hide"><a class="pjaxload" href="/fr/get-started/spread.html">Comment effectuer des opérations sur spreads ?</a></li>
           <li class="ja-hide"><a class="pjaxload" href="/fr/get-started/smart-indices.html">Marchés Intelligents</a></li>
-          <li class="ja-hide"><a class="pjaxload" href="/fr/get-started/otc-indices-stocks.html">OTC Indices and Stocks</a></li>
+          <li class="ja-hide"><a class="pjaxload" href="/fr/get-started/otc-indices-stocks.html">Indices et actions de gré à gré (OTC)</a></li>
           <li><a class="pjaxload" href="/fr/get-started/beginners-faq.html">FAQ</a></li>
           <li><a class="pjaxload" href="/fr/get-started/glossary.html">Glossaire</a></li>
         </ul>
@@ -389,7 +385,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         Étape 1: Définissez votre position
                     </h2>
                     <p>
-                        First, you need to set the parameters of your trade. Here's what you need to consider.
+                        Pour commencer, vous devez définir les paramètres de votre transaction. Voici les éléments à prendre en compte.
                     </p>
                 </div>
                 <div class="gr-12">
@@ -403,16 +399,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </div>
                 <div class="gr-12">
                     <p class="ja-hide">
-                        <strong>Hausse/Baisse</strong> - prédisez si le niveau actuel du marché augmentera ou baissera.
+                        <strong>Hausse/Baisse</strong> : déterminez si le marché évoluera à la hausse ou à la baisse par rapport au cours actuel.
                     </p>
                     <p>
-                        <strong>Plus haut/Plus bas</strong> - prédisez si le marché finira plus haut ou plus bas qu'un prix-cible.
+                        <strong>Supérieur/Inférieur</strong> : prédisez si le marché affichera un cours supérieur ou inférieur au prix-cible à l'expiration de l'option.
                     </p>
                     <p>
-                        <strong>Touche/Ne Touche Pas</strong> - prédisez si le marché touchera ou pas un prix-cible.
+                        <strong>Touche/Ne touche pas</strong> : déterminez si le marché touchera ou non un prix-cible.
                     </p>
                     <p>
-                        <strong>Dans/Hors de</strong> - prédisez si le marché restera à l'intérieur de deux prix-cibles, ou finira entre ou sortira de ceux-ci.
+                        <strong>Zone In/Out</strong> : prédisez si le marché fluctuera uniquement entre deux prix-cibles, ou s'il terminera à l'intérieur ou à l'extérieur de la zone délimitée par les prix-cibles.
                     </p>
 
                 </div>
@@ -426,7 +422,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <strong>Devises</strong> : négociez toutes les paires de devises majeures sur le Forex.
                     </p>
                     <p class="ja-hide">
-                        <strong>Indices boursiers</strong> - effectuez des trades sur les principaux indices boursiers mondiaux.
+                        <strong>Indices boursiers</strong> : négociez tous les principaux indices boursiers internationaux.
                     </p>
                     <p class="ja-hide">
                         <strong>Matières premières</strong> : effectuez des transactions sur les matières premières majeures telles que l'or et le pétrole.
@@ -445,7 +441,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </div>
                 <div class="gr-12">
                     <p>Vous pouvez déterminer la durée de votre trade, de 10 secondes à 365 jours.</p>
-                    <p>Mais il ne faut pas attendre jusqu'à l'expiration. Vous pouvez revendre les trades à long terme à n'importe quel moment afin de bénéficier des conditions du marché changeantes.</p>
+                    <p>Cependant, il n'est pas nécessaire d'attendre l'expiration d'une option. Vous pouvez revendre les options à long terme à tout moment afin de tirer profit des mouvements de marché.</p>
                 </div>
                 <div class="gr-12">
                     <h2>
@@ -465,7 +461,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </div>
                 <div class="gr-12">
                     <h2>
-                        Sélectionnez lae paiement
+                        Sélectionnez le paiement
                     </h2>
                 </div>
                 <div class="gr-5 gr-8-m gr-centered gr-padding-10 ja-hide">
@@ -565,11 +561,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <div class="gr-12 gr-padding-10 center-text by_client_type client_logged_out">
                     <a class="button pjaxload" href="/fr/home.html">
                         <span>
-                            Essayez-le maintenant
+                            Lancez-vous dès maintenant,
                         </span>
                     </a>
                     <p>
-                        Aucun risque, compte d'argent virtuel $10K
+                        sans aucun risque, avec un compte virtuel de 10 000 USD.
                     </p>
                 </div>
             </div>
@@ -593,18 +589,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="by_client_type client_logged_out">
         <p>
           <a class="pjaxload" href="/fr/home.html">
-            Essayez-le maintenant
+            Lancez-vous dès maintenant,
           </a>
           <br/>
-          Aucun risque, compte d'argent virtuel $10K
+          sans aucun risque, avec un compte virtuel de 10 000 USD.
         </p>
       </div>
       <div>
         <p>
-          Vous voulez en savoir plus ?
+          Envie d'en savoir plus ?
           <br/>
           <a class="pjaxload" href="/fr/tour.html">
-            Accéder à l'aperçu
+            Accédez à notre aperçu
           </a>
         </p>
       </div>
@@ -697,7 +693,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <div class="gr-6 gr-12-m gr-parent gr-no-gutter">
                     <div class="gr-row">
                         <div class="gr-4">
-                           <h4 class="secondary-color">Condition</h4>
+                           <h4 class="secondary-color">Conditions</h4>
                            <ul>
                                <li class='ja-hide'>
                                    <a class="pjaxload" href="/fr/terms-and-conditions.html">Conditions générales</a>
@@ -717,7 +713,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                    <a class="pjaxload" href="/fr/responsible-trading.html">Trading responsable</a>
                                </li>
                                <li class="ja-hide">
-                               <a class="pjaxload" href="/fr/terms-and-conditions.html?selected_tab=complaints-disputes-tac-tab">Complaints</a>
+                               <a class="pjaxload" href="/fr/terms-and-conditions.html?selected_tab=complaints-disputes-tac-tab">Réclamations</a>
                                </li>
                                <li class="ja-hide id-hide ru-hide">
                                    <a href="/download/BIEL_Prospectus.pdf" target="_blank">Prospectus BIEL</a>
@@ -731,7 +727,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                            <h4 class="secondary-color">Applications</h4>
                            <ul>
                                <li>
-                                   <a href="https://shop.binary.com/collections/applications/products/tick-trade-mobile-application" target="_blank">TickTrade App</a>
+                                   <a href="https://shop.binary.com/collections/applications/products/tick-trade-mobile-application" target="_blank">Application TickTrade</a>
                                </li>
                                <li>
                                    <a href="https://shop.binary.com/collections/applications/products/webtrader" target="_blank">Webtrader</a>
@@ -751,10 +747,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                    <a href="https://developers.binary.com" target="_blank">API</a>
                                </li>
                                <li>
-                                   <a target="_blank" href="https://shop.binary.com">Binary Shop</a>
+                                   <a target="_blank" href="https://shop.binary.com">Boutique Binary.com</a>
                                </li>
                                <li>
-                                   <a class="pjaxload" href="/fr/partners.html">All Partnership Options</a>
+                                   <a class="pjaxload" href="/fr/partners.html">Toutes les options de partenariat</a>
                                </li>
                            </ul>
                        </div>
@@ -841,7 +837,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <div class="container">
             <div class="gr-padding-10">
                 <p class="gambling">
-                    Le trading d'options binaires ne convient pas nécessairement à tout le monde et vous devez vous assurer de bien comprendre les risques associés. Vos pertes peuvent excéder votre dépôt initial et vous ne détenez aucune partie de l'actif sous-jacent.  Les options binaires sont des produits apparentés aux jeux d'argent. N'oubliez pas que ces derniers peuvent s'avérer addictifs : jouez de manière responsable. <span class="ja-hide">Lisez notre article consacré au <a href="/fr/responsible-trading.html" class="pjaxload">trading responsable</a>.</span>
+                    Le trading d'options binaires ne convient pas nécessairement à tout le monde et vous devez vous assurer de bien comprendre les risques associés. Vos pertes peuvent excéder votre dépôt initial et vous ne détenez aucune partie de l'actif sous-jacent. Les options binaires sont des produits apparentés aux jeux d'argent. N'oubliez pas que ces derniers peuvent s'avérer addictifs : jouez de manière responsable. <span class="ja-hide">Lisez notre article consacré au <a href="/fr/responsible-trading.html" class="pjaxload">trading responsable</a>.</span>
                 </p>
             </div>
         </div>

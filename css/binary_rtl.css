@@ -518,6 +518,7 @@ p.no-para-margin {
 }
 #topbar #language_select select {
   padding: 0px;
+  float: left;
 }
 #topbar a {
   color: #fff;
@@ -533,13 +534,13 @@ p.no-para-margin {
   text-decoration: none;
 }
 #header a img {
-  max-height: 55px;
+  height: 55px;
 }
 #header select#client_loginid option[disabled=disabled] {
   background-color: #F2F2F2;
 }
 #header #binary-logo-text {
-  margin-top: 10px;
+  margin-top: 0 !important;
 }
 #header #binary-logo-text img {
   width: 90%;
@@ -594,10 +595,17 @@ p.no-para-margin {
 #header .main-nav > li > ul {
   margin: -20px -1px;
 }
+#header .main-nav .nav-caret {
+  left: -68px;
+  right: initial;
+}
 #header .topMenuBalance {
   visibility: hidden;
 }
-#header .main-account > .account-type {
+#header #main-logout {
+  float: left;
+}
+#header #main-logout .main-account > .account-type {
   white-space: nowrap;
 }
 #header #all-accounts {
@@ -1574,6 +1582,13 @@ a.close:hover {
   pointer-events: none;
 }
 
+input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+
 #popup {
   background-color: #fff;
 }
@@ -2452,27 +2467,27 @@ table .loss, table .lower {
   }
 }
 
-#tab_portfolio-content #portfolio .details {
+#trading_socket_container_beta #tab_portfolio-content #portfolio .details {
   display: table-column;
   width: 0px !important;
 }
-#tab_portfolio-content #portfolio tr td {
+#trading_socket_container_beta #tab_portfolio-content #portfolio tr td {
   padding: 10px 5px 5px;
 }
-#tab_portfolio-content #portfolio tr.tr-first td {
+#trading_socket_container_beta #tab_portfolio-content #portfolio tr.tr-first td {
   border-bottom: none;
   padding-bottom: 0;
 }
-#tab_portfolio-content #portfolio tr.tr-desc {
+#trading_socket_container_beta #tab_portfolio-content #portfolio tr.tr-desc {
   display: table-row;
 }
-#tab_portfolio-content #portfolio tr.tr-desc td {
+#trading_socket_container_beta #tab_portfolio-content #portfolio tr.tr-desc td {
   padding-top: 0;
 }
-#tab_portfolio-content #portfolio [data-balloon] {
+#trading_socket_container_beta #tab_portfolio-content #portfolio [data-balloon] {
   cursor: initial;
 }
-#tab_portfolio-content #portfolio [data-balloon]:after, #tab_portfolio-content #portfolio [data-balloon]:before {
+#trading_socket_container_beta #tab_portfolio-content #portfolio [data-balloon]:after, #trading_socket_container_beta #tab_portfolio-content #portfolio [data-balloon]:before {
   display: none !important;
 }
 
@@ -3772,6 +3787,9 @@ div.kineticjs-content {
   margin: 0 0 0 2px;
   font-size: 1rem;
 }
+#trading_socket_container_beta #contract_market_form_container ul li .tm-a-2, #trading_socket_container_beta #analysis_tab_container ul li .tm-a-2 {
+  font-size: 80%;
+}
 #trading_socket_container_beta .button button {
   cursor: pointer;
 }
@@ -4067,11 +4085,17 @@ div.kineticjs-content {
   font-size: 0.75rem;
   position: relative;
 }
-#trading_socket_container_beta #contract_prices_container #contract_purchase_profit_list .values {
+#trading_socket_container_beta #contract_prices_container #contract_purchase_profit_list table td {
+  border: 0;
+  padding: 0 0 4px 10px;
+}
+#trading_socket_container_beta #contract_prices_container #contract_purchase_profit_list .values, #trading_socket_container_beta #contract_prices_container #contract_purchase_profit_list table td:last-child {
+  direction: ltr;
+  text-align: right;
   font-weight: bold;
   padding-right: 0;
 }
-#trading_socket_container_beta #contract_prices_container #contract_purchase_profit_list .chart-values {
+#trading_socket_container_beta #contract_prices_container #contract_purchase_profit_list #chart-values {
   position: absolute;
   background: #fff;
   color: #e98024;
@@ -4104,6 +4128,7 @@ div.kineticjs-content {
 }
 #trading_socket_container_beta #contract_prices_container #tick_chart {
   border: 1px solid #F2F2F2;
+  direction: ltr;
 }
 #trading_socket_container_beta #contract_prices_container .contract_error {
   margin-top: auto;
@@ -4324,9 +4349,6 @@ div.kineticjs-content {
   }
 }
 @media all and (max-width: 640px) {
-  #trading_socket_container_beta #analysis_tabs {
-    white-space: nowrap;
-  }
   #trading_socket_container_beta div#contract_market_form_container ul#contract_form_name_nav {
     white-space: nowrap !important;
   }
@@ -4360,7 +4382,7 @@ div.kineticjs-content {
 #trading_socket_container_beta #contract_form_name_nav > li a.tm-a, #trading_socket_container_beta #analysis_tabs > li a.tm-a {
   padding: 0 5px;
   width: auto;
-  font-size: 85%;
+  font-size: 80%;
   line-height: 28px;
 }
 #trading_socket_container_beta #contract_form_name_nav > li .tm-ul-2, #trading_socket_container_beta #analysis_tabs > li .tm-ul-2 {
@@ -4456,6 +4478,9 @@ div.kineticjs-content {
   height: 100%;
   font-size: 1rem;
 }
+#content #trading_socket_container_beta #trading_analysis_content #analysis_tabs {
+  white-space: nowrap;
+}
 #content #trading_socket_container_beta #trading_analysis_content .tab-menu {
   background: transparent !important;
   border: 0 !important;
@@ -4477,7 +4502,7 @@ div.kineticjs-content {
 }
 #content #trading_socket_container_beta #trading_analysis_content .content-tab-container #analysis_content #trade_live_chart table {
   width: 100%;
-  height: 100%;
+  height: 98%;
 }
 #content #trading_socket_container_beta #trading_analysis_content .content-tab-container #analysis_content #trade_live_chart table td {
   height: 100%;
@@ -4796,6 +4821,9 @@ body.VI #legal-tab li.tm-li-2 {
 }
 body.VI #trading_socket_container #contract_form_name_nav {
   font-size: 80%;
+}
+body.VI #trading_socket_container_beta #contract_symbol_container {
+  font-size: 90%;
 }
 
 /*French Language */

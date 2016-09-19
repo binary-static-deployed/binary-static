@@ -56,14 +56,10 @@
           <link rel="alternate" href="/zh_cn/get-started/what-is-binary-trading.html" hreflang="ZH_CN" /> 
           <link rel="alternate" href="/zh_tw/get-started/what-is-binary-trading.html" hreflang="ZH_TW" /> 
         
-         <link rel="stylesheet" href="/css/binary.min.css?r5qza98y">
-         <link rel="stylesheet" href="https://style.binary.com/binary.css?r5qza98y">
+         <link rel="stylesheet" href="/css/binary.min.css?r3ttb9hd">
+         <link rel="stylesheet" href="https://style.binary.com/binary.css?r3ttb9hd">
         
-        <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=Array.prototype.includes,String.prototype.includes&unknown=polyfill"></script>
-<script>
-    //A global variable required to initialize Page object.
-    window.page_params = {settings: {"valid_loginids":"MX|MF|VRTC|MLT|CR|FOG|VRTJ|JP","arr_all_currencies":["USD","EUR","GBP","AUD"],"streaming_server":"www.binary.com","broker":"CR","image_link":{"up":"/images/javascript/up_arrow_1.gif","hourglass":"/images/common/hourglass_1.gif","calendar_icon":"/images/common/calendar_icon_1.png","down":"/images/javascript/down_arrow_1.gif","livechaticon":"/images/pages/contact/chat-icon.svg"},"enable_relative_barrier":"true"}};
-</script>  <script src='/js/binary.min.js?r5qza98y' defer async></script>
+        <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=Array.prototype.includes,String.prototype.includes,Symbol,Promise,Object.assign&unknown=polyfill"></script>  <script src='/js/binary.min.js?r3ttb9hd' defer async></script>
     </head>
 
 
@@ -114,7 +110,7 @@
             <div class='gr-12'>
                 <div class='gr-row gr-row-align-middle'>
                     <div class='gr-3 gr-2-m gr-2-p gr-padding-10'>
-                        <a id="logo" class="pjaxload" href="/ja/home.html">
+                        <a id="logo" href="javascript:;">
                             <div class='gr-row'>
                                 <div class='gr-3 gr-12-m gr-12-p gr-no-gutter'>
                                     <img class='responsive' src="/images/pages/binary-symbol-logo.svg" />
@@ -193,7 +189,7 @@
                     <div id="client-logged-out" class="gr-3 gr-8-m gr-8-p gr-no-gutter by_client_type client_logged_out invisible gr-padding-10">
                         <a id="btn_login" class="button" href="javascript:;"><span>ログイン</span></a>
                     </div>
-                    <div class='gr-hide gr-show-m gr-2-m gr-show-p gr-1-p gr-no-gutter-mobile align-end gr-padding-20'>
+                    <div class='gr-hide gr-show-m gr-2-m gr-show-p gr-1-p gr-no-gutter-mobile align-end'>
                         <div id='mobile-menu-icon-container'>
                             <a href='#mobile-menu' id='mobile-menu-icon'>
                                 <img class='responsive' src="/images/pages/binary-mobile-menu.svg"/>
@@ -220,7 +216,7 @@
                 </li>  <li id="topMenuCashier" class="item ">
                     <a class="link pjaxload" target="" href="/ja/cashier.html">入出金</a>
                     
-                </li>  <li id="topMenuResources" class="item ">
+                </li>  <li id="topMenuResources" class="item ja-hide">
                     <a class="link pjaxload" target="" href="/ja/resources.html">取引参考情報</a>
                     
                         <ul class="sub_items">  <li id="topMenuAssetIndex" class="sub_item ja-hide">
@@ -265,7 +261,7 @@
             </li>  <li id="topMenuCashier" class="item">
                 <a class="pjaxload link pjaxload" href="/ja/cashier.html">入出金</a>
                 
-            </li>  <li id="topMenuResources" class="item">
+            </li>  <li id="topMenuResources" class="item ja-hide">
                 <a class="pjaxload link pjaxload" href="/ja/resources.html">取引参考情報</a>
                 
                     <ul class="sub_items">  <li id="topMenuAssetIndex" class="sub_item ja-hide">
@@ -596,14 +592,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     <div class="gr-parent">
                         <div class="gr-row">
                             <div id="regulatory-text" class="gr-9 gr-12-m gr-7-p">
-                                ■店頭バイナリーオプション取引は金融商品取引法に規定される店頭デリバティブ取引であり、元本や利益が保証されていません。■店頭バイナリーオプション取引は、判定時刻に自動的に権利行使されるヨーロピアンタイプと、取引期間中に決められた条件に達すると権利が自動行使されるアメリカンタイプがあります。■店頭バイナリーオプションは、外国為替相場等の変動により投資元本の全てを失うおそれのあるリスクの高い金融商品です。■判定時刻及び取引期間中における一定の権利を、オプション料を支払って購入する期限がある取引のため、権利が消滅した場合には支払ったオプション料の全額を失います。■購入価格は1ロット1,000円〜100,000円です。■購入価格と売却価格にはスプレッドがあり、相場情勢により拡大することがあります。■相場情勢により、お客様が希望した価格より不利な価格で取引が成立する場合があります。■店頭バイナリーオプションの取引上限は以下のとおりです。
-1)1回の取引でペイアウトは100,000円まで。
-2)1日の取引でペイアウトは10,000,000円まで
-3)アメリカンタイプ（タッチ・ノータッチ、レンジ）の1日の制限は
-a) 予想される利益額は5,000,000円まで
-b) 確定された利益額は5,000,000円まで
-c) 取引数量は5,000,000円まで
-　上記いずれかに達した時点で、お客さまはその日の取引ができなくなります。
+                                ■店頭バイナリーオプション取引は金融商品取引法に規定される店頭デリバティブ取引であり、元本や利益が保証されていません。■店頭バイナリーオプション取引は、判定時刻に自動的に権利行使されるヨーロピアンタイプと、取引期間中に決められた条件に達すると権利が自動行使されるアメリカンタイプがあります。■店頭バイナリーオプションは、外国為替相場等の変動により投資元本の全てを失うおそれのあるリスクの高い金融商品です。■判定時刻及び取引期間中における一定の権利を、オプション料を支払って購入する期限がある取引のため、権利が消滅した場合には支払ったオプション料の全額を失います。■ペイアウトは1ロットあたり1,000円です。■購入価格と売却価格にはスプレッドがあり、相場情勢により拡大することがあります。■相場情勢により、お客様が希望した価格より不利な価格で取引が成立する場合があります。■店頭バイナリーオプションの取引上限は以下のとおりです。
+1)1取引のペイアウト上限額は10万円。(100ロット分)
+2)1日の取引上限額及び利益上限額は500万円。
+3)1日の未実現利益上限額は100万円。
+　上記2)もしくは3)いずれかに達した時点で、お客さまはその日の取引ができなくなります。
 ■取引手数料は無料ですが、12ヶ月間、新規又は決済の取引がなかった場合は口座維持管理料（年間2,500円）が発生します。■オプションの購入後の注文取り消しは行う事ができませんが、取引可能期間であれば売却は可能です。ただし、購入価格と売却価格にはスプレッドがあり、売却時に損失を被る可能性があります。■お取引を開始される前に、契約締結前交付書面を熟読の上、必ず約款及び取扱説明書に書かれてある取引の特徴、取引条件、仕組み及びリスクを十分確認いただき、ご自身の判断と責任において、自己の計算によりお取引ください。
                             </div>
                             <div class="ja-hide gr-3 gr-12-m gr-5-p" id="social-networks">
@@ -643,7 +636,7 @@ c) 取引数量は5,000,000円まで
         <div class="container">
             <div class="gr-padding-10">
                 <p class="gambling">
-                    【商号】Binary株式会社　金融商品取引業　関東財務局長（金商）第2949号【加入協会】一般社団法人金融先物取引業協会
+                    【商号】Binary株式会社　金融商品取引業者　関東財務局長（金商）第2949号【加入協会】一般社団法人金融先物取引業協会
 <span class="ja-hide"><a href="/ja/responsible-trading.html" class="pjaxload">健全なトレードのために</a>をお読みください。</span>
                 </p>
             </div>

@@ -55,14 +55,10 @@
           <link rel="alternate" href="/zh_cn/trading_beta.html?l=zh_cn" hreflang="ZH_CN" /> 
           <link rel="alternate" href="/zh_tw/trading_beta.html" hreflang="ZH_TW" /> 
         
-         <link rel="stylesheet" href="/css/binary.min.css?r5qza98y">
-         <link rel="stylesheet" href="https://style.binary.com/binary.css?r5qza98y">
+         <link rel="stylesheet" href="/css/binary.min.css?r3ttb9hd">
+         <link rel="stylesheet" href="https://style.binary.com/binary.css?r3ttb9hd">
         
-        <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=Array.prototype.includes,String.prototype.includes&unknown=polyfill"></script>
-<script>
-    //A global variable required to initialize Page object.
-    window.page_params = {settings: {"valid_loginids":"MX|MF|VRTC|MLT|CR|FOG|VRTJ|JP","arr_all_currencies":["USD","EUR","GBP","AUD"],"image_link":{"calendar_icon":"/images/common/calendar_icon_1.png","up":"/images/javascript/up_arrow_1.gif","hourglass":"/images/common/hourglass_1.gif","livechaticon":"/images/pages/contact/chat-icon.svg","down":"/images/javascript/down_arrow_1.gif"},"enable_relative_barrier":"true","broker":"CR","streaming_server":"www.binary.com"}};
-</script>  <script src='/js/binary.min.js?r5qza98y' defer async></script>
+        <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=Array.prototype.includes,String.prototype.includes,Symbol,Promise,Object.assign&unknown=polyfill"></script>  <script src='/js/binary.min.js?r3ttb9hd' defer async></script>
     </head>
 
 
@@ -113,7 +109,7 @@
             <div class='gr-12'>
                 <div class='gr-row gr-row-align-middle'>
                     <div class='gr-3 gr-2-m gr-2-p gr-padding-10'>
-                        <a id="logo" class="pjaxload" href="/zh_cn/home.html">
+                        <a id="logo" href="javascript:;">
                             <div class='gr-row'>
                                 <div class='gr-3 gr-12-m gr-12-p gr-no-gutter'>
                                     <img class='responsive' src="/images/pages/binary-symbol-logo.svg" />
@@ -192,7 +188,7 @@
                     <div id="client-logged-out" class="gr-3 gr-8-m gr-8-p gr-no-gutter by_client_type client_logged_out invisible gr-padding-10">
                         <a id="btn_login" class="button" href="javascript:;"><span>登录</span></a>
                     </div>
-                    <div class='gr-hide gr-show-m gr-2-m gr-show-p gr-1-p gr-no-gutter-mobile align-end gr-padding-20'>
+                    <div class='gr-hide gr-show-m gr-2-m gr-show-p gr-1-p gr-no-gutter-mobile align-end'>
                         <div id='mobile-menu-icon-container'>
                             <a href='#mobile-menu' id='mobile-menu-icon'>
                                 <img class='responsive' src="/images/pages/binary-mobile-menu.svg"/>
@@ -219,7 +215,7 @@
                 </li>  <li id="topMenuCashier" class="item ">
                     <a class="link pjaxload" target="" href="/zh_cn/cashier.html">收银台</a>
                     
-                </li>  <li id="topMenuResources" class="item ">
+                </li>  <li id="topMenuResources" class="item ja-hide">
                     <a class="link pjaxload" target="" href="/zh_cn/resources.html">资源</a>
                     
                         <ul class="sub_items">  <li id="topMenuAssetIndex" class="sub_item ja-hide">
@@ -264,7 +260,7 @@
             </li>  <li id="topMenuCashier" class="item">
                 <a class="pjaxload link pjaxload" href="/zh_cn/cashier.html">收银台</a>
                 
-            </li>  <li id="topMenuResources" class="item">
+            </li>  <li id="topMenuResources" class="item ja-hide">
                 <a class="pjaxload link pjaxload" href="/zh_cn/resources.html">资源</a>
                 
                     <ul class="sub_items">  <li id="topMenuAssetIndex" class="sub_item ja-hide">
@@ -499,37 +495,47 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                     <div class="gr-12">
                                         <div class="gr-row">
                                             <div class="gr-4 gr-12-m" id="contract_purchase_profit_list">
-                                                <div class="gr-row chart-values">
-                                                    <div class="gr-adapt">
-                                                        <div id="chart_values_tick">跳动点</div>
-                                                        <div id="chart_values_time">时间</div>
-                                                        <div id="chart_values_price">价格</div>
-                                                    </div>
-                                                    <div class="gr-grow values">
-                                                        <div id="chart_values_tick_value"></div>
-                                                        <div id="chart_values_time_value"></div>
-                                                        <div id="chart_values_price_value"></div>
-                                                    </div>
+                                                <div id="chart-values">
+                                                    <table>
+                                                        <tr>
+                                                            <td id="chart_values_tick">跳动点</td>
+                                                            <td id="chart_values_tick_value"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td id="chart_values_time">时间</td>
+                                                            <td id="chart_values_time_value"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td id="chart_values_price">价格</td>
+                                                            <td id="chart_values_price_value"></td>
+                                                        </tr>
+                                                    </table>
                                                 </div>
-                                                <div class="gr-row" id="contract-values">
-                                                    <div class="gr-adapt">
-                                                        <div id="contract_purchase_cost"></div>
-                                                        <div id="contract_purchase_payout"></div>
-                                                        <div id="contract_purchase_barrier"></div>
-                                                        <div id="contract_purchase_profit"></div>
-                                                    </div>
-                                                    <div class="gr-grow values">
-                                                        <div id="contract_purchase_cost_value"></div>
-                                                        <div id="contract_purchase_payout_value"></div>
-                                                        <div id="contract_purchase_barrier_value"></div>
-                                                        <div id="contract_purchase_profit_value"></div>
-                                                    </div>
+                                                <div id="contract-values">
+                                                    <table>
+                                                        <tr>
+                                                            <td id="contract_purchase_cost"></td>
+                                                            <td id="contract_purchase_cost_value"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td id="contract_purchase_payout"></td>
+                                                            <td id="contract_purchase_payout_value"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td id="contract_purchase_barrier"></td>
+                                                            <td id="contract_purchase_barrier_value"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td id="contract_purchase_profit"></td>
+                                                            <td id="contract_purchase_profit_value"></td>
+                                                        </tr>
+                                                    </table>
                                                 </div>
                                                 <div class="contract_purchase_reference gr-hide-m"></div>
                                             </div>
                                             <div class="gr-8 gr-12-m gr-no-gutter" id="contract_purchase_description_section">
                                                 <div id="contract_purchase_descr"></div>
-                                                <button id="contract_purchase_button" class="button open_contract_detailsws">View Details</button>
+                                                <button id="contract_purchase_button" class="button open_contract_detailsws">查看详情</button>
                                                 <div id="contract_purchase_spots">
                                                     <div id="current_tick_number"></div>
                                                     <div id="current_tick_spot"></div>
@@ -539,7 +545,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                             </div>
                                         </div>
                                     </div>
-                                    <button id="contract_purchase_new_trade" class="button gr-hide gr-show-m">New Trade</button>
+                                    <button id="contract_purchase_new_trade" class="button gr-hide gr-show-m">新交易</button>
                                     <div class="contract_purchase_reference gr-hide gr-show-m"></div>
                                     <div class="invisible" id="contract_purchase_balance"></div>
                                 </div>
@@ -645,7 +651,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <p class="error-msg" id="chart-error"></p>
                 <div id="trade_live_chart">
                     <table><tr><td>
-                        <iframe src="" width="100%" height="100%" id="chart_frame" style="overflow-y : hidden;" scrolling="no"></iframe>
+                        <iframe src="" width="100%" height="99%" id="chart_frame" style="overflow-y : hidden;" scrolling="no"></iframe>
                     </td></tr></table>
                 </div>
             </div>
@@ -659,15 +665,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     <div id="portfolio-content" class="invisible">
         <div class="gr-parent gr-padding-10">
-            <div class="gr-hide-m gr-hide-p">
-                账户余额： 
-                <span class="loading" id="portfolio-balance"></span>
+            账户余额： 
+            <span class="loading" id="portfolio-balance"></span>
 
-                <!-- If the account balance is zero we show the following button, otherwise we remove it -->
-                <a href="/zh_cn/cashier/forwardws.html#deposit" id="if-balance-zero" class="invisible button button_large by_client_type client_real with_login_cookies">
-                    <span>存入资金</span>
-                </a>
-            </div>
+            <!-- If the account balance is zero we show the following button, otherwise we remove it -->
+            <a href="/zh_cn/cashier/forwardws.html#deposit" id="if-balance-zero" class="invisible button button_large by_client_type client_real with_login_cookies">
+                <span>存入资金</span>
+            </a>
         </div>
 
         <div id="portfolio-no-contract">
@@ -690,7 +694,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
             <tfoot>
                 <tr>
-                    <th class="ref" colspan="3"></th>
+                    <th>总计</th>
+                    <th class="ref" colspan="2"></th>
                     <th class="cost" id="cost-of-open-positions"></th>
                     <th class="value" id="value-of-open-positions" colspan="2"></th>
                 </tr>

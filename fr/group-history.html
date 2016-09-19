@@ -55,14 +55,10 @@
           <link rel="alternate" href="/zh_cn/group-history.html" hreflang="ZH_CN" /> 
           <link rel="alternate" href="/zh_tw/group-history.html" hreflang="ZH_TW" /> 
         
-         <link rel="stylesheet" href="/css/binary.min.css?r5qza98y">
-         <link rel="stylesheet" href="https://style.binary.com/binary.css?r5qza98y">
+         <link rel="stylesheet" href="/css/binary.min.css?r3ttb9hd">
+         <link rel="stylesheet" href="https://style.binary.com/binary.css?r3ttb9hd">
         
-        <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=Array.prototype.includes,String.prototype.includes&unknown=polyfill"></script>
-<script>
-    //A global variable required to initialize Page object.
-    window.page_params = {settings: {"arr_all_currencies":["USD","EUR","GBP","AUD"],"valid_loginids":"MX|MF|VRTC|MLT|CR|FOG|VRTJ|JP","enable_relative_barrier":"true","image_link":{"down":"/images/javascript/down_arrow_1.gif","livechaticon":"/images/pages/contact/chat-icon.svg","calendar_icon":"/images/common/calendar_icon_1.png","up":"/images/javascript/up_arrow_1.gif","hourglass":"/images/common/hourglass_1.gif"},"broker":"CR","streaming_server":"www.binary.com"}};
-</script>  <script src='/js/binary.min.js?r5qza98y' defer async></script>
+        <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=Array.prototype.includes,String.prototype.includes,Symbol,Promise,Object.assign&unknown=polyfill"></script>  <script src='/js/binary.min.js?r3ttb9hd' defer async></script>
     </head>
 
 
@@ -113,7 +109,7 @@
             <div class='gr-12'>
                 <div class='gr-row gr-row-align-middle'>
                     <div class='gr-3 gr-2-m gr-2-p gr-padding-10'>
-                        <a id="logo" class="pjaxload" href="/fr/home.html">
+                        <a id="logo" href="javascript:;">
                             <div class='gr-row'>
                                 <div class='gr-3 gr-12-m gr-12-p gr-no-gutter'>
                                     <img class='responsive' src="/images/pages/binary-symbol-logo.svg" />
@@ -174,15 +170,15 @@
                                 </a>
                                 <ul>
                                     <a class="link with_login_cookies pjaxload" href="/fr/user/settingsws.html">
-                                        <li class="topMenuProfile">Profile</li>
+                                        <li class="topMenuProfile">Profil</li>
                                     </a>
                                     <a class="link with_login_cookies pjaxload" href="/fr/user/securityws.html">
-                                        <li class="topMenuSecurity">Security & Limits</li>
+                                        <li class="topMenuSecurity">Sécurité et limitations</li>
                                     </a>
                                     <div class="separator-line-thin-gray"></div>
                                     <div class="login-id-list"></div>
                                     <a href="javascript:;" id="btn_logout" class="logout">
-                                        <li>Sign out</li>
+                                        <li>Déconnexion</li>
                                     </a>
                                 </ul>
                             </li>
@@ -192,7 +188,7 @@
                     <div id="client-logged-out" class="gr-3 gr-8-m gr-8-p gr-no-gutter by_client_type client_logged_out invisible gr-padding-10">
                         <a id="btn_login" class="button" href="javascript:;"><span>Connexion</span></a>
                     </div>
-                    <div class='gr-hide gr-show-m gr-2-m gr-show-p gr-1-p gr-no-gutter-mobile align-end gr-padding-20'>
+                    <div class='gr-hide gr-show-m gr-2-m gr-show-p gr-1-p gr-no-gutter-mobile align-end'>
                         <div id='mobile-menu-icon-container'>
                             <a href='#mobile-menu' id='mobile-menu-icon'>
                                 <img class='responsive' src="/images/pages/binary-mobile-menu.svg"/>
@@ -219,7 +215,7 @@
                 </li>  <li id="topMenuCashier" class="item ">
                     <a class="link pjaxload" target="" href="/fr/cashier.html">Caisse</a>
                     
-                </li>  <li id="topMenuResources" class="item ">
+                </li>  <li id="topMenuResources" class="item ja-hide">
                     <a class="link pjaxload" target="" href="/fr/resources.html">Ressources</a>
                     
                         <ul class="sub_items">  <li id="topMenuAssetIndex" class="sub_item ja-hide">
@@ -229,7 +225,7 @@
                             </li>  </ul>
                     
                 </li>  <li id="topMenuShop" class="item ja-hide">
-                    <a class="link" target="_blank" href="https://shop.binary.com">Shop</a>
+                    <a class="link" target="_blank" href="https://shop.binary.com">Boutique</a>
                     
                 </li>  <li id="topMenuPaymentAgent" class="item invisible">
                     <a class="link pjaxload" target="" href="/fr/paymentagent/transferws.html">Agent de paiement</a>
@@ -264,7 +260,7 @@
             </li>  <li id="topMenuCashier" class="item">
                 <a class="pjaxload link pjaxload" href="/fr/cashier.html">Caisse</a>
                 
-            </li>  <li id="topMenuResources" class="item">
+            </li>  <li id="topMenuResources" class="item ja-hide">
                 <a class="pjaxload link pjaxload" href="/fr/resources.html">Ressources</a>
                 
                     <ul class="sub_items">  <li id="topMenuAssetIndex" class="sub_item ja-hide">
@@ -274,7 +270,7 @@
                         </li>  </ul>
                 
             </li>  <li id="topMenuShop" class="item ja-hide">
-                <a class="pjaxload link " href="https://shop.binary.com">Shop</a>
+                <a class="pjaxload link " href="https://shop.binary.com">Boutique</a>
                 
             </li>  <li id="topMenuPaymentAgent" class="item invisible">
                 <a class="pjaxload link pjaxload" href="/fr/paymentagent/transferws.html">Agent de paiement</a>
@@ -320,23 +316,23 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </li>
         <li class="event left featured" style="margin-bottom: 50px">
           <div class="header">
-            Binary KK granted Japan license
+            Binary KK obtient une licence au Japon
           </div>
           <div class="event-body">
-            Binary's Japanese subsidiary Binary KK is licensed by the KLFB as a Type 1 Financial Instruments Business in Japan.
+            Binary KK, la filiale japonaise de Binary, obtient une licence de type 1 délivrée par l'organisme japonais de réglementation des services financiers (KLFB), autorisant la société à négocier les instruments financiers au Japon.
           </div>
         </li>
         <li class="event right" style="margin-bottom: 50px">
           <div class="header">
-            Kuala Lumpur Office
+            Antenne de Kuala Lumpur
           </div>
           <div class="event-body">
-            Binary.com opens an office in the QSentral office building in central Kuala Lumpur to further expand its IT development team.
+            Binary.com ouvre une antenne au sein du complexe Qsentral, au centre de Kuala Lumpur, afin d'élargir son équipe chargée du développement des TI.
           </div>
         </li>
         <li class="event left" style="margin-bottom: 50px">
           <div class="header">
-            Binary Bot released
+            Lancement d'un robot dédié aux options binaires
           </div>
           <div class="event-body">
             Binary.com inaugure un <a href='https://bot.binary.com' target='_blank' class='ja-hide'>outil de programmation dédié au trading automatique</a><span class='all-hide ja-show'>outil de programmation dédié au trading automatique</span>permettant aux clients de mettre au point leurs propres robots de trading automatisés en quelques clics.
@@ -363,7 +359,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </li>
         <li class="event left">
           <div class="header">
-              
+                
           </div>
           <div class="event-body">
             Binary.com remporte le premier prix récompensant les meilleurs services de courtage en ligne, lors de la prestigieuse cérémonie organisée par eGaming Review en 2015, à Londres.
@@ -382,7 +378,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             Binary obtient une licence en tant que fournisseur de services d'investissement
           </div>
           <div class="event-body">
-            La subsidiaire de Binary à Malte Binary Investments (Europe) Ltd. a été octroyée une licence de Services d'Investissements de Catégorie 3 par la Malta Financial Services Authority.
+            Binary Investments (Europe), la filiale maltaise de Binary, obtient une licence de catégorie 3 délivrée par l'Autorité maltaise des services financiers, autorisant la société à proposer des services d'investissement.
           </div>
         </li>
         <li class="event right">
@@ -398,14 +394,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             Binary.com compte 1 million d'utilisateurs inscrits
           </div>
           <div class="event-body">
-            Binary.com hits 1 million users, reaching a historic milestone. The company continues to see exponential growth and this reconfirms its position as an industry leader.
+            Binary.com atteint 1 million d'utilisateurs et prend un tournant historique. La société jouit toujours d'une croissance exponentielle et réaffirme ainsi son statut de chef de file du secteur.
           </div>
         </li>
         <li class="event right featured">
           <div class="header">
             Transaction Regent Pacific
           </div>
-          <div class="event-body">Regent Pacific Group Ltd., the Hong Kong-listed founding shareholder of Binary.com, <a href='http://www.regentpac.com/ICMServlet/download/13-1907-3066/EAnnt-ThirdPartiesSale(04Mar2015).pdf' target='_blank'>disposes of its stake</a> at a valuation of US$ 50.5 million.</div>
+          <div class="event-body">Regent Pacific Group Ltd., le groupe actionnaire fondateur de Binary.com côté en bouse à Hong Kong, <a href='http://www.regentpac.com/ICMServlet/download/13-1907-3066/EAnnt-ThirdPartiesSale(04Mar2015).pdf' target='_blank'>détient une participation</a> estimée à 50,5 millions de dollars US.</div>
         </li>
         <li class="year center-text">
           2014
@@ -423,7 +419,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             Regent Markets Group Ltd est renommé Binary Ltd.
           </div>
           <div class="event-body">
-            Regent Markets Group Ltd. renommé Binary Ltd., harmonisant le branding de la société et du site web à travers toute l'organisation.
+            Regent Markets Group Ltd. renommé Binary Ltd, harmonisant le branding de la société et du site web à travers toute l'organisation.
           </div>
         </li>
         <li class="event right">
@@ -431,7 +427,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             Binary.com propose de nouvelles alternatives de trading
           </div>
           <div class="event-body">
-            Fifteen years on, and we're still innovating, growing and working on new ways to serve our customers better. For the first time, we offer short-term touch/no-touch trades and introduce a new charting application. We believe we have the most competitive and comprehensive digital options platform available to the retail public.
+            Forts de quinze ans d'expérience, nous restons tournés vers l'innovation et la croissance et nous efforçons de toujours mieux servir nos clients. Pour la première fois, nous proposons des options « touche/ne touche pas » et nous inaugurons une nouvelle application graphique. Nous sommes convaincus que notre plateforme d'options binaires est la plus compétitive et la plus complète accessible aux clients du marché de détail.
           </div>
         </li>
         <li class="event">
@@ -439,7 +435,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             Binary.com continue à innover et à s'accroître
           </div>
           <div class="event-body">
-            Our customers clearly like us. In mid-2014, Binary.com has over 100 million historical transactions and over 130,000 new daily transactions.
+            Nos clients nous apprécient, et ils le montrent. En milieu d'année 2014, Binary.com affiche une historique de plus de 100 millions de transactions et enregistre plus de 130 000 nouvelles transactions quotidiennes.
           </div>
         </li>
       </ul>
@@ -449,9 +445,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </li>
         <li class="event featured">
           <div class="header">
-            BetOnMarkets.com is successfully rebranded Binary.com
+            Le site BetOnMarkets.com est définitivement renommé Binary.com
           </div>
-          <div class="event-body">We rebrand BetOnMarkets.com as <a target='_blank' href='/fr/home.html'>www.Binary.com</a>. The rebranding is a natural evolution for the platform as it continues to grow market share in the highly competitive field of binary trading. The new brand reflects the nature of the business, and our new tagline - Sharp Prices, Smart Trading - communicates our ethos and commitment to our clients.</div>
+          <div class="event-body">BetOnMarkets.com est renommé <a target='_blank' href='/fr/home.html'>www.Binary.com</a>. La refonte de notre marque s'inscrit naturellement dans l'évolution de notre plateforme qui représente une part de marché de plus en plus conséquente dans le secteur hautement concurrentiel des options binaires. La nouvelle marque reflète la nature de notre activité et notre nouveau slogan, « Sharp Prices, Smart Trading » (« Prix compétitifs, Trading intelligent » en français), communique notre philosophie et notre engagement auprès des clients.</div>
         </li>
       </ul>
       <ul>
@@ -492,7 +488,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             Regent Markets reçoit deux nouveaux brevets américains
           </div>
           <div class="event-body">
-            We're granted patents for 'Computer trading system and method for speculating on a financial market' and 'Computer trading system for offering custom financial market speculations'. The patents show our ability to innovate and stay ahead of the pack.
+            La société obtient des brevets en tant que « Système de courtage en ligne et méthode de spéculation sur un marché financier » et en tant que « Système de courtage en ligne fournissant des services de spéculation personnalisés sur les marchés financiers ». Ces brevets reflètent notre capacité à innover et à rester à la pointe du secteur.
           </div>
         </li>
         <li class="event right">
@@ -513,7 +509,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             Prix du « meilleur fournisseur de services de trading sur produits dérivés financiers » décerné par Shares Magazine UK
           </div>
           <div class="event-body">
-            For the third straight year, BetOnMarkets.com is voted 'Best Fixed-Odds Financial Trading Provider' by Shares Magazine UK. It's the last time we win it because Shares Magazine stops awarding in this category.
+            Pour la troisième année consécutive, BetOnmrakets.com est élu « Meilleur fournisseur de services de trading sur produits dérivés financiers » par Shares Magazine UK. C'est la dernière fois que nous obtiendrons ce prix, car Shares Magazine cessera ensuite de décerner des récompenses dans cette catégorie.
           </div>
         </li>
         <li class="event right">
@@ -568,7 +564,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </li>
         <li class="event">
           <div class="header">
-            Regent Markets granted US patent for 'Betting system and method'
+            Regent Markets obtient un brevet américain pour ses « système et méthode » de trading
           </div>
           <div class="event-body">
             Le brevet signifie que Regent Markets est le pionnier reconnu des paris binaires. Le brevet aide à protéger nos innovations.
@@ -579,7 +575,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             Prix du « meilleur fournisseur de services de trading sur produits dérivés financiers » décerné par Shares Magazine UK
           </div>
           <div class="event-body">
-            Only five years after inception, we pick up this major award for our online trading services. The award recognises BetOnMarkets.com's reliable, fast and secure online trading for novice and expert traders. At this time, our website has received over 15 million trades.
+            Seulement cinq ans après sa création, BetOnMarkets.com remporte ce prix pour ses services de trading en ligne. Ce prix récompense la fiabilité, la rapidité et la sécurité des transactions en ligne sur site BetOnMarkets.com, accessible à la fois aux novices et aux experts du trading. À cette date, notre site Web a déjà enregistré plus de 15 millions de transactions.
           </div>
         </li>
       </ul>
@@ -592,7 +588,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             Regent Markets met en place un centre de programmation à Cyberjaya, en Malaisie
           </div>
           <div class="event-body">
-            It's time to expand. We set up a programming center in Cyberjaya - the Silicon Valley of Kuala Lumpur - to maintain and improve BetOnMarkets.com.
+            Nous établissons un centre de programmation à Cyberjaya - la Silicon Valley de Kuala Lumpur - dans une optique de croissance et d'amélioration de BetOnMarkets.com.
           </div>
         </li>
         <li class="event right">
@@ -612,7 +608,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div class="header">
             Lancement de BetOnMarkets
           </div>
-          <div class="event-body">In April, <a target='_blank' href='http://www.betonmarkets.com'>Betonmarkets.com</a> (formerly known as <a target='_blank' href='http://www.xodds.com'>Xodds.com</a>) goes live, establishing a round-the-clock financial betting service on a variety of financial indices. Business grows quickly, and we soon become the market leader in fixed-odds financial betting.</div>
+          <div class="event-body">En avril, <a target='_blank' href='http://www.betonmarkets.com'>Betonmarkets.com</a> (anciennement <a target='_blank' href='http://www.xodds.com'>Xodds.com</a>) est lancé sur le Web pour offrir un service de spéculation financière en continu sur différents indices financiers. Notre croissance est rapide et nous nous positionnons bientôt au sommet du marché de la spéculation sur instruments dérivés.</div>
         </li>
         <li class="event right">
           <div class="header">
@@ -632,7 +628,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             Regent Markets reçoit les fonds afin de fournir des services de paris financiers en ligne
           </div>
           <div class="event-body">
-            In October 1999, Regent Markets receives US$ 2 million investment funding from Jim Mellon through his Regent Pacific Group, a Hong Kong based fund management company.
+            En octobre 1999, Regent Markets perçoit 2 millions de dollars US octroyés par Jim Mellon par le biais du Regent Pacific Group, une société de gestion de fonds basée à Hong Kong.
           </div>
         </li>
         <li class="event right">
@@ -640,7 +636,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             Fondation de Regent Markets par Jean-Yves Sireau
           </div>
           <div class="event-body">
-            In classic Silicon Valley style, Hong Kong based hedge fund manager and entrepreneur, Jean-Yves Sireau, starts Regent Markets in his Hong Kong bedroom. He develops the systems, methods and algorithms for implementing a fixed-odds financial betting system. Jean-Yves's vision is to create a market in the simplest of all derivatives contracts - the fixed-odds bet - and to offer ordinary investors the chance to make small bets. Until his innovation, binary options are normally only traded in large quantities.
+            Fidèle aux codes de la Silicon Valley, Jean-Yves Sireau, gestionnaire de fonds spéculatifs et entrepreneur basé à Hong Kong, travaille à la mise au point de Regent Markets depuis son domicile. Il développe les systèmes, les méthodes et les algorithmes permettant de mettre en œuvre un système de paris financiers à cotes fixes. L'ambition de Jean-Yves consiste à créer un marché dédié au plus simple des contrats dérivés - le pari à cotes fixes - pour offrir aux investisseurs ordinaires l'opportunité de profiter des petits paris. Avant cette innovation, les options binaires étaient généralement négociées en plus gros volumes.
           </div>
         </li>
       </ul>
@@ -730,7 +726,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <div class="gr-6 gr-12-m gr-parent gr-no-gutter">
                     <div class="gr-row">
                         <div class="gr-4">
-                           <h4 class="secondary-color">Condition</h4>
+                           <h4 class="secondary-color">Conditions</h4>
                            <ul>
                                <li class='ja-hide'>
                                    <a class="pjaxload" href="/fr/terms-and-conditions.html">Conditions générales</a>
@@ -750,7 +746,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                    <a class="pjaxload" href="/fr/responsible-trading.html">Trading responsable</a>
                                </li>
                                <li class="ja-hide">
-                               <a class="pjaxload" href="/fr/terms-and-conditions.html?selected_tab=complaints-disputes-tac-tab">Complaints</a>
+                               <a class="pjaxload" href="/fr/terms-and-conditions.html?selected_tab=complaints-disputes-tac-tab">Réclamations</a>
                                </li>
                                <li class="ja-hide id-hide ru-hide">
                                    <a href="/download/BIEL_Prospectus.pdf" target="_blank">Prospectus BIEL</a>
@@ -764,7 +760,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                            <h4 class="secondary-color">Applications</h4>
                            <ul>
                                <li>
-                                   <a href="https://shop.binary.com/collections/applications/products/tick-trade-mobile-application" target="_blank">TickTrade App</a>
+                                   <a href="https://shop.binary.com/collections/applications/products/tick-trade-mobile-application" target="_blank">Application TickTrade</a>
                                </li>
                                <li>
                                    <a href="https://shop.binary.com/collections/applications/products/webtrader" target="_blank">Webtrader</a>
@@ -784,10 +780,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                    <a href="https://developers.binary.com" target="_blank">API</a>
                                </li>
                                <li>
-                                   <a target="_blank" href="https://shop.binary.com">Binary Shop</a>
+                                   <a target="_blank" href="https://shop.binary.com">Boutique Binary.com</a>
                                </li>
                                <li>
-                                   <a class="pjaxload" href="/fr/partners.html">All Partnership Options</a>
+                                   <a class="pjaxload" href="/fr/partners.html">Toutes les options de partenariat</a>
                                </li>
                            </ul>
                        </div>
@@ -874,7 +870,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <div class="container">
             <div class="gr-padding-10">
                 <p class="gambling">
-                    Le trading d'options binaires ne convient pas nécessairement à tout le monde et vous devez vous assurer de bien comprendre les risques associés. Vos pertes peuvent excéder votre dépôt initial et vous ne détenez aucune partie de l'actif sous-jacent.  Les options binaires sont des produits apparentés aux jeux d'argent. N'oubliez pas que ces derniers peuvent s'avérer addictifs : jouez de manière responsable. <span class="ja-hide">Lisez notre article consacré au <a href="/fr/responsible-trading.html" class="pjaxload">trading responsable</a>.</span>
+                    Le trading d'options binaires ne convient pas nécessairement à tout le monde et vous devez vous assurer de bien comprendre les risques associés. Vos pertes peuvent excéder votre dépôt initial et vous ne détenez aucune partie de l'actif sous-jacent. Les options binaires sont des produits apparentés aux jeux d'argent. N'oubliez pas que ces derniers peuvent s'avérer addictifs : jouez de manière responsable. <span class="ja-hide">Lisez notre article consacré au <a href="/fr/responsible-trading.html" class="pjaxload">trading responsable</a>.</span>
                 </p>
             </div>
         </div>

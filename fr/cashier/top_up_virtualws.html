@@ -55,14 +55,10 @@
           <link rel="alternate" href="/zh_cn/cashier/top_up_virtualws.html" hreflang="ZH_CN" /> 
           <link rel="alternate" href="/zh_tw/cashier/top_up_virtualws.html" hreflang="ZH_TW" /> 
         
-         <link rel="stylesheet" href="/css/binary.min.css?r5qza98y">
-         <link rel="stylesheet" href="https://style.binary.com/binary.css?r5qza98y">
+         <link rel="stylesheet" href="/css/binary.min.css?r3ttb9hd">
+         <link rel="stylesheet" href="https://style.binary.com/binary.css?r3ttb9hd">
         
-        <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=Array.prototype.includes,String.prototype.includes&unknown=polyfill"></script>
-<script>
-    //A global variable required to initialize Page object.
-    window.page_params = {settings: {"arr_all_currencies":["USD","EUR","GBP","AUD"],"valid_loginids":"MX|MF|VRTC|MLT|CR|FOG|VRTJ|JP","broker":"CR","streaming_server":"www.binary.com","image_link":{"livechaticon":"/images/pages/contact/chat-icon.svg","down":"/images/javascript/down_arrow_1.gif","calendar_icon":"/images/common/calendar_icon_1.png","hourglass":"/images/common/hourglass_1.gif","up":"/images/javascript/up_arrow_1.gif"},"enable_relative_barrier":"true"}};
-</script>  <script src='/js/binary.min.js?r5qza98y' defer async></script>
+        <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=Array.prototype.includes,String.prototype.includes,Symbol,Promise,Object.assign&unknown=polyfill"></script>  <script src='/js/binary.min.js?r3ttb9hd' defer async></script>
     </head>
 
 
@@ -113,7 +109,7 @@
             <div class='gr-12'>
                 <div class='gr-row gr-row-align-middle'>
                     <div class='gr-3 gr-2-m gr-2-p gr-padding-10'>
-                        <a id="logo" class="pjaxload" href="/fr/home.html">
+                        <a id="logo" href="javascript:;">
                             <div class='gr-row'>
                                 <div class='gr-3 gr-12-m gr-12-p gr-no-gutter'>
                                     <img class='responsive' src="/images/pages/binary-symbol-logo.svg" />
@@ -174,15 +170,15 @@
                                 </a>
                                 <ul>
                                     <a class="link with_login_cookies pjaxload" href="/fr/user/settingsws.html">
-                                        <li class="topMenuProfile">Profile</li>
+                                        <li class="topMenuProfile">Profil</li>
                                     </a>
                                     <a class="link with_login_cookies pjaxload" href="/fr/user/securityws.html">
-                                        <li class="topMenuSecurity">Security & Limits</li>
+                                        <li class="topMenuSecurity">Sécurité et limitations</li>
                                     </a>
                                     <div class="separator-line-thin-gray"></div>
                                     <div class="login-id-list"></div>
                                     <a href="javascript:;" id="btn_logout" class="logout">
-                                        <li>Sign out</li>
+                                        <li>Déconnexion</li>
                                     </a>
                                 </ul>
                             </li>
@@ -192,7 +188,7 @@
                     <div id="client-logged-out" class="gr-3 gr-8-m gr-8-p gr-no-gutter by_client_type client_logged_out invisible gr-padding-10">
                         <a id="btn_login" class="button" href="javascript:;"><span>Connexion</span></a>
                     </div>
-                    <div class='gr-hide gr-show-m gr-2-m gr-show-p gr-1-p gr-no-gutter-mobile align-end gr-padding-20'>
+                    <div class='gr-hide gr-show-m gr-2-m gr-show-p gr-1-p gr-no-gutter-mobile align-end'>
                         <div id='mobile-menu-icon-container'>
                             <a href='#mobile-menu' id='mobile-menu-icon'>
                                 <img class='responsive' src="/images/pages/binary-mobile-menu.svg"/>
@@ -219,7 +215,7 @@
                 </li>  <li id="topMenuCashier" class="item ">
                     <a class="link pjaxload" target="" href="/fr/cashier.html">Caisse</a>
                     
-                </li>  <li id="topMenuResources" class="item ">
+                </li>  <li id="topMenuResources" class="item ja-hide">
                     <a class="link pjaxload" target="" href="/fr/resources.html">Ressources</a>
                     
                         <ul class="sub_items">  <li id="topMenuAssetIndex" class="sub_item ja-hide">
@@ -229,7 +225,7 @@
                             </li>  </ul>
                     
                 </li>  <li id="topMenuShop" class="item ja-hide">
-                    <a class="link" target="_blank" href="https://shop.binary.com">Shop</a>
+                    <a class="link" target="_blank" href="https://shop.binary.com">Boutique</a>
                     
                 </li>  <li id="topMenuPaymentAgent" class="item invisible">
                     <a class="link pjaxload" target="" href="/fr/paymentagent/transferws.html">Agent de paiement</a>
@@ -264,7 +260,7 @@
             </li>  <li id="topMenuCashier" class="item">
                 <a class="pjaxload link pjaxload" href="/fr/cashier.html">Caisse</a>
                 
-            </li>  <li id="topMenuResources" class="item">
+            </li>  <li id="topMenuResources" class="item ja-hide">
                 <a class="pjaxload link pjaxload" href="/fr/resources.html">Ressources</a>
                 
                     <ul class="sub_items">  <li id="topMenuAssetIndex" class="sub_item ja-hide">
@@ -274,7 +270,7 @@
                         </li>  </ul>
                 
             </li>  <li id="topMenuShop" class="item ja-hide">
-                <a class="pjaxload link " href="https://shop.binary.com">Shop</a>
+                <a class="pjaxload link " href="https://shop.binary.com">Boutique</a>
                 
             </li>  <li id="topMenuPaymentAgent" class="item invisible">
                 <a class="pjaxload link pjaxload" href="/fr/paymentagent/transferws.html">Agent de paiement</a>
@@ -409,7 +405,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <div class="gr-6 gr-12-m gr-parent gr-no-gutter">
                     <div class="gr-row">
                         <div class="gr-4">
-                           <h4 class="secondary-color">Condition</h4>
+                           <h4 class="secondary-color">Conditions</h4>
                            <ul>
                                <li class='ja-hide'>
                                    <a class="pjaxload" href="/fr/terms-and-conditions.html">Conditions générales</a>
@@ -429,7 +425,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                    <a class="pjaxload" href="/fr/responsible-trading.html">Trading responsable</a>
                                </li>
                                <li class="ja-hide">
-                               <a class="pjaxload" href="/fr/terms-and-conditions.html?selected_tab=complaints-disputes-tac-tab">Complaints</a>
+                               <a class="pjaxload" href="/fr/terms-and-conditions.html?selected_tab=complaints-disputes-tac-tab">Réclamations</a>
                                </li>
                                <li class="ja-hide id-hide ru-hide">
                                    <a href="/download/BIEL_Prospectus.pdf" target="_blank">Prospectus BIEL</a>
@@ -443,7 +439,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                            <h4 class="secondary-color">Applications</h4>
                            <ul>
                                <li>
-                                   <a href="https://shop.binary.com/collections/applications/products/tick-trade-mobile-application" target="_blank">TickTrade App</a>
+                                   <a href="https://shop.binary.com/collections/applications/products/tick-trade-mobile-application" target="_blank">Application TickTrade</a>
                                </li>
                                <li>
                                    <a href="https://shop.binary.com/collections/applications/products/webtrader" target="_blank">Webtrader</a>
@@ -463,10 +459,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                    <a href="https://developers.binary.com" target="_blank">API</a>
                                </li>
                                <li>
-                                   <a target="_blank" href="https://shop.binary.com">Binary Shop</a>
+                                   <a target="_blank" href="https://shop.binary.com">Boutique Binary.com</a>
                                </li>
                                <li>
-                                   <a class="pjaxload" href="/fr/partners.html">All Partnership Options</a>
+                                   <a class="pjaxload" href="/fr/partners.html">Toutes les options de partenariat</a>
                                </li>
                            </ul>
                        </div>
@@ -553,7 +549,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <div class="container">
             <div class="gr-padding-10">
                 <p class="gambling">
-                    Le trading d'options binaires ne convient pas nécessairement à tout le monde et vous devez vous assurer de bien comprendre les risques associés. Vos pertes peuvent excéder votre dépôt initial et vous ne détenez aucune partie de l'actif sous-jacent.  Les options binaires sont des produits apparentés aux jeux d'argent. N'oubliez pas que ces derniers peuvent s'avérer addictifs : jouez de manière responsable. <span class="ja-hide">Lisez notre article consacré au <a href="/fr/responsible-trading.html" class="pjaxload">trading responsable</a>.</span>
+                    Le trading d'options binaires ne convient pas nécessairement à tout le monde et vous devez vous assurer de bien comprendre les risques associés. Vos pertes peuvent excéder votre dépôt initial et vous ne détenez aucune partie de l'actif sous-jacent. Les options binaires sont des produits apparentés aux jeux d'argent. N'oubliez pas que ces derniers peuvent s'avérer addictifs : jouez de manière responsable. <span class="ja-hide">Lisez notre article consacré au <a href="/fr/responsible-trading.html" class="pjaxload">trading responsable</a>.</span>
                 </p>
             </div>
         </div>
