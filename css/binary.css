@@ -4868,6 +4868,9 @@ iframe#chart_frame {
           flex: 2 1 100px;
   padding-right: 20px;
 }
+#profit-table-ws-container .new-width {
+  min-width: 120px;
+}
 
 #limits-ws-container .item img {
   margin-left: 5px;
