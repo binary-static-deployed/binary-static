@@ -50325,13 +50325,12 @@
 	                // set cookies
 	                page.client.set_cookie('loginid'     , loginid);
 	                page.client.set_cookie('loginid_list', loginid_list);
-	
-	                if (!$('body').hasClass('BlueTopBack')) sessionStorage.setItem('check_tnc', loginid_list);
 	            }
 	            page.client.set_cookie('login', tokens[loginid]);
 	
 	            // set flags
 	            if (!$('body').hasClass('BlueTopBack')) localStorage.setItem('risk_classification', 'check');
+	            if (!$('body').hasClass('BlueTopBack')) sessionStorage.setItem('check_tnc', Cookies.get('loginid_list'));
 	            GTM.set_login_flag();
 	
 	            // redirect url
@@ -51379,10 +51378,7 @@
 	    },
 	    response_landing_company: function(response) {
 	        if (!response.hasOwnProperty('error')) {
-	            var company = response.name;
 	            var has_reality_check = response.has_reality_check;
-	
-	            this.set_storage_value('landing_company_name', company);
 	            this.set_storage_value('has_reality_check', has_reality_check);
 	        }
 	    },
@@ -58707,12 +58703,16 @@
 	                            break;
 	                        }
 	                    }
-	                    if (company && company.has_reality_check) {
-	                        page.client.response_landing_company(company);
-	                        var currentData = TUser.get();
-	                        var addedLoginTime = $.extend({logintime: window.time.unix()}, currentData);
-	                        TUser.set(addedLoginTime);
-	                        RealityCheck.init();
+	
+	                    if (company) {
+	                        page.client.set_storage_value('landing_company_name', company.name);
+	                        if (company.has_reality_check) {
+	                            page.client.response_landing_company(company);
+	                            var currentData = TUser.get();
+	                            var addedLoginTime = $.extend({logintime: window.time.unix()}, currentData);
+	                            TUser.set(addedLoginTime);
+	                            RealityCheck.init();
+	                        }
 	                    }
 	                } else if (type === 'get_self_exclusion') {
 	                    SessionDurationLimit.exclusionResponseHandler(response);
