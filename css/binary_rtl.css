@@ -492,6 +492,12 @@ p.no-para-margin {
 #topbar #gmt-clock, #topbar #contact-us, #topbar .upgrademessage {
   align-self: center;
 }
+#topbar #gmt-clock {
+  white-space: nowrap;
+}
+#topbar .upgrademessage {
+  text-align: center;
+}
 #topbar .upgrademessage a {
   color: #fff;
   text-decoration: none;
@@ -519,6 +525,7 @@ p.no-para-margin {
 #topbar #language_select select {
   padding: 0px;
   float: left;
+  max-width: 100%;
 }
 #topbar a {
   color: #fff;
@@ -1453,13 +1460,14 @@ a.close:hover {
   line-height: 20px;
   background-color: #2a3052;
   color: #fff;
+  padding-left: 30px;
 }
 .inpage_popup_container_ws .inpage_popup_content_box td {
   padding-right: 6%;
   text-align: right;
 }
 .inpage_popup_container_ws .inpage_popup_content_box #sell_content_wrapper {
-  max-height: 90vh;
+  max-height: calc(100vh - 35px);
   overflow: auto;
   overflow-x: hidden;
   -ms-overflow-x: hidden;
