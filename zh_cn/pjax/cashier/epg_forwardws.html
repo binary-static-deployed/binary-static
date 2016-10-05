@@ -1,0 +1,136 @@
+<div id="content" class="epg_forwardws-content">
+        <!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-MZWFF7"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script data-cfasync="false">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MZWFF7');</script>
+<!-- End Google Tag Manager -->
+        <div id="page_info" style="display:none;">
+            <title>收银台 | Binary.com</title>
+            <div id="content_class">epg_forwardws-content</div>
+        </div>
+        
+        <div class="container">
+
+
+  <div class='gr-12 gr-padding-10'>
+  <h1 id="deposit-withdraw-heading"></h1>
+  <div>
+
+    <div id="deposit-withdraw-message" style="display:none">
+      <p id="cashier-locked-message" class="messages">
+        根据您的请求，您的收银台已被锁定 - 如需解除锁定，请点击<a class="pjaxload" href="/zh_cn/user/security/cashier_passwordws.html">此处</a>。
+      </p>
+      <p id="check-email-message" class="messages">为提高安全保障，请查看邮件并提取验证令牌。</p>
+      <p id="choose-currency-message" class="messages">请选择您想要交易的货币。</p>
+      <p id="personal-details-message" class="messages">
+        您的个人资料验证出了问题。请<a class="pjaxload" href="/zh_cn/user/settings/detailsws.html">在此</a>更新您的[_1]。
+        <br />
+        如果您需要帮助，请联系我们的<a class="pjaxload" href="/zh_cn/contact.html">客服部</a>。
+      </p>
+      <p id="not-authenticated-message" class="messages">
+        您的账户未完全验证。欲知详情请访问<a class="pjaxload" href="/zh_cn/user/authenticatews.html">验证</a>页面。
+      </p>
+    </div>
+
+    <div id="deposit-withdraw-error" class="error-msg" style="display:none">
+        <p id="withdrawal-locked-error" class="error_messages">
+            取款已锁定。欲知详情，请 <a class="pjaxload" href="/zh_cn/contact.html">联系我们</a>。
+        </p>
+        <p id="deposit-locked-error" class="error_messages">
+            存款已锁定。欲知详情，请 <a class="pjaxload" href="/zh_cn/contact.html">联系我们</a>。
+        </p>
+        <p id="cashier-locked-error" class="error_messages">
+            收银台已锁定。欲知详情，请 <a class="pjaxload" href="/zh_cn/contact.html">联系我们</a>。
+        </p>
+      <p id="custom-error" class="error_messages"></p>
+    </div>
+
+  </div>
+  <div class="container" id="deposit-withdraw-iframe-container" style="display:none">
+    <script data-cfasync="false" type="text/javascript">
+    function receiveCmd(e){
+      if (e.origin !== "https://cashier.binary.com") return;
+      if (e.data.action == 'iframesize') {
+        document.getElementById('cashiercont').style.height = (e.data.height) + "px";
+      } else if (e.data.action == 'reloadwin') {
+        window.location.reload(true);
+      }
+    }
+    if (! window.addEventListener) {
+      window.attachEvent("message", receiveCmd);
+    } else {
+      window.addEventListener("message", receiveCmd, false);
+    }
+    </script>
+    <iframe src="" frameborder="0" width="100%" height="1500" id="cashiercont" scrolling="auto" style="padding:0px;margin:0px;"></iframe>
+  </div>
+  <div id="ukgc-funds-protection" class="gr-row gr-parent" style="display:none">
+      <div class="gr-2 gr-6-m gr-centered-m">
+          <p>
+              <img class="responsive" src="/images/pages/cashier/protection-icon.svg"/>
+          </p>
+      </div>
+      <div class="gr-10 gr-12-m">
+              <p>
+                  根据牌照的要求，在公司失去偿付能力的情况下，我们应通知您：我们代您保管的资金会发生什么情况；我们将提供何种程度的资金保护 <a href='http://www.gamblingcommission.gov.uk/Consumers/Protection-of-customer-funds.aspx' target='_blank'>http://www.gamblingcommission.gov.uk/Consumers/Protection-of-customer-funds.aspx</a>。
+              </p>
+              <p>
+                  公司把客户资金存在独立的银行账户，与运营账户分开，因此如果公司破产，客户资金不会成为公司资产的一部分。这符合博彩委员会关于客户资金独立管理的要求，即：<strong>中等级别保护</strong>。
+              </p>
+              <div class='gr-3 gr-6-m gr-centered'>
+                  <span class="button">
+                      <button id="submit-ukgc-funds-protection" class="button" value="ok" type="submit">执行</button>
+                  </span>
+              </div>
+      </div>
+  </div>
+  <div id="currency-form" style="display:none">
+    <div class="rbox-wrap">
+      <fieldset>
+        <div class="gr-padding-10 gr-row clear">
+          <div class="gr-4 form_label">
+            <label for="currency">交易</label>
+          </div>
+          <div class="gr-8">
+            <select id="select-currency">
+              <option value="USD" selected="selected">美元</option>
+              <option value="EUR">欧元</option>
+              <option value="GBP">英镑</option>
+              <option value="AUD">澳元</option>
+            </select>
+          </div>
+        </div>
+        <div class="gr-padding-10 row clear form_button">
+          <div class="gr-8">
+            <span class="button">
+              <button class="button" id="submit-currency" type="submit" value="Continue">继续</button>
+            </span>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+  </div>
+  <div id="withdraw-form" style="display:none">
+    <fieldset>
+      <div class="gr-row gr-parent gr-padding-10">
+        <div class="form_label gr-4">
+          <label for="verification-token">验证令牌</label>
+        </div>
+        <div class="gr-8">
+          <input id="verification-token" type="text" maxlength="48" autocomplete="off" />
+          <div class="hint">请检查您的电邮领取此令牌号</div>
+          <p class="errorfield" id="verification-error" style="display:none"></p>
+        </div>
+      </div>
+      <div class="gr-12 gr-parent gr-centered center-text">
+        <span class="button">
+          <button class="button" id="submit-verification" type="button">提交</button>
+        </span>
+      </div>
+    </fieldset>
+  </div>
+</div>

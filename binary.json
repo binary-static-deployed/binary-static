@@ -66,6 +66,8 @@
     "src/javascript/binary/static_pages/endpoint.js",
     "src/javascript/binary/static_pages/get_started_jp.js",
     "src/javascript/binary/static_pages/job_details.js",
+    "src/javascript/binary/static_pages/platforms.js",
+    "src/javascript/binary/static_pages/regulation.js",
     "src/javascript/binary/static_pages/static_pjax.js",
     "src/javascript/binary/validator.js",
     "src/javascript/binary/websocket_pages/cashier/account_transferws.js",

@@ -1,0 +1,125 @@
+<div id="content" class="withdrawws-content">
+        <!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-MZWFF7"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script data-cfasync="false">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MZWFF7');</script>
+<!-- End Google Tag Manager -->
+        <div id="page_info" style="display:none;">
+            <title>ตัวแทนรับชำระเงินสำหรับถอนเงิน | Binary.com</title>
+            <div id="content_class">withdrawws-content</div>
+        </div>
+        
+        <div class="container">
+
+
+  <div class="gr-12">
+    <h1>ตัวแทนรับชำระเงินสำหรับถอนเงิน</h1>
+
+    <div id="paymentagent_withdrawal">
+
+        <div id="viewError" class="viewItem hidden">
+            <p id="custom-error" class="error-msg hidden"></p>
+            <p id="withdrawal-locked-error" class="error-msg hidden">
+                การถอนถูกล็อค โปรด<a class="pjaxload" href="/th/contact.html">ติดต่อเรา</a> สำหรับข้อมูลเพิ่มเติม
+            </p>
+        </div>
+
+        <div id="viewSuccess" class="viewItem hidden">
+            <p id="successMessage"></p>
+            <p>
+                <a class="button" href="/th/user/statementws.html">
+                    <span class="button">ดูสเตทเมนท์ของท่าน</span>
+                </a>
+            </p>
+        </div>
+
+        <div id="viewConfirm" class="viewItem hidden">
+            <p>โปรดยืนยันรายละเอียดของธุรกรรมเพื่อทำให้การโอนสมบูรณ์:</p>
+
+            <p>โอนไป: <span id="lblAgentName"></span><br />จำนวน: <span id="lblCurrency"></span> <span id="lblAmount"></span></p>
+
+            <a class="button" id="btnBack" href="javascript:;"><span class="button">กลับ</span></a>
+            <a class="button" id="btnConfirm" href="javascript:;"><span class="button">ยืนยัน</span></a>
+        </div>
+
+        <div id="viewForm" class="viewItem hidden">
+            <p>โปรดให้ข้อมูลต่อไปนี้ ภายหลังการเรียกข้อมูลโทเค่นจากอีเมล์ของท่าน:</p>
+            <form class="form rbox gr-padding-10" id="frmWithdrawal">
+                <fieldset>
+
+                  <div class="gr-padding-10 gr-row clear">
+                      <div class="gr-4 form_label">
+                          <label for="verification-code">โทเค่นเพื่อตรวจสอบ</label>
+                      </div>
+                      <div class="gr-8">
+                          <input type="text" id="verification-code" maxlength="48" autocomplete="off"></input>
+                          <div class="hint">โปรดตรวจสอบอีเมล์ของท่านเพื่อการใช้งานโทเค่นนี้</div>
+                      </div>
+                  </div>
+
+                    <div class="gr-padding-10 gr-row clear">
+                        <div class="gr-4 form_label">
+                            <label for="ddlAgents">โอนไปตัวแทนรับชำระเงิน</label>
+                        </div>
+                        <div class="gr-8">
+                            <select id="ddlAgents"></select>
+                        </div>
+                    </div>
+
+                    <div class="gr-padding-10 gr-row clear">
+                        <div class="gr-4 form_label">
+                            <label for="txtAmount">จำนวน</label>
+                        </div>
+                        <div class="gr-8">
+                            USD <input type="text" id="txtAmount" />
+                            <div class="hint">ต่ำสุด: 10 สูงสุด: 2000</div>
+                        </div>
+                    </div>
+
+                    <div class="gr-padding-10 gr-row clear">
+                        <div class="gr-4 form_label">
+                            <label for="txtDescription">วิธีการใช้งานอื่นๆ</label>
+                        </div>
+                        <div class="gr-8">
+                            <textarea id="txtDescription" row="6" cols="60" maxlength="300"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="gr-padding-10">
+                        <div class="gr-4"></div>
+                        <div class="gr-8">
+                            <div id="formMessage"></div>
+                        </div>
+                    </div>
+
+                    <div class="gr-padding-10">
+                        <div class="gr-8 gr-centered center-text">
+                            <span class="button">
+                                <button class="button">ส่ง</button>
+                            </span>
+                        </div>
+                    </div>
+
+                </fieldset>
+            </form>
+
+            <div id="paymentagent_withdrawal_notes">
+                <div>บันทึก:</div>
+                <ul>
+                    <li>Binary.com ไม่ถูกเรียกเก็บค่าธรรมเนียมการโอนใดๆ</li>
+                    <li>ในช่อง 'Further Instructions' โปรดระบุประเภทการชำระเงิน และเลขที่บัญชีสำหรับตัวแทนที่จะใช้ในการฝากและถอนเงิน โปรดแน่ใจว่า ท่านยินยอมกับตัวแทนในเงื่อนไขการชำระเงินก่อนที่จะส่งความต้องการของท่าน</li>
+                    <li>เมื่อท่านกดปุ่ม 'Submit' เงินหลักประกันของท่านจะถูกถอนจากบัญชีของท่านและโอนไปที่ตัวแทนรับชำระเงินที่ท่านเลือก</li>
+                    <li>ตัวแทนรับชำระเงินจะส่งจำนวนเงินที่ถอนให้ท่าน (ลบค่าคอมมิชชั่น) ผ่านช่องทางการชำระเงินที่ท่านแสดงความประสงค์</li>
+                </ul>
+            </div>
+
+            <p class="comment"><strong>ข้อสำคัญการสงวนสิทธิ์</strong> - Binary.com ไม่มีส่วนร่วมในการดำเนินการของตัวแทนรับชำระเงินตามรายการข้างต้น ตัวแทนรับชำระเงินแต่ละรายดำเนินการเป็นผู้ให้บริการอย่างเอกเทศ ไม่ได้รับอนุญาต หรือ รับประกัน หรือ อนุมัติโดย Binary.com ลูกค้าที่ทำการชำระเงินผ่านตัวแทนรับชำระเงินยอมรับความเสี่ยงและผลต่างๆ ที่อาจจะเกิดขึ้นด้วยตนเอง ลูกค้าได้รับคำแนะนำให้ตรวจสอบใบอนุญาตการขึ้นทะเบียนเป็นตัวแทนรับชำระเงินก่อนที่จะทำธุรกรรมการเงินต่างๆ Binary.com ไม่มีส่วนรับผิดชอบในเหตุการณ์ใดๆ ที่จะเกิดขึ้นในธุรกรรมต่างๆ ระหว่างลูกค้าและตัวแทนรับชำระเงิน</p>
+        </div>
+
+    </div>
+
+</div>

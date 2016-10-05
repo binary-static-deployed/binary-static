@@ -1,0 +1,84 @@
+<div id="content" class="api_tokenws-content">
+        <!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-MZWFF7"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script data-cfasync="false">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MZWFF7');</script>
+<!-- End Google Tag Manager -->
+        <div id="page_info" style="display:none;">
+            <title>API โทเค่น | Binary.com</title>
+            <div id="content_class">api_tokenws-content</div>
+        </div>
+        
+        <div class="container">
+
+
+  <div id="api_token" class="api_token">
+    <h1>API โทเค่น</h1>
+
+    <p>เพื่อการใช้งานแอพพลิเคชันทางอุปกรณ์เคลื่อนที่ หรือแอพพลิเคชันอื่นๆ ท่านต้องขอ API โทเค่นก่อน</p>
+    <ul class="bullet">
+      <li>คลิก "Create" เพื่อสร้างโทเค่นของท่าน แล้วคัดลอกและวางโทเค่นในแอพพลิเคชันของท่าน</li>
+      <li>กำหนดประเภทเฉพาะของ API โทเค่นที่ท่านต้องการใช้งาน</li>
+    </ul>
+
+    <div id="token_form" class="gr-12 gr-padding-10">
+        <form class="form rbox" id="frmNewToken">
+            <fieldset>
+                <legend>สร้างโทเค่นใหม่</legend>
+
+                <div class="gr-row gr-padding-10">
+                    <div class="gr-4 form_label">
+                        <label for="txtName">กำหนด ชื่อ:</label>
+                    </div>
+                    <div class="gr-8">
+                        <input name="name" id="txtName" type="text" maxlength="32" />
+                    </div>
+                </div>
+
+                <div class="gr-row gr-padding-10">
+                    <div class="gr-4 form_label">
+                        <label for="scopes">กำหนดขอบเขต:</label>
+                    </div>
+                    <div class="gr-8">
+                        <input id="scopes" type="checkbox" name="scopes[]" value="read" checked="checked" readonly="readonly" />
+                          <label for="scopes" data-balloon="สามารถใช้ในการดูกิจกรรมที่เกิดขึ้นของบัญชี รวมถึงการตั้งค่า วงเงิน งบดุล ประวัติการซื้อขาย และอื่นๆ" data-balloon-length="xlarge">อ่าน</label>
+                        <input id="scopes-trade" type="checkbox" name="scopes[]" value="trade" />
+                          <label for="scopes-trade" data-balloon="สามารถใช้ในการซื้อและขายสัญญาต่างๆ การต่ออายุ และการเติมเงินในบัญชีเสมือน" data-balloon-length="xlarge">เทรด</label>
+                        <input id="scopes-payments" type="checkbox" name="scopes[]" value="payments" />
+                          <label for="scopes-payments" data-balloon="สามารถใช้เพื่อเปิดบัญชี ตั้งค่าต่างๆ จัดการการใช้โทเค่น และอื่นๆ" data-balloon-length="xlarge">การชำระเงิน</label>
+                        <input id="scopes-admin" type="checkbox" name="scopes[]" value="admin" />
+                          <label for="scopes-admin" data-balloon="สามารถถอนเงินเพื่อชำระกับตัวแทน โอนเงินระหว่างบัญชี และตั้งค่า/ลบรหัสผ่านการรับและการชำระเงิน" data-balloon-length="xlarge">แอดมิน</label>
+                    </div>
+                </div>
+
+                <div class="gr-row">
+                    <div class="gr-4"></div>
+                    <div class="gr-8">
+                        <div id="formMessage"></div>
+                    </div>
+                </div>
+
+                <div class="gr-row">
+                    <div class="gr-4"></div>
+                    <div class="gr-8">
+                        <span class="button">
+                            <button class="button" id="btnCreate">สร้าง</button>
+                        </span>
+                    </div>
+                </div>
+
+            </fieldset>
+        </form>
+    </div>
+
+    <div id="token_message" class="gr-12 gr-padding-10 center-text invisible">
+        <p></p>
+    </div>
+
+    <div id="tokens_list" class="gr-12 gr-parent gr-padding-10">
+    </div>
+</div>

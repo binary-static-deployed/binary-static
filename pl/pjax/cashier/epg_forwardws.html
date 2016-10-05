@@ -1,0 +1,136 @@
+<div id="content" class="epg_forwardws-content">
+        <!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-MZWFF7"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script data-cfasync="false">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MZWFF7');</script>
+<!-- End Google Tag Manager -->
+        <div id="page_info" style="display:none;">
+            <title>Kasjer | Binary.com</title>
+            <div id="content_class">epg_forwardws-content</div>
+        </div>
+        
+        <div class="container">
+
+
+  <div class='gr-12 gr-padding-10'>
+  <h1 id="deposit-withdraw-heading"></h1>
+  <div>
+
+    <div id="deposit-withdraw-message" style="display:none">
+      <p id="cashier-locked-message" class="messages">
+        Sekcja Kasjer została zablokowana na Twoją prośbę - jeśli chcesz ją odblokować, prosimy kliknąć <a class="pjaxload" href="/pl/user/security/cashier_passwordws.html">tutaj</a>.
+      </p>
+      <p id="check-email-message" class="messages">Ze względów bezpieczeństwa token weryfikujący został wysłany na Twój adres e-mail. Sprawdź swoją skrzynkę odbiorczą.</p>
+      <p id="choose-currency-message" class="messages">Wybierz, w jakiej walucie chcesz zawrzeć transakcję.</p>
+      <p id="personal-details-message" class="messages">
+        Nie udało nam się zweryfikować Twoich danych osobowych. Zaktualizuj <a class="pjaxload" href="/pl/user/settings/detailsws.html">tutaj</a>.
+        <br />
+        Jeśli potrzebujesz pomocy, skontaktuj się z naszym <a class="pjaxload" href="/pl/contact.html">działem obsługi klienta</a>.
+      </p>
+      <p id="not-authenticated-message" class="messages">
+        Twoje konto nie zostało w pełni zweryfikowane. Aby uzyskać więcej informacji, odwiedź stronę dotyczącą procesu <a class="pjaxload" href="/pl/user/authenticatews.html">weryfikacyjnego</a>.
+      </p>
+    </div>
+
+    <div id="deposit-withdraw-error" class="error-msg" style="display:none">
+        <p id="withdrawal-locked-error" class="error_messages">
+            Dokonywanie wypłat jest zablokowane. <a class="pjaxload" href="/pl/contact.html">Skontaktuj się z nami</a>, aby uzyskać więcej informacji.
+        </p>
+        <p id="deposit-locked-error" class="error_messages">
+            Dokonywanie wpłat jest zablokowane. <a class="pjaxload" href="/pl/contact.html">Skontaktuj się z nami</a>, aby uzyskać więcej informacji.
+        </p>
+        <p id="cashier-locked-error" class="error_messages">
+            Sekcja Kasjer jest zablokowana. <a class="pjaxload" href="/pl/contact.html">Skontaktuj się z nami</a>, aby uzyskać więcej informacji.
+        </p>
+      <p id="custom-error" class="error_messages"></p>
+    </div>
+
+  </div>
+  <div class="container" id="deposit-withdraw-iframe-container" style="display:none">
+    <script data-cfasync="false" type="text/javascript">
+    function receiveCmd(e){
+      if (e.origin !== "https://cashier.binary.com") return;
+      if (e.data.action == 'iframesize') {
+        document.getElementById('cashiercont').style.height = (e.data.height) + "px";
+      } else if (e.data.action == 'reloadwin') {
+        window.location.reload(true);
+      }
+    }
+    if (! window.addEventListener) {
+      window.attachEvent("message", receiveCmd);
+    } else {
+      window.addEventListener("message", receiveCmd, false);
+    }
+    </script>
+    <iframe src="" frameborder="0" width="100%" height="1500" id="cashiercont" scrolling="auto" style="padding:0px;margin:0px;"></iframe>
+  </div>
+  <div id="ukgc-funds-protection" class="gr-row gr-parent" style="display:none">
+      <div class="gr-2 gr-6-m gr-centered-m">
+          <p>
+              <img class="responsive" src="/images/pages/cashier/protection-icon.svg"/>
+          </p>
+      </div>
+      <div class="gr-10 gr-12-m">
+              <p>
+                  Nasza licencja zobowiązuje nas, aby poinformować Cię, co dzieje się z Twoimi środkami gromadzonymi na naszych kontach oraz o zakresie ochrony, jaką środki są objęte na wypadek naszej niewypłacalności <a href='http://www.gamblingcommission.gov.uk/Consumers/Protection-of-customer-funds.aspx' target='_blank'>http://www.gamblingcommission.gov.uk/Consumers/Protection-of-customer-funds.aspx</a>.
+              </p>
+              <p>
+                  Firma przechowuje środki klientów na innych rachunkach bankowych niż rachunek operacyjny. W przypadku niewypłacalności firmy rachunki te nie będą stanowiły jej aktywów. Tym samym spełnione zostają wymagania instytucji Gambling Commission dotyczące oddzielenia funduszy klientów na następującym poziomie: <strong>średnia ochrona</strong>.
+              </p>
+              <div class='gr-3 gr-6-m gr-centered'>
+                  <span class="button">
+                      <button id="submit-ukgc-funds-protection" class="button" value="ok" type="submit">Kontynuuj</button>
+                  </span>
+              </div>
+      </div>
+  </div>
+  <div id="currency-form" style="display:none">
+    <div class="rbox-wrap">
+      <fieldset>
+        <div class="gr-padding-10 gr-row clear">
+          <div class="gr-4 form_label">
+            <label for="currency">Zawieraj transakcje na</label>
+          </div>
+          <div class="gr-8">
+            <select id="select-currency">
+              <option value="USD" selected="selected">USD</option>
+              <option value="EUR">EUR</option>
+              <option value="GBP">GBP</option>
+              <option value="AUD">AUD</option>
+            </select>
+          </div>
+        </div>
+        <div class="gr-padding-10 row clear form_button">
+          <div class="gr-8">
+            <span class="button">
+              <button class="button" id="submit-currency" type="submit" value="Continue">Dalej</button>
+            </span>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+  </div>
+  <div id="withdraw-form" style="display:none">
+    <fieldset>
+      <div class="gr-row gr-parent gr-padding-10">
+        <div class="form_label gr-4">
+          <label for="verification-token">Token weryfikacyjny</label>
+        </div>
+        <div class="gr-8">
+          <input id="verification-token" type="text" maxlength="48" autocomplete="off" />
+          <div class="hint">Informacja na temat tego tokenu została wysłana na Twój adres e-mail</div>
+          <p class="errorfield" id="verification-error" style="display:none"></p>
+        </div>
+      </div>
+      <div class="gr-12 gr-parent gr-centered center-text">
+        <span class="button">
+          <button class="button" id="submit-verification" type="button">Prześlij</button>
+        </span>
+      </div>
+    </fieldset>
+  </div>
+</div>

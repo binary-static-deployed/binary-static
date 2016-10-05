@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /* common styles */
 /* http://meyerweb.com/eric/tools/css/reset/
    v2.0 | 20110126
@@ -411,6 +412,14 @@ p.no-para-margin {
   border-top: 1px solid #DEDEDE;
 }
 
+.border-dark-gray {
+  border: 1px solid #C2C2C2;
+}
+
+.vertical-align-middle {
+  vertical-align: middle;
+}
+
 *, *:after, *:before {
   transition: opacity 0.2s, color 0.2s, background 0.2s;
 }
@@ -719,6 +728,19 @@ p.no-para-margin {
   font-weight: 400;
   color: #fff;
   line-height: 110%;
+}
+#footer #end-note {
+  line-height: 25px;
+  text-align: center;
+  background: #c03;
+  color: #fff;
+  font-size: 0.86957rem;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+#footer #end-note a {
+  color: #fff;
 }
 
 #main-menu {
@@ -1324,8 +1346,9 @@ meter#password-meter::-webkit-meter-bar {
 .get-started-jp .link-size-box {
   display: table-cell;
   vertical-align: middle;
-  height: 35px;
-  width: 170px;
+  height: 36px;
+  min-width: 198px;
+  padding: 10px;
 }
 .get-started-jp .section-header {
   min-height: 50px;
@@ -2111,6 +2134,20 @@ table .loss, table .lower {
   margin-bottom: 40px;
 }
 
+ol.split li:before {
+  counter-increment: mycounter;
+  content: counter(mycounter) ".  ";
+}
+
+ol.split li {
+  text-indent: -1.1em;
+  list-style-type: none;
+}
+
+ol.start {
+  counter-reset: mycounter;
+}
+
 .live_chart_wrapper {
   margin: 0 auto;
 }
@@ -2353,24 +2390,24 @@ table .loss, table .lower {
     font-size: 80% !important;
   }
 }
-.career .xquote, .user_testing .xquote {
+.career .xquote, .user_testing .xquote, .regulation-content .xquote {
   background-color: #F2F2F2;
   padding: 20px;
   margin: 30px 0;
 }
-.career .xquote div, .user_testing .xquote div {
+.career .xquote div, .user_testing .xquote div, .regulation-content .xquote div {
   overflow: hidden;
   display: table;
 }
-.career .xquote div .picture, .user_testing .xquote div .picture {
+.career .xquote div .picture, .user_testing .xquote div .picture, .regulation-content .xquote div .picture {
   float: left;
   padding-right: 20px;
 }
-.career .xquote div .text, .user_testing .xquote div .text {
+.career .xquote div .text, .user_testing .xquote div .text, .regulation-content .xquote div .text {
   display: table-cell;
   vertical-align: middle;
 }
-.career .xquote div .text span, .user_testing .xquote div .text span {
+.career .xquote div .text span, .user_testing .xquote div .text span, .regulation-content .xquote div .text span {
   color: #44484C;
   font-size: 12px;
 }
@@ -2970,6 +3007,81 @@ div.kineticjs-content {
     width: 40%;
   }
 }
+.regulation-content .gray-line {
+  border: 1px solid #F2F2F2;
+  background-color: #F2F2F2;
+  width: 2px;
+  height: 50px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.regulation-content h1.margin-top {
+  margin-top: 30px;
+}
+.regulation-content .timeline {
+  padding: 0;
+}
+.regulation-content .xquote div {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+.regulation-content .xquote div .quote-text {
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: 0 !important;
+}
+.regulation-content .full-height {
+  height: 100%;
+}
+.regulation-content .background-gray {
+  margin-top: -30px;
+}
+
+.platforms-content img.responsive {
+  max-height: 150px;
+}
+.platforms-content table {
+  table-layout: fixed;
+  width: 100%;
+}
+.platforms-content td, .platforms-content th {
+  vertical-align: top;
+  padding: 10px;
+  width: 100px;
+}
+.platforms-content th {
+  position: absolute;
+  left: 0;
+  width: 90px;
+  height: 200px;
+  text-align: left;
+}
+.platforms-content .outer {
+  position: relative;
+}
+.platforms-content .inner {
+  overflow-x: scroll;
+  overflow-y: visible;
+  margin-left: 110px;
+}
+.platforms-content .auto-height {
+  height: 32px;
+}
+.platforms-content tr:first-child td {
+  line-height: 1.1em;
+  font-weight: bold;
+  background: #F2F2F2;
+  border-bottom: 1px solid #F2F2F2;
+}
+.platforms-content ul.checked li {
+  background-position: center;
+  margin: 0;
+}
+.platforms-content .small-padding-top {
+  padding-top: 4px;
+}
+
 /* static pages */
 @keyframes spinning {
   from {
@@ -4771,6 +4883,10 @@ div.kineticjs-content {
 #statement-ws-container label[for='date-picker'] {
   left: 30%;
 }
+#statement-ws-container input {
+  max-width: 100%;
+  margin-left: 10px;
+}
 
 .table-container th {
   text-align: left !important;
@@ -4940,9 +5056,20 @@ body ul.checked li {
   background-position: left;
   padding-left: 35px;
 }
+body .app-store-badge, body .google-play-badge {
+  background-repeat: no-repeat;
+  width: 140px;
+  height: 40px;
+}
 
 body.EN .calls_recording {
   display: inline !important;
+}
+body.EN .app-store-badge {
+  background-image: url("../images/pages/applications/appstore_en.svg");
+}
+body.EN .google-play-badge {
+  background-image: url("../images/pages/applications/googleplay_en.svg");
 }
 
 body.JA .ja-hide {
@@ -4953,6 +5080,10 @@ body.JA .ja-show {
   visibility: visible !important;
 }
 body.JA .ja-show-block {
+  display: block !important;
+  visibility: visible !important;
+}
+body.JA .ja-show-inline-block {
   display: inline-block !important;
   visibility: visible !important;
 }
@@ -4987,6 +5118,9 @@ body.JA #header #menu-top li {
 body.JA #profit-table .buy-price, body.JA #profit-table .sell-price, body.JA #profit-table .payout, body.JA #profit-table .pl.loss, body.JA #profit-table .act, body.JA #statement-table .buy-price, body.JA #statement-table .sell-price, body.JA #statement-table .payout, body.JA #statement-table .pl.loss, body.JA #statement-table .act {
   white-space: nowrap;
 }
+body.JA #main-menu {
+  margin-bottom: 30px;
+}
 
 /*Vietnamese Language */
 body.VI #legal-tab li.tm-li-2 {
@@ -4998,6 +5132,12 @@ body.VI #trading_socket_container #contract_form_name_nav {
 }
 body.VI #trading_socket_container_beta #contract_symbol_container {
   font-size: 90%;
+}
+body.VI .app-store-badge {
+  background-image: url("../images/pages/applications/appstore_vi.svg");
+}
+body.VI .google-play-badge {
+  background-image: url("../images/pages/applications/googleplay_vi.svg");
 }
 
 /*French Language */
@@ -5013,13 +5153,11 @@ body.FR #trading_socket_container #contract_form_name_nav {
 body.FR #header .account-type {
   font-size: 85%;
 }
-
-/*Arabic Language */
-body.AR .regulatory-logo {
-  display: none !important;
+body.FR .app-store-badge {
+  background-image: url("../images/pages/applications/appstore_fr.svg");
 }
-body.AR .ar-hide {
-  display: none;
+body.FR .google-play-badge {
+  background-image: url("../images/pages/applications/googleplay_fr.svg");
 }
 
 /*Indonesian Language */
@@ -5045,6 +5183,12 @@ body.ID .extra-space {
 body.ID #language_select {
   display: none;
 }
+body.ID .app-store-badge {
+  background-image: url("../images/pages/applications/appstore_id.svg");
+}
+body.ID .google-play-badge {
+  background-image: url("../images/pages/applications/googleplay_id.svg");
+}
 @media screen and (max-width: 480px) {
   body.ID .empty-space {
     margin-top: 0 !important;
@@ -5068,6 +5212,12 @@ body.IT h1, body.IT h2, body.IT h3, body.IT h4, body.IT h5, body.IT h6, body.DE 
 body.ES #trading_socket_container #contract_form_name_nav {
   font-size: 80%;
 }
+body.ES .app-store-badge {
+  background-image: url("../images/pages/applications/appstore_es.svg");
+}
+body.ES .google-play-badge {
+  background-image: url("../images/pages/applications/googleplay_es.svg");
+}
 
 body.RU #trading_socket_container #contract_form_name_nav {
   font-size: 80%;
@@ -5085,12 +5235,60 @@ body.RU .ru-hide {
 body.RU #header .account-type {
   font-size: 90%;
 }
+body.RU .app-store-badge {
+  background-image: url("../images/pages/applications/appstore_ru.svg");
+}
+body.RU .google-play-badge {
+  background-image: url("../images/pages/applications/googleplay_ru.svg");
+}
 
 body.PT a, body.PT button, body.PT .button, body.PT span, body.PT input, body.RU a, body.RU button, body.RU .button, body.RU span, body.RU input {
   text-transform: initial !important;
 }
 body.PT h1, body.PT h2, body.PT h3, body.PT h4, body.PT h5, body.PT h6, body.RU h1, body.RU h2, body.RU h3, body.RU h4, body.RU h5, body.RU h6 {
   text-transform: initial !important;
+}
+
+body.DE .app-store-badge {
+  background-image: url("../images/pages/applications/appstore_de.svg");
+}
+body.DE .google-play-badge {
+  background-image: url("../images/pages/applications/googleplay_de.svg");
+}
+
+body.IT .app-store-badge {
+  background-image: url("../images/pages/applications/appstore_it.svg");
+}
+body.IT .google-play-badge {
+  background-image: url("../images/pages/applications/googleplay_it.svg");
+}
+
+body.ZH_CN .app-store-badge {
+  background-image: url("../images/pages/applications/appstore_zh_cn.svg");
+}
+body.ZH_CN .google-play-badge {
+  background-image: url("../images/pages/applications/googleplay_zh_cn.svg");
+}
+
+body.ZH_TW .app-store-badge {
+  background-image: url("../images/pages/applications/appstore_zh_tw.svg");
+}
+body.ZH_TW .google-play-badge {
+  background-image: url("../images/pages/applications/googleplay_zh_tw.svg");
+}
+
+body.PT .app-store-badge {
+  background-image: url("../images/pages/applications/appstore_pt.svg");
+}
+body.PT .google-play-badge {
+  background-image: url("../images/pages/applications/googleplay_pt.svg");
+}
+
+body.PL .app-store-badge {
+  background-image: url("../images/pages/applications/appstore_pl.svg");
+}
+body.PL .google-play-badge {
+  background-image: url("../images/pages/applications/googleplay_pl.svg");
 }
 
 /* media queries */

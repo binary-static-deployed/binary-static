@@ -1,0 +1,136 @@
+<div id="content" class="epg_forwardws-content">
+        <!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-MZWFF7"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script data-cfasync="false">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MZWFF7');</script>
+<!-- End Google Tag Manager -->
+        <div id="page_info" style="display:none;">
+            <title>Kasir | Binary.com</title>
+            <div id="content_class">epg_forwardws-content</div>
+        </div>
+        
+        <div class="container">
+
+
+  <div class='gr-12 gr-padding-10'>
+  <h1 id="deposit-withdraw-heading"></h1>
+  <div>
+
+    <div id="deposit-withdraw-message" style="display:none">
+      <p id="cashier-locked-message" class="messages">
+        Kasir Anda telah terkunci sesuai permintaan Anda - untuk membuka kunci, silahkan <a class="pjaxload" href="/id/user/security/cashier_passwordws.html">klik disini</a>.
+      </p>
+      <p id="check-email-message" class="messages">Untuk keamanan tambahan, silahkan lihat email Anda untuk mengambil token verifikasi.</p>
+      <p id="choose-currency-message" class="messages">Silahkan pilih mata uang mana yang ingin Anda depositkan.</p>
+      <p id="personal-details-message" class="messages">
+        Terdapat masalah pada saat memvalidasi data pribadi Anda. Silahkan perbarui [_1] Anda <a class="pjaxload" href="/id/user/settings/detailsws.html">disini</a>.
+        <br />
+        Jika Anda membutuhkan bantuan jangan ragu untuk menghubungi <a class="pjaxload" href="/id/contact.html">Customer Support</a> kami.
+      </p>
+      <p id="not-authenticated-message" class="messages">
+        Akun Anda belum dikonfirmasi sepenuhnya. Silahkan kunjungi halaman <a class="pjaxload" href="/id/user/authenticatews.html">otentikasi</a> untuk informasi lebih lanjut.
+      </p>
+    </div>
+
+    <div id="deposit-withdraw-error" class="error-msg" style="display:none">
+        <p id="withdrawal-locked-error" class="error_messages">
+            Penarikan terkunci, silahkan <a class="pjaxload" href="/id/contact.html">hubungi kami</a> untuk info lebih lanjut.
+        </p>
+        <p id="deposit-locked-error" class="error_messages">
+            Deposit terkunci, silahkan <a class="pjaxload" href="/id/contact.html">hubungi kami</a> untuk info lebih lanjut.
+        </p>
+        <p id="cashier-locked-error" class="error_messages">
+            Bagian kasir terkunci, silahkan <a class="pjaxload" href="/id/contact.html">hubungi kami</a> untuk info lebih lanjut.
+        </p>
+      <p id="custom-error" class="error_messages"></p>
+    </div>
+
+  </div>
+  <div class="container" id="deposit-withdraw-iframe-container" style="display:none">
+    <script data-cfasync="false" type="text/javascript">
+    function receiveCmd(e){
+      if (e.origin !== "https://cashier.binary.com") return;
+      if (e.data.action == 'iframesize') {
+        document.getElementById('cashiercont').style.height = (e.data.height) + "px";
+      } else if (e.data.action == 'reloadwin') {
+        window.location.reload(true);
+      }
+    }
+    if (! window.addEventListener) {
+      window.attachEvent("message", receiveCmd);
+    } else {
+      window.addEventListener("message", receiveCmd, false);
+    }
+    </script>
+    <iframe src="" frameborder="0" width="100%" height="1500" id="cashiercont" scrolling="auto" style="padding:0px;margin:0px;"></iframe>
+  </div>
+  <div id="ukgc-funds-protection" class="gr-row gr-parent" style="display:none">
+      <div class="gr-2 gr-6-m gr-centered-m">
+          <p>
+              <img class="responsive" src="/images/pages/cashier/protection-icon.svg"/>
+          </p>
+      </div>
+      <div class="gr-10 gr-12-m">
+              <p>
+                   
+              </p>
+              <p>
+                  Perusahaan menyimpan dana Pelanggan pada rekening bank terpisah dari rekening bank untuk urusan operasional dimana tidak akan, meskipun dalam keadaan pailit menjadi bagian dari aset Perusahaan. Hal ini memenuhi persyaratan Komisi Trading dalam pemisahan dana nasabah di tingkat: <strong>perlindungan menengah</strong>.
+              </p>
+              <div class='gr-3 gr-6-m gr-centered'>
+                  <span class="button">
+                      <button id="submit-ukgc-funds-protection" class="button" value="ok" type="submit">Lanjutkan</button>
+                  </span>
+              </div>
+      </div>
+  </div>
+  <div id="currency-form" style="display:none">
+    <div class="rbox-wrap">
+      <fieldset>
+        <div class="gr-padding-10 gr-row clear">
+          <div class="gr-4 form_label">
+            <label for="currency">Bertransaksi di</label>
+          </div>
+          <div class="gr-8">
+            <select id="select-currency">
+              <option value="USD" selected="selected">USD</option>
+              <option value="EUR">EUR</option>
+              <option value="GBP">GBP</option>
+              <option value="AUD">AUD</option>
+            </select>
+          </div>
+        </div>
+        <div class="gr-padding-10 row clear form_button">
+          <div class="gr-8">
+            <span class="button">
+              <button class="button" id="submit-currency" type="submit" value="Continue">Lanjutkan</button>
+            </span>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+  </div>
+  <div id="withdraw-form" style="display:none">
+    <fieldset>
+      <div class="gr-row gr-parent gr-padding-10">
+        <div class="form_label gr-4">
+          <label for="verification-token">Token verifikasi</label>
+        </div>
+        <div class="gr-8">
+          <input id="verification-token" type="text" maxlength="48" autocomplete="off" />
+          <div class="hint">Silahkan cek email Anda untuk melihat token ini</div>
+          <p class="errorfield" id="verification-error" style="display:none"></p>
+        </div>
+      </div>
+      <div class="gr-12 gr-parent gr-centered center-text">
+        <span class="button">
+          <button class="button" id="submit-verification" type="button">Mengajukan</button>
+        </span>
+      </div>
+    </fieldset>
+  </div>
+</div>

@@ -49,15 +49,16 @@
           <link rel="alternate" href="/pl/user/security/self_exclusionws.html?l=pl" hreflang="PL" /> 
           <link rel="alternate" href="/pt/user/security/self_exclusionws.html" hreflang="PT" /> 
           <link rel="alternate" href="/ru/user/security/self_exclusionws.html" hreflang="RU" /> 
+          <link rel="alternate" href="/th/user/security/self_exclusionws.html" hreflang="TH" /> 
           <link rel="alternate" href="/vi/user/security/self_exclusionws.html" hreflang="VI" /> 
          
           <link rel="alternate" href="/zh_cn/user/security/self_exclusionws.html" hreflang="ZH_CN" /> 
           <link rel="alternate" href="/zh_tw/user/security/self_exclusionws.html" hreflang="ZH_TW" /> 
         
-         <link rel="stylesheet" href="/css/binary.min.css?lb21pfky">
-         <link rel="stylesheet" href="https://style.binary.com/binary.css?lb21pfky">
+         <link rel="stylesheet" href="/css/binary.min.css?r0hza10m">
+         <link rel="stylesheet" href="https://style.binary.com/binary.css?r0hza10m">
         
-        <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=Array.prototype.includes,String.prototype.includes,Symbol,Promise,Object.assign&flags=gated&unknown=polyfill"></script>  <script src='/js/binary.min.js?lb21pfky' defer async></script>
+        <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=Array.prototype.includes,String.prototype.includes,Symbol,Promise,Object.assign&flags=gated&unknown=polyfill"></script>  <script src='/js/binary.min.js?r0hza10m' defer async></script>
     </head>
 
 
@@ -90,7 +91,7 @@
                 <option class='PL' selected='selected'>Polish</option>
                 <option class='PT'>Português</option>
                 <option class='RU'>Русский</option>
-                <option class='VI'>Vietnamese</option>
+                    <option class='VI'>Vietnamese</option>
                     <option class='ZH_CN'>简体中文</option>
                 <option class='ZH_TW'>繁體中文</option>
     </select>
@@ -121,13 +122,16 @@
                     <div class='gr-6 gr-hide-m gr-hide-p gr-padding-10'>
                         <div id='main-navigation'>
                             <ul id="menu-top">
-                                <li>
+                                <li class="ja-hide">
                                     <a class="pjaxload" href="/pl/why-us.html">Dlaczego my?</a>
+                                </li>
+                                <li class="all-hide ja-show-inline-block">
+                                    <a class="pjaxload" href="/pl/why-us-jp.html">Dlaczego my?</a>
                                 </li>
                                 <li class="ja-hide">
                                     <a class="pjaxload" href="/pl/get-started.html">Start</a>
                                 </li>
-                                <li class="all-hide ja-show-block">
+                                <li class="all-hide ja-show-inline-block">
                                   <a class="pjaxload" href="/pl/get-started-jp.html">Start</a>
                                 </li>
                                 <li>
@@ -136,7 +140,7 @@
                                 <li class="ja-hide" id="main-navigation-trading">
                                     <a class="pjaxload" href="/pl/trading.html">Handluj</a>
                                 </li>
-                                <li class="all-hide ja-show-block" id="main-navigation-jptrading">
+                                <li class="all-hide ja-show-inline-block" id="main-navigation-jptrading">
                                     <a class="pjaxload" href="/pl/jptrading.html">Handluj</a>
                                 </li>
                             </ul>
@@ -235,8 +239,11 @@
     <div class='gr-hide gr-show-m gr-show-p' id='mobile-menu-container'>
     <div class='gr-hide' id='mobile-menu'>
         <ul>
-            <li>
+            <li class="ja-hide">
                 <a class="pjaxload" href="/pl/why-us.html">Dlaczego my?</a>
+            </li>
+            <li class="all-hide ja-show-block">
+                <a class="pjaxload" href="/pl/why-us-jp.html">Dlaczego my?</a>
             </li>
             <li class="ja-hide">
               <a class="pjaxload" href="/pl/get-started.html">Start</a>
@@ -463,8 +470,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                 <li>
                                     <a class="pjaxload" href="/pl/about-us.html">O nas</a>
                                 </li>
-                                <li>
-                                    <a class="pjaxload id-hide ar-hide" href="/pl/group-information.html">Informacje o grupie</a>
+                                <li class="id-hide ar-hide">
+                                    <a class="pjaxload" href="/pl/regulation.html">Informacje o przepisach prawnych</a>
                                 </li>
                                 <li>
                                     <a class="pjaxload" href="/pl/group-history.html">Historia grupy</a>
@@ -483,8 +490,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <div class="gr-4">
                             <h4 class="secondary-color">Edukacja</h4>
                             <ul>
-                                <li>
+                                <li class="ja-hide">
                                     <a class="pjaxload" href="/pl/why-us.html">Dlaczego my?</a>
+                                </li>
+                                <li class="all-hide ja-show-block">
+                                    <a class="pjaxload" href="/pl/why-us-jp.html">Dlaczego my?</a>
                                 </li>
                                 <li class="ja-hide">
                                     <a class="pjaxload" href="/pl/get-started.html">Rozpoczynanie</a>
@@ -530,7 +540,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <div class="gr-6 gr-12-m gr-parent gr-no-gutter">
                     <div class="gr-row">
                         <div class="gr-4">
-                           <h4 class="secondary-color">Warunki</h4>
+                           <h4 class="secondary-color">Legal</h4>
                            <ul>
                                <li class='ja-hide'>
                                    <a class="pjaxload" href="/pl/terms-and-conditions.html">Regulamin</a>
@@ -550,19 +560,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                    <a class="pjaxload" href="/pl/responsible-trading.html">Odpowiedzialny handel</a>
                                </li>
                                <li class="ja-hide">
-                               <a class="pjaxload" href="/pl/terms-and-conditions.html?selected_tab=complaints-disputes-tac-tab">Skargi</a>
-                               </li>
-                               <li class="ja-hide id-hide ru-hide">
-                                   <a href="/download/BIEL_Prospectus.pdf" target="_blank">Prospekt BIEL</a>
-                               </li>
-                               <li class="ja-hide id-hide ru-hide">
-                                   <a href="/download/BIEL_Pillar_3_Report.pdf" target="_blank">BIEL Filar III</a>
+                                   <a class="pjaxload" href="/pl/terms-and-conditions.html?selected_tab=complaints-disputes-tac-tab">Skargi</a>
                                </li>
                            </ul>
                        </div>
                        <div class="gr-4 ja-hide">
                            <h4 class="secondary-color">Aplikacje</h4>
                            <ul>
+                               <li>
+                                   <a class="pjaxload" href="/pl/platforms.html">Platforms</a>
+                               </li>
                                <li>
                                    <a href="https://shop.binary.com/collections/applications/products/tick-trade-mobile-application" target="_blank">Aplikacja TickTrade</a>
                                </li>
@@ -679,6 +686,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             </div>
         </div>
     </div>
+    <div id="end-note" class="invisible"></div>
 </div>
 
     </body>
