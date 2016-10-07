@@ -102,6 +102,10 @@ select, input, button, textarea {
   padding: 2px 3px;
 }
 
+select {
+  max-width: 100%;
+}
+
 button {
   vertical-align: top;
 }
@@ -418,6 +422,10 @@ p.no-para-margin {
 
 .vertical-align-middle {
   vertical-align: middle;
+}
+
+input[type=checkbox] {
+  margin-top: 5px;
 }
 
 *, *:after, *:before {
@@ -4867,6 +4875,9 @@ div.kineticjs-content {
   -webkit-align-items: stretch;
       -ms-flex-align: stretch;
           align-items: stretch;
+}
+#statement-ws-container #download_csv {
+  line-height: 28px;
 }
 #statement-ws-container .desc {
   -webkit-flex: 2 1 100px;
