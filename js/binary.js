@@ -71021,19 +71021,19 @@
 	          if (!clientCountry.attr('disabled')) {
 	              clientCountry.prop('selected', true);
 	          }
-	          //var email_consent_parent = $('#email_consent').parent().parent();
+	          var email_consent_parent = $('#email_consent').parent().parent();
 	          if (status.clients_country === 'jp' || japanese_client()) {
 	              if (!document.getElementById('japan-label')) $('#residence').parent().append('<label id="japan-label">' + page.text.localize('Japan') + '</label>');
-	              //email_consent_parent.removeClass('invisible');
+	              email_consent_parent.removeClass('invisible');
 	          } else {
 	              $('#residence').removeClass('invisible')
-	                /*             .on('change', function() {
+	                             .on('change', function() {
 	                                 if ($(this).val() === 'jp') {
 	                                     email_consent_parent.removeClass('invisible');
 	                                 } else {
 	                                     email_consent_parent.addClass('invisible');
 	                                 }
-	                             })*/;
+	                             });
 	          }
 	        }
 	        return;
@@ -87125,13 +87125,13 @@
 	
 	        $('#lblCountry').text(data.country || '-');
 	        $('#lblEmail').text(data.email);
-	        /*if (data.email_consent) {
+	        if (data.email_consent) {
 	            $('#email_consent').prop('checked', 'true');
 	        }
 	
 	        $('#email_consent').on('change', function() {
 	          changed = true;
-	        });*/
+	        });
 	
 	        if (page.client.is_virtual()) { // Virtual Account
 	            $(RealAccElements).remove();
@@ -87318,11 +87318,11 @@
 	        Object.keys(data).forEach(function(key) {
 	            req[key] = data[key];
 	        });
-	        /*if ($('#email_consent:checked').length > 0) {
+	        if ($('#email_consent:checked').length > 0) {
 	            req.email_consent = 1;
 	        } else {
 	            req.email_consent = 0;
-	        }*/
+	        }
 	        BinarySocket.send(req);
 	    }
 	
@@ -89066,11 +89066,11 @@
 	            req.affiliate_token = Cookies.getJSON('affiliate_tracking').t;
 	        }
 	
-	        /*if ($('#email_consent:checked').length > 0) {
+	        if ($('#email_consent:checked').length > 0) {
 	            req.email_consent = 1;
 	        } else {
 	            req.email_consent = 0;
-	        }*/
+	        }
 	
 	        BinarySocket.send(req);
 	    }
@@ -90412,7 +90412,10 @@
 	        containerSetText('trade_details_spot_label'      , page.text.localize('Exit Spot'));
 	        containerSetText('trade_details_spottime_label'  , page.text.localize('Exit Spot Time'));
 	        containerSetText('trade_details_indicative_label', page.text.localize('Price'));
-	        containerSetText('trade_details_message'         , '&nbsp;', {'epoch_time': ''});
+	        // show validation error if contract is not settled yet
+	        if (!(contract.is_settleable && !contract.is_sold)) {
+	            containerSetText('trade_details_message'         , '&nbsp;');
+	        }
 	        sellSetVisibility(false);
 	        // showWinLossStatus(is_win);
 	    };
