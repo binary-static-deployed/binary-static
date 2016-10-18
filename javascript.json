@@ -180,5 +180,6 @@
     "src/javascript/binary/websocket_pages/user/viewbalance/viewbalance.init.js",
     "src/javascript/binary/websocket_pages/user/viewbalance/viewbalance.ui.js",
     "src/javascript/binary/websocket_pages/websocket_pjax.js",
+    "src/javascript/binary_japan/cashier.js",
     "src/javascript/binary_japan/knowledge_test.js"
 ]

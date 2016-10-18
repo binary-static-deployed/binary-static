@@ -56,16 +56,16 @@
           <link rel="alternate" href="/zh_cn/why-us-jp.html" hreflang="ZH_CN" /> 
           <link rel="alternate" href="/zh_tw/why-us-jp.html" hreflang="ZH_TW" /> 
         
-         <link rel="stylesheet" href="/css/binary.min.css?p06cww2y">
-         <link rel="stylesheet" href="https://style.binary.com/binary.css?p06cww2y">
+         <link rel="stylesheet" href="/css/binary.min.css?bvr84wzn">
+         <link rel="stylesheet" href="https://style.binary.com/binary.css?bvr84wzn">
         
-        <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=Array.prototype.includes,String.prototype.includes,Symbol,Promise,Object.assign&flags=gated&unknown=polyfill"></script>  <script src='/js/binary.min.js?p06cww2y' defer async></script>
+        <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=Array.prototype.includes,String.prototype.includes,Symbol,Promise,Object.assign&flags=gated&unknown=polyfill"></script>  <script src='/js/binary.min.js?bvr84wzn' defer async></script>
     </head>
 
 
 <body class="JA">
     <div id='page-wrapper'>
-    <div id="topbar">
+    <div id="topbar" class="no-print">
         <div class="container">
             <div class="gr-row">
                 <div id="topbar-msg" class='gr-6 gr-5-t gr-12-p gr-12-m invisible upgrademessage'>
@@ -104,7 +104,7 @@
         </div>
     </div>
 
-    <div id="header">
+    <div id="header" class="no-print">
         <div class='container'>
             <div class='gr-12'>
                 <div class='gr-row gr-row-align-middle'>
@@ -142,7 +142,7 @@
                                     <a class="pjaxload" href="/ja/tour-jp.html">ご利用方法</a>
                                 </li>
                                 <li class="ja-hide" id="main-navigation-trading">
-                                    <a class="pjaxload" href="/ja/trading.html">トレード</a>
+                                    <a class="pjaxload" href="/ja/platforms.html">プラットフォーム</a>
                                 </li>
                                 <li class="all-hide ja-show-inline-block" id="main-navigation-jptrading">
                                     <a class="pjaxload" href="/ja/jptrading.html">トレード</a>
@@ -206,10 +206,16 @@
         </div>
     </div>
     <div id="content-holder">
-    <div id="main-menu" class="tab-menu">
+    <div id="main-menu" class="tab-menu no-print">
     <div class="tab-menu-wrap container gr-hide-m gr-hide-p">
         <div class="gr-12 gr-no-gutter">
-            <ul class="items">  <li id="topMenuPortfolio" class="item client_logged_in invisible">
+            <ul class="items">  <li id="topMenuTrading" class="item ja-hide hide-tablet-mobile">
+                    <a class="link pjaxload" target="" href="/ja/trading.html">トレード</a>
+                    
+                </li>  <li id="topMenuJPTrading" class="item all-hide ja-show hide-tablet-mobile">
+                    <a class="link pjaxload" target="" href="/ja/jptrading.html">トレード</a>
+                    
+                </li>  <li id="topMenuPortfolio" class="item client_logged_in invisible">
                     <a class="link pjaxload" target="" href="/ja/user/portfoliows.html">ポジション一覧</a>
                     
                 </li>  <li id="topMenuProfitTable" class="item client_logged_in invisible">
@@ -221,7 +227,7 @@
                 </li>  <li id="topMenuCashier" class="item ">
                     <a class="link pjaxload" target="" href="/ja/cashier.html">入出金</a>
                     
-                </li>  <li id="topMenuResources" class="item ja-hide">
+                </li>  <li id="topMenuResources" class="item ">
                     <a class="link pjaxload" target="" href="/ja/resources.html">取引参考情報</a>
                     
                         <ul class="sub_items">  <li id="topMenuAssetIndex" class="sub_item ja-hide">
@@ -258,8 +264,14 @@
             <li class="ja-hide">
                 <a class="pjaxload" href="/ja/tour.html">ご利用方法</a>
             </li>
-            <li class="ja-hide ja-show-block">
+            <li class="all-hide ja-show-block">
                 <a class="pjaxload" href="/ja/tour-jp.html">ご利用方法</a>
+            </li>  <li id="topMenuTrading" class="item ja-hide hide-tablet-mobile">
+                <a class="pjaxload link pjaxload" href="/ja/trading.html">トレード</a>
+                
+            </li>  <li id="topMenuJPTrading" class="item all-hide ja-show hide-tablet-mobile">
+                <a class="pjaxload link pjaxload" href="/ja/jptrading.html">トレード</a>
+                
             </li>  <li id="topMenuPortfolio" class="item client_logged_in invisible">
                 <a class="pjaxload link pjaxload" href="/ja/user/portfoliows.html">ポジション一覧</a>
                 
@@ -272,7 +284,7 @@
             </li>  <li id="topMenuCashier" class="item">
                 <a class="pjaxload link pjaxload" href="/ja/cashier.html">入出金</a>
                 
-            </li>  <li id="topMenuResources" class="item ja-hide">
+            </li>  <li id="topMenuResources" class="item">
                 <a class="pjaxload link pjaxload" href="/ja/resources.html">取引参考情報</a>
                 
                     <ul class="sub_items">  <li id="topMenuAssetIndex" class="sub_item ja-hide">
@@ -288,7 +300,7 @@
                 <a class="pjaxload link pjaxload" href="/ja/paymentagent/transferws.html">決済サービス</a>
                 
             </li>  <li class="ja-hide">
-                <a class="pjaxload" href="/ja/trading.html">トレード</a>
+                <a class="pjaxload" href="/ja/platforms.html">プラットフォーム</a>
             </li>
             <li class="all-hide ja-show-block">
                 <a class="pjaxload" href="/ja/jptrading.html">トレード</a>
@@ -336,7 +348,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           </li>
           <li id="sidebar-link-section-4">
             <a href="#section-four">
-              セキュリティ情報
+              信託により区分管理
             </a>
           </li>
           <li id="sidebar-link-section-5">
@@ -465,7 +477,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   お客さまご自身で過度の取引を防止するため設定機能があります
                 </li>
                 <li>
-                  お客さまは、権利行使できなければ1取引あたりの最大損失額は購入金額に限定されます。
+                  お客さまのバイナリーオプション取引では、購入金額を超えて損失が生じる可能性はありませんが、損失を限定するためのロスカットではありませんのご注意してください。
                 </li>
                 <li>
                   お客さまからの入金を確認後にお取引口座にすぐに反映いたします
@@ -493,7 +505,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 信託により区分管理
               </h1>
               <p>
-                店頭バイナリーオプション取引は、法令によりお客様から預託を受けた資産と会社の資産を区分して管理することが義務付けられております。弊社では、日証金信託銀行へ全額信託を実施しております。
+                店頭バイナリーオプション取引は、法令によりお客様から預託を受けた資産と会社の資産を区分して管理することが義務付けられております。弊社では、関係法令に則り、日証金信託銀行へ全額信託を実施しております。
 もし、弊社が破綻した場合、日証金信託銀行に信託保全されているお客様の資産は保全されます。この場合、日証金信託銀行から受益者代理人（乙）へ信託財産が交付され、当該財産の範囲内でお客様に帰属すべき預託金等の金銭が返還されます。
 弊社では、内部管理統括責任者を受益者代理人（甲）とし、毎営業日、区分管理必要額の確認を行っております。また、外部弁護士を受益者代理人（乙）とし、弊社が破綻した場合に日証金信託銀行からお客様の資産の返還にあたります。
               </p>
@@ -503,7 +515,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                       <li>信託保全は、当社が取り扱う店頭バイナリーオプション取引の元本を保証するものではありません。</li>
                       <li>お客様は信託銀行に対し、預託金等の支払いを直接請求することはできません。</li>
                       <li>区分管理必要額の算出は当社が行い、信託銀行は行いません。</li>
-                      <li>区分管理必要額は当社が毎日算出し、算出日から2営業日までに信託をします。この間も金融庁長官の指定する金融機関において、当社の資産とはして管理します。</li>
+                      <li>区分管理必要額は当社が毎日算出し、算出日から2営業日までに信託をします。この2営業日の間も金融庁長官の指定する金融機関において、当社の資産とは分別して管理します。</li>
                       <li>当社は、区分管理の実施のため、または区分管理された金銭を配分するために必要があるとみなされた時は、お客様の個人情報を受益者代理人（乙）に提供することがあります。</li>
                       <li>日証金信託銀行は、お客様の信託財産の返還を保証するものではありません。また、受益者代理人の運営及び管理責任を一切負いません。</li>
                   </ul>
@@ -537,7 +549,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                       注意
                   </p>
                   <p>
-                      万が一、市場価格が急激に変動した際は、お客様のブラウザ上で表示されている発注価格では約定しない場合があります。その逆として、市場価格が急激に変動したことにより、発注価格より有利な価格で購入できる場合があります。詳しくは取引概要の「スリッページ」をご覧ください。
+                      万が一、市場価格が急激に変動した際は、お客様のブラウザ上で表示されている発注価格では約定しない場合があります。その逆として、市場価格が急激に変動したことにより、発注価格より有利な価格で購入できる場合があります。詳しくは契約締結前交付正面をご覧ください。
                   </p>
               </div>
             </div>
@@ -551,7 +563,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   </div> 
 </div>
-<div id="footer">
+<div id="footer" class="no-print">
     <div id="footer-menu" class="primary-bg-color">
         <div class="container">
             <div class="gr-row gr-padding-10">
@@ -613,23 +625,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                             </ul>
                         </div>
                         <div class="gr-4">
-                            <h4 class="ja-hide secondary-color">トレード</h4>
-                            <ul class="ja-hide">
+                            <h4 class="secondary-color">決済</h4>
+                            <ul>
+                                <li>
+                                    <a class="pjaxload" href="/ja/cashier.html">入出金</a>
+                                </li>
                                 <li class="ja-hide">
-                                    <a class="pjaxload" href="/ja/resources/asset_indexws.html">取引期間データ</a>
+                                    <a class="pjaxload" href="/ja/cashier/payment_methods.html">決済方法</a>
                                 </li>
                             </ul>
-                            <div class='gr-padding-10 gr-no-gutter ja-no-padding'>
-                                <h4 class="secondary-color">決済</h4>
-                                <ul>
-                                    <li>
-                                        <a class="pjaxload" href="/ja/cashier.html">入出金</a>
-                                    </li>
-                                    <li class="ja-hide">
-                                        <a class="pjaxload" href="/ja/cashier/payment_methods.html">決済方法</a>
-                                    </li>
-                                </ul>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -661,19 +665,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                            </ul>
                        </div>
                        <div class="gr-4 ja-hide">
-                           <h4 class="secondary-color">アプリケーション</h4>
+                           <h4 class="secondary-color">トレード</h4>
                            <ul>
                                <li>
                                    <a class="pjaxload" href="/ja/platforms.html">プラットフォーム</a>
                                </li>
                                <li>
-                                   <a href="https://shop.binary.com/collections/applications/products/tick-trade-mobile-application" target="_blank">Tickトレードアプリケーション</a>
-                               </li>
-                               <li>
-                                   <a href="https://shop.binary.com/collections/applications/products/webtrader" target="_blank">ウェブトレーダー</a>
-                               </li>
-                               <li>
-                                   <a href="https://shop.binary.com/collections/applications/products/binary-com-tradingview-chart" target="_blank">TradingView</a>
+                                   <a class="pjaxload" href="/ja/resources/asset_indexws.html">取引期間データ</a>
                                </li>
                            </ul>
                        </div>
@@ -719,7 +717,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                 </a>
                             </div>
                             <div class="gr-2 center-text">
-                                <a href="https://www.authorisation.mga.org.mt/verification.aspx?lang=en&company=a5fd1edc-d072-4c26-b0cd-ab3fa0f0cc40" target="_blank">
+                                <a href="https://www.authorisation.mga.org.mt/verification.aspx?lang=EN&company=a5fd1edc-d072-4c26-b0cd-ab3fa0f0cc40&details=1" target="_blank">
                                     <img id="lga_icon_footer" class="responsive" src="/images/pages/footer/mga-logo-footer.svg"/>
                                 </a>
                             </div>

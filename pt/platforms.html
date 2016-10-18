@@ -23,7 +23,7 @@
         <meta property="og:type" content="website" />
         <meta property="og:image" content="/images/common/og_image.gif" />
 
-        <title>Platforms | Binary.com</title>
+        <title>Plataformas | Binary.com</title>
 
         <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-touch-icon-57x57.png">
         <link rel="apple-touch-icon" sizes="114x114" href="/images/favicons/apple-touch-icon-114x114.png">
@@ -55,16 +55,16 @@
           <link rel="alternate" href="/zh_cn/platforms.html" hreflang="ZH_CN" /> 
           <link rel="alternate" href="/zh_tw/platforms.html" hreflang="ZH_TW" /> 
         
-         <link rel="stylesheet" href="/css/binary.min.css?p06cww2y">
-         <link rel="stylesheet" href="https://style.binary.com/binary.css?p06cww2y">
+         <link rel="stylesheet" href="/css/binary.min.css?bvr84wzn">
+         <link rel="stylesheet" href="https://style.binary.com/binary.css?bvr84wzn">
         
-        <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=Array.prototype.includes,String.prototype.includes,Symbol,Promise,Object.assign&flags=gated&unknown=polyfill"></script>  <script src='/js/binary.min.js?p06cww2y' defer async></script>
+        <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=Array.prototype.includes,String.prototype.includes,Symbol,Promise,Object.assign&flags=gated&unknown=polyfill"></script>  <script src='/js/binary.min.js?bvr84wzn' defer async></script>
     </head>
 
 
 <body class="PT">
     <div id='page-wrapper'>
-    <div id="topbar">
+    <div id="topbar" class="no-print">
         <div class="container">
             <div class="gr-row">
                 <div id="topbar-msg" class='gr-6 gr-5-t gr-12-p gr-12-m invisible upgrademessage'>
@@ -103,7 +103,7 @@
         </div>
     </div>
 
-    <div id="header">
+    <div id="header" class="no-print">
         <div class='container'>
             <div class='gr-12'>
                 <div class='gr-row gr-row-align-middle'>
@@ -141,7 +141,7 @@
                                     <a class="pjaxload" href="/pt/tour-jp.html">Visita</a>
                                 </li>
                                 <li class="ja-hide" id="main-navigation-trading">
-                                    <a class="pjaxload" href="/pt/trading.html">Negociar</a>
+                                    <a class="pjaxload" href="/pt/platforms.html">Plataformas</a>
                                 </li>
                                 <li class="all-hide ja-show-inline-block" id="main-navigation-jptrading">
                                     <a class="pjaxload" href="/pt/jptrading.html">Negociar</a>
@@ -205,10 +205,16 @@
         </div>
     </div>
     <div id="content-holder">
-    <div id="main-menu" class="tab-menu">
+    <div id="main-menu" class="tab-menu no-print">
     <div class="tab-menu-wrap container gr-hide-m gr-hide-p">
         <div class="gr-12 gr-no-gutter">
-            <ul class="items">  <li id="topMenuPortfolio" class="item client_logged_in invisible">
+            <ul class="items">  <li id="topMenuTrading" class="item ja-hide hide-tablet-mobile">
+                    <a class="link pjaxload" target="" href="/pt/trading.html">Negociar</a>
+                    
+                </li>  <li id="topMenuJPTrading" class="item all-hide ja-show hide-tablet-mobile">
+                    <a class="link pjaxload" target="" href="/pt/jptrading.html">Negociar</a>
+                    
+                </li>  <li id="topMenuPortfolio" class="item client_logged_in invisible">
                     <a class="link pjaxload" target="" href="/pt/user/portfoliows.html">Portfólio</a>
                     
                 </li>  <li id="topMenuProfitTable" class="item client_logged_in invisible">
@@ -220,7 +226,7 @@
                 </li>  <li id="topMenuCashier" class="item ">
                     <a class="link pjaxload" target="" href="/pt/cashier.html">Caixa</a>
                     
-                </li>  <li id="topMenuResources" class="item ja-hide">
+                </li>  <li id="topMenuResources" class="item ">
                     <a class="link pjaxload" target="" href="/pt/resources.html">Recursos</a>
                     
                         <ul class="sub_items">  <li id="topMenuAssetIndex" class="sub_item ja-hide">
@@ -257,8 +263,14 @@
             <li class="ja-hide">
                 <a class="pjaxload" href="/pt/tour.html">Visita</a>
             </li>
-            <li class="ja-hide ja-show-block">
+            <li class="all-hide ja-show-block">
                 <a class="pjaxload" href="/pt/tour-jp.html">Visita</a>
+            </li>  <li id="topMenuTrading" class="item ja-hide hide-tablet-mobile">
+                <a class="pjaxload link pjaxload" href="/pt/trading.html">Negociar</a>
+                
+            </li>  <li id="topMenuJPTrading" class="item all-hide ja-show hide-tablet-mobile">
+                <a class="pjaxload link pjaxload" href="/pt/jptrading.html">Negociar</a>
+                
             </li>  <li id="topMenuPortfolio" class="item client_logged_in invisible">
                 <a class="pjaxload link pjaxload" href="/pt/user/portfoliows.html">Portfólio</a>
                 
@@ -271,7 +283,7 @@
             </li>  <li id="topMenuCashier" class="item">
                 <a class="pjaxload link pjaxload" href="/pt/cashier.html">Caixa</a>
                 
-            </li>  <li id="topMenuResources" class="item ja-hide">
+            </li>  <li id="topMenuResources" class="item">
                 <a class="pjaxload link pjaxload" href="/pt/resources.html">Recursos</a>
                 
                     <ul class="sub_items">  <li id="topMenuAssetIndex" class="sub_item ja-hide">
@@ -287,7 +299,7 @@
                 <a class="pjaxload link pjaxload" href="/pt/paymentagent/transferws.html">Agente de pagamentos</a>
                 
             </li>  <li class="ja-hide">
-                <a class="pjaxload" href="/pt/trading.html">Negociar</a>
+                <a class="pjaxload" href="/pt/platforms.html">Plataformas</a>
             </li>
             <li class="all-hide ja-show-block">
                 <a class="pjaxload" href="/pt/jptrading.html">Negociar</a>
@@ -308,7 +320,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-MZWFF7');</script>
 <!-- End Google Tag Manager -->
         <div id="page_info" style="display:none;">
-            <title>Platforms | Binary.com</title>
+            <title>Plataformas | Binary.com</title>
             <div id="content_class">platforms-content</div>
         </div>
         
@@ -316,14 +328,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
   <div class="gr-row static_full">
-    <div class="gr-3 gr-hide-m">
+    <div class="gr-3 gr-hide-m gr-hide-p">
         <div class="sidebar-left">
             <ul class="sidebar-nav">
                 <li>
-                    <a href="#trading-platforms">Trading Platforms</a>
+                    <a href="#trading-platforms">Plataformas de negociação</a>
                 </li>
                 <li>
-                    <a href="#platforms-comparison">Platform Comparison</a>
+                    <a href="#platforms-comparison">Comparação das plataformas</a>
                 </li>
                 <li>
                     <a href="#more-tools">Mais ferramentas</a>
@@ -333,35 +345,35 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </div>
     <div class="gr-9 gr-12-m platforms-section">
         <div id="trading-platforms" class="sections invisible">
-            <h1>Trading Platforms</h1>
+            <h1>Plataformas de negociação</h1>
             <h2>Plataformas básicas</h2>
             <div class="gr-row">
                 <div class="gr-6 gr-12-m gr-12-p">
-                    <div class="gr-12 gr-8-p">
+                    <div class="gr-12 gr-7-p gr-10-m">
                         <img class="responsive" src="/images/pages/platforms/trading-page.png" />
                     </div>
                     <div class="gr-padding-30">
                         <h3>Binary.com</h3>
-                        <strong>Premier binary options trading platform</strong>
+                        <strong>A principal plataforma de negociação de opções binárias</strong>
                         <p>
-                            Trade in the world’s financial markets with a simple and user-friendly online platform.
+                            Negocie nos mercados financeiros mundiais com uma plataforma online simples e fácil de usar.
                             <p>
                                 <a class="button pjaxload" href="/pt/trading.html">
-                                    <span>Trade Now</span>
+                                    <span>Negocie já</span>
                                 </a>
                             </p>
                         </p>
                     </div>
                 </div>
                 <div class="gr-6 gr-12-m gr-12-p">
-                    <div class="gr-8 gr-6-p">
+                    <div class="gr-8 gr-5-p gr-7-m">
                         <img class="responsive" src="/images/pages/platforms/tick-trade.png" />
                     </div>
                     <div class="gr-padding-30">
                         <h3>Aplicativo dos tique-taque</h3>
-                        <strong>Ultra fast on-the-go trading</strong>
+                        <strong>Negociações ultra-rápidas em qualquer lugar</strong>
                         <p>
-                            Enjoy our fastest type of trading with our Tick Trade app, wherever you are.
+                            Desfrute da nossa forma mais rápida de negociar com o aplicativo dos tique-taques, esteja onde estiver.
                             <div class="gr-row">
                                 <a class="gr-5 gr-6-m" href="https://itunes.apple.com/app/apple-store/id1091187567?pt=117911266&ct=platforms_page&mt=8" target="_blank">
                                     <div class="app-store-badge"></div>
@@ -377,34 +389,34 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <h2>Plataformas Avançadas</h2>
             <div class="gr-row">
                 <div class="gr-6 gr-12-m gr-12-p">
-                    <div class="gr-8 gr-6-p">
+                    <div class="gr-8 gr-5-p gr-7-m">
                         <img class="responsive" src="/images/pages/platforms/metatrader.png" />
                     </div>
                     <div class="gr-padding-30">
                         <h3>MetaTrader 5</h3>
                         <strong>Plataforma avançada de negociação CFD</strong>
                         <p>
-                            Trade with a powerful interface known as the global industry standard.
+                            Negocie com uma poderosa interface conhecida como o padrão global da indústria.
                             <p>
                                 <a class="button" href="https://mt.binary.com" target="_blank">
-                                    <span>Try MetaTrader 5</span>
+                                    <span>Experimente o MetaTrader 5</span>
                                 </a>
                             </p>
                         </p>
                     </div>
                 </div>
                 <div class="gr-6 gr-12-m gr-12-p">
-                    <div class="gr-8 gr-6-p">
+                    <div class="gr-8 gr-5-p gr-7-m">
                         <img class="responsive" src="/images/pages/platforms/webtrader.png" />
                     </div>
                     <div class="gr-padding-30">
                         <h3>Binary Webtrader</h3>
-                        <strong>Plataforma avançada de negociações binárias</strong>
+                        <strong>Advanced binary options trading interface</strong>
                         <p>
-                            Monitor the movements of your favourite assets and markets at the same time.
+                            Acompanhe os movimentos dos seus ativos e mercados favoritos ao mesmo tempo.
                             <p>
                                 <a class="button" href="https://webtrader.binary.com" target="_blank">
-                                    <span>Try Webtrader</span>
+                                    <span>Experimente o Webtrader</span>
                                 </a>
                             </p>
                         </p>
@@ -413,15 +425,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             </div>
             <div class="gr-row">
                 <div class="gr-6 gr-12-m gr-12-p">
-                    <div class="gr-12 gr-8-p">
+                    <div class="gr-12 gr-7-p gr-10-m">
                         <img class="responsive" src="/images/pages/platforms/nextgen.png" />
                     </div>
                     <div class="gr-padding-30">
                         <h3>Binary Next-Gen</h3>
-                        <strong>Future of trading on Binary.com</strong>
+                        <strong>Advanced trading app for web and mobile</strong>
                         <p>
-                            Experimente o futuro de nossa plataforma de negociação com o aplicativo Next-Gen.
+                            Explore advanced trading features with the Next-Gen app for web and mobile.
                             <div class="gr-row">
+                                <div class="gr-12">
+                                    <a class="button" href="https://app.binary.com" target="_blank">
+                                        <span>Try Next-Gen</span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="gr-row gr-padding-10">
                                 <a class="gr-5 gr-6-m" href="https://itunes.apple.com/app/apple-store/id1134884301?pt=117911266&ct=platforms_page&mt=8" target="_blank">
                                     <div class="app-store-badge"></div>
                                 </a>
@@ -433,7 +452,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     </div>
                 </div>
                 <div class="gr-6 gr-12-m gr-12-p">
-                    <div class="gr-10 gr-8-p">
+                    <div class="gr-10 gr-7-p gr-9-m">
                         <img class="responsive" src="/images/pages/platforms/binarybot.png" />
                     </div>
                     <div class="gr-padding-30">
@@ -443,7 +462,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                             Automatize as suas estratégias de negociação com a nossa ferramenta de criação de bots "arrastar e soltar".
                             <p>
                                 <a class="button" href="https://bot.binary.com" target="_blank">
-                                    <span>Try Binary Bot</span>
+                                    <span>Experimente o Robô Binary</span>
                                 </a>
                             </p>
                         </p>
@@ -452,7 +471,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             </div>
         </div>
         <div id="platforms-comparison" class="sections invisible">
-            <h1>Platform Comparison</h1>
+            <h1>Comparação das plataformas</h1>
             <p>Compare todas as plataformas de negociação que oferecemos. Escolha a plataforma ideal para sua estratégia preferida.</p>
             <div class="gr-padding-30">
                 <p class="hint">Nota: mova a tabela para a direita para ver todas as plataformas.</p>
@@ -464,7 +483,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                     <th>&nbsp;</th>
                                     <td>Binary.com</td>
                                     <td>Next-Gen</td>
-                                    <td>Tick Trade</td>
+                                    <td>Negociação tique-taque</td>
                                     <td>MetaTrader 5</td>
                                     <td>Webtrader</td>
                                     <td>Bot da Binary</td>
@@ -491,10 +510,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                     <th>Usuários ideais</th>
                                     <td>Todos</td>
                                     <td>Todos</td>
-                                    <td>Short interval traders</td>
-                                    <td>Serious traders</td>
-                                    <td>Serious traders</td>
-                                    <td>Serious traders</td>
+                                    <td>Negociadores de intervalo curto</td>
+                                    <td>Negociadores sérios</td>
+                                    <td>Negociadores sérios</td>
+                                    <td>Negociadores sérios</td>
                                 </tr>
                                 <tr>
                                     <th>Produtos disponíveis</th>
@@ -507,15 +526,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                 </tr>
                                 <tr>
                                     <th>Mercados disponíveis</th>
-                                    <td>Forex, Indices, Stocks, Commodities, Volatility Indices</td>
-                                    <td>Forex, Indices, Stocks, Commodities, Volatility Indices</td>
-                                    <td>Forex, Volatility Indices</td>
+                                    <td>Forex, índices, ações, matérias-primas, índices Volatility</td>
+                                    <td>Forex, índices, ações, matérias-primas, índices Volatility</td>
+                                    <td>Forex, Índices Volatility</td>
                                     <td>Índices Volatility</td>
-                                    <td>Forex, Indices, Stocks, Commodities, Volatility Indices</td>
-                                    <td>Forex, Indices, Stocks, Commodities, Volatility Indices</td>
+                                    <td>Forex, índices, ações, matérias-primas, índices Volatility</td>
+                                    <td>Forex, índices, ações, matérias-primas, índices Volatility</td>
                                 </tr>
                                 <tr>
-                                    <th>Trade Durations</th>
+                                    <th>Durações de negociação</th>
                                     <td>6 tique-taques a 1 ano</td>
                                     <td>6 tique-taques a 1 ano</td>
                                     <td>5 a 10 tique-taques</td>
@@ -524,7 +543,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                     <td>6 tique-taques a 1 ano</td>
                                 </tr>
                                 <tr>
-                                    <th class="auto-height">Multiple Charts</th>
+                                    <th class="auto-height">Vários gráficos</th>
                                     <td class="vertical-align-middle center-text">
                                         <div class="small-padding-top">-</div>
                                     </td>
@@ -587,6 +606,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                 </tr>
                             </tbody>
                         </table>
+                        <div class="fade-to-right"></div>
                     </div>
                 </div>
             </div>
@@ -595,7 +615,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <h1>Mais ferramentas</h1>
             <div class="gr-row">
                 <div class="gr-6 gr-12-m gr-12-p">
-                    <div class="gr-10 gr-6-p">
+                    <div class="gr-10 gr-5-p gr-9-m">
                         <img class="responsive" src="/images/pages/platforms/tradingview.png" />
                     </div>
                     <div class="gr-padding-30">
@@ -605,7 +625,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                             Analisar os mercados com um amplo intervalo de indicadores, faixas de preço e sobreposições.
                             <p>
                                 <a class="button" href="https://tradingview.binary.com" target="_blank">
-                                    <span>Try TradingView</span>
+                                    <span>Experimente a TradingView</span>
                                 </a>
                             </p>
                         </p>
@@ -624,7 +644,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 </div> 
 </div>
-<div id="footer">
+<div id="footer" class="no-print">
     <div id="footer-menu" class="primary-bg-color">
         <div class="container">
             <div class="gr-row gr-padding-10">
@@ -686,23 +706,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                             </ul>
                         </div>
                         <div class="gr-4">
-                            <h4 class="ja-hide secondary-color">Negociação</h4>
-                            <ul class="ja-hide">
+                            <h4 class="secondary-color">Transação</h4>
+                            <ul>
+                                <li>
+                                    <a class="pjaxload" href="/pt/cashier.html">Caixa</a>
+                                </li>
                                 <li class="ja-hide">
-                                    <a class="pjaxload" href="/pt/resources/asset_indexws.html">Índice de Ativos</a>
+                                    <a class="pjaxload" href="/pt/cashier/payment_methods.html">Métodos de Pagamento</a>
                                 </li>
                             </ul>
-                            <div class='gr-padding-10 gr-no-gutter ja-no-padding'>
-                                <h4 class="secondary-color">Transação</h4>
-                                <ul>
-                                    <li>
-                                        <a class="pjaxload" href="/pt/cashier.html">Caixa</a>
-                                    </li>
-                                    <li class="ja-hide">
-                                        <a class="pjaxload" href="/pt/cashier/payment_methods.html">Métodos de Pagamento</a>
-                                    </li>
-                                </ul>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -734,19 +746,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                            </ul>
                        </div>
                        <div class="gr-4 ja-hide">
-                           <h4 class="secondary-color">Aplicativos</h4>
+                           <h4 class="secondary-color">Negociação</h4>
                            <ul>
                                <li>
-                                   <a class="pjaxload" href="/pt/platforms.html">Platforms</a>
+                                   <a class="pjaxload" href="/pt/platforms.html">Plataformas</a>
                                </li>
                                <li>
-                                   <a href="https://shop.binary.com/collections/applications/products/tick-trade-mobile-application" target="_blank">Aplicativo dos tique-taque</a>
-                               </li>
-                               <li>
-                                   <a href="https://shop.binary.com/collections/applications/products/webtrader" target="_blank">Webtrader</a>
-                               </li>
-                               <li>
-                                   <a href="https://shop.binary.com/collections/applications/products/binary-com-tradingview-chart" target="_blank">TradingView</a>
+                                   <a class="pjaxload" href="/pt/resources/asset_indexws.html">Índice de Ativos</a>
                                </li>
                            </ul>
                        </div>
@@ -792,7 +798,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                 </a>
                             </div>
                             <div class="gr-2 center-text">
-                                <a href="https://www.authorisation.mga.org.mt/verification.aspx?lang=en&company=a5fd1edc-d072-4c26-b0cd-ab3fa0f0cc40" target="_blank">
+                                <a href="https://www.authorisation.mga.org.mt/verification.aspx?lang=EN&company=a5fd1edc-d072-4c26-b0cd-ab3fa0f0cc40&details=1" target="_blank">
                                     <img id="lga_icon_footer" class="responsive" src="/images/pages/footer/mga-logo-footer.svg"/>
                                 </a>
                             </div>

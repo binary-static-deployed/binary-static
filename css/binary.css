@@ -2156,6 +2156,15 @@ ol.start {
   counter-reset: mycounter;
 }
 
+.deposit-jp-content #name_id_width {
+  max-width: 90px;
+}
+.deposit-jp-content img.responsive {
+  width: 50%;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
 .live_chart_wrapper {
   margin: 0 auto;
 }
@@ -3056,7 +3065,7 @@ div.kineticjs-content {
 .platforms-content td, .platforms-content th {
   vertical-align: top;
   padding: 10px;
-  width: 100px;
+  width: 120px;
 }
 .platforms-content th {
   position: absolute;
@@ -3064,6 +3073,8 @@ div.kineticjs-content {
   width: 90px;
   height: 200px;
   text-align: left;
+  overflow-y: visible;
+  overflow-x: auto;
 }
 .platforms-content .outer {
   position: relative;
@@ -3088,6 +3099,15 @@ div.kineticjs-content {
 }
 .platforms-content .small-padding-top {
   padding-top: 4px;
+}
+.platforms-content .fade-to-right {
+  position: absolute;
+  z-index: 2;
+  left: 85%;
+  right: 0;
+  top: 0;
+  height: 100%;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, white 70%);
 }
 
 /* static pages */
@@ -4885,6 +4905,7 @@ div.kineticjs-content {
           flex: 2 1 100px;
   padding-right: 20px;
   word-break: break-word;
+  min-width: 130px;
 }
 #statement-ws-container .act {
   -webkit-flex: 0.8 1 35px;
@@ -4897,6 +4918,9 @@ div.kineticjs-content {
 #statement-ws-container input {
   max-width: 100%;
   margin-left: 10px;
+}
+#statement-ws-container .padding-left {
+  padding-left: 10px !important;
 }
 
 .table-container th {
@@ -5132,6 +5156,9 @@ body.JA #profit-table .buy-price, body.JA #profit-table .sell-price, body.JA #pr
 body.JA #main-menu {
   margin-bottom: 30px;
 }
+body.JA #email_consent_label {
+  font-size: 0.75614rem;
+}
 
 /*Vietnamese Language */
 body.VI #legal-tab li.tm-li-2 {
@@ -5338,6 +5365,10 @@ body.TH .google-play-badge {
   .table-container {
     overflow-x: auto;
   }
+
+  .hide-tablet-mobile {
+    display: none;
+  }
 }
 @media screen and (max-width: 640px) {
   ul.tm-ul-2 {
@@ -5364,6 +5395,11 @@ body.TH .google-play-badge {
 @media screen and (max-width: 480px) {
   .empty-space {
     margin-top: 0;
+  }
+}
+@media print {
+  .no-print, .no-print * {
+    display: none !important;
   }
 }
 /* external stylesheets

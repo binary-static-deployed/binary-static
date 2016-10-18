@@ -55,21 +55,21 @@
           <link rel="alternate" href="/zh_cn/regulation.html" hreflang="ZH_CN" /> 
           <link rel="alternate" href="/zh_tw/regulation.html" hreflang="ZH_TW" /> 
         
-         <link rel="stylesheet" href="/css/binary.min.css?p06cww2y">
-         <link rel="stylesheet" href="https://style.binary.com/binary.css?p06cww2y">
+         <link rel="stylesheet" href="/css/binary.min.css?bvr84wzn">
+         <link rel="stylesheet" href="https://style.binary.com/binary.css?bvr84wzn">
         
-        <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=Array.prototype.includes,String.prototype.includes,Symbol,Promise,Object.assign&flags=gated&unknown=polyfill"></script>  <script src='/js/binary.min.js?p06cww2y' defer async></script>
+        <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=Array.prototype.includes,String.prototype.includes,Symbol,Promise,Object.assign&flags=gated&unknown=polyfill"></script>  <script src='/js/binary.min.js?bvr84wzn' defer async></script>
     </head>
 
 
 <body class="FR">
     <div id='page-wrapper'>
-    <div id="topbar">
+    <div id="topbar" class="no-print">
         <div class="container">
             <div class="gr-row">
                 <div id="topbar-msg" class='gr-6 gr-5-t gr-12-p gr-12-m invisible upgrademessage'>
                     <span class='gr-hide-m invisible'>
-                        <span id='virtual-text'>Vous utilisez un compte virtuel. </span>
+                        <span id='virtual-text'>Vous utilisez un compte virtuel.</span>
                     </span>
                     <a class="pjaxload pulser invisible"></a>
                 </div>
@@ -103,7 +103,7 @@
         </div>
     </div>
 
-    <div id="header">
+    <div id="header" class="no-print">
         <div class='container'>
             <div class='gr-12'>
                 <div class='gr-row gr-row-align-middle'>
@@ -141,7 +141,7 @@
                                     <a class="pjaxload" href="/fr/tour-jp.html">Aperçu</a>
                                 </li>
                                 <li class="ja-hide" id="main-navigation-trading">
-                                    <a class="pjaxload" href="/fr/trading.html">Trading</a>
+                                    <a class="pjaxload" href="/fr/platforms.html">Plateformes</a>
                                 </li>
                                 <li class="all-hide ja-show-inline-block" id="main-navigation-jptrading">
                                     <a class="pjaxload" href="/fr/jptrading.html">Trading</a>
@@ -205,10 +205,16 @@
         </div>
     </div>
     <div id="content-holder">
-    <div id="main-menu" class="tab-menu">
+    <div id="main-menu" class="tab-menu no-print">
     <div class="tab-menu-wrap container gr-hide-m gr-hide-p">
         <div class="gr-12 gr-no-gutter">
-            <ul class="items">  <li id="topMenuPortfolio" class="item client_logged_in invisible">
+            <ul class="items">  <li id="topMenuTrading" class="item ja-hide hide-tablet-mobile">
+                    <a class="link pjaxload" target="" href="/fr/trading.html">Trading</a>
+                    
+                </li>  <li id="topMenuJPTrading" class="item all-hide ja-show hide-tablet-mobile">
+                    <a class="link pjaxload" target="" href="/fr/jptrading.html">Trading</a>
+                    
+                </li>  <li id="topMenuPortfolio" class="item client_logged_in invisible">
                     <a class="link pjaxload" target="" href="/fr/user/portfoliows.html">Portefeuille</a>
                     
                 </li>  <li id="topMenuProfitTable" class="item client_logged_in invisible">
@@ -220,7 +226,7 @@
                 </li>  <li id="topMenuCashier" class="item ">
                     <a class="link pjaxload" target="" href="/fr/cashier.html">Caisse</a>
                     
-                </li>  <li id="topMenuResources" class="item ja-hide">
+                </li>  <li id="topMenuResources" class="item ">
                     <a class="link pjaxload" target="" href="/fr/resources.html">Ressources</a>
                     
                         <ul class="sub_items">  <li id="topMenuAssetIndex" class="sub_item ja-hide">
@@ -257,8 +263,14 @@
             <li class="ja-hide">
                 <a class="pjaxload" href="/fr/tour.html">Aperçu</a>
             </li>
-            <li class="ja-hide ja-show-block">
+            <li class="all-hide ja-show-block">
                 <a class="pjaxload" href="/fr/tour-jp.html">Aperçu</a>
+            </li>  <li id="topMenuTrading" class="item ja-hide hide-tablet-mobile">
+                <a class="pjaxload link pjaxload" href="/fr/trading.html">Trading</a>
+                
+            </li>  <li id="topMenuJPTrading" class="item all-hide ja-show hide-tablet-mobile">
+                <a class="pjaxload link pjaxload" href="/fr/jptrading.html">Trading</a>
+                
             </li>  <li id="topMenuPortfolio" class="item client_logged_in invisible">
                 <a class="pjaxload link pjaxload" href="/fr/user/portfoliows.html">Portefeuille</a>
                 
@@ -271,7 +283,7 @@
             </li>  <li id="topMenuCashier" class="item">
                 <a class="pjaxload link pjaxload" href="/fr/cashier.html">Caisse</a>
                 
-            </li>  <li id="topMenuResources" class="item ja-hide">
+            </li>  <li id="topMenuResources" class="item">
                 <a class="pjaxload link pjaxload" href="/fr/resources.html">Ressources</a>
                 
                     <ul class="sub_items">  <li id="topMenuAssetIndex" class="sub_item ja-hide">
@@ -287,7 +299,7 @@
                 <a class="pjaxload link pjaxload" href="/fr/paymentagent/transferws.html">Agent de paiement</a>
                 
             </li>  <li class="ja-hide">
-                <a class="pjaxload" href="/fr/trading.html">Trading</a>
+                <a class="pjaxload" href="/fr/platforms.html">Plateformes</a>
             </li>
             <li class="all-hide ja-show-block">
                 <a class="pjaxload" href="/fr/jptrading.html">Trading</a>
@@ -316,7 +328,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
   <div class="static_full">
-    <h1 class="center-text">Regulatory Information</h1>
+    <h1 class="center-text">Informations réglementaires</h1>
     <div class="gr-parent gr-padding-30">
         <p class="center-text">
             Binary.com is a licensed and regulated trading platform that serves over 1,000,000 customers globally. We hold multiple licenses to comply with regulations around the world. Since 1999, we’ve served our clients with a constant and unwavering commitment to integrity and reliability. We always hold ourselves to the highest ethical standards, in addition to our regulatory requirements.
@@ -332,7 +344,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <div class="background-gray center-text gr-padding-30 gr-12">
             <h1 class="margin-top">Binary Ltd</h1>
             <div class="gr-12">
-                <p>Binary Ltd, with registered office address situated at 47 Esplanade, St. Helier, Jersey, JE1 0BD Channel Islands, is the holding company for the Binary group.</p>
+                <p>Binary Ltd, dont l'antenne officielle se situe au 47 Esplanade, St. Helier, Jersey, JE1 0BD Channel Islands, est la société holding du groupe Binary.</p>
             </div>
         </div>
     </div>
@@ -352,7 +364,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </a>
             </div>
             <div class="gr-4 gr-8-m gr-centered gr-padding-10">
-                <a href="http://www.ffaj.or.jp/index.html" target="_blank">
+                <a href="http://www.ffaj.or.jp/en/memberlist/list.html#k_sakimono_senmon" target="_blank">
                     <img class="responsive" src="/images/pages/regulation/binarykk-logo.gif">
                 </a>
             </div>
@@ -366,7 +378,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <div class="background-gray center-text gr-padding-30 gr-12">
             <h1 class="margin-top">Binary Investments (Europe) Ltd</h1>
             <div class="gr-12">
-                <p>Binary Investments (Europe) Ltd, Mompalao Building, Suite 2, Tower Road, Msida MSD1825, Malta. Licensed and regulated as a Category 3 Investment Services provider by the Malta Financial Services Authority (licence no. IS/70156). European Union residents with the exception of the UK, who wish to trade investment products, will have their account opened with Binary Investments (Europe) Ltd.</p>
+                <p>Binary Investments (Europe) Ltd, Mompalao Building, Suite 2, Tower Road, Msida MSD1825, Malte. Société autorisée et réglementée par l'Autorité maltaise des services financiers en tant que fournisseur de services d'investissement de catégorie 3 (licence n° IS/70156). Les résidents de l'Union européenne (sauf Royaume-Uni) souhaitant négocier des produits d'investissement pourront ouvrir leur compte auprès de Binary Investments (Europe) Ltd.</p>
                 <p><strong>Regulator:</strong></p>
                 <div class="gr-4 gr-8-m gr-centered gr-padding-10">
                     <a href="http://mfsa.com.mt/" target="_blank">
@@ -389,7 +401,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                             <area shape="rect" coords="26.61,343.62,198.93,375.33" href="/download/regulation/Luxembourg.pdf" alt="Luxembourg" target="_blank">
                             <area shape="rect" coords="53.76,378.81,198.93,410.52" href="/download/regulation/France.pdf" alt="France" target="_blank">
                             <area shape="rect" coords="2.82,432.81,147.99,464.52" href="http://www.cnmv.es/Portal/Consultas/ESI/ESISExtranjerasLP.aspx?numero=3944&tipo=CLP" alt="Spain" target="_blank">
-                            <area shape="rect" coords="2.82,468.96,147.99,500.67" href="http://web3.cmvm.pt/english/sdi/ifs/LPS/ei_lps_lista.cfm?pais=Malta#lo" alt="Portugal" target="_blank">
+                            <area shape="rect" coords="2.82,468.96,147.99,500.67" href="http://web3.cmvm.pt/english/sdi/ifs/LPS/lps_dtl.cfm?num_ent=%26%23%24WU%21-Q%3E%0A&tip_if=%24%3E%23%3A%3B%3C%20%20%20%0A" alt="Portugal" target="_blank">
                             <area shape="rect" coords="34.50,505.59,147.99,537.30" href="http://www.consob.it/mainen/documenti/english/intermediaries/albi/COM.html?symblink=/mainen/intermediares/investments_firms/com_lnk.html" alt="Italy" target="_blank">
                             <area shape="rect" coords="292.95,556.05,438.12,587.76" href="https://www.fma.gv.at/en/search-company-database/?cname=Binary+Investments&place=&bic=&category=&per_page=10&submitted=1" alt="Austria" target="_blank">
                             <area shape="rect" coords="498.57,665.88,643.74,697.59" href="/download/regulation/Slovenia.pdf" alt="Slovenia" target="_blank">
@@ -400,7 +412,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                             <area shape="rect" coords="708.69,334.14,900.00,365.85" href="https://apl.cnb.cz/apljerrsdad/JERRS.WEB10.VIZITKA?p_lang=en&p_SEQ_ID=10765086&p_VER_ID=1000&p_DATUM=28.07.2016&p_ROL_KOD=" alt="Czech Republic" target="_blank">
                             <area shape="rect" coords="765.87,287.94,900.03,319.65" href="https://www.knf.gov.pl/en/authorised_entities.jsp#searchedName=Binary%20Investments&ctype=&wybraneOPZ=&wybraneDT=&wybranePPZ=&companyCategoryName=" alt="Poland" target="_blank">
                             <area shape="rect" coords="765.87,222.12,900.03,253.83" href="http://www.fktk.lv/en/market/financial-instruments-market/service-providers-from-the-eea/freedom-to-provide-services.html" alt="Latvia" target="_blank">
-                            <area shape="rect" coords="765.87,185.97,900.03,217.68" href="https://www.fi.ee/index.php?id=2228" alt="Estonia" target="_blank">
+                            <area shape="rect" coords="765.87,185.97,900.03,217.68" href="https://www.fi.ee/index.php?id=2228&action=showentity&eid=97148" alt="Estonia" target="_blank">
                             <area shape="rect" coords="765.87,41.64,900.03,73.35" href="http://www.finanssivalvonta.fi/en/Authorisations/Notifications/Pages/notifications.aspx" alt="Finland" target="_blank">
                         </map>
                     </div>
@@ -452,7 +464,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <div class="background-gray center-text gr-padding-30 gr-12">
             <h1 class="margin-top">Binary (Europe) Ltd</h1>
             <div class="gr-12">
-                <p>Binary (Europe) Ltd, Mompalao Building, Suite 2, Tower Road, Msida MSD1825, Malta. Licensed and regulated (for gambling products only - Binary.com's Volatility Indices) by the Malta Gaming Authority in Malta (licence no MGA/CL2/118/2000) and for UK clients by the UK Gambling Commission - <a href="https://secure.gamblingcommission.gov.uk/gccustomweb/PublicRegister/PRSearch.aspx?ExternalAccountId=39495" target="_blank">view licence</a>.</p>
+                <p>Binary (Europe) Ltd., Mompalao Building, Suite 2, Tower Road, Msida MSD1825, Malte. Société autorisée et réglementée (pour les produits d'investissement uniquement : indices de volatilité Binary.com) par l'Autorité maltaise des jeux (licence n° MGA/CL2/118/2000), et pour les clients du Royaume-Uni, par la Commission des jeux du Royaume-Uni : <a href="https://secure.gamblingcommission.gov.uk/gccustomweb/PublicRegister/PRSearch.aspx?ExternalAccountId=39495" target="_blank"> 1afficher la licence</a> 2.</p>
                 <p>Les résidents de l'Union européenne (sauf Royaume-Uni) souhaitant négocier des produits relatifs aux jeux d'argent pourront ouvrir leur compte auprès de Binary (Europe) Ltd.</p>
                 <p><strong>Regulator:</strong></p>
                 <div class="gr-4 gr-8-m gr-centered gr-padding-10">
@@ -471,7 +483,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <div class="background-gray center-text gr-padding-30 gr-12">
             <h1 class="margin-top">Binary (IOM) Ltd</h1>
             <div class="gr-12">
-                <p>Binary (IOM) Ltd, First Floor, Millennium House, Victoria Road, Douglas, Isle of Man, IM2 4RW. Licensed and regulated by the Gambling Supervision Commission in the Isle of Man (current online gambling licence granted on the 31 August 2012) and for UK clients by the UK Gambling Commission - <a href="https://secure.gamblingcommission.gov.uk/gccustomweb/PublicRegister/PRSearch.aspx?ExternalAccountId=39172" target="_blank">view licence</a>.</p>
+                <p>Binary (IOM) Ltd, First Floor, Millennium House, Victoria Road, Douglas, Isle of Man, IM2 4RW. Société autorisée et réglementée par la Gambling Supervision Commission de l'île de Man (licence actuelle pour les services de jeux en ligne délivrée le 31 août 2012), et pour les clients du Royaume-Uni par la Commission des jeux du Royaume-Uni - <a href="https://secure.gamblingcommission.gov.uk/gccustomweb/PublicRegister/PRSearch.aspx?ExternalAccountId=39172" target="_blank"> 1afficher la licence</a> 2.</p>
                 <p>Les résidents du RU et Manx auront leur compte ouvert avec Binary (IOM) Ltd.</p>
                 <p><strong>Regulator:</strong></p>
                 <div class="gr-2 gr-4-m gr-centered gr-padding-10">
@@ -490,8 +502,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <div class="background-gray center-text gr-padding-30 gr-12">
             <h1 class="margin-top">Binary (C.R.) S.A.</h1>
             <div class="gr-12">
-                <p>Binary (C.R.) S.A., registered in Costa Rica. Clients from the rest of the world (excluding certain countries such as the USA, Costa Rica, Hong Kong) will have their account opened with Binary (C.R.) S.A.</p>
-                <p>Binary.com is not available in Costa Rica and is not regulated or supervised by any regulatory body in the Costa Rican financial system.</p>
+                <p>Binary (C.R.) S.A., enregistrée au Costa Rica. Les clients basés dans le reste du monde (sauf dans certains pays : États-Unis, Costa Rica, Hong-Kong) pourront ouvrir leur compte auprès de Binary (C.R.) S.A.</p>
+                <p>Binary.com n'est pas disponible au Costa Rica et n'est soumise à la réglementation ou à la supervision d'aucun organisme de réglementation dans le système financier du Costa Rica.</p>
             </div>
         </div>
     </div>
@@ -503,9 +515,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <h1 class="margin-top">Binary (V) Ltd</h1>
         <div class="gr-12">
             <p>Binary (V) Ltd, Govant Building, Port Vila, PO Box 1276, Vanuatu, Republic of Vanuatu. Licensed and regulated by the Vanuatu Financial Services Commission - <a href="https://www.vfsc.vu/wp-content/uploads/2015/12/List-of-Licensees-under-Dealers-in-Securities-Licensing-Act-CAP-70-09.09.20164.pdf" target="_blank">view licence</a>.</p>
-            <p>Clients from the rest of the world (excluding certain countries such as the USA, Costa Rica, Hong Kong) will have their FX and CFD Metatrader 5 account opened with Binary (V) Ltd. Binary.com is not available in the Republic of Vanuatu.</p>
+            <p>Les clients basés dans le reste du monde (sauf dans certains pays : États-Unis, Costa Rica, Hong-Kong) pourront ouvrir leur compte MetaTrader 5 Forex et CFD auprès de Binary (V) Ltd. Binary.com n'est pas disponible au Vanuatu.</p>
             <p><strong>Regulator:</strong></p>
-            <div class="gr-3 gr-6-m gr-centered gr-padding-10">
+            <div class="gr-2 gr-4-m gr-centered gr-padding-10">
                 <a href="https://www.vfsc.vu/" target="_blank">
                     <img class="responsive" src="/images/pages/regulation/vanuatu-logo.svg">
                 </a>
@@ -519,7 +531,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 </div> 
 </div>
-<div id="footer">
+<div id="footer" class="no-print">
     <div id="footer-menu" class="primary-bg-color">
         <div class="container">
             <div class="gr-row gr-padding-10">
@@ -532,7 +544,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                     <a class="pjaxload" href="/fr/about-us.html">À propos</a>
                                 </li>
                                 <li class="id-hide ar-hide">
-                                    <a class="pjaxload" href="/fr/regulation.html">Regulatory Information</a>
+                                    <a class="pjaxload" href="/fr/regulation.html">Informations réglementaires</a>
                                 </li>
                                 <li>
                                     <a class="pjaxload" href="/fr/group-history.html">Histoire du groupe</a>
@@ -581,23 +593,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                             </ul>
                         </div>
                         <div class="gr-4">
-                            <h4 class="ja-hide secondary-color">Trading</h4>
-                            <ul class="ja-hide">
+                            <h4 class="secondary-color">Services bancaires</h4>
+                            <ul>
+                                <li>
+                                    <a class="pjaxload" href="/fr/cashier.html">Caisse</a>
+                                </li>
                                 <li class="ja-hide">
-                                    <a class="pjaxload" href="/fr/resources/asset_indexws.html">Indice des actifs</a>
+                                    <a class="pjaxload" href="/fr/cashier/payment_methods.html">Moyens de paiement</a>
                                 </li>
                             </ul>
-                            <div class='gr-padding-10 gr-no-gutter ja-no-padding'>
-                                <h4 class="secondary-color">Services bancaires</h4>
-                                <ul>
-                                    <li>
-                                        <a class="pjaxload" href="/fr/cashier.html">Caisse</a>
-                                    </li>
-                                    <li class="ja-hide">
-                                        <a class="pjaxload" href="/fr/cashier/payment_methods.html">Moyens de paiement</a>
-                                    </li>
-                                </ul>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -629,19 +633,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                            </ul>
                        </div>
                        <div class="gr-4 ja-hide">
-                           <h4 class="secondary-color">Applications</h4>
+                           <h4 class="secondary-color">Trading</h4>
                            <ul>
                                <li>
-                                   <a class="pjaxload" href="/fr/platforms.html">Platforms</a>
+                                   <a class="pjaxload" href="/fr/platforms.html">Plateformes</a>
                                </li>
                                <li>
-                                   <a href="https://shop.binary.com/collections/applications/products/tick-trade-mobile-application" target="_blank">Application TickTrade</a>
-                               </li>
-                               <li>
-                                   <a href="https://shop.binary.com/collections/applications/products/webtrader" target="_blank">Webtrader</a>
-                               </li>
-                               <li>
-                                   <a href="https://shop.binary.com/collections/applications/products/binary-com-tradingview-chart" target="_blank">TradingView</a>
+                                   <a class="pjaxload" href="/fr/resources/asset_indexws.html">Indice des actifs</a>
                                </li>
                            </ul>
                        </div>
@@ -687,7 +685,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                 </a>
                             </div>
                             <div class="gr-2 center-text">
-                                <a href="https://www.authorisation.mga.org.mt/verification.aspx?lang=en&company=a5fd1edc-d072-4c26-b0cd-ab3fa0f0cc40" target="_blank">
+                                <a href="https://www.authorisation.mga.org.mt/verification.aspx?lang=EN&company=a5fd1edc-d072-4c26-b0cd-ab3fa0f0cc40&details=1" target="_blank">
                                     <img id="lga_icon_footer" class="responsive" src="/images/pages/footer/mga-logo-footer.svg"/>
                                 </a>
                             </div>
@@ -706,7 +704,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     <div class="gr-parent">
                         <div class="gr-row">
                             <div id="regulatory-text" class="gr-9 gr-12-m gr-7-p">
-                                This website is marketed in the UK and Isle of Man by Binary (IOM) Ltd., First Floor, Millennium House, Victoria Road, Douglas, IM2 4RW, Isle of Man, British Isles, licenced and regulated by (1) the Gambling Supervision Commission in the Isle of Man, British Isles, current online gambling licence issued on 31 August 2012, and for UK clients by (2) the UK Gambling Commission - <a href='https://secure.gamblingcommission.gov.uk/gccustomweb/PublicRegister/PRSearch.aspx?ExternalAccountId=39172' target='_blank'>view license</a>. This website is marketed in the rest of the EU, for investment products by Binary Investments (Europe) Ltd., Mompalao Building, Suite 2, Tower Road, Msida MSD1825, Malta, licenced and regulated as a Category 3 Investment Services provider by the Malta Financial Services Authority (license no. IS/70156), and for gaming products by Binary (Europe) Ltd., Mompalao Building, Suite 2, Tower Road, Msida MSD1825, Malta, licenced and regulated by (1) the Malta Gaming Authority in Malta, licence no MGA/CL2/118/2000, 26th May 2015 and for UK clients by (2) the UK Gambling Commission - <a href='https://secure.gamblingcommission.gov.uk/gccustomweb/PublicRegister/PRSearch.aspx?ExternalAccountId=39495' target='_blank'>view license</a>, and for Irish clients by (3) the Revenue Commissioners in Ireland, current remote bookmaker's licence issued on 29 September 2015 (licence no 1010285). This website's services are not made available in certain countries such as the USA, Costa Rica, Hong Kong, or to persons under age 18.
+                                Pour le Royaume-Uni et l'île de Man, les services proposés via ce site Web sont commercialisés par Binary (IOM) Ltd., First Floor, Millennium House, Victoria Road, Douglas, IM2 4RW, British Isles, autorisés et réglementés par (1) la Gambling Supervision Commission de l'île de Man, îles britanniques (licence actuelle pour les services de jeux en ligne délivrée le 31 août 2012), et pour les clients du Royaume-Uni par (2) la Commission des jeux du Royaume-Uni <a href='https://secure.gamblingcommission.gov.uk/gccustomweb/PublicRegister/PRSearch.aspx?ExternalAccountId=39172' target='_blank'>afficher la licence</a>. Pour le reste de l'Europe, les services d'investissement proposés via ce site Web sont commercialisés par Binary Investments (Europe) Ltd., Mompalao Building, Suite 2, Tower Road, Msida MSD1825, Malte, autorisés et réglementés par l'Autorité maltaise des services financiers conformément à la licence de « fournisseur de services d'investissement » de catégorie 3 (licence n° IS/70156). Les services de jeu en ligne sont commercialisés par Binary (Europe) Ltd., Mompalao Building, Suite 2, Tower Road, Msida MSD1825, Malte, autorisés et réglementés par (1) l'Autorité maltaise des jeux (licence n° MGA/CL2/118/2000 du 26 mai 2015), pour les clients du Royaume-Uni par (2) la Commission des jeux du Royaume-Uni <a href='https://secure.gamblingcommission.gov.uk/gccustomweb/PublicRegister/PRSearch.aspx?ExternalAccountId=39495' target='_blank'>afficher la licence</a>, et pour les clients basés en Irlande par (3) Revenue Commissioners (licence actuelle de bookmaker en ligne délivrée le 29 septembre 2015, licence n° 1010285).  Les services de ce site Web sont indisponibles dans certains pays, notamment aux États-Unis, au Costa Rica et à Hong-Kong et ne sont pas accessibles aux personnes âgées de moins de 18 ans.
                             </div>
                             <div class="ja-hide gr-3 gr-12-m gr-5-p" id="social-networks">
                                 <div id="fb-root">

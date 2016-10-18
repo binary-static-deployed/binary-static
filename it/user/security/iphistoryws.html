@@ -55,16 +55,16 @@
           <link rel="alternate" href="/zh_cn/user/security/iphistoryws.html" hreflang="ZH_CN" /> 
           <link rel="alternate" href="/zh_tw/user/security/iphistoryws.html" hreflang="ZH_TW" /> 
         
-         <link rel="stylesheet" href="/css/binary.min.css?p06cww2y">
-         <link rel="stylesheet" href="https://style.binary.com/binary.css?p06cww2y">
+         <link rel="stylesheet" href="/css/binary.min.css?bvr84wzn">
+         <link rel="stylesheet" href="https://style.binary.com/binary.css?bvr84wzn">
         
-        <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=Array.prototype.includes,String.prototype.includes,Symbol,Promise,Object.assign&flags=gated&unknown=polyfill"></script>  <script src='/js/binary.min.js?p06cww2y' defer async></script>
+        <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=Array.prototype.includes,String.prototype.includes,Symbol,Promise,Object.assign&flags=gated&unknown=polyfill"></script>  <script src='/js/binary.min.js?bvr84wzn' defer async></script>
     </head>
 
 
 <body class="IT">
     <div id='page-wrapper'>
-    <div id="topbar">
+    <div id="topbar" class="no-print">
         <div class="container">
             <div class="gr-row">
                 <div id="topbar-msg" class='gr-6 gr-5-t gr-12-p gr-12-m invisible upgrademessage'>
@@ -103,7 +103,7 @@
         </div>
     </div>
 
-    <div id="header">
+    <div id="header" class="no-print">
         <div class='container'>
             <div class='gr-12'>
                 <div class='gr-row gr-row-align-middle'>
@@ -141,7 +141,7 @@
                                     <a class="pjaxload" href="/it/tour-jp.html">Tour</a>
                                 </li>
                                 <li class="ja-hide" id="main-navigation-trading">
-                                    <a class="pjaxload" href="/it/trading.html">Trade</a>
+                                    <a class="pjaxload" href="/it/platforms.html">Piattaforme</a>
                                 </li>
                                 <li class="all-hide ja-show-inline-block" id="main-navigation-jptrading">
                                     <a class="pjaxload" href="/it/jptrading.html">Trade</a>
@@ -205,10 +205,16 @@
         </div>
     </div>
     <div id="content-holder">
-    <div id="main-menu" class="tab-menu">
+    <div id="main-menu" class="tab-menu no-print">
     <div class="tab-menu-wrap container gr-hide-m gr-hide-p">
         <div class="gr-12 gr-no-gutter">
-            <ul class="items">  <li id="topMenuPortfolio" class="item client_logged_in invisible">
+            <ul class="items">  <li id="topMenuTrading" class="item ja-hide hide-tablet-mobile">
+                    <a class="link pjaxload" target="" href="/it/trading.html">Trade</a>
+                    
+                </li>  <li id="topMenuJPTrading" class="item all-hide ja-show hide-tablet-mobile">
+                    <a class="link pjaxload" target="" href="/it/jptrading.html">Trade</a>
+                    
+                </li>  <li id="topMenuPortfolio" class="item client_logged_in invisible">
                     <a class="link pjaxload" target="" href="/it/user/portfoliows.html">Portafoglio</a>
                     
                 </li>  <li id="topMenuProfitTable" class="item client_logged_in invisible">
@@ -220,7 +226,7 @@
                 </li>  <li id="topMenuCashier" class="item ">
                     <a class="link pjaxload" target="" href="/it/cashier.html">Cassa</a>
                     
-                </li>  <li id="topMenuResources" class="item ja-hide">
+                </li>  <li id="topMenuResources" class="item ">
                     <a class="link pjaxload" target="" href="/it/resources.html">Risorse</a>
                     
                         <ul class="sub_items">  <li id="topMenuAssetIndex" class="sub_item ja-hide">
@@ -257,8 +263,14 @@
             <li class="ja-hide">
                 <a class="pjaxload" href="/it/tour.html">Tour</a>
             </li>
-            <li class="ja-hide ja-show-block">
+            <li class="all-hide ja-show-block">
                 <a class="pjaxload" href="/it/tour-jp.html">Tour</a>
+            </li>  <li id="topMenuTrading" class="item ja-hide hide-tablet-mobile">
+                <a class="pjaxload link pjaxload" href="/it/trading.html">Trade</a>
+                
+            </li>  <li id="topMenuJPTrading" class="item all-hide ja-show hide-tablet-mobile">
+                <a class="pjaxload link pjaxload" href="/it/jptrading.html">Trade</a>
+                
             </li>  <li id="topMenuPortfolio" class="item client_logged_in invisible">
                 <a class="pjaxload link pjaxload" href="/it/user/portfoliows.html">Portafoglio</a>
                 
@@ -271,7 +283,7 @@
             </li>  <li id="topMenuCashier" class="item">
                 <a class="pjaxload link pjaxload" href="/it/cashier.html">Cassa</a>
                 
-            </li>  <li id="topMenuResources" class="item ja-hide">
+            </li>  <li id="topMenuResources" class="item">
                 <a class="pjaxload link pjaxload" href="/it/resources.html">Risorse</a>
                 
                     <ul class="sub_items">  <li id="topMenuAssetIndex" class="sub_item ja-hide">
@@ -287,7 +299,7 @@
                 <a class="pjaxload link pjaxload" href="/it/paymentagent/transferws.html">Agente di pagamento</a>
                 
             </li>  <li class="ja-hide">
-                <a class="pjaxload" href="/it/trading.html">Trade</a>
+                <a class="pjaxload" href="/it/platforms.html">Piattaforme</a>
             </li>
             <li class="all-hide ja-show-block">
                 <a class="pjaxload" href="/it/jptrading.html">Trade</a>
@@ -328,7 +340,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 </div> 
 </div>
-<div id="footer">
+<div id="footer" class="no-print">
     <div id="footer-menu" class="primary-bg-color">
         <div class="container">
             <div class="gr-row gr-padding-10">
@@ -390,23 +402,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                             </ul>
                         </div>
                         <div class="gr-4">
-                            <h4 class="ja-hide secondary-color">Trading</h4>
-                            <ul class="ja-hide">
+                            <h4 class="secondary-color">Credito</h4>
+                            <ul>
+                                <li>
+                                    <a class="pjaxload" href="/it/cashier.html">Cassa</a>
+                                </li>
                                 <li class="ja-hide">
-                                    <a class="pjaxload" href="/it/resources/asset_indexws.html">Indice degli asset</a>
+                                    <a class="pjaxload" href="/it/cashier/payment_methods.html">Modalità di pagamento</a>
                                 </li>
                             </ul>
-                            <div class='gr-padding-10 gr-no-gutter ja-no-padding'>
-                                <h4 class="secondary-color">Credito</h4>
-                                <ul>
-                                    <li>
-                                        <a class="pjaxload" href="/it/cashier.html">Cassa</a>
-                                    </li>
-                                    <li class="ja-hide">
-                                        <a class="pjaxload" href="/it/cashier/payment_methods.html">Modalità di pagamento</a>
-                                    </li>
-                                </ul>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -438,19 +442,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                            </ul>
                        </div>
                        <div class="gr-4 ja-hide">
-                           <h4 class="secondary-color">App</h4>
+                           <h4 class="secondary-color">Trading</h4>
                            <ul>
                                <li>
                                    <a class="pjaxload" href="/it/platforms.html">Piattaforme</a>
                                </li>
                                <li>
-                                   <a href="https://shop.binary.com/collections/applications/products/tick-trade-mobile-application" target="_blank">App TickTrade</a>
-                               </li>
-                               <li>
-                                   <a href="https://shop.binary.com/collections/applications/products/webtrader" target="_blank">Webtrader</a>
-                               </li>
-                               <li>
-                                   <a href="https://shop.binary.com/collections/applications/products/binary-com-tradingview-chart" target="_blank">TradingView</a>
+                                   <a class="pjaxload" href="/it/resources/asset_indexws.html">Indice degli asset</a>
                                </li>
                            </ul>
                        </div>
@@ -496,7 +494,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                 </a>
                             </div>
                             <div class="gr-2 center-text">
-                                <a href="https://www.authorisation.mga.org.mt/verification.aspx?lang=en&company=a5fd1edc-d072-4c26-b0cd-ab3fa0f0cc40" target="_blank">
+                                <a href="https://www.authorisation.mga.org.mt/verification.aspx?lang=EN&company=a5fd1edc-d072-4c26-b0cd-ab3fa0f0cc40&details=1" target="_blank">
                                     <img id="lga_icon_footer" class="responsive" src="/images/pages/footer/mga-logo-footer.svg"/>
                                 </a>
                             </div>

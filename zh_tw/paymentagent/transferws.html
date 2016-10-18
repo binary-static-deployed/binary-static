@@ -55,16 +55,16 @@
           <link rel="alternate" href="/zh_cn/paymentagent/transferws.html" hreflang="ZH_CN" /> 
           <link rel="alternate" href="/zh_tw/paymentagent/transferws.html?l=zh_tw" hreflang="ZH_TW" /> 
         
-         <link rel="stylesheet" href="/css/binary.min.css?p06cww2y">
-         <link rel="stylesheet" href="https://style.binary.com/binary.css?p06cww2y">
+         <link rel="stylesheet" href="/css/binary.min.css?bvr84wzn">
+         <link rel="stylesheet" href="https://style.binary.com/binary.css?bvr84wzn">
         
-        <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=Array.prototype.includes,String.prototype.includes,Symbol,Promise,Object.assign&flags=gated&unknown=polyfill"></script>  <script src='/js/binary.min.js?p06cww2y' defer async></script>
+        <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=Array.prototype.includes,String.prototype.includes,Symbol,Promise,Object.assign&flags=gated&unknown=polyfill"></script>  <script src='/js/binary.min.js?bvr84wzn' defer async></script>
     </head>
 
 
 <body class="ZH_TW">
     <div id='page-wrapper'>
-    <div id="topbar">
+    <div id="topbar" class="no-print">
         <div class="container">
             <div class="gr-row">
                 <div id="topbar-msg" class='gr-6 gr-5-t gr-12-p gr-12-m invisible upgrademessage'>
@@ -103,7 +103,7 @@
         </div>
     </div>
 
-    <div id="header">
+    <div id="header" class="no-print">
         <div class='container'>
             <div class='gr-12'>
                 <div class='gr-row gr-row-align-middle'>
@@ -141,7 +141,7 @@
                                     <a class="pjaxload" href="/zh_tw/tour-jp.html">導覽</a>
                                 </li>
                                 <li class="ja-hide" id="main-navigation-trading">
-                                    <a class="pjaxload" href="/zh_tw/trading.html">交易</a>
+                                    <a class="pjaxload" href="/zh_tw/platforms.html">平台</a>
                                 </li>
                                 <li class="all-hide ja-show-inline-block" id="main-navigation-jptrading">
                                     <a class="pjaxload" href="/zh_tw/jptrading.html">交易</a>
@@ -205,10 +205,16 @@
         </div>
     </div>
     <div id="content-holder">
-    <div id="main-menu" class="tab-menu">
+    <div id="main-menu" class="tab-menu no-print">
     <div class="tab-menu-wrap container gr-hide-m gr-hide-p">
         <div class="gr-12 gr-no-gutter">
-            <ul class="items">  <li id="topMenuPortfolio" class="item client_logged_in invisible">
+            <ul class="items">  <li id="topMenuTrading" class="item ja-hide hide-tablet-mobile">
+                    <a class="link pjaxload" target="" href="/zh_tw/trading.html">交易</a>
+                    
+                </li>  <li id="topMenuJPTrading" class="item all-hide ja-show hide-tablet-mobile">
+                    <a class="link pjaxload" target="" href="/zh_tw/jptrading.html">交易</a>
+                    
+                </li>  <li id="topMenuPortfolio" class="item client_logged_in invisible">
                     <a class="link pjaxload" target="" href="/zh_tw/user/portfoliows.html">投資組合</a>
                     
                 </li>  <li id="topMenuProfitTable" class="item client_logged_in invisible">
@@ -220,7 +226,7 @@
                 </li>  <li id="topMenuCashier" class="item ">
                     <a class="link pjaxload" target="" href="/zh_tw/cashier.html">收銀台</a>
                     
-                </li>  <li id="topMenuResources" class="item ja-hide">
+                </li>  <li id="topMenuResources" class="item ">
                     <a class="link pjaxload" target="" href="/zh_tw/resources.html">資源</a>
                     
                         <ul class="sub_items">  <li id="topMenuAssetIndex" class="sub_item ja-hide">
@@ -257,8 +263,14 @@
             <li class="ja-hide">
                 <a class="pjaxload" href="/zh_tw/tour.html">導覽</a>
             </li>
-            <li class="ja-hide ja-show-block">
+            <li class="all-hide ja-show-block">
                 <a class="pjaxload" href="/zh_tw/tour-jp.html">導覽</a>
+            </li>  <li id="topMenuTrading" class="item ja-hide hide-tablet-mobile">
+                <a class="pjaxload link pjaxload" href="/zh_tw/trading.html">交易</a>
+                
+            </li>  <li id="topMenuJPTrading" class="item all-hide ja-show hide-tablet-mobile">
+                <a class="pjaxload link pjaxload" href="/zh_tw/jptrading.html">交易</a>
+                
             </li>  <li id="topMenuPortfolio" class="item client_logged_in invisible">
                 <a class="pjaxload link pjaxload" href="/zh_tw/user/portfoliows.html">投資組合</a>
                 
@@ -271,7 +283,7 @@
             </li>  <li id="topMenuCashier" class="item">
                 <a class="pjaxload link pjaxload" href="/zh_tw/cashier.html">收銀台</a>
                 
-            </li>  <li id="topMenuResources" class="item ja-hide">
+            </li>  <li id="topMenuResources" class="item">
                 <a class="pjaxload link pjaxload" href="/zh_tw/resources.html">資源</a>
                 
                     <ul class="sub_items">  <li id="topMenuAssetIndex" class="sub_item ja-hide">
@@ -287,7 +299,7 @@
                 <a class="pjaxload link pjaxload" href="/zh_tw/paymentagent/transferws.html">付款代理</a>
                 
             </li>  <li class="ja-hide">
-                <a class="pjaxload" href="/zh_tw/trading.html">交易</a>
+                <a class="pjaxload" href="/zh_tw/platforms.html">平台</a>
             </li>
             <li class="all-hide ja-show-block">
                 <a class="pjaxload" href="/zh_tw/jptrading.html">交易</a>
@@ -426,7 +438,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 </div> 
 </div>
-<div id="footer">
+<div id="footer" class="no-print">
     <div id="footer-menu" class="primary-bg-color">
         <div class="container">
             <div class="gr-row gr-padding-10">
@@ -488,23 +500,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                             </ul>
                         </div>
                         <div class="gr-4">
-                            <h4 class="ja-hide secondary-color">交易</h4>
-                            <ul class="ja-hide">
+                            <h4 class="secondary-color">資金管理</h4>
+                            <ul>
+                                <li>
+                                    <a class="pjaxload" href="/zh_tw/cashier.html">收銀台</a>
+                                </li>
                                 <li class="ja-hide">
-                                    <a class="pjaxload" href="/zh_tw/resources/asset_indexws.html">資產指數</a>
+                                    <a class="pjaxload" href="/zh_tw/cashier/payment_methods.html">支付方式</a>
                                 </li>
                             </ul>
-                            <div class='gr-padding-10 gr-no-gutter ja-no-padding'>
-                                <h4 class="secondary-color">資金管理</h4>
-                                <ul>
-                                    <li>
-                                        <a class="pjaxload" href="/zh_tw/cashier.html">收銀台</a>
-                                    </li>
-                                    <li class="ja-hide">
-                                        <a class="pjaxload" href="/zh_tw/cashier/payment_methods.html">支付方式</a>
-                                    </li>
-                                </ul>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -536,19 +540,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                            </ul>
                        </div>
                        <div class="gr-4 ja-hide">
-                           <h4 class="secondary-color">應用程式</h4>
+                           <h4 class="secondary-color">交易</h4>
                            <ul>
                                <li>
                                    <a class="pjaxload" href="/zh_tw/platforms.html">平台</a>
                                </li>
                                <li>
-                                   <a href="https://shop.binary.com/collections/applications/products/tick-trade-mobile-application" target="_blank">跳動交易應用程式</a>
-                               </li>
-                               <li>
-                                   <a href="https://shop.binary.com/collections/applications/products/webtrader" target="_blank">Webtrader</a>
-                               </li>
-                               <li>
-                                   <a href="https://shop.binary.com/collections/applications/products/binary-com-tradingview-chart" target="_blank">交易檢視(TradingView)</a>
+                                   <a class="pjaxload" href="/zh_tw/resources/asset_indexws.html">資產指數</a>
                                </li>
                            </ul>
                        </div>
@@ -594,7 +592,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                 </a>
                             </div>
                             <div class="gr-2 center-text">
-                                <a href="https://www.authorisation.mga.org.mt/verification.aspx?lang=en&company=a5fd1edc-d072-4c26-b0cd-ab3fa0f0cc40" target="_blank">
+                                <a href="https://www.authorisation.mga.org.mt/verification.aspx?lang=EN&company=a5fd1edc-d072-4c26-b0cd-ab3fa0f0cc40&details=1" target="_blank">
                                     <img id="lga_icon_footer" class="responsive" src="/images/pages/footer/mga-logo-footer.svg"/>
                                 </a>
                             </div>
