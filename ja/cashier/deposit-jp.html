@@ -56,10 +56,10 @@
           <link rel="alternate" href="/zh_cn/cashier/deposit-jp.html" hreflang="ZH_CN" /> 
           <link rel="alternate" href="/zh_tw/cashier/deposit-jp.html" hreflang="ZH_TW" /> 
         
-         <link rel="stylesheet" href="/css/binary.min.css?bvr84wzn">
-         <link rel="stylesheet" href="https://style.binary.com/binary.css?bvr84wzn">
+         <link rel="stylesheet" href="/css/binary.min.css?51qcquir">
+         <link rel="stylesheet" href="https://style.binary.com/binary.css?51qcquir">
         
-        <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=Array.prototype.includes,String.prototype.includes,Symbol,Promise,Object.assign&flags=gated&unknown=polyfill"></script>  <script src='/js/binary.min.js?bvr84wzn' defer async></script>
+        <script src='/js/binary.min.js?51qcquir' defer async></script>
     </head>
 
 
@@ -328,7 +328,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <div class="container">
 
 
-  <div class="gr-row">
+  <div id="japan_cashier_container" class="invisible">
+<div class="gr-row">
     <h1 class="gr-11 gr-10-m">入金</h1>
     <a class="gr-1 gr-2-m no-print align-end" href="javascript:window.print()">
         <img class="responsive" src="/images/common/print.svg"/>
@@ -364,18 +365,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </tbody>
 </table>
 <p>JPで始まる取引口座番号を振込名義の後に必ず記載してください。記載がない場合、取引口座への反映が遅延が起こる可能性があります。</p>
-<table>
-    <tbody>
-        <tr>
-            <td id="name_id_width">振込名義</td>
-            <td id="name_id"></td>
-        </tr>
-    </tbody>
-</table>
+<p>振込名義 <span id="name_id"></span></p>
 <p>振込名義が取引口座名義と相違がある場合は、お客さまの取引口座へ振込が行えません。</p>
 <p>出金先口座情報の変更をご希望の場合、カスタマーサポートまでご連絡ください。</p>
 <p>1回あたりの入金限度額は100万円となっております。</p>
 <p>お客さまから入金を確認後、当社のお客さま取引口座には3営業日以内に反映させて頂きます。</p>
+</div>
 
 
   </div> 
@@ -516,6 +511,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                            <ul>
                                <li>
                                    <a class="pjaxload" href="/ja/company-profile.html">会社概要と開示情報</a>
+                               </li>
+                               <li class="invisible">
+                                   <a class="pjaxload" href="/ja/service-announcements.html">お知らせ</a>
                                </li>
                            </ul>
                        </div>

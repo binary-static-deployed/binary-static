@@ -55,10 +55,10 @@
           <link rel="alternate" href="/zh_cn/cashier/deposit-jp.html" hreflang="ZH_CN" /> 
           <link rel="alternate" href="/zh_tw/cashier/deposit-jp.html" hreflang="ZH_TW" /> 
         
-         <link rel="stylesheet" href="/css/binary.min.css?bvr84wzn">
-         <link rel="stylesheet" href="https://style.binary.com/binary.css?bvr84wzn">
+         <link rel="stylesheet" href="/css/binary.min.css?51qcquir">
+         <link rel="stylesheet" href="https://style.binary.com/binary.css?51qcquir">
         
-        <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=Array.prototype.includes,String.prototype.includes,Symbol,Promise,Object.assign&flags=gated&unknown=polyfill"></script>  <script src='/js/binary.min.js?bvr84wzn' defer async></script>
+        <script src='/js/binary.min.js?51qcquir' defer async></script>
     </head>
 
 
@@ -327,7 +327,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <div class="container">
 
 
-  <div class="gr-row">
+  <div id="japan_cashier_container" class="invisible">
+<div class="gr-row">
     <h1 class="gr-11 gr-10-m">Deposit</h1>
     <a class="gr-1 gr-2-m no-print align-end" href="javascript:window.print()">
         <img class="responsive" src="/images/common/print.svg"/>
@@ -363,18 +364,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </tbody>
 </table>
 <p>{JAPAN ONLY}Please make sure you add your Binary.com account ID to the Remitter's account name, or it will delay crediting the funds to your account:</p>
-<table>
-    <tbody>
-        <tr>
-            <td id="name_id_width">{JAPAN ONLY}Remitter's Name:</td>
-            <td id="name_id"></td>
-        </tr>
-    </tbody>
-</table>
+<p>{JAPAN ONLY}Remitter's Name: <span id="name_id"></span></p>
 <p>{JAPAN ONLY}Please note we can only accept payments from your designated bank account and no other account in your name.</p>
 <p>{JAPAN ONLY}If you wish to change your designated account or you have any other queries, then please contact Customer Support.</p>
 <p>{JAPAN ONLY}Please note our maximum deposit limit for a single transaction is ¥1,000,000.</p>
 <p>{JAPAN ONLY}Please allow up to 3 business days for the funds to be credited to your trading account.</p>
+</div>
 
 
   </div> 
@@ -515,6 +510,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                            <ul>
                                <li>
                                    <a class="pjaxload" href="/en/company-profile.html">{JAPAN ONLY}Company Profile & Disclosure</a>
+                               </li>
+                               <li class="invisible">
+                                   <a class="pjaxload" href="/en/service-announcements.html">{JAPAN ONLY}Service Announcements</a>
                                </li>
                            </ul>
                        </div>

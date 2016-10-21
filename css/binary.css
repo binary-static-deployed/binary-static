@@ -2156,9 +2156,6 @@ ol.start {
   counter-reset: mycounter;
 }
 
-.deposit-jp-content #name_id_width {
-  max-width: 90px;
-}
 .deposit-jp-content img.responsive {
   width: 50%;
   margin-top: auto;
@@ -2490,6 +2487,9 @@ ol.start {
   }
 }
 
+#portfolio #portfolio-content {
+  padding-top: 5px;
+}
 #portfolio td {
   padding: 10px;
   vertical-align: middle;
