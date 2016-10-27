@@ -625,7 +625,6 @@ input[type=checkbox] {
   text-decoration: none;
   letter-spacing: 0;
   text-transform: capitalize;
-  font-size: 109%;
   padding: 0px 10px;
   word-wrap: break-word;
 }
@@ -3070,22 +3069,20 @@ div.kineticjs-content {
 .platforms-content th {
   position: absolute;
   left: 0;
-  width: 90px;
-  height: 200px;
+  width: 100px;
   text-align: left;
-  overflow-y: visible;
-  overflow-x: auto;
+  word-wrap: break-word;
+  word-break: break-word;
 }
 .platforms-content .outer {
   position: relative;
+  background-color: #F2F2F2;
 }
 .platforms-content .inner {
   overflow-x: scroll;
   overflow-y: visible;
-  margin-left: 110px;
-}
-.platforms-content .auto-height {
-  height: 32px;
+  margin-left: 120px;
+  background-color: #fff;
 }
 .platforms-content tr:first-child td {
   line-height: 1.1em;
@@ -3100,14 +3097,21 @@ div.kineticjs-content {
 .platforms-content .small-padding-top {
   padding-top: 4px;
 }
-.platforms-content .fade-to-right {
+.platforms-content .fade-to-right, .platforms-content .fade-to-left {
   position: absolute;
   z-index: 2;
   left: 85%;
   right: 0;
   top: 0;
   height: 100%;
+  width: 105px;
   background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, white 70%);
+}
+.platforms-content .fade-to-left {
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+  left: 120px;
+  opacity: 0;
 }
 
 /* static pages */
