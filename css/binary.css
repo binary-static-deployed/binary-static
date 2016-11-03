@@ -308,7 +308,6 @@ fieldset .error-msg {
 }
 
 .separator-line {
-  border-bottom: 1px solid #DEDEDE;
   margin-top: 10px;
   margin-bottom: 10px;
 }
@@ -386,10 +385,6 @@ img.responsive {
 
 .color-white {
   color: #fff;
-}
-
-.background-gray {
-  background-color: #F2F2F2;
 }
 
 button.blue-button {
@@ -569,10 +564,6 @@ input[type=checkbox] {
 #header {
   height: 75px;
 }
-#header a {
-  color: #fff;
-  text-decoration: none;
-}
 #header a img {
   height: 55px;
 }
@@ -621,15 +612,12 @@ input[type=checkbox] {
   display: table-cell;
   height: 50px;
   max-width: 110px;
-  color: #fff;
   text-decoration: none;
   letter-spacing: 0;
   text-transform: capitalize;
   padding: 0px 10px;
   word-wrap: break-word;
-}
-#header #menu-top li.active a {
-  color: #e98024;
+  color: #fff;
 }
 #header .main-nav > li > ul {
   margin: -20px -1px;
@@ -658,11 +646,6 @@ input[type=checkbox] {
   font-size: 13px;
   font-weight: bold;
 }
-#footer #footer-menu a {
-  font-size: 13px;
-  font-weight: normal;
-  color: #fff;
-}
 #footer #footer-menu li {
   line-height: 1;
 }
@@ -672,13 +655,11 @@ input[type=checkbox] {
 }
 #footer #footer-regulatory a {
   display: inline-block;
-  color: #fff;
   text-decoration: underline;
 }
 #footer #footer-regulatory #regulatory-text {
   line-height: 1.2em;
   text-align: justify;
-  color: #fff;
   font-size: 10px;
 }
 #footer #footer-regulatory #social-networks {
@@ -725,7 +706,6 @@ input[type=checkbox] {
   color: #2E8836;
 }
 #footer #footer-last a {
-  color: #fff;
   text-decoration: underline;
 }
 #footer #footer-last .gambling {
@@ -733,7 +713,6 @@ input[type=checkbox] {
   text-align: justify;
   font-size: 13px;
   font-weight: 400;
-  color: #fff;
   line-height: 110%;
 }
 #footer #end-note {
@@ -751,8 +730,6 @@ input[type=checkbox] {
 }
 
 #main-menu {
-  background-color: #F2F2F2;
-  border-bottom: 1px solid #DEDEDE;
   margin-bottom: 40px;
 }
 #main-menu ul ul {
@@ -765,7 +742,6 @@ input[type=checkbox] {
 .tab-menu-wrap ul, #content .tab-menu-wrap ul {
   margin: 0;
   font-size: 85%;
-  background-color: #F2F2F2;
   position: relative;
   display: block;
 }
@@ -1151,7 +1127,6 @@ meter#password-meter::-webkit-meter-bar {
   margin: 0 1em;
 }
 .home-content .xquote {
-  background-color: #F2F2F2;
   padding: 20px 40px;
 }
 .home-content .xquote p {
@@ -1234,7 +1209,6 @@ meter#password-meter::-webkit-meter-bar {
 }
 .get-started .sidebar-right div, .get-started-jp .sidebar-right div {
   background: #F2F2F2;
-  border-bottom: #DEDEDE;
   margin-bottom: 20px;
   padding: 20px;
   text-align: center;
@@ -1253,7 +1227,6 @@ meter#password-meter::-webkit-meter-bar {
 }
 .get-started dl .section, .get-started-jp dl .section {
   min-height: 224px;
-  background: #F2F2F2;
   margin: 0 10px 20px;
 }
 .get-started dl .section.section-jp, .get-started-jp dl .section.section-jp {
@@ -1363,9 +1336,6 @@ meter#password-meter::-webkit-meter-bar {
 
 .tour {
   margin-top: 40px;
-}
-.tour .section {
-  border-bottom: 1px solid #DEDEDE;
 }
 .tour .section:first-child {
   padding-bottom: 50px;
@@ -1529,7 +1499,7 @@ a.close:hover {
 }
 .inpage_popup_container_ws .inpage_popup_content_box #sell_content_wrapper #sell_details_table th {
   line-height: 24px;
-  border-bottom-color: #C2C2C2;
+  border-bottom: #C2C2C2;
   cursor: pointer;
 }
 .inpage_popup_container_ws .inpage_popup_content_box #sell_content_wrapper #sell_details_table td, .inpage_popup_container_ws .inpage_popup_content_box #sell_content_wrapper #sell_details_table td[data-balloon] {
@@ -2050,9 +2020,6 @@ table .loss, table .lower {
 
 .static_full {
   margin-top: 40px;
-}
-.static_full .section {
-  border-bottom: 1px solid #DEDEDE;
 }
 .static_full .section:first-child {
   padding-bottom: 50px;
@@ -3507,9 +3474,6 @@ div.kineticjs-content {
 #trading_socket_container #contract_prices_container #contract_purchase_profit {
   border-left: 1px solid #DEDEDE;
 }
-#trading_socket_container #contract_prices_container .contract_error {
-  background-color: #fef1cf;
-}
 #trading_socket_container #contract_prices_container .contract_amount, #trading_socket_container #contract_prices_container .contract_payout, #trading_socket_container #contract_prices_container .payout, #trading_socket_container #contract_prices_container .stake {
   padding: 3px;
   line-height: 1.5;
@@ -3861,7 +3825,7 @@ div.kineticjs-content {
 }
 
 .error-field {
-  border-color: #c03;
+  border-color: #c03 !important;
   color: #c03;
 }
 
@@ -3941,6 +3905,324 @@ div.kineticjs-content {
 /*
  * DO NOT ADD ANY COMMON STYLING BELOW THIS. ALL OTHER STYLING GO ABOVE THIS
  */
+#mb_trading {
+  font-family: roboto, sans-serif;
+  font-size: 14px;
+}
+#mb_trading .flex-box {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+#mb_trading .flex-box.rows {
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+#mb_trading .flex-box.cols {
+  -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+@media screen and (max-width: 620px) {
+  #mb_trading .flex-box.japan-table {
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+#mb_trading .japan-table {
+  -webkit-align-items: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+  position: relative;
+}
+#mb_trading .japan-table #disable-overlay {
+  position: absolute;
+  top: 84px;
+  left: 10px;
+  z-index: 1;
+  width: calc(100% - 20px);
+  height: calc(100% - 84px);
+  background-color: rgba(242, 242, 242, 0.5);
+}
+#mb_trading .japan-table #loading-overlay {
+  width: 100%;
+  background: #fff url("../images/common/hourglass_1.gif") center 20px no-repeat;
+}
+#mb_trading .prices-wrapper .price-row .buy-price, #mb_trading .prices-wrapper .price-row .sell-price, #mb_trading .prices-wrapper .price-row .barrier, #mb_trading .prices-wrapper .heading .buy-price, #mb_trading .prices-wrapper .heading .sell-price, #mb_trading .prices-wrapper .heading .barrier {
+  -webkit-flex-grow: 2;
+      -ms-flex-positive: 2;
+          flex-grow: 2;
+  white-space: nowrap;
+  line-height: 35px;
+  min-height: 35px;
+  padding: 3px 0;
+  text-align: center;
+}
+#mb_trading .prices-wrapper .heading .sell-price {
+  padding-right: 20px;
+}
+#mb_trading .prices-wrapper .price-row:nth-child(odd) {
+  background: #F2F2F2;
+}
+#mb_trading .base-value {
+  font-size: 9px;
+}
+#mb_trading .dynamics {
+  display: inline-block;
+  width: 20px;
+}
+#mb_trading .price-wrapper .base-value {
+  display: inline-block;
+  margin-left: 5px;
+}
+#mb_trading .price-button {
+  width: 120px;
+  color: #fff;
+  text-align: center;
+  line-height: 100%;
+  background: #2E8836;
+  border-radius: 3px;
+  padding: 10px 0;
+  cursor: pointer;
+  font-size: 14px;
+  border: 0;
+  min-height: 34px;
+  position: relative;
+}
+#mb_trading .price-button .value-wrapper {
+  margin-left: -15px;
+}
+#mb_trading .price-button .base-value {
+  position: absolute;
+  bottom: 1px;
+  right: 3px;
+}
+#mb_trading .price-button:hover {
+  background-color: #14602B;
+}
+#mb_trading .inactive {
+  color: #DEDEDE;
+}
+#mb_trading .inactive.price-button {
+  color: #fff;
+  background: #DEDEDE;
+  cursor: default;
+  overflow: visible;
+}
+#mb_trading .down {
+  color: #c03;
+}
+#mb_trading .up {
+  color: #2E8836;
+}
+#mb_trading .heading {
+  font-weight: bold;
+}
+#mb_trading .descr-wrapper > div {
+  min-height: 64px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+#mb_trading .descr-wrapper .descr {
+  padding: 0 16px 0 0;
+  font-size: 14px;
+  max-width: 420px;
+  line-height: 1.4em;
+}
+#mb_trading .details-heading {
+  padding: 45px 16px 0;
+  margin-bottom: 0;
+  background-repeat: no-repeat;
+  background-position: top center;
+  font-size: 18px;
+  text-align: center;
+  -webkit-align-self: flex-start;
+      -ms-flex-item-align: start;
+          align-self: flex-start;
+  white-space: nowrap;
+}
+#mb_trading .details-heading.CALLE {
+  background-image: url("https://www.binary.com/images/pages/trade/rise_1.png");
+}
+#mb_trading .details-heading.PUT {
+  background-image: url("https://www.binary.com/images/pages/trade/fall_1.png");
+}
+#mb_trading .details-heading.ONETOUCH {
+  background-image: url("https://www.binary.com/images/pages/trade/touch_1.png");
+}
+#mb_trading .details-heading.NOTOUCH {
+  background-image: url("https://www.binary.com/images/pages/trade/no-touch_1.png");
+}
+#mb_trading .details-heading.EXPIRYRANGEE {
+  background-image: url("https://www.binary.com/images/pages/trade/ends-between_1.png");
+}
+#mb_trading .details-heading.EXPIRYMISS {
+  background-image: url("https://www.binary.com/images/pages/trade/ends-outside_1.png");
+}
+#mb_trading .details-heading.RANGE {
+  background-image: url("https://www.binary.com/images/pages/trade/stay-in-between_1.png");
+}
+#mb_trading .details-heading.UPORDOWN {
+  background-image: url("https://www.binary.com/images/pages/trade/stay-out_1.png");
+}
+#mb_trading .select {
+  margin-right: 10px;
+  margin-bottom: 10px;
+  height: 30px;
+  line-height: 30px;
+}
+#mb_trading #spot-dyn {
+  width: 10px;
+  display: inline-block;
+  font-family: Arial;
+  padding-left: 3px;
+}
+#mb_trading #spot-dyn.still {
+  color: #C2C2C2;
+  padding-left: 6px;
+}
+#mb_trading .padding-10 {
+  padding: 10px 10px 0;
+}
+#mb_trading .padding-right-five {
+  padding-right: 5px;
+}
+#mb_trading .padding-right-ten {
+  padding-right: 10px;
+}
+#mb_trading .no-padding-right {
+  padding-right: 0;
+}
+#mb_trading .select-box {
+  float: left;
+  background: #F2F2F2;
+  border-radius: 3px;
+  width: 100%;
+}
+#mb_trading .select-box .select, #mb_trading .select-box .payout-select {
+  width: 100%;
+  margin-top: 5px;
+  padding: 2px 3px;
+  border: 1px solid #F2F2F2;
+  background: #fff;
+  border-radius: 3px;
+}
+#mb_trading .select-box .select:focus, #mb_trading .select-box .payout-select:focus {
+  outline: none;
+}
+#mb_trading .select-box .payout-input {
+  position: relative;
+  white-space: nowrap;
+}
+#mb_trading .select-box .payout-input .hint {
+  padding: 4px;
+  padding-right: 0;
+  margin-left: 5px;
+  line-height: 16px;
+}
+#mb_trading .select-box .payout-input .hint, #mb_trading .select-box .payout-input span, #mb_trading .select-box .payout-input label {
+  font-size: 10px;
+}
+#mb_trading .select-box .payout-input select#currency {
+  margin: 6px 0;
+  width: 50%;
+}
+#mb_trading .select-box .payout-select {
+  display: inline;
+  height: 24px;
+  line-height: 24px;
+  text-align: right;
+  margin: 6px 0 9px;
+}
+#mb_trading .select-box span + #payout {
+  width: 30px;
+}
+#mb_trading .select-box select + #payout {
+  width: 45%;
+}
+#mb_trading .select-box .payout-mult {
+  font-size: 15px;
+}
+#mb_trading .float-left {
+  float: left;
+}
+#mb_trading .space-between {
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin: 8px 0;
+}
+#mb_trading .space-between .gr-grow {
+  padding: 0;
+}
+#mb_trading .space-between .gr-adapt {
+  padding: 0 0 0 10px;
+}
+#mb_trading .spot div {
+  white-space: nowrap;
+  display: block;
+}
+#mb_trading .spot div.spot-value {
+  line-height: 30px;
+}
+#mb_trading .spot div #trading_worm_chart {
+  display: inline-block;
+  margin-top: 3px;
+}
+#mb_trading .countdown-timer {
+  padding: 5px 0 5px 5px;
+  border-radius: 3px;
+  white-space: nowrap;
+  line-height: 22px;
+}
+#mb_trading .countdown-timer.alert {
+  background: rgba(251, 228, 215, 0.7);
+  padding-right: 5px;
+  margin-right: 0;
+}
+@media screen and (max-width: 768px) {
+  #mb_trading .gr-12-p {
+    padding-bottom: 10px;
+  }
+  #mb_trading .padding-right-five, #mb_trading .no-padding-right {
+    padding-right: 10px;
+  }
+}
+#mb_trading #notifications_wrapper .notice-msg {
+  margin-bottom: 5px;
+  padding: 10px 26px;
+  line-height: 25px;
+  position: relative;
+}
+#mb_trading #notifications_wrapper .notice-msg.dismissible {
+  cursor: pointer;
+}
+#mb_trading #notifications_wrapper .notice-msg .notification-dismiss {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  color: #2a3052;
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  font-family: Arial;
+  font-size: 18px;
+}
+#mb_trading #notifications_wrapper .notice-msg:hover .notification-dismiss {
+  color: #e98024;
+}
+
+.center-text .spinner, .center-text #trading_init_progress, .center-text #statement-ws-container #loading_in_progress, #statement-ws-container .center-text #loading_in_progress {
+  width: 160px;
+  height: 160px;
+}
+
+#trading_bottom_content #tab_portfolio-content {
+  overflow-x: auto;
+}
+
 @keyframes spinning {
   from {
     -webkit-transform: rotate(0deg);
@@ -4754,7 +5036,7 @@ div.kineticjs-content {
 }
 
 .error-field {
-  border-color: #c03;
+  border-color: #c03 !important;
   color: #c03;
 }
 
