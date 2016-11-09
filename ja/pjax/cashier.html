@@ -34,13 +34,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     </div>
                     <div class="gr-5 gr-12-m">
                         <span class="ja-hide">お客様のバーチャルマネー残高がUSD 1,000.00を下回る場合、バーチャルマネーの追加リクエストが可能です。</span>
-                        <p class="hidden ja-show">バーチャルマネーの残高が100,000円を下回る場合、バーチャルマネーを追加することが可能です。</span>
+                        <p class="all-hide ja-show">バーチャルマネーの残高が100,000円を下回る場合、バーチャルマネーを追加することが可能です。</span>
                     </div>
                     <div class="gr-5 gr-12-m">
-                        <div class="gr-padding-10 by_client_type client_virtual with_login_cookies invisible gr-parent">
+                        <div class="gr-padding-10 by_client_type client_virtual with_login_cookies invisible">
                             <a class="pjaxload button button_large by_client_type client_virtual with_login_cookies invisible" href="/ja/cashier/top_up_virtualws.html" id="VRT_topup_link">
                                 <span class="ja-hide">USD 10,000.00をゲットする</span>
-                                <span class="hidden ja-show">1,000,000円を入手する</span>
+                                <span class="all-hide ja-show">1,000,000円を入手する</span>
                             </a>
                         </div>
                     </div>
@@ -71,9 +71,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="gr-12">
                 <div class="gr-row">
                     <div class="gr-2 gr-4-m">
-                        <a class="pjaxload" href="/ja/cashier/forwardws.html#deposit" id="payment_methods">
-                            <img class="ja-hide responsive charting-page-icon" id="payment_methods_icon" src="/images/pages/cashier/payment-methods.svg" />
-                            <img class="hidden ja-show responsive charting-page-icon" id="payment_methods_icon" src="/images/pages/cashier/japan_cashier.svg" />
+                        <a class="pjaxload ja-hide" href="/ja/cashier/forwardws.html#deposit" id="payment_methods">
+                            <img class="responsive charting-page-icon" id="payment_methods_icon" src="/images/pages/cashier/payment-methods.svg" />
+                        </a>
+                        <a class="pjaxload all-hide ja-show" href="/ja/cashier/deposit-jp.html" id="payment_methods">
+                            <img class="responsive charting-page-icon" id="payment_methods_icon" src="/images/pages/cashier/japan_cashier.svg" />
                         </a>
                     </div>
                     <div class="gr-5 gr-12-m">
@@ -97,7 +99,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                             <a class="pjaxload button button_large"></a>
                         </div>
                     </div>
-                    <div class="gr-5 gr-12-m hidden ja-show">
+                    <div class="gr-5 gr-12-m all-hide ja-show">
                         <div class="gr-padding-10 by_client_type client_real with_login_cookies invisible gr-parent">
                             <a class="pjaxload button button_large by_client_type client_real with_login_cookies invisible" href="/ja/cashier/deposit-jp.html">
                                 <span class="deposit">入金</span>

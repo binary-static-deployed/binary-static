@@ -55,10 +55,10 @@
           <link rel="alternate" href="/zh_cn/cashier.html" hreflang="ZH_CN" /> 
           <link rel="alternate" href="/zh_tw/cashier.html" hreflang="ZH_TW" /> 
         
-         <link rel="stylesheet" href="/css/binary.min.css?rd2jo6u8">
-         <link rel="stylesheet" href="https://style.binary.com/binary.css?rd2jo6u8">
+         <link rel="stylesheet" href="/css/binary.min.css?7o3zwuuo">
+         <link rel="stylesheet" href="https://style.binary.com/binary.css?7o3zwuuo">
         
-        <script src='/js/binary.min.js?rd2jo6u8' defer async></script>
+        <script src='/js/binary.min.js?7o3zwuuo' defer async></script>
     </head>
 
 
@@ -92,14 +92,14 @@
         <div class='container'>
             <div class='gr-12'>
                 <div class='gr-row gr-row-align-middle'>
-                    <div class='gr-3 gr-2-m gr-2-p gr-padding-10'>
+                    <div class='gr-3 gr-2-m gr-2-p'>
                         <a id="logo" href="javascript:;">
-                            <div class='gr-row'>
-                                <div class='gr-3 gr-12-m gr-12-p gr-no-gutter'>
-                                    <img class='responsive' src="/images/pages/binary-symbol-logo.svg" />
+                            <div class='gr-row logo-parent'>
+                                <div class='gr-3 gr-12-m gr-12-p gr-no-gutter logo'>
+                                    <img class='responsive' src="https://style.binary.com/images/logo/symbol.svg" />
                                 </div>
-                                <div class='gr-9 gr-hide-m gr-hide-p' id='binary-logo-text'>
-                                    <img class='responsive' src="/images/pages/binary-type-logo.svg" />
+                                <div class='gr-9 gr-hide-m gr-hide-p binary-logo-text'>
+                                    <img class='responsive' src="https://style.binary.com/images/logo/type.svg" />
                                 </div>
                             </div>
                         </a>
@@ -330,13 +330,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     </div>
                     <div class="gr-5 gr-12-m">
                         <span class="ja-hide">ท่านสามารถแจ้งความประสงค์เงินเสมือนจำนวนมากกว่านี้ หากยอดคงเหลือเสมือนของท่านลงไปต่ำกว่า 1,000 เหรียญสหรัฐ</span>
-                        <p class="hidden ja-show">ท่านสามารถแจ้งความประสงค์เงินเสมือนจำนวนมากกว่านี้ หากยอดคงเหลือเสมือนของท่านลงไปต่ำกว่า 100,000 เยน</span>
+                        <p class="all-hide ja-show">ท่านสามารถแจ้งความประสงค์เงินเสมือนจำนวนมากกว่านี้ หากยอดคงเหลือเสมือนของท่านลงไปต่ำกว่า 100,000 เยน</span>
                     </div>
                     <div class="gr-5 gr-12-m">
-                        <div class="gr-padding-10 by_client_type client_virtual with_login_cookies invisible gr-parent">
+                        <div class="gr-padding-10 by_client_type client_virtual with_login_cookies invisible">
                             <a class="pjaxload button button_large by_client_type client_virtual with_login_cookies invisible" href="/th/cashier/top_up_virtualws.html" id="VRT_topup_link">
                                 <span class="ja-hide">ได้รับ 10,0000 เหรียญสหรัฐ</span>
-                                <span class="hidden ja-show">ได้รับ 1,000,000 เยน</span>
+                                <span class="all-hide ja-show">ได้รับ 1,000,000 เยน</span>
                             </a>
                         </div>
                     </div>
@@ -367,9 +367,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="gr-12">
                 <div class="gr-row">
                     <div class="gr-2 gr-4-m">
-                        <a class="pjaxload" href="/th/cashier/forwardws.html#deposit" id="payment_methods">
-                            <img class="ja-hide responsive charting-page-icon" id="payment_methods_icon" src="/images/pages/cashier/payment-methods.svg" />
-                            <img class="hidden ja-show responsive charting-page-icon" id="payment_methods_icon" src="/images/pages/cashier/japan_cashier.svg" />
+                        <a class="pjaxload ja-hide" href="/th/cashier/forwardws.html#deposit" id="payment_methods">
+                            <img class="responsive charting-page-icon" id="payment_methods_icon" src="/images/pages/cashier/payment-methods.svg" />
+                        </a>
+                        <a class="pjaxload all-hide ja-show" href="/th/cashier/deposit-jp.html" id="payment_methods">
+                            <img class="responsive charting-page-icon" id="payment_methods_icon" src="/images/pages/cashier/japan_cashier.svg" />
                         </a>
                     </div>
                     <div class="gr-5 gr-12-m">
@@ -393,7 +395,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                             <a class="pjaxload button button_large"></a>
                         </div>
                     </div>
-                    <div class="gr-5 gr-12-m hidden ja-show">
+                    <div class="gr-5 gr-12-m all-hide ja-show">
                         <div class="gr-padding-10 by_client_type client_real with_login_cookies invisible gr-parent">
                             <a class="pjaxload button button_large by_client_type client_real with_login_cookies invisible" href="/th/cashier/deposit-jp.html">
                                 <span class="deposit">ฝาก</span>

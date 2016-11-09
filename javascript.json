@@ -66,6 +66,7 @@
     "src/javascript/binary/components/date_picker/selected_dates.js",
     "src/javascript/binary/components/time_picker.js",
     "src/javascript/binary/components/trackjs_onerror.js",
+    "src/javascript/binary/static_pages/charity.js",
     "src/javascript/binary/static_pages/endpoint.js",
     "src/javascript/binary/static_pages/get_started_jp.js",
     "src/javascript/binary/static_pages/job_details.js",

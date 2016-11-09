@@ -1,4 +1,4 @@
-<div id="content" class="jptrading-content">
+<div id="content" class="jp_trading-content">
         <!-- Google Tag Manager -->
 <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-MZWFF7"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -9,8 +9,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-MZWFF7');</script>
 <!-- End Google Tag Manager -->
         <div id="page_info" style="display:none;">
-            <title>Sharp Prices. Smart Trading. | Binary.com</title>
-            <div id="content_class">jptrading-content</div>
+            <title>優れた価格設定、賢くトレード。 | Binary.com</title>
+            <div id="content_class">jp_trading-content</div>
         </div>
         
         <div class="container">
@@ -64,7 +64,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 <div id="open_positions_container"><div id="portfolio">
 
-    <h1 class="portfolio-header-margin">Portfolio</h1>
+    <h1 class="portfolio-header-margin">ポジション一覧</h1>
 
     <p class="notice-msg center-text invisible" id="error-msg"></p>
 
@@ -72,27 +72,27 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     <div id="portfolio-content" class="invisible">
         <div class="gr-parent gr-padding-10">
-            Account balance: 
+            口座残高： 
             <span class="loading" id="portfolio-balance"></span>
 
             <!-- If the account balance is zero we show the following button, otherwise we remove it -->
-            <a href="/en/cashier/forwardws.html#deposit" id="if-balance-zero" class="invisible button button_large by_client_type client_real with_login_cookies">
-                <span>Make a Deposit</span>
+            <a href="/ja/cashier/forwardws.html#deposit" id="if-balance-zero" class="invisible button button_large by_client_type client_real with_login_cookies">
+                <span>入金</span>
             </a>
         </div>
 
         <div id="portfolio-no-contract">
-            <p>No open positions.</p>
+            <p>現在、保有ポジションはありません。</p>
         </div>
 
         <table id="portfolio-table">
             <thead>
                 <tr>
-                    <th class="ref">Ref.</th>
-                    <th class="payout nowrap">Potential Payout</th>
-                    <th class="details">Contract Details</th>
-                    <th class="purchase">Purchase</th>
-                    <th class="indicative nowrap">Indicative</th>
+                    <th class="ref">約定番号</th>
+                    <th class="payout nowrap">ペイアウト</th>
+                    <th class="details">トレード詳細情報</th>
+                    <th class="purchase">購入</th>
+                    <th class="indicative nowrap">参考売却価格</th>
                     <th class="button"></th>
                 </tr>
             </thead>
@@ -101,7 +101,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
             <tfoot>
                 <tr>
-                    <th>Total</th>
+                    <th>合計</th>
                     <th class="ref" colspan="2"></th>
                     <th class="cost" id="cost-of-open-positions"></th>
                     <th class="value" id="value-of-open-positions" colspan="2"></th>

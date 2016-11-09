@@ -34,13 +34,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     </div>
                     <div class="gr-5 gr-12-m">
                         <span class="ja-hide">如果虚拟资金余额低于1,000.00美元，您可请求获取更多虚拟资金。</span>
-                        <p class="hidden ja-show">如果虚拟资金余额低于100,000日元，您可请求获取更多虚拟资金。</span>
+                        <p class="all-hide ja-show">如果虚拟资金余额低于100,000日元，您可请求获取更多虚拟资金。</span>
                     </div>
                     <div class="gr-5 gr-12-m">
-                        <div class="gr-padding-10 by_client_type client_virtual with_login_cookies invisible gr-parent">
+                        <div class="gr-padding-10 by_client_type client_virtual with_login_cookies invisible">
                             <a class="pjaxload button button_large by_client_type client_virtual with_login_cookies invisible" href="/zh_cn/cashier/top_up_virtualws.html" id="VRT_topup_link">
                                 <span class="ja-hide">获取10,000.00美元</span>
-                                <span class="hidden ja-show">获取1,000,000日元</span>
+                                <span class="all-hide ja-show">获取1,000,000日元</span>
                             </a>
                         </div>
                     </div>
@@ -71,9 +71,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="gr-12">
                 <div class="gr-row">
                     <div class="gr-2 gr-4-m">
-                        <a class="pjaxload" href="/zh_cn/cashier/forwardws.html#deposit" id="payment_methods">
-                            <img class="ja-hide responsive charting-page-icon" id="payment_methods_icon" src="/images/pages/cashier/payment-methods.svg" />
-                            <img class="hidden ja-show responsive charting-page-icon" id="payment_methods_icon" src="/images/pages/cashier/japan_cashier.svg" />
+                        <a class="pjaxload ja-hide" href="/zh_cn/cashier/forwardws.html#deposit" id="payment_methods">
+                            <img class="responsive charting-page-icon" id="payment_methods_icon" src="/images/pages/cashier/payment-methods.svg" />
+                        </a>
+                        <a class="pjaxload all-hide ja-show" href="/zh_cn/cashier/deposit-jp.html" id="payment_methods">
+                            <img class="responsive charting-page-icon" id="payment_methods_icon" src="/images/pages/cashier/japan_cashier.svg" />
                         </a>
                     </div>
                     <div class="gr-5 gr-12-m">
@@ -97,7 +99,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                             <a class="pjaxload button button_large"></a>
                         </div>
                     </div>
-                    <div class="gr-5 gr-12-m hidden ja-show">
+                    <div class="gr-5 gr-12-m all-hide ja-show">
                         <div class="gr-padding-10 by_client_type client_real with_login_cookies invisible gr-parent">
                             <a class="pjaxload button button_large by_client_type client_real with_login_cookies invisible" href="/zh_cn/cashier/deposit-jp.html">
                                 <span class="deposit">存款</span>

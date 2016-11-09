@@ -447,11 +447,6 @@ input[type=checkbox] {
             transform: rotate(360deg);
   }
 }
-.spinner, #trading_init_progress, #statement-ws-container #loading_in_progress {
-  -webkit-animation: spinning 1s infinite linear;
-  animation: spinning 1s infinite linear;
-}
-
 @keyframes pulsing {
   0% {
     opacity: 1;
@@ -1380,6 +1375,52 @@ meter#password-meter::-webkit-meter-bar {
   }
 }
 
+.charity {
+  margin-top: 40px;
+}
+.charity .section:first-child {
+  padding-bottom: 50px;
+}
+.charity .section:not(:first-child) {
+  padding: 50px 0;
+}
+.charity .section:last-child {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+.charity .section {
+  display: block;
+  overflow: hidden;
+}
+.charity .section-content:first-child {
+  text-align: center;
+}
+.charity .section-content h1, .charity .section-content .charity-country {
+  margin: 35px 0 25px;
+}
+.charity .section-content h3 {
+  text-align: center;
+  padding: 15px 0;
+  display: block;
+  background-color: #F2F2F2;
+}
+.charity .gallery {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+.charity .gallery img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity 2s ease;
+}
+.charity .gallery img:first-child {
+  position: relative;
+  opacity: 1;
+}
+
 .price_moved_up {
   background-color: #29abe2;
   color: #fff;
@@ -1607,6 +1648,10 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
   margin: 0;
 }
 
+select[disabled=disabled] {
+  color: #C2C2C2;
+}
+
 #popup {
   background-color: #fff;
 }
@@ -1667,11 +1712,6 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 
 #chrome {
   background-image: url("../images/pages/logintrouble/chromelogo-icon_1.png");
-}
-
-#std_loading_img {
-  margin: 0 auto;
-  text-align: center;
 }
 
 /* statement */
@@ -3108,11 +3148,6 @@ div.kineticjs-content {
     opacity: 1;
   }
 }
-.spinner, #trading_init_progress, #statement-ws-container #loading_in_progress {
-  -webkit-animation: spinning 1s infinite linear;
-          animation: spinning 1s infinite linear;
-}
-
 #trading_init_progress {
   cursor: pointer;
   /*background-image: url('../images/pages/binary-symbol-logo.png');
@@ -4214,11 +4249,6 @@ div.kineticjs-content {
   color: #e98024;
 }
 
-.center-text .spinner, .center-text #trading_init_progress, .center-text #statement-ws-container #loading_in_progress, #statement-ws-container .center-text #loading_in_progress {
-  width: 160px;
-  height: 160px;
-}
-
 #trading_bottom_content #tab_portfolio-content {
   overflow-x: auto;
 }
@@ -4241,11 +4271,6 @@ div.kineticjs-content {
     opacity: 1;
   }
 }
-.spinner, #trading_init_progress, #statement-ws-container #loading_in_progress {
-  -webkit-animation: spinning 1s infinite linear;
-          animation: spinning 1s infinite linear;
-}
-
 #trading_init_progress {
   cursor: pointer;
   /*background-image: url('../images/pages/binary-symbol-logo.png');
@@ -5146,42 +5171,6 @@ div.kineticjs-content {
 /*
  * DO NOT ADD ANY COMMON STYLING BELOW THIS. ALL OTHER STYLING GO ABOVE THIS
  */
-#statement-ws-container #overlay_background {
-  position: absolute;
-  display: none;
-  z-index: 10;
-  width: 100%;
-  min-height: 50%;
-  background-color: #fff;
-}
-#statement-ws-container #loading_in_progress {
-  cursor: pointer;
-  background-image: url("../images/pages/binary-symbol-logo.png");
-  background-image: url("../images/pages/binary-symbol-logo.svg"), none;
-  background-size: contain;
-  width: 10rem;
-  height: 10rem;
-  position: absolute;
-  left: 50%;
-  top: 350px;
-  margin-left: -5rem;
-  display: none;
-  z-index: 11;
-}
-#statement-ws-container #date-nav-panel {
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-justify-content: space-around;
-      -ms-flex-pack: distribute;
-          justify-content: space-around;
-  -webkit-flex-direction: row;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -webkit-align-items: stretch;
-      -ms-flex-align: stretch;
-          align-items: stretch;
-}
 #statement-ws-container #download_csv {
   line-height: 28px;
 }
@@ -5543,12 +5532,18 @@ body.ES .google-play-badge {
   background-image: url("../images/pages/applications/googleplay_es.svg");
 }
 
+body.RU #verify-email-form button {
+  font-size: 80%;
+}
 body.RU #trading_socket_container #contract_form_name_nav {
   font-size: 80%;
 }
 body.RU #trading_socket_container .contract_heading {
   font-size: 95%;
   padding-top: 2.7em;
+}
+body.RU #trading_socket_container #expiry_type {
+  max-width: 185px;
 }
 body.RU .calls_recording {
   display: inline !important;
