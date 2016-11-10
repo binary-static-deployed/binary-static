@@ -73,7 +73,8 @@ table {
  */
 /* DO NOT include any rules for specific pages in this file. */
 /* theme elements */
-html {
+html, body {
+  width: 100%;
   height: 100%;
 }
 
@@ -82,14 +83,10 @@ body {
   position: relative;
   background-position: bottom;
   background-repeat: repeat-x;
+  overflow-x: hidden;
 }
 body .ui-widget {
   font-size: 0.9em;
-}
-
-html, body {
-  width: 100%;
-  overflow-x: hidden;
 }
 
 h1, h2, h3 {
@@ -421,6 +418,10 @@ p.no-para-margin {
 
 input[type=checkbox] {
   margin-top: 5px;
+}
+
+.no-scroll, .no-scroll body {
+  overflow: hidden;
 }
 
 *, *:after, *:before {
@@ -991,6 +992,25 @@ input[type=checkbox] {
   width: 100%;
 }
 
+/* mobile menu overrides */
+html .mm-menu.mm-right {
+  width: 50%;
+  min-width: 220px;
+}
+@media all and (min-width: 550px) {
+  html .mm-menu.mm-right {
+    width: 250px;
+  }
+}
+html.mm-right.mm-opening body .mm-page, html.mm-right.mm-opening body #mm-blocker, html.mm-right.mm-opening body .mm-fixed-top, html.mm-right.mm-opening body .mm-fixed-bottom {
+  right: 220px;
+}
+@media all and (min-width: 550px) {
+  html.mm-right.mm-opening body .mm-page, html.mm-right.mm-opening body #mm-blocker, html.mm-right.mm-opening body .mm-fixed-top, html.mm-right.mm-opening body .mm-fixed-bottom {
+    right: 250px;
+  }
+}
+
 .lightbox {
   display: table;
   position: fixed;
@@ -1222,10 +1242,12 @@ meter#password-meter::-webkit-meter-bar {
 }
 .get-started dl .section, .get-started-jp dl .section {
   min-height: 224px;
+  height: calc(100% - 20px);
   margin: 0 10px 20px;
 }
 .get-started dl .section.section-jp, .get-started-jp dl .section.section-jp {
   min-height: 0;
+  background-color: #000;
 }
 .get-started dl .section-header, .get-started-jp dl .section-header {
   padding: 10px;
@@ -5301,9 +5323,10 @@ iframe#chart_frame {
       -ms-flex: 2 1 100px;
           flex: 2 1 100px;
   padding-right: 20px;
+  min-width: 150px;
 }
 #profit-table-ws-container .new-width {
-  min-width: 120px;
+  min-width: 100px;
 }
 
 #limits-ws-container .item img {
@@ -5363,7 +5386,7 @@ body .all-hide {
   display: none !important;
 }
 body ul.checked li {
-  background-position: left;
+  background-position: left top;
   padding-left: 35px;
 }
 body .app-store-badge, body .google-play-badge {
@@ -5676,6 +5699,10 @@ body.TH .google-play-badge {
 @media screen and (max-width: 480px) {
   .empty-space {
     margin-top: 0;
+  }
+
+  #sell_popup_container {
+    max-height: 100%;
   }
 }
 @media print {
