@@ -71,6 +71,9 @@ table {
 /*
  * To create an optimized svg url
  */
+/*
+ * return svg url using specified color
+ */
 /* DO NOT include any rules for specific pages in this file. */
 /* theme elements */
 html, body {
@@ -1385,6 +1388,9 @@ meter#password-meter::-webkit-meter-bar {
 .contact-content .hr-line {
   border-bottom: 1px solid #DEDEDE;
 }
+.contact-content #cs_telephone_number {
+  width: 100%;
+}
 @media screen and (max-width: 480px) {
   .contact-content .grd-grid-2 .grd-hide-mobile {
     display: none !important;
@@ -1567,6 +1573,7 @@ a.close:hover {
 }
 .inpage_popup_container_ws .inpage_popup_content_box #sell_content_wrapper #sell_details_table td, .inpage_popup_container_ws .inpage_popup_content_box #sell_content_wrapper #sell_details_table td[data-balloon] {
   border-bottom: 1px solid #F2F2F2;
+  vertical-align: middle;
 }
 .inpage_popup_container_ws .inpage_popup_content_box #sell_content_wrapper #sell_details_table #trade_details_profit_loss {
   font-weight: bold;
@@ -3573,6 +3580,9 @@ div.kineticjs-content {
   background: transparent;
   z-index: 9;
 }
+#trading_socket_container .overlay_container .close {
+  z-index: 10;
+}
 #trading_socket_container .overlay_container#loading_container2 {
   background: #F2F2F2;
   opacity: 0.5;
@@ -4028,7 +4038,23 @@ div.kineticjs-content {
 }
 #mb_trading .dynamics {
   display: inline-block;
-  width: 20px;
+  width: 10px;
+  height: 15px;
+  margin-right: 5px;
+  background-repeat: no-repeat;
+  vertical-align: middle;
+}
+#mb_trading .price-wrapper .dynamics.up {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 14' width='10' height='14'%3E%3Cg%3E%3Cpolygon fill='black' points='7 5 7 13 3 13 3 5 0 5 5 0 10 5 7 5'/%3E%3C/g%3E%3C/svg%3E");
+}
+#mb_trading .price-wrapper .dynamics.down {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 14' width='10' height='14'%3E%3Cg%3E%3Cpolygon fill='black' points='7 8 7 0 3 0 3 8 0 8 5 13 10 8 7 8'/%3E%3C/g%3E%3C/svg%3E");
+}
+#mb_trading .price-wrapper.inactive .dynamics.up {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 14' width='10' height='14'%3E%3Cg%3E%3Cpolygon fill='%23dedede' points='7 5 7 13 3 13 3 5 0 5 5 0 10 5 7 5'/%3E%3C/g%3E%3C/svg%3E");
+}
+#mb_trading .price-wrapper.inactive .dynamics.down {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 14' width='10' height='14'%3E%3Cg%3E%3Cpolygon fill='%23dedede' points='7 8 7 0 3 0 3 8 0 8 5 13 10 8 7 8'/%3E%3C/g%3E%3C/svg%3E");
 }
 #mb_trading .price-wrapper .base-value {
   display: inline-block;
@@ -4051,6 +4077,12 @@ div.kineticjs-content {
 #mb_trading .price-button .value-wrapper {
   margin-left: -15px;
 }
+#mb_trading .price-button .value-wrapper .dynamics.up {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 14' width='10' height='14'%3E%3Cg%3E%3Cpolygon fill='white' points='7 5 7 13 3 13 3 5 0 5 5 0 10 5 7 5'/%3E%3C/g%3E%3C/svg%3E");
+}
+#mb_trading .price-button .value-wrapper .dynamics.down {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 14' width='10' height='14'%3E%3Cg%3E%3Cpolygon fill='white' points='7 8 7 0 3 0 3 8 0 8 5 13 10 8 7 8'/%3E%3C/g%3E%3C/svg%3E");
+}
 #mb_trading .price-button .base-value {
   position: absolute;
   bottom: 1px;
@@ -4067,12 +4099,6 @@ div.kineticjs-content {
   background: #DEDEDE;
   cursor: default;
   overflow: visible;
-}
-#mb_trading .down {
-  color: #c03;
-}
-#mb_trading .up {
-  color: #2E8836;
 }
 #mb_trading .heading {
   font-weight: bold;
@@ -4130,15 +4156,14 @@ div.kineticjs-content {
   height: 30px;
   line-height: 30px;
 }
-#mb_trading #spot-dyn {
-  width: 10px;
-  display: inline-block;
-  font-family: Arial;
-  padding-left: 3px;
+#mb_trading #spot-dyn.down {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 14' width='10' height='14'%3E%3Cg%3E%3Cpolygon fill='%23cc0033' points='7 8 7 0 3 0 3 8 0 8 5 13 10 8 7 8'/%3E%3C/g%3E%3C/svg%3E");
+}
+#mb_trading #spot-dyn.up {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 14' width='10' height='14'%3E%3Cg%3E%3Cpolygon fill='%232e8836' points='7 5 7 13 3 13 3 5 0 5 5 0 10 5 7 5'/%3E%3C/g%3E%3C/svg%3E");
 }
 #mb_trading #spot-dyn.still {
-  color: #C2C2C2;
-  padding-left: 6px;
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 14' width='10' height='14'%3E%3Cg%3E%3Ccircle fill='%23c2c2c2' cx='5' cy='7' r='4'/%3E%3C/g%3E%3C/svg%3E");
 }
 #mb_trading .padding-10 {
   padding: 10px 10px 0;
@@ -4224,6 +4249,9 @@ div.kineticjs-content {
 #mb_trading .spot div.spot-value {
   line-height: 30px;
 }
+#mb_trading .spot div.spot-value * {
+  vertical-align: middle;
+}
 #mb_trading .spot div #trading_worm_chart {
   display: inline-block;
   margin-top: 3px;
@@ -4245,6 +4273,21 @@ div.kineticjs-content {
   }
   #mb_trading .padding-right-five, #mb_trading .no-padding-right {
     padding-right: 10px;
+  }
+}
+@media screen and (max-width: 480px) {
+  #mb_trading .japan-form .gr-row > div:first-child {
+    padding-bottom: 10px;
+  }
+  #mb_trading .japan-table .price-row .barrier, #mb_trading .japan-table .price-row .price-button .value-wrapper, #mb_trading .japan-table .price-row .sell-price {
+    font-size: 0.9em;
+  }
+  #mb_trading .japan-table .price-row .price-button {
+    width: 80%;
+    margin-left: 15px;
+  }
+  #mb_trading .japan-table .price-row .price-button .base-value {
+    bottom: 0px;
   }
 }
 #mb_trading #notifications_wrapper .notice-msg {
@@ -4763,6 +4806,9 @@ div.kineticjs-content {
   display: none;
   background: transparent;
   z-index: 9;
+}
+#trading_socket_container_beta .overlay_container .close {
+  z-index: 10;
 }
 #trading_socket_container_beta .overlay_container#loading_container2 {
   opacity: 0.5;
