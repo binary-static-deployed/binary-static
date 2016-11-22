@@ -86,8 +86,8 @@
 	__webpack_require__(60);
 	
 	exportAllFunctions(__webpack_require__(61));
-	exportAllFunctions(__webpack_require__(64));
 	exportAllFunctions(__webpack_require__(65));
+	exportAllFunctions(__webpack_require__(66));
 	exportAllFunctions(__webpack_require__(74));
 	
 	exportAllFunctions(__webpack_require__(76));
@@ -141,7 +141,7 @@
 	exportAllFunctions(__webpack_require__(228));
 	exportAllFunctions(__webpack_require__(229));
 	exportAllFunctions(__webpack_require__(230));
-	exportAllFunctions(__webpack_require__(66));
+	exportAllFunctions(__webpack_require__(67));
 
 
 /***/ },
@@ -67498,8 +67498,10 @@
 
 /***/ },
 /* 63 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
+	var Login = __webpack_require__(64).Login;
+	
 	function checkClientsCountry() {
 	  var clients_country = localStorage.getItem('clients_country');
 	  if (clients_country) {
@@ -67544,6 +67546,48 @@
 /* 64 */
 /***/ function(module, exports) {
 
+	var Login = (function() {
+	    "use strict";
+	
+	    var redirect_to_login = function() {
+	        if (!page.client.is_logged_in && !is_login_pages()) {
+	            try {
+	                sessionStorage.setItem('redirect_url', window.location.href);
+	            } catch(e) {
+	                alert('The website needs features which are not enabled on private mode browsing. Please use normal mode.');
+	            }
+	            window.location.href = this.login_url();
+	        }
+	    };
+	
+	    var login_url = function() {
+	        var server_url = localStorage.getItem('config.server_url');
+	        return ((server_url && /qa/.test(server_url)) ?
+	            'https://www.' + server_url.split('.')[1] + '.com/oauth2/authorize?app_id=' + getAppId() + '&l=' + page.language() :
+	            'https://oauth.binary.com/oauth2/authorize?app_id=' + getAppId() + '&l=' + page.language()
+	        );
+	    };
+	
+	    var is_login_pages = function() {
+	        return /logged_inws|oauth2/.test(document.URL);
+	    };
+	
+	    return {
+	        redirect_to_login: redirect_to_login,
+	        is_login_pages   : is_login_pages,
+	        login_url        : login_url,
+	    };
+	}());
+	
+	module.exports = {
+	    Login: Login,
+	};
+
+
+/***/ },
+/* 65 */
+/***/ function(module, exports) {
+
 	(function () {
 	    'use strict';
 	
@@ -67562,11 +67606,11 @@
 
 
 /***/ },
-/* 65 */
+/* 66 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var getAppId = __webpack_require__(66).getAppId;
-	var Login = __webpack_require__(67).Login;
+	var getAppId = __webpack_require__(67).getAppId;
+	var Login = __webpack_require__(64).Login;
 	var showLocalTimeOnHover = __webpack_require__(62).showLocalTimeOnHover;
 	var toJapanTimeIfNeeded = __webpack_require__(62).toJapanTimeIfNeeded;
 	var template = __webpack_require__(62).template;
@@ -69025,7 +69069,7 @@
 
 
 /***/ },
-/* 66 */
+/* 67 */
 /***/ function(module, exports) {
 
 	/*
@@ -69074,48 +69118,6 @@
 	module.exports = {
 	    getAppId: getAppId,
 	    getSocketURL: getSocketURL,
-	};
-
-
-/***/ },
-/* 67 */
-/***/ function(module, exports) {
-
-	var Login = (function() {
-	    "use strict";
-	
-	    var redirect_to_login = function() {
-	        if (!page.client.is_logged_in && !is_login_pages()) {
-	            try {
-	                sessionStorage.setItem('redirect_url', window.location.href);
-	            } catch(e) {
-	                alert('The website needs features which are not enabled on private mode browsing. Please use normal mode.');
-	            }
-	            window.location.href = this.login_url();
-	        }
-	    };
-	
-	    var login_url = function() {
-	        var server_url = localStorage.getItem('config.server_url');
-	        return ((server_url && /qa/.test(server_url)) ?
-	            'https://www.' + server_url.split('.')[1] + '.com/oauth2/authorize?app_id=' + getAppId() + '&l=' + page.language() :
-	            'https://oauth.binary.com/oauth2/authorize?app_id=' + getAppId() + '&l=' + page.language()
-	        );
-	    };
-	
-	    var is_login_pages = function() {
-	        return /logged_inws|oauth2/.test(document.URL);
-	    };
-	
-	    return {
-	        redirect_to_login: redirect_to_login,
-	        is_login_pages   : is_login_pages,
-	        login_url        : login_url,
-	    };
-	}());
-	
-	module.exports = {
-	    Login: Login,
 	};
 
 
@@ -70030,7 +70032,6 @@
 /* 76 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var Login = __webpack_require__(67).Login;
 	var Endpoint = __webpack_require__(77).Endpoint;
 	var GetStartedJP = __webpack_require__(78).GetStartedJP;
 	var JobDetails = __webpack_require__(79).JobDetails;
@@ -70237,8 +70238,8 @@
 /* 77 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var getAppId = __webpack_require__(66).getAppId;
-	var getSocketURL = __webpack_require__(66).getSocketURL;
+	var getAppId = __webpack_require__(67).getAppId;
+	var getSocketURL = __webpack_require__(67).getSocketURL;
 	
 	var Endpoint = (function() {
 	    var init = function() {
@@ -76143,9 +76144,9 @@
 /* 116 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var getSocketURL = __webpack_require__(66).getSocketURL;
-	var getAppId = __webpack_require__(66).getAppId;
-	var Login = __webpack_require__(67).Login;
+	var getSocketURL = __webpack_require__(67).getSocketURL;
+	var getAppId = __webpack_require__(67).getAppId;
+	var Login = __webpack_require__(64).Login;
 	var objectNotEmpty = __webpack_require__(62).objectNotEmpty;
 	var CommonFunctions = __webpack_require__(105).CommonFunctions;
 	var AccountOpening = __webpack_require__(117).AccountOpening;
@@ -76528,9 +76529,8 @@
 /* 117 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var Login = __webpack_require__(67).Login;
-	var objectNotEmpty = __webpack_require__(62).objectNotEmpty;
-	var Validate = __webpack_require__(118).Validate;
+	var objectNotEmpty  = __webpack_require__(62).objectNotEmpty;
+	var Validate        = __webpack_require__(118).Validate;
 	var japanese_client = __webpack_require__(63).japanese_client;
 	var CommonFunctions = __webpack_require__(105).CommonFunctions;
 	var generateBirthDate = __webpack_require__(106).generateBirthDate;
@@ -92921,7 +92921,7 @@
 /* 221 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var Login = __webpack_require__(67).Login;
+	var Login = __webpack_require__(64).Login;
 	var PasswordMeter = __webpack_require__(222).PasswordMeter;
 	var passwordValid = __webpack_require__(118).passwordValid;
 	var showPasswordError = __webpack_require__(118).showPasswordError;
