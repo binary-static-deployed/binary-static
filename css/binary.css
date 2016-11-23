@@ -618,13 +618,6 @@ input[type=checkbox] {
   word-wrap: break-word;
   color: #fff;
 }
-#header .main-nav > li > ul {
-  margin: -20px -1px;
-}
-#header .main-nav .nav-caret {
-  right: -68px;
-  left: initial;
-}
 #header .topMenuBalance {
   visibility: hidden;
 }
@@ -2459,6 +2452,23 @@ ol.start {
 .career .xquote div .text span, .user_testing .xquote div .text span, .regulation-content .xquote div .text span {
   color: #44484C;
   font-size: 12px;
+}
+
+.careers-for-americans img.responsive {
+  width: 50%;
+}
+.careers-for-americans .fill-bg-color img.responsive {
+  width: 15%;
+}
+.careers-for-americans h2 {
+  margin-bottom: 0;
+}
+.careers-for-americans .margin {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.careers-for-americans .border-bottom {
+  border-bottom: 1px solid #DEDEDE;
 }
 
 .empty-space {
