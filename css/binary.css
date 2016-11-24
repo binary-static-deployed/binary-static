@@ -1480,6 +1480,35 @@ a.close:hover {
   margin-top: 20px;
 }
 
+#notifications_wrapper .notice-msg {
+  margin-bottom: 5px;
+  padding: 10px 26px;
+  line-height: 25px;
+  font-size: 0.86957rem;
+  position: relative;
+}
+#notifications_wrapper .notice-msg.dismissible {
+  cursor: pointer;
+}
+#notifications_wrapper .notice-msg .notification-dismiss {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  color: #2a3052;
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  font-family: Arial;
+  font-size: 18px;
+}
+#notifications_wrapper .notice-msg:hover .notification-dismiss {
+  color: #e98024;
+}
+
+#trading_socket_container #notifications_wrapper .notice-msg, #trading_socket_container_beta #notifications_wrapper .notice-msg {
+  margin-bottom: 10px;
+}
+
 .popup_bet_desc {
   padding: 5px 0;
   border: 1px solid #DEDEDE;
@@ -4299,29 +4328,6 @@ div.kineticjs-content {
   #mb_trading .japan-table .price-row .price-button .base-value {
     bottom: 0px;
   }
-}
-#mb_trading #notifications_wrapper .notice-msg {
-  margin-bottom: 5px;
-  padding: 10px 26px;
-  line-height: 25px;
-  position: relative;
-}
-#mb_trading #notifications_wrapper .notice-msg.dismissible {
-  cursor: pointer;
-}
-#mb_trading #notifications_wrapper .notice-msg .notification-dismiss {
-  position: absolute;
-  top: 0px;
-  right: 0px;
-  color: #2a3052;
-  width: 24px;
-  height: 24px;
-  line-height: 24px;
-  font-family: Arial;
-  font-size: 18px;
-}
-#mb_trading #notifications_wrapper .notice-msg:hover .notification-dismiss {
-  color: #e98024;
 }
 
 #trading_bottom_content #tab_portfolio-content {
