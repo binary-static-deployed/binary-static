@@ -121,13 +121,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 				<div class="gr-4 form_label">
 					<label for="timeout_until">时间已过。下次开启时间为</label>
 				</div>
-                <div class="gr-3">
-					<input name="timeout_until_duration" id="timeout_until_duration" type="text" maxlength="10" />
-					<div class="hint nowrap">请输入日期，格式为年-月-日 时：分（当地时间）。</div>
+                <div class="gr-3 gr-8-m">
+					<input name="timeout_until_duration" id="timeout_until_duration" type="text" maxlength="15" autocomplete="off" />
 				</div>
-				<div class="gr-5">
-                    <input name="timeout_until" id="timeout_until" type="text" maxlength="8" />
+				<div class="gr-4-m"></div>
+				<div class="gr-5 gr-8-m">
+                    <input name="timeout_until" id="timeout_until" type="text" maxlength="8" autocomplete="off" />
 				</div>
+                <div class="gr-4"></div>
+                <div class="gr-8">
+                    <div class="hint">Please enter date in the format DD MMM, YYYY HH:mm (local time).</div>
+                </div>
 			</div>
 
 			<div class="gr-row gr-padding-10 row clear">
@@ -135,8 +139,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 					<label for="exclude_until">禁止我访问本网站直到</label>
 				</div>
 				<div class="gr-8">
-					<input name="exclude_until" id="exclude_until" type="text" maxlength="10" />
-					<div class="hint">请输入日期，格式为年-月-日。</div>
+					<input name="exclude_until" id="exclude_until" type="text" maxlength="15" autocomplete="off" />
+					<div class="hint">Please enter date in the format DD MMM, YYYY.</div>
 				</div>
 			</div>
 

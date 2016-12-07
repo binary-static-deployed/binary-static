@@ -490,15 +490,17 @@ input[type=checkbox] {
 }
 
 .overlay .dialog {
-  transition: -webkit-transform 0.2s, height 0;
+  transition: height 0, -webkit-transform 0.2s;
   transition: transform 0.2s, height 0;
+  transition: transform 0.2s, height 0, -webkit-transform 0.2s;
   -webkit-transform: scale(1);
           transform: scale(1);
 }
 
 .overlay.hidden .dialog {
-  transition: -webkit-transform 0.2s, height 0 0.2s;
+  transition: height 0 0.2s, -webkit-transform 0.2s;
   transition: transform 0.2s, height 0 0.2s;
+  transition: transform 0.2s, height 0 0.2s, -webkit-transform 0.2s;
   -webkit-transform: scale(0.9);
           transform: scale(0.9);
 }
@@ -517,6 +519,7 @@ input[type=checkbox] {
 #topbar #gmt-clock, #topbar #contact-us, #topbar .upgrademessage {
   -webkit-align-self: center;
       -ms-flex-item-align: center;
+              -ms-grid-row-align: center;
           align-self: center;
 }
 #topbar #gmt-clock {
@@ -712,7 +715,7 @@ input[type=checkbox] {
   text-align: center;
   background: #c03;
   color: #fff;
-  font-size: 0.86957rem;
+  font-size: 0.75614rem;
   position: fixed;
   bottom: 0;
   width: 100%;
@@ -1498,7 +1501,7 @@ a.close:hover {
   width: 24px;
   height: 24px;
   line-height: 24px;
-  font-family: Arial;
+  font-family: 'Arial';
   font-size: 18px;
 }
 #notifications_wrapper .notice-msg:hover .notification-dismiss {
@@ -2312,6 +2315,7 @@ ol.start {
   transition-duration: 0.4s;
   transition-property: -webkit-transform;
   transition-property: transform;
+  transition-property: transform, -webkit-transform;
   box-shadow: 0 0 2px #DEDEDE;
 }
 @media all and (min-width: 600px) {
@@ -2916,7 +2920,7 @@ ol.start {
   color: #fff;
   z-index: 107;
   font-size: 1.7em;
-  font-family: casino_handregular, Arial;
+  font-family: 'casino_handregular', 'Arial';
   transition: opacity 400ms cubic-bezier(0.42, 0, 0.58, 1);
 }
 
@@ -3782,9 +3786,6 @@ div.kineticjs-content {
   #trading_socket_container #contract_market_form_container {
     height: auto;
   }
-  #trading_socket_container #expiry_time {
-    width: 175px;
-  }
   #trading_socket_container #contract_form_content {
     margin-top: 0px;
   }
@@ -3881,6 +3882,9 @@ div.kineticjs-content {
   }
   #trading_socket_container #contract_prices_container {
     margin-left: 0;
+  }
+  #trading_socket_container #expiry_time {
+    width: 175px;
   }
 }
 #spot {
@@ -5275,7 +5279,7 @@ div.kineticjs-content {
   left: 30%;
 }
 #statement-ws-container input {
-  max-width: 100%;
+  max-width: 60%;
   margin-left: 10px;
 }
 #statement-ws-container .padding-left {
@@ -5766,6 +5770,19 @@ body.TH .google-play-badge {
   #sell_popup_container {
     max-height: 100%;
   }
+
+  input, meter#password-meter, select {
+    width: 80%;
+  }
+
+  #btn-verify-email {
+    font-size: 0.9em;
+    padding: 0;
+  }
+
+  #end-note {
+    display: none;
+  }
 }
 @media print {
   .no-print, .no-print * {
@@ -5778,7 +5795,7 @@ body.TH .google-play-badge {
 /*
  * Timepicker stylesheet
  * Highly inspired from datepicker
- * FG - Nov 2010 - Web3R 
+ * FG - Nov 2010 - Web3R
  *
  * version 0.0.3 : Fixed some settings, more dynamic
  * version 0.0.4 : Removed width:100% on tables
@@ -5871,6 +5888,17 @@ body.TH .google-play-badge {
 /* the deselect button */
 .ui-timepicker .ui-timepicker-deselect {
   float: left;
+}
+
+#ui-timepicker-div, #ui-timepicker-div:before, #ui-timepicker-div:after, #ui-datepicker-div, #ui-datepicker-div:before, #ui-datepicker-div:after {
+  transition: none;
+}
+
+.ui-datepicker.ui-widget-content, .ui-timepicker-table.ui-widget-content {
+  border: 0;
+}
+.ui-datepicker.ui-corner-all, .ui-datepicker .ui-corner-all, .ui-timepicker-table.ui-corner-all, .ui-timepicker-table .ui-corner-all {
+  border-radius: 0;
 }
 
 /* Grid layout system */
@@ -7545,8 +7573,7 @@ body.TH .google-play-badge {
   margin-right: 0 !important;
   -webkit-transform: translateX(-50%);
   -moz-transition: translateX(-50%);
-  -webkit-transform: translateX(-50%);
-          transform: translateX(-50%);
+  transform: translateX(-50%);
 }
 .state-default .gr-col {
   -webkit-flex-direction: column;
@@ -8391,8 +8418,7 @@ body.TH .google-play-badge {
   margin-right: 0 !important;
   -webkit-transform: translateX(-50%);
   -moz-transition: translateX(-50%);
-  -webkit-transform: translateX(-50%);
-          transform: translateX(-50%);
+  transform: translateX(-50%);
 }
 
 .gr-col {
@@ -9127,8 +9153,7 @@ body {
   margin-right: 0 !important;
   -webkit-transform: translateX(-50%);
   -moz-transition: translateX(-50%);
-  -webkit-transform: translateX(-50%);
-          transform: translateX(-50%);
+  transform: translateX(-50%);
 }
 .state-m .gr-col-m {
   -webkit-flex-direction: column;
@@ -9974,8 +9999,7 @@ body {
     margin-right: 0 !important;
     -webkit-transform: translateX(-50%);
     -moz-transition: translateX(-50%);
-    -webkit-transform: translateX(-50%);
-            transform: translateX(-50%);
+    transform: translateX(-50%);
   }
 
   .gr-col-m {
@@ -10710,8 +10734,7 @@ body {
   margin-right: 0 !important;
   -webkit-transform: translateX(-50%);
   -moz-transition: translateX(-50%);
-  -webkit-transform: translateX(-50%);
-          transform: translateX(-50%);
+  transform: translateX(-50%);
 }
 .state-p .gr-col-p {
   -webkit-flex-direction: column;
@@ -11557,8 +11580,7 @@ body {
     margin-right: 0 !important;
     -webkit-transform: translateX(-50%);
     -moz-transition: translateX(-50%);
-    -webkit-transform: translateX(-50%);
-            transform: translateX(-50%);
+    transform: translateX(-50%);
   }
 
   .gr-col-p {
@@ -12293,8 +12315,7 @@ body {
   margin-right: 0 !important;
   -webkit-transform: translateX(-50%);
   -moz-transition: translateX(-50%);
-  -webkit-transform: translateX(-50%);
-          transform: translateX(-50%);
+  transform: translateX(-50%);
 }
 .state-t .gr-col-t {
   -webkit-flex-direction: column;
@@ -13140,8 +13161,7 @@ body {
     margin-right: 0 !important;
     -webkit-transform: translateX(-50%);
     -moz-transition: translateX(-50%);
-    -webkit-transform: translateX(-50%);
-            transform: translateX(-50%);
+    transform: translateX(-50%);
   }
 
   .gr-col-t {
@@ -13876,8 +13896,7 @@ body {
   margin-right: 0 !important;
   -webkit-transform: translateX(-50%);
   -moz-transition: translateX(-50%);
-  -webkit-transform: translateX(-50%);
-          transform: translateX(-50%);
+  transform: translateX(-50%);
 }
 .state-ipad-landscape .gr-col-ipad-landscape {
   -webkit-flex-direction: column;
@@ -14723,8 +14742,7 @@ body {
     margin-right: 0 !important;
     -webkit-transform: translateX(-50%);
     -moz-transition: translateX(-50%);
-    -webkit-transform: translateX(-50%);
-            transform: translateX(-50%);
+    transform: translateX(-50%);
   }
 
   .gr-col-ipad-landscape {
@@ -15637,6 +15655,7 @@ html.mm-opened.mm-dragging #mm-blocker {
 html.mm-slide .mm-menu {
   transition: -webkit-transform 0.4s ease;
   transition: transform 0.4s ease;
+  transition: transform 0.4s ease, -webkit-transform 0.4s ease;
 }
 
 html.mm-slide.mm-opened .mm-menu {
@@ -15682,6 +15701,7 @@ html.mm-slide.mm-bottom.mm-opening .mm-menu {
 html.mm-zoom-menu .mm-menu {
   transition: -webkit-transform 0.4s ease;
   transition: transform 0.4s ease;
+  transition: transform 0.4s ease, -webkit-transform 0.4s ease;
 }
 
 html.mm-zoom-menu.mm-opened .mm-menu {
@@ -16212,6 +16232,7 @@ html.mm-front.mm-opened .mm-page {
   transition: none 0.4s ease;
   transition-property: top, right, bottom, left, -webkit-transform;
   transition-property: top, right, bottom, left, transform;
+  transition-property: top, right, bottom, left, transform, -webkit-transform;
 }
 
 html.mm-front .mm-page,
