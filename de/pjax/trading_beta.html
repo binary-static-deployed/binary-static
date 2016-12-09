@@ -382,9 +382,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <span class="loading" id="portfolio-balance"></span>
 
             <!-- If the account balance is zero we show the following button, otherwise we remove it -->
-            <a href="/de/cashier/forwardws.html#deposit" id="if-balance-zero" class="invisible button button_large by_client_type client_real with_login_cookies">
-                <span>Eine Einzahlung vornehmen</span>
-            </a>
+            <span id="if-balance-zero" class="invisible by_client_type client_real with_login_cookies">
+                <a href="/de/cashier/forwardws.html#deposit" class="button button_large ja-hide">
+                    <span>Eine Einzahlung vornehmen</span>
+                </a>
+                <a href="/de/cashier/deposit-jp.html" class="button button_large all-hide ja-show">
+                    <span>Eine Einzahlung vornehmen</span>
+                </a>
+            </span>
         </div>
 
         <div id="portfolio-no-contract">
