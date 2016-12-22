@@ -15,137 +15,165 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
   <div class="container">
-    <div class="gr-row gr-parent static_full">
+    <div class="gr-row gr-parent static_full border-bottom gr-padding-30">
         <div class="gr-2 gr-hide-m ja-hide">
             <img class="responsive" src="/images/pages/contact/contact-us-icon.svg"/>
         </div>
-        <div class="gr-5 gr-12-m">
-            <div class="gr-padding-10">
-                <h1>
-                    お問い合わせ
-                </h1>
-            </div>
-            <div class="gr-padding-10">
-                <span class="hidden ja-show no-para-margin">
-                    メールのみでの受付となっております。
-                </span>
-            </div>
-            <div class="gr-padding-10 gr-row">
-                <span class="gr-4 gr-12-t">
-                    Email: 
-                </span>
-                <span class="gr-7 gr-12-t" id="cs_contact_eaddress"></span>
-            </div>
-            <div class="gr-padding-10 ja-hide">
-                <span class="no-para-margin gr-row">
-                    <div class="gr-4 gr-12-t">
-                        <label>お電話：</label>
+        <div class="gr-10 gr-12-m gr-padding-10 gr-parent">
+            <h1>
+                お問い合わせ
+            </h1>
+            <div class="gr-row">
+                <div class="gr-6 gr-12-t gr-12-p gr-12-m">
+                    <div class="gr-padding-10 hidden ja-show-block gr-parent">
+                        メールのみでの受付となっております。
                     </div>
-                    <div class="gr-7 gr-12-t gr-no-gutter">
-                        <select id="cs_telephone_number">
-                            <option disabled="">
-                                国名を選択
-                            </option>
-                            <option value="==フリーダイヤル==">
-                                オーストラリア
-                            </option>
-                            <option value="+1 (450) 823 1002">
-                                カナダ
-                            </option>
-                            <option value="+49 0221 98259000">
-                                ドイツ
-                            </option>
-                            <option value="==フリーダイヤル==">
-                                インドネシア
-                            </option>
-                            <option value="==フリーダイヤル==">
-                                アイルランド
-                            </option>
-                            <option value="+48 58 881 00 02">
-                                ポーランド
-                            </option>
-                            <option value="==フリーダイヤル==">
-                                ロシア
-                            </option>
-                            <option selected="" value="==フリーダイヤル==">
-                                イギリス
-                            </option>
-                        </select>
+                    <div class="gr-padding-10 ja-hide gr-parent">
+                        <span class="no-para-margin gr-row">
+                            <div class="gr-4 center-align">
+                                <label>お電話：</label>
+                            </div>
+                            <div class="gr-7 gr-no-gutter">
+                                <select id="cs_telephone_number">
+                                    <option value="==フリーダイヤル==">
+                                        オーストラリア
+                                    </option>
+                                    <option value="+1 (450) 823 1002">
+                                        カナダ
+                                    </option>
+                                    <option value="+49 0221 98259000">
+                                        ドイツ
+                                    </option>
+                                    <option value="==フリーダイヤル==">
+                                        インドネシア
+                                    </option>
+                                    <option value="==フリーダイヤル==">
+                                        アイルランド
+                                    </option>
+                                    <option value="+48 58 881 00 02">
+                                        ポーランド
+                                    </option>
+                                    <option value="==フリーダイヤル==">
+                                        ロシア
+                                    </option>
+                                    <option selected="selected" value="==フリーダイヤル==">
+                                        イギリス
+                                    </option>
+                                </select>
+                            </div>
+                        </span>
+                        <span class="gr-8 gr-prefix-4 gr-12-t gr-12-p gr-padding-10 gr-12-m" id="display_cs_telephone">
+                            +44 (0) 1666 800042
+                            <br />
+                            ==フリーダイヤル==
+                        </span>
                     </div>
-                </span>
-                <span class="gr-8 gr-prefix-4 gr-12-t gr-prefix-t-0 gr-padding-10 gr-12-m" id="display_cs_telephone">
-                    +44 (0) 1666 800042
-                    <br />
-                    ==フリーダイヤル==
-                </span>
-            </div>
-            <div class="gr-padding-10">
-                <span class="no-para-margin calls_recording gr-12-m">
-                    全ての呼び出しはトレーニングと監視目的のため記録されます。
-                </span>
-            </div>
-            <div class="gr-padding-10">
-                <div class="gr-row gr-parent ja-hide" id="live-chat-container">
-                    <label class="gr-4">
-                        ライブチャット：
-                    </label>
-                    <div class="gr-8">
-                        <span id="live-chat-icon"></span>
+                    <div class="gr-8 gr-prefix-4 gr-12-t gr-12-p gr-prefix-0-t gr-prefix-0-p gr-prefix-0-m gr-padding-10 gr-12-m notice-msg calls_recording">
+                        全ての呼び出しはトレーニングと監視目的のため記録されます。
+                    </div>
+                </div>
+                <div class="gr-padding-10 gr-12-t gr-12-p gr-hide gr-show-t gr-show-p gr-show-m"></div>
+                <div class="gr-6 gr-12-t gr-12-p gr-12-m">
+                    <div class="gr-padding-10 gr-parent">
+                        <span class="gr-row">
+                            <label class="gr-4">Email: </label>
+                            <label class="gr-7" id="cs_contact_eaddress"></label>
+                        </span>
+                    </div>
+                    <div class="gr-padding-10">
+                        <div class="gr-row gr-parent ja-hide" id="live-chat-container">
+                            <label class="gr-4 center-align">
+                                ライブチャット：
+                            </label>
+                            <div class="gr-8">
+                                <span id="live-chat-icon"></span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="gr-5 gr-12-m">
-            <div class="gr-padding-10">
-                <h1>
-                    会社所在地
-                </h1>
-            </div>
-            <div class="gr-padding-10">
-                <h2>
-                    マルタ共和国
-                </h2>
-                <p class="no-para-margin">
-                    Binary (Europe) Ltd & Binary Investments (Europe)
+    </div>
+    <div class="gr-padding-30">
+        <div class="gr-padding-20 center-text gr-parent">
+            <h1>
+                会社所在地
+            </h1>
+        </div>
+        <div class="gr-row">
+            <div class="gr-4 gr-12-p gr-12-m">
+                <div class="border-bottom">
+                    <div class="fill-bg-color gr-padding-10">
+                        <h3 class="margin">マルタ共和国</h3>
+                    </div>
+                    <p class="margin no-para-margin bottom-row">
+                        Binary (Europe) Ltd & Binary Investments (Europe)
 所在地：Mompalao Building, Suite 2, Tower Road, Msida MSD1825
-                </p>
+                    </p>
+                </div>
             </div>
-            <div class="gr-padding-10">
-                <h2>
-                    マン島
-                </h2>
-                <p class="no-para-margin">
-                    Binary (IOM) Ltd
-所在地： First Floor, Millennium House, Victoria Road, Douglas, IM2 4RW
-                </p>
-            </div>
-            <div class="gr-padding-10">
-                <h2>
-                    マレーシア
-                </h2>
-                <h3>
-                    サイバージャヤ（マレーシア）
-                </h3>
-                <p>
-                    Binary Group Services Sdn Bhd
-所在地：C-13-02, iTech Tower, Jalan Impact, Cyber 6, 63000 Cyberjaya, Selangor Darul Ehsan
-                </p>
-                <h3>
-                    クアラルンプール（マレーシア）
-                </h3>
-                <p>
-                    Binary Group Services Sdn Bhd
-所在地：30-10, Q Sentral, Jalan Stesen Sentral 2, 50470 Kuala Lumpur
-                </p>
-            </div>
-            <div>
-                <h2>
-                    日本
-                </h2>
-                <p class="no-para-margin">
-                    Binary株式会社
+            <div class="gr-4 gr-12-p gr-12-m">
+                <div class="border-bottom">
+                    <div class="fill-bg-color gr-padding-10">
+                        <h3 class="margin">日本</h3>
+                    </div>
+                    <p class="margin no-para-margin bottom-row">
+                        Binary株式会社
 所在地：150-0012　東京都渋谷区広尾1-9-16　広尾宮田ビル3F
-                </p>
+                    </p>
+                </div>
+            </div>
+            <div class="gr-4 gr-12-p gr-12-m">
+                <div class="border-bottom">
+                    <div class="fill-bg-color gr-padding-10">
+                        <h3 class="margin">ドイツ</h3>
+                    </div>
+                    <p class="margin no-para-margin bottom-row">
+                        Binary Group Services Sdn Bhd, Zweigstelle Berlin, Friedrichstraße 68, 10117 Berlin
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="gr-hide-p gr-hide-m gr-padding-20"></div>
+        <div class="gr-row">
+            <div class="gr-4 gr-12-p gr-12-m">
+                <div class="border-bottom">
+                    <div class="fill-bg-color gr-padding-10">
+                        <h3 class="margin">マレーシア</h3>
+                    </div>
+                    <div class="margin gr-padding-10">
+                        サイバージャヤ（マレーシア）
+                    </div>
+                    <p class="margin gr-parent gr-padding-10 no-para-margin">
+                        Binary Group Services Sdn Bhd
+所在地：C-13-02, iTech Tower, Jalan Impact, Cyber 6, 63000 Cyberjaya, Selangor Darul Ehsan
+                    </p>
+                </div>
+            </div>
+            <div class="gr-4 gr-12-p gr-12-m">
+                <div class="border-bottom">
+                    <div class="fill-bg-color gr-padding-10">
+                        <h3 class="margin">マレーシア</h3>
+                    </div>
+                    <div class="margin gr-padding-10">
+                        クアラルンプール（マレーシア）
+                    </div>
+                    <p class="margin gr-parent gr-padding-30 no-para-margin">
+                        Binary Group Services Sdn Bhd
+所在地：30-10, Q Sentral, Jalan Stesen Sentral 2, 50470 Kuala Lumpur
+                    </p>
+                </div>
+            </div>
+            <div class="gr-4 gr-12-p gr-12-m">
+                <div class="border-bottom">
+                    <div class="fill-bg-color gr-padding-10">
+                        <h3 class="margin">マン島</h3>
+                    </div>
+                    <p class="margin no-para-margin bottom-row">
+                        Binary (IOM) Ltd
+所在地： First Floor, Millennium House, Victoria Road, Douglas, IM2 4RW
+                    </p>
+                </div>
             </div>
         </div>
     </div>

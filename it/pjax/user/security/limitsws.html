@@ -17,76 +17,90 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
   <div id="limits-ws-container">
-    <h1></h1>
+    <h1>Limiti di trading e dei prelievi</h1>
     <br>
-    <div class="page-title" id="limits-title">
-        <h2 id="trading-limits"></h2>
+    <div class="invisible" id="limits-title">
+        <h2 id="trading-limits">Limiti del trading</h2>
         <div class="gr-padding-10">
-          <table class="flex-table" id="client-limits" style="display:none">
-            <thead>
-              <tr class="flex-tr">
-                <th class="flex-tr-child align-start" id="item"></th>
-                <th class="flex-tr-child limit align-start"></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr class="flex-tr">
-                <td class="flex-tr-child" id="max-open-position">
-                  <a href="#" id="max-open-position-tooltip" data-balloon-length="xlarge" class="no-underline">
-                    <img src="/images/common/question_1.png">
-                  </a>
-                </td>
-                <td class="flex-tr-child" id="open-positions"></td>
-              </tr>
-              <tr class="flex-tr">
-                <td class="flex-tr-child" id="max-acc-balance">
-                  <a href="#" id="max-acc-balance-tooltip" data-balloon-length="xlarge" class="no-underline">
-                    <img src="/images/common/question_1.png">
-                  </a>
-                </td>
-                <td class="flex-tr-child" id="account-balance"></td>
-              </tr>
-              <tr class="flex-tr">
-                <td class="flex-tr-child" id="max-aggregate">
-                  <a href="#" id="max-aggregate-tooltip" data-balloon-length="xlarge" class="no-underline">
-                    <img src="/images/common/question_1.png">
-                  </a>
-                </td>
-                <td class="flex-tr-child" id="payout"></td>
-              </tr>
-              <tr>
-                <td style="padding:10px;"></td>
-                <td></td>
-              </tr>
-              <tr class="flex-tr">
-                <th class="flex-tr-child align-start" id="max-daily-turnover">
-                  <a href="#" id="max-daily-turnover-tooltip" data-balloon-length="xlarge" class="no-underline">
-                    <img src="/images/common/question_1.png">
-                  </a>
-                </th>
-                <th class="flex-tr-child limit align-start"></th>
-              </tr>
-            </tbody>
-          </table>
-          <p class="hint">
-            I limiti fissi sono soggetti a modifica senza alcun preavviso.
-          </p>
+            <table class="flex-table" id="client-limits">
+                <thead>
+                    <tr class="flex-tr">
+                        <th class="flex-tr-child align-start">Voce</th>
+                        <th class="flex-tr-child limit align-start">Limite</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="flex-tr">
+                        <td class="flex-tr-child">
+                            Numero massimo di posizioni aperte
+                            <a href="#" data-balloon-length="xlarge" class="no-underline" data-balloon="Rappresenta il numero massimo di contratti in essere nel tuo portafoglio. Ogni riga presente sul tuo portafoglio vale una posizione aperta. Una volta raggiunto il valore massimo, non potrai aprire nuove posizioni senza prima chiudere una posizione esistente.">
+                                <img src="/images/common/question_1.png">
+                            </a>
+                        </td>
+                        <td class="flex-tr-child" id="open-positions"></td>
+                    </tr>
+                    <tr class="flex-tr">
+                        <td class="flex-tr-child">
+                            Saldo di cassa massimo sull'account
+                            <a href="#" data-balloon-length="xlarge" class="no-underline" data-balloon="Rappresenta l'importo massimo di denaro che può essere tenuto sul tuo account. Se raggiungi tale valore massimo, ti verrà richiesto di prelevare fondi.">
+                                <img src="/images/common/question_1.png">
+                            </a>
+                        </td>
+                        <td class="flex-tr-child" id="account-balance"></td>
+                    </tr>
+                    <tr class="flex-tr">
+                        <td class="flex-tr-child">
+                            Payout totali massimi su posizioni aperte
+                            <a href="#" data-balloon-length="xlarge" class="no-underline" data-balloon="Presenta i payout complessivi massimi sui contratti in essere nel tuo portafoglio. Se si raggiunge il numero massimo, non sarà possibile acquistare altri contratti senza prima chiudere delle posizioni esistenti.">
+                                <img src="/images/common/question_1.png">
+                            </a>
+                        </td>
+                        <td class="flex-tr-child" id="payout"></td>
+                    </tr>
+                    <tr class="flex-tr">
+                        <td class="flex-tr-child">
+                            Maximum aggregate payouts on open positions per symbol and contract type
+                            <a href="#" data-balloon-length="xlarge" class="no-underline" data-balloon="Maximum aggregate payouts on open positions per symbol and contract type. This limit can be exceeded up to the overall payout limit if there is no prior open position.">
+                                <img src="/images/common/question_1.png">
+                            </a>
+                        </td>
+                        <td class="flex-tr-child" id="payout-per-symbol-and-contract-type"></td>
+                    </tr>
+                    <tr>
+                        <td style="padding:10px;"></td>
+                        <td></td>
+                    </tr>
+                    <tr class="flex-tr">
+                        <th class="flex-tr-child align-start">
+                            Turnover massimo giornaliero
+                            <a href="#" data-balloon-length="xlarge" class="no-underline" data-balloon="Rappresenta il volume massimo di contratti che puoi acquistare in un dato giorno di trading.">
+                                <img src="/images/common/question_1.png">
+                            </a>
+                        </th>
+                        <th class="flex-tr-child limit align-start">Limite</th>
+                    </tr>
+                </tbody>
+            </table>
+            <p class="hint">
+                I limiti fissi sono soggetti a modifica senza alcun preavviso.
+            </p>
         </div>
     </div>
     <div class="errorbox rbox" id="client_message" style="display:none">
         <div class="rbox-wrap">
             <div class="gr-12 rbox-content" id="client_message_content">
-            <p class="center-text notice-msg"></p>
+                <p class="center-text notice-msg"></p>
+            </div>
         </div>
     </div>
 </div>
 <br>
-<div>
-  <h2 id="withdrawal-title"></h2>
-  <div id="auth-message">
-    <p id="withdrawal-limit"></p>
-    <p id="already-withdraw"></p>
-    <p id="withdrawal-limit-aggregate"></p>
-    <p id="already-withdraw-aggregate"></p>
-  </div>
+<div class="invisible" id="withdrawal-limits">
+    <h2 id="withdrawal-title">Limiti per i Prelievi</h2>
+    <div>
+        <p id="withdrawal-limit"></p>
+        <p id="already-withdraw"></p>
+        <p id="withdrawal-limit-aggregate"></p>
+        <p id="already-withdraw-aggregate"></p>
+    </div>
 </div>

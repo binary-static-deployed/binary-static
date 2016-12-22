@@ -15,132 +15,160 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
   <div class="container">
-    <div class="gr-row gr-parent static_full">
+    <div class="gr-row gr-parent static_full border-bottom gr-padding-30">
         <div class="gr-2 gr-hide-m ja-hide">
             <img class="responsive" src="/images/pages/contact/contact-us-icon.svg"/>
         </div>
-        <div class="gr-5 gr-12-m">
-            <div class="gr-padding-10">
-                <h1>
-                    Kontaktieren Sie uns
-                </h1>
-            </div>
-            <div class="gr-padding-10">
-                <span class="hidden ja-show no-para-margin">
-                    JAPAN ONLY CONTACT TEXT
-                </span>
-            </div>
-            <div class="gr-padding-10 gr-row">
-                <span class="gr-4 gr-12-t">
-                    E-Mail:
-                </span>
-                <span class="gr-7 gr-12-t" id="cs_contact_eaddress"></span>
-            </div>
-            <div class="gr-padding-10 ja-hide">
-                <span class="no-para-margin gr-row">
-                    <div class="gr-4 gr-12-t">
-                        <label>Telefon:</label>
+        <div class="gr-10 gr-12-m gr-padding-10 gr-parent">
+            <h1>
+                Kontaktieren Sie uns
+            </h1>
+            <div class="gr-row">
+                <div class="gr-6 gr-12-t gr-12-p gr-12-m">
+                    <div class="gr-padding-10 hidden ja-show-block gr-parent">
+                        JAPAN ONLY CONTACT TEXT
                     </div>
-                    <div class="gr-7 gr-12-t gr-no-gutter">
-                        <select id="cs_telephone_number">
-                            <option disabled="">
-                                Land auswählen
-                            </option>
-                            <option value="+61 (02) 8294 5448, 1800 093570 (Gebührenfrei)">
-                                Australien
-                            </option>
-                            <option value="+1 (450) 823 1002">
-                                Kanada
-                            </option>
-                            <option value="+49 0221 98259000">
-                                Deutschland
-                            </option>
-                            <option value="0018030113641 (Gebührenfrei)">
-                                Indonesien
-                            </option>
-                            <option value="+353 (0) 76 888 7500, 1800931084 (Gebührenfrei)">
-                                Irland
-                            </option>
-                            <option value="+48 58 881 00 02">
-                                Polen
-                            </option>
-                            <option value="8 10 8002 8553011 (Gebührenfrei)">
-                                Russland
-                            </option>
-                            <option selected="" value="+44 (0) 1666 800042, 0800 011 9847 (Gebührenfrei)">
-                                Großbritannien
-                            </option>
-                        </select>
+                    <div class="gr-padding-10 ja-hide gr-parent">
+                        <span class="no-para-margin gr-row">
+                            <div class="gr-4 center-align">
+                                <label>Telefon:</label>
+                            </div>
+                            <div class="gr-7 gr-no-gutter">
+                                <select id="cs_telephone_number">
+                                    <option value="+61 (02) 8294 5448, 1800 093570 (Gebührenfrei)">
+                                        Australien
+                                    </option>
+                                    <option value="+1 (450) 823 1002">
+                                        Kanada
+                                    </option>
+                                    <option value="+49 0221 98259000">
+                                        Deutschland
+                                    </option>
+                                    <option value="0018030113641 (Gebührenfrei)">
+                                        Indonesien
+                                    </option>
+                                    <option value="+353 (0) 76 888 7500, 1800931084 (Gebührenfrei)">
+                                        Irland
+                                    </option>
+                                    <option value="+48 58 881 00 02">
+                                        Polen
+                                    </option>
+                                    <option value="8 10 8002 8553011 (Gebührenfrei)">
+                                        Russland
+                                    </option>
+                                    <option selected="selected" value="+44 (0) 1666 800042, 0800 011 9847 (Gebührenfrei)">
+                                        Großbritannien
+                                    </option>
+                                </select>
+                            </div>
+                        </span>
+                        <span class="gr-8 gr-prefix-4 gr-12-t gr-12-p gr-padding-10 gr-12-m" id="display_cs_telephone">
+                            +44 (0) 1666 800042
+                            <br />
+                            0800 011 9847 (Gebührenfrei)
+                        </span>
                     </div>
-                </span>
-                <span class="gr-8 gr-prefix-4 gr-12-t gr-prefix-t-0 gr-padding-10 gr-12-m" id="display_cs_telephone">
-                    +44 (0) 1666 800042
-                    <br />
-                    0800 011 9847 (Gebührenfrei)
-                </span>
-            </div>
-            <div class="gr-padding-10">
-                <span class="no-para-margin calls_recording gr-12-m">
-                    Alle Anrufe werden zu Trainings- und Kontrollzwecken aufgezeichnet.
-                </span>
-            </div>
-            <div class="gr-padding-10">
-                <div class="gr-row gr-parent ja-hide" id="live-chat-container">
-                    <label class="gr-4">
-                        Live-Chat:
-                    </label>
-                    <div class="gr-8">
-                        <span id="live-chat-icon"></span>
+                    <div class="gr-8 gr-prefix-4 gr-12-t gr-12-p gr-prefix-0-t gr-prefix-0-p gr-prefix-0-m gr-padding-10 gr-12-m notice-msg calls_recording">
+                        Alle Anrufe werden zu Trainings- und Kontrollzwecken aufgezeichnet.
+                    </div>
+                </div>
+                <div class="gr-padding-10 gr-12-t gr-12-p gr-hide gr-show-t gr-show-p gr-show-m"></div>
+                <div class="gr-6 gr-12-t gr-12-p gr-12-m">
+                    <div class="gr-padding-10 gr-parent">
+                        <span class="gr-row">
+                            <label class="gr-4">E-Mail:</label>
+                            <label class="gr-7" id="cs_contact_eaddress"></label>
+                        </span>
+                    </div>
+                    <div class="gr-padding-10">
+                        <div class="gr-row gr-parent ja-hide" id="live-chat-container">
+                            <label class="gr-4 center-align">
+                                Live-Chat:
+                            </label>
+                            <div class="gr-8">
+                                <span id="live-chat-icon"></span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="gr-5 gr-12-m">
-            <div class="gr-padding-10">
-                <h1>
-                    Firmenanschriften
-                </h1>
+    </div>
+    <div class="gr-padding-30">
+        <div class="gr-padding-20 center-text gr-parent">
+            <h1>
+                Firmenanschriften
+            </h1>
+        </div>
+        <div class="gr-row">
+            <div class="gr-4 gr-12-p gr-12-m">
+                <div class="border-bottom">
+                    <div class="fill-bg-color gr-padding-10">
+                        <h3 class="margin">Malta</h3>
+                    </div>
+                    <p class="margin no-para-margin bottom-row">
+                        Binary (Europe) Ltd & Binary Investments (Europe) Ltd, Mompalao Building, Suite 2, Tower Road, Msida MSD1825
+                    </p>
+                </div>
             </div>
-            <div class="gr-padding-10">
-                <h2>
-                    Malta
-                </h2>
-                <p class="no-para-margin">
-                    Binary (Europe) Ltd & Binary Investments (Europe) Ltd, Mompalao Building, Suite 2, Tower Road, Msida MSD1825
-                </p>
+            <div class="gr-4 gr-12-p gr-12-m">
+                <div class="border-bottom">
+                    <div class="fill-bg-color gr-padding-10">
+                        <h3 class="margin">Japan</h3>
+                    </div>
+                    <p class="margin no-para-margin bottom-row">
+                        Binary KK, Hiroo Miyata Bldg 3F, 9-16, Hiroo 1-chome, Shibuya-ku, Tokio 150-0012, Japan
+                    </p>
+                </div>
             </div>
-            <div class="gr-padding-10">
-                <h2>
-                    Isle of Man
-                </h2>
-                <p class="no-para-margin">
-                    Binary (IOM) Ltd, First Floor, Millennium House, Victoria Road, Douglas, IM2 4RW
-                </p>
+            <div class="gr-4 gr-12-p gr-12-m">
+                <div class="border-bottom">
+                    <div class="fill-bg-color gr-padding-10">
+                        <h3 class="margin">Deutschland</h3>
+                    </div>
+                    <p class="margin no-para-margin bottom-row">
+                        Binary Group Services Sdn Bhd, Zweigstelle Berlin, Friedrichstraße 68, 10117 Berlin
+                    </p>
+                </div>
             </div>
-            <div class="gr-padding-10">
-                <h2>
-                    Malaysia
-                </h2>
-                <h3>
-                    Niederlassung in Cyberjaya
-                </h3>
-                <p>
-                    Binary Group Services Sdn Bhd, C-13-02, iTech Tower, Jalan Impact, Cyber 6, 63000 Cyberjaya, Selangor Darul Ehsan
-                </p>
-                <h3>
-                    Niederlassung in Kuala Lumpur
-                </h3>
-                <p>
-                    Binary Group Services Sdn Bhd, 30-10, Q Sentral, Jalan Stesen Sentral 2, 50470 Kuala Lumpur
-                </p>
+        </div>
+        <div class="gr-hide-p gr-hide-m gr-padding-20"></div>
+        <div class="gr-row">
+            <div class="gr-4 gr-12-p gr-12-m">
+                <div class="border-bottom">
+                    <div class="fill-bg-color gr-padding-10">
+                        <h3 class="margin">Malaysia</h3>
+                    </div>
+                    <div class="margin gr-padding-10">
+                        Niederlassung in Cyberjaya
+                    </div>
+                    <p class="margin gr-parent gr-padding-10 no-para-margin">
+                        Binary Group Services Sdn Bhd, C-13-02, iTech Tower, Jalan Impact, Cyber 6, 63000 Cyberjaya, Selangor Darul Ehsan
+                    </p>
+                </div>
             </div>
-            <div>
-                <h2>
-                    Japan
-                </h2>
-                <p class="no-para-margin">
-                    Binary KK, Hiroo Miyata Bldg 3F, 9-16, Hiroo 1-chome, Shibuya-ku, Tokio 150-0012, Japan
-                </p>
+            <div class="gr-4 gr-12-p gr-12-m">
+                <div class="border-bottom">
+                    <div class="fill-bg-color gr-padding-10">
+                        <h3 class="margin">Malaysia</h3>
+                    </div>
+                    <div class="margin gr-padding-10">
+                        Niederlassung in Kuala Lumpur
+                    </div>
+                    <p class="margin gr-parent gr-padding-30 no-para-margin">
+                        Binary Group Services Sdn Bhd, 30-10, Q Sentral, Jalan Stesen Sentral 2, 50470 Kuala Lumpur
+                    </p>
+                </div>
+            </div>
+            <div class="gr-4 gr-12-p gr-12-m">
+                <div class="border-bottom">
+                    <div class="fill-bg-color gr-padding-10">
+                        <h3 class="margin">Isle of Man</h3>
+                    </div>
+                    <p class="margin no-para-margin bottom-row">
+                        Binary (IOM) Ltd, First Floor, Millennium House, Victoria Road, Douglas, IM2 4RW
+                    </p>
+                </div>
             </div>
         </div>
     </div>

@@ -507,28 +507,32 @@ input[type=checkbox] {
 
 /* main style */
 /* Logo and top bar */
-#topbar {
+body #topbar {
   text-align: right;
 }
-#topbar #virtual-text {
+body #topbar #virtual-text {
   font-weight: 700;
 }
-#topbar #topbar-info {
+body #topbar #topbar-info {
   margin-left: auto;
+  height: 23px;
 }
-#topbar #gmt-clock, #topbar #contact-us, #topbar .upgrademessage {
+body #topbar #topbar-info > div {
+  height: 23px;
+}
+body #topbar #gmt-clock, body #topbar #contact-us, body #topbar .upgrademessage {
   -webkit-align-self: center;
       -ms-flex-item-align: center;
               -ms-grid-row-align: center;
           align-self: center;
 }
-#topbar #gmt-clock {
+body #topbar #gmt-clock {
   white-space: nowrap;
 }
-#topbar .upgrademessage {
+body #topbar .upgrademessage {
   text-align: center;
 }
-#topbar .upgrademessage a {
+body #topbar .upgrademessage a {
   color: #fff;
   text-decoration: none;
   text-align: center;
@@ -545,22 +549,23 @@ input[type=checkbox] {
   text-transform: none;
   margin: 0 0 0 10px;
 }
-#topbar .upgrademessage a:visited {
+body #topbar .upgrademessage a:visited {
   color: #fff;
 }
-#topbar .upgrademessage a:hover, #topbar .upgrademessage a:active {
+body #topbar .upgrademessage a:hover, body #topbar .upgrademessage a:active {
   text-decoration: none;
   background-color: #14602B;
 }
-#topbar #language_select select {
-  padding: 0px;
-  float: right;
-  max-width: 100%;
-}
-#topbar a {
+body #topbar a {
   color: #fff;
   white-space: nowrap;
   text-decoration: none;
+}
+body #topbar #select_language {
+  top: -3px;
+}
+body #topbar #display_language li:first-child {
+  margin-top: 0;
 }
 
 #header {
@@ -1059,27 +1064,33 @@ meter#password-meter::-webkit-meter-bar {
 }
 .get-started dl div#how-to-open-an-account-img, .get-started-jp dl div#how-to-open-an-account-img {
   height: 80px;
-  background: url("../images/pages/get-started-jp/open_acc.svg") no-repeat;
+  background: url("../images/pages/get-started-jp/open_acc.svg") no-repeat center;
+  background-size: cover;
 }
 .get-started dl div#options-basic-knowledge-img, .get-started-jp dl div#options-basic-knowledge-img {
   height: 80px;
-  background: url("../images/pages/get-started-jp/knowledge.svg") no-repeat;
+  background: url("../images/pages/get-started-jp/knowledge.svg") no-repeat center;
+  background-size: cover;
 }
 .get-started dl div#summary-of-specifications-img, .get-started-jp dl div#summary-of-specifications-img {
   height: 80px;
-  background: url("../images/pages/get-started-jp/summary.svg") no-repeat;
+  background: url("../images/pages/get-started-jp/summary.svg") no-repeat center;
+  background-size: cover;
 }
 .get-started dl div#identification-documents-img, .get-started-jp dl div#identification-documents-img {
   height: 80px;
-  background: url("../images/pages/get-started-jp/id.svg") no-repeat;
+  background: url("../images/pages/get-started-jp/id.svg") no-repeat center;
+  background-size: cover;
 }
 .get-started dl div#trading-guide-img, .get-started-jp dl div#trading-guide-img {
   height: 80px;
-  background: url("../images/pages/get-started-jp/guide.svg") no-repeat;
+  background: url("../images/pages/get-started-jp/guide.svg") no-repeat center;
+  background-size: cover;
 }
 .get-started dl div#pre-contract-documents-img, .get-started-jp dl div#pre-contract-documents-img {
   height: 80px;
-  background: url("../images/pages/get-started-jp/contract.svg") no-repeat;
+  background: url("../images/pages/get-started-jp/contract.svg") no-repeat center;
+  background-size: cover;
 }
 
 .get-started-jp .link-size-box {
@@ -1090,7 +1101,7 @@ meter#password-meter::-webkit-meter-bar {
   padding: 10px;
 }
 .get-started-jp .section-header {
-  min-height: 50px;
+  min-height: 75px;
 }
 
 .tour {
@@ -1130,6 +1141,17 @@ meter#password-meter::-webkit-meter-bar {
 .contact-content #cs_telephone_number {
   width: 100%;
 }
+.contact-content .center-align {
+  margin-top: auto;
+  margin-bottom: auto;
+  padding-right: 0;
+}
+.contact-content .bottom-row {
+  padding-top: 10px;
+}
+.contact-content .border-bottom {
+  min-height: 190px;
+}
 @media screen and (max-width: 480px) {
   .contact-content .grd-grid-2 .grd-hide-mobile {
     display: none !important;
@@ -1139,6 +1161,9 @@ meter#password-meter::-webkit-meter-bar {
   }
   .contact-content .grd-grid-mobile-12 {
     width: 100%;
+  }
+  .contact-content .border-bottom {
+    min-height: 130px;
   }
 }
 
@@ -2239,12 +2264,16 @@ ol.start {
 .careers-for-americans h2 {
   margin-bottom: 0;
 }
-.careers-for-americans .margin {
+.careers-for-americans .border-bottom {
+  border-bottom: 1px solid #DEDEDE;
+}
+
+.careers-for-americans .margin, .contact-content .margin {
   margin-left: 10px;
   margin-right: 10px;
 }
-.careers-for-americans .border-bottom {
-  border-bottom: 1px solid #DEDEDE;
+.careers-for-americans h3.margin, .contact-content h3.margin {
+  margin-bottom: 0;
 }
 
 .empty-space {
@@ -5189,7 +5218,6 @@ button:disabled {
 /* Specific rules for languages */
 body .calls_recording {
   display: none;
-  font-style: italic;
 }
 body .all-hide {
   display: none !important;
@@ -5205,7 +5233,7 @@ body .app-store-badge, body .google-play-badge {
 }
 
 body.EN .calls_recording {
-  display: inline !important;
+  display: block !important;
 }
 body.EN .app-store-badge {
   background-image: url("../images/pages/applications/appstore_en.svg");
@@ -5251,7 +5279,7 @@ body.JA #footer-regulatory .gr-9, body.JA #footer-regulatory .gr-p-7 {
 body.JA #bet_guide_content div:nth-child(1) {
   display: none !important;
 }
-body.JA #language_select {
+body.JA .languages {
   display: none;
 }
 body.JA #header #menu-top li {
@@ -5307,7 +5335,7 @@ body.FR .google-play-badge {
 
 /*Indonesian Language */
 body.ID .calls_recording {
-  display: inline !important;
+  display: block !important;
 }
 body.ID .regulatory-logo {
   display: none !important;
@@ -5325,7 +5353,7 @@ body.ID .id-hide {
 body.ID .extra-space {
   margin-top: 127px;
 }
-body.ID #language_select {
+body.ID .languages {
   display: none;
 }
 body.ID .app-store-badge {
@@ -5378,7 +5406,7 @@ body.RU #trading_socket_container #expiry_type {
   max-width: 185px;
 }
 body.RU .calls_recording {
-  display: inline !important;
+  display: block !important;
 }
 body.RU .ru-hide {
   display: none !important;
@@ -5426,6 +5454,10 @@ body.ZH_TW .app-store-badge {
 }
 body.ZH_TW .google-play-badge {
   background-image: url("../images/pages/applications/googleplay_zh_tw.svg");
+}
+
+body.ZH_CN .contact-content .border-bottom, body.ZH_TW .contact-content .border-bottom {
+  min-height: 215px;
 }
 
 body.PT .app-store-badge {

@@ -55,10 +55,10 @@
           <link rel="alternate" href="/zh_cn/user/security/limitsws.html" hreflang="ZH_CN" /> 
           <link rel="alternate" href="/zh_tw/user/security/limitsws.html" hreflang="ZH_TW" /> 
         
-         <link rel="stylesheet" href="/css/binary.min.css?ylxcjg6g">
-         <link rel="stylesheet" href="https://style.binary.com/binary.css?ylxcjg6g">
+         <link rel="stylesheet" href="/css/binary.min.css?q1lb9b2t">
+         <link rel="stylesheet" href="https://style.binary.com/binary.css?q1lb9b2t">
         
-        <script src='/js/binary.min.js?ylxcjg6g' defer async></script>
+        <script src='/js/binary.min.js?q1lb9b2t' defer async></script>
     </head>
 
 
@@ -75,12 +75,31 @@
                 </div>
                 <div class='gr-6 gr-7-t gr-12-p gr-12-m' id='topbar-info'>
                     <div class="gr-row">
-                        <div class='gr-5 gr-7-m no-underline' id="gmt-clock" data-balloon-pos="down"></div>
-                        <div class='gr-3 gr-hide-m' id='contact-us'>
+                        <div class='gr-5 gr-6-m no-underline' id="gmt-clock" data-balloon-pos="down"></div>
+                        <div class='gr-2 gr-hide-m' id='contact-us'>
                             <a class="pjaxload" href="/es/contact.html">Contáctenos</a>
                         </div>
-                        <div class='gr-4 gr-5-m'>
-                            <select class="ES invisible" id='language_select'></select>
+                        <div class='gr-5 gr-6-m'>
+                            <div class="languages invisible">
+                                <ul id="display_language">
+                                    <li>
+                                        <span class="world world-white"></span>
+                                        <div class="language-wrapper">
+                                            <span class="language"></span>
+                                        </div>
+                                        <span class="nav-caret"></span>
+                                    </li>
+                                </ul>
+                                <ul id="select_language">
+                                    <li>
+                                        <span class="world world-black"></span>
+                                        <div class="language-wrapper">
+                                            <span class="language"></span>
+                                        </div>
+                                        <span class="nav-caret"></span>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -96,10 +115,10 @@
                         <a id="logo" href="javascript:;">
                             <div class='gr-row logo-parent'>
                                 <div class='gr-3 gr-12-m gr-12-p gr-no-gutter logo'>
-                                    <img class='responsive' src="https://style.binary.com/images/logo/symbol.svg" />
+                                    <div></div>
                                 </div>
                                 <div class='gr-9 gr-hide-m gr-hide-p binary-logo-text'>
-                                    <img class='responsive' src="https://style.binary.com/images/logo/type.svg" />
+                                    <div></div>
                                 </div>
                             </div>
                         </a>
@@ -313,78 +332,92 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
   <div id="limits-ws-container">
-    <h1></h1>
+    <h1>Límites de comercialización y de retiro</h1>
     <br>
-    <div class="page-title" id="limits-title">
-        <h2 id="trading-limits"></h2>
+    <div class="invisible" id="limits-title">
+        <h2 id="trading-limits">Límites</h2>
         <div class="gr-padding-10">
-          <table class="flex-table" id="client-limits" style="display:none">
-            <thead>
-              <tr class="flex-tr">
-                <th class="flex-tr-child align-start" id="item"></th>
-                <th class="flex-tr-child limit align-start"></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr class="flex-tr">
-                <td class="flex-tr-child" id="max-open-position">
-                  <a href="#" id="max-open-position-tooltip" data-balloon-length="xlarge" class="no-underline">
-                    <img src="/images/common/question_1.png">
-                  </a>
-                </td>
-                <td class="flex-tr-child" id="open-positions"></td>
-              </tr>
-              <tr class="flex-tr">
-                <td class="flex-tr-child" id="max-acc-balance">
-                  <a href="#" id="max-acc-balance-tooltip" data-balloon-length="xlarge" class="no-underline">
-                    <img src="/images/common/question_1.png">
-                  </a>
-                </td>
-                <td class="flex-tr-child" id="account-balance"></td>
-              </tr>
-              <tr class="flex-tr">
-                <td class="flex-tr-child" id="max-aggregate">
-                  <a href="#" id="max-aggregate-tooltip" data-balloon-length="xlarge" class="no-underline">
-                    <img src="/images/common/question_1.png">
-                  </a>
-                </td>
-                <td class="flex-tr-child" id="payout"></td>
-              </tr>
-              <tr>
-                <td style="padding:10px;"></td>
-                <td></td>
-              </tr>
-              <tr class="flex-tr">
-                <th class="flex-tr-child align-start" id="max-daily-turnover">
-                  <a href="#" id="max-daily-turnover-tooltip" data-balloon-length="xlarge" class="no-underline">
-                    <img src="/images/common/question_1.png">
-                  </a>
-                </th>
-                <th class="flex-tr-child limit align-start"></th>
-              </tr>
-            </tbody>
-          </table>
-          <p class="hint">
-            Los límites establecidos están sujetos a cambios sin previo aviso.
-          </p>
+            <table class="flex-table" id="client-limits">
+                <thead>
+                    <tr class="flex-tr">
+                        <th class="flex-tr-child align-start">Artículo</th>
+                        <th class="flex-tr-child limit align-start">Límite</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="flex-tr">
+                        <td class="flex-tr-child">
+                            Número máximo de posiciones abiertas
+                            <a href="#" data-balloon-length="xlarge" class="no-underline" data-balloon="Representa el número máximo de contratos pendientes en su cartera. Cada línea de su cartera cuenta para una posición abierta. Una vez que se alcanza el máximo no podrá abrir nuevas posiciones sin cerrar las posiciones existentes primero.">
+                                <img src="/images/common/question_1.png">
+                            </a>
+                        </td>
+                        <td class="flex-tr-child" id="open-positions"></td>
+                    </tr>
+                    <tr class="flex-tr">
+                        <td class="flex-tr-child">
+                            Saldo de caja máximo en la cuenta
+                            <a href="#" data-balloon-length="xlarge" class="no-underline" data-balloon="Representa el monto máximo de dinero que puede tener en su cuenta. Si se alcanza el máximo se le pedirá que retire sus fondos.">
+                                <img src="/images/common/question_1.png">
+                            </a>
+                        </td>
+                        <td class="flex-tr-child" id="account-balance"></td>
+                    </tr>
+                    <tr class="flex-tr">
+                        <td class="flex-tr-child">
+                            Máximo de pagos agregados en posiciones abiertas
+                            <a href="#" data-balloon-length="xlarge" class="no-underline" data-balloon="Presenta el pago total máximo de los contratos pendientes en su cartera. Si se ajusta al máximo, no podrá comprar contratos adicionales sin primero cerrar las posiciones actuales.">
+                                <img src="/images/common/question_1.png">
+                            </a>
+                        </td>
+                        <td class="flex-tr-child" id="payout"></td>
+                    </tr>
+                    <tr class="flex-tr">
+                        <td class="flex-tr-child">
+                            Maximum aggregate payouts on open positions per symbol and contract type
+                            <a href="#" data-balloon-length="xlarge" class="no-underline" data-balloon="Maximum aggregate payouts on open positions per symbol and contract type. This limit can be exceeded up to the overall payout limit if there is no prior open position.">
+                                <img src="/images/common/question_1.png">
+                            </a>
+                        </td>
+                        <td class="flex-tr-child" id="payout-per-symbol-and-contract-type"></td>
+                    </tr>
+                    <tr>
+                        <td style="padding:10px;"></td>
+                        <td></td>
+                    </tr>
+                    <tr class="flex-tr">
+                        <th class="flex-tr-child align-start">
+                            Volumen de negocios diario máximo
+                            <a href="#" data-balloon-length="xlarge" class="no-underline" data-balloon="Representa el volumen máximo de contratos que puede comprar en un día de comercialización determinado.">
+                                <img src="/images/common/question_1.png">
+                            </a>
+                        </th>
+                        <th class="flex-tr-child limit align-start">Límite</th>
+                    </tr>
+                </tbody>
+            </table>
+            <p class="hint">
+                Los límites establecidos están sujetos a cambios sin previo aviso.
+            </p>
         </div>
     </div>
     <div class="errorbox rbox" id="client_message" style="display:none">
         <div class="rbox-wrap">
             <div class="gr-12 rbox-content" id="client_message_content">
-            <p class="center-text notice-msg"></p>
+                <p class="center-text notice-msg"></p>
+            </div>
         </div>
     </div>
 </div>
 <br>
-<div>
-  <h2 id="withdrawal-title"></h2>
-  <div id="auth-message">
-    <p id="withdrawal-limit"></p>
-    <p id="already-withdraw"></p>
-    <p id="withdrawal-limit-aggregate"></p>
-    <p id="already-withdraw-aggregate"></p>
-  </div>
+<div class="invisible" id="withdrawal-limits">
+    <h2 id="withdrawal-title">Límites de retiro</h2>
+    <div>
+        <p id="withdrawal-limit"></p>
+        <p id="already-withdraw"></p>
+        <p id="withdrawal-limit-aggregate"></p>
+        <p id="already-withdraw-aggregate"></p>
+    </div>
 </div>
 
 
