@@ -17,120 +17,124 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
   <div class='gr-12 gr-padding-10'>
-  <h1 id="deposit-withdraw-heading"></h1>
-  <div>
-
-    <div id="deposit-withdraw-message" style="display:none">
-      <p id="cashier-locked-message" class="messages">
-        การรับ/ชำระเงินของท่านถูกล็อก - หากประสงค์ปลดล็อก โปรดคลิก <a class="pjaxload" href="/th/user/security/cashier_passwordws.html">ที่นี่</a>
-      </p>
-      <p id="check-email-message" class="messages">โปรดตรวจสอบอีเมล์ของท่านเพื่อรับโทเค่นในการยืนยันตัวตน และความปลอดภัย</p>
-      <p id="choose-currency-message" class="messages">โปรดระบุสกุลเงินที่ท่านต้องการ</p>
-      <p id="personal-details-message" class="messages">
-        มีปัญหาในการตรวจสอบข้อมูลส่วนบุคคลของท่าน โปรดปรับปรุงข้อมูล [_1] ของท่าน<a class="pjaxload" href="/th/user/settings/detailsws.html">ที่นี่</a>
-        <br />
-        หากท่านต้องการความช่วยเหลือ โปรดติดต่อ <a class="pjaxload" href="/th/contact.html">แผนกบริการลูกค้า</a>ของเรา
-      </p>
-      <p id="not-authenticated-message" class="messages">
-        บัญชีของท่านยังไม่ได้รับการยืนยันตัวตนอย่างสมบูรณ์ โปรดเข้าเยี่ยมหน้า <a class="pjaxload" href="/th/user/authenticatews.html">การยืนยันตัวตน</a> เพื่อดำเนินการเพิ่มเติม
-      </p>
+    <h1 id="deposit-withdraw-heading"></h1>
+    <div>
+        <div id="deposit-withdraw-message" class="invisible">
+            <p id="cashier-locked-message" class="messages">
+                การรับ/ชำระเงินของท่านถูกล็อก - หากประสงค์ปลดล็อก โปรดคลิก <a class="pjaxload" href="/th/user/security/cashier_passwordws.html">ที่นี่</a>
+            </p>
+            <p id="check-email-message" class="messages">โปรดตรวจสอบอีเมล์ของท่านเพื่อรับโทเค่นในการยืนยันตัวตน และความปลอดภัย</p>
+            <p id="choose-currency-message" class="messages">โปรดระบุสกุลเงินที่ท่านต้องการ</p>
+            <p id="personal-details-message" class="messages">
+                มีปัญหาในการตรวจสอบข้อมูลส่วนบุคคลของท่าน โปรดปรับปรุงข้อมูล [_1] ของท่าน<a class="pjaxload" href="/th/user/settings/detailsws.html">ที่นี่</a>
+                <br /> หากท่านต้องการความช่วยเหลือ โปรดติดต่อ <a class="pjaxload" href="/th/contact.html">แผนกบริการลูกค้า</a>ของเรา
+            </p>
+            <p id="not-authenticated-message" class="messages">
+                Your account is not fully authenticated.
+            </p>
+        </div>
+        <div id="deposit-withdraw-error" class="center-text notice-msg invisible">
+            <p id="withdrawal-locked-error" class="error_messages">
+                Withdrawal is locked, please contact <a class="pjaxload" href="/th/contact.html">customer support</a> for more information.
+            </p>
+            <p id="deposit-locked-error" class="error_messages">
+                Deposit is locked, please contact <a class="pjaxload" href="/th/contact.html">customer support</a> for more information.
+            </p>
+            <p id="cashier-locked-error" class="error_messages">
+                Cashier is locked, please contact <a class="pjaxload" href="/th/contact.html">customer support</a> for more information.
+            </p>
+            <p id="financial-risk-error" class="error_messages">
+                Financial Risk approval is required. Please contact <a class="pjaxload" href="/th/contact.html">customer support</a> for more information.
+            </p>
+            <p id="knowledge-test-error" class="error_messages">
+                You must complete the knowledge test to activate this account. Please contact <a class="pjaxload" href="/th/contact.html">customer support</a> for more information.
+            </p>
+            <p id="activation-error" class="error_messages">
+                Account not activated, please contact <a class="pjaxload" href="/th/contact.html">customer support</a> for more information.
+            </p>
+            <p id="age-error" class="error_messages">
+                Account needs age verification, please contact <a class="pjaxload" href="/th/contact.html">customer support</a> for more information.
+            </p>
+            <p id="custom-error" class="error_messages"></p>
+        </div>
     </div>
-
-    <div id="deposit-withdraw-error" class="error-msg" style="display:none">
-        <p id="withdrawal-locked-error" class="error_messages">
-            การถอนถูกล็อค โปรด<a class="pjaxload" href="/th/contact.html">ติดต่อเรา</a> สำหรับข้อมูลเพิ่มเติม
-        </p>
-        <p id="deposit-locked-error" class="error_messages">
-            การฝากเงินถูกล็อค โปรด <a class="pjaxload" href="/th/contact.html">ติดต่อเรา</a> สำหรับข้อมูลเพิ่มเติม
-        </p>
-        <p id="cashier-locked-error" class="error_messages">
-            แคชเชียร์ถูกล็อค โปรด <a class="pjaxload" href="/th/contact.html">ติดต่อเรา</a> สำหรับข้อมูลเพิ่มเติม
-        </p>
-      <p id="custom-error" class="error_messages"></p>
+    <div class="container invisible" id="deposit-withdraw-iframe-container">
+        <script data-cfasync="false" type="text/javascript">
+            function receiveCmd(e) {
+                if (e.origin !== "https://cashier.binary.com") return;
+                if (e.data.action == 'iframesize') {
+                    document.getElementById('cashiercont').style.height = (e.data.height) + "px";
+                } else if (e.data.action == 'reloadwin') {
+                    window.location.reload(true);
+                }
+            }
+            if (!window.addEventListener) {
+                window.attachEvent("message", receiveCmd);
+            } else {
+                window.addEventListener("message", receiveCmd, false);
+            }
+        </script>
+        <iframe src="" frameborder="0" width="100%" height="1500" id="cashiercont" scrolling="auto" style="padding:0px;margin:0px;"></iframe>
     </div>
-
-  </div>
-  <div class="container" id="deposit-withdraw-iframe-container" style="display:none">
-    <script data-cfasync="false" type="text/javascript">
-    function receiveCmd(e){
-      if (e.origin !== "https://cashier.binary.com") return;
-      if (e.data.action == 'iframesize') {
-        document.getElementById('cashiercont').style.height = (e.data.height) + "px";
-      } else if (e.data.action == 'reloadwin') {
-        window.location.reload(true);
-      }
-    }
-    if (! window.addEventListener) {
-      window.attachEvent("message", receiveCmd);
-    } else {
-      window.addEventListener("message", receiveCmd, false);
-    }
-    </script>
-    <iframe src="" frameborder="0" width="100%" height="1500" id="cashiercont" scrolling="auto" style="padding:0px;margin:0px;"></iframe>
-  </div>
-  <div id="ukgc-funds-protection" class="gr-row gr-parent" style="display:none">
-      <div class="gr-2 gr-6-m gr-centered-m">
-          <p>
-              <img class="responsive" src="/images/pages/cashier/protection-icon.svg"/>
-          </p>
-      </div>
-      <div class="gr-10 gr-12-m">
-              <p>
-                  พวกเราถูกกำหนดโดยใบอนุญาตของพวกเราเพื่อเรียนให้ท่านทราบเกี่ยวกับสิ่งที่เกิดขึ้นกับเงินทุนที่พวกเราดูแลในแต่ละบัญชีของท่าน และการขยายผลเพื่อการบริหารและป้องกันเงินทุนจากภาวะไม่สามารถชำระหนี้ <a href='http://www.gamblingcommission.gov.uk/Consumers/Protection-of-customer-funds.aspx' target='_blank'>http://www.gamblingcommission.gov.uk/Consumers/Protection-of-customer-funds.aspx</a>
-              </p>
-              <p>
-                  บริษัทฯ ถือเงินทุนของลูกค้าในบัญชีธนาคาร ซึ่งจะไม่เกี่ยวข้องกับส่วนหนึ่งของบริษัทฯ ในแง่ความไม่สามารถชำระหนี้ ซึ่งเป็นเงื่อนไขของ Gambling Commission เกี่ยวกับเงินทุนของลูกค้าที่ระดับ: <strong>การป้องกันระดับกลาง</strong>
-              </p>
-              <div class='gr-3 gr-6-m gr-centered'>
-                  <span class="button">
+    <div id="ukgc-funds-protection" class="gr-row gr-parent invisible">
+        <div class="gr-2 gr-6-m gr-centered-m">
+            <p>
+                <img class="responsive" src="/images/pages/cashier/protection-icon.svg" />
+            </p>
+        </div>
+        <div class="gr-10 gr-12-m">
+            <p>
+                พวกเราถูกกำหนดโดยใบอนุญาตของพวกเราเพื่อเรียนให้ท่านทราบเกี่ยวกับสิ่งที่เกิดขึ้นกับเงินทุนที่พวกเราดูแลในแต่ละบัญชีของท่าน และการขยายผลเพื่อการบริหารและป้องกันเงินทุนจากภาวะไม่สามารถชำระหนี้ <a href='http://www.gamblingcommission.gov.uk/Consumers/Protection-of-customer-funds.aspx' target='_blank'>http://www.gamblingcommission.gov.uk/Consumers/Protection-of-customer-funds.aspx</a>
+            </p>
+            <p>
+                The company holds customer funds in separate bank accounts to the operational accounts which would not, in the event of insolvency, form part of the Company's assets. This meets the Gambling Commission's requirements for the segregation of customer
+                funds at the level: <strong>medium protection</strong>.
+            </p>
+            <div class='gr-3 gr-6-m gr-centered'>
+                <span class="button">
                       <button id="submit-ukgc-funds-protection" class="button" value="ok" type="submit">ประมวลผล</button>
                   </span>
-              </div>
-      </div>
-  </div>
-  <div id="currency-form" style="display:none">
-    <div class="rbox-wrap">
-      <fieldset>
-        <div class="gr-padding-10 gr-row clear">
-          <div class="gr-4 form_label">
-            <label for="currency">ธุรกรรม ณ</label>
-          </div>
-          <div class="gr-8">
-            <select id="select-currency">
-              <option value="USD" selected="selected">USD</option>
-              <option value="EUR">EUR</option>
-              <option value="GBP">GBP</option>
-              <option value="AUD">AUD</option>
-            </select>
-          </div>
+            </div>
         </div>
-        <div class="gr-padding-10 row clear form_button">
-          <div class="gr-8">
-            <span class="button">
+    </div>
+    <div id="currency-form" class="invisible">
+        <div class="rbox-wrap">
+            <fieldset>
+                <div class="gr-padding-10 gr-row clear">
+                    <div class="gr-4 form_label">
+                        <label for="currency">ธุรกรรม ณ</label>
+                    </div>
+                    <div class="gr-8">
+                        <select id="select-currency"></select>
+                    </div>
+                </div>
+                <div class="gr-padding-10 row clear form_button">
+                    <div class="gr-8">
+                        <span class="button">
               <button class="button" id="submit-currency" type="submit" value="Continue">ดำเนินการต่อ</button>
             </span>
-          </div>
+                    </div>
+                </div>
+            </fieldset>
         </div>
-      </fieldset>
     </div>
-  </div>
-  <div id="withdraw-form" style="display:none">
-    <fieldset>
-      <div class="gr-row gr-parent gr-padding-10">
-        <div class="form_label gr-4">
-          <label for="verification-token">โทเค่นเพื่อตรวจสอบ</label>
-        </div>
-        <div class="gr-8">
-          <input id="verification-token" type="text" maxlength="48" autocomplete="off" />
-          <div class="hint">โปรดตรวจสอบอีเมล์ของท่านเพื่อการใช้งานโทเค่นนี้</div>
-          <p class="errorfield" id="verification-error" style="display:none"></p>
-        </div>
-      </div>
-      <div class="gr-12 gr-parent gr-centered center-text">
-        <span class="button">
-          <button class="button" id="submit-verification" type="button">ส่ง</button>
-        </span>
-      </div>
-    </fieldset>
-  </div>
+    <div id="withdraw-form" class="invisible">
+        <fieldset>
+            <div class="gr-row gr-parent gr-padding-10">
+                <div class="form_label gr-4">
+                    <label for="verification-token">โทเค่นเพื่อตรวจสอบ</label>
+                </div>
+                <div class="gr-8">
+                    <input id="verification-token" type="text" maxlength="48" autocomplete="off" />
+                    <div class="hint">โปรดตรวจสอบอีเมล์ของท่านเพื่อการใช้งานโทเค่นนี้</div>
+                    <p class="errorfield invisible" id="verification-error"></p>
+                </div>
+            </div>
+            <div class="gr-12 gr-parent gr-centered center-text">
+                <span class="button">
+                    <button class="button" id="submit-verification" type="button">ส่ง</button>
+                </span>
+            </div>
+        </fieldset>
+    </div>
 </div>

@@ -55,10 +55,10 @@
           <link rel="alternate" href="/zh_cn/cashier/forwardws.html" hreflang="ZH_CN" /> 
           <link rel="alternate" href="/zh_tw/cashier/forwardws.html" hreflang="ZH_TW" /> 
         
-         <link rel="stylesheet" href="/css/binary.min.css?rqid36aa">
-         <link rel="stylesheet" href="https://style.binary.com/binary.css?rqid36aa">
+         <link rel="stylesheet" href="/css/binary.min.css?gixeb09n">
+         <link rel="stylesheet" href="https://style.binary.com/binary.css?gixeb09n">
         
-        <script src='/js/binary.min.js?rqid36aa' defer async></script>
+        <script src='/js/binary.min.js?gixeb09n' defer async></script>
     </head>
 
 
@@ -225,7 +225,7 @@
                     <a class="link pjaxload" target="" href="/pl/user/profit_tablews.html">Tabela zysków</a>
                     
                 </li>  <li id="topMenuStatement" class="item client_logged_in invisible">
-                    <a class="link pjaxload" target="" href="/pl/user/statementws.html">Stan konta</a>
+                    <a class="link pjaxload" target="" href="/pl/user/statementws.html">Oświadczenie</a>
                     
                 </li>  <li id="topMenuCashier" class="item ">
                     <a class="link pjaxload" target="" href="/pl/cashier.html">Kasjer</a>
@@ -282,7 +282,7 @@
                 <a class="pjaxload link pjaxload" href="/pl/user/profit_tablews.html">Tabela zysków</a>
                 
             </li>  <li id="topMenuStatement" class="item client_logged_in invisible">
-                <a class="pjaxload link pjaxload" href="/pl/user/statementws.html">Stan konta</a>
+                <a class="pjaxload link pjaxload" href="/pl/user/statementws.html">Oświadczenie</a>
                 
             </li>  <li id="topMenuCashier" class="item">
                 <a class="pjaxload link pjaxload" href="/pl/cashier.html">Kasjer</a>
@@ -332,122 +332,126 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
   <div class='gr-12 gr-padding-10'>
-  <h1 id="deposit-withdraw-heading"></h1>
-  <div>
-
-    <div id="deposit-withdraw-message" style="display:none">
-      <p id="cashier-locked-message" class="messages">
-        Sekcja Kasjer została zablokowana na Twoją prośbę - jeśli chcesz ją odblokować, prosimy kliknąć <a class="pjaxload" href="/pl/user/security/cashier_passwordws.html">tutaj</a>.
-      </p>
-      <p id="check-email-message" class="messages">Ze względów bezpieczeństwa token weryfikujący został wysłany na Twój adres e-mail. Sprawdź swoją skrzynkę odbiorczą.</p>
-      <p id="choose-currency-message" class="messages">Wybierz, w jakiej walucie chcesz zawrzeć transakcję.</p>
-      <p id="personal-details-message" class="messages">
-        Nie udało nam się zweryfikować Twoich danych osobowych. Zaktualizuj <a class="pjaxload" href="/pl/user/settings/detailsws.html">tutaj</a>.
-        <br />
-        Jeśli potrzebujesz pomocy, skontaktuj się z naszym <a class="pjaxload" href="/pl/contact.html">działem obsługi klienta</a>.
-      </p>
-      <p id="not-authenticated-message" class="messages">
-        Twoje konto nie zostało w pełni zweryfikowane. Aby uzyskać więcej informacji, odwiedź stronę dotyczącą procesu <a class="pjaxload" href="/pl/user/authenticatews.html">weryfikacyjnego</a>.
-      </p>
+    <h1 id="deposit-withdraw-heading"></h1>
+    <div>
+        <div id="deposit-withdraw-message" class="invisible">
+            <p id="cashier-locked-message" class="messages">
+                Sekcja Kasjer została zablokowana na Twoją prośbę - jeśli chcesz ją odblokować, prosimy kliknąć <a class="pjaxload" href="/pl/user/security/cashier_passwordws.html">tutaj</a>.
+            </p>
+            <p id="check-email-message" class="messages">Ze względów bezpieczeństwa token weryfikujący został wysłany na Twój adres e-mail. Sprawdź swoją skrzynkę odbiorczą.</p>
+            <p id="choose-currency-message" class="messages">Wybierz, w jakiej walucie chcesz zawrzeć transakcję.</p>
+            <p id="personal-details-message" class="messages">
+                Nie udało nam się zweryfikować Twoich danych osobowych. Zaktualizuj <a class="pjaxload" href="/pl/user/settings/detailsws.html">tutaj</a>.
+                <br /> Jeśli potrzebujesz pomocy, skontaktuj się z naszym <a class="pjaxload" href="/pl/contact.html">działem obsługi klienta</a>.
+            </p>
+            <p id="not-authenticated-message" class="messages">
+                Your account is not fully authenticated.
+            </p>
+        </div>
+        <div id="deposit-withdraw-error" class="center-text notice-msg invisible">
+            <p id="withdrawal-locked-error" class="error_messages">
+                Withdrawal is locked, please contact <a class="pjaxload" href="/pl/contact.html">customer support</a> for more information.
+            </p>
+            <p id="deposit-locked-error" class="error_messages">
+                Deposit is locked, please contact <a class="pjaxload" href="/pl/contact.html">customer support</a> for more information.
+            </p>
+            <p id="cashier-locked-error" class="error_messages">
+                Cashier is locked, please contact <a class="pjaxload" href="/pl/contact.html">customer support</a> for more information.
+            </p>
+            <p id="financial-risk-error" class="error_messages">
+                Financial Risk approval is required. Please contact <a class="pjaxload" href="/pl/contact.html">customer support</a> for more information.
+            </p>
+            <p id="knowledge-test-error" class="error_messages">
+                You must complete the knowledge test to activate this account. Please contact <a class="pjaxload" href="/pl/contact.html">customer support</a> for more information.
+            </p>
+            <p id="activation-error" class="error_messages">
+                Account not activated, please contact <a class="pjaxload" href="/pl/contact.html">customer support</a> for more information.
+            </p>
+            <p id="age-error" class="error_messages">
+                Account needs age verification, please contact <a class="pjaxload" href="/pl/contact.html">customer support</a> for more information.
+            </p>
+            <p id="custom-error" class="error_messages"></p>
+        </div>
     </div>
-
-    <div id="deposit-withdraw-error" class="error-msg" style="display:none">
-        <p id="withdrawal-locked-error" class="error_messages">
-            Dokonywanie wypłat jest zablokowane. <a class="pjaxload" href="/pl/contact.html">Skontaktuj się z nami</a>, aby uzyskać więcej informacji.
-        </p>
-        <p id="deposit-locked-error" class="error_messages">
-            Dokonywanie wpłat jest zablokowane. <a class="pjaxload" href="/pl/contact.html">Skontaktuj się z nami</a>, aby uzyskać więcej informacji.
-        </p>
-        <p id="cashier-locked-error" class="error_messages">
-            Sekcja Kasjer jest zablokowana. <a class="pjaxload" href="/pl/contact.html">Skontaktuj się z nami</a>, aby uzyskać więcej informacji.
-        </p>
-      <p id="custom-error" class="error_messages"></p>
+    <div class="container invisible" id="deposit-withdraw-iframe-container">
+        <script data-cfasync="false" type="text/javascript">
+            function receiveCmd(e) {
+                if (e.origin !== "https://cashier.binary.com") return;
+                if (e.data.action == 'iframesize') {
+                    document.getElementById('cashiercont').style.height = (e.data.height) + "px";
+                } else if (e.data.action == 'reloadwin') {
+                    window.location.reload(true);
+                }
+            }
+            if (!window.addEventListener) {
+                window.attachEvent("message", receiveCmd);
+            } else {
+                window.addEventListener("message", receiveCmd, false);
+            }
+        </script>
+        <iframe src="" frameborder="0" width="100%" height="1500" id="cashiercont" scrolling="auto" style="padding:0px;margin:0px;"></iframe>
     </div>
-
-  </div>
-  <div class="container" id="deposit-withdraw-iframe-container" style="display:none">
-    <script data-cfasync="false" type="text/javascript">
-    function receiveCmd(e){
-      if (e.origin !== "https://cashier.binary.com") return;
-      if (e.data.action == 'iframesize') {
-        document.getElementById('cashiercont').style.height = (e.data.height) + "px";
-      } else if (e.data.action == 'reloadwin') {
-        window.location.reload(true);
-      }
-    }
-    if (! window.addEventListener) {
-      window.attachEvent("message", receiveCmd);
-    } else {
-      window.addEventListener("message", receiveCmd, false);
-    }
-    </script>
-    <iframe src="" frameborder="0" width="100%" height="1500" id="cashiercont" scrolling="auto" style="padding:0px;margin:0px;"></iframe>
-  </div>
-  <div id="ukgc-funds-protection" class="gr-row gr-parent" style="display:none">
-      <div class="gr-2 gr-6-m gr-centered-m">
-          <p>
-              <img class="responsive" src="/images/pages/cashier/protection-icon.svg"/>
-          </p>
-      </div>
-      <div class="gr-10 gr-12-m">
-              <p>
-                  Nasza licencja zobowiązuje nas, aby poinformować Cię, co dzieje się z Twoimi środkami gromadzonymi na naszych kontach oraz o zakresie ochrony, jaką środki są objęte na wypadek naszej niewypłacalności <a href='http://www.gamblingcommission.gov.uk/Consumers/Protection-of-customer-funds.aspx' target='_blank'>http://www.gamblingcommission.gov.uk/Consumers/Protection-of-customer-funds.aspx</a>.
-              </p>
-              <p>
-                  Firma przechowuje środki klientów na innych rachunkach bankowych niż rachunek operacyjny. W przypadku niewypłacalności firmy rachunki te nie będą stanowiły jej aktywów. Tym samym spełnione zostają wymagania instytucji Gambling Commission dotyczące oddzielenia funduszy klientów na następującym poziomie: <strong>średnia ochrona</strong>.
-              </p>
-              <div class='gr-3 gr-6-m gr-centered'>
-                  <span class="button">
+    <div id="ukgc-funds-protection" class="gr-row gr-parent invisible">
+        <div class="gr-2 gr-6-m gr-centered-m">
+            <p>
+                <img class="responsive" src="/images/pages/cashier/protection-icon.svg" />
+            </p>
+        </div>
+        <div class="gr-10 gr-12-m">
+            <p>
+                Nasza licencja zobowiązuje nas, aby poinformować Cię, co dzieje się z Twoimi środkami gromadzonymi na naszych kontach oraz o zakresie ochrony, jaką środki są objęte na wypadek naszej niewypłacalności <a href='http://www.gamblingcommission.gov.uk/Consumers/Protection-of-customer-funds.aspx' target='_blank'>http://www.gamblingcommission.gov.uk/Consumers/Protection-of-customer-funds.aspx</a>.
+            </p>
+            <p>
+                Firma przechowuje środki klientów na innych rachunkach bankowych niż rachunek operacyjny. W przypadku niewypłacalności firmy rachunki te nie będą stanowiły jej aktywów. Tym samym spełnione zostają wymagania instytucji Gambling Commission dotyczące oddzielenia funduszy klientów
+                na następującym poziomie: <strong>średnia ochrona</strong>.
+            </p>
+            <div class='gr-3 gr-6-m gr-centered'>
+                <span class="button">
                       <button id="submit-ukgc-funds-protection" class="button" value="ok" type="submit">Kontynuuj</button>
                   </span>
-              </div>
-      </div>
-  </div>
-  <div id="currency-form" style="display:none">
-    <div class="rbox-wrap">
-      <fieldset>
-        <div class="gr-padding-10 gr-row clear">
-          <div class="gr-4 form_label">
-            <label for="currency">Zawieraj transakcje na</label>
-          </div>
-          <div class="gr-8">
-            <select id="select-currency">
-              <option value="USD" selected="selected">USD</option>
-              <option value="EUR">EUR</option>
-              <option value="GBP">GBP</option>
-              <option value="AUD">AUD</option>
-            </select>
-          </div>
+            </div>
         </div>
-        <div class="gr-padding-10 row clear form_button">
-          <div class="gr-8">
-            <span class="button">
+    </div>
+    <div id="currency-form" class="invisible">
+        <div class="rbox-wrap">
+            <fieldset>
+                <div class="gr-padding-10 gr-row clear">
+                    <div class="gr-4 form_label">
+                        <label for="currency">Zawieraj transakcje na</label>
+                    </div>
+                    <div class="gr-8">
+                        <select id="select-currency"></select>
+                    </div>
+                </div>
+                <div class="gr-padding-10 row clear form_button">
+                    <div class="gr-8">
+                        <span class="button">
               <button class="button" id="submit-currency" type="submit" value="Continue">Dalej</button>
             </span>
-          </div>
+                    </div>
+                </div>
+            </fieldset>
         </div>
-      </fieldset>
     </div>
-  </div>
-  <div id="withdraw-form" style="display:none">
-    <fieldset>
-      <div class="gr-row gr-parent gr-padding-10">
-        <div class="form_label gr-4">
-          <label for="verification-token">Token weryfikacyjny</label>
-        </div>
-        <div class="gr-8">
-          <input id="verification-token" type="text" maxlength="48" autocomplete="off" />
-          <div class="hint">Informacja na temat tego tokenu została wysłana na Twój adres e-mail</div>
-          <p class="errorfield" id="verification-error" style="display:none"></p>
-        </div>
-      </div>
-      <div class="gr-12 gr-parent gr-centered center-text">
-        <span class="button">
-          <button class="button" id="submit-verification" type="button">Prześlij</button>
-        </span>
-      </div>
-    </fieldset>
-  </div>
+    <div id="withdraw-form" class="invisible">
+        <fieldset>
+            <div class="gr-row gr-parent gr-padding-10">
+                <div class="form_label gr-4">
+                    <label for="verification-token">Token weryfikacyjny</label>
+                </div>
+                <div class="gr-8">
+                    <input id="verification-token" type="text" maxlength="48" autocomplete="off" />
+                    <div class="hint">Informacja na temat tego tokenu została wysłana na Twój adres e-mail</div>
+                    <p class="errorfield invisible" id="verification-error"></p>
+                </div>
+            </div>
+            <div class="gr-12 gr-parent gr-centered center-text">
+                <span class="button">
+                    <button class="button" id="submit-verification" type="button">Prześlij</button>
+                </span>
+            </div>
+        </fieldset>
+    </div>
 </div>
 
 

@@ -704,6 +704,7 @@ body #topbar #display_language li:first-child {
 }
 #footer #footer-regulatory #ratelimit-error-message .message a {
   color: #2E8836;
+  font-size: inherit;
 }
 #footer #footer-last a {
   text-decoration: underline;
@@ -827,19 +828,6 @@ html.mm-right.mm-opening body .mm-page, html.mm-right.mm-opening body #mm-blocke
     width: 95vw;
   }
 }
-meter#password-meter {
-  display: block;
-  width: 10.9em;
-  height: 0.5em;
-  border: 1px solid #ccc;
-  border-radius: 3px;
-}
-
-meter#password-meter::-webkit-meter-bar {
-  background: #F2F2F2;
-  box-shadow: 0 5px 5px -5px rgba(0, 0, 0, 0.25) inset;
-}
-
 #accordion .ui-accordion-content {
   padding-top: 0;
 }
@@ -2912,6 +2900,10 @@ div.kineticjs-content {
   table-layout: fixed;
   width: 100%;
 }
+.platforms-content table ul.checked li {
+  background-position: center;
+  margin: 0;
+}
 .platforms-content td, .platforms-content th {
   vertical-align: top;
   padding: 10px;
@@ -2940,10 +2932,6 @@ div.kineticjs-content {
   font-weight: bold;
   background: #F2F2F2;
   border-bottom: 1px solid #F2F2F2;
-}
-.platforms-content ul.checked li {
-  background-position: center;
-  margin: 0;
 }
 .platforms-content .small-padding-top {
   padding-top: 4px;
@@ -5520,7 +5508,7 @@ body.TH .google-play-badge {
     max-height: 100%;
   }
 
-  input, meter#password-meter, select {
+  input, select {
     width: 80%;
   }
 
