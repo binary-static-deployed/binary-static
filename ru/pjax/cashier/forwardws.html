@@ -16,7 +16,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <div class="container">
 
 
-  <div class='gr-12 gr-padding-10'>
+  <div class="gr-12 gr-padding-10">
     <h1 id="deposit-withdraw-heading"></h1>
     <div>
         <div id="deposit-withdraw-message" class="invisible">
@@ -30,32 +30,32 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <br /> Если Вам нужна помощь, пожалуйста, обратитесь в <a class="pjaxload" href="/ru/contact.html">службу поддержки</a>.
             </p>
             <p id="not-authenticated-message" class="messages">
-                Your account is not fully authenticated.
+                Вы не завершили аутентификацию счёта.
             </p>
         </div>
-        <div id="deposit-withdraw-error" class="center-text notice-msg invisible">
-            <p id="withdrawal-locked-error" class="error_messages">
-                Withdrawal is locked, please contact <a class="pjaxload" href="/ru/contact.html">customer support</a> for more information.
+        <div id="deposit-withdraw-error" class="invisible">
+            <p id="withdrawal-locked-error" class="error_messages center-text notice-msg ">
+                Вывод средств заблокирован. Пожалуйста, свяжитесь с отделом <a class="pjaxload" href="/ru/contact.html">поддержки клиентов</a> для получения дополнительной информации.
             </p>
-            <p id="deposit-locked-error" class="error_messages">
-                Deposit is locked, please contact <a class="pjaxload" href="/ru/contact.html">customer support</a> for more information.
+            <p id="deposit-locked-error" class="error_messages center-text notice-msg ">
+                Внесение средств заблокировано. Пожалуйста, свяжитесь с отделом <a class="pjaxload" href="/ru/contact.html">поддержки клиентов</a> для получения дополнительной информации.
             </p>
-            <p id="cashier-locked-error" class="error_messages">
-                Cashier is locked, please contact <a class="pjaxload" href="/ru/contact.html">customer support</a> for more information.
+            <p id="cashier-locked-error" class="error_messages center-text notice-msg ">
+                Касса заблокирована. Пожалуйста, свяжитесь с отделом <a class="pjaxload" href="/ru/contact.html">поддержки клиентов</a> для получения дополнительной информации.
             </p>
-            <p id="financial-risk-error" class="error_messages">
-                Financial Risk approval is required. Please contact <a class="pjaxload" href="/ru/contact.html">customer support</a> for more information.
+            <p id="financial-risk-error" class="error_messages center-text notice-msg ">
+                Необходимо подтверждение финансового риска. Пожалуйста, свяжитесь с отделом <a class="pjaxload" href="/ru/contact.html">поддержки клиентов</a> для получения дополнительной информации.
             </p>
-            <p id="knowledge-test-error" class="error_messages">
-                You must complete the knowledge test to activate this account. Please contact <a class="pjaxload" href="/ru/contact.html">customer support</a> for more information.
+            <p id="knowledge-test-error" class="error_messages center-text notice-msg ">
+                Для активации данного счёта Вы должны пройти тест на проверку знаний. Пожалуйста, свяжитесь с отделом <a class="pjaxload" href="/ru/contact.html">поддержки клиентов</a> для получения дополнительной информации.
             </p>
-            <p id="activation-error" class="error_messages">
-                Account not activated, please contact <a class="pjaxload" href="/ru/contact.html">customer support</a> for more information.
+            <p id="activation-error" class="error_messages center-text notice-msg ">
+                Счёт не активирован. Пожалуйста, свяжитесь с отделом <a class="pjaxload" href="/ru/contact.html">поддержки клиентов</a> для получения дополнительной информации.
             </p>
-            <p id="age-error" class="error_messages">
-                Account needs age verification, please contact <a class="pjaxload" href="/ru/contact.html">customer support</a> for more information.
+            <p id="age-error" class="error_messages center-text notice-msg ">
+                Необходима проверка возраста. Пожалуйста, свяжитесь с отделом <a class="pjaxload" href="/ru/contact.html">поддержки клиентов</a> для получения дополнительной информации.
             </p>
-            <p id="custom-error" class="error_messages"></p>
+            <p id="custom-error" class="error_messages center-text notice-msg error_vrtc"></p>
         </div>
     </div>
     <div class="container invisible" id="deposit-withdraw-iframe-container">
@@ -74,7 +74,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 window.addEventListener("message", receiveCmd, false);
             }
         </script>
-        <iframe src="" frameborder="0" width="100%" height="1500" id="cashiercont" scrolling="auto" style="padding:0px;margin:0px;"></iframe>
+        <iframe src="" frameborder="0" width="100%" height="1500" id="cashiercont" scrolling="auto" style="padding:0;margin:0;"></iframe>
     </div>
     <div id="ukgc-funds-protection" class="gr-row gr-parent invisible">
         <div class="gr-2 gr-6-m gr-centered-m">
@@ -87,8 +87,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 Наша лицензия требует от нас, чтобы мы информировали Вас о состоянии средств, которые мы держим на Вашем счету, и о степени защиты средств в случае неплатежеспособности <a href='http://www.gamblingcommission.gov.uk/Consumers/Protection-of-customer-funds.aspx' target='_blank'>http://www.gamblingcommission.gov.uk/Consumers/Protection-of-customer-funds.aspx</a>.
             </p>
             <p>
-                The company holds customer funds in separate bank accounts to the operational accounts which would not, in the event of insolvency, form part of the Company's assets. This meets the Gambling Commission's requirements for the segregation of customer
-                funds at the level: <strong>medium protection</strong>.
+                Компания держит средства клиентов на отдельных от рабочих счетов банковских счетах, которые в случае неплатежеспособности Компании не войдут в состав ее активов. Это отвечает требованиям Комиссии по азартным играм по сегрегации 
+средств клиентов на следующем уровне: <strong>средняя защита</strong>.
             </p>
             <div class='gr-3 gr-6-m gr-centered'>
                 <span class="button">
@@ -108,7 +108,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <select id="select-currency"></select>
                     </div>
                 </div>
-                <div class="gr-padding-10 row clear form_button">
+                <div class="gr-padding-10 row clear center-text">
                     <div class="gr-8">
                         <span class="button">
               <button class="button" id="submit-currency" type="submit" value="Continue">Подтвердить</button>

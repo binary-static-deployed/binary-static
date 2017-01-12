@@ -55,10 +55,10 @@
           <link rel="alternate" href="/zh_cn/user/security/limitsws.html" hreflang="ZH_CN" /> 
           <link rel="alternate" href="/zh_tw/user/security/limitsws.html" hreflang="ZH_TW" /> 
         
-         <link rel="stylesheet" href="/css/binary.min.css?t9lyz0vm">
-         <link rel="stylesheet" href="https://style.binary.com/binary.css?t9lyz0vm">
+         <link rel="stylesheet" href="/css/binary.min.css?78n5xmch">
+         <link rel="stylesheet" href="https://style.binary.com/binary.css?78n5xmch">
         
-        <script src='/js/binary.min.js?t9lyz0vm' defer async></script>
+        <script src='/js/binary.min.js?78n5xmch' defer async></script>
     </head>
 
 
@@ -71,7 +71,7 @@
                     <span class='gr-hide-m invisible'>
                         <span id='virtual-text'>Вы находитесь на демо-счету.</span>
                     </span>
-                    <a class="pjaxload pulser invisible"></a>
+                    <a class="pulser invisible"></a>
                 </div>
                 <div class='gr-6 gr-7-t gr-12-p gr-12-m' id='topbar-info'>
                     <div class="gr-row">
@@ -331,9 +331,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <div class="container">
 
 
-  <div id="limits-ws-container">
+  <div id="limits-ws-container" class="gr-12 gr-padding-10">
     <h1>Лимиты на торговлю и вывод</h1>
-    <br>
     <div class="invisible" id="limits-title">
         <h2 id="trading-limits">Торговые лимиты</h2>
         <div class="gr-padding-10">
@@ -374,8 +373,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     </tr>
                     <tr class="flex-tr">
                         <td class="flex-tr-child">
-                            Maximum aggregate payouts on open positions per symbol and contract type
-                            <a href="#" data-balloon-length="xlarge" class="no-underline" data-balloon="Maximum aggregate payouts on open positions per symbol and contract type. This limit can be exceeded up to the overall payout limit if there is no prior open position.">
+                            Максимальные совокупные выплаты по открытым позициям с одного актива и типа контракта
+                            <a href="#" data-balloon-length="xlarge" class="no-underline" data-balloon="Максимальные совокупные выплаты по открытым позициям с одного актива и типа контракта. Данный лимит может быть повышен до общего лимита на выплату, если на счету нет ранее открытых позиций.">
                                 <img src="/images/common/question_1.png">
                             </a>
                         </td>
@@ -401,15 +400,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             </p>
         </div>
     </div>
-    <div class="errorbox rbox" id="client_message" style="display:none">
-        <div class="rbox-wrap">
-            <div class="gr-12 rbox-content" id="client_message_content">
+    <div id="client_message" style="display:none">
+            <div id="client_message_content">
                 <p class="center-text notice-msg"></p>
             </div>
-        </div>
     </div>
 </div>
-<br>
 <div class="invisible" id="withdrawal-limits">
     <h2 id="withdrawal-title">Лимиты на вывод</h2>
     <div>
@@ -472,8 +468,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                 <li class="ja-hide">
                                     <a class="pjaxload" href="/ru/tour.html">О платформе</a>
                                 </li>
-                                <li class="hidden ja-show-black">
+                                <li class="hidden ja-show-block">
                                     <a class="pjaxload" href="/ru/tour-jp.html">О платформе</a>
+                                </li>
+                                <li class="hidden ja-show-block">
+                                    <a class="pjaxload" href="/ru/service-announcements.html">{JAPAN ONLY}Service Announcements</a>
                                 </li>
                                 <li class="ja-hide id-hide">
                                     <a href="http://www.gamcare.org.uk/" target="_blank">GamCare</a>
@@ -559,9 +558,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                            <ul>
                                <li>
                                    <a class="pjaxload" href="/ru/company-profile.html">{JAPAN ONLY}Company Profile & Disclosure</a>
-                               </li>
-                               <li class="invisible">
-                                   <a class="pjaxload" href="/ru/service-announcements.html">{JAPAN ONLY}Service Announcements</a>
                                </li>
                            </ul>
                        </div>

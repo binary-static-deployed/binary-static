@@ -16,7 +16,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <div class="container">
 
 
-  <div class='gr-12 gr-padding-10'>
+  <div class="gr-12 gr-padding-10">
     <h1 id="deposit-withdraw-heading"></h1>
     <div>
         <div id="deposit-withdraw-message" class="invisible">
@@ -30,32 +30,32 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <br /> ご不明な点がございましたら、<a class="pjaxload" href="/ja/contact.html">カスタマーサポート</a>までお気軽にお問い合わせ下さい。
             </p>
             <p id="not-authenticated-message" class="messages">
-                Your account is not fully authenticated.
+                お客様の口座認証はまだ完了していません。
             </p>
         </div>
-        <div id="deposit-withdraw-error" class="center-text notice-msg invisible">
-            <p id="withdrawal-locked-error" class="error_messages">
-                Withdrawal is locked, please contact <a class="pjaxload" href="/ja/contact.html">customer support</a> for more information.
+        <div id="deposit-withdraw-error" class="invisible">
+            <p id="withdrawal-locked-error" class="error_messages center-text notice-msg ">
+                出金アクションにロックがかかっています。詳細については<a class="pjaxload" href="/ja/contact.html">カスタマーサポート</a>までお問い合わせください。
             </p>
-            <p id="deposit-locked-error" class="error_messages">
-                Deposit is locked, please contact <a class="pjaxload" href="/ja/contact.html">customer support</a> for more information.
+            <p id="deposit-locked-error" class="error_messages center-text notice-msg ">
+                出金口座にロックがかかっています。詳細については<a class="pjaxload" href="/ja/contact.html">カスタマーサポート</a>までご連絡ください。
             </p>
-            <p id="cashier-locked-error" class="error_messages">
-                Cashier is locked, please contact <a class="pjaxload" href="/ja/contact.html">customer support</a> for more information.
+            <p id="cashier-locked-error" class="error_messages center-text notice-msg ">
+                出金口座にロックがかかっています。詳細については<a class="pjaxload" href="/ja/contact.html">カスタマーサポート</a>までお問い合わせください。
             </p>
-            <p id="financial-risk-error" class="error_messages">
-                Financial Risk approval is required. Please contact <a class="pjaxload" href="/ja/contact.html">customer support</a> for more information.
+            <p id="financial-risk-error" class="error_messages center-text notice-msg ">
+                金融リスクの商品が必要です。詳細については<a class="pjaxload" href="/ja/contact.html">カスタマーサポート</a>までお問い合わせください。
             </p>
-            <p id="knowledge-test-error" class="error_messages">
-                You must complete the knowledge test to activate this account. Please contact <a class="pjaxload" href="/ja/contact.html">customer support</a> for more information.
+            <p id="knowledge-test-error" class="error_messages center-text notice-msg ">
+                口座を有効にするには、知識確認テストを行っていただく必要があります。詳細については<a class="pjaxload" href="/ja/contact.html">カスタマーサポート</a>までお問い合わせください。
             </p>
-            <p id="activation-error" class="error_messages">
-                Account not activated, please contact <a class="pjaxload" href="/ja/contact.html">customer support</a> for more information.
+            <p id="activation-error" class="error_messages center-text notice-msg ">
+                口座が無効になっています。詳細については<a class="pjaxload" href="/ja/contact.html">カスタマーサポート</a>までお問い合わせください。
             </p>
-            <p id="age-error" class="error_messages">
-                Account needs age verification, please contact <a class="pjaxload" href="/ja/contact.html">customer support</a> for more information.
+            <p id="age-error" class="error_messages center-text notice-msg ">
+                年齢確認が必要です。詳細は<a class="pjaxload" href="/ja/contact.html">カスタマーサポート</a>までご連絡ください。
             </p>
-            <p id="custom-error" class="error_messages"></p>
+            <p id="custom-error" class="error_messages center-text notice-msg error_vrtc"></p>
         </div>
     </div>
     <div class="container invisible" id="deposit-withdraw-iframe-container">
@@ -74,7 +74,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 window.addEventListener("message", receiveCmd, false);
             }
         </script>
-        <iframe src="" frameborder="0" width="100%" height="1500" id="cashiercont" scrolling="auto" style="padding:0px;margin:0px;"></iframe>
+        <iframe src="" frameborder="0" width="100%" height="1500" id="cashiercont" scrolling="auto" style="padding:0;margin:0;"></iframe>
     </div>
     <div id="ukgc-funds-protection" class="gr-row gr-parent invisible">
         <div class="gr-2 gr-6-m gr-centered-m">
@@ -108,7 +108,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <select id="select-currency"></select>
                     </div>
                 </div>
-                <div class="gr-padding-10 row clear form_button">
+                <div class="gr-padding-10 row clear center-text">
                     <div class="gr-8">
                         <span class="button">
               <button class="button" id="submit-currency" type="submit" value="Continue">続ける</button>

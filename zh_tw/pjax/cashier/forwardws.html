@@ -16,7 +16,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <div class="container">
 
 
-  <div class='gr-12 gr-padding-10'>
+  <div class="gr-12 gr-padding-10">
     <h1 id="deposit-withdraw-heading"></h1>
     <div>
         <div id="deposit-withdraw-message" class="invisible">
@@ -30,32 +30,32 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <br /> 如果您需要幫助，請聯繫我們的<a class="pjaxload" href="/zh_tw/contact.html">客服部</a>。
             </p>
             <p id="not-authenticated-message" class="messages">
-                Your account is not fully authenticated.
+                您的帳戶未完成身份驗證。
             </p>
         </div>
-        <div id="deposit-withdraw-error" class="center-text notice-msg invisible">
-            <p id="withdrawal-locked-error" class="error_messages">
-                Withdrawal is locked, please contact <a class="pjaxload" href="/zh_tw/contact.html">customer support</a> for more information.
+        <div id="deposit-withdraw-error" class="invisible">
+            <p id="withdrawal-locked-error" class="error_messages center-text notice-msg ">
+                提款已鎖定。欲知詳細資訊，請聯繫<a class="pjaxload" href="/zh_tw/contact.html">客服部</a>。
             </p>
-            <p id="deposit-locked-error" class="error_messages">
-                Deposit is locked, please contact <a class="pjaxload" href="/zh_tw/contact.html">customer support</a> for more information.
+            <p id="deposit-locked-error" class="error_messages center-text notice-msg ">
+                存款已鎖定。欲知詳細資訊，請聯繫<a class="pjaxload" href="/zh_tw/contact.html">客服部</a>。
             </p>
-            <p id="cashier-locked-error" class="error_messages">
-                Cashier is locked, please contact <a class="pjaxload" href="/zh_tw/contact.html">customer support</a> for more information.
+            <p id="cashier-locked-error" class="error_messages center-text notice-msg ">
+                收銀台已鎖定。欲知詳細資訊，請聯繫<a class="pjaxload" href="/zh_tw/contact.html">客服部</a>。
             </p>
-            <p id="financial-risk-error" class="error_messages">
-                Financial Risk approval is required. Please contact <a class="pjaxload" href="/zh_tw/contact.html">customer support</a> for more information.
+            <p id="financial-risk-error" class="error_messages center-text notice-msg ">
+                需要通過金融風險批准。欲知詳細資訊，請聯繫<a class="pjaxload" href="/zh_tw/contact.html">客服部</a>。
             </p>
-            <p id="knowledge-test-error" class="error_messages">
-                You must complete the knowledge test to activate this account. Please contact <a class="pjaxload" href="/zh_tw/contact.html">customer support</a> for more information.
+            <p id="knowledge-test-error" class="error_messages center-text notice-msg ">
+                要啟動此帳戶，您必須完成知識測試。欲知詳情請聯繫<a class="pjaxload" href="/zh_tw/contact.html">客服部</a>。
             </p>
-            <p id="activation-error" class="error_messages">
-                Account not activated, please contact <a class="pjaxload" href="/zh_tw/contact.html">customer support</a> for more information.
+            <p id="activation-error" class="error_messages center-text notice-msg ">
+                帳戶未啟動。欲知詳細資訊，請聯繫<a class="pjaxload" href="/zh_tw/contact.html">客服部</a>。
             </p>
-            <p id="age-error" class="error_messages">
-                Account needs age verification, please contact <a class="pjaxload" href="/zh_tw/contact.html">customer support</a> for more information.
+            <p id="age-error" class="error_messages center-text notice-msg ">
+                帳戶需要通過年齡驗證。欲知詳細資訊，請聯繫<a class="pjaxload" href="/zh_tw/contact.html">客服部</a>。
             </p>
-            <p id="custom-error" class="error_messages"></p>
+            <p id="custom-error" class="error_messages center-text notice-msg error_vrtc"></p>
         </div>
     </div>
     <div class="container invisible" id="deposit-withdraw-iframe-container">
@@ -74,7 +74,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 window.addEventListener("message", receiveCmd, false);
             }
         </script>
-        <iframe src="" frameborder="0" width="100%" height="1500" id="cashiercont" scrolling="auto" style="padding:0px;margin:0px;"></iframe>
+        <iframe src="" frameborder="0" width="100%" height="1500" id="cashiercont" scrolling="auto" style="padding:0;margin:0;"></iframe>
     </div>
     <div id="ukgc-funds-protection" class="gr-row gr-parent invisible">
         <div class="gr-2 gr-6-m gr-centered-m">
@@ -108,7 +108,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <select id="select-currency"></select>
                     </div>
                 </div>
-                <div class="gr-padding-10 row clear form_button">
+                <div class="gr-padding-10 row clear center-text">
                     <div class="gr-8">
                         <span class="button">
               <button class="button" id="submit-currency" type="submit" value="Continue">繼續</button>
