@@ -5037,6 +5037,9 @@ body.JA #main-menu {
 body.JA #email_consent_label {
   font-size: 0.75614rem;
 }
+body.JA #footer #footer-regulatory #regulatory-text {
+  font-size: 12px;
+}
 
 /*Vietnamese Language */
 body.VI #legal-tab li.tm-li-2 {

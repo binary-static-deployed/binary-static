@@ -17,46 +17,44 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
   <div class="endpoint-config static_full">
-  <h1>Alterar ponto de extremidade da API</h1>
-  <div class="gr-padding-10">
-    <div class="rbox form">
-      <div class="rbox-wrap">
-        <fieldset>
-          <legend>Dados</legend>
-          <div class="gr-padding-10 gr-row clear">
-              <div class="gr-4 form_label">
-                  <label for="server_url">Servidor</label>
-              </div>
-              <div class="gr-8">
-                  <input type="text" class="text" id="server_url" maxlength="30" />
-                  <p class="hint">
-                    por exemplo blue.binaryws.com
-                  </p>
-                  <p class="errorfield" id="error-server_url" style="display:none"></p>
-              </div>
-          </div>
-          <div class="gr-padding-10 gr-row clear">
-              <div class="gr-4 form_label">
-                  <label for="app_id">ID do Aplicativo OAuth (Opcional)</label>
-              </div>
-              <div class="gr-8">
-                  <input type="text" class="text" id="app_id" maxlength="5" />
-                  <p class="hint">
-                    É necessário que você se cadastre e obtenha uma ID de aplicativo antes de poder usar um servidor OAuth diferente para autenticação. Para mais informações, consulte os detalhes do OAuth em https://developers.binary.com/.
-                  </p>
-                  <p class="errorfield" id="error-app_id" style="display:none"></p>
-              </div>
-          </div>
-        </fieldset>
-        <fieldset class="center-text" id="formlayout">
-          <div class="button" style="display:inline-block">
-              <button class="button" id="new_endpoint">Submeter</button>
-          </div>
-          <div class="button" style="display:inline-block">
-              <button class="button" id="reset_endpoint">Redefinir para as configurações originais</button>
-          </div>
-        </fieldset>
-      </div>
+    <h1>Alterar ponto de extremidade da API</h1>
+    <div class="gr-padding-10">
+        <div class="rbox form">
+            <div class="rbox-wrap">
+                <form id="frm_endpoint">
+                    <fieldset>
+                        <legend>Dados</legend>
+                        <div class="gr-padding-10 gr-row clear">
+                            <div class="gr-4 form_label">
+                                <label for="server_url">Servidor</label>
+                            </div>
+                            <div class="gr-8">
+                                <input type="text" class="text" id="server_url" maxlength="30" />
+                                <p class="hint">por exemplo blue.binaryws.com</p>
+                                <p class="errorfield" id="error-server_url" style="display:none"></p>
+                            </div>
+                        </div>
+                        <div class="gr-padding-10 gr-row clear">
+                            <div class="gr-4 form_label">
+                                <label for="app_id">ID do Aplicativo OAuth (Opcional)</label>
+                            </div>
+                            <div class="gr-8">
+                                <input type="text" class="text" id="app_id" maxlength="5" />
+                                <p class="hint">
+                                    É necessário que você se cadastre e obtenha uma ID de aplicativo antes de poder usar um servidor OAuth diferente para autenticação. Para mais informações, consulte os detalhes do OAuth em https://developers.binary.com/.
+                                </p>
+                                <p class="errorfield" id="error-app_id" style="display:none"></p>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <fieldset class="center-text" id="formlayout">
+                        <button class="button" id="new_endpoint" type="submit">Submeter</button>
+                        <a class="button" id="reset_endpoint">
+                            <span class="button">Redefinir para as configurações originais</span>
+                        </a>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
     </div>
-  </div>
 </div>

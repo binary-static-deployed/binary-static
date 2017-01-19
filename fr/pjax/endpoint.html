@@ -17,46 +17,44 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
   <div class="endpoint-config static_full">
-  <h1>Modifier le point terminal de l'API</h1>
-  <div class="gr-padding-10">
-    <div class="rbox form">
-      <div class="rbox-wrap">
-        <fieldset>
-          <legend>Informations</legend>
-          <div class="gr-padding-10 gr-row clear">
-              <div class="gr-4 form_label">
-                  <label for="server_url">Serveur</label>
-              </div>
-              <div class="gr-8">
-                  <input type="text" class="text" id="server_url" maxlength="30" />
-                  <p class="hint">
-                    par ex. blue.binaryws.com
-                  </p>
-                  <p class="errorfield" id="error-server_url" style="display:none"></p>
-              </div>
-          </div>
-          <div class="gr-padding-10 gr-row clear">
-              <div class="gr-4 form_label">
-                  <label for="app_id">Identifiant d'application OAuth (Facultatif)</label>
-              </div>
-              <div class="gr-8">
-                  <input type="text" class="text" id="app_id" maxlength="5" />
-                  <p class="hint">
-                    Vous devez enregistrer webtrader et obtenir un identifiant d'application avant de pouvoir utiliser un autre serveur OAuth pour l'authentification. Pour en savoir plus, consultez les informations concernant le protocole OAuth sur https://developers.binary.com/.
-                  </p>
-                  <p class="errorfield" id="error-app_id" style="display:none"></p>
-              </div>
-          </div>
-        </fieldset>
-        <fieldset class="center-text" id="formlayout">
-          <div class="button" style="display:inline-block">
-              <button class="button" id="new_endpoint">Envoyer</button>
-          </div>
-          <div class="button" style="display:inline-block">
-              <button class="button" id="reset_endpoint">Réinitialiser les paramètres</button>
-          </div>
-        </fieldset>
-      </div>
+    <h1>Modifier le point terminal de l'API</h1>
+    <div class="gr-padding-10">
+        <div class="rbox form">
+            <div class="rbox-wrap">
+                <form id="frm_endpoint">
+                    <fieldset>
+                        <legend>Informations</legend>
+                        <div class="gr-padding-10 gr-row clear">
+                            <div class="gr-4 form_label">
+                                <label for="server_url">Serveur</label>
+                            </div>
+                            <div class="gr-8">
+                                <input type="text" class="text" id="server_url" maxlength="30" />
+                                <p class="hint">par ex. blue.binaryws.com</p>
+                                <p class="errorfield" id="error-server_url" style="display:none"></p>
+                            </div>
+                        </div>
+                        <div class="gr-padding-10 gr-row clear">
+                            <div class="gr-4 form_label">
+                                <label for="app_id">Identifiant d'application OAuth (Facultatif)</label>
+                            </div>
+                            <div class="gr-8">
+                                <input type="text" class="text" id="app_id" maxlength="5" />
+                                <p class="hint">
+                                    Vous devez enregistrer webtrader et obtenir un identifiant d'application avant de pouvoir utiliser un autre serveur OAuth pour l'authentification. Pour en savoir plus, consultez les informations concernant le protocole OAuth sur https://developers.binary.com/.
+                                </p>
+                                <p class="errorfield" id="error-app_id" style="display:none"></p>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <fieldset class="center-text" id="formlayout">
+                        <button class="button" id="new_endpoint" type="submit">Envoyer</button>
+                        <a class="button" id="reset_endpoint">
+                            <span class="button">Réinitialiser les paramètres</span>
+                        </a>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
     </div>
-  </div>
 </div>

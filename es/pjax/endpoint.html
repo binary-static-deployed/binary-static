@@ -17,46 +17,44 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
   <div class="endpoint-config static_full">
-  <h1>Cambiar API Endpoint</h1>
-  <div class="gr-padding-10">
-    <div class="rbox form">
-      <div class="rbox-wrap">
-        <fieldset>
-          <legend>detalles</legend>
-          <div class="gr-padding-10 gr-row clear">
-              <div class="gr-4 form_label">
-                  <label for="server_url">Servidor</label>
-              </div>
-              <div class="gr-8">
-                  <input type="text" class="text" id="server_url" maxlength="30" />
-                  <p class="hint">
-                    por ejemplo, blue.binaryws.com
-                  </p>
-                  <p class="errorfield" id="error-server_url" style="display:none"></p>
-              </div>
-          </div>
-          <div class="gr-padding-10 gr-row clear">
-              <div class="gr-4 form_label">
-                  <label for="app_id">OAuth App ID (Opcional)</label>
-              </div>
-              <div class="gr-8">
-                  <input type="text" class="text" id="app_id" maxlength="5" />
-                  <p class="hint">
-                    Tiene que registrarse y obtener ID de Aplicación antes de utilizar otro servidor de OAuth para la autenticación. Para obtener más información consulte los detalles sobre OAuth en https://developers.binary.com/.
-                  </p>
-                  <p class="errorfield" id="error-app_id" style="display:none"></p>
-              </div>
-          </div>
-        </fieldset>
-        <fieldset class="center-text" id="formlayout">
-          <div class="button" style="display:inline-block">
-              <button class="button" id="new_endpoint">Enviar</button>
-          </div>
-          <div class="button" style="display:inline-block">
-              <button class="button" id="reset_endpoint">Restablecer los Ajustes Originales</button>
-          </div>
-        </fieldset>
-      </div>
+    <h1>Cambiar API Endpoint</h1>
+    <div class="gr-padding-10">
+        <div class="rbox form">
+            <div class="rbox-wrap">
+                <form id="frm_endpoint">
+                    <fieldset>
+                        <legend>detalles</legend>
+                        <div class="gr-padding-10 gr-row clear">
+                            <div class="gr-4 form_label">
+                                <label for="server_url">Servidor</label>
+                            </div>
+                            <div class="gr-8">
+                                <input type="text" class="text" id="server_url" maxlength="30" />
+                                <p class="hint">por ejemplo, blue.binaryws.com</p>
+                                <p class="errorfield" id="error-server_url" style="display:none"></p>
+                            </div>
+                        </div>
+                        <div class="gr-padding-10 gr-row clear">
+                            <div class="gr-4 form_label">
+                                <label for="app_id">OAuth App ID (Opcional)</label>
+                            </div>
+                            <div class="gr-8">
+                                <input type="text" class="text" id="app_id" maxlength="5" />
+                                <p class="hint">
+                                    Tiene que registrarse y obtener ID de Aplicación antes de utilizar otro servidor de OAuth para la autenticación. Para obtener más información consulte los detalles sobre OAuth en https://developers.binary.com/.
+                                </p>
+                                <p class="errorfield" id="error-app_id" style="display:none"></p>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <fieldset class="center-text" id="formlayout">
+                        <button class="button" id="new_endpoint" type="submit">Enviar</button>
+                        <a class="button" id="reset_endpoint">
+                            <span class="button">Restablecer los Ajustes Originales</span>
+                        </a>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
     </div>
-  </div>
 </div>

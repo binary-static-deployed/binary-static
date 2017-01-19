@@ -17,46 +17,44 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
   <div class="endpoint-config static_full">
-  <h1>Thay đổi điểm nút cuối API</h1>
-  <div class="gr-padding-10">
-    <div class="rbox form">
-      <div class="rbox-wrap">
-        <fieldset>
-          <legend>Chi tiết</legend>
-          <div class="gr-padding-10 gr-row clear">
-              <div class="gr-4 form_label">
-                  <label for="server_url">Máy chủ</label>
-              </div>
-              <div class="gr-8">
-                  <input type="text" class="text" id="server_url" maxlength="30" />
-                  <p class="hint">
-                    ví dụ: blue.binaryws.com
-                  </p>
-                  <p class="errorfield" id="error-server_url" style="display:none"></p>
-              </div>
-          </div>
-          <div class="gr-padding-10 gr-row clear">
-              <div class="gr-4 form_label">
-                  <label for="app_id">Tên truy cập Ứng dụng OAuth (không bắt buộc)</label>
-              </div>
-              <div class="gr-8">
-                  <input type="text" class="text" id="app_id" maxlength="5" />
-                  <p class="hint">
-                    Bạn phải đăng ký và có Tên truy cập Ứng dụng trước khi bạn có thể sử dụng hệ thống máy chủ OAuth khác nhau cho việc xác thực. Nhận thêm thông tin liên quan đến OAuth tại đây https://developers.binary.com/.
-                  </p>
-                  <p class="errorfield" id="error-app_id" style="display:none"></p>
-              </div>
-          </div>
-        </fieldset>
-        <fieldset class="center-text" id="formlayout">
-          <div class="button" style="display:inline-block">
-              <button class="button" id="new_endpoint">Gửi</button>
-          </div>
-          <div class="button" style="display:inline-block">
-              <button class="button" id="reset_endpoint">Thiết lập lại Cài đặt Gốc</button>
-          </div>
-        </fieldset>
-      </div>
+    <h1>Thay đổi điểm nút cuối API</h1>
+    <div class="gr-padding-10">
+        <div class="rbox form">
+            <div class="rbox-wrap">
+                <form id="frm_endpoint">
+                    <fieldset>
+                        <legend>Chi tiết</legend>
+                        <div class="gr-padding-10 gr-row clear">
+                            <div class="gr-4 form_label">
+                                <label for="server_url">Máy chủ</label>
+                            </div>
+                            <div class="gr-8">
+                                <input type="text" class="text" id="server_url" maxlength="30" />
+                                <p class="hint">ví dụ: blue.binaryws.com</p>
+                                <p class="errorfield" id="error-server_url" style="display:none"></p>
+                            </div>
+                        </div>
+                        <div class="gr-padding-10 gr-row clear">
+                            <div class="gr-4 form_label">
+                                <label for="app_id">Tên truy cập Ứng dụng OAuth (không bắt buộc)</label>
+                            </div>
+                            <div class="gr-8">
+                                <input type="text" class="text" id="app_id" maxlength="5" />
+                                <p class="hint">
+                                    Bạn phải đăng ký và có Tên truy cập Ứng dụng trước khi bạn có thể sử dụng hệ thống máy chủ OAuth khác nhau cho việc xác thực. Nhận thêm thông tin liên quan đến OAuth tại đây https://developers.binary.com/.
+                                </p>
+                                <p class="errorfield" id="error-app_id" style="display:none"></p>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <fieldset class="center-text" id="formlayout">
+                        <button class="button" id="new_endpoint" type="submit">Gửi</button>
+                        <a class="button" id="reset_endpoint">
+                            <span class="button">Thiết lập lại Cài đặt Gốc</span>
+                        </a>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
