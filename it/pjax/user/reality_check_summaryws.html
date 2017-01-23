@@ -17,91 +17,53 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
   <div id="reality-check-content">
-  <div>
-    <h1>
-      Verifica della realtà
-    </h1>
-    <p>
-      <label>
-        Orario d'accesso:
-      </label>
-      <span id="login-time"></span>
-    </p>
-    <p>
-      <label>
-        Orario attuale:
-      </label>
-      <span id="current-time"></span>
-    </p>
-    <p>
-      <label>
-        Durata della sessione:
-      </label>
-      <span id="session-duration"></span>
-    </p>
-    <p id="start-time"></p>
-    <table>
-      <tr>
-        <th>
-          ID di accesso
-        </th>
-        <th>
-          Valuta
-        </th>
-        <th>
-          Turnover
-        </th>
-        <th>
-          Profitto/Perdita
-        </th>
-        <th>
-          Contratti acquistati
-        </th>
-        <th>
-          Contratti venduti
-        </th>
-        <th>
-          Apri contratti
-        </th>
-        <th>
-          Profitto potenziale
-        </th>
-      </tr>
-      <tr>
-        <td id="login-id"></td>
-        <td id="rc_currency"></td>
-        <td id="turnover"></td>
-        <td id="profitloss"></td>
-        <td id="bought"></td>
-        <td id="sold"></td>
-        <td id="open"></td>
-        <td id="potential"></td>
-      </tr>
-    </table>
-    <p>
-      <label>
-        Intervallo di verifica della realtà:
-      </label>
-      <input id="realityDuration" interval="1" maxlength="4" min="1" size="6" type="number"/>
-      <span>
-        minuti
-      </span>
-    </p>
-    <p id="rc-err" class="error-msg invisible">
-      Inserisci un numero maggiore di 0
-    </p>
-  </div>
-  <div class="center-text" id="reality-check-nav">
-    <span class="button">
-      <button bcont="1" class="button" id="continue">
-        Continua il trading
-      </button>
-    </span>
-    <span></span>
-    <span class="button">
-      <button class="button" id="btn_logout">
-        Logout
-      </button>
-    </span>
-  </div>
+    <div>
+        <h1>Verifica della realtà</h1>
+        <p>
+            <label>Orario d'accesso:</label>
+            <span id="login-time"></span>
+        </p>
+        <p>
+            <label>Orario attuale:</label>
+            <span id="current-time"></span>
+        </p>
+        <p>
+            <label>Durata della sessione:</label>
+            <span id="session-duration"></span>
+        </p>
+        <p id="start-time"></p>
+            <table>
+                <tr>
+                    <th>ID di accesso</th>
+                    <th>Valuta</th>
+                    <th>Turnover</th>
+                    <th>Profitto/Perdita</th>
+                    <th>Contratti acquistati</th>
+                    <th>Contratti venduti</th>
+                    <th>Apri contratti</th>
+                    <th>Profitto potenziale</th>
+                </tr>
+                <tr>
+                    <td id="login-id"></td>
+                    <td id="rc_currency"></td>
+                    <td id="turnover"></td>
+                    <td id="profitloss"></td>
+                    <td id="bought"></td>
+                    <td id="sold"></td>
+                    <td id="open"></td>
+                    <td id="potential"></td>
+                </tr>
+            </table>
+        <p>
+            <label>Intervallo di verifica della realtà:</label>
+            <input id="realityDuration" interval="1" maxlength="4" min="1" size="6" type="number"/>
+            <span>minuti</span>
+        </p>
+        <p id="rc-err" class="error-msg invisible">Inserisci un numero maggiore di 0</p>
+    </div>
+    <div class="center-text" id="reality-check-nav">
+    <button bcont="1" class="button" id="continue">Continua il trading</button>
+    <button class="button" id="statement">View Statement</button>
+    <button class="button-secondary" id="btn_logout">Logout</button>
+</div>
 </div>

@@ -30,36 +30,32 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                 <label for="gender">性別</label>
                             </div>
                             <div class="gr-8">
-                                <select id="gender">
+                                <select id="gender" class="form_input">
                                   <option value="">選択して下さい</option>
                                   <option value="m">男性</option>
                                   <option value="f">女性</option>
                                 </select>
-                                <p class="errorfield" id="error-gender" style="display:none"></p>
+                                <p class="errorfield" id="error_gender" style="display:none"></p>
                             </div>
                         </div>
                         <div class="gr-padding-10 gr-row clear">
                             <div class="gr-4 form_label">
-                                <label for="lname">氏名 (全角)</label>
+                                <label for="last_name">氏名 (全角)</label>
                             </div>
                             <div class="gr-8">
-                                <input type="text" class="text" id="lname" name="lname" maxlength="30"/>
-                                <p class="hint">
-                                  姓と名の間にスペースは不要
-                                </p>
-                                <p class="errorfield" id="error-lname" style="display:none"></p>
+                                <input type="text" class="text form_input" id="last_name" name="last_name" maxlength="30"/>
+                                <p class="hint">姓と名の間にスペースは不要</p>
+                                <p class="errorfield" id="error_last_name" style="display:none"></p>
                             </div>
                         </div>
                         <div class="gr-padding-10 gr-row clear">
                             <div class="gr-4 form_label">
-                                <label for="fname">フリガナ (全角)</label>
+                                <label for="first_name">フリガナ (全角)</label>
                             </div>
                             <div class="gr-8">
-                                <input type="text" class="text" id="fname" name="fname" maxlength="30"/>
-                                <p class="hint">
-                                  姓と名の間にスペースは不要
-                                </p>
-                                <p class="errorfield" id="error-fname" style="display:none"></p>
+                                <input type="text" class="text form_input" id="first_name" name="first_name" maxlength="30"/>
+                                <p class="hint">姓と名の間にスペースは不要</p>
+                                <p class="errorfield" id="error_first_name" style="display:none"></p>
                             </div>
                         </div>
                         <div class="gr-padding-10 gr-row clear">
@@ -67,10 +63,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                 <label for="dobdd">生年月日</label>
                             </div>
                             <div class="gr-8">
-                                <select name="dobyy" id="dobyy"></select>
-                                <select name="dobmm" id="dobmm"></select>
-                                <select name="dobdd" id="dobdd"></select>
-                                <p class="errorfield" id="error-birthdate" style="display:none"></p>
+                                <select name="dobyy" id="dobyy" class="form_input exclude_data"></select>
+                                <select name="dobmm" id="dobmm" class="form_input exclude_data"></select>
+                                <select name="dobdd" id="dobdd" class="form_input exclude_data"></select>
+                                <p class="errorfield" id="error_dobdd" style="display:none"></p>
                             </div>
                         </div>
                         <div class="gr-padding-10 gr-row clear">
@@ -78,7 +74,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                 <label for="occupation">職業</label>
                             </div>
                             <div class="gr-8">
-                                <select id="occupation">
+                                <select id="occupation" class="form_input">
                                   <option value="">選択して下さい</option>
                                   <option value="Office worker">会社員</option>
                                   <option value="Director">取締役</option>
@@ -90,7 +86,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                   <option value="Unemployed">無職</option>
                                   <option value="Others">その他</option>
                                 </select>
-                                <p class="errorfield" id="error-occupation" style="display:none"></p>
+                                <p class="errorfield" id="error_occupation" style="display:none"></p>
                             </div>
                         </div>
                     </fieldset>
@@ -99,71 +95,61 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <legend id="address">現住所</legend>
                         <div class="gr-padding-10 gr-row clear">
                             <div class="gr-4 form_label">
-                                <label for="address-postcode">郵便番号</label>
+                                <label for="address_postcode">郵便番号</label>
                             </div>
                             <div class="gr-8">
-                                <input type="text" class="text" id="address-postcode" name="address-postcode" maxlength="20"/>
-                                <p class="hint">
-                                  例　123-4567 (半角)
-                                </p>
-                                <p class="errorfield" id="error-postcode" style="display:none"></p>
+                                <input type="text" class="text form_input" id="address_postcode" name="address_postcode" maxlength="20"/>
+                                <p class="hint">例　123-4567 (半角)</p>
+                                <p class="errorfield" id="error_address_postcode" style="display:none"></p>
                             </div>
                         </div>
                         <div class="gr-padding-10 gr-row clear" style="display:none">
                             <div class="gr-4 form_label">
-                                <label for="address-state">都道府県</label>
+                                <label for="address_state">都道府県</label>
                             </div>
                             <div class="gr-8">
-                                <select id="address-state" name="address-state"></select>
-                                <p class="errorfield" id="error-state" style="display:none"></p>
+                                <select id="address_state" name="address_state" class="form_input"></select>
+                                <p class="errorfield" id="error_address_state" style="display:none"></p>
                             </div>
                         </div>
                         <div class="gr-padding-10 gr-row clear">
                             <div class="gr-4 form_label">
-                                <label for="address-town">市区町村</label>
+                                <label for="address_city">市区町村</label>
                             </div>
                             <div class="gr-8">
-                                <input type="text" class="text" id="address-town" name="address-town" maxlength="35"/>
-                                <p class="hint">
-                                  例　渋谷区
-                                </p>
-                                <p class="errorfield" id="error-town" style="display:none"></p>
+                                <input type="text" class="text form_input" id="address_city" name="address_city" maxlength="35"/>
+                                <p class="hint">例　渋谷区</p>
+                                <p class="errorfield" id="error_address_city" style="display:none"></p>
                             </div>
                         </div>
                         <div class="gr-padding-10 gr-row clear">
                             <div class="gr-4 form_label">
-                                <label for="address1">番地</label>
+                                <label for="address_line_1">番地</label>
                             </div>
                             <div class="gr-8">
-                                <input type="text" class="text" id="address1" name="address1" maxlength="70"/>
-                                <p class="hint">
-                                  例　広尾１ー１ー１ (全角)
-                                </p>
-                                <p class="errorfield" id="error-address1" style="display:none"></p>
+                                <input type="text" class="text form_input" id="address_line_1" name="address_line_1" maxlength="70"/>
+                                <p class="hint">例　広尾１ー１ー１ (全角)</p>
+                                <p class="errorfield" id="error_address_line_1" style="display:none"></p>
                             </div>
                         </div>
                         <div class="gr-padding-10 gr-row clear">
                             <div class="gr-4 form_label">
-                                <label for="address2">マンション（建物）名</label>
+                                <label for="address_line_2">マンション（建物）名</label>
                             </div>
                             <div class="gr-8">
-                                <input type="text" class="text" id="address2" name="address2" maxlength="70"/>
-                                <p class="hint">
-                                  例　バイナリー１０１号室 (全角)
-                                </p>
-                                <p class="errorfield" id="error-address2" style="display:none"></p>
+                                <input type="text" class="text form_input" id="address_line_2" name="address_line_2" maxlength="70"/>
+                                <p class="hint">例　バイナリー１０１号室 (全角)</p>
+                                <p class="errorfield" id="error_address_line_2" style="display:none"></p>
                             </div>
                         </div>
                         <div class="gr-padding-10 gr-row clear">
                             <div class="gr-4 form_label">
-                                <label for="tel">電話番号</label>
+                                <label for="phone">電話番号</label>
                             </div>
                             <div class="gr-8">
-                                <input type="text" class="text" id="tel" name="tel" maxlength="35"/>
-                                <p class="hint">
-                                  例　03-1234-5678 (半角)
-                                </p>
-                                <p class="errorfield" id="error-tel" style="display:none"></p>
+                                <input type="text" class="text form_input" id="phone" name="phone" maxlength="35"/>
+                                <p class="hint">例　03-1234-5678 (半角)</p>
+                                <p class="errorfield" id="error_phone" style="display:none"></p>
                             </div>
                         </div>
                     </fieldset>
@@ -172,10 +158,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <legend id="security">セキュリティ情報</legend>
                         <div class="gr-padding-10 gr-row clear">
                             <div class="gr-4 form_label">
-                                <label for="secret-question">秘密の質問</label>
+                                <label for="secret_question">秘密の質問</label>
                             </div>
                             <div class="gr-8">
-                                <select id="secret-question">
+                                <select id="secret_question" class="form_input">
                                   <option value="Favourite dish">好きな食べ物</option>
                                   <option value="Mother's maiden name">母親の旧姓</option>
                                   <option value="Name of your pet">ペットの名前</option>
@@ -185,16 +171,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                   <option value="Brand of first car">初めて購入した車のブランド名</option>
                                   <option value="Favourite artist">好きなアーティスト名</option>
                                 </select>
-                                <p class="errorfield" id="error-question" style="display:none"></p>
+                                <p class="errorfield" id="error_secret_question" style="display:none"></p>
                             </div>
                         </div>
                         <div class="gr-padding-10 gr-row clear">
                             <div class="gr-4 form_label">
-                                <label for="secret-answer">秘密の質問の答え</label>
+                                <label for="secret_answer">秘密の質問の答え</label>
                             </div>
                             <div class="gr-8">
-                                <input type="text" class="text" id="secret-answer" maxlength="50" autocomplete="off"/>
-                                <p class="errorfield" id="error-answer" style="display:none"></p>
+                                <input type="text" class="text form_input" id="secret_answer" maxlength="50" autocomplete="off"/>
+                                <p class="errorfield" id="error_secret_answer" style="display:none"></p>
                             </div>
                         </div>
                     </fieldset>
@@ -203,23 +189,21 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <legend id="status">金融資産</legend>
                         <div class="gr-padding-10 gr-row clear">
                             <div class="gr-4 form_label">
-                                <label for="fatca">外国口座税務コンプライアンス法（米国FATCA）に該当しない</label>
+                                <label for="declare_not_fatca">外国口座税務コンプライアンス法（米国FATCA）に該当しない</label>
                             </div>
                             <div class="gr-8">
-                              <input id="fatca" type="checkbox"/>
+                              <input id="declare_not_fatca" type="checkbox" class="form_input"/>
                               <br />
-                              <p class="hint">
-                                米国に納税義務がある米国人等（米国居住者、米国市民権保有者）は口座開設ができません。
-                              </p>
-                              <p class="errorfield" id="error-fatca"></p>
+                              <p class="hint">米国に納税義務がある米国人等（米国居住者、米国市民権保有者）は口座開設ができません。</p>
+                              <p class="errorfield" id="error_declare_not_fatca"></p>
                             </div>
                         </div>
                         <div class="gr-padding-10 gr-row clear">
                             <div class="gr-4 form_label">
-                                <label for="annual-income">年間所得</label>
+                                <label for="annual_income">年間所得</label>
                             </div>
                             <div class="gr-8">
-                              <select id="annual-income">
+                              <select id="annual_income" class="form_input">
                                 <option value="">選択して下さい</option>
                                 <option value="Less than 1 million JPY">100万円未満</option>
                                 <option value="1-3 million JPY">100〜300万円</option>
@@ -230,15 +214,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                 <option value="50-100 million JPY">5,000万円〜1億円</option>
                                 <option value="Over 100 million JPY">1億円を超える</option>
                               </select>
-                              <p class="errorfield" id="error-annual-income"></p>
+                              <p class="errorfield" id="error_annual_income"></p>
                             </div>
                         </div>
                         <div class="gr-padding-10 gr-row clear">
                             <div class="gr-4 form_label">
-                                <label for="financial-asset">金融資産</label>
+                                <label for="financial_asset">金融資産</label>
                             </div>
                             <div class="gr-8">
-                              <select id="financial-asset">
+                              <select id="financial_asset" class="form_input">
                                 <option value="">選択して下さい</option>
                                 <option value="Less than 1 million JPY">100万円未満</option>
                                 <option value="1-3 million JPY">100〜300万円</option>
@@ -249,18 +233,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                 <option value="50-100 million JPY">5,000万円〜1億円</option>
                                 <option value="Over 100 million JPY">1億円を超える</option>
                               </select>
-                              <p class="errorfield" id="error-financial-asset"></p>
+                              <p class="errorfield" id="error_financial_asset"></p>
                             </div>
                         </div>
                         <div class="gr-padding-10 gr-row clear">
                             <div class="gr-4 form_label">
-                                <label for="daily-loss-limit">損失限度額（1日）</label>
+                                <label for="daily_loss_limit">損失限度額（1日）</label>
                             </div>
                             <div class="gr-8">
-                              <input class="text" id="daily-loss-limit" type="text" maxlength="20"/>
+                              <input class="text form_input" id="daily_loss_limit" type="text" maxlength="20"/>
                               <br />
                               <p class="hint">1日あたりの最大損失額【1円単位】例 10万円の場合は100000 (半角)</p>
-                              <p class="errorfield" id="error-daily-loss-limit"></p>
+                              <p class="errorfield" id="error_daily_loss_limit"></p>
                             </div>
                         </div>
                     </fieldset>
@@ -269,10 +253,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                       <legend id="trading-experience">投資経験</legend>
                       <div class="gr-padding-10 gr-row clear">
                           <div class="gr-4 form_label">
-                              <label for="equities">株式</label>
+                              <label for="trading_experience_equities">株式</label>
                           </div>
                           <div class="gr-8">
-                            <select id="equities">
+                            <select id="trading_experience_equities" class="form_input">
                               <option value="">選択して下さい</option>
                               <option value="No experience">経験なし</option>
                               <option value="Less than 6 months">6ヶ月未満</option>
@@ -281,15 +265,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                               <option value="3-5 years">3〜5年</option>
                               <option value="Over 5 years">6年以上</option>
                             </select>
-                            <p class="errorfield" id="error-equities"></p>
+                            <p class="errorfield" id="error_trading_experience_equities"></p>
                           </div>
                       </div>
                       <div class="gr-padding-10 gr-row clear">
                           <div class="gr-4 form_label">
-                              <label for="commodities">コモディティ</label>
+                              <label for="trading_experience_commodities">コモディティ</label>
                           </div>
                           <div class="gr-8">
-                            <select id="commodities">
+                            <select id="trading_experience_commodities" class="form_input">
                               <option value="">選択して下さい</option>
                               <option value="No experience">経験なし</option>
                               <option value="Less than 6 months">6ヶ月未満</option>
@@ -298,15 +282,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                               <option value="3-5 years">3〜5年</option>
                               <option value="Over 5 years">6年以上</option>
                             </select>
-                            <p class="errorfield" id="error-commodities"></p>
+                            <p class="errorfield" id="error_trading_experience_commodities"></p>
                           </div>
                       </div>
                       <div class="gr-padding-10 gr-row clear">
                           <div class="gr-4 form_label">
-                              <label for="foreign-currency-deposit">外貨預金</label>
+                              <label for="trading_experience_foreign_currency_deposit">外貨預金</label>
                           </div>
                           <div class="gr-8">
-                            <select id="foreign-currency-deposit">
+                            <select id="trading_experience_foreign_currency_deposit" class="form_input">
                               <option value="">選択して下さい</option>
                               <option value="No experience">経験なし</option>
                               <option value="Less than 6 months">6ヶ月未満</option>
@@ -315,15 +299,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                               <option value="3-5 years">3〜5年</option>
                               <option value="Over 5 years">6年以上</option>
                             </select>
-                            <p class="errorfield" id="error-foreign-currency-deposit"></p>
+                            <p class="errorfield" id="error_trading_experience_foreign_currency_deposit"></p>
                           </div>
                       </div>
                       <div class="gr-padding-10 gr-row clear">
                           <div class="gr-4 form_label">
-                              <label for="margin-fx">外国為替証拠金取引</label>
+                              <label for="trading_experience_margin_fx">外国為替証拠金取引</label>
                           </div>
                           <div class="gr-8">
-                            <select id="margin-fx">
+                            <select id="trading_experience_margin_fx" class="form_input">
                               <option value="">選択して下さい</option>
                               <option value="No experience">経験なし</option>
                               <option value="Less than 6 months">6ヶ月未満</option>
@@ -332,15 +316,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                               <option value="3-5 years">3〜5年</option>
                               <option value="Over 5 years">6年以上</option>
                             </select>
-                            <p class="errorfield" id="error-margin-fx"></p>
+                            <p class="errorfield" id="error_trading_experience_margin_fx"></p>
                           </div>
                       </div>
                       <div class="gr-padding-10 gr-row clear">
                           <div class="gr-4 form_label">
-                              <label for="investment-trust">投資信託</label>
+                              <label for="trading_experience_investment_trust">投資信託</label>
                           </div>
                           <div class="gr-8">
-                            <select id="investment-trust">
+                            <select id="trading_experience_investment_trust" class="form_input">
                               <option value="">選択して下さい</option>
                               <option value="No experience">経験なし</option>
                               <option value="Less than 6 months">6ヶ月未満</option>
@@ -349,15 +333,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                               <option value="3-5 years">3〜5年</option>
                               <option value="Over 5 years">6年以上</option>
                             </select>
-                            <p class="errorfield" id="error-investment-trust"></p>
+                            <p class="errorfield" id="error_trading_experience_investment_trust"></p>
                           </div>
                       </div>
                       <div class="gr-padding-10 gr-row clear">
                           <div class="gr-4 form_label">
-                              <label for="public-and-corporation-bond">公社債</label>
+                              <label for="trading_experience_public_bond">公社債</label>
                           </div>
                           <div class="gr-8">
-                            <select id="public-and-corporation-bond">
+                            <select id="trading_experience_public_bond" class="form_input">
                               <option value="">選択して下さい</option>
                               <option value="No experience">経験なし</option>
                               <option value="Less than 6 months">6ヶ月未満</option>
@@ -366,15 +350,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                               <option value="3-5 years">3〜5年</option>
                               <option value="Over 5 years">6年以上</option>
                             </select>
-                            <p class="errorfield" id="error-public-and-corporation-bond"></p>
+                            <p class="errorfield" id="error_trading_experience_public_bond"></p>
                           </div>
                       </div>
                       <div class="gr-padding-10 gr-row clear">
                           <div class="gr-4 form_label nowrap">
-                              <label for="otc-derivative-trading">店頭デリバティブ（オプション）取引</label>
+                              <label for="trading_experience_option_trading">店頭デリバティブ（オプション）取引</label>
                           </div>
                           <div class="gr-8">
-                            <select id="otc-derivative-trading">
+                            <select id="trading_experience_option_trading" class="form_input">
                               <option value="">選択して下さい</option>
                               <option value="No experience">経験なし</option>
                               <option value="Less than 6 months">6ヶ月未満</option>
@@ -383,115 +367,89 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                               <option value="3-5 years">3〜5年</option>
                               <option value="Over 5 years">6年以上</option>
                             </select>
-                            <p class="errorfield" id="error-otc-derivative-trading"></p>
+                            <p class="errorfield" id="error_trading_experience_option_trading"></p>
                           </div>
                       </div>
                       <div class="gr-padding-10 gr-row clear">
                           <div class="gr-4 form_label">
-                              <label for="trading-purpose">投資の目的</label>
+                              <label for="trading_purpose">投資の目的</label>
                           </div>
                           <div class="gr-8">
-                            <select id="trading-purpose">
+                            <select id="trading_purpose" class="form_input">
                               <option value="">選択して下さい</option>
                               <option value="Targeting short-term profits">短期保有が目的</option>
                               <option value="Targeting medium-term / long-term profits">中期保有/長期保有が目的</option>
                               <option value="Both the above">上記の両方</option>
                               <option value="Hedging">ヘッジ</option>
                             </select>
-                            <p class="errorfield" id="error-trading-purpose"></p>
+                            <p class="errorfield" id="error_trading_purpose"></p>
                           </div>
                       </div>
                       <div class="gr-padding-10 gr-row clear hedging-assets invisible">
                         <div class="gr-4 form_label">
-                          <label for="hedge-asset">ヘッジを必要とする資産の種類</label>
+                          <label for="hedge_asset">ヘッジを必要とする資産の種類</label>
                         </div>
                         <div class="gr-8">
-                          <select id="hedge-asset">
+                          <select id="hedge_asset" class="form_input exclude_data">
                             <option value="">選択して下さい</option>
                             <option value="Foreign currency deposit">外貨預金</option>
                             <option value="Margin FX">外国為替証拠金取引</option>
                             <option value="Other">その他</option>
                           </select>
-                          <p class="errorfield" id="error-hedge-asset"></p>
+                          <p class="errorfield" id="error_hedge_asset"></p>
                         </div>
                       </div>
                       <div class="gr-padding-10 gr-row clear hedging-assets invisible">
                         <div class="gr-4 form_label">
-                          <label for="hedge-asset-amount">上記資産額</label>
+                          <label for="hedge_asset_amount">上記資産額</label>
                         </div>
                         <div class="gr-8">
-                          <input class="text" id="hedge-asset-amount" maxlength="20" type="text"/>
-                          <p class="errorfield" id="error-hedge-asset-amount"></p>
+                          <input class="text form_input exclude_data" id="hedge_asset_amount" maxlength="20" type="text"/>
+                          <p class="errorfield" id="error_hedge_asset_amount"></p>
                         </div>
                       </div>
                     </fieldset>
 
                     <fieldset>
-                      <legend id="foreign-pep-declaration">外国PEPs（重要な公的地位にある者（Politically Exposed Persons）との取引）</legend>
+                      <legend>外国PEPs（重要な公的地位にある者（Politically Exposed Persons）との取引）</legend>
                       <div class="gr-12">
-                          <p>
-                              2015年改正犯罪収益移転防止法政省令の犯罪により、外国PEPs（重要な公的地位を有する者）との取引に当該するお客さまは当社では口座開設を行うことができません。下記の者との取引する方が該当します。
-                          </p>
+                          <p>2015年改正犯罪収益移転防止法政省令の犯罪により、外国PEPs（重要な公的地位を有する者）との取引に当該するお客さまは当社では口座開設を行うことができません。下記の者との取引する方が該当します。</p>
                           <ol>
-                              <li>
-                                  外国の元首
-                              </li>
+                              <li>外国の元首</li>
                               <li>
                                   外国において下記の職にある者
                                   <ul>
-                                      <li>
-                                          我が国における内閣総理大臣その他の国務大臣及び副大臣に相当する職
-                                      </li>
-                                      <li>
-                                          我が国における衆議院議長、衆議院副議長、参議院議長又は参議院副議長に相当する職
-                                      </li>
-                                      <li>
-                                          我が国における最高裁判所の裁判官に相当する職
-                                      </li>
-                                      <li>
-                                          我が国における特命全権大使、特命全権公使、特派大使、政府代表又は全権委員に相当する職
-                                      </li>
-                                      <li>
-                                          我が国における統合幕僚長、統合幕僚副長、陸上幕僚長、陸上幕僚副長、海上幕僚長、海上幕僚副長、航空幕僚長又は航空幕僚副長に相当する職
-                                      </li>
-                                      <li>
-                                          中央銀行の役員
-                                      </li>
-                                      <li>
-                                          予算について国会の議決を経、又は承認を受けなければならない法人の役員
-                                      </li>
+                                      <li>我が国における内閣総理大臣その他の国務大臣及び副大臣に相当する職</li>
+                                      <li>我が国における衆議院議長、衆議院副議長、参議院議長又は参議院副議長に相当する職</li>
+                                      <li>我が国における最高裁判所の裁判官に相当する職</li>
+                                      <li>我が国における特命全権大使、特命全権公使、特派大使、政府代表又は全権委員に相当する職</li>
+                                      <li>我が国における統合幕僚長、統合幕僚副長、陸上幕僚長、陸上幕僚副長、海上幕僚長、海上幕僚副長、航空幕僚長又は航空幕僚副長に相当する職</li>
+                                      <li>中央銀行の役員</li>
+                                      <li>予算について国会の議決を経、又は承認を受けなければならない法人の役員</li>
                                   </ul>
                               </li>
-                              <li>
-                                  過去に1又2であった者
-                              </li>
-                              <li>
-                                  1〜3の家族
-                              </li>
-                              <li>
-                                  1〜4が実質的支配者である法人
-                              </li>
+                              <li>過去に1又2であった者</li>
+                              <li>1〜3の家族</li>
+                              <li>1〜4が実質的支配者である法人</li>
                           </ol>
                       </div>
                       <div class="gr-padding-10 gr-row clear">
                         <div class="gr-12">
                             <div class="gr-row">
                               <div class="gr-1">
-                                <input id="not-pep" type="checkbox"/>
+                                <input id="not_pep" type="checkbox" class="form_input exclude_data"/>
                               </div>
                               <div class="gr-11">
-                                <span>
-                                  私は、犯罪収益移動防止法に規定されている外国人PEPsに該当しないことを宣言いたします。また、該当することになった場合は、当社カスタマーサポートまですみやかに申し出ることに同意します。
-                                </span>
+                                <label for="not_pep">私は、犯罪収益移動防止法に規定されている外国人PEPsに該当しないことを宣言いたします。また、該当することになった場合は、当社カスタマーサポートまですみやかに申し出ることに同意します。</label>
                               </div>
                             </div>
-                          <p class="errorfield" id="error-not-pep"></p>
+                          <p class="errorfield" id="error_not_pep"></p>
                         </div>
                       </div>
                   </fieldset>
 
                     <fieldset>
-                      <legend id="agreement-for-documents">交付書面等の確認</legend>
+                      <legend>交付書面等の確認</legend>
                       <div class="gr-12">
                         <p>
                           口座開設には下記への同意が必要です。
@@ -501,15 +459,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <div class="gr-12">
                             <div class="gr-row">
                                 <div class="gr-1">
-                                  <input id="use-electronic-doc" type="checkbox"/>
+                                  <input id="agree_use_electronic_doc" type="checkbox" class="form_input" />
                                 </div>
                                 <div class="gr-11">
-                                  <span>
+                                  <label for="agree_use_electronic_doc">
                                     電子交付への同意：契約締結前交付書面、取引約款、取引報告書、取引残高報告書、証拠金受領書、契約締結時交付書面等の書類が電子交付されることに同意します。
-                                  </span>
+                                  </label>
                                 </div>
                             </div>
-                          <p class="errorfield" id="error-use-electronic-doc"></p>
+                          <p class="errorfield" id="error_agree_use_electronic_doc"></p>
                         </div>
                       </div>
                       <div class="gr-padding-10 gr-row clear">
@@ -522,10 +480,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <div class="gr-12">
                             <div class="gr-row">
                               <div class="gr-1">
-                                <input id="warnings-and-policies" type="checkbox"/>
+                                <input id="agree_warnings_and_policies" type="checkbox" class="form_input" />
                               </div>
                               <div class="gr-11">
-                                <span>
+                                <label for="agree_warnings_and_policies">
                                   以下の書面を熟読し、十分理解した上で異議なく承諾します。
                                   <br />
                                   <ul>
@@ -559,16 +517,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                         </a>
                                       </li>
                                     </ul>
-                                  </span>
+                                  </label>
                                 </div>
                             </div>
-                            <p class="errorfield" id="error-warnings-and-policies"></p>
+                            <p class="errorfield" id="error_agree_warnings_and_policies"></p>
                           </div>
                         </div>
                     </fieldset>
 
                     <fieldset>
-                      <legend id="confirmation-and-understandings">確認事項</legend>
+                      <legend>確認事項</legend>
                       <div class="gr-12">
                         <p>
                           お客さまが当社とバイナリーオプション取引口座を開設にあたり、取引の仕組みやリスクを十分に理解いただく必要があります。下記事項につき、ご理解、同意いただけましたら、チェックをお願いいたします。
@@ -578,31 +536,31 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <div class="gr-12">
                             <div class="gr-row">
                               <div class="gr-1">
-                                <input id="own-judgment" type="checkbox"/>
+                                <input id="confirm_understand_own_judgment" type="checkbox" class="form_input" />
                               </div>
                               <div class="gr-11">
-                                <span>
+                                <label for="confirm_understand_own_judgment">
                                   本取引に関し、その対象となる金融指標等を含む基本的なスキームについて、十分な説明を受け、理解したこと。
 （契約締結前交付書面「店頭バイナリーオプション取引のリスクについての説明」参照）
-                                </span>
+                                </label>
                               </div>
                             </div>
-                          <p class="errorfield" id="error-own-judgment"></p>
+                          <p class="errorfield" id="error_confirm_understand_own_judgment"></p>
                         </div>
                       </div>
                       <div class="gr-padding-10 gr-row clear">
                         <div class="gr-12">
                             <div class="gr-row">
                               <div class="gr-1">
-                                <input id="trading-mechanism" type="checkbox"/>
+                                <input id="confirm_understand_trading_mechanism" type="checkbox" class="form_input" />
                               </div>
                               <div class="gr-11">
-                                <span>
+                                <label for="confirm_understand_trading_mechanism">
                                   本取引により想定される損失額（中途売却または解約した場合の解約清算金（試算額）を含む。）を踏まえ、お客さまが許容できる損失額及びお客さまの資産の状況への影響に照らして、お客さま自身が取引できる契約内容であることを確認したこと。（契約締結前交付書面「序文」参照）
-                                </span>
+                                </label>
                               </div>
                             </div>
-                          <p class="errorfield" id="error-trading-mechanism"></p>
+                          <p class="errorfield" id="error_confirm_understand_trading_mechanism"></p>
                         </div>
                       </div>
                       <div class="gr-padding-10 gr-row clear">
@@ -615,90 +573,90 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <div class="gr-12">
                             <div class="gr-row">
                               <div class="gr-1">
-                                <input id="judgment-time" type="checkbox"/>
+                                <input id="confirm_understand_judgment_time" type="checkbox" class="form_input" />
                               </div>
                               <div class="gr-11">
-                                <span>
+                                <label for="confirm_understand_judgment_time">
                                   本取引が期日のある取引であること。（契約締結前交付書面「店頭バイナリーオプション取引のリスク等重要事項について」-2参照）
-                                </span>
+                                </label>
                               </div>
                             </div>
-                          <p class="errorfield" id="error-judgment-time"></p>
+                          <p class="errorfield" id="error_confirm_understand_judgment_time"></p>
                         </div>
                       </div>
                       <div class="gr-padding-10 gr-row clear">
                         <div class="gr-12">
                             <div class="gr-row">
                               <div class="gr-1">
-                                <input id="total-loss" type="checkbox"/>
+                                <input id="confirm_understand_total_loss" type="checkbox" class="form_input" />
                               </div>
                               <div class="gr-11">
-                                <span>
+                                <label for="confirm_understand_total_loss">
                                   取引期間中のオプション価格は変動すること。（契約締結前交付書面「店頭バイナリーオプション取引のリスクについての説明」-④オプションの価格変動リスク参照）
-                                </span>
+                                </label>
                               </div>
                             </div>
-                          <p class="errorfield" id="error-total-loss"></p>
+                          <p class="errorfield" id="error_confirm_understand_total_loss"></p>
                         </div>
                       </div>
                       <div class="gr-padding-10 gr-row clear">
                         <div class="gr-12">
                             <div class="gr-row">
                               <div class="gr-1">
-                                <input id="sellback-loss" type="checkbox"/>
+                                <input id="confirm_understand_sellback_loss" type="checkbox" class="form_input" />
                               </div>
                               <div class="gr-11">
-                                <span>
+                                <label for="confirm_understand_sellback_loss">
                                   購入したバイナリーオプションについて、判定時刻において、予測が外れた場合には、投資元本がゼロになること。（契約締結前交付書面「店頭バイナリーオプション取引のリスク等重要事項について」-2参照）
-                                </span>
+                                </label>
                               </div>
                             </div>
-                          <p class="errorfield" id="error-sellback-loss"></p>
+                          <p class="errorfield" id="error_confirm_understand_sellback_loss"></p>
                         </div>
                       </div>
                       <div class="gr-padding-10 gr-row clear">
                         <div class="gr-12">
                             <div class="gr-row">
                               <div class="gr-1">
-                                <input id="shortsell-loss" type="checkbox"/>
+                                <input id="confirm_understand_shortsell_loss" type="checkbox" class="form_input" />
                               </div>
                               <div class="gr-11">
-                                <span>
+                                <label for="confirm_understand_shortsell_loss">
                                   購入したバイナリーオプションを判定時刻前に売却（または解約）した場合には、売却金額が購入金額を下回り、損失が生じるおそれがあること（契約締結交付前書面「店頭バイナリーオプション取引のリスク等重要事項について」-8参照）
-                                </span>
+                                </label>
                               </div>
                             </div>
-                          <p class="errorfield" id="error-shortsell-loss"></p>
+                          <p class="errorfield" id="error_confirm_understand_shortsell_loss"></p>
                         </div>
                       </div>
                       <div class="gr-padding-10 gr-row clear">
                         <div class="gr-12">
                           <div class="gr-row">
                             <div class="gr-1">
-                              <input id="company-profit" type="checkbox"/>
+                              <input id="confirm_understand_company_profit" type="checkbox" class="form_input" />
                             </div>
                             <div class="gr-11">
-                              <span>
+                              <label for="confirm_understand_company_profit">
                                 バイナリーオプション取引について、当社と取引する顧客全体が当社に支払う金額と顧客全体が当社から受け取る金額の差額が当社の収益の源泉となっていること。（契約締結前交付書面「店頭バイナリーオプション取引のリスク等重要事項について」-9参照）
-                              </span>
+                              </label>
                             </div>
                           </div>
-                          <p class="errorfield" id="error-company-profit"></p>
+                          <p class="errorfield" id="error_confirm_understand_company_profit"></p>
                         </div>
                       </div>
                       <div class="gr-padding-10 gr-row clear">
                         <div class="gr-12">
                             <div class="gr-row">
                               <div class="gr-1">
-                                <input id="expert-knowledge" type="checkbox"/>
+                                <input id="confirm_understand_expert_knowledge" type="checkbox" class="form_input" />
                               </div>
                               <div class="gr-11">
-                                <span>
+                                <label for="confirm_understand_expert_knowledge">
                                   バイナリーオプション取引について、合理的な投資判断をもって行うためには、オプション取引の理論的根拠などに関する専門知識が必要であること。（契約締結前交付書面「店頭バイナリーオプション取引のリスクについての説明」-①参照）
-                                </span>
+                                </label>
                               </div>
                             </div>
-                          <p class="errorfield" id="error-expert-knowledge"></p>
+                          <p class="errorfield" id="error_confirm_understand_expert_knowledge"></p>
                         </div>
                       </div>
                     </fieldset>

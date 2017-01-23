@@ -17,26 +17,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
   <div id="reality-check-content">
-  <div>
-    <h1>
-      Reality Check
-    </h1>
-    <p>
-      Options trading can become a real addiction, as can any other activity pushed to its limits. To avoid the danger of such an addiction, we provide a reality-check that gives you a summary of your trades and accounts on a regular basis.
-    </p>
-    <p>
-      Please specify your preferred reality-check interval in minutes
-      <input id="realityDuration" interval="1" maxlength="4" min="1" size="6" type="number"/>
-    </p>
-    <p id="rc-err" class="error-msg invisible">
-      Please enter a number greater than 0
-    </p>
-  </div>
-  <div class="center-text" id="reality-check-nav">
-    <span class="button">
-      <button bcont="1" class="button" id="continue">
-        Continue Trading
-      </button>
-    </span>
-  </div>
+    <div>
+        <h1>Reality Check</h1>
+        <p>
+            Options trading can become a real addiction, as can any other activity pushed to its limits. To avoid the danger of such an addiction, we provide a reality-check that gives you a summary of your trades and accounts on a regular basis.
+        </p>
+        <p>
+            Please specify your preferred reality-check interval in minutes
+            <input id="realityDuration" interval="1" maxlength="4" min="1" size="6" type="number"/>
+        </p>
+        <p id="rc-err" class="error-msg invisible">Please enter a number greater than 0</p>
+    </div>
+    <div class="center-text" id="reality-check-nav">
+    <button bcont="1" class="button" id="continue">Continue Trading</button>
+    <button class="button" id="statement">View Statement</button>
+    <button class="button-secondary" id="btn_logout">Log out</button>
+</div>
 </div>

@@ -17,26 +17,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
   <div id="reality-check-content">
-  <div>
-    <h1>
-      真实情况检查
-    </h1>
-    <p>
-      二元期权交易和其他类似活动一样，过于沉迷可能会上瘾。为了避免这种风险，我们会定期向您提供交易和财务的实况简报。
-    </p>
-    <p>
-      请指定您的优选实况调查间隔时间分钟数
-      <input id="realityDuration" interval="1" maxlength="4" min="1" size="6" type="number"/>
-    </p>
-    <p id="rc-err" class="error-msg invisible">
-      请输入大于0的数字
-    </p>
-  </div>
-  <div class="center-text" id="reality-check-nav">
-    <span class="button">
-      <button bcont="1" class="button" id="continue">
-        继续交易
-      </button>
-    </span>
-  </div>
+    <div>
+        <h1>真实情况检查</h1>
+        <p>
+            二元期权交易和其他类似活动一样，过于沉迷可能会上瘾。为了避免这种风险，我们会定期向您提供交易和财务的实况简报。
+        </p>
+        <p>
+            请指定您的优选实况调查间隔时间分钟数
+            <input id="realityDuration" interval="1" maxlength="4" min="1" size="6" type="number"/>
+        </p>
+        <p id="rc-err" class="error-msg invisible">请输入大于0的数字</p>
+    </div>
+    <div class="center-text" id="reality-check-nav">
+    <button bcont="1" class="button" id="continue">继续交易</button>
+    <button class="button" id="statement">View Statement</button>
+    <button class="button-secondary" id="btn_logout">退出</button>
+</div>
 </div>

@@ -55,10 +55,10 @@
           <link rel="alternate" href="/zh_cn/user/reality_check_summaryws.html" hreflang="ZH_CN" /> 
           <link rel="alternate" href="/zh_tw/user/reality_check_summaryws.html?l=zh_tw" hreflang="ZH_TW" /> 
         
-         <link rel="stylesheet" href="/css/binary.min.css?42fbqc76">
-         <link rel="stylesheet" href="https://style.binary.com/binary.css?42fbqc76">
+         <link rel="stylesheet" href="/css/binary.min.css?o9pnydzz">
+         <link rel="stylesheet" href="https://style.binary.com/binary.css?o9pnydzz">
         
-        <script src='/js/binary.min.js?42fbqc76' defer async></script>
+        <script src='/js/binary.min.js?o9pnydzz' defer async></script>
     </head>
 
 
@@ -332,93 +332,55 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
   <div id="reality-check-content">
-  <div>
-    <h1>
-      真實情況檢查
-    </h1>
-    <p>
-      <label>
-        登入時間:
-      </label>
-      <span id="login-time"></span>
-    </p>
-    <p>
-      <label>
-        目前時間:
-      </label>
-      <span id="current-time"></span>
-    </p>
-    <p>
-      <label>
-        工作階段時間：
-      </label>
-      <span id="session-duration"></span>
-    </p>
-    <p id="start-time"></p>
-    <table>
-      <tr>
-        <th>
-          登入 ID
-        </th>
-        <th>
-          貨幣
-        </th>
-        <th>
-          交易額
-        </th>
-        <th>
-          利潤 / 虧損
-        </th>
-        <th>
-          購入合約
-        </th>
-        <th>
-          售出合約
-        </th>
-        <th>
-          訂立合約
-        </th>
-        <th>
-          潛在利潤
-        </th>
-      </tr>
-      <tr>
-        <td id="login-id"></td>
-        <td id="rc_currency"></td>
-        <td id="turnover"></td>
-        <td id="profitloss"></td>
-        <td id="bought"></td>
-        <td id="sold"></td>
-        <td id="open"></td>
-        <td id="potential"></td>
-      </tr>
-    </table>
-    <p>
-      <label>
-        真實情況檢查時間間隔:
-      </label>
-      <input id="realityDuration" interval="1" maxlength="4" min="1" size="6" type="number"/>
-      <span>
-        分鐘
-      </span>
-    </p>
-    <p id="rc-err" class="error-msg invisible">
-      請輸入大於0之數字
-    </p>
-  </div>
-  <div class="center-text" id="reality-check-nav">
-    <span class="button">
-      <button bcont="1" class="button" id="continue">
-        繼續交易
-      </button>
-    </span>
-    <span></span>
-    <span class="button">
-      <button class="button" id="btn_logout">
-        登出
-      </button>
-    </span>
-  </div>
+    <div>
+        <h1>真實情況檢查</h1>
+        <p>
+            <label>登入時間:</label>
+            <span id="login-time"></span>
+        </p>
+        <p>
+            <label>目前時間:</label>
+            <span id="current-time"></span>
+        </p>
+        <p>
+            <label>工作階段時間：</label>
+            <span id="session-duration"></span>
+        </p>
+        <p id="start-time"></p>
+            <table>
+                <tr>
+                    <th>登入 ID</th>
+                    <th>貨幣</th>
+                    <th>交易額</th>
+                    <th>利潤 / 虧損</th>
+                    <th>購入合約</th>
+                    <th>售出合約</th>
+                    <th>訂立合約</th>
+                    <th>潛在利潤</th>
+                </tr>
+                <tr>
+                    <td id="login-id"></td>
+                    <td id="rc_currency"></td>
+                    <td id="turnover"></td>
+                    <td id="profitloss"></td>
+                    <td id="bought"></td>
+                    <td id="sold"></td>
+                    <td id="open"></td>
+                    <td id="potential"></td>
+                </tr>
+            </table>
+        <p>
+            <label>真實情況檢查時間間隔:</label>
+            <input id="realityDuration" interval="1" maxlength="4" min="1" size="6" type="number"/>
+            <span>分鐘</span>
+        </p>
+        <p id="rc-err" class="error-msg invisible">請輸入大於0之數字</p>
+    </div>
+    <div class="center-text" id="reality-check-nav">
+    <button bcont="1" class="button" id="continue">繼續交易</button>
+    <button class="button" id="statement">View Statement</button>
+    <button class="button-secondary" id="btn_logout">登出</button>
+</div>
 </div>
 
 

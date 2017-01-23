@@ -27,34 +27,34 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <legend id="details">Details</legend>
                         <div class="gr-padding-10 gr-row clear">
                             <div class="gr-4 form_label">
-                                <label for="title">Title</label>
+                                <label for="salutation">Title</label>
                             </div>
                             <div class="gr-8">
-                                <select id="title" class="input-disabled">
+                                <select id="salutation" class="input-disabled form_input">
                                   <option value="Mr">Mr</option>
                                   <option value="Mrs">Mrs</option>
                                   <option value="Ms">Ms</option>
                                   <option value="Miss">Miss</option>
                                 </select>
-                                <p class="errorfield" id="error-title" style="display:none"></p>
+                                <p class="errorfield" id="error_salutation" style="display:none"></p>
                             </div>
                         </div>
                         <div class="gr-padding-10 gr-row clear">
                             <div class="gr-4 form_label">
-                                <label for="fname">First name</label>
+                                <label for="first_name">First name</label>
                             </div>
                             <div class="gr-8">
-                                <input type="text" class="text input-disabled" id="fname" maxlength="30"/>
-                                <p class="errorfield" id="error-fname" style="display:none"></p>
+                                <input type="text" class="text input-disabled form_input" id="first_name" maxlength="30"/>
+                                <p class="errorfield" id="error_first_name" style="display:none"></p>
                             </div>
                         </div>
                         <div class="gr-padding-10 gr-row clear">
                             <div class="gr-4 form_label">
-                                <label for="lname">Family name</label>
+                                <label for="last_name">Family name</label>
                             </div>
                             <div class="gr-8">
-                                <input type="text" class="text input-disabled" id="lname" maxlength="30"/>
-                                <p class="errorfield" id="error-lname" style="display:none"></p>
+                                <input type="text" class="text input-disabled form_input" id="last_name" maxlength="30"/>
+                                <p class="errorfield" id="error_last_name" style="display:none"></p>
                             </div>
                         </div>
                         <div class="gr-padding-10 gr-row clear">
@@ -62,20 +62,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                 <label for="dobdd">Date of birth</label>
                             </div>
                             <div class="gr-8">
-                                <select id="dobdd" class="input-disabled"></select>
-                                <select id="dobmm" class="input-disabled"></select>
-                                <select id="dobyy" class="input-disabled"></select>
-                                <p class="errorfield" id="error-birthdate" style="display:none"></p>
+                                <select id="dobdd" class="input-disabled form_input exclude_data"></select>
+                                <select id="dobmm" class="input-disabled form_input exclude_data"></select>
+                                <select id="dobyy" class="input-disabled form_input exclude_data"></select>
+                                <p class="errorfield" id="error_dobdd" style="display:none"></p>
                             </div>
                         </div>
                         <div class="gr-padding-10 gr-row clear">
                             <div class="gr-4 form_label">
-                                <label for="residence-disabled">Country of residence</label>
+                                <label for="residence">Country of residence</label>
                             </div>
                             <div class="gr-8">
                                 <span id="move-residence-back"></span>
-                                <select name="residence-disabled" id="residence-disabled" disabled></select>
-                                <p class="errorfield" id="error-residence" style="display:none"></p>
+                                <select name="residence" id="residence" class="form_input" disabled></select>
+                                <p class="errorfield" id="error_residence" style="display:none"></p>
                             </div>
                         </div>
                     </fieldset>
@@ -84,56 +84,56 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <legend id="address">Address</legend>
                         <div class="gr-padding-10 gr-row clear">
                             <div class="gr-4 form_label">
-                                <label for="address1">First line of home address</label>
+                                <label for="address_line_1">First line of home address</label>
                             </div>
                             <div class="gr-8">
-                                <input type="text" class="text" id="address1" maxlength="70"/>
-                                <p class="errorfield" id="error-address1" style="display:none"></p>
+                                <input type="text" class="text form_input" id="address_line_1" maxlength="70"/>
+                                <p class="errorfield" id="error_address_line_1" style="display:none"></p>
                             </div>
                         </div>
                         <div class="gr-padding-10 gr-row clear">
                             <div class="gr-4 form_label">
-                                <label for="address2">Second line of home address</label>
+                                <label for="address_line_2">Second line of home address</label>
                             </div>
                             <div class="gr-8">
-                                <input type="text" class="text" id="address2" maxlength="70"/>
-                                <p class="errorfield" id="error-address2" style="display:none"></p>
+                                <input type="text" class="text form_input" id="address_line_2" maxlength="70"/>
+                                <p class="errorfield" id="error_address_line_2" style="display:none"></p>
                             </div>
                         </div>
                         <div class="gr-padding-10 gr-row clear">
                             <div class="gr-4 form_label">
-                                <label for="address-town">Town/City</label>
+                                <label for="address_city">Town/City</label>
                             </div>
                             <div class="gr-8">
-                                <input type="text" class="text" id="address-town" maxlength="35"/>
-                                <p class="errorfield" id="error-town" style="display:none"></p>
+                                <input type="text" class="text form_input" id="address_city" maxlength="35"/>
+                                <p class="errorfield" id="error_address_city" style="display:none"></p>
                             </div>
                         </div>
                         <div class="gr-padding-10 gr-row clear" style="display:none">
                             <div class="gr-4 form_label">
-                                <label for="address-state">State/Province</label>
+                                <label for="address_state">State/Province</label>
                             </div>
                             <div class="gr-8">
-                                <select id="address-state"></select>
-                                <p class="errorfield" id="error-state" style="display:none"></p>
+                                <select id="address_state" class="form_input"></select>
+                                <p class="errorfield" id="error_address_state" style="display:none"></p>
                             </div>
                         </div>
                         <div class="gr-padding-10 gr-row clear">
                             <div class="gr-4 form_label">
-                                <label for="address-postcode">Postal code/ZIP</label>
+                                <label for="address_postcode">Postal code/ZIP</label>
                             </div>
                             <div class="gr-8">
-                                <input type="text" class="text" id="address-postcode" maxlength="20"></select>
-                                <p class="errorfield" id="error-postcode" style="display:none"></p>
+                                <input type="text" class="text form_input" id="address_postcode" maxlength="20" />
+                                <p class="errorfield" id="error_address_postcode" style="display:none"></p>
                             </div>
                         </div>
                         <div class="gr-padding-10 gr-row clear">
                             <div class="gr-4 form_label">
-                                <label for="tel">Telephone</label>
+                                <label for="phone">Telephone</label>
                             </div>
                             <div class="gr-8">
-                                <input type="text" class="text" id="tel" maxlength="35"></select>
-                                <p class="errorfield" id="error-tel" style="display:none"></p>
+                                <input type="text" class="text form_input" id="phone" maxlength="35" />
+                                <p class="errorfield" id="error_phone" style="display:none"></p>
                             </div>
                         </div>
                     </fieldset>
@@ -142,10 +142,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <legend id="security">Security</legend>
                         <div class="gr-padding-10 gr-row clear">
                             <div class="gr-4 form_label">
-                                <label for="secret-question">Secret question</label>
+                                <label for="secret_question">Secret question</label>
                             </div>
                             <div class="gr-8">
-                                <select id="secret-question">
+                                <select id="secret_question" class="form_input exclude_data">
                                   <option value="Favourite dish">Favourite dish</option>
                                   <option value="Mother's maiden name">Mother's maiden name</option>
                                   <option value="Name of your pet">Name of your pet</option>
@@ -155,270 +155,278 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                   <option value="Brand of first car">Brand of first car</option>
                                   <option value="Favourite artist">Favourite artist</option>
                                 </select>
-                                <p class="errorfield" id="error-question" style="display:none"></p>
+                                <p class="errorfield" id="error_secret_question" style="display:none"></p>
                             </div>
                         </div>
                         <div class="gr-padding-10 gr-row clear">
                             <div class="gr-4 form_label">
-                                <label for="secret-answer">Answer to secret question</label>
+                                <label for="secret_answer">Answer to secret question</label>
                             </div>
                             <div class="gr-8">
-                                <input type="text" class="text" id="secret-answer" maxlength="50" autocomplete="off"/>
-                                <p class="errorfield" id="error-answer" style="display:none"></p>
+                                <input type="text" class="text form_input exclude_data" id="secret_answer" maxlength="50" autocomplete="off"/>
+                                <p class="errorfield" id="error_secret_answer" style="display:none"></p>
                             </div>
                         </div>
                     </fieldset>
 
                     <fieldset>
-                        <legend id="financial-information">Financial Information</legend>
-                        <div class="gr-padding-10 gr-row clear">
-                            <div class="gr-4 form_label">
-                                <label for="forex_trading_experience">Forex trading experience</label>
-                            </div>
-                            <div class="gr-8">
-                                <select id="forex_trading_experience">
-                                  <option value="">Please select</option>
-                                  <option value="0-1 year">0-1 year</option>
-                                  <option value="1-2 years">1-2 years</option>
-                                  <option value="Over 3 years">Over 3 years</option>
-                                </select>
-                                <p class="errorfield" id="error-forex_trading_experience" style="display:none"></p>
-                            </div>
-                        </div>
-                        <div class="gr-padding-10 gr-row clear">
-                            <div class="gr-4 form_label">
-                                <label for="forex_trading_frequency">Forex trading frequency</label>
-                            </div>
-                            <div class="gr-8">
-                                <select id="forex_trading_frequency">
-                                  <option value="">Please select</option>
-                                  <option value="0-5 transactions in the past 12 months">0-5 transactions in the past 12 months</option>
-                                  <option value="6-10 transactions in the past 12 months">6-10 transactions in the past 12 months</option>
-                                  <option value="40 transactions or more in the past 12 months">40 transactions or more in the past 12 months</option>
-                                </select>
-                                <p class="errorfield" id="error-forex_trading_frequency" style="display:none"></p>
-                            </div>
-                        </div>
-                        <div class="gr-padding-10 gr-row clear">
-                            <div class="gr-4 form_label">
-                                <label for="indices_trading_experience">Indices trading experience</label>
-                            </div>
-                            <div class="gr-8">
-                                <select id="indices_trading_experience">
-                                  <option value="">Please select</option>
-                                  <option value="0-1 year">0-1 year</option>
-                                  <option value="1-2 years">1-2 years</option>
-                                  <option value="Over 3 years">Over 3 years</option>
-                                </select>
-                                <p class="errorfield" id="error-indices_trading_experience" style="display:none"></p>
-                            </div>
-                        </div>
-                        <div class="gr-padding-10 gr-row clear">
-                            <div class="gr-4 form_label">
-                                <label for="indices_trading_frequency">Indices trading frequency</label>
-                            </div>
-                            <div class="gr-8">
-                                <select id="indices_trading_frequency">
-                                  <option value="">Please select</option>
-                                  <option value="0-5 transactions in the past 12 months">0-5 transactions in the past 12 months</option>
-                                  <option value="6-10 transactions in the past 12 months">6-10 transactions in the past 12 months</option>
-                                  <option value="40 transactions or more in the past 12 months">40 transactions or more in the past 12 months</option>
-                                </select>
-                                <p class="errorfield" id="error-indices_trading_frequency" style="display:none"></p>
-                            </div>
-                        </div>
-                        <div class="gr-padding-10 gr-row clear">
-                            <div class="gr-4 form_label">
-                                <label for="commodities_trading_experience">Commodities trading experience</label>
-                            </div>
-                            <div class="gr-8">
-                                <select id="commodities_trading_experience">
-                                  <option value="">Please select</option>
-                                  <option value="0-1 year">0-1 year</option>
-                                  <option value="1-2 years">1-2 years</option>
-                                  <option value="Over 3 years">Over 3 years</option>
-                                </select>
-                                <p class="errorfield" id="error-commodities_trading_experience" style="display:none"></p>
-                            </div>
-                        </div>
-                        <div class="gr-padding-10 gr-row clear">
-                            <div class="gr-4 form_label">
-                                <label for="commodities_trading_frequency">Commodities trading frequency</label>
-                            </div>
-                            <div class="gr-8">
-                                <select id="commodities_trading_frequency">
-                                  <option value="">Please select</option>
-                                  <option value="0-5 transactions in the past 12 months">0-5 transactions in the past 12 months</option>
-                                  <option value="6-10 transactions in the past 12 months">6-10 transactions in the past 12 months</option>
-                                  <option value="40 transactions or more in the past 12 months">40 transactions or more in the past 12 months</option>
-                                </select>
-                                <p class="errorfield" id="error-commodities_trading_frequency" style="display:none"></p>
-                            </div>
-                        </div>
-                        <div class="gr-padding-10 gr-row clear">
-                            <div class="gr-4 form_label">
-                                <label for="stocks_trading_experience">Stocks trading experience</label>
-                            </div>
-                            <div class="gr-8">
-                                <select id="stocks_trading_experience">
-                                  <option value="">Please select</option>
-                                  <option value="0-1 year">0-1 year</option>
-                                  <option value="1-2 years">1-2 years</option>
-                                  <option value="Over 3 years">Over 3 years</option>
-                                </select>
-                                <p class="errorfield" id="error-stocks_trading_experience" style="display:none"></p>
-                            </div>
-                        </div>
-                        <div class="gr-padding-10 gr-row clear">
-                            <div class="gr-4 form_label">
-                                <label for="stocks_trading_frequency">Stocks trading frequency</label>
-                            </div>
-                            <div class="gr-8">
-                                <select id="stocks_trading_frequency">
-                                  <option value="">Please select</option>
-                                  <option value="0-5 transactions in the past 12 months">0-5 transactions in the past 12 months</option>
-                                  <option value="6-10 transactions in the past 12 months">6-10 transactions in the past 12 months</option>
-                                  <option value="40 transactions or more in the past 12 months">40 transactions or more in the past 12 months</option>
-                                </select>
-                                <p class="errorfield" id="error-stocks_trading_frequency" style="display:none"></p>
-                            </div>
-                        </div>
-                        <div class="gr-padding-10 gr-row clear">
-                            <div class="gr-4 form_label">
-                                <label for="other_derivatives_trading_experience">Binary options or other financial derivatives trading experience</label>
-                            </div>
-                            <div class="gr-8">
-                                <select id="other_derivatives_trading_experience">
-                                  <option value="">Please select</option>
-                                  <option value="0-1 year">0-1 year</option>
-                                  <option value="1-2 years">1-2 years</option>
-                                  <option value="Over 3 years">Over 3 years</option>
-                                </select>
-                                <p class="errorfield" id="error-other_derivatives_trading_experience" style="display:none"></p>
-                            </div>
-                        </div>
-                        <div class="gr-padding-10 gr-row clear">
-                            <div class="gr-4 form_label">
-                                <label for="other_derivatives_trading_frequency">Binary options or other financial derivatives trading frequency</label>
-                            </div>
-                            <div class="gr-8">
-                                <select id="other_derivatives_trading_frequency">
-                                  <option value="">Please select</option>
-                                  <option value="0-5 transactions in the past 12 months">0-5 transactions in the past 12 months</option>
-                                  <option value="6-10 transactions in the past 12 months">6-10 transactions in the past 12 months</option>
-                                  <option value="40 transactions or more in the past 12 months">40 transactions or more in the past 12 months</option>
-                                </select>
-                                <p class="errorfield" id="error-other_derivatives_trading_frequency" style="display:none"></p>
-                            </div>
-                        </div>
-                        <div class="gr-padding-10 gr-row clear">
-                            <div class="gr-4 form_label">
-                                <label for="other_instruments_trading_experience">Other financial instruments trading experience</label>
-                            </div>
-                            <div class="gr-8">
-                                <select id="other_instruments_trading_experience">
-                                  <option value="">Please select</option>
-                                  <option value="0-1 year">0-1 year</option>
-                                  <option value="1-2 years">1-2 years</option>
-                                  <option value="Over 3 years">Over 3 years</option>
-                                </select>
-                                <p class="errorfield" id="error-other_instruments_trading_experience" style="display:none"></p>
-                            </div>
-                        </div>
-                        <div class="gr-padding-10 gr-row clear">
-                            <div class="gr-4 form_label">
-                                <label for="other_instruments_trading_frequency">Other financial instruments trading frequency</label>
-                            </div>
-                            <div class="gr-8">
-                                <select id="other_instruments_trading_frequency">
-                                  <option value="">Please select</option>
-                                  <option value="0-5 transactions in the past 12 months">0-5 transactions in the past 12 months</option>
-                                  <option value="6-10 transactions in the past 12 months">6-10 transactions in the past 12 months</option>
-                                  <option value="40 transactions or more in the past 12 months">40 transactions or more in the past 12 months</option>
-                                </select>
-                                <p class="errorfield" id="error-other_instruments_trading_frequency" style="display:none"></p>
-                            </div>
-                        </div>
-                        <div class="gr-padding-10 gr-row clear">
-                            <div class="gr-4 form_label">
-                                <label for="employment_industry">Industry of Employment</label>
-                            </div>
-                            <div class="gr-8">
-                                <select id="employment_industry">
-                                  <option value="">Please select</option>
-                                  <option value="Construction">Construction</option>
-                                  <option value="Education">Education</option>
-                                  <option value="Finance">Finance</option>
-                                  <option value="Health">Health</option>
-                                  <option value="Tourism">Tourism</option>
-                                  <option value="Other">Other</option>
-                                </select>
-                                <p class="errorfield" id="error-employment_industry" style="display:none"></p>
-                            </div>
-                        </div>
-                        <div class="gr-padding-10 gr-row clear">
-                            <div class="gr-4 form_label">
-                                <label for="education_level">Level of Education</label>
-                            </div>
-                            <div class="gr-8">
-                                <select id="education_level">
-                                  <option value="">Please select</option>
-                                  <option value="Primary">Primary</option>
-                                  <option value="Secondary">Secondary</option>
-                                  <option value="Tertiary">Tertiary</option>
-                                </select>
-                                <p class="errorfield" id="error-education_level" style="display:none"></p>
-                            </div>
-                        </div>
-                        <div class="gr-padding-10 gr-row clear">
-                            <div class="gr-4 form_label">
-                                <label for="income_source">Income Source</label>
-                            </div>
-                            <div class="gr-8">
-                                <select id="income_source">
-                                  <option value="">Please select</option>
-                                  <option value="Salaried Employee">Salaried Employee</option>
-                                  <option value="Self-Employed">Self-Employed</option>
-                                  <option value="Investments & Dividends">Investments & Dividends</option>
-                                  <option value="Pension">Pension</option>
-                                  <option value="Other">Other</option>
-                                </select>
-                                <p class="errorfield" id="error-income_source" style="display:none"></p>
-                            </div>
-                        </div>
-                        <div class="gr-padding-10 gr-row clear">
-                            <div class="gr-4 form_label">
-                                <label for="net_income">Net Annual Income</label>
-                            </div>
-                            <div class="gr-8">
-                                <select id="net_income">
-                                  <option value="">Please select</option>
-                                  <option value="Less than &#36;25,000">Less than &#36;25,000</option>
-                                  <option value="&#36;25,000 - &#36;50,000" >&#36;25,000 - &#36;50,000</option>
-                                  <option value="&#36;50,001 - &#36;100,000">&#36;50,001 - &#36;100,000</option>
-                                  <option value="&#36;100,001 - &#36;500,000">&#36;100,001 - &#36;500,000</option>
-                                  <option value="Over &#36;500,000">Over &#36;500,001</option>
-                                </select>
-                                <p class="errorfield" id="error-net_income" style="display:none"></p>
-                            </div>
-                        </div>
-                        <div class="gr-padding-10 gr-row clear">
-                            <div class="gr-4 form_label">
-                                <label for="estimated_worth">Estimated Net Worth</label>
-                            </div>
-                            <div class="gr-8">
-                                <select id="estimated_worth">
-                                  <option value="">Please select</option>
-                                  <option value="Less than &#36;100,000">Less than &#36;100,000</option>
-                                  <option value="&#36;100,000 - &#36;250,000" >&#36;100,000 - &#36;250,000</option>
-                                  <option value="&#36;250,001 - &#36;500,000">&#36;250,001 - &#36;500,000</option>
-                                  <option value="&#36;500,001 - &#36;1,000,000">&#36;500,001 - &#36;1,000,000</option>
-                                  <option value="Over &#36;1,000,000">Over &#36;1,000,000</option>
-                                </select>
-                                <p class="errorfield" id="error-estimated_worth" style="display:none"></p>
-                            </div>
-                        </div>
-                    </fieldset>
+    <legend>Financial Information</legend>
+
+    <div class="gr-padding-10 gr-row clear">
+        <div class="gr-4 form_label">
+            <label for="forex_trading_experience">Forex trading experience</label>
+        </div>
+        <div class="gr-8">
+            <select id="forex_trading_experience" name="forex_trading_experience" class="form_input">
+                <option value="">Please select</option>
+                <option value="0-1 year">0-1 year</option>
+                <option value="1-2 years">1-2 years</option>
+                <option value="Over 3 years">Over 3 years</option>
+            </select>
+            <p class="errorfield" id="error_forex_trading_experience"></p>
+        </div>
+    </div>
+
+    <div class="gr-padding-10 gr-row clear">
+        <div class="gr-4 form_label">
+            <label for="forex_trading_frequency">Forex trading frequency</label>
+        </div>
+        <div class="gr-8">
+            <select id="forex_trading_frequency" name="forex_trading_frequency" class="form_input">
+                <option value="">Please select</option>
+                <option value="0-5 transactions in the past 12 months">0-5 transactions in the past 12 months</option>
+                <option value="6-10 transactions in the past 12 months">6-10 transactions in the past 12 months</option>
+                <option value="40 transactions or more in the past 12 months">40 transactions or more in the past 12 months</option>
+            </select>
+            <p class="errorfield" id="error_forex_trading_frequency"></p>
+        </div>
+    </div>
+
+    <div class="gr-padding-10 gr-row clear">
+        <div class="gr-4 form_label">
+            <label for="indices_trading_experience">Indices trading experience</label>
+        </div>
+        <div class="gr-8">
+            <select id="indices_trading_experience" name="indices_trading_experience" class="form_input">
+                <option value="">Please select</option>
+                <option value="0-1 year">0-1 year</option>
+                <option value="1-2 years">1-2 years</option>
+                <option value="Over 3 years">Over 3 years</option>
+            </select>
+            <p class="errorfield" id="error_indices_trading_experience"></p>
+        </div>
+    </div>
+
+    <div class="gr-padding-10 gr-row clear">
+        <div class="gr-4 form_label">
+            <label for="indices_trading_frequency">Indices trading frequency</label>
+        </div>
+        <div class="gr-8">
+            <select id="indices_trading_frequency" name="indices_trading_frequency" class="form_input">
+                <option value="">Please select</option>
+                <option value="0-5 transactions in the past 12 months">0-5 transactions in the past 12 months</option>
+                <option value="6-10 transactions in the past 12 months">6-10 transactions in the past 12 months</option>
+                <option value="40 transactions or more in the past 12 months">40 transactions or more in the past 12 months</option>
+            </select>
+            <p class="errorfield" id="error_indices_trading_frequency"></p>
+        </div>
+    </div>
+
+    <div class="gr-padding-10 gr-row clear">
+        <div class="gr-4 form_label">
+            <label for="commodities_trading_experience">Commodities trading experience</label>
+        </div>
+        <div class="gr-8">
+            <select id="commodities_trading_experience" name="commodities_trading_experience" class="form_input">
+                <option value="">Please select</option>
+                <option value="0-1 year">0-1 year</option>
+                <option value="1-2 years">1-2 years</option>
+                <option value="Over 3 years">Over 3 years</option>
+            </select>
+            <p class="errorfield" id="error_commodities_trading_experience"></p>
+        </div>
+    </div>
+
+    <div class="gr-padding-10 gr-row clear">
+        <div class="gr-4 form_label">
+            <label for="commodities_trading_frequency">Commodities trading frequency</label>
+        </div>
+        <div class="gr-8">
+            <select id="commodities_trading_frequency" name="commodities_trading_frequency" class="form_input">
+                <option value="">Please select</option>
+                <option value="0-5 transactions in the past 12 months">0-5 transactions in the past 12 months</option>
+                <option value="6-10 transactions in the past 12 months">6-10 transactions in the past 12 months</option>
+                <option value="40 transactions or more in the past 12 months">40 transactions or more in the past 12 months</option>
+            </select>
+            <p class="errorfield" id="error_commodities_trading_frequency"></p>
+        </div>
+    </div>
+
+    <div class="gr-padding-10 gr-row clear">
+        <div class="gr-4 form_label">
+            <label for="stocks_trading_experience">Stocks trading experience</label>
+        </div>
+        <div class="gr-8">
+            <select id="stocks_trading_experience" name="stocks_trading_experience" class="form_input">
+                <option value="">Please select</option>
+                <option value="0-1 year">0-1 year</option>
+                <option value="1-2 years">1-2 years</option>
+                <option value="Over 3 years">Over 3 years</option>
+            </select>
+            <p class="errorfield" id="error_stocks_trading_experience"></p>
+        </div>
+    </div>
+
+    <div class="gr-padding-10 gr-row clear">
+        <div class="gr-4 form_label">
+            <label for="stocks_trading_frequency">Stocks trading frequency</label>
+        </div>
+        <div class="gr-8">
+            <select id="stocks_trading_frequency" name="stocks_trading_frequency" class="form_input">
+                <option value="">Please select</option>
+                <option value="0-5 transactions in the past 12 months">0-5 transactions in the past 12 months</option>
+                <option value="6-10 transactions in the past 12 months">6-10 transactions in the past 12 months</option>
+                <option value="40 transactions or more in the past 12 months">40 transactions or more in the past 12 months</option>
+            </select>
+            <p class="errorfield" id="error_stocks_trading_frequency"></p>
+        </div>
+    </div>
+    <div class="gr-padding-10 gr-row clear">
+        <div class="gr-4 form_label">
+            <label for="other_derivatives_trading_experience">Binary options or other financial derivatives trading experience</label>
+        </div>
+        <div class="gr-8">
+            <select id="other_derivatives_trading_experience" name="other_derivatives_trading_experience" class="form_input">
+                <option value="">Please select</option>
+                <option value="0-1 year">0-1 year</option>
+                <option value="1-2 years">1-2 years</option>
+                <option value="Over 3 years">Over 3 years</option>
+            </select>
+            <p class="errorfield" id="error_other_derivatives_trading_experience"></p>
+        </div>
+    </div>
+    <div class="gr-padding-10 gr-row clear">
+        <div class="gr-4 form_label">
+            <label for="other_derivatives_trading_frequency">Binary options or other financial derivatives trading frequency</label>
+        </div>
+        <div class="gr-8">
+            <select id="other_derivatives_trading_frequency" name="other_derivatives_trading_frequency" class="form_input">
+                <option value="">Please select</option>
+                <option value="0-5 transactions in the past 12 months">0-5 transactions in the past 12 months</option>
+                <option value="6-10 transactions in the past 12 months">6-10 transactions in the past 12 months</option>
+                <option value="40 transactions or more in the past 12 months">40 transactions or more in the past 12 months</option>
+            </select>
+            <p class="errorfield" id="error_other_derivatives_trading_frequency"></p>
+        </div>
+    </div>
+    <div class="gr-padding-10 gr-row clear">
+        <div class="gr-4 form_label">
+            <label for="other_instruments_trading_experience">Other financial instruments trading experience</label>
+        </div>
+        <div class="gr-8">
+            <select id="other_instruments_trading_experience" name="other_instruments_trading_experience" class="form_input">
+                <option value="">Please select</option>
+                <option value="0-1 year">0-1 year</option>
+                <option value="1-2 years">1-2 years</option>
+                <option value="Over 3 years">Over 3 years</option>
+            </select>
+            <p class="errorfield" id="error_other_instruments_trading_experience"></p>
+        </div>
+    </div>
+    <div class="gr-padding-10 gr-row clear">
+        <div class="gr-4 form_label">
+            <label for="other_instruments_trading_frequency">Other financial instruments trading frequency</label>
+        </div>
+        <div class="gr-8">
+            <select id="other_instruments_trading_frequency" name="other_instruments_trading_frequency" class="form_input">
+                <option value="">Please select</option>
+                <option value="0-5 transactions in the past 12 months">0-5 transactions in the past 12 months</option>
+                <option value="6-10 transactions in the past 12 months">6-10 transactions in the past 12 months</option>
+                <option value="40 transactions or more in the past 12 months">40 transactions or more in the past 12 months</option>
+            </select>
+            <p class="errorfield" id="error_other_instruments_trading_frequency"></p>
+        </div>
+    </div>
+    <div class="gr-padding-10 gr-row clear">
+        <div class="gr-4 form_label">
+            <label for="employment_industry">Industry of Employment</label>
+        </div>
+        <div class="gr-8">
+            <select id="employment_industry" name="employment_industry" class="form_input">
+                <option value="">Please select</option>
+                <option value="Construction">Construction</option>
+                <option value="Education">Education</option>
+                <option value="Finance">Finance</option>
+                <option value="Health">Health</option>
+                <option value="Tourism">Tourism</option>
+                <option value="Other">Other</option>
+            </select>
+            <p class="errorfield" id="error_employment_industry"></p>
+        </div>
+    </div>
+    <div class="gr-padding-10 gr-row clear">
+        <div class="gr-4 form_label">
+            <label for="education_level">Level of Education</label>
+        </div>
+        <div class="gr-8">
+            <select id="education_level" name="education_level" class="form_input">
+                <option value="">Please select</option>
+                <option value="Primary">Primary</option>
+                <option value="Secondary">Secondary</option>
+                <option value="Tertiary">Tertiary</option>
+            </select>
+            <p class="errorfield" id="error_education_level"></p>
+        </div>
+    </div>
+    <div class="gr-padding-10 gr-row clear">
+        <div class="gr-4 form_label">
+            <label for="income_source">Income Source</label>
+        </div>
+        <div class="gr-8">
+            <select id="income_source" name="income_source" class="form_input">
+                <option value="">Please select</option>
+                <option value="Salaried Employee">Salaried Employee</option>
+                <option value="Self-Employed">Self-Employed</option>
+                <option value="Investments &amp; Dividends">Investments &amp; Dividends</option>
+                <option value="Pension">Pension</option>
+                <option value="Other">Other</option>
+            </select>
+            <p class="errorfield" id="error_income_source"></p>
+        </div>
+    </div>
+    <div class="gr-padding-10 gr-row clear">
+        <div class="gr-4 form_label">
+            <label for="net_income">Net Annual Income</label>
+        </div>
+        <div class="gr-8">
+            <select id="net_income" name="net_income" class="form_input">
+                <option value="">Please select</option>
+                <option value="Less than &#36;25,000">Less than &#36;25,000</option>
+                <option value="&#36;25,000 - &#36;50,000">&#36;25,000 - &#36;50,000</option>
+                <option value="&#36;50,001 - &#36;100,000">&#36;50,001 - &#36;100,000</option>
+                <option value="&#36;100,001 - &#36;500,000">&#36;100,001 - &#36;500,000</option>
+                <option value="Over &#36;500,000">Over &#36;500,001</option>
+            </select>
+            <p class="errorfield" id="error_net_income"></p>
+        </div>
+    </div>
+    <div class="gr-padding-10 gr-row clear">
+        <div class="gr-4 form_label">
+            <label for="estimated_worth">Estimated Net Worth</label>
+        </div>
+        <div class="gr-8">
+            <select id="estimated_worth" name="estimated_worth" class="form_input">
+                <option value="">Please select</option>
+                <option value="Less than &#36;100,000">Less than &#36;100,000</option>
+                <option value="&#36;100,000 - &#36;250,000">&#36;100,000 - &#36;250,000</option>
+                <option value="&#36;250,001 - &#36;500,000">&#36;250,001 - &#36;500,000</option>
+                <option value="&#36;500,001 - &#36;1,000,000">&#36;500,001 - &#36;1,000,000</option>
+                <option value="Over &#36;1,000,000">Over &#36;1,000,000</option>
+            </select>
+            <p class="errorfield" id="error_estimated_worth"></p>
+        </div>
+    </div>
+</fieldset>
 
                     <fieldset>
                         <div class="gr-12">
@@ -429,17 +437,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     </fieldset>
 
                     <fieldset class="center-text" id="formlayout">
-                        <div class="gr-12">
-                            <p>
-                                <input type="checkbox" id="tnc">
-                                    <span onclick="document.getElementById('tnc').checked=!document.getElementById('tnc').checked">I have read and agree to the <a target="_blank" href="/en/terms-and-conditions.html">terms and conditions</a> of the site.</span>
-                                    <p class="errorfield" id="error-tnc" style="display:none"></p>
-                                </input>
-                            </p>
+                        <div class="gr-12 gr-padding-10">
+                            <input type="checkbox" id="tnc" class="form_input exclude_data" />
+                            <label for="tnc">I have read and agree to the <a target="_blank" href="/en/terms-and-conditions.html">terms and conditions</a> of the site.</label>
+                            <p class="errorfield" id="error_tnc" style="display:none"></p>
                         </div>
-                        <span class="button ">
-                            <button class="button " id="btn_submit" type="submit">Open Account</button>
-                        </span>
+                        <button class="button" id="btn_submit" type="submit">Open Account</button>
                     </fieldset>
                 </form>
 

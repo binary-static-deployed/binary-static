@@ -17,91 +17,53 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
   <div id="reality-check-content">
-  <div>
-    <h1>
-      Avertissement de connexion prolongée
-    </h1>
-    <p>
-      <label>
-        Temps de connexion :
-      </label>
-      <span id="login-time"></span>
-    </p>
-    <p>
-      <label>
-        Heure actuelle :
-      </label>
-      <span id="current-time"></span>
-    </p>
-    <p>
-      <label>
-        Durée de session :
-      </label>
-      <span id="session-duration"></span>
-    </p>
-    <p id="start-time"></p>
-    <table>
-      <tr>
-        <th>
-          Identifiant de connexion
-        </th>
-        <th>
-          Devise
-        </th>
-        <th>
-          Volume de transactions
-        </th>
-        <th>
-          Profits/pertes
-        </th>
-        <th>
-          Contrats achetés
-        </th>
-        <th>
-          Contrats vendus
-        </th>
-        <th>
-          Contrats ouverts
-        </th>
-        <th>
-          Profits potentiels
-        </th>
-      </tr>
-      <tr>
-        <td id="login-id"></td>
-        <td id="rc_currency"></td>
-        <td id="turnover"></td>
-        <td id="profitloss"></td>
-        <td id="bought"></td>
-        <td id="sold"></td>
-        <td id="open"></td>
-        <td id="potential"></td>
-      </tr>
-    </table>
-    <p>
-      <label>
-        Périodicité de l'avertissement de connexion prolongée :
-      </label>
-      <input id="realityDuration" interval="1" maxlength="4" min="1" size="6" type="number"/>
-      <span>
-        minutes
-      </span>
-    </p>
-    <p id="rc-err" class="error-msg invisible">
-      Veuillez saisir un chiffre supérieur à 0
-    </p>
-  </div>
-  <div class="center-text" id="reality-check-nav">
-    <span class="button">
-      <button bcont="1" class="button" id="continue">
-        Poursuivre les opérations de trading
-      </button>
-    </span>
-    <span></span>
-    <span class="button">
-      <button class="button" id="btn_logout">
-        Déconnexion
-      </button>
-    </span>
-  </div>
+    <div>
+        <h1>Avertissement de connexion prolongée</h1>
+        <p>
+            <label>Temps de connexion :</label>
+            <span id="login-time"></span>
+        </p>
+        <p>
+            <label>Heure actuelle :</label>
+            <span id="current-time"></span>
+        </p>
+        <p>
+            <label>Durée de session :</label>
+            <span id="session-duration"></span>
+        </p>
+        <p id="start-time"></p>
+            <table>
+                <tr>
+                    <th>Identifiant de connexion</th>
+                    <th>Devise</th>
+                    <th>Volume de transactions</th>
+                    <th>Profits/pertes</th>
+                    <th>Contrats achetés</th>
+                    <th>Contrats vendus</th>
+                    <th>Contrats ouverts</th>
+                    <th>Profits potentiels</th>
+                </tr>
+                <tr>
+                    <td id="login-id"></td>
+                    <td id="rc_currency"></td>
+                    <td id="turnover"></td>
+                    <td id="profitloss"></td>
+                    <td id="bought"></td>
+                    <td id="sold"></td>
+                    <td id="open"></td>
+                    <td id="potential"></td>
+                </tr>
+            </table>
+        <p>
+            <label>Périodicité de l'avertissement de connexion prolongée :</label>
+            <input id="realityDuration" interval="1" maxlength="4" min="1" size="6" type="number"/>
+            <span>minutes</span>
+        </p>
+        <p id="rc-err" class="error-msg invisible">Veuillez saisir un chiffre supérieur à 0</p>
+    </div>
+    <div class="center-text" id="reality-check-nav">
+    <button bcont="1" class="button" id="continue">Poursuivre les opérations de trading</button>
+    <button class="button" id="statement">View Statement</button>
+    <button class="button-secondary" id="btn_logout">Déconnexion</button>
+</div>
 </div>

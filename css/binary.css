@@ -325,6 +325,9 @@ _:-ms-fullscreen, :root #content-holder {
 }
 
 input[type=checkbox] {
+  margin-top: -5px;
+}
+input[type=checkbox]#email_consent {
   margin-top: 5px;
 }
 
@@ -705,7 +708,7 @@ html.mm-right.mm-opening body .mm-page, html.mm-right.mm-opening body #mm-blocke
 }
 #reality-check-nav span:nth-child(2), #balances-nav span:nth-child(2) {
   display: inline-block;
-  width: 5em;
+  width: 10em;
 }
 
 @media screen and (max-width: 480px) {
@@ -5016,9 +5019,6 @@ body.JA #asset-forex div.table-header:nth-of-type(n + 3), body.JA #asset-forex d
 body.JA #tradingtimes-forex div.table-header:nth-of-type(n + 3), body.JA #tradingtimes-forex div.table-body:nth-of-type(n + 15) {
   display: none !important;
 }
-body.JA #footer-regulatory .gr-9, body.JA #footer-regulatory .gr-p-7 {
-  width: 100% !important;
-}
 body.JA #bet_guide_content div:nth-child(1) {
   display: none !important;
 }
@@ -5038,7 +5038,10 @@ body.JA #email_consent_label {
   font-size: 0.75614rem;
 }
 body.JA #footer #footer-regulatory #regulatory-text {
-  font-size: 12px;
+  font-size: 14px;
+}
+body.JA #footer #footer-regulatory .gr-9, body.JA #footer #footer-regulatory .gr-p-7 {
+  width: 100% !important;
 }
 
 /*Vietnamese Language */

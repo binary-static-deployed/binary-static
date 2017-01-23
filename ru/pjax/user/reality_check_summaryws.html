@@ -17,91 +17,53 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
   <div id="reality-check-content">
-  <div>
-    <h1>
-      Проверка реальности
-    </h1>
-    <p>
-      <label>
-        Время входа:
-      </label>
-      <span id="login-time"></span>
-    </p>
-    <p>
-      <label>
-        Текущее время:
-      </label>
-      <span id="current-time"></span>
-    </p>
-    <p>
-      <label>
-        Длительность сессии:
-      </label>
-      <span id="session-duration"></span>
-    </p>
-    <p id="start-time"></p>
-    <table>
-      <tr>
-        <th>
-          Логин
-        </th>
-        <th>
-          Валюта
-        </th>
-        <th>
-          Объём покупок
-        </th>
-        <th>
-          Плюс/Минус
-        </th>
-        <th>
-          Купленные контракты
-        </th>
-        <th>
-          Проданные контракты
-        </th>
-        <th>
-          Открытые контракты
-        </th>
-        <th>
-          Потенциальная прибыль
-        </th>
-      </tr>
-      <tr>
-        <td id="login-id"></td>
-        <td id="rc_currency"></td>
-        <td id="turnover"></td>
-        <td id="profitloss"></td>
-        <td id="bought"></td>
-        <td id="sold"></td>
-        <td id="open"></td>
-        <td id="potential"></td>
-      </tr>
-    </table>
-    <p>
-      <label>
-        Интервал для проверки реальности:
-      </label>
-      <input id="realityDuration" interval="1" maxlength="4" min="1" size="6" type="number"/>
-      <span>
-        минут(ы)
-      </span>
-    </p>
-    <p id="rc-err" class="error-msg invisible">
-      Пожалуйста, введите цифру выше 0
-    </p>
-  </div>
-  <div class="center-text" id="reality-check-nav">
-    <span class="button">
-      <button bcont="1" class="button" id="continue">
-        Продолжить торговлю
-      </button>
-    </span>
-    <span></span>
-    <span class="button">
-      <button class="button" id="btn_logout">
-        Выход
-      </button>
-    </span>
-  </div>
+    <div>
+        <h1>Проверка реальности</h1>
+        <p>
+            <label>Время входа:</label>
+            <span id="login-time"></span>
+        </p>
+        <p>
+            <label>Текущее время:</label>
+            <span id="current-time"></span>
+        </p>
+        <p>
+            <label>Длительность сессии:</label>
+            <span id="session-duration"></span>
+        </p>
+        <p id="start-time"></p>
+            <table>
+                <tr>
+                    <th>Логин</th>
+                    <th>Валюта</th>
+                    <th>Объём покупок</th>
+                    <th>Плюс/Минус</th>
+                    <th>Купленные контракты</th>
+                    <th>Проданные контракты</th>
+                    <th>Открытые контракты</th>
+                    <th>Потенциальная прибыль</th>
+                </tr>
+                <tr>
+                    <td id="login-id"></td>
+                    <td id="rc_currency"></td>
+                    <td id="turnover"></td>
+                    <td id="profitloss"></td>
+                    <td id="bought"></td>
+                    <td id="sold"></td>
+                    <td id="open"></td>
+                    <td id="potential"></td>
+                </tr>
+            </table>
+        <p>
+            <label>Интервал для проверки реальности:</label>
+            <input id="realityDuration" interval="1" maxlength="4" min="1" size="6" type="number"/>
+            <span>минут(ы)</span>
+        </p>
+        <p id="rc-err" class="error-msg invisible">Пожалуйста, введите цифру выше 0</p>
+    </div>
+    <div class="center-text" id="reality-check-nav">
+    <button bcont="1" class="button" id="continue">Продолжить торговлю</button>
+    <button class="button" id="statement">View Statement</button>
+    <button class="button-secondary" id="btn_logout">Выход</button>
+</div>
 </div>

@@ -17,26 +17,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
   <div id="reality-check-content">
-  <div>
-    <h1>
-      Bieżąca kontrola konta
-    </h1>
-    <p>
-      Handel opcjami może stać się poważnym uzależnieniem, tak jak wszystkie inne czynności, którym poświęcamy zbyt wiele czasu. Aby zapobiec niebezpieczeństwu takiego uzależnienia, umożliwiamy sprawdzanie rzeczywistej sytuacji na bieżąco, co zapewnia Ci regularne zestawienie Twoich zakładów i kont.
-    </p>
-    <p>
-      Proszę określić w minutach preferowany odstęp czasu pomiędzy kontrolami konta
-      <input id="realityDuration" interval="1" maxlength="4" min="1" size="6" type="number"/>
-    </p>
-    <p id="rc-err" class="error-msg invisible">
-      Proszę wpisać liczbę większą niż 0
-    </p>
-  </div>
-  <div class="center-text" id="reality-check-nav">
-    <span class="button">
-      <button bcont="1" class="button" id="continue">
-        Kontynuuj handel
-      </button>
-    </span>
-  </div>
+    <div>
+        <h1>Bieżąca kontrola konta</h1>
+        <p>
+            Handel opcjami może stać się poważnym uzależnieniem, tak jak wszystkie inne czynności, którym poświęcamy zbyt wiele czasu. Aby zapobiec niebezpieczeństwu takiego uzależnienia, umożliwiamy sprawdzanie rzeczywistej sytuacji na bieżąco, co zapewnia Ci regularne zestawienie Twoich zakładów i kont.
+        </p>
+        <p>
+            Proszę określić w minutach preferowany odstęp czasu pomiędzy kontrolami konta
+            <input id="realityDuration" interval="1" maxlength="4" min="1" size="6" type="number"/>
+        </p>
+        <p id="rc-err" class="error-msg invisible">Proszę wpisać liczbę większą niż 0</p>
+    </div>
+    <div class="center-text" id="reality-check-nav">
+    <button bcont="1" class="button" id="continue">Kontynuuj handel</button>
+    <button class="button" id="statement">View Statement</button>
+    <button class="button-secondary" id="btn_logout">Wyloguj się</button>
+</div>
 </div>
