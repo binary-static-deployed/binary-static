@@ -30,7 +30,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </div>
                 <div class="gr-8">
                     <span id="inputheading">
-                        <strong id="lblName"></strong>
+                        <strong id="lbl_name"></strong>
                     </span>
                 </div>
             </div>
@@ -41,7 +41,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </div>
                 <div class="gr-8">
                     <span id="inputheading">
-                        <strong id="lblGender"></strong>
+                        <strong id="lbl_gender"></strong>
                     </span>
                 </div>
             </div>
@@ -52,7 +52,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </div>
                 <div class="gr-8">
                     <span id="inputheading">
-                        <strong id="lblBirthDate"></strong>
+                        <strong id="lbl_date_of_birth"></strong>
                     </span>
                 </div>
             </div>
@@ -63,7 +63,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </div>
                 <div class="gr-8">
                     <span id="inputheading">
-                        <strong id="lblCountry"></strong>
+                        <strong id="lbl_country"></strong>
                     </span>
                 </div>
             </div>
@@ -74,17 +74,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </div>
                 <div class="gr-8">
                     <span id="inputheading">
-                        <strong id="lblEmail"></strong>
+                        <strong id="lbl_email"></strong>
                     </span>
                 </div>
             </div>
 
             <div class="gr-padding-10 gr-row clear JpAcc invisible">
                 <div class="gr-4 form_label">
-                    <label>อาชีพ</label>
+                    <label for="occupation">อาชีพ</label>
                 </div>
                 <div class="gr-8">
-                    <select id="Occupation">
+                    <select id="occupation" class="jp_value">
                         <option value="Office worker">พนักงานบริษัทฯ</option>
                         <option value="Director">ผู้อำนวยการ</option>
                         <option value="Public worker">พนักงานเอกชน</option>
@@ -104,55 +104,55 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
             <div class="gr-padding-10 gr-row clear">
                 <div class="gr-4 form_label">
-                    <label for="Address1">บรรทัดแรกของที่อยู่</label>
+                    <label for="address_line_1">บรรทัดแรกของที่อยู่</label>
                 </div>
                 <div class="gr-8">
-                    <input name='address_line_1' type="text" id="Address1" maxlength="70" />
+                    <input name='address_line_1' type="text" id="address_line_1" maxlength="70" />
                 </div>
             </div>
 
             <div class="gr-padding-10 gr-row clear">
                 <div class="gr-4 form_label">
-                    <label for="Address2">บรรทัดที่สองของที่อยู่ที่พัก</label>
+                    <label for="address_line_2">บรรทัดที่สองของที่อยู่ที่พัก</label>
                 </div>
                 <div class="gr-8">
-                    <input name='address_line_2' type="text" id="Address2" maxlength="70" />
+                    <input name='address_line_2' type="text" id="address_line_2" maxlength="70" />
                 </div>
             </div>
 
             <div class="gr-padding-10 gr-row clear">
                 <div class="gr-4 form_label">
-                    <label for="City">เมือง</label>
+                    <label for="address_city">เมือง</label>
                 </div>
                 <div class="gr-8">
-                    <input name='address_city' type="text" id="City" maxlength="35" />
+                    <input name='address_city' type="text" id="address_city" maxlength="35" />
                 </div>
             </div>
 
             <div class="gr-padding-10 gr-row clear">
                 <div class="gr-4 form_label">
-                    <label for="State">รัฐ/จังหวัด</label>
+                    <label for="address_state">รัฐ/จังหวัด</label>
                 </div>
                 <div class="gr-8">
-                    <select name='address_state' id="State"></select>
+                    <select name='address_state' id="address_state"></select>
                 </div>
             </div>
 
             <div class="gr-padding-10 gr-row clear">
                 <div class="gr-4 form_label">
-                    <label for="Postcode">รหัสไปรษณีย์</label>
+                    <label for="address_postcode">รหัสไปรษณีย์</label>
                 </div>
                 <div class="gr-8">
-                    <input name='address_postcode' type="text" id="Postcode" maxlength="20" />
+                    <input name='address_postcode' type="text" id="address_postcode" maxlength="20" />
                 </div>
             </div>
 
             <div class="gr-padding-10 gr-row clear">
                 <div class="gr-4 form_label">
-                    <label for="Phone">โทรศัพท์</label>
+                    <label for="phone">โทรศัพท์</label>
                 </div>
                 <div class="gr-8">
-                    <input name='phone' type="text" id="Phone" maxlength="35" />
+                    <input name='phone' type="text" id="phone" maxlength="35" />
                 </div>
             </div>
         </fieldset>
@@ -162,66 +162,66 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
             <div class="gr-padding-10 gr-row clear">
                 <div class="gr-4 form_label">
-                    <label for="Postcode"><em class="required_asterisk">**</em> รหัสไปรษณีย์</label>
+                    <label><em class="required_asterisk">**</em> รหัสไปรษณีย์</label>
                 </div>
                 <div class="gr-8">
                     <span id="inputheading">
-                        <strong id="lblPostcode"></strong>
+                        <strong id="lbl_address_postcode" class="jp_value"></strong>
                     </span>
                 </div>
             </div>
 
             <div class="gr-padding-10 gr-row clear">
                 <div class="gr-4 form_label">
-                    <label for="State"><em class="required_asterisk">**</em> รัฐ/จังหวัด</label>
+                    <label><em class="required_asterisk">**</em> รัฐ/จังหวัด</label>
                 </div>
                 <div class="gr-8">
                     <span id="inputheading">
-                        <strong id="lblState"></strong>
+                        <strong id="lbl_address_state" class="jp_value"></strong>
                     </span>
                 </div>
             </div>
 
             <div class="gr-padding-10 gr-row clear">
                 <div class="gr-4 form_label">
-                    <label for="City"><em class="required_asterisk">**</em> เมือง</label>
+                    <label><em class="required_asterisk">**</em> เมือง</label>
                 </div>
                 <div class="gr-8">
                     <span id="inputheading">
-                        <strong id="lblCity"></strong>
+                        <strong id="lbl_address_city" class="jp_value"></strong>
                     </span>
                 </div>
             </div>
 
             <div class="gr-padding-10 gr-row clear">
                 <div class="gr-4 form_label">
-                    <label for="Address1"><em class="required_asterisk">**</em> บรรทัดแรกของที่อยู่</label>
+                    <label><em class="required_asterisk">**</em> บรรทัดแรกของที่อยู่</label>
                 </div>
                 <div class="gr-8">
                     <span id="inputheading">
-                        <strong id="lblAddress1"></strong>
+                        <strong id="lbl_address_line_1" class="jp_value"></strong>
                     </span>
                 </div>
             </div>
 
             <div class="gr-padding-10 gr-row clear">
                 <div class="gr-4 form_label">
-                    <label for="Address2"><em class="required_asterisk">**</em> บรรทัดที่สองของที่อยู่ที่พัก</label>
+                    <label><em class="required_asterisk">**</em> บรรทัดที่สองของที่อยู่ที่พัก</label>
                 </div>
                 <div class="gr-8">
                     <span id="inputheading">
-                        <strong id="lblAddress2"></strong>
+                        <strong id="lbl_address_line_2" class="jp_value"></strong>
                     </span>
                 </div>
             </div>
 
             <div class="gr-padding-10 gr-row clear">
                 <div class="gr-4 form_label">
-                    <label for="Phone"><em class="required_asterisk">**</em> โทรศัพท์</label>
+                    <label><em class="required_asterisk">**</em> โทรศัพท์</label>
                 </div>
                 <div class="gr-8">
                     <span id="inputheading">
-                        <strong id="lblPhone"></strong>
+                        <strong id="lbl_phone" class="jp_value"></strong>
                     </span>
                 </div>
             </div>
@@ -232,10 +232,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
             <div class="gr-padding-10 gr-row clear">
                 <div class="gr-4 form_label">
-                    <label>รายได้ต่อปี</label>
+                    <label for="annual_income">รายได้ต่อปี</label>
                 </div>
                 <div class="gr-8">
-                    <select id="AnnualIncome">
+                    <select id="annual_income" class="jp_value">
                         <option value="Less than 1 million JPY">ต่ำกว่า 1 ล้านเยน</option>
                         <option value="1-3 million JPY">1-3 ล้านเยน</option>
                         <option value="3-5 million JPY">3-5 ล้านเยน</option>
@@ -250,10 +250,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
             <div class="gr-padding-10 gr-row clear">
                 <div class="gr-4 form_label">
-                    <label>สินทรัพย์ทางการเงิน</label>
+                    <label for="financial_asset">สินทรัพย์ทางการเงิน</label>
                 </div>
                 <div class="gr-8">
-                    <select id="FinancialAsset">
+                    <select id="financial_asset" class="jp_value">
                         <option value="Less than 1 million JPY">ต่ำกว่า 1 ล้านเยน</option>
                         <option value="1-3 million JPY">1-3 ล้านเยน</option>
                         <option value="3-5 million JPY">3-5 ล้านเยน</option>
@@ -272,10 +272,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
             <div class="gr-padding-10 gr-row clear">
                 <div class="gr-4 form_label">
-                    <label>ทุน</label>
+                    <label for="trading_experience_equities">ทุน</label>
                 </div>
                 <div class="gr-8">
-                    <select id="Equities">
+                    <select id="trading_experience_equities" class="jp_value">
                         <option value="No experience">ไม่มีประสบการณ์</option>
                         <option value="Less than 6 months">น้อยกว่า 6 เดือน</option>
                         <option value="6 months to 1 year">6 เดือน ถึง 1 ปี</option>
@@ -288,10 +288,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
             <div class="gr-padding-10 gr-row clear">
                 <div class="gr-4 form_label">
-                    <label>สินค้าโภคภัณฑ์</label>
+                    <label for="trading_experience_commodities">สินค้าโภคภัณฑ์</label>
                 </div>
                 <div class="gr-8">
-                    <select id="Commodities">
+                    <select id="trading_experience_commodities" class="jp_value">
                         <option value="No experience">ไม่มีประสบการณ์</option>
                         <option value="Less than 6 months">น้อยกว่า 6 เดือน</option>
                         <option value="6 months to 1 year">6 เดือน ถึง 1 ปี</option>
@@ -304,10 +304,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
             <div class="gr-padding-10 gr-row clear">
                 <div class="gr-4 form_label">
-                    <label>ฝากสกุลเงินต่างประเทศ</label>
+                    <label for="trading_experience_foreign_currency_deposit">ฝากสกุลเงินต่างประเทศ</label>
                 </div>
                 <div class="gr-8">
-                    <select id="ForeignCurrencyDeposit">
+                    <select id="trading_experience_foreign_currency_deposit" class="jp_value">
                         <option value="No experience">ไม่มีประสบการณ์</option>
                         <option value="Less than 6 months">น้อยกว่า 6 เดือน</option>
                         <option value="6 months to 1 year">6 เดือน ถึง 1 ปี</option>
@@ -320,10 +320,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
             <div class="gr-padding-10 gr-row clear">
                 <div class="gr-4 form_label">
-                    <label>Margin FX</label>
+                    <label for="trading_experience_margin_fx">Margin FX</label>
                 </div>
                 <div class="gr-8">
-                    <select id="MarginFX">
+                    <select id="trading_experience_margin_fx" class="jp_value">
                         <option value="No experience">ไม่มีประสบการณ์</option>
                         <option value="Less than 6 months">น้อยกว่า 6 เดือน</option>
                         <option value="6 months to 1 year">6 เดือน ถึง 1 ปี</option>
@@ -336,10 +336,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
             <div class="gr-padding-10 gr-row clear">
                 <div class="gr-4 form_label">
-                    <label>ความน่าเชื่อถือในการลงทุน</label>
+                    <label for="trading_experience_investment_trust">ความน่าเชื่อถือในการลงทุน</label>
                 </div>
                 <div class="gr-8">
-                    <select id="InvestmentTrust">
+                    <select id="trading_experience_investment_trust" class="jp_value">
                         <option value="No experience">ไม่มีประสบการณ์</option>
                         <option value="Less than 6 months">น้อยกว่า 6 เดือน</option>
                         <option value="6 months to 1 year">6 เดือน ถึง 1 ปี</option>
@@ -352,10 +352,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
             <div class="gr-padding-10 gr-row clear">
                 <div class="gr-4 form_label">
-                    <label>หุ้นกู้</label>
+                    <label for="trading_experience_public_bond">หุ้นกู้</label>
                 </div>
                 <div class="gr-8">
-                    <select id="PublicCorporationBond">
+                    <select id="trading_experience_public_bond" class="jp_value">
                         <option value="No experience">ไม่มีประสบการณ์</option>
                         <option value="Less than 6 months">น้อยกว่า 6 เดือน</option>
                         <option value="6 months to 1 year">6 เดือน ถึง 1 ปี</option>
@@ -368,10 +368,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
             <div class="gr-padding-10 gr-row clear">
                 <div class="gr-4 form_label">
-                    <label>การซื้อขายอนุพันธ์ (ออปชั่น) ในตลาดเจรจาต่อรอง</label>
+                    <label for="trading_experience_option_trading">การซื้อขายอนุพันธ์ (ออปชั่น) ในตลาดเจรจาต่อรอง</label>
                 </div>
                 <div class="gr-8">
-                    <select id="DerivativeTrading">
+                    <select id="trading_experience_option_trading" class="jp_value">
                         <option value="No experience">ไม่มีประสบการณ์</option>
                         <option value="Less than 6 months">น้อยกว่า 6 เดือน</option>
                         <option value="6 months to 1 year">6 เดือน ถึง 1 ปี</option>
@@ -384,10 +384,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
             <div class="gr-padding-10 gr-row clear">
                 <div class="gr-4 form_label">
-                    <label>วัตถุประสงค์ของการซื้อขาย</label>
+                    <label for="trading_purpose">วัตถุประสงค์ของการซื้อขาย</label>
                 </div>
                 <div class="gr-8">
-                    <select id="PurposeOfTrading">
+                    <select id="trading_purpose" class="jp_value">
                         <option value="Targeting short-term profits">เป้าหมายกำไรระยะสั้น</option>
                         <option value="Targeting medium-term / long-term profits">เป้าหมายระยะกลาง / กำไรระยะยาว</option>
                         <option value="Both the above">ทั้งสองประการข้างต้น</option>
@@ -398,10 +398,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
             <div class="gr-padding-10 gr-row clear hedge invisible">
                 <div class="gr-4 form_label">
-                    <label>การจำแนกสินทรัพย์ที่ต้องป้องกันความเสี่ยง</label>
+                    <label for="hedge_asset">การจำแนกสินทรัพย์ที่ต้องป้องกันความเสี่ยง</label>
                 </div>
                 <div class="gr-8">
-                    <select id="HedgeAsset">
+                    <select id="hedge_asset">
                         <option value="Foreign currency deposit">ฝากสกุลเงินต่างประเทศ</option>
                         <option value="Margin FX">Margin FX</option>
                         <option value="Other">อื่นๆ</option>
@@ -411,10 +411,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
             <div class="gr-padding-10 gr-row clear hedge invisible">
                 <div class="gr-4 form_label">
-                    <label>จำนวนของสินทรัพย์ข้างต้น</label>
+                    <label for="hedge_asset_amount">จำนวนของสินทรัพย์ข้างต้น</label>
                 </div>
                 <div class="gr-8">
-                    <input class="text" name="hedge_asset_amount" id="HedgeAssetAmount" maxlength="20" type="text"/>
+                    <input class="text" name="hedge_asset_amount" id="hedge_asset_amount" maxlength="20" type="text"/>
                 </div>
             </div>
         </fieldset>
@@ -424,7 +424,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
             <div class="gr-padding-10 gr-row clear">
                 <div class="gr-4 form_label" id="email_consent_label">
-                    <label>รับข่าวสารและข้อเสนอพิเศษ</label>
+                    <label for="email_consent">รับข่าวสารและข้อเสนอพิเศษ</label>
                 </div>
                 <div class="gr-8">
                     <input type="checkbox" id="email_consent"/>

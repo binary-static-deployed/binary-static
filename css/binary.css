@@ -654,7 +654,12 @@ html.mm-right.mm-opening body .mm-page, html.mm-right.mm-opening body #mm-blocke
 }
 
 .lightbox {
-  display: table;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
   position: fixed;
   top: 0;
   left: 0;
@@ -665,15 +670,15 @@ html.mm-right.mm-opening body .mm-page, html.mm-right.mm-opening body #mm-blocke
 }
 
 .lightbox > div {
-  display: table-cell;
-  vertical-align: middle;
+  margin: auto;
+  width: 100%;
 }
 
 .lightbox > div > div {
   margin-left: auto;
   margin-right: auto;
   padding: 0.5em;
-  width: 44em;
+  max-width: 44em;
   text-align: center;
   background-color: #fff;
   border-radius: 3px;
@@ -689,18 +694,8 @@ html.mm-right.mm-opening body .mm-page, html.mm-right.mm-opening body #mm-blocke
   width: 12.5%;
   text-align: center;
 }
-#reality-check-content label, #balances-content label {
-  display: inline-block;
-  width: 14em;
-}
 #reality-check-content [data-balloon], #balances-content [data-balloon] {
   border-bottom: none;
-}
-
-@media screen and (max-width: 480px) {
-  #reality-check-content {
-    width: 45% !important;
-  }
 }
 
 #reality-check-nav, #balances-nav {
@@ -711,17 +706,6 @@ html.mm-right.mm-opening body .mm-page, html.mm-right.mm-opening body #mm-blocke
   width: 10em;
 }
 
-@media screen and (max-width: 480px) {
-  #reality-check-nav {
-    width: 45% !important;
-  }
-}
-
-@media screen and (max-width: 480px) {
-  #risk_classification.lightbox > div > div {
-    width: 95vw;
-  }
-}
 #accordion .ui-accordion-content {
   padding-top: 0;
 }

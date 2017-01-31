@@ -55,10 +55,10 @@
           <link rel="alternate" href="/zh_cn/new_account/maltainvestws.html" hreflang="ZH_CN" /> 
           <link rel="alternate" href="/zh_tw/new_account/maltainvestws.html?l=zh_tw" hreflang="ZH_TW" /> 
         
-         <link rel="stylesheet" href="/css/binary.min.css?vui1ba2y">
-         <link rel="stylesheet" href="https://style.binary.com/binary.css?vui1ba2y">
+         <link rel="stylesheet" href="/css/binary.min.css?kjgd9rh2">
+         <link rel="stylesheet" href="https://style.binary.com/binary.css?kjgd9rh2">
         
-        <script src='/js/binary.min.js?vui1ba2y' defer async></script>
+        <script src='/js/binary.min.js?kjgd9rh2' defer async></script>
     </head>
 
 
@@ -681,6 +681,30 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </div>
     <div class="gr-padding-10 gr-row clear">
         <div class="gr-4 form_label">
+            <label for="occupation">Occupation</label>
+        </div>
+        <div class="gr-8">
+            <select id="occupation" class="form_input">
+                <option value="">請選擇</option>
+                <option value="Chief Executives, Senior Officials and Legislators">Chief Executives, Senior Officials and Legislators</option>
+                <option value="Managers">Managers</option>
+                <option value="Professionals">Professionals</option>
+                <option value="Clerks">Clerks</option>
+                <option value="Personal Care, Sales and Service Workers">Personal Care, Sales and Service Workers</option>
+                <option value="Agricultural, Forestry and Fishery Workers">Agricultural, Forestry and Fishery Workers</option>
+                <option value="Craft, Metal, Electrical and Electronics Workers">Craft, Metal, Electrical and Electronics Workers</option>
+                <option value="Plant and Machine Operators and Assemblers">Plant and Machine Operators and Assemblers</option>
+                <option value="Cleaners and Helpers">Cleaners and Helpers</option>
+                <option value="Mining, Construction, Manufacturing and Transport Workers">Mining, Construction, Manufacturing and Transport Workers</option>
+                <option value="Armed Forces">Armed Forces</option>
+                <option value="Government Officers">Government Officers</option>
+                <option value="Others">Others</option>
+            </select>
+            <p class="errorfield" id="error_occupation"></p>
+        </div>
+    </div>
+    <div class="gr-padding-10 gr-row clear">
+        <div class="gr-4 form_label">
             <label for="education_level">教育水平</label>
         </div>
         <div class="gr-8">
@@ -702,7 +726,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <option value="">請選擇</option>
                 <option value="Salaried Employee">支薪員工</option>
                 <option value="Self-Employed">自雇者</option>
-                <option value="Investments &amp; Dividends">Investments &amp; Dividends</option>
+                <option value="Investments &amp; Dividends">投資&amp;分紅</option>
                 <option value="Pension">退休金</option>
                 <option value="Other">其它</option>
             </select>
@@ -716,11 +740,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <div class="gr-8">
             <select id="net_income" name="net_income" class="form_input">
                 <option value="">請選擇</option>
-                <option value="Less than &#36;25,000">Less than &#36;25,000</option>
+                <option value="Less than &#36;25,000">少於&#36;25,000</option>
                 <option value="&#36;25,000 - &#36;50,000">&#36;25,000 - &#36;50,000</option>
                 <option value="&#36;50,001 - &#36;100,000">&#36;50,001 - &#36;100,000</option>
                 <option value="&#36;100,001 - &#36;500,000">&#36;100,001 - &#36;500,000</option>
-                <option value="Over &#36;500,000">Over &#36;500,001</option>
+                <option value="Over &#36;500,000">大於&#36;500,001</option>
             </select>
             <p class="errorfield" id="error_net_income"></p>
         </div>
@@ -732,11 +756,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <div class="gr-8">
             <select id="estimated_worth" name="estimated_worth" class="form_input">
                 <option value="">請選擇</option>
-                <option value="Less than &#36;100,000">Less than &#36;100,000</option>
+                <option value="Less than &#36;100,000">少於&#36;100,000</option>
                 <option value="&#36;100,000 - &#36;250,000">&#36;100,000 - &#36;250,000</option>
                 <option value="&#36;250,001 - &#36;500,000">&#36;250,001 - &#36;500,000</option>
                 <option value="&#36;500,001 - &#36;1,000,000">&#36;500,001 - &#36;1,000,000</option>
-                <option value="Over &#36;1,000,000">Over &#36;1,000,000</option>
+                <option value="Over &#36;1,000,000">大於&#36;1,000,000</option>
             </select>
             <p class="errorfield" id="error_estimated_worth"></p>
         </div>
