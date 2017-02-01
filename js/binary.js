@@ -84348,27 +84348,28 @@
 	var ProfitTableWS = __webpack_require__(485).ProfitTableWS;
 	var APITokenWS = __webpack_require__(580).APITokenWS;
 	var AuthorisedApps = __webpack_require__(582).AuthorisedApps;
+	var UserConnections = __webpack_require__(586).UserConnections;
 	var FinancialAssessmentws = __webpack_require__(434).FinancialAssessmentws;
-	var IPHistoryWS = __webpack_require__(586).IPHistoryWS;
-	var Limits = __webpack_require__(590).Limits;
-	var SelfExclusionWS = __webpack_require__(593).SelfExclusionWS;
-	var SettingsDetailsWS = __webpack_require__(594).SettingsDetailsWS;
-	var SecurityWS = __webpack_require__(595).SecurityWS;
-	var SettingsWS = __webpack_require__(596).SettingsWS;
+	var IPHistoryWS = __webpack_require__(590).IPHistoryWS;
+	var Limits = __webpack_require__(594).Limits;
+	var SelfExclusionWS = __webpack_require__(597).SelfExclusionWS;
+	var SettingsDetailsWS = __webpack_require__(598).SettingsDetailsWS;
+	var SecurityWS = __webpack_require__(599).SecurityWS;
+	var SettingsWS = __webpack_require__(600).SettingsWS;
 	var StatementWS = __webpack_require__(491).StatementWS;
-	var TopUpVirtualWS = __webpack_require__(597).TopUpVirtualWS;
-	var LostPasswordWS = __webpack_require__(598).LostPasswordWS;
-	var FinancialAccOpening = __webpack_require__(600).FinancialAccOpening;
-	var JapanAccOpening = __webpack_require__(604).JapanAccOpening;
-	var RealAccOpening = __webpack_require__(607).RealAccOpening;
-	var VirtualAccOpening = __webpack_require__(610).VirtualAccOpening;
-	var ResetPasswordWS = __webpack_require__(612).ResetPasswordWS;
+	var TopUpVirtualWS = __webpack_require__(601).TopUpVirtualWS;
+	var LostPasswordWS = __webpack_require__(602).LostPasswordWS;
+	var FinancialAccOpening = __webpack_require__(604).FinancialAccOpening;
+	var JapanAccOpening = __webpack_require__(608).JapanAccOpening;
+	var RealAccOpening = __webpack_require__(611).RealAccOpening;
+	var VirtualAccOpening = __webpack_require__(614).VirtualAccOpening;
+	var ResetPasswordWS = __webpack_require__(616).ResetPasswordWS;
 	var TNCApproval = __webpack_require__(438).TNCApproval;
 	var TradePage = __webpack_require__(466).TradePage;
 	var TradePage_Beta = __webpack_require__(499).TradePage_Beta;
 	var MBTradePage = __webpack_require__(518).MBTradePage;
 	var ViewPopupWS = __webpack_require__(439).ViewPopupWS;
-	var KnowledgeTest = __webpack_require__(614).KnowledgeTest;
+	var KnowledgeTest = __webpack_require__(618).KnowledgeTest;
 	var pjax_config_page_require_auth = __webpack_require__(567).pjax_config_page_require_auth;
 	var pjax_config_page = __webpack_require__(567).pjax_config_page;
 	
@@ -84558,6 +84559,17 @@
 	        },
 	        onUnload: function onUnload() {
 	            AuthorisedApps.onUnload();
+	        }
+	    };
+	});
+	
+	pjax_config_page_require_auth('user/security/connections', function () {
+	    return {
+	        onLoad: function onLoad() {
+	            UserConnections.onLoad();
+	        },
+	        onUnload: function onUnload() {
+	            UserConnections.onUnload();
 	        }
 	    };
 	});
@@ -85122,7 +85134,7 @@
 	            }
 	            return is_virtual;
 	        };
-	        if (clientIsVirtual()) return;
+	        if (Client.get('values_set') && clientIsVirtual()) return;
 	        BinarySocket.init({
 	            onmessage: function onmessage(msg) {
 	                var response = JSON.parse(msg.data);
@@ -86439,9 +86451,266 @@
 	'use strict';
 	
 	var Content = __webpack_require__(427).Content;
+	var Connections = __webpack_require__(587).Connections;
+	
+	var UserConnections = function () {
+	    var onLoad = function onLoad() {
+	        Content.populate();
+	        Connections.init();
+	    };
+	
+	    var onUnload = function onUnload() {
+	        Connections.clean();
+	    };
+	
+	    return {
+	        onLoad: onLoad,
+	        onUnload: onUnload
+	    };
+	}();
+	
+	module.exports = {
+	    UserConnections: UserConnections
+	};
+
+/***/ },
+/* 587 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var ConnectionsUI = __webpack_require__(588).ConnectionsUI;
+	var ConnectionsData = __webpack_require__(589).ConnectionsData;
+	var url = __webpack_require__(306).url;
+	
+	var Connections = function () {
+	    'use strict';
+	
+	    var responseHandler = function responseHandler(response) {
+	        if (response.error && response.error.message) {
+	            return ConnectionsUI.displayError(response.error.message);
+	        }
+	        if (response.connect_add || response.connect_del) {
+	            // call list on finish
+	            return ConnectionsData.list();
+	        }
+	        return ConnectionsUI.update(response.connect_list);
+	    };
+	
+	    var init = function init() {
+	        ConnectionsUI.init();
+	        BinarySocket.init({
+	            onmessage: ConnectionsData.calls(responseHandler)
+	        });
+	        var connection_token = url.param('connection_token');
+	        if (typeof connection_token !== 'undefined') {
+	            ConnectionsData.add(connection_token);
+	        } else {
+	            ConnectionsData.list();
+	        }
+	    };
+	
+	    var clean = function clean() {
+	        ConnectionsUI.clean();
+	    };
+	
+	    return {
+	        init: init,
+	        clean: clean
+	    };
+	}();
+	
+	module.exports = {
+	    Connections: Connections
+	};
+
+/***/ },
+/* 588 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var ConnectionsData = __webpack_require__(589).ConnectionsData;
+	var showLoadingImage = __webpack_require__(421).showLoadingImage;
+	var localize = __webpack_require__(424).localize;
+	var Button = __webpack_require__(487).Button;
+	var FlexTableUI = __webpack_require__(581).FlexTableUI;
+	var Table = __webpack_require__(488).Table;
+	var loadJS = __webpack_require__(554).loadJS;
+	
+	var ConnectionsUI = function () {
+	    'use strict';
+	
+	    var containerSelector = '#connections-ws-container';
+	    var messages = {
+	        no_connect_list: localize('You do not have any connections.')
+	    };
+	    var flexTable = void 0;
+	
+	    var formatConnect = function formatConnect(connect) {
+	        return [connect, ''];
+	    };
+	
+	    var createDelButton = function createDelButton(container, connect) {
+	        var $buttonSpan = Button.createBinaryStyledButton();
+	        var $button = $buttonSpan.children('.button').first();
+	        $button.text('Delete Connection');
+	        $button.on('click', function () {
+	            if (window.confirm(localize('Are you sure that you want to permanently revoke connection to') + ": '" + connect + "'?")) {
+	                ConnectionsData.del(connect);
+	                container.css({ opacity: 0.5 });
+	            }
+	        });
+	        return $buttonSpan;
+	    };
+	
+	    var createTable = function createTable(data) {
+	        var table_id = 'connections-table';
+	        createConnectionsIframe(data);
+	        if (!data) {
+	            Table.clearTableBody(table_id);
+	            return;
+	        }
+	        for (var i = 0; i < data.length; i++) {
+	            data[i] = data[i].charAt(0).toUpperCase() + data[i].slice(1);
+	        }
+	        if (flexTable) {
+	            flexTable.replace(data);
+	            return;
+	        }
+	        var headers = ['Provider', 'Action'];
+	        var columns = ['provider', 'action'];
+	        flexTable = new FlexTableUI({
+	            container: containerSelector,
+	            header: headers.map(function (s) {
+	                return localize(s);
+	            }),
+	            id: table_id,
+	            cols: columns,
+	            data: data,
+	            style: function style($row, connect) {
+	                $row.children('.action').first().append(createDelButton($row, connect));
+	            },
+	            formatter: formatConnect
+	        });
+	    };
+	
+	    var update = function update(connect_list) {
+	        $('#loading').remove();
+	        createTable(connect_list);
+	        if (!connect_list.length) {
+	            flexTable.displayError(localize(messages.no_connect_list), 7);
+	        }
+	    };
+	
+	    var displayError = function displayError(message) {
+	        $(containerSelector + ' .error-msg').text(message);
+	    };
+	
+	    var init = function init() {
+	        showLoadingImage($('<div/>', { id: 'loading' }).insertAfter('#connections-title'));
+	        var $title = $('#connections-title').children().first();
+	        var $desc = $('#description');
+	        $title.text(localize($title.text()));
+	        $desc.text(localize($desc.text()));
+	    };
+	
+	    var clean = function clean() {
+	        $(containerSelector + ' .error-msg').text('');
+	        flexTable.clear();
+	        flexTable = null;
+	    };
+	
+	    var createConnectionsIframe = function createConnectionsIframe(data) {
+	        if ($('#oa_social_login_container').children().length > 0) return;
+	
+	        // we may add more providers (facebook, twitter) in the future
+	        var list_of_providers = ['google'];
+	        if (data) {
+	            for (var i = 0; i < data.length; i++) {
+	                var index = list_of_providers.indexOf(data[i]);
+	                if (index > -1) {
+	                    list_of_providers.splice(index, 1);
+	                }
+	            }
+	        }
+	
+	        if (!list_of_providers.length) return;
+	
+	        loadJS('//binary.api.oneall.com/socialize/library.js');
+	
+	        var your_callback_script = 'https://www.binaryqa16.com/oauth2/oneall/redirect?dir=' + encodeURIComponent(window.location.href);
+	        /* Embeds the buttons into the container oa_social_login_container */
+	        window._oneall = window._oneall || [];
+	        window._oneall.push(['social_login', 'set_providers', list_of_providers], ['social_login', 'set_callback_uri', your_callback_script], ['social_login', 'do_render_ui', 'oa_social_login_container']);
+	    };
+	
+	    return {
+	        init: init,
+	        clean: clean,
+	        update: update,
+	        displayError: displayError
+	    };
+	}();
+	
+	module.exports = {
+	    ConnectionsUI: ConnectionsUI
+	};
+
+/***/ },
+/* 589 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	var ConnectionsData = function () {
+	    'use strict';
+	
+	    var calls = function calls(callback) {
+	        return function (msg) {
+	            var response = JSON.parse(msg.data);
+	            if (!response || !/connect_(list|add|del)/.test(response.msg_type)) {
+	                return;
+	            }
+	            callback(response);
+	        };
+	    };
+	
+	    var list = function list() {
+	        BinarySocket.send({ connect_list: 1 });
+	    };
+	
+	    var add = function add(connection_token) {
+	        BinarySocket.send({ connect_add: 1, connection_token: connection_token });
+	    };
+	
+	    var del = function del(provider) {
+	        if (!provider) return;
+	        BinarySocket.send({ connect_del: 1, provider: provider });
+	    };
+	
+	    return {
+	        calls: calls,
+	        add: add,
+	        del: del,
+	        list: list
+	    };
+	}();
+	
+	module.exports = {
+	    ConnectionsData: ConnectionsData
+	};
+
+/***/ },
+/* 590 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var Content = __webpack_require__(427).Content;
 	var japanese_client = __webpack_require__(307).japanese_client;
 	var url_for = __webpack_require__(306).url_for;
-	var IPHistory = __webpack_require__(587).IPHistory;
+	var IPHistory = __webpack_require__(591).IPHistory;
 	
 	var IPHistoryWS = function () {
 	    var onLoad = function onLoad() {
@@ -86467,13 +86736,13 @@
 	};
 
 /***/ },
-/* 587 */
+/* 591 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var IPHistoryUI = __webpack_require__(588).IPHistoryUI;
-	var IPHistoryData = __webpack_require__(589).IPHistoryData;
+	var IPHistoryUI = __webpack_require__(592).IPHistoryUI;
+	var IPHistoryData = __webpack_require__(593).IPHistoryData;
 	
 	var IPHistory = function () {
 	    'use strict';
@@ -86509,7 +86778,7 @@
 	};
 
 /***/ },
-/* 588 */
+/* 592 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -86591,7 +86860,7 @@
 	};
 
 /***/ },
-/* 589 */
+/* 593 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -86656,12 +86925,12 @@
 	};
 
 /***/ },
-/* 590 */
+/* 594 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var LimitsWS = __webpack_require__(591).LimitsWS;
+	var LimitsWS = __webpack_require__(595).LimitsWS;
 	var Content = __webpack_require__(427).Content;
 	var Client = __webpack_require__(305).Client;
 	
@@ -86709,7 +86978,7 @@
 	};
 
 /***/ },
-/* 591 */
+/* 595 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -86717,7 +86986,7 @@
 	var template = __webpack_require__(421).template;
 	var Content = __webpack_require__(427).Content;
 	var addComma = __webpack_require__(442).addComma;
-	var LimitsUI = __webpack_require__(592).LimitsUI;
+	var LimitsUI = __webpack_require__(596).LimitsUI;
 	var localize = __webpack_require__(424).localize;
 	var Client = __webpack_require__(305).Client;
 	var elementTextContent = __webpack_require__(308).elementTextContent;
@@ -86801,7 +87070,7 @@
 	};
 
 /***/ },
-/* 592 */
+/* 596 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -86876,7 +87145,7 @@
 	};
 
 /***/ },
-/* 593 */
+/* 597 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -87227,7 +87496,7 @@
 	};
 
 /***/ },
-/* 594 */
+/* 598 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -87525,7 +87794,7 @@
 	};
 
 /***/ },
-/* 595 */
+/* 599 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -87719,7 +87988,7 @@
 	};
 
 /***/ },
-/* 596 */
+/* 600 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -87770,7 +88039,7 @@
 	};
 
 /***/ },
-/* 597 */
+/* 601 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -87857,12 +88126,12 @@
 	};
 
 /***/ },
-/* 598 */
+/* 602 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var LostPassword = __webpack_require__(599).LostPassword;
+	var LostPassword = __webpack_require__(603).LostPassword;
 	var Client = __webpack_require__(305).Client;
 	
 	var LostPasswordWS = function () {
@@ -87886,7 +88155,7 @@
 	};
 
 /***/ },
-/* 599 */
+/* 603 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -87960,7 +88229,7 @@
 	};
 
 /***/ },
-/* 600 */
+/* 604 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -87968,10 +88237,10 @@
 	var handleResidence = __webpack_require__(422).handleResidence;
 	var populateObjects = __webpack_require__(422).populateObjects;
 	var Content = __webpack_require__(427).Content;
-	var ValidAccountOpening = __webpack_require__(601).ValidAccountOpening;
+	var ValidAccountOpening = __webpack_require__(605).ValidAccountOpening;
 	var Client = __webpack_require__(305).Client;
 	var url_for = __webpack_require__(306).url_for;
-	var FinancialAccOpeningUI = __webpack_require__(602).FinancialAccOpeningUI;
+	var FinancialAccOpeningUI = __webpack_require__(606).FinancialAccOpeningUI;
 	
 	var FinancialAccOpening = function () {
 	    var elementObj = void 0,
@@ -88033,7 +88302,7 @@
 	};
 
 /***/ },
-/* 601 */
+/* 605 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -88221,14 +88490,14 @@
 	};
 
 /***/ },
-/* 602 */
+/* 606 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var FinancialAccOpeningData = __webpack_require__(603).FinancialAccOpeningData;
+	var FinancialAccOpeningData = __webpack_require__(607).FinancialAccOpeningData;
 	var Content = __webpack_require__(427).Content;
-	var ValidAccountOpening = __webpack_require__(601).ValidAccountOpening;
+	var ValidAccountOpening = __webpack_require__(605).ValidAccountOpening;
 	var hideAllErrors = __webpack_require__(422).hideAllErrors;
 	var checkRequiredInputs = __webpack_require__(422).checkRequiredInputs;
 	var Validate = __webpack_require__(426).Validate;
@@ -88282,7 +88551,7 @@
 	};
 
 /***/ },
-/* 603 */
+/* 607 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -88326,7 +88595,7 @@
 	};
 
 /***/ },
-/* 604 */
+/* 608 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -88334,11 +88603,11 @@
 	var handleResidence = __webpack_require__(422).handleResidence;
 	var populateObjects = __webpack_require__(422).populateObjects;
 	var Content = __webpack_require__(427).Content;
-	var ValidAccountOpening = __webpack_require__(601).ValidAccountOpening;
+	var ValidAccountOpening = __webpack_require__(605).ValidAccountOpening;
 	var detect_hedging = __webpack_require__(308).detect_hedging;
 	var Client = __webpack_require__(305).Client;
 	var url_for = __webpack_require__(306).url_for;
-	var JapanAccOpeningUI = __webpack_require__(605).JapanAccOpeningUI;
+	var JapanAccOpeningUI = __webpack_require__(609).JapanAccOpeningUI;
 	
 	var JapanAccOpening = function () {
 	    var init = function init() {
@@ -88386,17 +88655,17 @@
 	};
 
 /***/ },
-/* 605 */
+/* 609 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	var Content = __webpack_require__(427).Content;
-	var ValidAccountOpening = __webpack_require__(601).ValidAccountOpening;
+	var ValidAccountOpening = __webpack_require__(605).ValidAccountOpening;
 	var hideAllErrors = __webpack_require__(422).hideAllErrors;
 	var checkRequiredInputs = __webpack_require__(422).checkRequiredInputs;
 	var Validate = __webpack_require__(426).Validate;
-	var JapanAccOpeningData = __webpack_require__(606).JapanAccOpeningData;
+	var JapanAccOpeningData = __webpack_require__(610).JapanAccOpeningData;
 	var localize = __webpack_require__(424).localize;
 	
 	var JapanAccOpeningUI = function () {
@@ -88481,7 +88750,7 @@
 	};
 
 /***/ },
-/* 606 */
+/* 610 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -88528,7 +88797,7 @@
 	};
 
 /***/ },
-/* 607 */
+/* 611 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -88536,9 +88805,9 @@
 	var handleResidence = __webpack_require__(422).handleResidence;
 	var populateObjects = __webpack_require__(422).populateObjects;
 	var Content = __webpack_require__(427).Content;
-	var ValidAccountOpening = __webpack_require__(601).ValidAccountOpening;
+	var ValidAccountOpening = __webpack_require__(605).ValidAccountOpening;
 	var Client = __webpack_require__(305).Client;
-	var RealAccOpeningUI = __webpack_require__(608).RealAccOpeningUI;
+	var RealAccOpeningUI = __webpack_require__(612).RealAccOpeningUI;
 	
 	var RealAccOpening = function () {
 	    var init = function init() {
@@ -88581,17 +88850,17 @@
 	};
 
 /***/ },
-/* 608 */
+/* 612 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	var Content = __webpack_require__(427).Content;
-	var ValidAccountOpening = __webpack_require__(601).ValidAccountOpening;
+	var ValidAccountOpening = __webpack_require__(605).ValidAccountOpening;
 	var hideAllErrors = __webpack_require__(422).hideAllErrors;
 	var checkRequiredInputs = __webpack_require__(422).checkRequiredInputs;
 	var Validate = __webpack_require__(426).Validate;
-	var RealAccOpeningData = __webpack_require__(609).RealAccOpeningData;
+	var RealAccOpeningData = __webpack_require__(613).RealAccOpeningData;
 	
 	var RealAccOpeningUI = function () {
 	    'use strict';
@@ -88642,7 +88911,7 @@
 	};
 
 /***/ },
-/* 609 */
+/* 613 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -88679,7 +88948,7 @@
 	};
 
 /***/ },
-/* 610 */
+/* 614 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -88689,7 +88958,7 @@
 	var Content = __webpack_require__(427).Content;
 	var japanese_client = __webpack_require__(307).japanese_client;
 	var bind_validation = __webpack_require__(560).bind_validation;
-	var VirtualAccOpeningData = __webpack_require__(611).VirtualAccOpeningData;
+	var VirtualAccOpeningData = __webpack_require__(615).VirtualAccOpeningData;
 	var localize = __webpack_require__(424).localize;
 	var Client = __webpack_require__(305).Client;
 	var url_for = __webpack_require__(306).url_for;
@@ -88778,7 +89047,7 @@
 	};
 
 /***/ },
-/* 611 */
+/* 615 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -88869,12 +89138,12 @@
 	};
 
 /***/ },
-/* 612 */
+/* 616 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var ResetPassword = __webpack_require__(613).ResetPassword;
+	var ResetPassword = __webpack_require__(617).ResetPassword;
 	var Client = __webpack_require__(305).Client;
 	
 	var ResetPasswordWS = function () {
@@ -88898,7 +89167,7 @@
 	};
 
 /***/ },
-/* 613 */
+/* 617 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -89089,14 +89358,14 @@
 	};
 
 /***/ },
-/* 614 */
+/* 618 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	var toJapanTimeIfNeeded = __webpack_require__(440).Clock.toJapanTimeIfNeeded;
-	var KnowledgeTestUI = __webpack_require__(615).KnowledgeTestUI;
-	var KnowledgeTestData = __webpack_require__(616).KnowledgeTestData;
+	var KnowledgeTestUI = __webpack_require__(619).KnowledgeTestUI;
+	var KnowledgeTestData = __webpack_require__(620).KnowledgeTestData;
 	var localize = __webpack_require__(424).localize;
 	var url_for = __webpack_require__(306).url_for;
 	var Client = __webpack_require__(305).Client;
@@ -89293,7 +89562,7 @@
 	};
 
 /***/ },
-/* 615 */
+/* 619 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -89407,7 +89676,7 @@
 	};
 
 /***/ },
-/* 616 */
+/* 620 */
 /***/ function(module, exports) {
 
 	'use strict';

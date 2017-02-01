@@ -2009,24 +2009,24 @@ ol.start {
     font-size: 80% !important;
   }
 }
-#applications-ws-container table td, #applications-ws-container table th {
+#applications-ws-container table td, #applications-ws-container table th, #connections-ws-container table td, #connections-ws-container table th {
   text-align: center !important;
   vertical-align: middle !important;
   line-height: 30px;
 }
-#applications-ws-container table td .button, #applications-ws-container table th .button {
+#applications-ws-container table td .button, #applications-ws-container table th .button, #connections-ws-container table td .button, #connections-ws-container table th .button {
   margin: 3px 0;
 }
 
 @media screen and (max-width: 480px) {
-  #applications-ws-container table td, #applications-ws-container table th {
+  #applications-ws-container table td, #applications-ws-container table th, #connections-ws-container table td, #connections-ws-container table th {
     font-size: 80%;
   }
-  #applications-ws-container table button {
+  #applications-ws-container table button, #connections-ws-container table button {
     font-size: 80%;
     padding: 10px 15px;
   }
-  #applications-ws-container .errorfield {
+  #applications-ws-container .errorfield, #connections-ws-container .errorfield {
     font-size: 80% !important;
   }
 }
