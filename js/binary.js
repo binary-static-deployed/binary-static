@@ -19291,9 +19291,9 @@
 	    };
 	
 	    var is_financial = function is_financial() {
-	        return client_object.loginid_array.find(function (obj) {
+	        return (client_object.loginid_array.find(function (obj) {
 	            return obj.id === get('loginid');
-	        }).financial;
+	        }) || {}).financial;
 	    };
 	
 	    var should_complete_tax = function should_complete_tax() {
