@@ -546,6 +546,9 @@ body #topbar #select_language {
   max-width: 65%;
   margin: 0.3em auto;
 }
+#footer #footer-regulatory {
+  padding-top: 10px;
+}
 #footer #footer-regulatory a {
   display: inline-block;
   text-decoration: underline;
@@ -555,22 +558,11 @@ body #topbar #select_language {
   text-align: justify;
   font-size: 10px;
 }
-#footer #footer-regulatory #social-networks {
-  padding-top: 20px;
-}
 #footer #footer-regulatory #iom_icon_footer {
   max-width: 90px;
 }
 #footer #footer-regulatory #lga_icon_footer {
   max-width: 140px;
-}
-#footer #footer-regulatory #mfsa_logo {
-  max-width: 320px;
-  margin-top: 10px;
-}
-#footer #footer-regulatory #mifid_logo {
-  max-width: 150px;
-  margin-top: 15px;
 }
 #footer #footer-regulatory .social-icons {
   text-align: right;
@@ -578,8 +570,7 @@ body #topbar #select_language {
 #footer #footer-regulatory .social-icons .social-network-icon {
   width: 30px;
   height: 30px;
-  padding-right: 5px;
-  padding-top: 10px;
+  padding-left: 5px;
 }
 #footer #footer-regulatory #ratelimit-error-message {
   display: none;
@@ -687,7 +678,7 @@ html.mm-right.mm-opening body .mm-page, html.mm-right.mm-opening body #mm-blocke
 }
 
 #reality-check-content, #balances-content {
-  padding: 0;
+  padding: 5px;
   text-align: left;
 }
 #reality-check-content td, #balances-content td {
@@ -708,6 +699,17 @@ html.mm-right.mm-opening body .mm-page, html.mm-right.mm-opening body #mm-blocke
 
 #accordion .ui-accordion-content {
   padding-top: 0;
+}
+
+#ui-timepicker-div, #ui-timepicker-div:before, #ui-timepicker-div:after, #ui-datepicker-div, #ui-datepicker-div:before, #ui-datepicker-div:after {
+  transition: none;
+}
+
+.ui-datepicker.ui-widget-content, .ui-timepicker-table.ui-widget-content {
+  border: 0;
+}
+.ui-datepicker.ui-corner-all, .ui-datepicker .ui-corner-all, .ui-timepicker-table.ui-corner-all, .ui-timepicker-table .ui-corner-all {
+  border-radius: 0;
 }
 
 /* pages */
@@ -888,8 +890,8 @@ html.mm-right.mm-opening body .mm-page, html.mm-right.mm-opening body #mm-blocke
   background: #14602b;
 }
 .get-started dl #what-is-binary-trading, .get-started dl #binary-options-basics, .get-started dl #how-to-trade-binaries, .get-started dl #types-of-trades,
-.get-started dl #benefits-of-trading-binaries, .get-started dl #beginners-faq, .get-started dl #glossary, .get-started dl #spread, .get-started dl #random-trades, .get-started-jp dl #what-is-binary-trading, .get-started-jp dl #binary-options-basics, .get-started-jp dl #how-to-trade-binaries, .get-started-jp dl #types-of-trades,
-.get-started-jp dl #benefits-of-trading-binaries, .get-started-jp dl #beginners-faq, .get-started-jp dl #glossary, .get-started-jp dl #spread, .get-started-jp dl #random-trades {
+.get-started dl #why-trade-with-us, .get-started dl #beginners-faq, .get-started dl #glossary, .get-started dl #spread, .get-started dl #random-trades, .get-started-jp dl #what-is-binary-trading, .get-started-jp dl #binary-options-basics, .get-started-jp dl #how-to-trade-binaries, .get-started-jp dl #types-of-trades,
+.get-started-jp dl #why-trade-with-us, .get-started-jp dl #beginners-faq, .get-started-jp dl #glossary, .get-started-jp dl #spread, .get-started-jp dl #random-trades {
   height: 80px;
   background-repeat: no-repeat;
   background-image: url("../images/pages/get-started/intro_2.png");
@@ -906,7 +908,7 @@ html.mm-right.mm-opening body .mm-page, html.mm-right.mm-opening body #mm-blocke
 .get-started dl #types-of-trades, .get-started-jp dl #types-of-trades {
   background-position: 0 47%;
 }
-.get-started dl #benefits-of-trading-binaries, .get-started-jp dl #benefits-of-trading-binaries {
+.get-started dl #why-trade-with-us, .get-started-jp dl #why-trade-with-us {
   background-position: 0 24%;
 }
 .get-started dl #beginners-faq, .get-started-jp dl #beginners-faq {
@@ -2030,26 +2032,37 @@ ol.start {
     font-size: 80% !important;
   }
 }
-.career .xquote, .security_testing .xquote, .regulation-content .xquote {
+.career .xquote, .career .xquote-inverse, .security_testing .xquote, .security_testing .xquote-inverse, .regulation-content .xquote, .regulation-content .xquote-inverse {
   background-color: #f2f2f2;
   padding: 20px;
-  margin: 30px 0;
 }
-.career .xquote div, .security_testing .xquote div, .regulation-content .xquote div {
+.career .xquote div, .career .xquote-inverse div, .security_testing .xquote div, .security_testing .xquote-inverse div, .regulation-content .xquote div, .regulation-content .xquote-inverse div {
   overflow: hidden;
   display: table;
+  margin: 0 auto;
 }
-.career .xquote div .picture, .security_testing .xquote div .picture, .regulation-content .xquote div .picture {
+.career .xquote div .picture, .career .xquote-inverse div .picture, .security_testing .xquote div .picture, .security_testing .xquote-inverse div .picture, .regulation-content .xquote div .picture, .regulation-content .xquote-inverse div .picture {
   float: left;
   padding-right: 20px;
 }
-.career .xquote div .text, .security_testing .xquote div .text, .regulation-content .xquote div .text {
+.career .xquote div .text, .career .xquote-inverse div .text, .security_testing .xquote div .text, .security_testing .xquote-inverse div .text, .regulation-content .xquote div .text, .regulation-content .xquote-inverse div .text {
   display: table-cell;
   vertical-align: middle;
 }
-.career .xquote div .text span, .security_testing .xquote div .text span, .regulation-content .xquote div .text span {
+.career .xquote div .text span, .career .xquote-inverse div .text span, .security_testing .xquote div .text span, .security_testing .xquote-inverse div .text span, .regulation-content .xquote div .text span, .regulation-content .xquote-inverse div .text span {
   color: #44484c;
   font-size: 12px;
+}
+.career .xquote-inverse, .security_testing .xquote-inverse, .regulation-content .xquote-inverse {
+  background-color: #2a3052 !important;
+}
+.career .xquote-inverse div .text a, .security_testing .xquote-inverse div .text a, .regulation-content .xquote-inverse div .text a {
+  color: #fff;
+}
+.career h4, .security_testing h4, .regulation-content h4 {
+  font-weight: 700;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #dedede;
 }
 
 .careers-for-americans img.responsive {
@@ -5221,7 +5234,7 @@ body.TH .google-play-badge {
     overflow-x: auto;
   }
 
-  #footer-regulatory #social-networks {
+  #footer-regulatory #social-networks .social-icons {
     text-align: center;
   }
 
@@ -5258,116 +5271,6 @@ body.TH .google-play-badge {
 }
 /* external stylesheets
  * ===================================== */
-/* date picker */
-/*
- * Timepicker stylesheet
- * Highly inspired from datepicker
- * FG - Nov 2010 - Web3R
- *
- * version 0.0.3 : Fixed some settings, more dynamic
- * version 0.0.4 : Removed width:100% on tables
- * version 0.1.1 : set width 0 on tables to fix an ie6 bug
- */
-.ui-timepicker-inline {
-  display: inline;
-}
-
-#ui-timepicker-div {
-  padding: 0.2em;
-}
-
-.ui-timepicker-table {
-  display: inline-table;
-  width: 0;
-}
-
-.ui-timepicker-table table {
-  margin: 0.15em 0 0 0;
-  border-collapse: collapse;
-}
-
-.ui-timepicker-hours, .ui-timepicker-minutes {
-  padding: 0.2em;
-}
-
-.ui-timepicker-table .ui-timepicker-title {
-  line-height: 1.8em;
-  text-align: center;
-}
-
-.ui-timepicker-table td {
-  padding: 0.1em;
-  width: 2.2em;
-}
-
-.ui-timepicker-table th.periods {
-  padding: 0.1em;
-  width: 2.2em;
-}
-
-/* span for disabled cells */
-.ui-timepicker-table td span {
-  display: block;
-  padding: 0.2em 0.3em 0.2em 0.5em;
-  width: 1.2em;
-  text-align: right;
-  text-decoration: none;
-}
-
-/* anchors for clickable cells */
-.ui-timepicker-table td a {
-  display: block;
-  padding: 0.2em 0.3em 0.2em 0.5em;
-  width: 1.2em;
-  cursor: pointer;
-  text-align: right;
-  text-decoration: none;
-}
-
-/* buttons and button pane styling */
-.ui-timepicker .ui-timepicker-buttonpane {
-  background-image: none;
-  margin: .7em 0 0 0;
-  padding: 0 .2em;
-  border-left: 0;
-  border-right: 0;
-  border-bottom: 0;
-}
-
-.ui-timepicker .ui-timepicker-buttonpane button {
-  margin: .5em .2em .4em;
-  cursor: pointer;
-  padding: .2em .6em .3em .6em;
-  width: auto;
-  overflow: visible;
-}
-
-/* The close button */
-.ui-timepicker .ui-timepicker-close {
-  float: right;
-}
-
-/* the now button */
-.ui-timepicker .ui-timepicker-now {
-  float: left;
-}
-
-/* the deselect button */
-.ui-timepicker .ui-timepicker-deselect {
-  float: left;
-}
-
-#ui-timepicker-div, #ui-timepicker-div:before, #ui-timepicker-div:after, #ui-datepicker-div, #ui-datepicker-div:before, #ui-datepicker-div:after {
-  transition: none;
-}
-
-.ui-datepicker.ui-widget-content, .ui-timepicker-table.ui-widget-content {
-  border: 0;
-}
-.ui-datepicker.ui-corner-all, .ui-datepicker .ui-corner-all, .ui-timepicker-table.ui-corner-all, .ui-timepicker-table .ui-corner-all {
-  border-radius: 0;
-}
-
 /* Grid layout system */
 .gr-container:after {
   content: "";

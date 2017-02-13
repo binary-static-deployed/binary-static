@@ -16,8 +16,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <div class="container">
 
 
-  <div class="gr-12" id="pa-transfer-client">
+  <div id="pa-transfer-client">
     <h1>Transfer Agen Pembayaran</h1>
+
+    <div id="pa_transfer_loading" class="center-text"><div class="barspinner dark">
+    <div class="rect1"></div>
+    <div class="rect2"></div>
+    <div class="rect3"></div>
+    <div class="rect4"></div>
+    <div class="rect5"></div>
+</div></div>
 
     <div id="pa_confirm_transfer" class="invisible">
         <p>Pastikan Anda telah memilih Agen Pembayaran yang benar, salah transfer adalah diluar tanggungjawab kami:</p>
@@ -59,11 +67,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </div>
 
     <div id="virtual_error" class="invisible">
-        <p class="center notice-msg">Fasilitas ini tidak tersedia untuk akun uang virtual.</p>
+        <p class="center-text notice-msg">Fasilitas ini tidak tersedia untuk akun uang virtual.</p>
     </div>
 
     <div id="not_pa_error" class="invisible">
-        <p class="center notice-msg">Fitur ini hanya relevan untuk akun agen pembayaran.</p>
+        <p class="center-text notice-msg">Fitur ini hanya relevan untuk akun agen pembayaran.</p>
     </div>
 
     <div id="paymentagent_transfer" class="invisible">

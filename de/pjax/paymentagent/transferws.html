@@ -16,8 +16,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <div class="container">
 
 
-  <div class="gr-12" id="pa-transfer-client">
+  <div id="pa-transfer-client">
     <h1>Zahlungsagent Überweisung</h1>
+
+    <div id="pa_transfer_loading" class="center-text"><div class="barspinner dark">
+    <div class="rect1"></div>
+    <div class="rect2"></div>
+    <div class="rect3"></div>
+    <div class="rect4"></div>
+    <div class="rect5"></div>
+</div></div>
 
     <div id="pa_confirm_transfer" class="invisible">
         <p>Bitte bestätigen Sie die Transaktionsdaten, um den Transfer zu vervollständigen:</p>
@@ -59,11 +67,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </div>
 
     <div id="virtual_error" class="invisible">
-        <p class="center notice-msg">Diese Funktion ist für virtuelle Geldkonten nicht relevant</p>
+        <p class="center-text notice-msg">Diese Funktion ist für virtuelle Geldkonten nicht relevant</p>
     </div>
 
     <div id="not_pa_error" class="invisible">
-        <p class="center notice-msg">Diese Funktion ist nur für Geldkonten der Agenten relevant.</p>
+        <p class="center-text notice-msg">Diese Funktion ist nur für Geldkonten der Agenten relevant.</p>
     </div>
 
     <div id="paymentagent_transfer" class="invisible">

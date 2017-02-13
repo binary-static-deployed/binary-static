@@ -23,7 +23,7 @@
         <meta property="og:type" content="website" />
         <meta property="og:image" content="/images/common/og_image.gif" />
 
-        <title>バイナリーオプション取引 | Binary株式会社</title>
+        <title>バイナリーオプション取引 | Binary株式会社 (和文名称 バイナリー株式会社)</title>
 
         <link rel="apple-touch-icon" sizes="57x57" href="https://style.binary.com/images/favicons/apple-touch-icon-57x57.png">
         <link rel="apple-touch-icon" sizes="114x114" href="https://style.binary.com/images/favicons/apple-touch-icon-114x114.png">
@@ -55,10 +55,10 @@
           <link rel="alternate" href="/zh_cn/trading.html" hreflang="ZH_CN" /> 
           <link rel="alternate" href="/zh_tw/trading.html" hreflang="ZH_TW" /> 
         
-         <link rel="stylesheet" href="/css/binary.min.css?ycea7ml0">
-         <link rel="stylesheet" href="https://style.binary.com/binary.css?ycea7ml0">
+         <link rel="stylesheet" href="/css/binary.min.css?a1patufn">
+         <link rel="stylesheet" href="https://style.binary.com/binary.css?a1patufn">
         
-        <script src='/js/binary.min.js?ycea7ml0' defer async></script>
+        <script src='/js/binary.min.js?a1patufn'></script>  <script src='https://style.binary.com/binary.js?a1patufn'></script>
     </head>
 
 
@@ -324,7 +324,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-MZWFF7');</script>
 <!-- End Google Tag Manager -->
         <div id="page_info" style="display:none;">
-            <title>バイナリーオプション取引 | Binary株式会社</title>
+            <title>バイナリーオプション取引 | Binary株式会社 (和文名称 バイナリー株式会社)</title>
             <div id="content_class">trading-content</div>
         </div>
         
@@ -346,7 +346,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div>
          <select id="underlying"></select>
          <span class="unicode-info-icon" id="symbol_tip" target="">&#9432;</span>
-         <label for="spot" id="spot_label"></label>
+         <label for="spot" id="spot_label">スポットレート</label>
          <span id="spot"></span>
          <span id="trading_worm_chart"></span>
       </div>
@@ -355,7 +355,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
    <div class="row clear" id="contract_form_content_wrapper">
       <div class="col row-inner">
          <div id="contract_market_form_container">
-            <ul class="nav tm-ul" id="contract_form_name_nav"></ul>
+            <ul class="nav tm-ul follow-default" id="contract_form_name_nav"></ul>
          </div>
          <div id="contract_container" class="col row">
             <div id="loading_container3" class="overlay_container"></div>
@@ -364,15 +364,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   <form id='websocket_form'>
                      <div class="row" id="period_row">
                         <div class="col form_label">
-                           <label for="period" id="period_label"></label>
+                           <label for="period" id="period_label">期間</label>
                         </div>
                         <div class="big-col">
                            <select id="period"></select>
                         </div>
                      </div>
                      <div class="row" id="date_start_row">
-                        <div class="col form_label" id="start_time_label">
-                        </div>
+                        <div class="col form_label" id="start_time_label">開始時間</div>
                         <div class="big-col">
                            <select id="date_start"></select>
                         </div>
@@ -386,7 +385,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                               <input id="duration_amount" type="number" class="small_width_input" autocomplete="off" /><label></label>
                               <select id="duration_units" class="medium_width_input"></select>
                               <span id="duration_tooltip_wrapper">
-                                <span id="duration_tooltip"></span>
+                                <span id="duration_tooltip" data-balloon="最短取引期間">最小値</span>
                                 <span id="duration_minimum"></span>
                                 <span id="duration_maximum" class="invisible"></span>
                               </span>
@@ -400,42 +399,42 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                      <div class="row barrier_class" id="barrier_row">
                         <div class="col form_label">
                            <label for="H" id="barrier_label">
-                             <span id="barrier_tooltip" data-balloon-length="xlarge"></span>
-                             <span id="barrier_span"></span>
+                             <span id="barrier_tooltip"  data-balloon="スポット価格に差異を付加する目的でバリア値を設定しましょう。もしバリア値として+0.005を設定した場合はスポット価格より0.005高値のバリアが設定されたトレードを購入することになります。尚、スポット価格は注文を受けた次のTickが採用されます。" data-balloon-length="xlarge">追加バリア値</span>
+                             <span id="barrier_span">バリア価格</span>
                            </label>
                         </div>
                         <div class="big-col">
                            <input id="barrier" type="text" name="H" pattern="^[\+-]\d+(\.\d{1,5})?|\d+(\.\d{1,5})?" title="数字をご入力ください。" autocomplete="off" />
-                           <span id="indicative_barrier_tooltip" data-balloon-length="xlarge"></span>
+                           <span id="indicative_barrier_tooltip" data-balloon="このバリアは予想値です。実際のバリア値はスポット価格にバリア値を差し引いたものになります。" data-balloon-length="xlarge"></span>
                         </div>
                      </div>
                      <div class="row barrier_class" id="high_barrier_row">
                         <div class="col form_label">
                            <label for="H" id="barrier_high_label">
-                             <span id="barrier_high_tooltip" data-balloon-length="xlarge"></span>
-                             <span id="barrier_high_span"></span>
+                             <span id="barrier_high_tooltip" data-balloon="スポット価格に差異を付加する目的でバリア値を設定しましょう。もしバリア値として+0.005を設定した場合はスポット価格より0.005高値のバリアが設定されたトレードを購入することになります。尚、スポット価格は注文を受けた次のTickが採用されます。" data-balloon-length="xlarge">上限追加バリア値</span>
+                             <span id="barrier_high_span">上限バリア</span>
                            </label>
                         </div>
                         <div class="big-col">
                            <input id="barrier_high" type="text" name="H" pattern="^[\+-]\d+(\.\d{1,5})?|\d+(\.\d{1,5})?" title="数字をご入力ください。" autocomplete="off" />
-                           <span id="indicative_high_barrier_tooltip" data-balloon-length="xlarge"></span>
+                           <span id="indicative_high_barrier_tooltip" data-balloon="このバリアは予想値です。実際のバリア値はスポット価格にバリア値を差し引いたものになります。" data-balloon-length="xlarge"></span>
                         </div>
                      </div>
                      <div class="row barrier_class" id="low_barrier_row">
                         <div class="col form_label">
                            <label for="L" id="barrier_low_label">
-                             <span id="barrier_low_tooltip" data-balloon-length="xlarge"></span>
-                             <span id="barrier_low_span"></span>
+                             <span id="barrier_low_tooltip" data-balloon="スポット価格に差異を付加する目的でバリア値を設定しましょう。もしバリア値として+0.005を設定した場合はスポット価格より0.005高値のバリアが設定されたトレードを購入することになります。尚、スポット価格は注文を受けた次のTickが採用されます。" data-balloon-length="xlarge">下限追加バリア値</span>
+                             <span id="barrier_low_span">下限バリア</span>
                            </label>
                         </div>
                         <div class="big-col">
                            <input id="barrier_low" type="text" name="L" pattern="^[\+-]\d+(\.\d{1,5})?|\d+(\.\d{1,5})?" title="数字をご入力ください。" autocomplete="off" />
-                           <span id="indicative_low_barrier_tooltip" data-balloon-length="xlarge"></span>
+                           <span id="indicative_low_barrier_tooltip" data-balloon="このバリアは予想値です。実際のバリア値はスポット価格にバリア値を差し引いたものになります。" data-balloon-length="xlarge"></span>
                         </div>
                      </div>
                      <div class="row" id="prediction_row">
                         <div class="col form_label">
-                           <label for="prediction" id="prediction_label"></label>
+                           <label for="prediction" id="prediction_label">下一桁の数字を予測</label>
                         </div>
                         <div class="big-col">
                            <select id="prediction" class="small_width_input">
@@ -455,10 +454,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                      <div class="row" id="payout_row">
                         <div class="col form_label">
                            <select id="amount_type">
-                              <option value="payout" id="payout_option"></option>
-                              <option value="stake" id="stake_option"></option>
+                              <option value="payout" id="payout_option">ペイアウト</option>
+                              <option value="stake" id="stake_option">購入価格</option>
                            </select>
-                           <label for="amount_per_point" id="amount_per_point_label" class="small_width_input"></label>
+                           <label for="amount_per_point" id="amount_per_point_label" class="small_width_input">ポイントごとの金額</label>
                         </div>
                         <div class="row-inner big-col">
                            <div class="col-inner">
@@ -471,16 +470,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                      <div id="spread_element_container">
                         <div class="row">
                             <div class="col form_label">
-                                <label for="stop_type" id="stop_type_label"></label>
+                                <label for="stop_type" id="stop_type_label">ストップタイプ</label>
                             </div>
                             <div class="big-col">
-                                <input type="radio" name="stop_type" id="stop_type_points" value="point" checked/><label id="stop_type_points_label" class="radio_label" for="stop_type_points"></label>
+                                <input type="radio" name="stop_type" id="stop_type_points" value="point" checked/><label id="stop_type_points_label" class="radio_label" for="stop_type_points">ポイント</label>
                                 <input type="radio" name="stop_type" id="stop_type_dollar" value="dollar"/><label id="stop_type_dollar_label" class="radio_label" for="stop_type_dollar"></label>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col form_label">
-                                <label for="stop_loss" id="stop_loss_label"></label>
+                                <label for="stop_loss" id="stop_loss_label">損切り</label>
                             </div>
                             <div class="big-col">
                                 <input id="stop_loss" type="number" step="any" value="15" autocomplete="off" /><label></label>
@@ -488,7 +487,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         </div>
                         <div class="row">
                             <div class="col form_label">
-                                <label for="stop_profit" id="stop_profit_label"></label>
+                                <label for="stop_profit" id="stop_profit_label">Stop-profit</label>
                             </div>
                             <div class="big-col">
                                 <input id="stop_profit" type="number" step="any" value="10" autocomplete="off" /><label></label>
@@ -599,7 +598,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                           </div>
                         </div>
                         <div class="contract_purchase button">
-                           <span class="purchase_button contract_description no-underline" id="purchase_button_top" data-balloon-length="xlarge" value="purchase"></span>
+                           <span class="purchase_button contract_description no-underline" id="purchase_button_top" data-balloon-length="xlarge" value="purchase">購入</span>
                         </div>
                       </span>
                   </div>
@@ -623,7 +622,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                           </div>
                         </div>
                         <div class="contract_purchase button">
-                          <span class="purchase_button contract_description no-underline" id="purchase_button_bottom" data-balloon-length="xlarge" value="purchase"></span>
+                          <span class="purchase_button contract_description no-underline" id="purchase_button_bottom" data-balloon-length="xlarge" value="purchase">購入</span>
                         </div>
                       </span>
                   </div>
@@ -640,7 +639,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div class="content-tab-container page-section">
     <div class="tab-menu">
       <div class="tab-menu-wrap">
-        <ul id="betsBottomPage" class="tm-ul">
+        <ul id="betsBottomPage" class="tm-ul follow-default">
           <li id="tab_portfolio" class="tm-li invisible first">
             <a href="#tab_portfolio" class="tm-a first"></a>
           </li>
@@ -843,41 +842,26 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </div>
     <div id="footer-regulatory" class="primary-color-dark">
         <div class="container">
-            <div>
-                <div class="gr-padding-10">
-                    <div class="gr-parent">
-                        <div class="gr-row ja-hide id-hide">
-                            <div class="gr-2">
-                                <a href="http://www.gov.im/gambling/" target="_blank">
-                                    <img id="iom_icon_footer" class="responsive" src="/images/pages/footer/isle-of-man.png"/>
-                                </a>
-                            </div>
-                            <div class="gr-2 center-text">
-                                <a href="https://www.authorisation.mga.org.mt/verification.aspx?lang=EN&company=a5fd1edc-d072-4c26-b0cd-ab3fa0f0cc40&details=1" target="_blank">
-                                    <img id="lga_icon_footer" class="responsive" src="/images/pages/footer/mga-logo-footer.svg"/>
-                                </a>
-                            </div>
-                            <div class="gr-6 center-text">
-                                <a href="http://mfsa.com.mt/" target="_blank">
-                                    <img id="mfsa_logo" class="responsive" src="/images/pages/footer/mfsa-logo.svg"/>
-                                </a>
-                            </div>
-                            <div class="gr-2">
-                                <a href="http://mfsa.com.mt/" target="_blank">
-                                    <img id="mifid_logo" class="responsive" src="/images/pages/footer/mifid-logo.svg"/>
-                                </a>
-                            </div>
+            <div class="gr-row">
+                <div id="regulatory-text" class="gr-9 gr-12-m gr-7-p gr-padding-10 gr-parent content-inverse-color">
+                    ■店頭バイナリーオプション取引は金融商品取引法に規定される店頭デリバティブ取引であり、元本や利益が保証されていません。■店頭バイナリーオプション取引は、判定時刻に自動的に権利行使されるヨーロピアンタイプと、取引期間中に決められた条件に達すると権利が自動行使されるアメリカンタイプがあります。■店頭バイナリーオプションは、外国為替相場等の変動により投資元本の全てを失うおそれのあるリスクの高い金融商品です。■判定時刻及び取引期間中における一定の権利を、オプション料を支払って購入する期限がある取引のため、権利が消滅した場合は支払ったオプション料の全額を失います。■ペイアウトは1ロットあたり1,000円です。■購入価格と売却価格にはスプレッドがあり、相場情勢により拡大することがあります。■相場情勢により、お客様が希望した価格より不利な価格で取引が成立する場合があります。■店頭バイナリーオプションの取引上限は以下のとおりです。1)1取引の取引上限は100ロット。2)1日の取引上限額は100万円〜300万円（保有金融資産に応じて）。前記2)に達した時点でその日は取引ができなくなります。■取引手数料は無料。当該日から遡り12ヶ月間、新規又は売却取引がなかった場合は口座維持手数料（2,500円税込）が発生、引き続き取引等がない場合、6ヶ月毎に同額が発生します。3,000円未満を出金の際は250円（税込）の出金手数料がかかります。■オプションの購入後の注文取り消しは行う事ができませんが、取引可能期間であれば売却は可能です。ただし、購入価格と売却価格にはスプレッドがあり、売却時に損失を被る可能性があります。■お取引開始前に、契約締結前交付書面を熟読の上、必ず約款及び取扱説明書に書かれてある取引の特徴、取引条件、仕組み及びリスクを十分確認いただき、ご自身の判断と責任において、自己の計算によりお取引ください。
+                </div>
+                <div class="ja-hide gr-3 gr-12-m gr-5-p center-text" id="social-networks">
+                    <div class="gr-row ja-hide id-hide">
+                        <div class="gr-5">
+                            <a href="http://www.gov.im/gambling/" target="_blank">
+                                <img id="iom_icon_footer" class="responsive" src="/images/pages/footer/isle-of-man.png"/>
+                            </a>
+                        </div>
+                        <div class="gr-7">
+                            <a href="https://www.authorisation.mga.org.mt/verification.aspx?lang=EN&company=a5fd1edc-d072-4c26-b0cd-ab3fa0f0cc40&details=1" target="_blank">
+                                <img id="lga_icon_footer" class="responsive" src="/images/pages/footer/mga-logo-footer.svg"/>
+                            </a>
                         </div>
                     </div>
-                    <div class="gr-parent">
-                        <div class="gr-row">
-                            <div id="regulatory-text" class="gr-9 gr-12-m gr-7-p content-inverse-color">
-                                ■店頭バイナリーオプション取引は金融商品取引法に規定される店頭デリバティブ取引であり、元本や利益が保証されていません。■店頭バイナリーオプション取引は、判定時刻に自動的に権利行使されるヨーロピアンタイプと、取引期間中に決められた条件に達すると権利が自動行使されるアメリカンタイプがあります。■店頭バイナリーオプションは、外国為替相場等の変動により投資元本の全てを失うおそれのあるリスクの高い金融商品です。■判定時刻及び取引期間中における一定の権利を、オプション料を支払って購入する期限がある取引のため、権利が消滅した場合は支払ったオプション料の全額を失います。■ペイアウトは1ロットあたり1,000円です。■購入価格と売却価格にはスプレッドがあり、相場情勢により拡大することがあります。■相場情勢により、お客様が希望した価格より不利な価格で取引が成立する場合があります。■店頭バイナリーオプションの取引上限は以下のとおりです。1)1取引の取引上限は100ロット。2)1日の取引上限額は100万円〜300万円（保有金融資産に応じて）。前記2)に達した時点でその日は取引ができなくなります。■取引手数料は無料。当該日から遡り12ヶ月間、新規又は売却取引がなかった場合は口座維持手数料（2,500円税込）が発生、引き続き取引等がない場合、6ヶ月毎に同額が発生します。3,000円未満を出金の際は250円（税込）の出金手数料がかかります。■オプションの購入後の注文取り消しは行う事ができませんが、取引可能期間であれば売却は可能です。ただし、購入価格と売却価格にはスプレッドがあり、売却時に損失を被る可能性があります。■お取引開始前に、契約締結前交付書面を熟読の上、必ず約款及び取扱説明書に書かれてある取引の特徴、取引条件、仕組み及びリスクを十分確認いただき、ご自身の判断と責任において、自己の計算によりお取引ください。
-                            </div>
-                            <div class="ja-hide gr-3 gr-12-m gr-5-p" id="social-networks">
-                                <div id="fb-root">
+                    <div id="fb-root">
 </div>
-<div class="social-icons">
+<div class="social-icons gr-padding-10">
     <a href="http://www.youtube.com/user/BinaryTradingVideos" target="_blank">
         <img class="responsive social-network-icon" src="/images/pages/footer/youtube.svg"/>
     </a>
@@ -895,9 +879,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <img class="responsive social-network-icon" src="/images/pages/footer/linkedin.svg"/>
     </a>
 </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -911,7 +892,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <div class="container">
             <div class="gr-padding-10">
                 <p class="gambling content-inverse-color">
-                    【商号】Binary株式会社　金融商品取引業者　関東財務局長（金商）第2949号【加入協会】一般社団法人金融先物取引業協会
+                    【商号】Binary株式会社 (和文名称 バイナリー株式会社)　金融商品取引業者　関東財務局長（金商）第2949号【加入協会】一般社団法人金融先物取引業協会
 <span class="ja-hide"><a href="/ja/responsible-trading.html" class="pjaxload">健全なトレードのために</a>をお読みください。</span>
                 </p>
             </div>

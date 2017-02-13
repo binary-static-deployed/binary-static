@@ -16,8 +16,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <div class="container">
 
 
-  <div class="gr-12" id="pa-transfer-client">
+  <div id="pa-transfer-client">
     <h1>Перевод через агента</h1>
+
+    <div id="pa_transfer_loading" class="center-text"><div class="barspinner dark">
+    <div class="rect1"></div>
+    <div class="rect2"></div>
+    <div class="rect3"></div>
+    <div class="rect4"></div>
+    <div class="rect5"></div>
+</div></div>
 
     <div id="pa_confirm_transfer" class="invisible">
         <p>Просим подтвердить данные транзакции для завершения перевода:</p>
@@ -59,11 +67,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </div>
 
     <div id="virtual_error" class="invisible">
-        <p class="center notice-msg">Данная функция недоступна на демо-счетах.</p>
+        <p class="center-text notice-msg">Данная функция недоступна на демо-счетах.</p>
     </div>
 
     <div id="not_pa_error" class="invisible">
-        <p class="center notice-msg">Данная функция доступна лишь на счетах платёжных агентов.</p>
+        <p class="center-text notice-msg">Данная функция доступна лишь на счетах платёжных агентов.</p>
     </div>
 
     <div id="paymentagent_transfer" class="invisible">

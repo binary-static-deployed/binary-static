@@ -55,10 +55,10 @@
           <link rel="alternate" href="/zh_cn/trading_beta.html" hreflang="ZH_CN" /> 
           <link rel="alternate" href="/zh_tw/trading_beta.html" hreflang="ZH_TW" /> 
         
-         <link rel="stylesheet" href="/css/binary.min.css?ycea7ml0">
-         <link rel="stylesheet" href="https://style.binary.com/binary.css?ycea7ml0">
+         <link rel="stylesheet" href="/css/binary.min.css?a1patufn">
+         <link rel="stylesheet" href="https://style.binary.com/binary.css?a1patufn">
         
-        <script src='/js/binary.min.js?ycea7ml0' defer async></script>
+        <script src='/js/binary.min.js?a1patufn'></script>  <script src='https://style.binary.com/binary.js?a1patufn'></script>
     </head>
 
 
@@ -362,7 +362,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="col-left gr-6 gr-7-t gr-12-p gr-12-m">
                 <div class="content-tab-container">
                     <div id="contract_market_form_container">
-                        <ul class="nav tm-ul" id="contract_form_name_nav"></ul>
+                        <ul class="nav tm-ul follow-default" id="contract_form_name_nav"></ul>
                     </div>
                     <div id="contract_container" class="col row">
                         <div id="loading_container3" class="overlay_container"></div>
@@ -371,15 +371,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                 <form id='websocket_form'>
                                     <div class="row" id="period_row">
                                         <div class="col form_label">
-                                            <label for="period" id="period_label"></label>
+                                            <label for="period" id="period_label">Masa</label>
                                         </div>
                                         <div class="big-col">
                                             <select id="period"></select>
                                         </div>
                                     </div>
                                     <div class="row" id="date_start_row">
-                                        <div class="col form_label" id="start_time_label">
-                                        </div>
+                                        <div class="col form_label" id="start_time_label">Waktu mulai</div>
                                         <div class="big-col">
                                             <select id="date_start"></select>
                                         </div>
@@ -394,7 +393,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                                 <label></label>
                                                 <select id="duration_units" class="medium_width_input"></select>
                                                 <span id="duration_tooltip_wrapper">
-                                                    <span id="duration_tooltip"></span>
+                                                    <span id="duration_tooltip" data-balloon="durasi minimal yang tersedia">min</span>
                                                     <span id="duration_minimum"></span>
                                                     <span id="duration_maximum" class="invisible"></span>
                                                 </span>
@@ -408,42 +407,42 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                     <div class="row barrier_class" id="barrier_row">
                                         <div class="col form_label">
                                             <label for="H" id="barrier_label">
-                                                <span id="barrier_tooltip" data-balloon-length="xlarge"></span>
-                                                <span id="barrier_span"></span>
+                                                <span id="barrier_tooltip" data-balloon="Masukan batasan yang merupakan selisih harga spot. Jika Anda memasukan +0.005, maka Anda akan membeli kontrak dengan batasan 0.005 lebih tinggi dari spot masuk. Spot masuk adalah tik setelah kontrak Anda diproses" data-balloon-length="xlarge">Barrier offset</span>
+                                                <span id="barrier_span">Batasan</span>
                                             </label>
                                         </div>
                                         <div class="big-col">
                                             <input id="barrier" type="text" name="H" pattern="^[\+-]\d+(\.\d{1,5})?|\d+(\.\d{1,5})?" title="Masukkan angka." autocomplete="off" />
-                                            <span id="indicative_barrier_tooltip" data-balloon-length="xlarge"></span>
+                                            <span id="indicative_barrier_tooltip" data-balloon="Ini adalah batasan indikatif. Batasan aktual adalah spot masuk ditambah batasan offset." data-balloon-length="xlarge"></span>
                                         </div>
                                     </div>
                                     <div class="row barrier_class" id="high_barrier_row">
                                         <div class="col form_label">
                                             <label for="H" id="barrier_high_label">
-                                                <span id="barrier_high_tooltip" data-balloon-length="xlarge"></span>
-                                                <span id="barrier_high_span"></span>
+                                                <span id="barrier_high_tooltip" data-balloon="Masukan batasan yang merupakan selisih harga spot. Jika Anda memasukan +0.005, maka Anda akan membeli kontrak dengan batasan 0.005 lebih tinggi dari spot masuk. Spot masuk adalah tik setelah kontrak Anda diproses" data-balloon-length="xlarge">Batasan offset tinggi</span>
+                                                <span id="barrier_high_span">Batasan Tinggi</span>
                                             </label>
                                         </div>
                                         <div class="big-col">
                                             <input id="barrier_high" type="text" name="H" pattern="^[\+-]\d+(\.\d{1,5})?|\d+(\.\d{1,5})?" title="Masukkan angka." autocomplete="off" />
-                                            <span id="indicative_high_barrier_tooltip" data-balloon-length="xlarge"></span>
+                                            <span id="indicative_high_barrier_tooltip" data-balloon="Ini adalah batasan indikatif. Batasan aktual adalah spot masuk ditambah batasan offset." data-balloon-length="xlarge"></span>
                                         </div>
                                     </div>
                                     <div class="row barrier_class" id="low_barrier_row">
                                         <div class="col form_label">
                                             <label for="L" id="barrier_low_label">
-                                                <span id="barrier_low_tooltip" data-balloon-length="xlarge"></span>
-                                                <span id="barrier_low_span"></span>
+                                                <span id="barrier_low_tooltip" data-balloon="Masukan batasan yang merupakan selisih harga spot. Jika Anda memasukan +0.005, maka Anda akan membeli kontrak dengan batasan 0.005 lebih tinggi dari spot masuk. Spot masuk adalah tik setelah kontrak Anda diproses" data-balloon-length="xlarge">Batasan offset rendah</span>
+                                                <span id="barrier_low_span">Batasan rendah</span>
                                             </label>
                                         </div>
                                         <div class="big-col">
                                             <input id="barrier_low" type="text" name="L" pattern="^[\+-]\d+(\.\d{1,5})?|\d+(\.\d{1,5})?" title="Masukkan angka." autocomplete="off" />
-                                            <span id="indicative_low_barrier_tooltip" data-balloon-length="xlarge"></span>
+                                            <span id="indicative_low_barrier_tooltip" data-balloon="Ini adalah batasan indikatif. Batasan aktual adalah spot masuk ditambah batasan offset." data-balloon-length="xlarge"></span>
                                         </div>
                                     </div>
                                     <div class="row" id="prediction_row">
                                         <div class="col form_label">
-                                            <label for="prediction" id="prediction_label"></label>
+                                            <label for="prediction" id="prediction_label">Analisa Digit Terakhir</label>
                                         </div>
                                         <div class="big-col">
                                             <select id="prediction" class="small_width_input">
@@ -463,10 +462,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                     <div class="row" id="payout_row">
                                         <div class="col form_label">
                                             <select id="amount_type">
-                                                <option value="payout" id="payout_option"></option>
-                                                <option value="stake" id="stake_option"></option>
+                                                <option value="payout" id="payout_option">Hasil</option>
+                                                <option value="stake" id="stake_option">Modal</option>
                                             </select>
-                                            <label for="amount_per_point" id="amount_per_point_label" class="small_width_input"></label>
+                                            <label for="amount_per_point" id="amount_per_point_label" class="small_width_input">Jumlah per poin</label>
                                         </div>
                                         <div class="row-inner big-col">
                                             <div class="col-inner">
@@ -479,18 +478,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                     <div id="spread_element_container">
                                         <div class="row">
                                             <div class="col form_label">
-                                                <label for="stop_type" id="stop_type_label"></label>
+                                                <label for="stop_type" id="stop_type_label">Stop-type</label>
                                             </div>
                                             <div class="big-col">
                                                 <input type="radio" name="stop_type" id="stop_type_points" value="point" checked/>
-                                                <label id="stop_type_points_label" class="radio_label" for="stop_type_points"></label>
+                                                <label id="stop_type_points_label" class="radio_label" for="stop_type_points">Poin</label>
                                                 <input type="radio" name="stop_type" id="stop_type_dollar" value="dollar" />
                                                 <label id="stop_type_dollar_label" class="radio_label" for="stop_type_dollar"></label>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col form_label">
-                                                <label for="stop_loss" id="stop_loss_label"></label>
+                                                <label for="stop_loss" id="stop_loss_label">Stop-loss</label>
                                             </div>
                                             <div class="big-col">
                                                 <input id="stop_loss" type="number" step="any" value="15" autocomplete="off" />
@@ -499,7 +498,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                         </div>
                                         <div class="row">
                                             <div class="col form_label">
-                                                <label for="stop_profit" id="stop_profit_label"></label>
+                                                <label for="stop_profit" id="stop_profit_label">Stop-profit</label>
                                             </div>
                                             <div class="big-col">
                                                 <input id="stop_profit" type="number" step="any" value="10" autocomplete="off" />
@@ -607,7 +606,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                     </div>
                                     <div class="gr-row">
                                         <div class="contract_purchase button gr-12 clear">
-                                            <button class="purchase_button contract_description no-underline" id="purchase_button_top" data-balloon-length="medium" value="purchase"></button>
+                                            <button class="purchase_button contract_description no-underline" id="purchase_button_top" data-balloon-length="medium" value="purchase">Beli</button>
                                         </div>
                                     </div>
                                 </div>
@@ -635,7 +634,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                     </div>
                                     <div class="gr-row">
                                         <div class="contract_purchase button gr-12 clear">
-                                            <button class="purchase_button contract_description no-underline" id="purchase_button_bottom" data-balloon-length="medium" value="purchase"></button>
+                                            <button class="purchase_button contract_description no-underline" id="purchase_button_bottom" data-balloon-length="medium" value="purchase">Beli</button>
                                         </div>
                                     </div>
                                 </div>
@@ -650,7 +649,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <div id="trading_analysis_content">
     <div class="content-tab-container page-section">
         <div id="analysis_tab_container">
-            <ul id="analysis_tabs" class="tm-ul">
+            <ul id="analysis_tabs" class="tm-ul follow-default">
                 <li id="tab_graph" class="tm-li first">
                     <a href="#tab_graph" class="tm-a first">Grafik</a>
                 </li>
@@ -930,41 +929,26 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </div>
     <div id="footer-regulatory" class="primary-color-dark">
         <div class="container">
-            <div>
-                <div class="gr-padding-10">
-                    <div class="gr-parent">
-                        <div class="gr-row ja-hide id-hide">
-                            <div class="gr-2">
-                                <a href="http://www.gov.im/gambling/" target="_blank">
-                                    <img id="iom_icon_footer" class="responsive" src="/images/pages/footer/isle-of-man.png"/>
-                                </a>
-                            </div>
-                            <div class="gr-2 center-text">
-                                <a href="https://www.authorisation.mga.org.mt/verification.aspx?lang=EN&company=a5fd1edc-d072-4c26-b0cd-ab3fa0f0cc40&details=1" target="_blank">
-                                    <img id="lga_icon_footer" class="responsive" src="/images/pages/footer/mga-logo-footer.svg"/>
-                                </a>
-                            </div>
-                            <div class="gr-6 center-text">
-                                <a href="http://mfsa.com.mt/" target="_blank">
-                                    <img id="mfsa_logo" class="responsive" src="/images/pages/footer/mfsa-logo.svg"/>
-                                </a>
-                            </div>
-                            <div class="gr-2">
-                                <a href="http://mfsa.com.mt/" target="_blank">
-                                    <img id="mifid_logo" class="responsive" src="/images/pages/footer/mifid-logo.svg"/>
-                                </a>
-                            </div>
+            <div class="gr-row">
+                <div id="regulatory-text" class="gr-9 gr-12-m gr-7-p gr-padding-10 gr-parent content-inverse-color">
+                    Website ini dipasarkan di negara Inggris dan Isle of Man melalui Binary (IOM) Ltd. Untuk Uni Eropa (kecuali Inggris) melalui Binary (Europe) Ltd dan Binary Investments (Europe) Ltd. Sedangkan untuk negara lain di seluruh dunia melalui Binary (C.R.) S.A. Layanan website ini tidak tersedia untuk di bawah usia 18.
+                </div>
+                <div class="ja-hide gr-3 gr-12-m gr-5-p center-text" id="social-networks">
+                    <div class="gr-row ja-hide id-hide">
+                        <div class="gr-5">
+                            <a href="http://www.gov.im/gambling/" target="_blank">
+                                <img id="iom_icon_footer" class="responsive" src="/images/pages/footer/isle-of-man.png"/>
+                            </a>
+                        </div>
+                        <div class="gr-7">
+                            <a href="https://www.authorisation.mga.org.mt/verification.aspx?lang=EN&company=a5fd1edc-d072-4c26-b0cd-ab3fa0f0cc40&details=1" target="_blank">
+                                <img id="lga_icon_footer" class="responsive" src="/images/pages/footer/mga-logo-footer.svg"/>
+                            </a>
                         </div>
                     </div>
-                    <div class="gr-parent">
-                        <div class="gr-row">
-                            <div id="regulatory-text" class="gr-9 gr-12-m gr-7-p content-inverse-color">
-                                Website ini dipasarkan di negara Inggris dan Isle of Man melalui Binary (IOM) Ltd. Untuk Uni Eropa (kecuali Inggris) melalui Binary (Europe) Ltd dan Binary Investments (Europe) Ltd. Sedangkan untuk negara lain di seluruh dunia melalui Binary (C.R.) S.A. Layanan website ini tidak tersedia untuk di bawah usia 18.
-                            </div>
-                            <div class="ja-hide gr-3 gr-12-m gr-5-p" id="social-networks">
-                                <div id="fb-root">
+                    <div id="fb-root">
 </div>
-<div class="social-icons">
+<div class="social-icons gr-padding-10">
     <a href="http://www.youtube.com/user/BinaryTradingVideos" target="_blank">
         <img class="responsive social-network-icon" src="/images/pages/footer/youtube.svg"/>
     </a>
@@ -982,9 +966,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <img class="responsive social-network-icon" src="/images/pages/footer/linkedin.svg"/>
     </a>
 </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
