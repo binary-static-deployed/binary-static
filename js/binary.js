@@ -19079,8 +19079,14 @@
 	        activate_by_client_type();
 	    };
 	
+	    var tnc_pages = function tnc_pages() {
+	        var location = window.location.href;
+	        return (/user\/tnc_approvalws/.test(location) || /terms-and-conditions/.test(location)
+	        );
+	    };
+	
 	    var check_tnc = function check_tnc() {
-	        if (/user\/tnc_approvalws/.test(window.location.href) || /terms-and-conditions/.test(window.location.href) || get('is_virtual') || sessionStorage.getItem('check_tnc') !== 'check') {
+	        if (tnc_pages() || get('is_virtual') || sessionStorage.getItem('check_tnc') !== 'check') {
 	            return;
 	        }
 	        var client_tnc_status = get('tnc_status'),
@@ -19301,7 +19307,7 @@
 	    };
 	
 	    var should_redirect_tax = function should_redirect_tax() {
-	        if (should_complete_tax() && !/user\/settings\/detailsws/.test(window.location.pathname)) {
+	        if (should_complete_tax() && !/user\/settings\/detailsws/.test(window.location.pathname) && !tnc_pages()) {
 	            window.location.href = url_for('user/settings/detailsws');
 	            return true;
 	        }
