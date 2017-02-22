@@ -1,0 +1,321 @@
+<div id="content" class="metatrader-content">
+        <!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-MZWFF7"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script data-cfasync="false">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MZWFF7');</script>
+<!-- End Google Tag Manager -->
+        <div id="page_info" style="display:none;">
+            <title>Управление счётом на MetaTrader | Binary.com</title>
+            <div id="content_class">metatrader-content</div>
+        </div>
+
+
+  <div id="mt_account_management" class="container">
+    <div>
+        <h1>Управление счётом на MetaTrader</h1>
+    </div>
+    <p id="page_msg" class="notice-msg center-text invisible"></p>
+    <div id="mt_loading"><div class="barspinner dark">
+    <div class="rect1"></div>
+    <div class="rect2"></div>
+    <div class="rect3"></div>
+    <div class="rect4"></div>
+    <div class="rect5"></div>
+</div></div>
+    <div class="gr-12">
+        <div id="accounts_list" class="gr-row"></div>
+    </div>
+
+    <div class="fst-container">
+        <div id="main_msg" class="notice-msg center-text invisible"></div>
+        <fieldset id="fst_action" class="invisible">
+            <legend></legend>
+            <span class="close"></span>
+            <form id="frm_action"></form>
+        </fieldset>
+    </div>
+
+    <div id="templates" class="invisible">
+        <div class="acc-box gr-12-m gr-6-p gr-4-t gr-4">
+            <div>
+                <div class="title"></div>
+                <div class="loading"><div class="barspinner dark">
+    <div class="rect1"></div>
+    <div class="rect2"></div>
+    <div class="rect3"></div>
+    <div class="rect4"></div>
+    <div class="rect5"></div>
+</div></div>
+                <div class="center-text no-account invisible">
+                    <div class="info"></div>
+                    <span class="button"><span class="act_new_account">Create Account</span></span>
+                </div>
+                <div class="acc-info has-account gr-row invisible">
+                    <div class="gr-4">Login ID:</div><div data="login" class="gr-8"></div>
+                    <div class="gr-4">Имя:</div><div data="name" class="gr-7"></div>
+                    <div class="gr-4">Баланс:</div><div data="balance" class="gr-8"></div>
+                    <div class="gr-4">Leverage:</div><div data="leverage" class="gr-8"></div>
+                </div>
+                <div class="acc-actions has-account center-text invisible">
+                    <a href="javascript:;" class="act_deposit">
+                        <img src="/images/pages/metatrader/deposit.svg" alt="" />
+                        Пополнение
+                    </a>
+                    <a href="javascript:;" class="act_withdrawal">
+                        <img src="/images/pages/metatrader/withdraw.svg" alt="" />
+                        Вывод
+                    </a>
+                    <a href="javascript:;" class="act_password_change">
+                        <img src="/images/pages/metatrader/password.svg" alt="" />
+                        Пароль
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="no_account_info">
+            <div id="demo">Open a free Demo account.</div>
+            <div id="vanuatu_cent">
+                The Cent account offers the highest leverage, as well as low margin call and stop out level.
+                <a class="invisible" target="_blank">Read more</a>
+            </div>
+            <div id="vanuatu_standard">
+                The Standard account is suitable for a wide range of traders, both new and experienced.
+                <a class="invisible" target="_blank">Read more</a>
+            </div>
+            <div id="vanuatu_stp">
+                The STP account provides you with the tightest spreads and connects you directly to the market.
+                <a class="invisible" target="_blank">Read more</a>
+            </div>
+            <div id="costarica">
+                The Volatility account allows you to profit by speculating on the rise or fall of an instrument.
+                <a class="invisible" target="_blank">Read more</a>
+            </div>
+        </div>
+
+        <form id="frm_new_account">
+            <div class="gr-row form-row">
+                <div class="gr-4">
+                    <label>Тип счёта</label>
+                </div>
+                <div class="gr-8">
+                    <span id="lbl_account_type"></span>
+                </div>
+            </div>
+            <div class="gr-row form-row">
+                <div class="gr-4">
+                    <label>Email</label>
+                </div>
+                <div class="gr-8">
+                    <span id="lbl_email"></span>
+                </div>
+            </div>
+            <div class="gr-row form-row">
+                <div class="gr-4">
+                    <label for="txt_name">Имя и фамилия</label>
+                </div>
+                <div class="gr-8">
+                    <input id="txt_name" type="text" maxlength="30" autocomplete="off" />
+                </div>
+            </div>
+            <div class="gr-row form-row invisible">
+                <div class="gr-4">
+                    <label for="ddl_leverage">Кредитный рычаг</label>
+                </div>
+                <div class="gr-8">
+                    <select id="ddl_leverage">
+                        <option value="1">1:1</option>
+                        <option value="50">1:50</option>
+                        <option value="100" selected="selected">1:100</option>
+                        <option value="200">1:200</option>
+                        <option value="300">1:300</option>
+                        <option value="500">1:500</option>
+                        <option value="1000">1:1000</option>
+                    </select>
+                </div>
+            </div>
+            <div class="gr-row form-row">
+                <div class="gr-4">
+                    <label for="txt_main_pass">Основной пароль (доступ к торговле)</label>
+                </div>
+                <div class="gr-8">
+                    <input id="txt_main_pass" type="password" maxlength="25" />
+                    <div class="hint">Минимум 8 символов, включая цифры, строчные и прописные буквы.</div>
+                </div>
+            </div>
+            <div class="gr-row form-row">
+                <div class="gr-4">
+                    <label for="txt_re_main_pass">Подтвердите основной пароль</label>
+                </div>
+                <div class="gr-8">
+                    <input id="txt_re_main_pass" type="password" maxlength="25" />
+                </div>
+            </div>
+            <div class="gr-row form-row">
+                <div class="gr-4">
+                    <label for="txt_investor_pass">Пароль инвестора (только для чтения)</label>
+                </div>
+                <div class="gr-8">
+                    <input id="txt_investor_pass" type="password" maxlength="25" />
+                </div>
+            </div>
+            <div class="gr-row">
+                <div class="gr-12-m gr-centered">
+                    <p>
+                        <input id="chk_tnc" type="checkbox" />
+                        <label for="chk_tnc">Я прочитал и согласен с <a target="_blank" href="/ru/terms-and-conditions.html#legal-mt">правилами и условиями</a> сайта.</label>
+                    </p>
+                </div>
+            </div>
+
+            <div class="gr-row">
+                <div class="gr-8 gr-push-4">
+                    <p id="msg_form" class="error-msg invisible"></p>
+                    <button id="btn_submit" type="submit">Create Account</button>
+                </div>
+            </div>
+        </form>
+
+        <form id="frm_password_change">
+            <div class="gr-row form-row">
+                <div class="gr-4">
+                    <label>Логин</label>
+                </div>
+                <div class="gr-8">
+                    <span id="lbl_login"></span>
+                </div>
+            </div>
+            <div class="gr-row form-row">
+                <div class="gr-4">
+                    <label for="txt_old_password">Текущий пароль</label>
+                </div>
+                <div class="gr-8">
+                    <input id="txt_old_password" type="password" maxlength="25" />
+                </div>
+            </div>
+            <div class="gr-row form-row">
+                <div class="gr-4">
+                    <label for="txt_new_password">Новый пароль</label>
+                </div>
+                <div class="gr-8">
+                    <input id="txt_new_password" type="password" maxlength="25" />
+                    <div class="hint">Минимум 8 символов, включая цифры, строчные и прописные буквы.</div>
+                </div>
+            </div>
+            <div class="gr-row form-row">
+                <div class="gr-4">
+                    <label for="txt_re_new_password">Подтвердите новый пароль</label>
+                </div>
+                <div class="gr-8">
+                    <input id="txt_re_new_password" type="password" maxlength="25" />
+                </div>
+            </div>
+
+            <div class="gr-row">
+                <div class="gr-8 gr-push-4">
+                    <p id="msg_form" class="error-msg invisible"></p>
+                    <button id="btn_submit" type="submit">Сменить пароль</button>
+                </div>
+            </div>
+        </form>
+
+        <form id="frm_deposit">
+            <p>Переведите средства со счёта Binary.com на счёт MT5:</p>
+            <div class="gr-row form-row">
+                <div class="gr-4">
+                    <label>Перевести со счёта</label>
+                </div>
+                <div class="gr-8">
+                    <span id="lbl_from"></span>
+                </div>
+            </div>
+            <div class="gr-row form-row">
+                <div class="gr-4">
+                    <label>Перевести на счёт</label>
+                </div>
+                <div class="gr-8">
+                    <span id="lbl_to"></span>
+                </div>
+            </div>
+            <div class="gr-row form-row">
+                <div class="gr-4">
+                    <label for="txt_amount">Количество</label>
+                </div>
+                <div class="gr-8">
+                    &#36; <input id="txt_amount" type="text" maxlength="10" />
+                </div>
+            </div>
+
+            <div class="gr-row">
+                <div class="gr-8 gr-push-4">
+                    <p id="msg_form" class="error-msg invisible"></p>
+                    <button id="btn_submit" type="submit">Пополнение</button>
+                </div>
+            </div>
+        </form>
+
+        <form id="frm_withdrawal">
+            <p>Переведите средства со счёта MT5 на Ваш счёт на Binary.com:</p>
+            <div class="gr-row form-row">
+                <div class="gr-4">
+                    <label>Вывести из</label>
+                </div>
+                <div class="gr-8">
+                    <span id="lbl_from"></span>
+                </div>
+            </div>
+            <div class="gr-row form-row">
+                <div class="gr-4">
+                    <label>Перевести на счёт</label>
+                </div>
+                <div class="gr-8">
+                    <span id="lbl_to"></span>
+                </div>
+            </div>
+            <div class="gr-row form-row">
+                <div class="gr-4">
+                    <label for="txt_main_pass">Основной пароль на MT5</label>
+                </div>
+                <div class="gr-8">
+                    <input id="txt_main_pass" type="password" maxlength="25" />
+                </div>
+            </div>
+            <div class="gr-row form-row">
+                <div class="gr-4">
+                    <label for="txt_amount">Количество</label>
+                </div>
+                <div class="gr-8">
+                    &#36; <input id="txt_amount" type="text" maxlength="10" />
+                </div>
+            </div>
+
+            <div class="gr-row">
+                <div class="gr-8 gr-push-4">
+                    <p id="msg_form" class="error-msg invisible"></p>
+                    <button id="btn_submit" type="submit">Вывод</button>
+                </div>
+            </div>
+        </form>
+
+        <div id="msg_authenticate">
+            <div class="align-start">
+                <p>To create an MT5 Financial Account please:</p>
+                <ul class="checked">
+                    <li class="authenticate invisible">
+                        Authenticate your Binary.com account.
+                        <p>Чтобы аутентифицировать счёт, пожалуйста, отправьте следующие документы по адресу <a href="mailto:support@binary.com">support@binary.com</a>:</p>
+                        <ul class="bullet">
+                            <li>Отсканированная копия Вашего паспорта, водительских прав (временных или постоянных) или Id-карты, содержащей Ваше имя и дату рождения.</li>
+                            <li>Отсканированный счёт за коммунальные услуги или выписка с Вашего банковского счёта (датированные не позднее, чем за 3 месяца до текущей даты).</li>
+                        </ul>
+                    </li>
+                    <li class="assessment invisible">Complete the <a href="/ru/user/settings/assessmentws.html">Financial Assessment</a>.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

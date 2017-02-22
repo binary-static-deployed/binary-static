@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style id="antiClickjack">body{display:none !important;}</style>
+        <script type="text/javascript">
+            if (self === top) {
+                var antiClickjack = document.getElementById("antiClickjack");
+                antiClickjack.parentNode.removeChild(antiClickjack);
+            } else {
+                top.location = self.location;
+            }
+        </script>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+        <meta http-equiv="Content-Language" content="PT" />
+        <meta name="description" content=" A Binary.com oferece a todos uma forma fácil de participar nos mercados financeiros. Negocie com apenas $1 nas principais moedas, ações, índices e matérias-primas." />
+        <meta name="keywords" content=" opções binárias, forex, negociação forex, negociação online, negociação financeira, negociação binária, índice de negociação, índices de negociação, negociação forex, negociação de commodities, estratégia de negociações binárias, aposta binária, aposta binária, plataforma de negociação de opções binárias, estratégia binária, finanças, ações, investimento, negociações" />
+        <meta name="author" content="Binary.com" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <meta name="dcterms.rightsHolder" content="Binary.com" />
+        <meta name="dcterms.rights" content="Binary.com" />
+        <meta name="google-site-verification" content="roReCEK-wNa1EMA6ZM9a4zCOQOMqxfJjvfsZMC9qh_k" />
+        <meta property="og:title" content="Binary.com" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="/images/common/og_image.gif" />
+
+        <title>MetaTrader account management | Binary.com</title>
+
+        
+
+        <link rel="apple-touch-icon" sizes="57x57" href="https://style.binary.com/images/favicons/apple-touch-icon-57x57.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="https://style.binary.com/images/favicons/apple-touch-icon-114x114.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="https://style.binary.com/images/favicons/apple-touch-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="https://style.binary.com/images/favicons/apple-touch-icon-144x144.png">
+        <link rel="apple-touch-icon" sizes="60x60" href="https://style.binary.com/images/favicons/apple-touch-icon-60x60.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="https://style.binary.com/images/favicons/apple-touch-icon-120x120.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="https://style.binary.com/images/favicons/apple-touch-icon-76x76.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="https://style.binary.com/images/favicons/apple-touch-icon-152x152.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="https://style.binary.com/images/favicons/apple-touch-icon-180x180.png">
+        <link rel="icon" type="image/png" sizes="192x192" href="https://style.binary.com/images/favicons/favicon-192x192.png">
+        <link rel="icon" type="image/png" sizes="160x160" href="https://style.binary.com/images/favicons/favicon-160x160.png">
+        <link rel="icon" type="image/png" sizes="96x96" href="https://style.binary.com/images/favicons/favicon-96x96.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="https://style.binary.com/images/favicons/favicon-16x16.png" >
+        <link rel="icon" type="image/png" sizes="32x32" href="https://style.binary.com/images/favicons/favicon-32x32.png" >
+
+          <link rel="alternate" href="/en/user/metatrader.html" hreflang="EN" /> 
+          <link rel="alternate" href="/de/user/metatrader.html" hreflang="DE" /> 
+          <link rel="alternate" href="/es/user/metatrader.html" hreflang="ES" /> 
+          <link rel="alternate" href="/fr/user/metatrader.html" hreflang="FR" /> 
+          <link rel="alternate" href="/id/user/metatrader.html" hreflang="ID" /> 
+          <link rel="alternate" href="/it/user/metatrader.html" hreflang="IT" /> 
+          <link rel="alternate" href="/pl/user/metatrader.html" hreflang="PL" /> 
+          <link rel="alternate" href="/pt/user/metatrader.html?l=pt" hreflang="PT" /> 
+          <link rel="alternate" href="/ru/user/metatrader.html" hreflang="RU" /> 
+          <link rel="alternate" href="/th/user/metatrader.html" hreflang="TH" /> 
+          <link rel="alternate" href="/vi/user/metatrader.html" hreflang="VI" /> 
+         
+          <link rel="alternate" href="/zh_cn/user/metatrader.html" hreflang="ZH_CN" /> 
+          <link rel="alternate" href="/zh_tw/user/metatrader.html" hreflang="ZH_TW" /> 
+        
+         <link rel="stylesheet" href="/css/binary.min.css?61ehwyhz">
+         <link rel="stylesheet" href="https://style.binary.com/binary.css?61ehwyhz">
+        
+        <script src='/js/binary.min.js?61ehwyhz'></script>  <script src='https://style.binary.com/binary.js?61ehwyhz'></script>
+    </head>
+
+
+<body class="PT">
+    <div id='page-wrapper'>
+    <div id="topbar" class="no-print">
+        <div class="container">
+            <div class="gr-row">
+                <div id="topbar-msg" class='gr-6 gr-5-t gr-12-p gr-12-m invisible upgrademessage'>
+                    <span class='gr-hide-m invisible'>
+                        <span id='virtual-text'>Você está usando uma conta virtual.</span>
+                    </span>
+                    <a class="pulser invisible"></a>
+                </div>
+                <div class='gr-6 gr-7-t gr-12-p gr-12-m' id='topbar-info'>
+                    <div class="gr-row">
+                        <div class='gr-5 gr-6-m no-underline' id="gmt-clock" data-balloon-pos="down"></div>
+                        <div class='gr-2 gr-hide-m' id='contact-us'>
+                            <a class="pjaxload" href="/pt/contact.html">Contate-Nos</a>
+                        </div>
+                        <div class='gr-5 gr-6-m'>
+                            <div class="languages invisible">
+                                <ul id="display_language">
+                                    <li>
+                                        <span class="world world-white"></span>
+                                        <div class="language-wrapper">
+                                            <span class="language"></span>
+                                        </div>
+                                        <span class="nav-caret"></span>
+                                    </li>
+                                </ul>
+                                <ul id="select_language">
+                                    <li>
+                                        <span class="world world-black"></span>
+                                        <div class="language-wrapper">
+                                            <span class="language"></span>
+                                        </div>
+                                        <span class="nav-caret"></span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="header" class="no-print">
+        <div class='container'>
+            <div class='gr-12'>
+                <div class='gr-row gr-row-align-middle'>
+                    <div class='gr-3 gr-2-m gr-2-p'>
+                        <a id="logo" href="javascript:;">
+                            <div class='gr-row logo-parent'>
+                                <div class='gr-3 gr-12-m gr-12-p gr-no-gutter logo'>
+                                    <div></div>
+                                </div>
+                                <div class='gr-9 gr-hide-m gr-hide-p binary-logo-text'>
+                                    <div></div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class='gr-6 gr-hide-m gr-hide-p gr-padding-10'>
+                        <div id='main-navigation'>
+                            <ul id="menu-top">
+                                <li class="ja-hide">
+                                    <a class="pjaxload" href="/pt/why-us.html">Por que nós?</a>
+                                </li>
+                                <li class="all-hide ja-show-inline-block">
+                                    <a class="pjaxload" href="/pt/why-us-jp.html">Por que nós?</a>
+                                </li>
+                                <li class="ja-hide">
+                                    <a class="pjaxload" href="/pt/get-started.html">Começar</a>
+                                </li>
+                                <li class="all-hide ja-show-inline-block">
+                                  <a class="pjaxload" href="/pt/get-started-jp.html">Começar</a>
+                                </li>
+                                <li class="ja-hide">
+                                    <a class="pjaxload" href="/pt/tour.html">Visita</a>
+                                </li>
+                                <li class="all-hide ja-show-inline-block">
+                                    <a class="pjaxload" href="/pt/tour-jp.html">Visita</a>
+                                </li>
+                                <li class="ja-hide" id="main-navigation-trading">
+                                    <a class="pjaxload" href="/pt/platforms.html">Plataformas</a>
+                                </li>
+                                <li class="all-hide ja-show-inline-block" id="main-navigation-jptrading">
+                                    <a class="pjaxload" href="/pt/multi_barriers_trading.html">Negociar</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div id="client-logged-in" class="gr-3 gr-7-m gr-8-p gr-no-gutter by_client_type client_real client_virtual center-text invisible">
+                      <div id="main-logout">
+                        <ul id="main-account" class="nav-menu main-nav">
+                            <li class="account">
+                                <a href="javascript:;">
+                                    <div class="main-account">
+                                        <div class="account-type"></div>
+                                        <div class="account-id"></div>
+                                        <div class="topMenuBalance">0</div>
+                                    </div>
+                                    <div class="nav-caret"></div>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul id="all-accounts" class="nav-menu main-nav">
+                            <li class="account">
+                                <a href="javascript:;">
+                                    <div class="main-account">
+                                        <div class="account-type"></div>
+                                        <div class="account-id"></div>
+                                        <div class="topMenuBalance">0</div>
+                                    </div>
+                                    <div class="nav-caret"></div>
+                                </a>
+                                <ul>
+                                    <a class="link with_login_cookies pjaxload" href="/pt/user/settingsws.html">
+                                        <li class="topMenuProfile">Perfil</li>
+                                    </a>
+                                    <a class="link with_login_cookies pjaxload" href="/pt/user/securityws.html">
+                                        <li class="topMenuSecurity">Segurança e limites</li>
+                                    </a>
+                                    <a class="link with_login_cookies pjaxload invisible" id="user_menu_metatrader" href="/pt/user/metatrader.html">
+                                        <li class="topMenuMetaTrader">MetaTrader</li>
+                                    </a>
+                                    <div class="separator-line-thin-gray"></div>
+                                    <div class="login-id-list"></div>
+                                    <a href="javascript:;" id="btn_logout" class="logout">
+                                        <li>Sair</li>
+                                    </a>
+                                </ul>
+                            </li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div id="client-logged-out" class="gr-3 gr-8-m gr-8-p gr-no-gutter by_client_type client_logged_out invisible gr-padding-10">
+                        <a id="btn_login" class="button" href="javascript:;"><span>Conectar-se</span></a>
+                    </div>
+                    <div class='gr-hide gr-show-m gr-2-m gr-show-p gr-1-p gr-no-gutter-mobile align-end'>
+                        <div id='mobile-menu-icon-container'>
+                            <a href='#mobile-menu' id='mobile-menu-icon'>
+                                <img class='responsive' src="/images/pages/binary-mobile-menu.svg"/>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="content-holder">
+    <div id="main-menu" class="tab-menu no-print fill-bg-color border-color">
+    <div class="tab-menu-wrap container gr-hide-m gr-hide-p">
+        <div class="gr-12 gr-no-gutter">
+            <ul class="items">  <li id="topMenuTrading" class="item ja-hide hide-tablet-mobile">
+                    <a class="link pjaxload" target="" href="/pt/trading.html">Negociar</a>
+                    
+                </li>  <li id="topMenuJPTrading" class="item all-hide ja-show hide-tablet-mobile">
+                    <a class="link pjaxload" target="" href="/pt/multi_barriers_trading.html">Negociar</a>
+                    
+                </li>  <li id="topMenuPortfolio" class="item client_logged_in invisible">
+                    <a class="link pjaxload" target="" href="/pt/user/portfoliows.html">Portfólio</a>
+                    
+                </li>  <li id="topMenuProfitTable" class="item client_logged_in invisible">
+                    <a class="link pjaxload" target="" href="/pt/user/profit_tablews.html">Tabela de Lucros</a>
+                    
+                </li>  <li id="topMenuStatement" class="item client_logged_in invisible">
+                    <a class="link pjaxload" target="" href="/pt/user/statementws.html">Extrato</a>
+                    
+                </li>  <li id="topMenuCashier" class="item ">
+                    <a class="link pjaxload" target="" href="/pt/cashier.html">Caixa</a>
+                    
+                </li>  <li id="topMenuResources" class="item ">
+                    <a class="link pjaxload" target="" href="/pt/resources.html">Recursos</a>
+                    
+                        <ul class="sub_items">  <li id="topMenuAssetIndex" class="sub_item ja-hide">
+                                <a class="link pjaxload" target="" href="/pt/resources/asset_indexws.html">Índice de Ativos</a>
+                            </li>  <li id="topMenuTradingTimes" class="sub_item">
+                                <a class="link pjaxload" target="" href="/pt/resources/market_timesws.html">Horário de Negociação</a>
+                            </li>  </ul>
+                    
+                </li>  <li id="topMenuShop" class="item ja-hide">
+                    <a class="link" target="_blank" href="https://shop.binary.com">Loja</a>
+                    
+                </li>  <li id="topMenuPaymentAgent" class="item invisible">
+                    <a class="link pjaxload" target="" href="/pt/paymentagent/transferws.html">Agente de pagamentos</a>
+                    
+                </li>  </ul>
+        </div>
+    </div>
+</div>
+    <div class='gr-hide gr-show-m gr-show-p' id='mobile-menu-container'>
+    <div class='gr-hide' id='mobile-menu'>
+        <ul>
+            <li class="ja-hide">
+                <a class="pjaxload" href="/pt/why-us.html">Por que nós?</a>
+            </li>
+            <li class="all-hide ja-show-block">
+                <a class="pjaxload" href="/pt/why-us-jp.html">Por que nós?</a>
+            </li>
+            <li class="ja-hide">
+              <a class="pjaxload" href="/pt/get-started.html">Começar</a>
+            </li>
+            <li class="all-hide ja-show-block">
+                <a class="pjaxload" href="/pt/get-started-jp.html">Começar</a>
+            </li>
+            <li class="ja-hide">
+                <a class="pjaxload" href="/pt/tour.html">Visita</a>
+            </li>
+            <li class="all-hide ja-show-block">
+                <a class="pjaxload" href="/pt/tour-jp.html">Visita</a>
+            </li>  <li id="topMenuTrading" class="item ja-hide hide-tablet-mobile">
+                <a class="pjaxload link pjaxload" href="/pt/trading.html">Negociar</a>
+                
+            </li>  <li id="topMenuJPTrading" class="item all-hide ja-show hide-tablet-mobile">
+                <a class="pjaxload link pjaxload" href="/pt/multi_barriers_trading.html">Negociar</a>
+                
+            </li>  <li id="topMenuPortfolio" class="item client_logged_in invisible">
+                <a class="pjaxload link pjaxload" href="/pt/user/portfoliows.html">Portfólio</a>
+                
+            </li>  <li id="topMenuProfitTable" class="item client_logged_in invisible">
+                <a class="pjaxload link pjaxload" href="/pt/user/profit_tablews.html">Tabela de Lucros</a>
+                
+            </li>  <li id="topMenuStatement" class="item client_logged_in invisible">
+                <a class="pjaxload link pjaxload" href="/pt/user/statementws.html">Extrato</a>
+                
+            </li>  <li id="topMenuCashier" class="item">
+                <a class="pjaxload link pjaxload" href="/pt/cashier.html">Caixa</a>
+                
+            </li>  <li id="topMenuResources" class="item">
+                <a class="pjaxload link pjaxload" href="/pt/resources.html">Recursos</a>
+                
+                    <ul class="sub_items">  <li id="topMenuAssetIndex" class="sub_item ja-hide">
+                            <a class="pjaxload link pjaxload" href="/pt/resources/asset_indexws.html">Índice de Ativos</a>
+                        </li>  <li id="topMenuTradingTimes" class="sub_item">
+                            <a class="pjaxload link pjaxload" href="/pt/resources/market_timesws.html">Horário de Negociação</a>
+                        </li>  </ul>
+                
+            </li>  <li id="topMenuShop" class="item ja-hide">
+                <a class="pjaxload link " href="https://shop.binary.com">Loja</a>
+                
+            </li>  <li id="topMenuPaymentAgent" class="item invisible">
+                <a class="pjaxload link pjaxload" href="/pt/paymentagent/transferws.html">Agente de pagamentos</a>
+                
+            </li>  <li class="ja-hide">
+                <a class="pjaxload" href="/pt/platforms.html">Plataformas</a>
+            </li>
+            <li class="all-hide ja-show-block">
+                <a class="pjaxload" href="/pt/multi_barriers_trading.html">Negociar</a>
+            </li>
+        </ul>
+    </div>
+</div>
+    <!-- FlushHead -->
+
+    <div id="content" class="metatrader-content">
+        <!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-MZWFF7"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script data-cfasync="false">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MZWFF7');</script>
+<!-- End Google Tag Manager -->
+        <div id="page_info" style="display:none;">
+            <title>MetaTrader account management | Binary.com</title>
+            <div id="content_class">metatrader-content</div>
+        </div>
+
+
+  <div id="mt_account_management" class="container">
+    <div>
+        <h1>MetaTrader account management</h1>
+    </div>
+    <p id="page_msg" class="notice-msg center-text invisible"></p>
+    <div id="mt_loading"><div class="barspinner dark">
+    <div class="rect1"></div>
+    <div class="rect2"></div>
+    <div class="rect3"></div>
+    <div class="rect4"></div>
+    <div class="rect5"></div>
+</div></div>
+    <div class="gr-12">
+        <div id="accounts_list" class="gr-row"></div>
+    </div>
+
+    <div class="fst-container">
+        <div id="main_msg" class="notice-msg center-text invisible"></div>
+        <fieldset id="fst_action" class="invisible">
+            <legend></legend>
+            <span class="close"></span>
+            <form id="frm_action"></form>
+        </fieldset>
+    </div>
+
+    <div id="templates" class="invisible">
+        <div class="acc-box gr-12-m gr-6-p gr-4-t gr-4">
+            <div>
+                <div class="title"></div>
+                <div class="loading"><div class="barspinner dark">
+    <div class="rect1"></div>
+    <div class="rect2"></div>
+    <div class="rect3"></div>
+    <div class="rect4"></div>
+    <div class="rect5"></div>
+</div></div>
+                <div class="center-text no-account invisible">
+                    <div class="info"></div>
+                    <span class="button"><span class="act_new_account">Create Account</span></span>
+                </div>
+                <div class="acc-info has-account gr-row invisible">
+                    <div class="gr-4">Login ID:</div><div data="login" class="gr-8"></div>
+                    <div class="gr-4">Nome:</div><div data="name" class="gr-7"></div>
+                    <div class="gr-4">Balance:</div><div data="balance" class="gr-8"></div>
+                    <div class="gr-4">Leverage:</div><div data="leverage" class="gr-8"></div>
+                </div>
+                <div class="acc-actions has-account center-text invisible">
+                    <a href="javascript:;" class="act_deposit">
+                        <img src="/images/pages/metatrader/deposit.svg" alt="" />
+                        Depositar
+                    </a>
+                    <a href="javascript:;" class="act_withdrawal">
+                        <img src="/images/pages/metatrader/withdraw.svg" alt="" />
+                        Retirar
+                    </a>
+                    <a href="javascript:;" class="act_password_change">
+                        <img src="/images/pages/metatrader/password.svg" alt="" />
+                        Senha
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="no_account_info">
+            <div id="demo">Open a free Demo account.</div>
+            <div id="vanuatu_cent">
+                The Cent account offers the highest leverage, as well as low margin call and stop out level.
+                <a class="invisible" target="_blank">Read more</a>
+            </div>
+            <div id="vanuatu_standard">
+                The Standard account is suitable for a wide range of traders, both new and experienced.
+                <a class="invisible" target="_blank">Read more</a>
+            </div>
+            <div id="vanuatu_stp">
+                The STP account provides you with the tightest spreads and connects you directly to the market.
+                <a class="invisible" target="_blank">Read more</a>
+            </div>
+            <div id="costarica">
+                The Volatility account allows you to profit by speculating on the rise or fall of an instrument.
+                <a class="invisible" target="_blank">Read more</a>
+            </div>
+        </div>
+
+        <form id="frm_new_account">
+            <div class="gr-row form-row">
+                <div class="gr-4">
+                    <label>Account type</label>
+                </div>
+                <div class="gr-8">
+                    <span id="lbl_account_type"></span>
+                </div>
+            </div>
+            <div class="gr-row form-row">
+                <div class="gr-4">
+                    <label>E-mail</label>
+                </div>
+                <div class="gr-8">
+                    <span id="lbl_email"></span>
+                </div>
+            </div>
+            <div class="gr-row form-row">
+                <div class="gr-4">
+                    <label for="txt_name">Nome</label>
+                </div>
+                <div class="gr-8">
+                    <input id="txt_name" type="text" maxlength="30" autocomplete="off" />
+                </div>
+            </div>
+            <div class="gr-row form-row invisible">
+                <div class="gr-4">
+                    <label for="ddl_leverage">Alavancagem</label>
+                </div>
+                <div class="gr-8">
+                    <select id="ddl_leverage">
+                        <option value="1">1:1</option>
+                        <option value="50">1:50</option>
+                        <option value="100" selected="selected">1:100</option>
+                        <option value="200">1:200</option>
+                        <option value="300">1:300</option>
+                        <option value="500">1:500</option>
+                        <option value="1000">1:1000</option>
+                    </select>
+                </div>
+            </div>
+            <div class="gr-row form-row">
+                <div class="gr-4">
+                    <label for="txt_main_pass">Main password (trading access)</label>
+                </div>
+                <div class="gr-8">
+                    <input id="txt_main_pass" type="password" maxlength="25" />
+                    <div class="hint">Minimum eight characters. Must contain numbers, and mix of upper and lower case letters.</div>
+                </div>
+            </div>
+            <div class="gr-row form-row">
+                <div class="gr-4">
+                    <label for="txt_re_main_pass">Verify main password</label>
+                </div>
+                <div class="gr-8">
+                    <input id="txt_re_main_pass" type="password" maxlength="25" />
+                </div>
+            </div>
+            <div class="gr-row form-row">
+                <div class="gr-4">
+                    <label for="txt_investor_pass">Investor password (read-only access)</label>
+                </div>
+                <div class="gr-8">
+                    <input id="txt_investor_pass" type="password" maxlength="25" />
+                </div>
+            </div>
+            <div class="gr-row">
+                <div class="gr-12-m gr-centered">
+                    <p>
+                        <input id="chk_tnc" type="checkbox" />
+                        <label for="chk_tnc">Já li e aceito os <a target="_blank" href="/pt/terms-and-conditions.html#legal-mt">termos e condições</a> do site.</label>
+                    </p>
+                </div>
+            </div>
+
+            <div class="gr-row">
+                <div class="gr-8 gr-push-4">
+                    <p id="msg_form" class="error-msg invisible"></p>
+                    <button id="btn_submit" type="submit">Create Account</button>
+                </div>
+            </div>
+        </form>
+
+        <form id="frm_password_change">
+            <div class="gr-row form-row">
+                <div class="gr-4">
+                    <label>ID de Login</label>
+                </div>
+                <div class="gr-8">
+                    <span id="lbl_login"></span>
+                </div>
+            </div>
+            <div class="gr-row form-row">
+                <div class="gr-4">
+                    <label for="txt_old_password">Senha atual</label>
+                </div>
+                <div class="gr-8">
+                    <input id="txt_old_password" type="password" maxlength="25" />
+                </div>
+            </div>
+            <div class="gr-row form-row">
+                <div class="gr-4">
+                    <label for="txt_new_password">Nova senha</label>
+                </div>
+                <div class="gr-8">
+                    <input id="txt_new_password" type="password" maxlength="25" />
+                    <div class="hint">Minimum eight characters. Must contain numbers, and mix of upper and lower case letters.</div>
+                </div>
+            </div>
+            <div class="gr-row form-row">
+                <div class="gr-4">
+                    <label for="txt_re_new_password">Verifique a nova senha</label>
+                </div>
+                <div class="gr-8">
+                    <input id="txt_re_new_password" type="password" maxlength="25" />
+                </div>
+            </div>
+
+            <div class="gr-row">
+                <div class="gr-8 gr-push-4">
+                    <p id="msg_form" class="error-msg invisible"></p>
+                    <button id="btn_submit" type="submit">Alterar Senha</button>
+                </div>
+            </div>
+        </form>
+
+        <form id="frm_deposit">
+            <p>Transfer funds from Binary.com account into your MT5 account:</p>
+            <div class="gr-row form-row">
+                <div class="gr-4">
+                    <label>Transfer from</label>
+                </div>
+                <div class="gr-8">
+                    <span id="lbl_from"></span>
+                </div>
+            </div>
+            <div class="gr-row form-row">
+                <div class="gr-4">
+                    <label>Deposit into</label>
+                </div>
+                <div class="gr-8">
+                    <span id="lbl_to"></span>
+                </div>
+            </div>
+            <div class="gr-row form-row">
+                <div class="gr-4">
+                    <label for="txt_amount">Quantia</label>
+                </div>
+                <div class="gr-8">
+                    &#36; <input id="txt_amount" type="text" maxlength="10" />
+                </div>
+            </div>
+
+            <div class="gr-row">
+                <div class="gr-8 gr-push-4">
+                    <p id="msg_form" class="error-msg invisible"></p>
+                    <button id="btn_submit" type="submit">Depositar</button>
+                </div>
+            </div>
+        </form>
+
+        <form id="frm_withdrawal">
+            <p>Transfer funds from your MT5 account into your Binary.com account:</p>
+            <div class="gr-row form-row">
+                <div class="gr-4">
+                    <label>Retirar fundos de</label>
+                </div>
+                <div class="gr-8">
+                    <span id="lbl_from"></span>
+                </div>
+            </div>
+            <div class="gr-row form-row">
+                <div class="gr-4">
+                    <label>Transfer into</label>
+                </div>
+                <div class="gr-8">
+                    <span id="lbl_to"></span>
+                </div>
+            </div>
+            <div class="gr-row form-row">
+                <div class="gr-4">
+                    <label for="txt_main_pass">MT5 main password</label>
+                </div>
+                <div class="gr-8">
+                    <input id="txt_main_pass" type="password" maxlength="25" />
+                </div>
+            </div>
+            <div class="gr-row form-row">
+                <div class="gr-4">
+                    <label for="txt_amount">Quantia</label>
+                </div>
+                <div class="gr-8">
+                    &#36; <input id="txt_amount" type="text" maxlength="10" />
+                </div>
+            </div>
+
+            <div class="gr-row">
+                <div class="gr-8 gr-push-4">
+                    <p id="msg_form" class="error-msg invisible"></p>
+                    <button id="btn_submit" type="submit">Retirar</button>
+                </div>
+            </div>
+        </form>
+
+        <div id="msg_authenticate">
+            <div class="align-start">
+                <p>To create an MT5 Financial Account please:</p>
+                <ul class="checked">
+                    <li class="authenticate invisible">
+                        Authenticate your Binary.com account.
+                        <p>Kindly email the following documents to <a href="mailto:support@binary.com">support@binary.com</a> to authenticate your account:</p>
+                        <ul class="bullet">
+                            <li>A scanned copy of your passport, driving licence (provisional or full), or identity card that shows your full name and date of birth.</li>
+                            <li>A scanned copy of a utility bill or bank statement that is no more than three months old.</li>
+                        </ul>
+                    </li>
+                    <li class="assessment invisible">Complete the <a href="/pt/user/settings/assessmentws.html">Financial Assessment</a>.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+  </div> 
+</div>
+<div id="footer" class="no-print">
+    <div id="footer-menu" class="primary-bg-color">
+        <div class="container">
+            <div class="gr-row gr-padding-10">
+                <div class="gr-6 gr-12-m gr-parent gr-no-gutter">
+                    <div class="gr-row">
+                        <div class="gr-4">
+                            <h4 class="secondary-color">A nossa empresa</h4>
+                            <ul>
+                                <li>
+                                    <a class="pjaxload" href="/pt/about-us.html">Sobre Nós</a>
+                                </li>
+                                <li class="id-hide ar-hide">
+                                    <a class="pjaxload" href="/pt/regulation.html">Informação reguladora</a>
+                                </li>
+                                <li>
+                                    <a class="pjaxload" href="/pt/group-history.html">História do Grupo</a>
+                                </li>
+                                <li class="ja-hide">
+                                    <a class="pjaxload" href="/pt/careers.html">Carreiras</a>
+                                </li>
+                                <li class="ja-hide">
+                                    <a href="http://binarycom.statuspage.io" target="_blank">Status da rede</a>
+                                </li>
+                                <li class="ja-hide id-hide">
+                                    <a href="/pt/legal/us_patents.html" class="us_patent_link pjaxload">Patentes</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="gr-4">
+                            <h4 class="secondary-color">Formação</h4>
+                            <ul>
+                                <li class="ja-hide">
+                                    <a class="pjaxload" href="/pt/why-us.html">Por que nós?</a>
+                                </li>
+                                <li class="all-hide ja-show-block">
+                                    <a class="pjaxload" href="/pt/why-us-jp.html">Por que nós?</a>
+                                </li>
+                                <li class="ja-hide">
+                                    <a class="pjaxload" href="/pt/get-started.html">Como Começar</a>
+                                </li>
+                                <li class="all-hide ja-show-block">
+                                    <a class="pjaxload" href="/pt/get-started-jp.html">Como Começar</a>
+                                </li>
+                                <li class="ja-hide">
+                                    <a class="pjaxload" href="/pt/tour.html">Visita da Plataforma</a>
+                                </li>
+                                <li class="hidden ja-show-block">
+                                    <a class="pjaxload" href="/pt/tour-jp.html">Visita da Plataforma</a>
+                                </li>
+                                <li class="hidden ja-show-block">
+                                    <a class="pjaxload" href="/pt/service-announcements.html">{JAPAN ONLY}Service Announcements</a>
+                                </li>
+                                <li class="ja-hide id-hide">
+                                    <a href="http://www.gamcare.org.uk/" target="_blank">GamCare</a>
+                                </li>
+                                <li class="ja-hide academy">
+                                    <a href="http://academy.binary.com" target="_blank">Academy</a>
+                                </li>
+                                <li class='ja-hide id-hide'>
+                                    <a href="https://academy.binary.com/en/events/" target="_blank">Webinários</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="gr-4">
+                            <h4 class="secondary-color">Transação</h4>
+                            <ul>
+                                <li>
+                                    <a class="pjaxload" href="/pt/cashier.html">Caixa</a>
+                                </li>
+                                <li class="ja-hide">
+                                    <a class="pjaxload" href="/pt/cashier/payment_methods.html">Métodos de Pagamento</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="gr-6 gr-12-m gr-parent gr-no-gutter">
+                    <div class="gr-row">
+                        <div class="gr-4">
+                           <h4 class="secondary-color">Legal</h4>
+                           <ul>
+                               <li class='ja-hide'>
+                                   <a class="pjaxload" href="/pt/terms-and-conditions.html">Termos e Condições</a>
+                               </li>
+                               <li class='hidden ja-show-block'>
+                                   <a class="pjaxload" href="/pt/terms-and-conditions-jp.html">Termos e Condições</a>
+                               </li>
+                               <li class='ja-hide'>
+                                   <a class="pjaxload"
+                                      href="/pt/terms-and-conditions.html?#privacy">Segurança e Privacidade</a>
+                               </li>
+                               <li class='hidden ja-show-block'>
+                                   <a class="pjaxload"
+                                      href="/pt/terms-and-conditions-jp.html?#account-privacy">Segurança e Privacidade</a>
+                               </li>
+                               <li class="ja-hide">
+                                   <a class="pjaxload" href="/pt/responsible-trading.html">Negociação Responsável</a>
+                               </li>
+                               <li class="ja-hide">
+                                   <a class="pjaxload" href="/pt/terms-and-conditions.html?section=complaints-disputes#legal-binary">Reclamações</a>
+                               </li>
+                           </ul>
+                       </div>
+                       <div class="gr-4 ja-hide">
+                           <h4 class="secondary-color">Negociação</h4>
+                           <ul>
+                               <li>
+                                   <a class="pjaxload" href="/pt/platforms.html">Plataformas</a>
+                               </li>
+                               <li>
+                                   <a class="pjaxload" href="/pt/resources/asset_indexws.html">Índice de Ativos</a>
+                               </li>
+                           </ul>
+                       </div>
+                       <div class="gr-4 ja-hide">
+                           <h4 class="secondary-color">Seja nosso parceiro</h4>
+                           <ul class="partner">
+                               <li>
+                                   <a class="pjaxload" href="/pt/affiliate/signup.html">Programa de Afiliados</a>
+                               </li>
+                               <li>
+                                   <a href="https://developers.binary.com" target="_blank">API</a>
+                               </li>
+                               <li>
+                                   <a target="_blank" href="https://shop.binary.com">A loja Binary</a>
+                               </li>
+                               <li>
+                                   <a class="pjaxload" href="/pt/partners.html">Todas as opções de parceria</a>
+                               </li>
+                           </ul>
+                       </div>
+                       <div class="gr-4 all-hide ja-show">
+                           <h4 class="secondary-color">{JAPAN ONLY}Company Profile</h4>
+                           <ul>
+                               <li>
+                                   <a class="pjaxload" href="/pt/company-profile.html">{JAPAN ONLY}Company Profile & Disclosure</a>
+                               </li>
+                           </ul>
+                       </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="footer-regulatory" class="primary-color-dark">
+        <div class="container">
+            <div class="gr-row">
+                <div id="regulatory-text" class="gr-9 gr-12-m gr-7-p gr-padding-10 gr-parent content-inverse-color">
+                    Este site é comercializado no Reino Unido e na Ilha de Man pela Binary (IOM) Ltd., First Floor, Millennium House, Victoria Road, Douglas, IM2 4RW, Isle of Man, British Isles, licenciada e regulamentada pela (1) Comissão de Supervisão ao Jogo da Ilha de Man, Ilhas Britânicas, licença de jogo online atual emitida em 31 de Agosto de 2012, e para os clientes do Reino Unido pela (2) Comissão de Apostas do Reino Unido - <a href='https://secure.gamblingcommission.gov.uk/gccustomweb/PublicRegister/PRSearch.aspx?ExternalAccountId=39172' target='_blank'>ver licença</a>. Este site é comercializado no resto da União Europeia, para produtos de investimento pela Binary Investments (Europe) Ltd., Mompalao Building, Suite 2, Tower Road, Msida MSD1825, Malta, licenciada e regulada como uma prestadora de serviços de investimento de categoria 3 pela Malta Financial Services Authority (Autoridade de Serviços Financeiros de Malta - licença IS/70156), e para produtos de jogo pela Binary (Europe) Ltd., Mompalao Building, Suite 2, Tower Road, Msida MSD1825, Malta, licenciada e regulamentada pela (1) Malta Gaming Authority (Autoridade de Jogo de Malta) em Malta, licença MGA/CL2/118/2000, de 26 de maio de 2015 e para os clientes do Reino Unido pela (2) Comissão de Apostas do Reino Unido - <a href='https://secure.gamblingcommission.gov.uk/gccustomweb/PublicRegister/PRSearch.aspx?ExternalAccountId=39495' target='_blank'>ver licença</a>, e para clientes irlandeses pelo (3) o departamento dos impostos (Revenue Commissioners) na Irlanda, licença de casa de apostas remota atual emitida a 29 de setembro de 2015 (licença n.º 1010285).  Os serviços deste site não estão disponíveis em certos países, como nos EUA, na Costa Rica, em Hong Kong ou para pessoas menores de 18 anos.
+                </div>
+                <div class="ja-hide gr-3 gr-12-m gr-5-p center-text" id="social-networks">
+                    <div class="gr-row ja-hide id-hide">
+                        <div class="gr-5">
+                            <a href="http://www.gov.im/gambling/" target="_blank">
+                                <img id="iom_icon_footer" class="responsive" src="/images/pages/footer/isle-of-man.png"/>
+                            </a>
+                        </div>
+                        <div class="gr-7">
+                            <a href="https://www.authorisation.mga.org.mt/verification.aspx?lang=EN&company=a5fd1edc-d072-4c26-b0cd-ab3fa0f0cc40&details=1" target="_blank">
+                                <img id="lga_icon_footer" class="responsive" src="/images/pages/footer/mga-logo-footer.svg"/>
+                            </a>
+                        </div>
+                    </div>
+                    <div id="fb-root">
+</div>
+<div class="social-icons gr-padding-10">
+    <a href="http://www.youtube.com/user/BinaryTradingVideos" target="_blank">
+        <img class="responsive social-network-icon" src="/images/pages/footer/youtube.svg"/>
+    </a>
+    <a href="https://plus.google.com/106251151552682209951" rel="publisher" target="_blank">
+        <img class="responsive social-network-icon" src="/images/pages/footer/google-plus.svg"/>
+    </a>
+    <a href="https://www.facebook.com/binarydotcom" target="_blank">
+        <img class="responsive social-network-icon" src="/images/pages/footer/facebook.svg"/>
+
+    </a>
+    <a href="https://twitter.com/Binarydotcom" target="_blank">
+        <img class="responsive social-network-icon" src="/images/pages/footer/twitter.svg"/>
+    </a>
+    <a href="https://www.linkedin.com/company/binary-com" target="_blank">
+        <img class="responsive social-network-icon" src="/images/pages/footer/linkedin.svg"/>
+    </a>
+</div>
+                </div>
+            </div>
+        </div>
+        <div id="ratelimit-error-message">
+            <div class="message">
+                You have reached the rate limit of requests per second. Please try later.
+            </div>
+        </div>
+    </div>
+    <div id="footer-last" class="primary-bg-color">
+        <div class="container">
+            <div class="gr-padding-10">
+                <p class="gambling content-inverse-color">
+                    A negociação de opções binárias pode não ser apropriada para todos. Por essa razão, pedimos que se certifique de que compreenda totalmente todos os riscos envolvidos. As suas perdas podem exceder o seu depósito inicial e você não será titular de, nem possuirá interesses em, o ativo subjacente. Em relação a opções binárias que são produtos de jogo, lembre-se de que os jogos a dinheiro podem ser viciantes - jogue responsavelmente. <span class="ja-hide">Leia sobre a <a href="/pt/responsible-trading.html" class="pjaxload">Negocião Responsável</a>.</span>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div id="end-note" class="invisible"></div>
+</div>
+
+        </div>
+    </body>
+</html>

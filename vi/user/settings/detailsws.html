@@ -25,6 +25,8 @@
 
         <title>Thông tin cá nhân | Binary.com</title>
 
+        
+
         <link rel="apple-touch-icon" sizes="57x57" href="https://style.binary.com/images/favicons/apple-touch-icon-57x57.png">
         <link rel="apple-touch-icon" sizes="114x114" href="https://style.binary.com/images/favicons/apple-touch-icon-114x114.png">
         <link rel="apple-touch-icon" sizes="72x72" href="https://style.binary.com/images/favicons/apple-touch-icon-72x72.png">
@@ -55,10 +57,10 @@
           <link rel="alternate" href="/zh_cn/user/settings/detailsws.html" hreflang="ZH_CN" /> 
           <link rel="alternate" href="/zh_tw/user/settings/detailsws.html" hreflang="ZH_TW" /> 
         
-         <link rel="stylesheet" href="/css/binary.min.css?ycj90z8p">
-         <link rel="stylesheet" href="https://style.binary.com/binary.css?ycj90z8p">
+         <link rel="stylesheet" href="/css/binary.min.css?61ehwyhz">
+         <link rel="stylesheet" href="https://style.binary.com/binary.css?61ehwyhz">
         
-        <script src='/js/binary.min.js?ycj90z8p'></script>  <script src='https://style.binary.com/binary.js?ycj90z8p'></script>
+        <script src='/js/binary.min.js?61ehwyhz'></script>  <script src='https://style.binary.com/binary.js?61ehwyhz'></script>
     </head>
 
 
@@ -183,6 +185,9 @@
                                     </a>
                                     <a class="link with_login_cookies pjaxload" href="/vi/user/securityws.html">
                                         <li class="topMenuSecurity">Bảo mật & giới hạn</li>
+                                    </a>
+                                    <a class="link with_login_cookies pjaxload invisible" id="user_menu_metatrader" href="/vi/user/metatrader.html">
+                                        <li class="topMenuMetaTrader">MetaTrader</li>
                                     </a>
                                     <div class="separator-line-thin-gray"></div>
                                     <div class="login-id-list"></div>
@@ -435,7 +440,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     <label for="tax_residence">Tax residence</label>
                 </div>
                 <div class="gr-8">
-                    <select name="tax_residence" id="tax_residence" class="form_input invisible" multiple="multiple"></select>
+                    <select name="tax_residence" id="tax_residence" class="invisible" multiple="multiple"></select>
                 </div>
             </div>
 
@@ -457,7 +462,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     <label for="address_line_1">Dòng đầu tiên của địa chỉ nhà</label>
                 </div>
                 <div class="gr-8">
-                    <input name='address_line_1' type="text" id="address_line_1" maxlength="70" />
+                    <input name='address_line_1' type="text" id="address_line_1" class="form_input" maxlength="70" />
                 </div>
             </div>
 
@@ -466,7 +471,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     <label for="address_line_2">Dòng thứ hai của địa chỉ nhà</label>
                 </div>
                 <div class="gr-8">
-                    <input name='address_line_2' type="text" id="address_line_2" maxlength="70" />
+                    <input name='address_line_2' type="text" id="address_line_2" class="form_input" maxlength="70" />
                 </div>
             </div>
 
@@ -475,7 +480,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     <label for="address_city">Thị trấn/ Thành phố</label>
                 </div>
                 <div class="gr-8">
-                    <input name='address_city' type="text" id="address_city" maxlength="35" />
+                    <input name='address_city' type="text" id="address_city" class="form_input" maxlength="35" />
                 </div>
             </div>
 
@@ -484,7 +489,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     <label for="address_state">Quốc gia/Tỉnh</label>
                 </div>
                 <div class="gr-8">
-                    <select name='address_state' id="address_state"></select>
+                    <select name='address_state' id="address_state" class="form_input"></select>
                 </div>
             </div>
 
@@ -493,7 +498,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     <label for="address_postcode">Mã Bưu điện/ ZIP</label>
                 </div>
                 <div class="gr-8">
-                    <input name='address_postcode' type="text" id="address_postcode" maxlength="20" />
+                    <input name='address_postcode' type="text" id="address_postcode" class="form_input" maxlength="20" />
                 </div>
             </div>
 
@@ -502,7 +507,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     <label for="phone">Điện thoại</label>
                 </div>
                 <div class="gr-8">
-                    <input name='phone' type="text" id="phone" maxlength="35" />
+                    <input name='phone' type="text" id="phone" class="form_input" maxlength="35" />
                 </div>
             </div>
         </fieldset>
@@ -777,7 +782,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     <label for="email_consent">Nhận tin tức và những đề nghị hấp dẫn.</label>
                 </div>
                 <div class="gr-8">
-                    <input type="checkbox" id="email_consent"/>
+                    <input type="checkbox" id="email_consent" class="form_input"/>
                 </div>
             </div>
         </fieldset>
@@ -866,8 +871,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                 <li class="ja-hide id-hide">
                                     <a href="http://www.gamcare.org.uk/" target="_blank">Hội cờ bạc GamCare</a>
                                 </li>
-                                <li class="ja-hide blog">
-                                    <a href="http://academy.binary.com" target="_blank">Blog</a>
+                                <li class="ja-hide academy">
+                                    <a href="http://academy.binary.com" target="_blank">Academy</a>
                                 </li>
                                 <li class='ja-hide id-hide'>
                                     <a href="https://academy.binary.com/en/events/" target="_blank">Hội thảo trên Web</a>
@@ -900,17 +905,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                </li>
                                <li class='ja-hide'>
                                    <a class="pjaxload"
-                                      href="/vi/terms-and-conditions.html#privacy-tab">Bảo mật và Riêng tư</a>
+                                      href="/vi/terms-and-conditions.html?#privacy">Bảo mật và Riêng tư</a>
                                </li>
                                <li class='hidden ja-show-block'>
                                    <a class="pjaxload"
-                                      href="/vi/terms-and-conditions-jp.html?selected_tab=privacy-tab">Bảo mật và Riêng tư</a>
+                                      href="/vi/terms-and-conditions-jp.html?#account-privacy">Bảo mật và Riêng tư</a>
                                </li>
                                <li class="ja-hide">
                                    <a class="pjaxload" href="/vi/responsible-trading.html">Giao dịch có Trách nhiệm</a>
                                </li>
                                <li class="ja-hide">
-                                   <a class="pjaxload" href="/vi/terms-and-conditions.html?selected_tab=complaints-disputes-tac-tab">Các khiếu nại</a>
+                                   <a class="pjaxload" href="/vi/terms-and-conditions.html?section=complaints-disputes#legal-binary">Các khiếu nại</a>
                                </li>
                            </ul>
                        </div>
@@ -999,7 +1004,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </div>
         <div id="ratelimit-error-message">
             <div class="message">
-                Bạn đã đạt đến yêu cầu giới hạn tốc độ mỗi giây. Để tiếp tục, vui lòng <a href="javascript:;" id="ratelimit-refresh-link"> làm mới </a> trang.
+                You have reached the rate limit of requests per second. Please try later.
             </div>
         </div>
     </div>

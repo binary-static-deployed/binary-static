@@ -25,6 +25,8 @@
 
         <title>Tour | Binary.com</title>
 
+        
+
         <link rel="apple-touch-icon" sizes="57x57" href="https://style.binary.com/images/favicons/apple-touch-icon-57x57.png">
         <link rel="apple-touch-icon" sizes="114x114" href="https://style.binary.com/images/favicons/apple-touch-icon-114x114.png">
         <link rel="apple-touch-icon" sizes="72x72" href="https://style.binary.com/images/favicons/apple-touch-icon-72x72.png">
@@ -55,10 +57,10 @@
           <link rel="alternate" href="/zh_cn/tour.html" hreflang="ZH_CN" /> 
           <link rel="alternate" href="/zh_tw/tour.html" hreflang="ZH_TW" /> 
         
-         <link rel="stylesheet" href="/css/binary.min.css?ycj90z8p">
-         <link rel="stylesheet" href="https://style.binary.com/binary.css?ycj90z8p">
+         <link rel="stylesheet" href="/css/binary.min.css?61ehwyhz">
+         <link rel="stylesheet" href="https://style.binary.com/binary.css?61ehwyhz">
         
-        <script src='/js/binary.min.js?ycj90z8p'></script>  <script src='https://style.binary.com/binary.js?ycj90z8p'></script>
+        <script src='/js/binary.min.js?61ehwyhz'></script>  <script src='https://style.binary.com/binary.js?61ehwyhz'></script>
     </head>
 
 
@@ -183,6 +185,9 @@
                                     </a>
                                     <a class="link with_login_cookies pjaxload" href="/de/user/securityws.html">
                                         <li class="topMenuSecurity">Sicherheit & Limits</li>
+                                    </a>
+                                    <a class="link with_login_cookies pjaxload invisible" id="user_menu_metatrader" href="/de/user/metatrader.html">
+                                        <li class="topMenuMetaTrader">MetaTrader</li>
                                     </a>
                                     <div class="separator-line-thin-gray"></div>
                                     <div class="login-id-list"></div>
@@ -387,10 +392,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <div class="section-content">
       <div class="gr-12">
         <h1>
-          Exit your trades before expiry
+          Verlassen Sie Ihre Geschäfte vor ihrem Ablauf
         </h1>
         <p>
-          With Binary.com, you can sell your contracts before expiry to keep any profits you may have made or to minimise your losses. You don’t have to wait until the actual expiration time.
+          Mit Binary.com können Sie Ihre Kontrakte verkaufen, bevor sie ablaufen, um jegliche Gewinne, die Sie möglicherweise gemacht haben zu behalten, oder um Ihre Verluste zu minimieren. Sie müssen nicht bis zum eigentlichen Ablaufdatum warten.
         </p>
       </div>
     </div>
@@ -407,7 +412,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           </span>
         </a>
         <p>
-          Trade with ease with Binary.com's wide range of deposit and withdrawal methods. Your funds will be segregated and held in secure and licensed financial institutions.
+          Mit den vielfältigen Möglichkeiten der Einzahlung und Auszahlung handeln Sie bei Binary.com mit Leichtigkeit. Ihr Guthaben wird getrennt und bei sicheren und zugelassenen Finanzinstitutionen deponiert.
         </p>
         <a class="pjaxload button" href="/de/cashier/payment_methods.html">
           <img class="responsive" src="/images/pages/tour/tour-flexible-banking.png"/>
@@ -509,8 +514,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                 <li class="ja-hide id-hide">
                                     <a href="http://www.gamcare.org.uk/" target="_blank">GamCare</a>
                                 </li>
-                                <li class="ja-hide blog">
-                                    <a href="http://academy.binary.com" target="_blank">Blog</a>
+                                <li class="ja-hide academy">
+                                    <a href="http://academy.binary.com" target="_blank">Academy</a>
                                 </li>
                                 <li class='ja-hide id-hide'>
                                     <a href="https://academy.binary.com/en/events/" target="_blank">Webinare</a>
@@ -543,17 +548,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                </li>
                                <li class='ja-hide'>
                                    <a class="pjaxload"
-                                      href="/de/terms-and-conditions.html#privacy-tab">Sicherheit und Datenschutz</a>
+                                      href="/de/terms-and-conditions.html?#privacy">Sicherheit und Datenschutz</a>
                                </li>
                                <li class='hidden ja-show-block'>
                                    <a class="pjaxload"
-                                      href="/de/terms-and-conditions-jp.html?selected_tab=privacy-tab">Sicherheit und Datenschutz</a>
+                                      href="/de/terms-and-conditions-jp.html?#account-privacy">Sicherheit und Datenschutz</a>
                                </li>
                                <li class="ja-hide">
                                    <a class="pjaxload" href="/de/responsible-trading.html">Verantwortungsbewusstes Handeln</a>
                                </li>
                                <li class="ja-hide">
-                                   <a class="pjaxload" href="/de/terms-and-conditions.html?selected_tab=complaints-disputes-tac-tab">Reklamationen</a>
+                                   <a class="pjaxload" href="/de/terms-and-conditions.html?section=complaints-disputes#legal-binary">Reklamationen</a>
                                </li>
                            </ul>
                        </div>
@@ -642,7 +647,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </div>
         <div id="ratelimit-error-message">
             <div class="message">
-                Sie haben das Kurslimit für Anfragen je Sekunde erreicht. <a href="javascript:;" id="ratelimit-refresh-link">Aktualisieren</a> Sie bitte die Seite, um fortzufahren.
+                You have reached the rate limit of requests per second. Please try later.
             </div>
         </div>
     </div>

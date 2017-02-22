@@ -1,0 +1,321 @@
+<div id="content" class="metatrader-content">
+        <!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-MZWFF7"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script data-cfasync="false">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MZWFF7');</script>
+<!-- End Google Tag Manager -->
+        <div id="page_info" style="display:none;">
+            <title>MetaTrader 账户管理 | Binary.com</title>
+            <div id="content_class">metatrader-content</div>
+        </div>
+
+
+  <div id="mt_account_management" class="container">
+    <div>
+        <h1>MetaTrader 账户管理</h1>
+    </div>
+    <p id="page_msg" class="notice-msg center-text invisible"></p>
+    <div id="mt_loading"><div class="barspinner dark">
+    <div class="rect1"></div>
+    <div class="rect2"></div>
+    <div class="rect3"></div>
+    <div class="rect4"></div>
+    <div class="rect5"></div>
+</div></div>
+    <div class="gr-12">
+        <div id="accounts_list" class="gr-row"></div>
+    </div>
+
+    <div class="fst-container">
+        <div id="main_msg" class="notice-msg center-text invisible"></div>
+        <fieldset id="fst_action" class="invisible">
+            <legend></legend>
+            <span class="close"></span>
+            <form id="frm_action"></form>
+        </fieldset>
+    </div>
+
+    <div id="templates" class="invisible">
+        <div class="acc-box gr-12-m gr-6-p gr-4-t gr-4">
+            <div>
+                <div class="title"></div>
+                <div class="loading"><div class="barspinner dark">
+    <div class="rect1"></div>
+    <div class="rect2"></div>
+    <div class="rect3"></div>
+    <div class="rect4"></div>
+    <div class="rect5"></div>
+</div></div>
+                <div class="center-text no-account invisible">
+                    <div class="info"></div>
+                    <span class="button"><span class="act_new_account">开立账户</span></span>
+                </div>
+                <div class="acc-info has-account gr-row invisible">
+                    <div class="gr-4">登录 ID：</div><div data="login" class="gr-8"></div>
+                    <div class="gr-4">姓名:</div><div data="name" class="gr-7"></div>
+                    <div class="gr-4">余额：</div><div data="balance" class="gr-8"></div>
+                    <div class="gr-4">杠杆：</div><div data="leverage" class="gr-8"></div>
+                </div>
+                <div class="acc-actions has-account center-text invisible">
+                    <a href="javascript:;" class="act_deposit">
+                        <img src="/images/pages/metatrader/deposit.svg" alt="" />
+                        存款
+                    </a>
+                    <a href="javascript:;" class="act_withdrawal">
+                        <img src="/images/pages/metatrader/withdraw.svg" alt="" />
+                        取款
+                    </a>
+                    <a href="javascript:;" class="act_password_change">
+                        <img src="/images/pages/metatrader/password.svg" alt="" />
+                        密码
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="no_account_info">
+            <div id="demo">开立免费演示账户。</div>
+            <div id="vanuatu_cent">
+                美分账户提供最大杆杠、以及低额追加保证金与强制平仓水平。
+                <a class="invisible" target="_blank">阅读更多</a>
+            </div>
+            <div id="vanuatu_standard">
+                标准账户适合广泛的交易者，包括新手和经验丰富的操盘手。
+                <a class="invisible" target="_blank">阅读更多</a>
+            </div>
+            <div id="vanuatu_stp">
+                STP账户提供最低价差，并让您与市场直接连接。
+                <a class="invisible" target="_blank">阅读更多</a>
+            </div>
+            <div id="costarica">
+                波动率账户允许您通过预测一种工具的价格是否会上涨或下跌而获利。
+                <a class="invisible" target="_blank">阅读更多</a>
+            </div>
+        </div>
+
+        <form id="frm_new_account">
+            <div class="gr-row form-row">
+                <div class="gr-4">
+                    <label>账户类型</label>
+                </div>
+                <div class="gr-8">
+                    <span id="lbl_account_type"></span>
+                </div>
+            </div>
+            <div class="gr-row form-row">
+                <div class="gr-4">
+                    <label>电子邮件</label>
+                </div>
+                <div class="gr-8">
+                    <span id="lbl_email"></span>
+                </div>
+            </div>
+            <div class="gr-row form-row">
+                <div class="gr-4">
+                    <label for="txt_name">姓名</label>
+                </div>
+                <div class="gr-8">
+                    <input id="txt_name" type="text" maxlength="30" autocomplete="off" />
+                </div>
+            </div>
+            <div class="gr-row form-row invisible">
+                <div class="gr-4">
+                    <label for="ddl_leverage">杠杆</label>
+                </div>
+                <div class="gr-8">
+                    <select id="ddl_leverage">
+                        <option value="1">1:1</option>
+                        <option value="50">1:50</option>
+                        <option value="100" selected="selected">1:100</option>
+                        <option value="200">1:200</option>
+                        <option value="300">1:300</option>
+                        <option value="500">1:500</option>
+                        <option value="1000">1:1000</option>
+                    </select>
+                </div>
+            </div>
+            <div class="gr-row form-row">
+                <div class="gr-4">
+                    <label for="txt_main_pass">主密码（交易访问）</label>
+                </div>
+                <div class="gr-8">
+                    <input id="txt_main_pass" type="password" maxlength="25" />
+                    <div class="hint">最少 8 个字符。必须同时包含数字和大小写字母。</div>
+                </div>
+            </div>
+            <div class="gr-row form-row">
+                <div class="gr-4">
+                    <label for="txt_re_main_pass">主密码验证</label>
+                </div>
+                <div class="gr-8">
+                    <input id="txt_re_main_pass" type="password" maxlength="25" />
+                </div>
+            </div>
+            <div class="gr-row form-row">
+                <div class="gr-4">
+                    <label for="txt_investor_pass">投资者密码 （只读访问权限）</label>
+                </div>
+                <div class="gr-8">
+                    <input id="txt_investor_pass" type="password" maxlength="25" />
+                </div>
+            </div>
+            <div class="gr-row">
+                <div class="gr-12-m gr-centered">
+                    <p>
+                        <input id="chk_tnc" type="checkbox" />
+                        <label for="chk_tnc">我已阅读并同意 <a target="_blank" href="/zh_cn/terms-and-conditions.html#legal-mt">条款与条件</a> 网站的。</label>
+                    </p>
+                </div>
+            </div>
+
+            <div class="gr-row">
+                <div class="gr-8 gr-push-4">
+                    <p id="msg_form" class="error-msg invisible"></p>
+                    <button id="btn_submit" type="submit">开立账户</button>
+                </div>
+            </div>
+        </form>
+
+        <form id="frm_password_change">
+            <div class="gr-row form-row">
+                <div class="gr-4">
+                    <label>登录 ID</label>
+                </div>
+                <div class="gr-8">
+                    <span id="lbl_login"></span>
+                </div>
+            </div>
+            <div class="gr-row form-row">
+                <div class="gr-4">
+                    <label for="txt_old_password">当前密码</label>
+                </div>
+                <div class="gr-8">
+                    <input id="txt_old_password" type="password" maxlength="25" />
+                </div>
+            </div>
+            <div class="gr-row form-row">
+                <div class="gr-4">
+                    <label for="txt_new_password">新密码</label>
+                </div>
+                <div class="gr-8">
+                    <input id="txt_new_password" type="password" maxlength="25" />
+                    <div class="hint">最少 8 个字符。必须同时包含数字和大小写字母。</div>
+                </div>
+            </div>
+            <div class="gr-row form-row">
+                <div class="gr-4">
+                    <label for="txt_re_new_password">验证新密码</label>
+                </div>
+                <div class="gr-8">
+                    <input id="txt_re_new_password" type="password" maxlength="25" />
+                </div>
+            </div>
+
+            <div class="gr-row">
+                <div class="gr-8 gr-push-4">
+                    <p id="msg_form" class="error-msg invisible"></p>
+                    <button id="btn_submit" type="submit">更改密码</button>
+                </div>
+            </div>
+        </form>
+
+        <form id="frm_deposit">
+            <p>把资金从Binary.com账户转移到您的MT5账户︰</p>
+            <div class="gr-row form-row">
+                <div class="gr-4">
+                    <label>转移自</label>
+                </div>
+                <div class="gr-8">
+                    <span id="lbl_from"></span>
+                </div>
+            </div>
+            <div class="gr-row form-row">
+                <div class="gr-4">
+                    <label>存款到</label>
+                </div>
+                <div class="gr-8">
+                    <span id="lbl_to"></span>
+                </div>
+            </div>
+            <div class="gr-row form-row">
+                <div class="gr-4">
+                    <label for="txt_amount">金额</label>
+                </div>
+                <div class="gr-8">
+                    &#36; <input id="txt_amount" type="text" maxlength="10" />
+                </div>
+            </div>
+
+            <div class="gr-row">
+                <div class="gr-8 gr-push-4">
+                    <p id="msg_form" class="error-msg invisible"></p>
+                    <button id="btn_submit" type="submit">存款</button>
+                </div>
+            </div>
+        </form>
+
+        <form id="frm_withdrawal">
+            <p>把资金从您的MT5账户转移到Binary.com账户︰</p>
+            <div class="gr-row form-row">
+                <div class="gr-4">
+                    <label>提款从</label>
+                </div>
+                <div class="gr-8">
+                    <span id="lbl_from"></span>
+                </div>
+            </div>
+            <div class="gr-row form-row">
+                <div class="gr-4">
+                    <label>转移到</label>
+                </div>
+                <div class="gr-8">
+                    <span id="lbl_to"></span>
+                </div>
+            </div>
+            <div class="gr-row form-row">
+                <div class="gr-4">
+                    <label for="txt_main_pass">MT5 主密码</label>
+                </div>
+                <div class="gr-8">
+                    <input id="txt_main_pass" type="password" maxlength="25" />
+                </div>
+            </div>
+            <div class="gr-row form-row">
+                <div class="gr-4">
+                    <label for="txt_amount">金额</label>
+                </div>
+                <div class="gr-8">
+                    &#36; <input id="txt_amount" type="text" maxlength="10" />
+                </div>
+            </div>
+
+            <div class="gr-row">
+                <div class="gr-8 gr-push-4">
+                    <p id="msg_form" class="error-msg invisible"></p>
+                    <button id="btn_submit" type="submit">取款</button>
+                </div>
+            </div>
+        </form>
+
+        <div id="msg_authenticate">
+            <div class="align-start">
+                <p>要开立MT5金融账户，请：</p>
+                <ul class="checked">
+                    <li class="authenticate invisible">
+                        验证您的Binary.com账户。
+                        <p>为验证您的账号，请将以下文件通过电子邮件发送到<a href="mailto:support@binary.com"> support@binary.com</a>︰</p>
+                        <ul class="bullet">
+                            <li>显示您名字和出生日期的护照、驾照（临时或永久）或身份证的扫描件。</li>
+                            <li>水电煤账单或银行月结单扫描件（日期不得超过3个月）。</li>
+                        </ul>
+                    </li>
+                    <li class="assessment invisible">请完成<a href="/zh_cn/user/settings/assessmentws.html">财务评估</a>。</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

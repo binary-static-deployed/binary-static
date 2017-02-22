@@ -25,6 +25,8 @@
 
         <title>Основы бинарных опционов | Binary.com</title>
 
+        
+
         <link rel="apple-touch-icon" sizes="57x57" href="https://style.binary.com/images/favicons/apple-touch-icon-57x57.png">
         <link rel="apple-touch-icon" sizes="114x114" href="https://style.binary.com/images/favicons/apple-touch-icon-114x114.png">
         <link rel="apple-touch-icon" sizes="72x72" href="https://style.binary.com/images/favicons/apple-touch-icon-72x72.png">
@@ -55,10 +57,10 @@
           <link rel="alternate" href="/zh_cn/get-started/binary-options-basics.html" hreflang="ZH_CN" /> 
           <link rel="alternate" href="/zh_tw/get-started/binary-options-basics.html" hreflang="ZH_TW" /> 
         
-         <link rel="stylesheet" href="/css/binary.min.css?ycj90z8p">
-         <link rel="stylesheet" href="https://style.binary.com/binary.css?ycj90z8p">
+         <link rel="stylesheet" href="/css/binary.min.css?61ehwyhz">
+         <link rel="stylesheet" href="https://style.binary.com/binary.css?61ehwyhz">
         
-        <script src='/js/binary.min.js?ycj90z8p'></script>  <script src='https://style.binary.com/binary.js?ycj90z8p'></script>
+        <script src='/js/binary.min.js?61ehwyhz'></script>  <script src='https://style.binary.com/binary.js?61ehwyhz'></script>
     </head>
 
 
@@ -183,6 +185,9 @@
                                     </a>
                                     <a class="link with_login_cookies pjaxload" href="/ru/user/securityws.html">
                                         <li class="topMenuSecurity">Безопасность и Ограничения</li>
+                                    </a>
+                                    <a class="link with_login_cookies pjaxload invisible" id="user_menu_metatrader" href="/ru/user/metatrader.html">
+                                        <li class="topMenuMetaTrader">MetaTrader</li>
                                     </a>
                                     <div class="separator-line-thin-gray"></div>
                                     <div class="login-id-list"></div>
@@ -364,12 +369,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <p>Каждый бинарный опцион имеет определенную длительность – на Binary.com вы можете выбрать период от 10 секунд до 365 дней.</p>
 
     <h2>3. Выбрать, как Вы хотите торговать на рынке</h2>
-    <p>Binary.com offers you four ways to trade a particular asset:</p>
+    <p>Binary.com предлагает Вашему вниманию четыре способа торговли активами:</p>
     <ul>
         <li><strong>Rise/Fall</strong> - Predict the market rising or falling from its current level.</li>
         <li><strong>Higher/Lower</strong> - Predict the market ending higher or lower than a price target.</li>
-        <li><strong>Touch/No Touch</strong> - Predict the market touching or not touching a price target.</li>
-        <li><strong>In/Out</strong> - Predict the market staying inside or going outside two price targets.</li>
+        <li><strong>Касание/Нет касания</strong> – сделайте прогноз, коснется ли рынок выбранного барьера.</li>
+        <li><strong>Внутри/Вне</strong> – попытайтесь предсказать, останется ли рынок внутри двух ценовых барьеров или выйдет за их пределы.</li>
     </ul>
     <br />
 
@@ -466,8 +471,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                 <li class="ja-hide id-hide">
                                     <a href="http://www.gamcare.org.uk/" target="_blank">GamCare</a>
                                 </li>
-                                <li class="ja-hide blog">
-                                    <a href="http://academy.binary.com" target="_blank">Блог</a>
+                                <li class="ja-hide academy">
+                                    <a href="http://academy.binary.com" target="_blank">Академия</a>
                                 </li>
                                 <li class='ja-hide id-hide'>
                                     <a href="https://academy.binary.com/en/events/" target="_blank">Вебинары</a>
@@ -500,17 +505,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                </li>
                                <li class='ja-hide'>
                                    <a class="pjaxload"
-                                      href="/ru/terms-and-conditions.html#privacy-tab">Безопасность</a>
+                                      href="/ru/terms-and-conditions.html?#privacy">Безопасность</a>
                                </li>
                                <li class='hidden ja-show-block'>
                                    <a class="pjaxload"
-                                      href="/ru/terms-and-conditions-jp.html?selected_tab=privacy-tab">Безопасность</a>
+                                      href="/ru/terms-and-conditions-jp.html?#account-privacy">Безопасность</a>
                                </li>
                                <li class="ja-hide">
                                    <a class="pjaxload" href="/ru/responsible-trading.html">Ответственная торговля</a>
                                </li>
                                <li class="ja-hide">
-                                   <a class="pjaxload" href="/ru/terms-and-conditions.html?selected_tab=complaints-disputes-tac-tab">Жалобы</a>
+                                   <a class="pjaxload" href="/ru/terms-and-conditions.html?section=complaints-disputes#legal-binary">Жалобы</a>
                                </li>
                            </ul>
                        </div>
@@ -599,7 +604,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </div>
         <div id="ratelimit-error-message">
             <div class="message">
-                Вы достигли предела количества запросов в секунду. Чтобы продолжить, пожалуйста <a href="javascript:;" id="ratelimit-refresh-link">обновите</a> страницу.
+                You have reached the rate limit of requests per second. Please try later.
             </div>
         </div>
     </div>

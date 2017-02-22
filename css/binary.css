@@ -978,7 +978,7 @@ html.mm-right.mm-opening body .mm-page, html.mm-right.mm-opening body #mm-blocke
   padding-bottom: 50px;
 }
 .tour .section:not(:first-child) {
-  padding: 50px 0;
+  padding: 20px 0 50px;
 }
 .tour .section:last-child {
   padding-bottom: 0;
@@ -1032,7 +1032,7 @@ html.mm-right.mm-opening body .mm-page, html.mm-right.mm-opening body #mm-blocke
   padding-bottom: 50px;
 }
 .charity .section:not(:first-child) {
-  padding: 50px 0;
+  padding: 20px 0 50px;
 }
 .charity .section:last-child {
   padding-bottom: 0;
@@ -1689,7 +1689,7 @@ table .loss, table .lower {
   padding-bottom: 50px;
 }
 .static_full .section:not(:first-child) {
-  padding: 50px 0;
+  padding: 20px 0 50px;
 }
 .static_full .section:last-child {
   padding-bottom: 0;
@@ -1726,6 +1726,10 @@ table .loss, table .lower {
 .static_full .sidebar-button a:hover, .static_full .sidebar-button a:active {
   text-decoration: none;
   background-color: #14602b;
+}
+
+.sidebar-container {
+  position: relative;
 }
 
 .sidebar ul {
@@ -1834,6 +1838,115 @@ ol.start {
   color: #44484c;
   width: 90%;
   margin: 5px 0;
+}
+
+#mt_account_management #accounts_list .acc-box {
+  padding: 0 10px 0 0;
+  margin-bottom: 10px;
+}
+#mt_account_management #accounts_list .acc-box > div {
+  height: 100%;
+  border: 1px solid #dedede;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+#mt_account_management #accounts_list .acc-box > div:hover, #mt_account_management #accounts_list .acc-box > div.active {
+  border-color: #ccc;
+  background: #f2f2f2;
+}
+#mt_account_management #accounts_list .acc-box > div .title {
+  line-height: 40px;
+  text-align: center;
+  background: #2a3052;
+  color: #fff;
+  margin-bottom: 10px;
+}
+#mt_account_management #accounts_list .acc-box > div .no-account {
+  margin-bottom: 20px;
+}
+#mt_account_management #accounts_list .acc-box > div .no-account .info {
+  padding: 10px;
+  font-size: 0.9rem;
+  height: 100px;
+  line-height: 1.5rem;
+}
+#mt_account_management #accounts_list .acc-box > div .no-account .info a:before {
+  content: ' ';
+  display: block;
+  margin-top: 5px;
+}
+#mt_account_management #accounts_list .acc-box > div .loading {
+  margin: 25px 0;
+}
+#mt_account_management #accounts_list .acc-box > div .acc-info div {
+  font-size: 0.9rem;
+  padding: 0 0 0 25px;
+  line-height: 1.6em;
+  word-break: break-all;
+}
+#mt_account_management #accounts_list .acc-box > div .acc-actions {
+  margin-top: auto;
+  padding: 10px;
+  border-top: 1px solid #dedede;
+  font-size: 0.9rem;
+}
+#mt_account_management #accounts_list .acc-box > div .acc-actions a {
+  display: inline-block;
+  width: 64px;
+  text-align: center;
+  margin: 0 10px;
+}
+#mt_account_management #accounts_list .acc-box > div .acc-actions a img {
+  height: 32px;
+  margin-bottom: 7px;
+}
+#mt_account_management .fst-container {
+  width: 100%;
+  padding-right: 10px;
+}
+#mt_account_management .fst-container #fst_action {
+  border: 1px solid #f2f2f2;
+  margin: 0;
+  padding-bottom: 30px;
+  position: relative;
+}
+#mt_account_management .fst-container #fst_action legend {
+  background: #2a3052;
+  color: #fff;
+  padding: 8px 10px;
+  margin-left: 15px;
+}
+#mt_account_management .fst-container #fst_action .close {
+  cursor: pointer;
+  position: absolute;
+  top: 16px;
+  right: -1px;
+  z-index: 1;
+  width: 32px;
+  height: 32px;
+  background: #2a3052 url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50 50' width='14' height='14'%3E%3Cpath fill='white' d='M50,5,45,0,25,20,5,0,0,5,20,25,0,45l5,5L25,30,45,50l5-5L30,25Z'/%3E%3C/svg%3E") no-repeat center;
+}
+#mt_account_management .fst-container #fst_action .close:hover {
+  background-color: #15212d;
+}
+#mt_account_management .fst-container #fst_action button .barspinner.white {
+  height: 13px;
+  margin: 3px;
+}
+#mt_account_management .fst-container #fst_action .error-msg {
+  text-align: left;
+  margin-top: 3px;
+}
+#mt_account_management .form-row {
+  padding: 10px 0;
+}
+#mt_account_management .form-row label {
+  display: block;
+  text-align: right;
 }
 
 #pa_list #accordion table {
@@ -2011,24 +2124,24 @@ ol.start {
     font-size: 80% !important;
   }
 }
-#applications-ws-container table td, #applications-ws-container table th, #connections-ws-container table td, #connections-ws-container table th {
+#applications-ws-container table td, #applications-ws-container table th {
   text-align: center !important;
   vertical-align: middle !important;
   line-height: 30px;
 }
-#applications-ws-container table td .button, #applications-ws-container table th .button, #connections-ws-container table td .button, #connections-ws-container table th .button {
+#applications-ws-container table td .button, #applications-ws-container table th .button {
   margin: 3px 0;
 }
 
 @media screen and (max-width: 480px) {
-  #applications-ws-container table td, #applications-ws-container table th, #connections-ws-container table td, #connections-ws-container table th {
+  #applications-ws-container table td, #applications-ws-container table th {
     font-size: 80%;
   }
-  #applications-ws-container table button, #connections-ws-container table button {
+  #applications-ws-container table button {
     font-size: 80%;
     padding: 10px 15px;
   }
-  #applications-ws-container .errorfield, #connections-ws-container .errorfield {
+  #applications-ws-container .errorfield {
     font-size: 80% !important;
   }
 }
@@ -2093,7 +2206,7 @@ ol.start {
   padding-bottom: 50px;
 }
 .about-us .section:not(:first-child) {
-  padding: 50px 0;
+  padding: 20px 0 50px;
 }
 .about-us .section:last-child {
   padding-bottom: 0;
@@ -2708,6 +2821,11 @@ div.kineticjs-content {
           transform: rotate(180deg);
   left: 120px;
   opacity: 0;
+}
+
+#frmPersonalDetails fieldset .error-msg {
+  text-align: left;
+  margin-top: 5px;
 }
 
 /* static pages */
@@ -4960,6 +5078,67 @@ button:disabled {
   font-weight: normal;
 }
 
+#margin_policy .mt-box {
+  margin: 0 auto;
+  width: 700px;
+  padding: 10px;
+}
+#margin_policy .mt-box .mt-box-content {
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+#margin_policy .mt-img {
+  margin-left: auto;
+  margin-right: auto;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+#margin_policy .l1-icon {
+  background-image: url("../images/pages/metatrader/margin-policy/l1_ai.svg");
+  height: 300px;
+}
+#margin_policy .l2-icon {
+  background-image: url("../images/pages/metatrader/margin-policy/l2_ai.svg");
+  height: 150px;
+}
+#margin_policy .mr1-icon {
+  background-image: url("../images/pages/metatrader/margin-policy/mr1_ai.svg");
+  height: 300px;
+}
+#margin_policy .mr2-icon {
+  background-image: url("../images/pages/metatrader/margin-policy/mr2_ai.svg");
+  height: 150px;
+}
+#margin_policy .separator {
+  background-color: #f2f2f2;
+  height: 2px;
+  display: block;
+  border: none;
+}
+
+#forex-specs table td, #volatility-specs table td, #cash-specs table td {
+  font-size: 0.9em;
+  text-align: center;
+}
+#forex-specs table td:first-child, #volatility-specs table td:first-child, #cash-specs table td:first-child {
+  white-space: nowrap;
+  font-size: inherit;
+  text-align: left;
+}
+
+@media screen and (max-width: 768px) {
+  .table-container {
+    overflow-x: auto;
+  }
+}
+.gr-prefix-1 {
+  margin: 1em 0 1em 2em !important;
+}
+
+.button.full-width, .button.full-width span {
+  display: block;
+}
+
 /* Language based rules */
 /* Specific rules for languages */
 body .calls_recording {
@@ -4968,7 +5147,7 @@ body .calls_recording {
 body .all-hide {
   display: none !important;
 }
-body ul.checked li {
+body ul.checked > li {
   background-position: left top;
   padding-left: 35px;
 }
@@ -4976,6 +5155,7 @@ body .app-store-badge, body .google-play-badge {
   background-repeat: no-repeat;
   width: 140px;
   height: 40px;
+  display: inline-block;
 }
 
 body.EN .calls_recording {

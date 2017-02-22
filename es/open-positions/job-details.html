@@ -25,6 +25,8 @@
 
         <title>Detalles del trabajo | Binary.com</title>
 
+        
+
         <link rel="apple-touch-icon" sizes="57x57" href="https://style.binary.com/images/favicons/apple-touch-icon-57x57.png">
         <link rel="apple-touch-icon" sizes="114x114" href="https://style.binary.com/images/favicons/apple-touch-icon-114x114.png">
         <link rel="apple-touch-icon" sizes="72x72" href="https://style.binary.com/images/favicons/apple-touch-icon-72x72.png">
@@ -55,10 +57,10 @@
           <link rel="alternate" href="/zh_cn/open-positions/job-details.html" hreflang="ZH_CN" /> 
           <link rel="alternate" href="/zh_tw/open-positions/job-details.html" hreflang="ZH_TW" /> 
         
-         <link rel="stylesheet" href="/css/binary.min.css?ycj90z8p">
-         <link rel="stylesheet" href="https://style.binary.com/binary.css?ycj90z8p">
+         <link rel="stylesheet" href="/css/binary.min.css?61ehwyhz">
+         <link rel="stylesheet" href="https://style.binary.com/binary.css?61ehwyhz">
         
-        <script src='/js/binary.min.js?ycj90z8p'></script>  <script src='https://style.binary.com/binary.js?ycj90z8p'></script>
+        <script src='/js/binary.min.js?61ehwyhz'></script>  <script src='https://style.binary.com/binary.js?61ehwyhz'></script>
     </head>
 
 
@@ -183,6 +185,9 @@
                                     </a>
                                     <a class="link with_login_cookies pjaxload" href="/es/user/securityws.html">
                                         <li class="topMenuSecurity">Seguridad y límites</li>
+                                    </a>
+                                    <a class="link with_login_cookies pjaxload invisible" id="user_menu_metatrader" href="/es/user/metatrader.html">
+                                        <li class="topMenuMetaTrader">MetaTrader</li>
                                     </a>
                                     <div class="separator-line-thin-gray"></div>
                                     <div class="login-id-list"></div>
@@ -339,7 +344,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <div class="gr-12 gr-padding-10">
           <h1 class="center-text" id="title"></h1>
         </div>
-        <div class="gr-12 gr-padding-10">
+        <div class="gr-12 gr-padding-10 sidebar-container">
           <div class="sidebar" style="display:none">
             <ul id="sidebar-nav">
               <li id="one">
@@ -1380,8 +1385,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                 <li class="ja-hide id-hide">
                                     <a href="http://www.gamcare.org.uk/" target="_blank">GamCare</a>
                                 </li>
-                                <li class="ja-hide blog">
-                                    <a href="http://academy.binary.com" target="_blank">Blog</a>
+                                <li class="ja-hide academy">
+                                    <a href="http://academy.binary.com" target="_blank">Academy</a>
                                 </li>
                                 <li class='ja-hide id-hide'>
                                     <a href="https://academy.binary.com/en/events/" target="_blank">Seminarios web</a>
@@ -1414,17 +1419,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                </li>
                                <li class='ja-hide'>
                                    <a class="pjaxload"
-                                      href="/es/terms-and-conditions.html#privacy-tab">Seguridad/privacidad</a>
+                                      href="/es/terms-and-conditions.html?#privacy">Seguridad/privacidad</a>
                                </li>
                                <li class='hidden ja-show-block'>
                                    <a class="pjaxload"
-                                      href="/es/terms-and-conditions-jp.html?selected_tab=privacy-tab">Seguridad/privacidad</a>
+                                      href="/es/terms-and-conditions-jp.html?#account-privacy">Seguridad/privacidad</a>
                                </li>
                                <li class="ja-hide">
                                    <a class="pjaxload" href="/es/responsible-trading.html">Transacción responsable</a>
                                </li>
                                <li class="ja-hide">
-                                   <a class="pjaxload" href="/es/terms-and-conditions.html?selected_tab=complaints-disputes-tac-tab">Quejas</a>
+                                   <a class="pjaxload" href="/es/terms-and-conditions.html?section=complaints-disputes#legal-binary">Quejas</a>
                                </li>
                            </ul>
                        </div>
@@ -1513,7 +1518,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </div>
         <div id="ratelimit-error-message">
             <div class="message">
-                Ha alcanzado el límite de solicitudes por segundo. Para continuar, <a href="javascript:;" id="ratelimit-refresh-link">recargue</a> la página.
+                You have reached the rate limit of requests per second. Please try later.
             </div>
         </div>
     </div>
