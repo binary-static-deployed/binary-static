@@ -25,8 +25,6 @@
 
         <title>个人资料 | Binary.com</title>
 
-        
-
         <link rel="apple-touch-icon" sizes="57x57" href="https://style.binary.com/images/favicons/apple-touch-icon-57x57.png">
         <link rel="apple-touch-icon" sizes="114x114" href="https://style.binary.com/images/favicons/apple-touch-icon-114x114.png">
         <link rel="apple-touch-icon" sizes="72x72" href="https://style.binary.com/images/favicons/apple-touch-icon-72x72.png">
@@ -57,10 +55,10 @@
           <link rel="alternate" href="/zh_cn/user/settings/detailsws.html?l=zh_cn" hreflang="ZH_CN" /> 
           <link rel="alternate" href="/zh_tw/user/settings/detailsws.html" hreflang="ZH_TW" /> 
         
-         <link rel="stylesheet" href="/css/binary.min.css?61ehwyhz">
-         <link rel="stylesheet" href="https://style.binary.com/binary.css?61ehwyhz">
+         <link rel="stylesheet" href="/css/binary.min.css?e8onm7hc">
+         <link rel="stylesheet" href="https://style.binary.com/binary.css?e8onm7hc">
         
-        <script src='/js/binary.min.js?61ehwyhz'></script>  <script src='https://style.binary.com/binary.js?61ehwyhz'></script>
+        <script src='/js/binary.min.js?e8onm7hc'></script>  <script src='https://style.binary.com/binary.js?e8onm7hc'></script>
     </head>
 
 
@@ -381,6 +379,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </div>
             </div>
 
+            <div class="hidden RealAcc">
+                <div class="gr-padding-10 gr-row clear">
+                    <div class="gr-4 form_label">
+                        <label for="place_of_birth">出生地点</label>
+                    </div>
+                    <div class="gr-8">
+                        <select name="place_of_birth" id="place_of_birth" class="form_input"></select>
+                    </div>
+                </div>
+            </div>
+
             <div class="gr-padding-10 gr-row clear">
                 <div class="gr-4 form_label">
                     <label><em class="required_asterisk">**</em> 居住国</label>
@@ -405,15 +414,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
             <div class="gr-padding-10 gr-row clear JpAcc invisible">
                 <div class="gr-4 form_label">
-                    <label for="occupation">Occupation</label>
+                    <label for="occupation">职业</label>
                 </div>
                 <div class="gr-8">
                     <select id="occupation" class="jp_value">
-                        <option value="Office worker">Office worker</option>
+                        <option value="Office worker">办公室员工</option>
                         <option value="Director">Director</option>
                         <option value="Public worker">Public worker</option>
                         <option value="Self-employed">Self-employed</option>
-                        <option value="Housewife / Househusband">Housewife / Househusband</option>
+                        <option value="Housewife / Househusband">家庭主妇/家庭主夫</option>
                         <option value="Contract / Temporary / Part Time">Contract / Temporary / Part Time</option>
                         <option value="Student">Student</option>
                         <option value="Unemployed">Unemployed</option>
@@ -425,15 +434,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
         <fieldset class="hidden RealAcc ja-hide">
             <legend>税务信息</legend>
-
-            <div class="gr-padding-10 gr-row clear">
-                <div class="gr-4 form_label">
-                    <label for="place_of_birth">出生地点</label>
-                </div>
-                <div class="gr-8">
-                    <select name="place_of_birth" id="place_of_birth" class="form_input"></select>
-                </div>
-            </div>
 
             <div class="gr-padding-10 gr-row clear">
                 <div class="gr-4 form_label">
@@ -449,7 +449,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     <label for="tax_identification_number">税务标识号</label>
                 </div>
                 <div class="gr-8">
-                    <input type="text" class="text form_input" id="tax_identification_number" name="tax_identification_number" maxlength="20"/>
+                    <input type="text" class="text" id="tax_identification_number" name="tax_identification_number" maxlength="20"/>
                 </div>
             </div>
         </fieldset>
@@ -462,7 +462,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     <label for="address_line_1">家庭地址第一行</label>
                 </div>
                 <div class="gr-8">
-                    <input name='address_line_1' type="text" id="address_line_1" class="form_input" maxlength="70" />
+                    <input name='address_line_1' type="text" id="address_line_1" maxlength="70" />
                 </div>
             </div>
 
@@ -471,7 +471,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     <label for="address_line_2">家庭地址第二行</label>
                 </div>
                 <div class="gr-8">
-                    <input name='address_line_2' type="text" id="address_line_2" class="form_input" maxlength="70" />
+                    <input name='address_line_2' type="text" id="address_line_2" maxlength="70" />
                 </div>
             </div>
 
@@ -480,7 +480,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     <label for="address_city">城镇/城市</label>
                 </div>
                 <div class="gr-8">
-                    <input name='address_city' type="text" id="address_city" class="form_input" maxlength="35" />
+                    <input name='address_city' type="text" id="address_city" maxlength="35" />
                 </div>
             </div>
 
@@ -489,7 +489,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     <label for="address_state">州/省</label>
                 </div>
                 <div class="gr-8">
-                    <select name='address_state' id="address_state" class="form_input"></select>
+                    <select name='address_state' id="address_state"></select>
                 </div>
             </div>
 
@@ -498,7 +498,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     <label for="address_postcode">邮编</label>
                 </div>
                 <div class="gr-8">
-                    <input name='address_postcode' type="text" id="address_postcode" class="form_input" maxlength="20" />
+                    <input name='address_postcode' type="text" id="address_postcode" maxlength="20" />
                 </div>
             </div>
 
@@ -507,7 +507,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     <label for="phone">电话</label>
                 </div>
                 <div class="gr-8">
-                    <input name='phone' type="text" id="phone" class="form_input" maxlength="35" />
+                    <input name='phone' type="text" id="phone" maxlength="35" />
                 </div>
             </div>
         </fieldset>
@@ -636,7 +636,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <option value="6 months to 1 year">6 months to 1 year</option>
                         <option value="1-3 years">1-3 years</option>
                         <option value="3-5 years">3-5 years</option>
-                        <option value="Over 5 years">Over 5 years</option>
+                        <option value="Over 5 years">5年以上</option>
                     </select>
                 </div>
             </div>
@@ -652,14 +652,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <option value="6 months to 1 year">6 months to 1 year</option>
                         <option value="1-3 years">1-3 years</option>
                         <option value="3-5 years">3-5 years</option>
-                        <option value="Over 5 years">Over 5 years</option>
+                        <option value="Over 5 years">5年以上</option>
                     </select>
                 </div>
             </div>
 
             <div class="gr-padding-10 gr-row clear">
                 <div class="gr-4 form_label">
-                    <label for="trading_experience_foreign_currency_deposit">Foreign currency deposit</label>
+                    <label for="trading_experience_foreign_currency_deposit">外币存款</label>
                 </div>
                 <div class="gr-8">
                     <select id="trading_experience_foreign_currency_deposit" class="jp_value">
@@ -668,7 +668,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <option value="6 months to 1 year">6 months to 1 year</option>
                         <option value="1-3 years">1-3 years</option>
                         <option value="3-5 years">3-5 years</option>
-                        <option value="Over 5 years">Over 5 years</option>
+                        <option value="Over 5 years">5年以上</option>
                     </select>
                 </div>
             </div>
@@ -684,7 +684,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <option value="6 months to 1 year">6 months to 1 year</option>
                         <option value="1-3 years">1-3 years</option>
                         <option value="3-5 years">3-5 years</option>
-                        <option value="Over 5 years">Over 5 years</option>
+                        <option value="Over 5 years">5年以上</option>
                     </select>
                 </div>
             </div>
@@ -700,7 +700,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <option value="6 months to 1 year">6 months to 1 year</option>
                         <option value="1-3 years">1-3 years</option>
                         <option value="3-5 years">3-5 years</option>
-                        <option value="Over 5 years">Over 5 years</option>
+                        <option value="Over 5 years">5年以上</option>
                     </select>
                 </div>
             </div>
@@ -716,7 +716,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <option value="6 months to 1 year">6 months to 1 year</option>
                         <option value="1-3 years">1-3 years</option>
                         <option value="3-5 years">3-5 years</option>
-                        <option value="Over 5 years">Over 5 years</option>
+                        <option value="Over 5 years">5年以上</option>
                     </select>
                 </div>
             </div>
@@ -732,7 +732,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <option value="6 months to 1 year">6 months to 1 year</option>
                         <option value="1-3 years">1-3 years</option>
                         <option value="3-5 years">3-5 years</option>
-                        <option value="Over 5 years">Over 5 years</option>
+                        <option value="Over 5 years">5年以上</option>
                     </select>
                 </div>
             </div>
@@ -757,7 +757,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </div>
                 <div class="gr-8">
                     <select id="hedge_asset">
-                        <option value="Foreign currency deposit">Foreign currency deposit</option>
+                        <option value="Foreign currency deposit">外币存款</option>
                         <option value="Margin FX">Margin FX</option>
                         <option value="Other">其它</option>
                     </select>
@@ -782,7 +782,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     <label for="email_consent">收取新消息和特别优惠</label>
                 </div>
                 <div class="gr-8">
-                    <input type="checkbox" id="email_consent" class="form_input"/>
+                    <input type="checkbox" id="email_consent" />
                 </div>
             </div>
         </fieldset>
@@ -1004,7 +1004,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </div>
         <div id="ratelimit-error-message">
             <div class="message">
-                You have reached the rate limit of requests per second. Please try later.
+                您已达每秒钟提呈请求的最高限率。请稍后重试。
             </div>
         </div>
     </div>

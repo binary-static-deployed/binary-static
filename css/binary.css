@@ -159,6 +159,7 @@ fieldset {
   margin-bottom: 10px;
 }
 fieldset#formlayout {
+  /* TODO: remove all occurrences: no point in using fieldset when we hide its border */
   background: none;
   border: 0;
 }
@@ -168,8 +169,13 @@ fieldset legend {
   font-weight: bold;
   text-transform: capitalize;
 }
-fieldset #inputheading {
+fieldset #inputheading, fieldset .text-display {
+  /* TODO: replace all occurrences of id with the class */
   line-height: 25px;
+}
+fieldset .error-msg {
+  width: 100%;
+  margin-top: 5px;
 }
 
 textarea {
@@ -186,6 +192,14 @@ label {
 .form_label {
   text-align: right;
   line-height: 25px;
+}
+
+.form-row {
+  padding: 10px 0;
+}
+.form-row label {
+  display: block;
+  text-align: right;
 }
 
 .input {
@@ -206,11 +220,6 @@ label {
 .comment {
   font-size: 93%;
   font-style: italic;
-}
-
-fieldset .error-msg {
-  width: 100%;
-  text-align: center;
 }
 
 /* global styles */
@@ -1682,6 +1691,14 @@ table .loss, table .lower {
   background-position: -285px -426px;
 }
 
+.forwardws-content iframe#cashiercont {
+  height: 1500px;
+}
+
+.epg_forwardws-content iframe#cashiercont {
+  height: 800px;
+}
+
 .static_full {
   margin-top: 40px;
 }
@@ -1936,17 +1953,6 @@ ol.start {
 #mt_account_management .fst-container #fst_action button .barspinner.white {
   height: 13px;
   margin: 3px;
-}
-#mt_account_management .fst-container #fst_action .error-msg {
-  text-align: left;
-  margin-top: 3px;
-}
-#mt_account_management .form-row {
-  padding: 10px 0;
-}
-#mt_account_management .form-row label {
-  display: block;
-  text-align: right;
 }
 
 #pa_list #accordion table {
@@ -2823,9 +2829,13 @@ div.kineticjs-content {
   opacity: 0;
 }
 
-#frmPersonalDetails fieldset .error-msg {
+fieldset .error-msg {
   text-align: left;
   margin-top: 5px;
+}
+
+#japan-form input[type='checkbox'] {
+  margin-right: 10px;
 }
 
 /* static pages */
@@ -5433,6 +5443,10 @@ body.TH .google-play-badge {
 
   input, select {
     width: 80%;
+  }
+
+  .center-text-m, .center-text-m label {
+    text-align: center;
   }
 
   #btn-verify-email {

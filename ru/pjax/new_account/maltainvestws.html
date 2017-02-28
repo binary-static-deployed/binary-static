@@ -18,517 +18,515 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   <div class='gr-12 static_full'>
     <h1>Открытие финансового счета</h1>
-    <div class="gr-padding-10">
+    <div class="rbox form gr-padding-10">
+        <div class="rbox-wrap">
+            <form id="financial-form">
+                <fieldset>
+                    <legend id="details">Подробности</legend>
 
-        <div class="rbox form">
-            <div class="rbox-wrap">
-                <form id="financial-form">
-                    <fieldset>
-                        <legend id="details">Подробности</legend>
-                        <div class="gr-padding-10 gr-row clear">
-                            <div class="gr-4 form_label">
-                                <label for="salutation">Заголовок</label>
-                            </div>
-                            <div class="gr-8">
-                                <select id="salutation" class="input-disabled form_input">
-                                  <option value="Mr">Господин</option>
-                                  <option value="Mrs">Госпожа</option>
-                                  <option value="Ms">Госпожа</option>
-                                  <option value="Miss">Госпожа</option>
-                                </select>
-                                <p class="errorfield" id="error_salutation" style="display:none"></p>
-                            </div>
+                    <div class="gr-padding-10 gr-row clear">
+                        <div class="gr-4 form_label">
+                            <label for="salutation">Заголовок</label>
                         </div>
-                        <div class="gr-padding-10 gr-row clear">
-                            <div class="gr-4 form_label">
-                                <label for="first_name">Имя</label>
-                            </div>
-                            <div class="gr-8">
-                                <input type="text" class="text input-disabled form_input" id="first_name" maxlength="30"/>
-                                <p class="errorfield" id="error_first_name" style="display:none"></p>
-                            </div>
+                        <div class="gr-8">
+                            <select id="salutation" class="input-disabled">
+                              <option value="Mr">Господин</option>
+                              <option value="Mrs">Госпожа</option>
+                              <option value="Ms">Госпожа</option>
+                              <option value="Miss">Госпожа</option>
+                            </select>
                         </div>
-                        <div class="gr-padding-10 gr-row clear">
-                            <div class="gr-4 form_label">
-                                <label for="last_name">Фамилия</label>
-                            </div>
-                            <div class="gr-8">
-                                <input type="text" class="text input-disabled form_input" id="last_name" maxlength="30"/>
-                                <p class="errorfield" id="error_last_name" style="display:none"></p>
-                            </div>
-                        </div>
-                        <div class="gr-padding-10 gr-row clear">
-                            <div class="gr-4 form_label">
-                                <label for="dobdd">Ваша дата рождения</label>
-                            </div>
-                            <div class="gr-8">
-                                <select id="dobdd" class="input-disabled form_input exclude_data"></select>
-                                <select id="dobmm" class="input-disabled form_input exclude_data"></select>
-                                <select id="dobyy" class="input-disabled form_input exclude_data"></select>
-                                <p class="errorfield" id="error_dobdd" style="display:none"></p>
-                            </div>
-                        </div>
-                        <div class="gr-padding-10 gr-row clear">
-                            <div class="gr-4 form_label">
-                                <label for="residence">Cтрана проживания</label>
-                            </div>
-                            <div class="gr-8">
-                                <span id="move-residence-back"></span>
-                                <select name="residence" id="residence" class="form_input" disabled></select>
-                                <p class="errorfield" id="error_residence" style="display:none"></p>
-                            </div>
-                        </div>
-                    </fieldset>
+                    </div>
 
-                    <fieldset>
-                        <legend>Tax Information</legend>
-                        <div class="gr-padding-10 gr-row clear">
-                            <div class="gr-4 form_label">
-                                <label for="place_of_birth">Place of birth</label>
-                            </div>
-                            <div class="gr-8">
-                                <select name="place_of_birth" id="place_of_birth" class="form_input"></select>
-                                <p class="errorfield" id="error_place_of_birth" style="display:none"></p>
-                            </div>
+                    <div class="gr-padding-10 gr-row clear">
+                        <div class="gr-4 form_label">
+                            <label for="first_name">Имя</label>
                         </div>
-                        <div class="gr-padding-10 gr-row clear">
-                            <div class="gr-4 form_label">
-                                <label for="tax_residence">Tax residence</label>
-                            </div>
-                            <div class="gr-8">
-                                <select name="tax_residence" id="tax_residence" class="form_input invisible" multiple="multiple"></select>
-                                <p class="errorfield" id="error_tax_residence" style="display:none"></p>
-                            </div>
+                        <div class="gr-8">
+                            <input type="text" class="text input-disabled" id="first_name" maxlength="30"/>
                         </div>
-                        <div class="gr-padding-10 gr-row clear">
-                            <div class="gr-4 form_label">
-                                <label for="tax_identification_number">Tax identification number</label>
-                            </div>
-                            <div class="gr-8">
-                                <input type="text" class="text form_input" id="tax_identification_number" maxlength="20"/>
-                                <p class="errorfield" id="error_tax_identification_number" style="display:none"></p>
-                            </div>
-                        </div>
-                    </fieldset>
+                    </div>
 
-                    <fieldset>
-                        <legend id="address">Адрес</legend>
-                        <div class="gr-padding-10 gr-row clear">
-                            <div class="gr-4 form_label">
-                                <label for="address_line_1">Адрес (улица, дом, кв.)</label>
-                            </div>
-                            <div class="gr-8">
-                                <input type="text" class="text form_input" id="address_line_1" maxlength="70"/>
-                                <p class="hint">Kindly provide your complete address.<br>This will be used to authenticate your identity when you open a real account.</p>
-                                <p class="errorfield" id="error_address_line_1" style="display:none"></p>
-                            </div>
+                    <div class="gr-padding-10 gr-row clear">
+                        <div class="gr-4 form_label">
+                            <label for="last_name">Фамилия</label>
                         </div>
-                        <div class="gr-padding-10 gr-row clear">
-                            <div class="gr-4 form_label">
-                                <label for="address_line_2">Доп. адресные данные</label>
-                            </div>
-                            <div class="gr-8">
-                                <input type="text" class="text form_input" id="address_line_2" maxlength="70"/>
-                                <p class="errorfield" id="error_address_line_2" style="display:none"></p>
-                            </div>
+                        <div class="gr-8">
+                            <input type="text" class="text input-disabled" id="last_name" maxlength="30"/>
                         </div>
-                        <div class="gr-padding-10 gr-row clear">
-                            <div class="gr-4 form_label">
-                                <label for="address_city">Город</label>
-                            </div>
-                            <div class="gr-8">
-                                <input type="text" class="text form_input" id="address_city" maxlength="35"/>
-                                <p class="errorfield" id="error_address_city" style="display:none"></p>
-                            </div>
-                        </div>
-                        <div class="gr-padding-10 gr-row clear" style="display:none">
-                            <div class="gr-4 form_label">
-                                <label for="address_state">Штат/провинция/область</label>
-                            </div>
-                            <div class="gr-8">
-                                <select id="address_state" class="form_input"></select>
-                                <p class="errorfield" id="error_address_state" style="display:none"></p>
-                            </div>
-                        </div>
-                        <div class="gr-padding-10 gr-row clear">
-                            <div class="gr-4 form_label">
-                                <label for="address_postcode">Почтовый код/индекс</label>
-                            </div>
-                            <div class="gr-8">
-                                <input type="text" class="text form_input" id="address_postcode" maxlength="20" />
-                                <p class="errorfield" id="error_address_postcode" style="display:none"></p>
-                            </div>
-                        </div>
-                        <div class="gr-padding-10 gr-row clear">
-                            <div class="gr-4 form_label">
-                                <label for="phone">Номер телефона</label>
-                            </div>
-                            <div class="gr-8">
-                                <input type="text" class="text form_input" id="phone" maxlength="35" />
-                                <p class="errorfield" id="error_phone" style="display:none"></p>
-                            </div>
-                        </div>
-                    </fieldset>
+                    </div>
 
-                    <fieldset class="security">
-                        <legend id="security">Безопасность</legend>
-                        <div class="gr-padding-10 gr-row clear">
-                            <div class="gr-4 form_label">
-                                <label for="secret_question">Секретный вопрос</label>
-                            </div>
-                            <div class="gr-8">
-                                <select id="secret_question" class="form_input exclude_data">
-                                  <option value="Favourite dish">Любимое блюдо</option>
-                                  <option value="Mother's maiden name">Девичья фамилия матери</option>
-                                  <option value="Name of your pet">Имя домашнего животного</option>
-                                  <option value="Name of first love">Имя первой любви</option>
-                                  <option value="Memorable town/city">Любимый город</option>
-                                  <option value="Memorable date">Важная дата</option>
-                                  <option value="Brand of first car">Марка первой машины</option>
-                                  <option value="Favourite artist">Любимый артист</option>
-                                </select>
-                                <p class="errorfield" id="error_secret_question" style="display:none"></p>
-                            </div>
+                    <div class="gr-padding-10 gr-row clear">
+                        <div class="gr-4 form_label">
+                            <label for="date_of_birth">Ваша дата рождения</label>
                         </div>
-                        <div class="gr-padding-10 gr-row clear">
-                            <div class="gr-4 form_label">
-                                <label for="secret_answer">Ответ на секретный вопрос</label>
-                            </div>
-                            <div class="gr-8">
-                                <input type="text" class="text form_input exclude_data" id="secret_answer" maxlength="50" autocomplete="off"/>
-                                <p class="errorfield" id="error_secret_answer" style="display:none"></p>
-                            </div>
+                        <div class="gr-8">
+                            <input type="text" id="date_of_birth" name="date_of_birth" class="input-disabled" size="12" readonly="readonly"/>
                         </div>
-                    </fieldset>
+                    </div>
 
-                    <fieldset>
+                    <div class="gr-padding-10 gr-row clear">
+                        <div class="gr-4 form_label">
+                            <label for="place_of_birth">Place of birth</label>
+                        </div>
+                        <div class="gr-8">
+                            <select name="place_of_birth" id="place_of_birth"></select>
+                        </div>
+                    </div>
+
+                    <div class="gr-padding-10 gr-row clear">
+                        <div class="gr-4 form_label">
+                            <label for="residence">Cтрана проживания</label>
+                        </div>
+                        <div class="gr-8">
+                            <span id="move-residence-back"></span>
+                            <select name="residence" id="residence" disabled="disabled"></select>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Tax Information</legend>
+
+                    <div class="gr-padding-10 gr-row clear">
+                        <div class="gr-4 form_label">
+                            <label for="tax_residence">Tax residence</label>
+                        </div>
+                        <div class="gr-8">
+                            <select name="tax_residence" id="tax_residence" class="invisible" multiple="multiple"></select>
+                        </div>
+                    </div>
+
+                    <div class="gr-padding-10 gr-row clear">
+                        <div class="gr-4 form_label">
+                            <label for="tax_identification_number">Tax identification number</label>
+                        </div>
+                        <div class="gr-8">
+                            <input type="text" class="text" id="tax_identification_number" maxlength="20"/>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend id="address">Адрес</legend>
+
+                    <div class="gr-padding-10 gr-row clear">
+                        <div class="gr-4 form_label">
+                            <label for="address_line_1">Адрес (улица, дом, кв.)</label>
+                        </div>
+                        <div class="gr-8">
+                            <input type="text" class="text" id="address_line_1" maxlength="70"/>
+                            <p class="hint">Kindly provide your complete address.<br>This will be used to authenticate your identity when you open a real account.</p>
+                        </div>
+                    </div>
+
+                    <div class="gr-padding-10 gr-row clear">
+                        <div class="gr-4 form_label">
+                            <label for="address_line_2">Доп. адресные данные</label>
+                        </div>
+                        <div class="gr-8">
+                            <input type="text" class="text" id="address_line_2" maxlength="70"/>
+                        </div>
+                    </div>
+
+                    <div class="gr-padding-10 gr-row clear">
+                        <div class="gr-4 form_label">
+                            <label for="address_city">Город</label>
+                        </div>
+                        <div class="gr-8">
+                            <input type="text" class="text" id="address_city" maxlength="35"/>
+                        </div>
+                    </div>
+
+                    <div class="gr-padding-10 gr-row clear" style="display:none">
+                        <div class="gr-4 form_label">
+                            <label for="address_state">Штат/провинция/область</label>
+                        </div>
+                        <div class="gr-8">
+                            <select id="address_state"></select>
+                        </div>
+                    </div>
+
+                    <div class="gr-padding-10 gr-row clear">
+                        <div class="gr-4 form_label">
+                            <label for="address_postcode">Почтовый код/индекс</label>
+                        </div>
+                        <div class="gr-8">
+                            <input type="text" class="text" id="address_postcode" maxlength="20" />
+                        </div>
+                    </div>
+
+                    <div class="gr-padding-10 gr-row clear">
+                        <div class="gr-4 form_label">
+                            <label for="phone">Номер телефона</label>
+                        </div>
+                        <div class="gr-8">
+                            <input type="text" class="text" id="phone" maxlength="35" />
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset class="security">
+                    <legend id="security">Безопасность</legend>
+
+                    <div class="gr-padding-10 gr-row clear">
+                        <div class="gr-4 form_label">
+                            <label for="secret_question">Секретный вопрос</label>
+                        </div>
+                        <div class="gr-8">
+                            <select id="secret_question">
+                              <option value="Favourite dish">Любимое блюдо</option>
+                              <option value="Mother's maiden name">Девичья фамилия матери</option>
+                              <option value="Name of your pet">Имя домашнего животного</option>
+                              <option value="Name of first love">Имя первой любви</option>
+                              <option value="Memorable town/city">Любимый город</option>
+                              <option value="Memorable date">Важная дата</option>
+                              <option value="Brand of first car">Марка первой машины</option>
+                              <option value="Favourite artist">Любимый артист</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="gr-padding-10 gr-row clear">
+                        <div class="gr-4 form_label">
+                            <label for="secret_answer">Ответ на секретный вопрос</label>
+                        </div>
+                        <div class="gr-8">
+                            <input type="text" class="text" id="secret_answer" maxlength="50" autocomplete="off"/>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset>
     <legend>Финансовая информация</legend>
+    
+    <div class="gr-row form-row center-text-m ">
+    <div class="gr-4 gr-12-m">
+        <label for="forex_trading_experience">Опыт торговли на Форекс</label>
+    </div>
+    <div class="gr-8 gr-12-m">
+                <select id="forex_trading_experience" class="form_input" > 
+        <option value="">Выберите</option>
+    <option value="0-1 year">0-1 года</option>
+    <option value="1-2 years">1-2 года</option>
+    <option value="Over 3 years">В течение 3 лет</option>
+                </select>
+    
+    </div>
+</div>
 
-    <div class="gr-padding-10 gr-row clear">
-        <div class="gr-4 form_label">
-            <label for="forex_trading_experience">Опыт торговли на Форекс</label>
-        </div>
-        <div class="gr-8">
-            <select id="forex_trading_experience" name="forex_trading_experience" class="form_input">
-                <option value="">Выберите</option>
-                <option value="0-1 year">0-1 года</option>
-                <option value="1-2 years">1-2 года</option>
-                <option value="Over 3 years">В течение 3 лет</option>
-            </select>
-            <p class="errorfield" id="error_forex_trading_experience"></p>
-        </div>
+    <div class="gr-row form-row center-text-m ">
+    <div class="gr-4 gr-12-m">
+        <label for="forex_trading_frequency">Частота торговли на Форекс</label>
     </div>
+    <div class="gr-8 gr-12-m">
+                <select id="forex_trading_frequency" class="form_input" > 
+        <option value="">Выберите</option>
+    <option value="0-5 transactions in the past 12 months">0-5 транзакций за последние 12 месяцев</option>
+    <option value="6-10 transactions in the past 12 months">6-10 транзакций за последние 12 месяцев</option>
+    <option value="40 transactions or more in the past 12 months">40 или более транзакций за последние 12 месяцев</option>
+                </select>
+    
+    </div>
+</div>
 
-    <div class="gr-padding-10 gr-row clear">
-        <div class="gr-4 form_label">
-            <label for="forex_trading_frequency">Частота торговли на Форекс</label>
-        </div>
-        <div class="gr-8">
-            <select id="forex_trading_frequency" name="forex_trading_frequency" class="form_input">
-                <option value="">Выберите</option>
-                <option value="0-5 transactions in the past 12 months">0-5 транзакций за последние 12 месяцев</option>
-                <option value="6-10 transactions in the past 12 months">6-10 транзакций за последние 12 месяцев</option>
-                <option value="40 transactions or more in the past 12 months">40 или более транзакций за последние 12 месяцев</option>
-            </select>
-            <p class="errorfield" id="error_forex_trading_frequency"></p>
-        </div>
+    <div class="gr-row form-row center-text-m ">
+    <div class="gr-4 gr-12-m">
+        <label for="indices_trading_experience">Опыт торговли индексами</label>
     </div>
+    <div class="gr-8 gr-12-m">
+                <select id="indices_trading_experience" class="form_input" > 
+        <option value="">Выберите</option>
+    <option value="0-1 year">0-1 года</option>
+    <option value="1-2 years">1-2 года</option>
+    <option value="Over 3 years">В течение 3 лет</option>
+                </select>
+    
+    </div>
+</div>
 
-    <div class="gr-padding-10 gr-row clear">
-        <div class="gr-4 form_label">
-            <label for="indices_trading_experience">Опыт торговли индексами</label>
-        </div>
-        <div class="gr-8">
-            <select id="indices_trading_experience" name="indices_trading_experience" class="form_input">
-                <option value="">Выберите</option>
-                <option value="0-1 year">0-1 года</option>
-                <option value="1-2 years">1-2 года</option>
-                <option value="Over 3 years">В течение 3 лет</option>
-            </select>
-            <p class="errorfield" id="error_indices_trading_experience"></p>
-        </div>
+    <div class="gr-row form-row center-text-m ">
+    <div class="gr-4 gr-12-m">
+        <label for="indices_trading_frequency">Частота торговли индексами</label>
     </div>
+    <div class="gr-8 gr-12-m">
+                <select id="indices_trading_frequency" class="form_input" > 
+        <option value="">Выберите</option>
+    <option value="0-5 transactions in the past 12 months">0-5 транзакций за последние 12 месяцев</option>
+    <option value="6-10 transactions in the past 12 months">6-10 транзакций за последние 12 месяцев</option>
+    <option value="40 transactions or more in the past 12 months">40 или более транзакций за последние 12 месяцев</option>
+                </select>
+    
+    </div>
+</div>
 
-    <div class="gr-padding-10 gr-row clear">
-        <div class="gr-4 form_label">
-            <label for="indices_trading_frequency">Частота торговли индексами</label>
-        </div>
-        <div class="gr-8">
-            <select id="indices_trading_frequency" name="indices_trading_frequency" class="form_input">
-                <option value="">Выберите</option>
-                <option value="0-5 transactions in the past 12 months">0-5 транзакций за последние 12 месяцев</option>
-                <option value="6-10 transactions in the past 12 months">6-10 транзакций за последние 12 месяцев</option>
-                <option value="40 transactions or more in the past 12 months">40 или более транзакций за последние 12 месяцев</option>
-            </select>
-            <p class="errorfield" id="error_indices_trading_frequency"></p>
-        </div>
+    <div class="gr-row form-row center-text-m ">
+    <div class="gr-4 gr-12-m">
+        <label for="commodities_trading_experience">Опыт торговли сырьевыми товарами</label>
     </div>
+    <div class="gr-8 gr-12-m">
+                <select id="commodities_trading_experience" class="form_input" > 
+        <option value="">Выберите</option>
+    <option value="0-1 year">0-1 года</option>
+    <option value="1-2 years">1-2 года</option>
+    <option value="Over 3 years">В течение 3 лет</option>
+                </select>
+    
+    </div>
+</div>
 
-    <div class="gr-padding-10 gr-row clear">
-        <div class="gr-4 form_label">
-            <label for="commodities_trading_experience">Опыт торговли сырьевыми товарами</label>
-        </div>
-        <div class="gr-8">
-            <select id="commodities_trading_experience" name="commodities_trading_experience" class="form_input">
-                <option value="">Выберите</option>
-                <option value="0-1 year">0-1 года</option>
-                <option value="1-2 years">1-2 года</option>
-                <option value="Over 3 years">В течение 3 лет</option>
-            </select>
-            <p class="errorfield" id="error_commodities_trading_experience"></p>
-        </div>
+    <div class="gr-row form-row center-text-m ">
+    <div class="gr-4 gr-12-m">
+        <label for="commodities_trading_frequency">Частота торговли сырьевыми товарами</label>
     </div>
+    <div class="gr-8 gr-12-m">
+                <select id="commodities_trading_frequency" class="form_input" > 
+        <option value="">Выберите</option>
+    <option value="0-5 transactions in the past 12 months">0-5 транзакций за последние 12 месяцев</option>
+    <option value="6-10 transactions in the past 12 months">6-10 транзакций за последние 12 месяцев</option>
+    <option value="40 transactions or more in the past 12 months">40 или более транзакций за последние 12 месяцев</option>
+                </select>
+    
+    </div>
+</div>
 
-    <div class="gr-padding-10 gr-row clear">
-        <div class="gr-4 form_label">
-            <label for="commodities_trading_frequency">Частота торговли сырьевыми товарами</label>
-        </div>
-        <div class="gr-8">
-            <select id="commodities_trading_frequency" name="commodities_trading_frequency" class="form_input">
-                <option value="">Выберите</option>
-                <option value="0-5 transactions in the past 12 months">0-5 транзакций за последние 12 месяцев</option>
-                <option value="6-10 transactions in the past 12 months">6-10 транзакций за последние 12 месяцев</option>
-                <option value="40 transactions or more in the past 12 months">40 или более транзакций за последние 12 месяцев</option>
-            </select>
-            <p class="errorfield" id="error_commodities_trading_frequency"></p>
-        </div>
+    <div class="gr-row form-row center-text-m ">
+    <div class="gr-4 gr-12-m">
+        <label for="stocks_trading_experience">Опыт торговли акциями</label>
     </div>
+    <div class="gr-8 gr-12-m">
+                <select id="stocks_trading_experience" class="form_input" > 
+        <option value="">Выберите</option>
+    <option value="0-1 year">0-1 года</option>
+    <option value="1-2 years">1-2 года</option>
+    <option value="Over 3 years">В течение 3 лет</option>
+                </select>
+    
+    </div>
+</div>
 
-    <div class="gr-padding-10 gr-row clear">
-        <div class="gr-4 form_label">
-            <label for="stocks_trading_experience">Опыт торговли акциями</label>
-        </div>
-        <div class="gr-8">
-            <select id="stocks_trading_experience" name="stocks_trading_experience" class="form_input">
-                <option value="">Выберите</option>
-                <option value="0-1 year">0-1 года</option>
-                <option value="1-2 years">1-2 года</option>
-                <option value="Over 3 years">В течение 3 лет</option>
-            </select>
-            <p class="errorfield" id="error_stocks_trading_experience"></p>
-        </div>
+    <div class="gr-row form-row center-text-m ">
+    <div class="gr-4 gr-12-m">
+        <label for="stocks_trading_frequency">Частота торговли акциями</label>
     </div>
+    <div class="gr-8 gr-12-m">
+                <select id="stocks_trading_frequency" class="form_input" > 
+        <option value="">Выберите</option>
+    <option value="0-5 transactions in the past 12 months">0-5 транзакций за последние 12 месяцев</option>
+    <option value="6-10 transactions in the past 12 months">6-10 транзакций за последние 12 месяцев</option>
+    <option value="40 transactions or more in the past 12 months">40 или более транзакций за последние 12 месяцев</option>
+                </select>
+    
+    </div>
+</div>
 
-    <div class="gr-padding-10 gr-row clear">
-        <div class="gr-4 form_label">
-            <label for="stocks_trading_frequency">Частота торговли акциями</label>
-        </div>
-        <div class="gr-8">
-            <select id="stocks_trading_frequency" name="stocks_trading_frequency" class="form_input">
-                <option value="">Выберите</option>
-                <option value="0-5 transactions in the past 12 months">0-5 транзакций за последние 12 месяцев</option>
-                <option value="6-10 transactions in the past 12 months">6-10 транзакций за последние 12 месяцев</option>
-                <option value="40 transactions or more in the past 12 months">40 или более транзакций за последние 12 месяцев</option>
-            </select>
-            <p class="errorfield" id="error_stocks_trading_frequency"></p>
-        </div>
+    <div class="gr-row form-row center-text-m ">
+    <div class="gr-4 gr-12-m">
+        <label for="other_derivatives_trading_experience">Опыт торговли бинарными опционами или другими производными финансовыми инструментами</label>
     </div>
-    <div class="gr-padding-10 gr-row clear">
-        <div class="gr-4 form_label">
-            <label for="other_derivatives_trading_experience">Опыт торговли бинарными опционами или другими производными финансовыми инструментами</label>
-        </div>
-        <div class="gr-8">
-            <select id="other_derivatives_trading_experience" name="other_derivatives_trading_experience" class="form_input">
-                <option value="">Выберите</option>
-                <option value="0-1 year">0-1 года</option>
-                <option value="1-2 years">1-2 года</option>
-                <option value="Over 3 years">В течение 3 лет</option>
-            </select>
-            <p class="errorfield" id="error_other_derivatives_trading_experience"></p>
-        </div>
+    <div class="gr-8 gr-12-m">
+                <select id="other_derivatives_trading_experience" class="form_input" > 
+        <option value="">Выберите</option>
+    <option value="0-1 year">0-1 года</option>
+    <option value="1-2 years">1-2 года</option>
+    <option value="Over 3 years">В течение 3 лет</option>
+                </select>
+    
     </div>
-    <div class="gr-padding-10 gr-row clear">
-        <div class="gr-4 form_label">
-            <label for="other_derivatives_trading_frequency">Частота торговли бинарными опционами или другими производными финансовыми инструментами</label>
-        </div>
-        <div class="gr-8">
-            <select id="other_derivatives_trading_frequency" name="other_derivatives_trading_frequency" class="form_input">
-                <option value="">Выберите</option>
-                <option value="0-5 transactions in the past 12 months">0-5 транзакций за последние 12 месяцев</option>
-                <option value="6-10 transactions in the past 12 months">6-10 транзакций за последние 12 месяцев</option>
-                <option value="40 transactions or more in the past 12 months">40 или более транзакций за последние 12 месяцев</option>
-            </select>
-            <p class="errorfield" id="error_other_derivatives_trading_frequency"></p>
-        </div>
+</div>
+
+    <div class="gr-row form-row center-text-m ">
+    <div class="gr-4 gr-12-m">
+        <label for="other_derivatives_trading_frequency">Частота торговли бинарными опционами или другими производными финансовыми инструментами</label>
     </div>
-    <div class="gr-padding-10 gr-row clear">
-        <div class="gr-4 form_label">
-            <label for="other_instruments_trading_experience">Опыт торговли другими финансовыми инструментами</label>
-        </div>
-        <div class="gr-8">
-            <select id="other_instruments_trading_experience" name="other_instruments_trading_experience" class="form_input">
-                <option value="">Выберите</option>
-                <option value="0-1 year">0-1 года</option>
-                <option value="1-2 years">1-2 года</option>
-                <option value="Over 3 years">В течение 3 лет</option>
-            </select>
-            <p class="errorfield" id="error_other_instruments_trading_experience"></p>
-        </div>
+    <div class="gr-8 gr-12-m">
+                <select id="other_derivatives_trading_frequency" class="form_input" > 
+        <option value="">Выберите</option>
+    <option value="0-5 transactions in the past 12 months">0-5 транзакций за последние 12 месяцев</option>
+    <option value="6-10 transactions in the past 12 months">6-10 транзакций за последние 12 месяцев</option>
+    <option value="40 transactions or more in the past 12 months">40 или более транзакций за последние 12 месяцев</option>
+                </select>
+    
     </div>
-    <div class="gr-padding-10 gr-row clear">
-        <div class="gr-4 form_label">
-            <label for="other_instruments_trading_frequency">Частота торговли другими финансовыми инструментами</label>
-        </div>
-        <div class="gr-8">
-            <select id="other_instruments_trading_frequency" name="other_instruments_trading_frequency" class="form_input">
-                <option value="">Выберите</option>
-                <option value="0-5 transactions in the past 12 months">0-5 транзакций за последние 12 месяцев</option>
-                <option value="6-10 transactions in the past 12 months">6-10 транзакций за последние 12 месяцев</option>
-                <option value="40 transactions or more in the past 12 months">40 или более транзакций за последние 12 месяцев</option>
-            </select>
-            <p class="errorfield" id="error_other_instruments_trading_frequency"></p>
-        </div>
+</div>
+
+    <div class="gr-row form-row center-text-m ">
+    <div class="gr-4 gr-12-m">
+        <label for="other_instruments_trading_experience">Опыт торговли другими финансовыми инструментами</label>
     </div>
-    <div class="gr-padding-10 gr-row clear">
-        <div class="gr-4 form_label">
-            <label for="employment_industry">Сфера занятости</label>
-        </div>
-        <div class="gr-8">
-            <select id="employment_industry" name="employment_industry" class="form_input">
-                <option value="">Выберите</option>
-                <option value="Construction">Строительство</option>
-                <option value="Education">Обучение</option>
-                <option value="Finance">Финансы</option>
-                <option value="Health">Здоровье</option>
-                <option value="Tourism">Туризм</option>
-                <option value="Other">Другое</option>
-            </select>
-            <p class="errorfield" id="error_employment_industry"></p>
-        </div>
+    <div class="gr-8 gr-12-m">
+                <select id="other_instruments_trading_experience" class="form_input" > 
+        <option value="">Выберите</option>
+    <option value="0-1 year">0-1 года</option>
+    <option value="1-2 years">1-2 года</option>
+    <option value="Over 3 years">В течение 3 лет</option>
+                </select>
+    
     </div>
-    <div class="gr-padding-10 gr-row clear">
-        <div class="gr-4 form_label">
-            <label for="occupation">Occupation</label>
-        </div>
-        <div class="gr-8">
-            <select id="occupation" class="form_input">
-                <option value="">Выберите</option>
-                <option value="Chief Executives, Senior Officials and Legislators">Руководители, высокопоставленные чиновники и работники законодательных органов</option>
-                <option value="Managers">Менеджеры</option>
-                <option value="Professionals">Специалисты</option>
-                <option value="Clerks">Клерки</option>
-                <option value="Personal Care, Sales and Service Workers">Работники в сфере личной гигиены, продаж и обслуживания</option>
-                <option value="Agricultural, Forestry and Fishery Workers">Работники сельского, лесного и рыбного хозяйства</option>
-                <option value="Craft, Metal, Electrical and Electronics Workers">Ремёсленники, рабочие по металлу, электрике и электронике</option>
-                <option value="Plant and Machine Operators and Assemblers">Работники заводов, механики и сборщики</option>
-                <option value="Cleaners and Helpers">Уборщики и обслуживающий персонал</option>
-                <option value="Mining, Construction, Manufacturing and Transport Workers">Работники горнодобывающей промышленности, строительства, производства и транспорта</option>
-                <option value="Armed Forces">Вооруженные Силы</option>
-                <option value="Government Officers">Гос. служащие</option>
-                <option value="Others">Others</option>
-            </select>
-            <p class="errorfield" id="error_occupation"></p>
-        </div>
+</div>
+
+    <div class="gr-row form-row center-text-m ">
+    <div class="gr-4 gr-12-m">
+        <label for="other_instruments_trading_frequency">Частота торговли другими финансовыми инструментами</label>
     </div>
-    <div class="gr-padding-10 gr-row clear">
-        <div class="gr-4 form_label">
-            <label for="education_level">Уровень образования</label>
-        </div>
-        <div class="gr-8">
-            <select id="education_level" name="education_level" class="form_input">
-                <option value="">Выберите</option>
-                <option value="Primary">Первичн.</option>
-                <option value="Secondary">Вторичн.</option>
-                <option value="Tertiary">Третичн.</option>
-            </select>
-            <p class="errorfield" id="error_education_level"></p>
-        </div>
+    <div class="gr-8 gr-12-m">
+                <select id="other_instruments_trading_frequency" class="form_input" > 
+        <option value="">Выберите</option>
+    <option value="0-5 transactions in the past 12 months">0-5 транзакций за последние 12 месяцев</option>
+    <option value="6-10 transactions in the past 12 months">6-10 транзакций за последние 12 месяцев</option>
+    <option value="40 transactions or more in the past 12 months">40 или более транзакций за последние 12 месяцев</option>
+                </select>
+    
     </div>
-    <div class="gr-padding-10 gr-row clear">
-        <div class="gr-4 form_label">
-            <label for="income_source">Источник дохода</label>
-        </div>
-        <div class="gr-8">
-            <select id="income_source" name="income_source" class="form_input">
-                <option value="">Выберите</option>
-                <option value="Salaried Employee">Наемный работник</option>
-                <option value="Self-Employed">Частный предприниматель</option>
-                <option value="Investments &amp; Dividends">Инвестиции &amp; Дивиденды</option>
-                <option value="Pension">Пенсия</option>
-                <option value="Other">Другое</option>
-            </select>
-            <p class="errorfield" id="error_income_source"></p>
-        </div>
+</div>
+
+    <div class="gr-row form-row center-text-m ">
+    <div class="gr-4 gr-12-m">
+        <label for="employment_industry">Сфера занятости</label>
     </div>
-    <div class="gr-padding-10 gr-row clear">
-        <div class="gr-4 form_label">
-            <label for="net_income">Чистый годовой доход</label>
-        </div>
-        <div class="gr-8">
-            <select id="net_income" name="net_income" class="form_input">
-                <option value="">Выберите</option>
-                <option value="Less than &#36;25,000">Менее &#36;25,000</option>
-                <option value="&#36;25,000 - &#36;50,000">&#36;25,000 - &#36;50,000</option>
-                <option value="&#36;50,001 - &#36;100,000">&#36;50,001 - &#36;100,000</option>
-                <option value="&#36;100,001 - &#36;500,000">&#36;100,001 - &#36;500,000</option>
-                <option value="Over &#36;500,000">Более &#36;500,001</option>
-            </select>
-            <p class="errorfield" id="error_net_income"></p>
-        </div>
+    <div class="gr-8 gr-12-m">
+                <select id="employment_industry" class="form_input" > 
+        <option value="">Выберите</option>
+        <option value="Construction">Строительство</option>
+        <option value="Education">Обучение</option>
+        <option value="Finance">Финансы</option>
+        <option value="Health">Здоровье</option>
+        <option value="Tourism">Туризм</option>
+        <option value="Other">Другое</option>
+                </select>
+    
     </div>
-    <div class="gr-padding-10 gr-row clear">
-        <div class="gr-4 form_label">
-            <label for="estimated_worth">Собственный капитал</label>
-        </div>
-        <div class="gr-8">
-            <select id="estimated_worth" name="estimated_worth" class="form_input">
-                <option value="">Выберите</option>
-                <option value="Less than &#36;100,000">Менее &#36;100,000</option>
-                <option value="&#36;100,000 - &#36;250,000">&#36;100,000 - &#36;250,000</option>
-                <option value="&#36;250,001 - &#36;500,000">&#36;250,001 - &#36;500,000</option>
-                <option value="&#36;500,001 - &#36;1,000,000">&#36;500,001 - &#36;1,000,000</option>
-                <option value="Over &#36;1,000,000">Свыше &#36;1,000,000</option>
-            </select>
-            <p class="errorfield" id="error_estimated_worth"></p>
-        </div>
+</div>
+
+    <div class="gr-row form-row center-text-m ">
+    <div class="gr-4 gr-12-m">
+        <label for="occupation">Occupation</label>
     </div>
+    <div class="gr-8 gr-12-m">
+                <select id="occupation" class="form_input" > 
+        <option value="">Выберите</option>
+        <option value="Chief Executives, Senior Officials and Legislators">Руководители, высокопоставленные чиновники и работники законодательных органов</option>
+        <option value="Managers">Менеджеры</option>
+        <option value="Professionals">Специалисты</option>
+        <option value="Clerks">Клерки</option>
+        <option value="Personal Care, Sales and Service Workers">Работники в сфере личной гигиены, продаж и обслуживания</option>
+        <option value="Agricultural, Forestry and Fishery Workers">Работники сельского, лесного и рыбного хозяйства</option>
+        <option value="Craft, Metal, Electrical and Electronics Workers">Ремёсленники, рабочие по металлу, электрике и электронике</option>
+        <option value="Plant and Machine Operators and Assemblers">Работники заводов, механики и сборщики</option>
+        <option value="Cleaners and Helpers">Уборщики и обслуживающий персонал</option>
+        <option value="Mining, Construction, Manufacturing and Transport Workers">Работники горнодобывающей промышленности, строительства, производства и транспорта</option>
+        <option value="Armed Forces">Вооруженные Силы</option>
+        <option value="Government Officers">Гос. служащие</option>
+        <option value="Others">Others</option>
+                </select>
+    
+    </div>
+</div>
+
+    <div class="gr-row form-row center-text-m ">
+    <div class="gr-4 gr-12-m">
+        <label for="education_level">Уровень образования</label>
+    </div>
+    <div class="gr-8 gr-12-m">
+                <select id="education_level" class="form_input" > 
+        <option value="">Выберите</option>
+        <option value="Primary">Первичн.</option>
+        <option value="Secondary">Вторичн.</option>
+        <option value="Tertiary">Третичн.</option>
+                </select>
+    
+    </div>
+</div>
+
+    <div class="gr-row form-row center-text-m ">
+    <div class="gr-4 gr-12-m">
+        <label for="income_source">Источник дохода</label>
+    </div>
+    <div class="gr-8 gr-12-m">
+                <select id="income_source" class="form_input" > 
+        <option value="">Выберите</option>
+        <option value="Salaried Employee">Наемный работник</option>
+        <option value="Self-Employed">Частный предприниматель</option>
+        <option value="Investments &amp; Dividends">Инвестиции &amp; Дивиденды</option>
+        <option value="Pension">Пенсия</option>
+        <option value="Other">Другое</option>
+                </select>
+    
+    </div>
+</div>
+
+    <div class="gr-row form-row center-text-m ">
+    <div class="gr-4 gr-12-m">
+        <label for="net_income">Чистый годовой доход</label>
+    </div>
+    <div class="gr-8 gr-12-m">
+                <select id="net_income" class="form_input" > 
+        <option value="">Выберите</option>
+        <option value="Less than &#36;25,000">Менее &#36;25,000</option>
+        <option value="&#36;25,000 - &#36;50,000">&#36;25,000 - &#36;50,000</option>
+        <option value="&#36;50,001 - &#36;100,000">&#36;50,001 - &#36;100,000</option>
+        <option value="&#36;100,001 - &#36;500,000">&#36;100,001 - &#36;500,000</option>
+        <option value="Over &#36;500,000">Более &#36;500,001</option>
+                </select>
+    
+    </div>
+</div>
+
+    <div class="gr-row form-row center-text-m ">
+    <div class="gr-4 gr-12-m">
+        <label for="estimated_worth">Собственный капитал</label>
+    </div>
+    <div class="gr-8 gr-12-m">
+                <select id="estimated_worth" class="form_input" > 
+        <option value="">Выберите</option>
+        <option value="Less than &#36;100,000">Менее &#36;100,000</option>
+        <option value="&#36;100,000 - &#36;250,000">&#36;100,000 - &#36;250,000</option>
+        <option value="&#36;250,001 - &#36;500,000">&#36;250,001 - &#36;500,000</option>
+        <option value="&#36;500,001 - &#36;1,000,000">&#36;500,001 - &#36;1,000,000</option>
+        <option value="Over &#36;1,000,000">Свыше &#36;1,000,000</option>
+                </select>
+    
+    </div>
+</div>
+
 </fieldset>
 
-                    <fieldset>
-                        <div class="gr-12">
-                          <p>
-                            Услуги финансового трейдинга на данном сайте предоставляются только клиентам, которые готовы к возможной потере всех инвестированных ими средств и осознают риск, связанный с приобретением финансовых контрактов. Транзакции в рамках финансовых контрактов подразумевают высокую степень риска. Если купленный контракт истекает без выплаты, Вы теряете всю сумму, потраченную на приобретение данного контракта.
-                          </p>
-                        </div>
-                    </fieldset>
-
-                    <fieldset class="center-text" id="formlayout">
-                        <div class="gr-12 gr-padding-10">
-                            <input type="checkbox" id="tnc" class="form_input exclude_data" />
-                            <label for="tnc">Я прочитал и согласен с <a target="_blank" href="/ru/terms-and-conditions.html">правилами и условиями</a> сайта.</label>
-                            <p class="errorfield" id="error_tnc" style="display:none"></p>
-                        </div>
-                        <button class="button" id="btn_submit" type="submit">Открыть счет</button>
-                    </fieldset>
-                </form>
-
-                <form id="financial-risk" class="hidden">
-                  <fieldset>
+                <fieldset>
                     <div class="gr-12">
-                      <p>
-                        <strong>Тест на целесообразность: ПРЕДУПРЕЖДЕНИЕ:</strong> Предоставляя Вам наши услуги, мы имеем обязательство получить от Вас определенную информацию, чтобы знать об уместности предоставления Вам того или иного продукта (то есть, предоставление услуг в зависимости от того, обладаете ли Вы опытом и знаниями, достаточными для понимания всех возможных рисков).
-                      </p>
-                      <p>
-                        На основе информации, предоставленной в отношении Ваших знаний и опыта, мы считаем, что инвестиции, доступные через этот сайт, не подходят для Вас.
-                      </p>
-                      <p>
-                        Обратите внимание, что, нажимая на кнопку внизу <strong>Согласен</strong> и переходя к открытию счета, Вы можете подвергать себя различным рискам (которые иногда могут быть значительными, включая риск потери всей инвестированной суммы), для оценки и смягчения которых у Вас может не быть достаточных знаний или опыта.
-                      </p>
-                      <p class="center-text">
-                        <span class="button">
-                          <button class="button" type="submit">Принять</button>
-                        </span>
-                        <a class="button pjaxload" href="/ru/trading.html"><span>Отклонить</span></a>
-                      </p>
+                      <p>Услуги финансового трейдинга на данном сайте предоставляются только клиентам, которые готовы к возможной потере всех инвестированных ими средств и осознают риск, связанный с приобретением финансовых контрактов. Транзакции в рамках финансовых контрактов подразумевают высокую степень риска. Если купленный контракт истекает без выплаты, Вы теряете всю сумму, потраченную на приобретение данного контракта.</p>
                     </div>
-                  </fieldset>
-                </form>
+                </fieldset>
 
-                <div class="errorbox rbox" id="client_message" style="display:none">
-                    <div class="rbox-wrap">
-                        <div class="gr-12 rbox-content" id="client_message_content">
-                            <p class="center-text notice-msg"></p>
+                <fieldset class="center-text" id="formlayout">
+                    <div class="gr-row">
+                        <div class="gr-12-m gr-padding-10 gr-centered">
+                            <input type="checkbox" id="tnc" />
+                            <label for="tnc">Я прочитал и согласен с <a target="_blank" href="/ru/terms-and-conditions.html">правилами и условиями</a> сайта.</label>
                         </div>
+                    </div>
+
+                    <button class="button" id="btn_submit" type="submit">Открыть счет</button>
+                </fieldset>
+            </form>
+
+            <form id="financial-risk" class="hidden">
+                <fieldset>
+                    <div class="gr-12">
+                        <p><strong>Тест на целесообразность: ПРЕДУПРЕЖДЕНИЕ:</strong> Предоставляя Вам наши услуги, мы имеем обязательство получить от Вас определенную информацию, чтобы знать об уместности предоставления Вам того или иного продукта (то есть, предоставление услуг в зависимости от того, обладаете ли Вы опытом и знаниями, достаточными для понимания всех возможных рисков).</p>
+                        <p>На основе информации, предоставленной в отношении Ваших знаний и опыта, мы считаем, что инвестиции, доступные через этот сайт, не подходят для Вас.</p>
+                        <p>Обратите внимание, что, нажимая на кнопку внизу <strong>Согласен</strong> и переходя к открытию счета, Вы можете подвергать себя различным рискам (которые иногда могут быть значительными, включая риск потери всей инвестированной суммы), для оценки и смягчения которых у Вас может не быть достаточных знаний или опыта.</p>
+                        <p class="center-text">
+                            <button class="button" type="submit">Принять</button>
+                            <a class="button pjaxload" href="/ru/trading.html"><span>Отклонить</span></a>
+                        </p>
+                    </div>
+                </fieldset>
+            </form>
+
+            <div class="errorbox rbox invisible" id="client_message">
+                <div class="rbox-wrap">
+                    <div class="gr-12 rbox-content" id="client_message_content">
+                        <p class="center-text notice-msg"></p>
                     </div>
                 </div>
             </div>

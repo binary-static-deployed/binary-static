@@ -25,8 +25,6 @@
 
         <title>开立金融账户 | Binary.com</title>
 
-        
-
         <link rel="apple-touch-icon" sizes="57x57" href="https://style.binary.com/images/favicons/apple-touch-icon-57x57.png">
         <link rel="apple-touch-icon" sizes="114x114" href="https://style.binary.com/images/favicons/apple-touch-icon-114x114.png">
         <link rel="apple-touch-icon" sizes="72x72" href="https://style.binary.com/images/favicons/apple-touch-icon-72x72.png">
@@ -57,10 +55,10 @@
           <link rel="alternate" href="/zh_cn/new_account/maltainvestws.html?l=zh_cn" hreflang="ZH_CN" /> 
           <link rel="alternate" href="/zh_tw/new_account/maltainvestws.html" hreflang="ZH_TW" /> 
         
-         <link rel="stylesheet" href="/css/binary.min.css?61ehwyhz">
-         <link rel="stylesheet" href="https://style.binary.com/binary.css?61ehwyhz">
+         <link rel="stylesheet" href="/css/binary.min.css?e8onm7hc">
+         <link rel="stylesheet" href="https://style.binary.com/binary.css?e8onm7hc">
         
-        <script src='/js/binary.min.js?61ehwyhz'></script>  <script src='https://style.binary.com/binary.js?61ehwyhz'></script>
+        <script src='/js/binary.min.js?e8onm7hc'></script>  <script src='https://style.binary.com/binary.js?e8onm7hc'></script>
     </head>
 
 
@@ -338,517 +336,515 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   <div class='gr-12 static_full'>
     <h1>开立金融账户</h1>
-    <div class="gr-padding-10">
+    <div class="rbox form gr-padding-10">
+        <div class="rbox-wrap">
+            <form id="financial-form">
+                <fieldset>
+                    <legend id="details">详情</legend>
 
-        <div class="rbox form">
-            <div class="rbox-wrap">
-                <form id="financial-form">
-                    <fieldset>
-                        <legend id="details">详情</legend>
-                        <div class="gr-padding-10 gr-row clear">
-                            <div class="gr-4 form_label">
-                                <label for="salutation">职务</label>
-                            </div>
-                            <div class="gr-8">
-                                <select id="salutation" class="input-disabled form_input">
-                                  <option value="Mr">先生</option>
-                                  <option value="Mrs">女士</option>
-                                  <option value="Ms">女士</option>
-                                  <option value="Miss">遗漏</option>
-                                </select>
-                                <p class="errorfield" id="error_salutation" style="display:none"></p>
-                            </div>
+                    <div class="gr-padding-10 gr-row clear">
+                        <div class="gr-4 form_label">
+                            <label for="salutation">职务</label>
                         </div>
-                        <div class="gr-padding-10 gr-row clear">
-                            <div class="gr-4 form_label">
-                                <label for="first_name">名</label>
-                            </div>
-                            <div class="gr-8">
-                                <input type="text" class="text input-disabled form_input" id="first_name" maxlength="30"/>
-                                <p class="errorfield" id="error_first_name" style="display:none"></p>
-                            </div>
+                        <div class="gr-8">
+                            <select id="salutation" class="input-disabled">
+                              <option value="Mr">先生</option>
+                              <option value="Mrs">女士</option>
+                              <option value="Ms">女士</option>
+                              <option value="Miss">遗漏</option>
+                            </select>
                         </div>
-                        <div class="gr-padding-10 gr-row clear">
-                            <div class="gr-4 form_label">
-                                <label for="last_name">姓</label>
-                            </div>
-                            <div class="gr-8">
-                                <input type="text" class="text input-disabled form_input" id="last_name" maxlength="30"/>
-                                <p class="errorfield" id="error_last_name" style="display:none"></p>
-                            </div>
-                        </div>
-                        <div class="gr-padding-10 gr-row clear">
-                            <div class="gr-4 form_label">
-                                <label for="dobdd">出生日期</label>
-                            </div>
-                            <div class="gr-8">
-                                <select id="dobdd" class="input-disabled form_input exclude_data"></select>
-                                <select id="dobmm" class="input-disabled form_input exclude_data"></select>
-                                <select id="dobyy" class="input-disabled form_input exclude_data"></select>
-                                <p class="errorfield" id="error_dobdd" style="display:none"></p>
-                            </div>
-                        </div>
-                        <div class="gr-padding-10 gr-row clear">
-                            <div class="gr-4 form_label">
-                                <label for="residence">居住国</label>
-                            </div>
-                            <div class="gr-8">
-                                <span id="move-residence-back"></span>
-                                <select name="residence" id="residence" class="form_input" disabled></select>
-                                <p class="errorfield" id="error_residence" style="display:none"></p>
-                            </div>
-                        </div>
-                    </fieldset>
+                    </div>
 
-                    <fieldset>
-                        <legend>税务信息</legend>
-                        <div class="gr-padding-10 gr-row clear">
-                            <div class="gr-4 form_label">
-                                <label for="place_of_birth">出生地点</label>
-                            </div>
-                            <div class="gr-8">
-                                <select name="place_of_birth" id="place_of_birth" class="form_input"></select>
-                                <p class="errorfield" id="error_place_of_birth" style="display:none"></p>
-                            </div>
+                    <div class="gr-padding-10 gr-row clear">
+                        <div class="gr-4 form_label">
+                            <label for="first_name">名</label>
                         </div>
-                        <div class="gr-padding-10 gr-row clear">
-                            <div class="gr-4 form_label">
-                                <label for="tax_residence">纳税居住地</label>
-                            </div>
-                            <div class="gr-8">
-                                <select name="tax_residence" id="tax_residence" class="form_input invisible" multiple="multiple"></select>
-                                <p class="errorfield" id="error_tax_residence" style="display:none"></p>
-                            </div>
+                        <div class="gr-8">
+                            <input type="text" class="text input-disabled" id="first_name" maxlength="30"/>
                         </div>
-                        <div class="gr-padding-10 gr-row clear">
-                            <div class="gr-4 form_label">
-                                <label for="tax_identification_number">税务标识号</label>
-                            </div>
-                            <div class="gr-8">
-                                <input type="text" class="text form_input" id="tax_identification_number" maxlength="20"/>
-                                <p class="errorfield" id="error_tax_identification_number" style="display:none"></p>
-                            </div>
-                        </div>
-                    </fieldset>
+                    </div>
 
-                    <fieldset>
-                        <legend id="address">地址</legend>
-                        <div class="gr-padding-10 gr-row clear">
-                            <div class="gr-4 form_label">
-                                <label for="address_line_1">家庭地址第一行</label>
-                            </div>
-                            <div class="gr-8">
-                                <input type="text" class="text form_input" id="address_line_1" maxlength="70"/>
-                                <p class="hint">请提供您的完整地址。<br>以便在您开立真实账户时验证您的身份。</p>
-                                <p class="errorfield" id="error_address_line_1" style="display:none"></p>
-                            </div>
+                    <div class="gr-padding-10 gr-row clear">
+                        <div class="gr-4 form_label">
+                            <label for="last_name">姓</label>
                         </div>
-                        <div class="gr-padding-10 gr-row clear">
-                            <div class="gr-4 form_label">
-                                <label for="address_line_2">家庭地址第二行</label>
-                            </div>
-                            <div class="gr-8">
-                                <input type="text" class="text form_input" id="address_line_2" maxlength="70"/>
-                                <p class="errorfield" id="error_address_line_2" style="display:none"></p>
-                            </div>
+                        <div class="gr-8">
+                            <input type="text" class="text input-disabled" id="last_name" maxlength="30"/>
                         </div>
-                        <div class="gr-padding-10 gr-row clear">
-                            <div class="gr-4 form_label">
-                                <label for="address_city">城镇/城市</label>
-                            </div>
-                            <div class="gr-8">
-                                <input type="text" class="text form_input" id="address_city" maxlength="35"/>
-                                <p class="errorfield" id="error_address_city" style="display:none"></p>
-                            </div>
-                        </div>
-                        <div class="gr-padding-10 gr-row clear" style="display:none">
-                            <div class="gr-4 form_label">
-                                <label for="address_state">州/省</label>
-                            </div>
-                            <div class="gr-8">
-                                <select id="address_state" class="form_input"></select>
-                                <p class="errorfield" id="error_address_state" style="display:none"></p>
-                            </div>
-                        </div>
-                        <div class="gr-padding-10 gr-row clear">
-                            <div class="gr-4 form_label">
-                                <label for="address_postcode">邮编</label>
-                            </div>
-                            <div class="gr-8">
-                                <input type="text" class="text form_input" id="address_postcode" maxlength="20" />
-                                <p class="errorfield" id="error_address_postcode" style="display:none"></p>
-                            </div>
-                        </div>
-                        <div class="gr-padding-10 gr-row clear">
-                            <div class="gr-4 form_label">
-                                <label for="phone">电话</label>
-                            </div>
-                            <div class="gr-8">
-                                <input type="text" class="text form_input" id="phone" maxlength="35" />
-                                <p class="errorfield" id="error_phone" style="display:none"></p>
-                            </div>
-                        </div>
-                    </fieldset>
+                    </div>
 
-                    <fieldset class="security">
-                        <legend id="security">安全</legend>
-                        <div class="gr-padding-10 gr-row clear">
-                            <div class="gr-4 form_label">
-                                <label for="secret_question">密码提示问题</label>
-                            </div>
-                            <div class="gr-8">
-                                <select id="secret_question" class="form_input exclude_data">
-                                  <option value="Favourite dish">最喜欢的菜肴</option>
-                                  <option value="Mother's maiden name">母亲婚前的姓氏</option>
-                                  <option value="Name of your pet">您宠物的名字</option>
-                                  <option value="Name of first love">初恋情人姓名</option>
-                                  <option value="Memorable town/city">难忘的城镇/城市</option>
-                                  <option value="Memorable date">难忘的日子</option>
-                                  <option value="Brand of first car">第一辆车的品牌</option>
-                                  <option value="Favourite artist">最喜欢的艺术家</option>
-                                </select>
-                                <p class="errorfield" id="error_secret_question" style="display:none"></p>
-                            </div>
+                    <div class="gr-padding-10 gr-row clear">
+                        <div class="gr-4 form_label">
+                            <label for="date_of_birth">出生日期</label>
                         </div>
-                        <div class="gr-padding-10 gr-row clear">
-                            <div class="gr-4 form_label">
-                                <label for="secret_answer">密码提示问题的答案</label>
-                            </div>
-                            <div class="gr-8">
-                                <input type="text" class="text form_input exclude_data" id="secret_answer" maxlength="50" autocomplete="off"/>
-                                <p class="errorfield" id="error_secret_answer" style="display:none"></p>
-                            </div>
+                        <div class="gr-8">
+                            <input type="text" id="date_of_birth" name="date_of_birth" class="input-disabled" size="12" readonly="readonly"/>
                         </div>
-                    </fieldset>
+                    </div>
 
-                    <fieldset>
+                    <div class="gr-padding-10 gr-row clear">
+                        <div class="gr-4 form_label">
+                            <label for="place_of_birth">出生地点</label>
+                        </div>
+                        <div class="gr-8">
+                            <select name="place_of_birth" id="place_of_birth"></select>
+                        </div>
+                    </div>
+
+                    <div class="gr-padding-10 gr-row clear">
+                        <div class="gr-4 form_label">
+                            <label for="residence">居住国</label>
+                        </div>
+                        <div class="gr-8">
+                            <span id="move-residence-back"></span>
+                            <select name="residence" id="residence" disabled="disabled"></select>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>税务信息</legend>
+
+                    <div class="gr-padding-10 gr-row clear">
+                        <div class="gr-4 form_label">
+                            <label for="tax_residence">纳税居住地</label>
+                        </div>
+                        <div class="gr-8">
+                            <select name="tax_residence" id="tax_residence" class="invisible" multiple="multiple"></select>
+                        </div>
+                    </div>
+
+                    <div class="gr-padding-10 gr-row clear">
+                        <div class="gr-4 form_label">
+                            <label for="tax_identification_number">税务标识号</label>
+                        </div>
+                        <div class="gr-8">
+                            <input type="text" class="text" id="tax_identification_number" maxlength="20"/>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend id="address">地址</legend>
+
+                    <div class="gr-padding-10 gr-row clear">
+                        <div class="gr-4 form_label">
+                            <label for="address_line_1">家庭地址第一行</label>
+                        </div>
+                        <div class="gr-8">
+                            <input type="text" class="text" id="address_line_1" maxlength="70"/>
+                            <p class="hint">请提供您的完整地址。<br>以便在您开立真实账户时验证您的身份。</p>
+                        </div>
+                    </div>
+
+                    <div class="gr-padding-10 gr-row clear">
+                        <div class="gr-4 form_label">
+                            <label for="address_line_2">家庭地址第二行</label>
+                        </div>
+                        <div class="gr-8">
+                            <input type="text" class="text" id="address_line_2" maxlength="70"/>
+                        </div>
+                    </div>
+
+                    <div class="gr-padding-10 gr-row clear">
+                        <div class="gr-4 form_label">
+                            <label for="address_city">城镇/城市</label>
+                        </div>
+                        <div class="gr-8">
+                            <input type="text" class="text" id="address_city" maxlength="35"/>
+                        </div>
+                    </div>
+
+                    <div class="gr-padding-10 gr-row clear" style="display:none">
+                        <div class="gr-4 form_label">
+                            <label for="address_state">州/省</label>
+                        </div>
+                        <div class="gr-8">
+                            <select id="address_state"></select>
+                        </div>
+                    </div>
+
+                    <div class="gr-padding-10 gr-row clear">
+                        <div class="gr-4 form_label">
+                            <label for="address_postcode">邮编</label>
+                        </div>
+                        <div class="gr-8">
+                            <input type="text" class="text" id="address_postcode" maxlength="20" />
+                        </div>
+                    </div>
+
+                    <div class="gr-padding-10 gr-row clear">
+                        <div class="gr-4 form_label">
+                            <label for="phone">电话</label>
+                        </div>
+                        <div class="gr-8">
+                            <input type="text" class="text" id="phone" maxlength="35" />
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset class="security">
+                    <legend id="security">安全</legend>
+
+                    <div class="gr-padding-10 gr-row clear">
+                        <div class="gr-4 form_label">
+                            <label for="secret_question">密码提示问题</label>
+                        </div>
+                        <div class="gr-8">
+                            <select id="secret_question">
+                              <option value="Favourite dish">最喜欢的菜肴</option>
+                              <option value="Mother's maiden name">母亲婚前的姓氏</option>
+                              <option value="Name of your pet">您宠物的名字</option>
+                              <option value="Name of first love">初恋情人姓名</option>
+                              <option value="Memorable town/city">难忘的城镇/城市</option>
+                              <option value="Memorable date">难忘的日子</option>
+                              <option value="Brand of first car">第一辆车的品牌</option>
+                              <option value="Favourite artist">最喜欢的艺术家</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="gr-padding-10 gr-row clear">
+                        <div class="gr-4 form_label">
+                            <label for="secret_answer">密码提示问题的答案</label>
+                        </div>
+                        <div class="gr-8">
+                            <input type="text" class="text" id="secret_answer" maxlength="50" autocomplete="off"/>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset>
     <legend>金融信息</legend>
+    
+    <div class="gr-row form-row center-text-m ">
+    <div class="gr-4 gr-12-m">
+        <label for="forex_trading_experience">外汇交易经验</label>
+    </div>
+    <div class="gr-8 gr-12-m">
+                <select id="forex_trading_experience" class="form_input" > 
+        <option value="">请选择</option>
+    <option value="0-1 year">0-1 年</option>
+    <option value="1-2 years">1-2 年</option>
+    <option value="Over 3 years">3年以上</option>
+                </select>
+    
+    </div>
+</div>
 
-    <div class="gr-padding-10 gr-row clear">
-        <div class="gr-4 form_label">
-            <label for="forex_trading_experience">外汇交易经验</label>
-        </div>
-        <div class="gr-8">
-            <select id="forex_trading_experience" name="forex_trading_experience" class="form_input">
-                <option value="">请选择</option>
-                <option value="0-1 year">0-1 年</option>
-                <option value="1-2 years">1-2 年</option>
-                <option value="Over 3 years">3年以上</option>
-            </select>
-            <p class="errorfield" id="error_forex_trading_experience"></p>
-        </div>
+    <div class="gr-row form-row center-text-m ">
+    <div class="gr-4 gr-12-m">
+        <label for="forex_trading_frequency">外汇交易频率</label>
     </div>
+    <div class="gr-8 gr-12-m">
+                <select id="forex_trading_frequency" class="form_input" > 
+        <option value="">请选择</option>
+    <option value="0-5 transactions in the past 12 months">过去12个月内0-5次交易</option>
+    <option value="6-10 transactions in the past 12 months">过去12个月内6-10次交易</option>
+    <option value="40 transactions or more in the past 12 months">过去12个月内40次交易或以上</option>
+                </select>
+    
+    </div>
+</div>
 
-    <div class="gr-padding-10 gr-row clear">
-        <div class="gr-4 form_label">
-            <label for="forex_trading_frequency">外汇交易频率</label>
-        </div>
-        <div class="gr-8">
-            <select id="forex_trading_frequency" name="forex_trading_frequency" class="form_input">
-                <option value="">请选择</option>
-                <option value="0-5 transactions in the past 12 months">过去12个月内0-5次交易</option>
-                <option value="6-10 transactions in the past 12 months">过去12个月内6-10次交易</option>
-                <option value="40 transactions or more in the past 12 months">过去12个月内40次交易或以上</option>
-            </select>
-            <p class="errorfield" id="error_forex_trading_frequency"></p>
-        </div>
+    <div class="gr-row form-row center-text-m ">
+    <div class="gr-4 gr-12-m">
+        <label for="indices_trading_experience">指数交易经验</label>
     </div>
+    <div class="gr-8 gr-12-m">
+                <select id="indices_trading_experience" class="form_input" > 
+        <option value="">请选择</option>
+    <option value="0-1 year">0-1 年</option>
+    <option value="1-2 years">1-2 年</option>
+    <option value="Over 3 years">3年以上</option>
+                </select>
+    
+    </div>
+</div>
 
-    <div class="gr-padding-10 gr-row clear">
-        <div class="gr-4 form_label">
-            <label for="indices_trading_experience">指数交易经验</label>
-        </div>
-        <div class="gr-8">
-            <select id="indices_trading_experience" name="indices_trading_experience" class="form_input">
-                <option value="">请选择</option>
-                <option value="0-1 year">0-1 年</option>
-                <option value="1-2 years">1-2 年</option>
-                <option value="Over 3 years">3年以上</option>
-            </select>
-            <p class="errorfield" id="error_indices_trading_experience"></p>
-        </div>
+    <div class="gr-row form-row center-text-m ">
+    <div class="gr-4 gr-12-m">
+        <label for="indices_trading_frequency">指数交易频率</label>
     </div>
+    <div class="gr-8 gr-12-m">
+                <select id="indices_trading_frequency" class="form_input" > 
+        <option value="">请选择</option>
+    <option value="0-5 transactions in the past 12 months">过去12个月内0-5次交易</option>
+    <option value="6-10 transactions in the past 12 months">过去12个月内6-10次交易</option>
+    <option value="40 transactions or more in the past 12 months">过去12个月内40次交易或以上</option>
+                </select>
+    
+    </div>
+</div>
 
-    <div class="gr-padding-10 gr-row clear">
-        <div class="gr-4 form_label">
-            <label for="indices_trading_frequency">指数交易频率</label>
-        </div>
-        <div class="gr-8">
-            <select id="indices_trading_frequency" name="indices_trading_frequency" class="form_input">
-                <option value="">请选择</option>
-                <option value="0-5 transactions in the past 12 months">过去12个月内0-5次交易</option>
-                <option value="6-10 transactions in the past 12 months">过去12个月内6-10次交易</option>
-                <option value="40 transactions or more in the past 12 months">过去12个月内40次交易或以上</option>
-            </select>
-            <p class="errorfield" id="error_indices_trading_frequency"></p>
-        </div>
+    <div class="gr-row form-row center-text-m ">
+    <div class="gr-4 gr-12-m">
+        <label for="commodities_trading_experience">大宗商品交易经验</label>
     </div>
+    <div class="gr-8 gr-12-m">
+                <select id="commodities_trading_experience" class="form_input" > 
+        <option value="">请选择</option>
+    <option value="0-1 year">0-1 年</option>
+    <option value="1-2 years">1-2 年</option>
+    <option value="Over 3 years">3年以上</option>
+                </select>
+    
+    </div>
+</div>
 
-    <div class="gr-padding-10 gr-row clear">
-        <div class="gr-4 form_label">
-            <label for="commodities_trading_experience">大宗商品交易经验</label>
-        </div>
-        <div class="gr-8">
-            <select id="commodities_trading_experience" name="commodities_trading_experience" class="form_input">
-                <option value="">请选择</option>
-                <option value="0-1 year">0-1 年</option>
-                <option value="1-2 years">1-2 年</option>
-                <option value="Over 3 years">3年以上</option>
-            </select>
-            <p class="errorfield" id="error_commodities_trading_experience"></p>
-        </div>
+    <div class="gr-row form-row center-text-m ">
+    <div class="gr-4 gr-12-m">
+        <label for="commodities_trading_frequency">大宗商品交易频率</label>
     </div>
+    <div class="gr-8 gr-12-m">
+                <select id="commodities_trading_frequency" class="form_input" > 
+        <option value="">请选择</option>
+    <option value="0-5 transactions in the past 12 months">过去12个月内0-5次交易</option>
+    <option value="6-10 transactions in the past 12 months">过去12个月内6-10次交易</option>
+    <option value="40 transactions or more in the past 12 months">过去12个月内40次交易或以上</option>
+                </select>
+    
+    </div>
+</div>
 
-    <div class="gr-padding-10 gr-row clear">
-        <div class="gr-4 form_label">
-            <label for="commodities_trading_frequency">大宗商品交易频率</label>
-        </div>
-        <div class="gr-8">
-            <select id="commodities_trading_frequency" name="commodities_trading_frequency" class="form_input">
-                <option value="">请选择</option>
-                <option value="0-5 transactions in the past 12 months">过去12个月内0-5次交易</option>
-                <option value="6-10 transactions in the past 12 months">过去12个月内6-10次交易</option>
-                <option value="40 transactions or more in the past 12 months">过去12个月内40次交易或以上</option>
-            </select>
-            <p class="errorfield" id="error_commodities_trading_frequency"></p>
-        </div>
+    <div class="gr-row form-row center-text-m ">
+    <div class="gr-4 gr-12-m">
+        <label for="stocks_trading_experience">股票交易经验</label>
     </div>
+    <div class="gr-8 gr-12-m">
+                <select id="stocks_trading_experience" class="form_input" > 
+        <option value="">请选择</option>
+    <option value="0-1 year">0-1 年</option>
+    <option value="1-2 years">1-2 年</option>
+    <option value="Over 3 years">3年以上</option>
+                </select>
+    
+    </div>
+</div>
 
-    <div class="gr-padding-10 gr-row clear">
-        <div class="gr-4 form_label">
-            <label for="stocks_trading_experience">股票交易经验</label>
-        </div>
-        <div class="gr-8">
-            <select id="stocks_trading_experience" name="stocks_trading_experience" class="form_input">
-                <option value="">请选择</option>
-                <option value="0-1 year">0-1 年</option>
-                <option value="1-2 years">1-2 年</option>
-                <option value="Over 3 years">3年以上</option>
-            </select>
-            <p class="errorfield" id="error_stocks_trading_experience"></p>
-        </div>
+    <div class="gr-row form-row center-text-m ">
+    <div class="gr-4 gr-12-m">
+        <label for="stocks_trading_frequency">股票交易频率</label>
     </div>
+    <div class="gr-8 gr-12-m">
+                <select id="stocks_trading_frequency" class="form_input" > 
+        <option value="">请选择</option>
+    <option value="0-5 transactions in the past 12 months">过去12个月内0-5次交易</option>
+    <option value="6-10 transactions in the past 12 months">过去12个月内6-10次交易</option>
+    <option value="40 transactions or more in the past 12 months">过去12个月内40次交易或以上</option>
+                </select>
+    
+    </div>
+</div>
 
-    <div class="gr-padding-10 gr-row clear">
-        <div class="gr-4 form_label">
-            <label for="stocks_trading_frequency">股票交易频率</label>
-        </div>
-        <div class="gr-8">
-            <select id="stocks_trading_frequency" name="stocks_trading_frequency" class="form_input">
-                <option value="">请选择</option>
-                <option value="0-5 transactions in the past 12 months">过去12个月内0-5次交易</option>
-                <option value="6-10 transactions in the past 12 months">过去12个月内6-10次交易</option>
-                <option value="40 transactions or more in the past 12 months">过去12个月内40次交易或以上</option>
-            </select>
-            <p class="errorfield" id="error_stocks_trading_frequency"></p>
-        </div>
+    <div class="gr-row form-row center-text-m ">
+    <div class="gr-4 gr-12-m">
+        <label for="other_derivatives_trading_experience">二元期权或其他金融衍生品交易经验</label>
     </div>
-    <div class="gr-padding-10 gr-row clear">
-        <div class="gr-4 form_label">
-            <label for="other_derivatives_trading_experience">二元期权或其他金融衍生品交易经验</label>
-        </div>
-        <div class="gr-8">
-            <select id="other_derivatives_trading_experience" name="other_derivatives_trading_experience" class="form_input">
-                <option value="">请选择</option>
-                <option value="0-1 year">0-1 年</option>
-                <option value="1-2 years">1-2 年</option>
-                <option value="Over 3 years">3年以上</option>
-            </select>
-            <p class="errorfield" id="error_other_derivatives_trading_experience"></p>
-        </div>
+    <div class="gr-8 gr-12-m">
+                <select id="other_derivatives_trading_experience" class="form_input" > 
+        <option value="">请选择</option>
+    <option value="0-1 year">0-1 年</option>
+    <option value="1-2 years">1-2 年</option>
+    <option value="Over 3 years">3年以上</option>
+                </select>
+    
     </div>
-    <div class="gr-padding-10 gr-row clear">
-        <div class="gr-4 form_label">
-            <label for="other_derivatives_trading_frequency">二元期权或其他金融衍生品交易频率</label>
-        </div>
-        <div class="gr-8">
-            <select id="other_derivatives_trading_frequency" name="other_derivatives_trading_frequency" class="form_input">
-                <option value="">请选择</option>
-                <option value="0-5 transactions in the past 12 months">过去12个月内0-5次交易</option>
-                <option value="6-10 transactions in the past 12 months">过去12个月内6-10次交易</option>
-                <option value="40 transactions or more in the past 12 months">过去12个月内40次交易或以上</option>
-            </select>
-            <p class="errorfield" id="error_other_derivatives_trading_frequency"></p>
-        </div>
+</div>
+
+    <div class="gr-row form-row center-text-m ">
+    <div class="gr-4 gr-12-m">
+        <label for="other_derivatives_trading_frequency">二元期权或其他金融衍生品交易频率</label>
     </div>
-    <div class="gr-padding-10 gr-row clear">
-        <div class="gr-4 form_label">
-            <label for="other_instruments_trading_experience">其他金融工具交易体验</label>
-        </div>
-        <div class="gr-8">
-            <select id="other_instruments_trading_experience" name="other_instruments_trading_experience" class="form_input">
-                <option value="">请选择</option>
-                <option value="0-1 year">0-1 年</option>
-                <option value="1-2 years">1-2 年</option>
-                <option value="Over 3 years">3年以上</option>
-            </select>
-            <p class="errorfield" id="error_other_instruments_trading_experience"></p>
-        </div>
+    <div class="gr-8 gr-12-m">
+                <select id="other_derivatives_trading_frequency" class="form_input" > 
+        <option value="">请选择</option>
+    <option value="0-5 transactions in the past 12 months">过去12个月内0-5次交易</option>
+    <option value="6-10 transactions in the past 12 months">过去12个月内6-10次交易</option>
+    <option value="40 transactions or more in the past 12 months">过去12个月内40次交易或以上</option>
+                </select>
+    
     </div>
-    <div class="gr-padding-10 gr-row clear">
-        <div class="gr-4 form_label">
-            <label for="other_instruments_trading_frequency">其他金融工具交易频率</label>
-        </div>
-        <div class="gr-8">
-            <select id="other_instruments_trading_frequency" name="other_instruments_trading_frequency" class="form_input">
-                <option value="">请选择</option>
-                <option value="0-5 transactions in the past 12 months">过去12个月内0-5次交易</option>
-                <option value="6-10 transactions in the past 12 months">过去12个月内6-10次交易</option>
-                <option value="40 transactions or more in the past 12 months">过去12个月内40次交易或以上</option>
-            </select>
-            <p class="errorfield" id="error_other_instruments_trading_frequency"></p>
-        </div>
+</div>
+
+    <div class="gr-row form-row center-text-m ">
+    <div class="gr-4 gr-12-m">
+        <label for="other_instruments_trading_experience">其他金融工具交易体验</label>
     </div>
-    <div class="gr-padding-10 gr-row clear">
-        <div class="gr-4 form_label">
-            <label for="employment_industry">职业领域</label>
-        </div>
-        <div class="gr-8">
-            <select id="employment_industry" name="employment_industry" class="form_input">
-                <option value="">请选择</option>
-                <option value="Construction">建筑</option>
-                <option value="Education">教育</option>
-                <option value="Finance">金融</option>
-                <option value="Health">健康</option>
-                <option value="Tourism">旅游</option>
-                <option value="Other">其它</option>
-            </select>
-            <p class="errorfield" id="error_employment_industry"></p>
-        </div>
+    <div class="gr-8 gr-12-m">
+                <select id="other_instruments_trading_experience" class="form_input" > 
+        <option value="">请选择</option>
+    <option value="0-1 year">0-1 年</option>
+    <option value="1-2 years">1-2 年</option>
+    <option value="Over 3 years">3年以上</option>
+                </select>
+    
     </div>
-    <div class="gr-padding-10 gr-row clear">
-        <div class="gr-4 form_label">
-            <label for="occupation">Occupation</label>
-        </div>
-        <div class="gr-8">
-            <select id="occupation" class="form_input">
-                <option value="">请选择</option>
-                <option value="Chief Executives, Senior Officials and Legislators">首席执行官、高级官员和立法会议员</option>
-                <option value="Managers">经理</option>
-                <option value="Professionals">专业人士</option>
-                <option value="Clerks">办事员</option>
-                <option value="Personal Care, Sales and Service Workers">个人护理、销售及服务员工</option>
-                <option value="Agricultural, Forestry and Fishery Workers">农业、林业和渔业工人</option>
-                <option value="Craft, Metal, Electrical and Electronics Workers">工艺、金属、电气和电子工人</option>
-                <option value="Plant and Machine Operators and Assemblers">工厂和机器操作员及装配员</option>
-                <option value="Cleaners and Helpers">清洁工和佣工</option>
-                <option value="Mining, Construction, Manufacturing and Transport Workers">矿业、建筑业、制造业和运输工人</option>
-                <option value="Armed Forces">军人</option>
-                <option value="Government Officers">政府官员</option>
-                <option value="Others">Others</option>
-            </select>
-            <p class="errorfield" id="error_occupation"></p>
-        </div>
+</div>
+
+    <div class="gr-row form-row center-text-m ">
+    <div class="gr-4 gr-12-m">
+        <label for="other_instruments_trading_frequency">其他金融工具交易频率</label>
     </div>
-    <div class="gr-padding-10 gr-row clear">
-        <div class="gr-4 form_label">
-            <label for="education_level">教育水平</label>
-        </div>
-        <div class="gr-8">
-            <select id="education_level" name="education_level" class="form_input">
-                <option value="">请选择</option>
-                <option value="Primary">主要</option>
-                <option value="Secondary">次要</option>
-                <option value="Tertiary">三级</option>
-            </select>
-            <p class="errorfield" id="error_education_level"></p>
-        </div>
+    <div class="gr-8 gr-12-m">
+                <select id="other_instruments_trading_frequency" class="form_input" > 
+        <option value="">请选择</option>
+    <option value="0-5 transactions in the past 12 months">过去12个月内0-5次交易</option>
+    <option value="6-10 transactions in the past 12 months">过去12个月内6-10次交易</option>
+    <option value="40 transactions or more in the past 12 months">过去12个月内40次交易或以上</option>
+                </select>
+    
     </div>
-    <div class="gr-padding-10 gr-row clear">
-        <div class="gr-4 form_label">
-            <label for="income_source">收入来源</label>
-        </div>
-        <div class="gr-8">
-            <select id="income_source" name="income_source" class="form_input">
-                <option value="">请选择</option>
-                <option value="Salaried Employee">受薪雇员</option>
-                <option value="Self-Employed">个体经营</option>
-                <option value="Investments &amp; Dividends">投资 &amp; 分红</option>
-                <option value="Pension">养老金</option>
-                <option value="Other">其它</option>
-            </select>
-            <p class="errorfield" id="error_income_source"></p>
-        </div>
+</div>
+
+    <div class="gr-row form-row center-text-m ">
+    <div class="gr-4 gr-12-m">
+        <label for="employment_industry">职业领域</label>
     </div>
-    <div class="gr-padding-10 gr-row clear">
-        <div class="gr-4 form_label">
-            <label for="net_income">年净收入</label>
-        </div>
-        <div class="gr-8">
-            <select id="net_income" name="net_income" class="form_input">
-                <option value="">请选择</option>
-                <option value="Less than &#36;25,000">少于&#36;25,000</option>
-                <option value="&#36;25,000 - &#36;50,000">&#36;25,000 - &#36;50,000</option>
-                <option value="&#36;50,001 - &#36;100,000">&#36;50,001 - &#36;100,000</option>
-                <option value="&#36;100,001 - &#36;500,000">&#36;100,001 - &#36;500,000</option>
-                <option value="Over &#36;500,000">大于&#36;500,001</option>
-            </select>
-            <p class="errorfield" id="error_net_income"></p>
-        </div>
+    <div class="gr-8 gr-12-m">
+                <select id="employment_industry" class="form_input" > 
+        <option value="">请选择</option>
+        <option value="Construction">建筑</option>
+        <option value="Education">教育</option>
+        <option value="Finance">金融</option>
+        <option value="Health">健康</option>
+        <option value="Tourism">旅游</option>
+        <option value="Other">其它</option>
+                </select>
+    
     </div>
-    <div class="gr-padding-10 gr-row clear">
-        <div class="gr-4 form_label">
-            <label for="estimated_worth">估计净值</label>
-        </div>
-        <div class="gr-8">
-            <select id="estimated_worth" name="estimated_worth" class="form_input">
-                <option value="">请选择</option>
-                <option value="Less than &#36;100,000">少于 &#36; 100,000</option>
-                <option value="&#36;100,000 - &#36;250,000">&#36;100,000 - &#36;250,000</option>
-                <option value="&#36;250,001 - &#36;500,000">&#36;250,001 - &#36;500,000</option>
-                <option value="&#36;500,001 - &#36;1,000,000">&#36;500,001 - &#36;1,000,000</option>
-                <option value="Over &#36;1,000,000">大于&#36;1,000,000</option>
-            </select>
-            <p class="errorfield" id="error_estimated_worth"></p>
-        </div>
+</div>
+
+    <div class="gr-row form-row center-text-m ">
+    <div class="gr-4 gr-12-m">
+        <label for="occupation">职业</label>
     </div>
+    <div class="gr-8 gr-12-m">
+                <select id="occupation" class="form_input" > 
+        <option value="">请选择</option>
+        <option value="Chief Executives, Senior Officials and Legislators">首席执行官、高级官员和立法会议员</option>
+        <option value="Managers">经理</option>
+        <option value="Professionals">专业人士</option>
+        <option value="Clerks">办事员</option>
+        <option value="Personal Care, Sales and Service Workers">个人护理、销售及服务员工</option>
+        <option value="Agricultural, Forestry and Fishery Workers">农业、林业和渔业工人</option>
+        <option value="Craft, Metal, Electrical and Electronics Workers">工艺、金属、电气和电子工人</option>
+        <option value="Plant and Machine Operators and Assemblers">工厂和机器操作员及装配员</option>
+        <option value="Cleaners and Helpers">清洁工和佣工</option>
+        <option value="Mining, Construction, Manufacturing and Transport Workers">矿业、建筑业、制造业和运输工人</option>
+        <option value="Armed Forces">军人</option>
+        <option value="Government Officers">政府官员</option>
+        <option value="Others">Others</option>
+                </select>
+    
+    </div>
+</div>
+
+    <div class="gr-row form-row center-text-m ">
+    <div class="gr-4 gr-12-m">
+        <label for="education_level">教育水平</label>
+    </div>
+    <div class="gr-8 gr-12-m">
+                <select id="education_level" class="form_input" > 
+        <option value="">请选择</option>
+        <option value="Primary">主要</option>
+        <option value="Secondary">次要</option>
+        <option value="Tertiary">三级</option>
+                </select>
+    
+    </div>
+</div>
+
+    <div class="gr-row form-row center-text-m ">
+    <div class="gr-4 gr-12-m">
+        <label for="income_source">收入来源</label>
+    </div>
+    <div class="gr-8 gr-12-m">
+                <select id="income_source" class="form_input" > 
+        <option value="">请选择</option>
+        <option value="Salaried Employee">受薪雇员</option>
+        <option value="Self-Employed">个体经营</option>
+        <option value="Investments &amp; Dividends">投资 &amp; 分红</option>
+        <option value="Pension">养老金</option>
+        <option value="Other">其它</option>
+                </select>
+    
+    </div>
+</div>
+
+    <div class="gr-row form-row center-text-m ">
+    <div class="gr-4 gr-12-m">
+        <label for="net_income">年净收入</label>
+    </div>
+    <div class="gr-8 gr-12-m">
+                <select id="net_income" class="form_input" > 
+        <option value="">请选择</option>
+        <option value="Less than &#36;25,000">少于&#36;25,000</option>
+        <option value="&#36;25,000 - &#36;50,000">&#36;25,000 - &#36;50,000</option>
+        <option value="&#36;50,001 - &#36;100,000">&#36;50,001 - &#36;100,000</option>
+        <option value="&#36;100,001 - &#36;500,000">&#36;100,001 - &#36;500,000</option>
+        <option value="Over &#36;500,000">大于&#36;500,001</option>
+                </select>
+    
+    </div>
+</div>
+
+    <div class="gr-row form-row center-text-m ">
+    <div class="gr-4 gr-12-m">
+        <label for="estimated_worth">估计净值</label>
+    </div>
+    <div class="gr-8 gr-12-m">
+                <select id="estimated_worth" class="form_input" > 
+        <option value="">请选择</option>
+        <option value="Less than &#36;100,000">少于 &#36; 100,000</option>
+        <option value="&#36;100,000 - &#36;250,000">&#36;100,000 - &#36;250,000</option>
+        <option value="&#36;250,001 - &#36;500,000">&#36;250,001 - &#36;500,000</option>
+        <option value="&#36;500,001 - &#36;1,000,000">&#36;500,001 - &#36;1,000,000</option>
+        <option value="Over &#36;1,000,000">大于&#36;1,000,000</option>
+                </select>
+    
+    </div>
+</div>
+
 </fieldset>
 
-                    <fieldset>
-                        <div class="gr-12">
-                          <p>
-                            本网站包含的金融交易服务仅适合这样的客户：能够承受全部投入资金亏损的风险，了解购买金融合约的风险并具有相关经验。金融合约交易有很高的风险。如果购买的合约到期时一文不值，您将损失全部投资，包括合约费用。
-                          </p>
-                        </div>
-                    </fieldset>
-
-                    <fieldset class="center-text" id="formlayout">
-                        <div class="gr-12 gr-padding-10">
-                            <input type="checkbox" id="tnc" class="form_input exclude_data" />
-                            <label for="tnc">我已阅读并同意 <a target="_blank" href="/zh_cn/terms-and-conditions.html">条款与条件</a> 网站的。</label>
-                            <p class="errorfield" id="error_tnc" style="display:none"></p>
-                        </div>
-                        <button class="button" id="btn_submit" type="submit">开户</button>
-                    </fieldset>
-                </form>
-
-                <form id="financial-risk" class="hidden">
-                  <fieldset>
+                <fieldset>
                     <div class="gr-12">
-                      <p>
-                        <strong>合适性测试:警告:</strong>为了给您提供服务，我们必须向您获取信息，以便确定产品或服务是否适合您（也就是说，看您是否拥有足够经验和知识，以了解相关的风险）。
-                      </p>
-                      <p>
-                        根据您所提供的知识和经验相关信息，我们认为此网站的投资活动对您来说并不合适。
-                      </p>
-                      <p>
-                        通过点击以下<strong>接受</strong> 键并依照后续流程开立账户，您须注意，您可能承担一些风险（可能会很严重，包括损失整个投资资金的风险），而对于此类风险缺，你可能乏知识与经验以作出正确评估或化解。
-                      </p>
-                      <p class="center-text">
-                        <span class="button">
-                          <button class="button" type="submit">接受</button>
-                        </span>
-                        <a class="button pjaxload" href="/zh_cn/trading.html"><span>下降</span></a>
-                      </p>
+                      <p>本网站包含的金融交易服务仅适合这样的客户：能够承受全部投入资金亏损的风险，了解购买金融合约的风险并具有相关经验。金融合约交易有很高的风险。如果购买的合约到期时一文不值，您将损失全部投资，包括合约费用。</p>
                     </div>
-                  </fieldset>
-                </form>
+                </fieldset>
 
-                <div class="errorbox rbox" id="client_message" style="display:none">
-                    <div class="rbox-wrap">
-                        <div class="gr-12 rbox-content" id="client_message_content">
-                            <p class="center-text notice-msg"></p>
+                <fieldset class="center-text" id="formlayout">
+                    <div class="gr-row">
+                        <div class="gr-12-m gr-padding-10 gr-centered">
+                            <input type="checkbox" id="tnc" />
+                            <label for="tnc">我已阅读并同意 <a target="_blank" href="/zh_cn/terms-and-conditions.html">条款与条件</a> 网站的。</label>
                         </div>
+                    </div>
+
+                    <button class="button" id="btn_submit" type="submit">开户</button>
+                </fieldset>
+            </form>
+
+            <form id="financial-risk" class="hidden">
+                <fieldset>
+                    <div class="gr-12">
+                        <p><strong>合适性测试:警告:</strong>为了给您提供服务，我们必须向您获取信息，以便确定产品或服务是否适合您（也就是说，看您是否拥有足够经验和知识，以了解相关的风险）。</p>
+                        <p>根据您所提供的知识和经验相关信息，我们认为此网站的投资活动对您来说并不合适。</p>
+                        <p>通过点击以下<strong>接受</strong> 键并依照后续流程开立账户，您须注意，您可能承担一些风险（可能会很严重，包括损失整个投资资金的风险），而对于此类风险缺，你可能乏知识与经验以作出正确评估或化解。</p>
+                        <p class="center-text">
+                            <button class="button" type="submit">接受</button>
+                            <a class="button pjaxload" href="/zh_cn/trading.html"><span>下降</span></a>
+                        </p>
+                    </div>
+                </fieldset>
+            </form>
+
+            <div class="errorbox rbox invisible" id="client_message">
+                <div class="rbox-wrap">
+                    <div class="gr-12 rbox-content" id="client_message_content">
+                        <p class="center-text notice-msg"></p>
                     </div>
                 </div>
             </div>
@@ -1050,7 +1046,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </div>
         <div id="ratelimit-error-message">
             <div class="message">
-                You have reached the rate limit of requests per second. Please try later.
+                您已达每秒钟提呈请求的最高限率。请稍后重试。
             </div>
         </div>
     </div>

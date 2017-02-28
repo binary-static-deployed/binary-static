@@ -17,67 +17,67 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
   <div class='gr-12 static_full'>
-  <h1>สร้างบัญชีใหม่</h1>
-  <p class='notice-message'>
-    ขอบคุณสำหรับการลงทะเบียน! โปรดตรวจสอบอีเมล์ของท่านเพื่อรับโทเค่น
-  </p>
-  <div class="gr-padding-10">
-    <div class="rbox form">
-      <div class="rbox-wrap">
-        <form id="virtual-form">
-          <fieldset>
-            <legend id="details">รายละเอียด</legend>
-            <div class="gr-padding-10 gr-row clear">
-              <div class="gr-4 form_label">
-                <label for="verification-code">โทเค่นเพื่อตรวจสอบ</label>
-              </div>
-              <div class="gr-8">
-                <input type="text" name="verification-code" id="verification-code" maxlength="48" autocomplete="off"/>
-                <div class="hint">โปรดตรวจสอบอีเมล์ของท่านเพื่อการใช้งานโทเค่นนี้</div>
-              </div>
-            </div>
-            <div class="gr-padding-10 gr-row clear">
-              <div class="gr-4  form_label">
-                <label for="password">กำหนด รหัสผ่าน</label>
-              </div>
-              <div class="gr-8">
-                <input type="password" id="password" name="password" maxlength="25"/>
-                <div class="hint">จำนวนตัวอักขระน้อยที่สุดที่ต้องการ คือ 6 อักขระ ซึ่งเป็นอักษรตัวเล็ก ตัวใหญ่ และตัวเลข</div>
-              </div>
-            </div>
-            <div class="gr-padding-10 gr-row clear">
-              <div class="gr-4 form_label">
-                <label for="r-password">ป้อนรหัสผ่านอีกครั้ง</label>
-              </div>
-              <div class="gr-8">
-                <input type="password" id="r-password" name="r-password" maxlength="25"/>
-              </div>
-            </div>
-            <div class="gr-padding-10 gr-row clear">
-              <div class="gr-4 form_label">
-                <label for="residence">ประเทศที่พำนัก</label>
-              </div>
-              <div class="gr-8">
-                <select name="residence" id="residence" class="invisible"></select>
-              </div>
-            </div>
-            <div class="gr-padding-10 gr-row clear invisible">
-                <div class="gr-4 form_label" id="email_consent_label">
-                    <label>รับข่าวสารและข้อเสนอพิเศษ</label>
-                </div>
-                <div class="gr-8">
-                    <input type="checkbox" id="email_consent" checked="checked"/>
-                </div>
-            </div>
-          </fieldset>
-          <fieldset class="center-text" id="formlayout">
-            <span class="button ">
-              <button class="button " id="btn_submit" type="submit">สร้างบัญชีใหม่</button>
-              <p class="errorfield" id="error-account-opening" style="display:none"></p>
-            </span>
-          </fieldset>
-        </form>
-      </div>
+    <h1>สร้างบัญชีใหม่</h1>
+    <p class='notice-message'>ขอบคุณสำหรับการลงทะเบียน! โปรดตรวจสอบอีเมล์ของท่านเพื่อรับโทเค่น</p>
+    <div class="rbox form gr-padding-10">
+        <div class="rbox-wrap">
+            <form id="virtual-form">
+                <fieldset>
+                    <legend id="details">รายละเอียด</legend>
+
+                    <div class="gr-padding-10 gr-row clear">
+                        <div class="gr-4 form_label">
+                            <label for="verification_code">โทเค่นเพื่อตรวจสอบ</label>
+                        </div>
+                        <div class="gr-8">
+                            <input type="text" name="verification_code" id="verification_code" maxlength="48" autocomplete="off"/>
+                            <div class="hint">โปรดตรวจสอบอีเมล์ของท่านเพื่อการใช้งานโทเค่นนี้</div>
+                        </div>
+                    </div>
+
+                    <div class="gr-padding-10 gr-row clear">
+                        <div class="gr-4 form_label">
+                            <label for="client_password">กำหนด รหัสผ่าน</label>
+                        </div>
+                        <div class="gr-8">
+                            <input type="password" id="client_password" name="client_password" maxlength="25"/>
+                            <div class="hint">จำนวนตัวอักขระน้อยที่สุดที่ต้องการ คือ 6 อักขระ ซึ่งเป็นอักษรตัวเล็ก ตัวใหญ่ และตัวเลข</div>
+                        </div>
+                    </div>
+
+                    <div class="gr-padding-10 gr-row clear">
+                        <div class="gr-4 form_label">
+                            <label for="repeat_password">ป้อนรหัสผ่านอีกครั้ง</label>
+                        </div>
+                        <div class="gr-8">
+                            <input type="password" id="repeat_password" name="repeat_password" maxlength="25"/>
+                        </div>
+                    </div>
+
+                    <div class="gr-padding-10 gr-row clear">
+                        <div class="gr-4 form_label">
+                            <label for="residence">ประเทศที่พำนัก</label>
+                        </div>
+                        <div class="gr-8">
+                            <select name="residence" id="residence" class="invisible"></select>
+                        </div>
+                    </div>
+
+                    <div class="gr-padding-10 gr-row clear invisible">
+                        <div class="gr-4 form_label" id="email_consent_label">
+                            <label for="email_consent">รับข่าวสารและข้อเสนอพิเศษ</label>
+                        </div>
+                        <div class="gr-8">
+                            <input type="checkbox" id="email_consent" checked="checked"/>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset class="center-text" id="formlayout">
+                    <button class="button" id="btn_submit" type="submit">สร้างบัญชีใหม่</button>
+                    <p class="errorfield invisible" id="error-account-opening"></p>
+                </fieldset>
+            </form>
+        </div>
     </div>
-  </div>
 </div>
