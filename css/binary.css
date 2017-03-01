@@ -344,6 +344,11 @@ input[type=checkbox]#email_consent {
   overflow: hidden;
 }
 
+.logged_out_title_container {
+  margin-top: 40px;
+  margin-bottom: 30px;
+}
+
 *, *:after, *:before {
   transition: opacity 0.2s, color 0.2s, background 0.2s;
 }
@@ -1691,11 +1696,11 @@ table .loss, table .lower {
   background-position: -285px -426px;
 }
 
-.forwardws-content iframe#cashiercont {
+.forwardws-content iframe {
   height: 1500px;
 }
 
-.epg_forwardws-content iframe#cashiercont {
+.epg_forwardws-content iframe {
   height: 800px;
 }
 
@@ -2909,6 +2914,7 @@ fieldset .error-msg {
 }
 #trading_socket_container #contract_market_form_container .tm-li {
   height: 28px;
+  vertical-align: top;
 }
 #trading_socket_container .button button {
   cursor: pointer;
@@ -3553,6 +3559,7 @@ fieldset .error-msg {
   width: auto;
   font-size: 85%;
   line-height: 28px;
+  white-space: nowrap;
 }
 #trading_socket_container #contract_form_name_nav > li .tm-ul-2 {
   top: 29px;
@@ -5237,7 +5244,10 @@ body.VI #legal-tab li.tm-li-2 {
   padding: 0 8px !important;
 }
 body.VI #trading_socket_container #contract_form_name_nav {
-  font-size: 80%;
+  font-size: 90%;
+}
+body.VI #trading_socket_container #contract_form_name_nav > li a.tm-a {
+  font-size: 65%;
 }
 body.VI #trading_socket_container_beta #contract_symbol_container {
   font-size: 90%;
@@ -5257,7 +5267,10 @@ body.FR h1, body.FR h2, body.FR h3, body.FR h4, body.FR h5, body.FR h6 {
   text-transform: initial !important;
 }
 body.FR #trading_socket_container #contract_form_name_nav {
-  font-size: 80%;
+  font-size: 90%;
+}
+body.FR #trading_socket_container #contract_form_name_nav > li a.tm-a {
+  font-size: 70%;
 }
 body.FR #header .account-type {
   font-size: 85%;
@@ -5321,7 +5334,10 @@ body.RU #verify-email-form button {
   font-size: 80%;
 }
 body.RU #trading_socket_container #contract_form_name_nav {
-  font-size: 80%;
+  font-size: 90%;
+}
+body.RU #trading_socket_container #contract_form_name_nav > li a.tm-a {
+  font-size: 70%;
 }
 body.RU #trading_socket_container .contract_heading {
   font-size: 95%;
@@ -5353,6 +5369,12 @@ body.PT h1, body.PT h2, body.PT h3, body.PT h4, body.PT h5, body.PT h6, body.RU 
   text-transform: initial !important;
 }
 
+body.DE #trading_socket_container #contract_form_name_nav {
+  font-size: 90%;
+}
+body.DE #trading_socket_container #contract_form_name_nav > li a.tm-a {
+  font-size: 75%;
+}
 body.DE .app-store-badge {
   background-image: url("../images/pages/applications/appstore_de.svg");
 }
@@ -5374,6 +5396,12 @@ body.ZH_CN .google-play-badge {
   background-image: url("../images/pages/applications/googleplay_zh_cn.svg");
 }
 
+body.ZH_TW #trading_socket_container #contract_form_name_nav {
+  font-size: 90%;
+}
+body.ZH_TW #trading_socket_container #contract_form_name_nav > li a.tm-a {
+  font-size: 90%;
+}
 body.ZH_TW .app-store-badge {
   background-image: url("../images/pages/applications/appstore_zh_tw.svg");
 }
