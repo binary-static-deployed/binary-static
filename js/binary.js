@@ -71100,13 +71100,13 @@
 	    var last_reload = localStorage.getItem('new_release_reload_time');
 	    // prevent reload in less than 10 minutes
 	    if (last_reload && +last_reload + 10 * 60 * 1000 > moment().valueOf()) return;
+	    localStorage.setItem('new_release_reload_time', moment().valueOf());
 	    var currect_hash = $('script[src*="binary.min.js"],script[src*="binary.js"]').attr('src').split('?')[1];
 	    var xhttp = new XMLHttpRequest();
 	    xhttp.onreadystatechange = function () {
 	        if (+xhttp.readyState === 4 && +xhttp.status === 200) {
 	            var latest_hash = xhttp.responseText;
 	            if (latest_hash && latest_hash !== currect_hash) {
-	                localStorage.setItem('new_release_reload_time', moment().valueOf());
 	                window.location.reload(true);
 	            }
 	        }
@@ -76348,15 +76348,20 @@
 	            (function () {
 	                // grab the initial top offset of the navigation
 	                var selector = elm_selector.find('.sidebar');
+	                var container = elm_selector.find('.sidebar-container');
 	                var width = selector.width();
 	                var sticky_navigation_offset_top = selector.offset().top;
-	                var container = elm_selector.find('.sidebar-container');
 	
 	                // With thanks:
 	                // http://www.backslash.gr/content/blog/webdevelopment/6-navigation-menu-that-stays-on-top-with-jquery
 	
 	                // our function that decides weather the navigation bar should have "fixed" css position or not.
 	                var sticky_navigation = function sticky_navigation() {
+	                    if (!selector.is(':visible')) return;
+	                    if (!width) {
+	                        width = selector.width();
+	                        sticky_navigation_offset_top = selector.offset().top;
+	                    }
 	                    var scroll_top = $(window).scrollTop(); // our current vertical position from the top
 	
 	                    // if we've scrolled more than the navigation, change its position to fixed to stick to top,
@@ -76376,6 +76381,7 @@
 	                var sidebar_nav = selector.find('#sidebar-nav');
 	                var length = elm_selector.find('.section').length;
 	                $(window).on('scroll', function () {
+	                    if (!sidebar_nav.is(':visible')) return;
 	                    // and run it again every time you scroll
 	                    sticky_navigation();
 	
@@ -76387,7 +76393,7 @@
 	                            // ignore hidden elements
 	                            sidebar_nav.find('li').removeClass('selected');
 	
-	                            if ($(window).scrollTop() === 0) {
+	                            if ($(window).scrollTop() === 0 || sidebar_nav.width() === 0) {
 	                                // We're at the top of the screen, so highlight first nav item
 	                                sidebar_nav.find('li:first-child').addClass('selected');
 	                            } else if ($(window).scrollTop() + $(window).height() >= $(document).height()) {
@@ -76821,7 +76827,7 @@
 	        var section = url.param('section');
 	        if (section) {
 	            (function () {
-	                var $section = $('a[name="' + section + '"]');
+	                var $section = $('#content a#' + section);
 	                if ($section.length) setTimeout(function () {
 	                    $.scrollTo($section, 0, { offset: -10 });
 	                }, 500);
