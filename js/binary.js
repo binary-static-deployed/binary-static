@@ -37084,6 +37084,7 @@
 	var ActiveSymbols = __webpack_require__(437).ActiveSymbols;
 	var BinaryPjax = __webpack_require__(309);
 	var Client = __webpack_require__(308).Client;
+	var getLanguage = __webpack_require__(305).getLanguage;
 	var State = __webpack_require__(306).State;
 	
 	/*
@@ -37123,21 +37124,25 @@
 	    };
 	
 	    var getSymbols = function getSymbols(update) {
-	        var landing_company_obj = State.get(['response', 'landing_company', 'landing_company']);
-	        var allowed_markets = Client.current_landing_company().legal_allowed_markets;
-	        if (Client.is_logged_in() && allowed_markets && allowed_markets.indexOf('forex') === -1) {
-	            BinaryPjax.load('trading');
-	            return;
-	        }
-	        var req = {
-	            active_symbols: 'brief',
-	            product_type: 'multi_barrier'
-	        };
-	        if (landing_company_obj) {
-	            req.landing_company = landing_company_obj.financial_company ? landing_company_obj.financial_company.shortcode : 'japan';
-	        }
-	        BinarySocket.send(req);
-	        _need_page_update = update;
+	        BinarySocket.wait('website_status').then(function (website_status) {
+	            var landing_company_obj = State.get(['response', 'landing_company', 'landing_company']);
+	            var allowed_markets = Client.current_landing_company().legal_allowed_markets;
+	            if (Client.is_logged_in() && allowed_markets && allowed_markets.indexOf('forex') === -1) {
+	                BinaryPjax.load('trading');
+	                return;
+	            }
+	            var req = {
+	                active_symbols: 'brief',
+	                product_type: 'multi_barrier'
+	            };
+	            if (landing_company_obj) {
+	                req.landing_company = landing_company_obj.financial_company ? landing_company_obj.financial_company.shortcode : 'japan';
+	            } else if (website_status.website_status.clients_country === 'jp' || getLanguage() === 'JA') {
+	                req.landing_company = 'japan';
+	            }
+	            BinarySocket.send(req);
+	            _need_page_update = update;
+	        });
 	    };
 	
 	    return {
