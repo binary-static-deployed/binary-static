@@ -20,9 +20,17 @@
         <li>将资金存入支付代理。存入资金减去代理佣金的金额将会显示在您的账户中。</li>
     </ol>
 
+
     <p>
         支付代理列表：
-        <select id="target_country"></select>
+        <select id="target_country" class="hidden"></select>
+        <div class="loading"><div class="barspinner dark">
+    <div class="rect1"></div>
+    <div class="rect2"></div>
+    <div class="rect3"></div>
+    <div class="rect4"></div>
+    <div class="rect5"></div>
+</div></div>
     </p>
 
     <div id="pa_list">
@@ -70,10 +78,10 @@
         </div>
     </div>
 
-    <p id="no_paymentagent" class="error-msg hidden">您的国家无可用支付代理。</p>
+    <p id="no_paymentagent" class="notice-msg center-text hidden">您的国家无可用支付代理。</p>
 
     <p>
-        Apply to become a Binary.com <a href="/zh_cn/payment-agent.html">payment agent</a>.
+        申请成为 Binary.com <a href="/zh_cn/payment-agent.html">支付代理</a>。
     </p>
     <p class="comment">
         <strong>重要免责声明</strong> - Binary.com 与上述所有支付代理不存在附属关系。各支付代理均以独立服务提供商的身份运营，未由 Binary.com 支持、担保或经其他方式批准。客户与支付代理的业务往来，风险自负。我们建议客户在向支付代理汇款前，应事先查询其信用状况。在任何情况下，Binary.com 都不对客户与支付代理之间的交易承担责任。

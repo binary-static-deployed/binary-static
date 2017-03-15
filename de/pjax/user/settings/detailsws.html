@@ -11,11 +11,10 @@
     <h1>Persönliche Angaben</h1>
 
     <p class="notice-msg center-text invisible" id="tax_information_notice">
-        Please complete the tax information before proceeding.
+        Bevor Sie fortfahren, füllen Sie bitte die Steuerinformationen aus.
     </p>
 
-    <form class="form form gr-padding-10 hidden" id="frmPersonalDetails">
-
+    <form class="form gr-padding-10 hidden" id="frmPersonalDetails">
         <fieldset>
             <legend>Angaben</legend>
 
@@ -55,7 +54,7 @@
             <div class="hidden RealAcc">
                 <div class="gr-padding-10 gr-row clear">
                     <div class="gr-4 form_label">
-                        <label for="place_of_birth">Place of birth</label>
+                        <label for="place_of_birth">Geburtsort</label>
                     </div>
                     <div class="gr-8">
                         <select name="place_of_birth" id="place_of_birth" class="form_input"></select>
@@ -106,11 +105,11 @@
         </fieldset>
 
         <fieldset class="hidden RealAcc ja-hide">
-            <legend>Tax Information</legend>
+            <legend>Steuerinformationen</legend>
 
             <div class="gr-padding-10 gr-row clear">
                 <div class="gr-4 form_label">
-                    <label for="tax_residence">Tax residence</label>
+                    <label for="tax_residence">Steuerdomizil</label>
                 </div>
                 <div class="gr-8">
                     <select name="tax_residence" id="tax_residence" class="invisible" multiple="multiple"></select>
@@ -119,7 +118,7 @@
 
             <div class="gr-padding-10 gr-row clear">
                 <div class="gr-4 form_label">
-                    <label for="tax_identification_number">Tax identification number</label>
+                    <label for="tax_identification_number">Steuer-Identifizierungsnummer</label>
                 </div>
                 <div class="gr-8">
                     <input type="text" class="text" id="tax_identification_number" name="tax_identification_number" maxlength="20"/>
@@ -348,7 +347,7 @@
 
             <div class="gr-padding-10 gr-row clear">
                 <div class="gr-4 form_label">
-                    <label for="trading_experience_margin_fx">Margen FX</label>
+                    <label for="trading_experience_margin_fx">Margin FX</label>
                 </div>
                 <div class="gr-8">
                     <select id="trading_experience_margin_fx" class="jp_value">
@@ -431,7 +430,7 @@
                 <div class="gr-8">
                     <select id="hedge_asset">
                         <option value="Foreign currency deposit">Foreign currency deposit</option>
-                        <option value="Margin FX">Margen FX</option>
+                        <option value="Margin FX">Margin FX</option>
                         <option value="Other">Sonstiges</option>
                     </select>
                 </div>
@@ -470,13 +469,10 @@
             <div class="gr-row gr-padding-10">
                 <div class="gr-4"></div>
                 <div class="gr-8">
-                    <span class="button">
-                        <button class="button">Aktualisieren</button>
-                    </span>
+                    <button class="button" type="submit">Aktualisieren</button>
                 </div>
             </div>
         </fieldset>
-
     </form>
 
     <p class="required hidden RealAcc JpAcc rowCustomerSupport"><em class="required_asterisk">**</em> Wenn Sie Ihren Namen, das Geburtsdatum, Ihr Wohnsitzland oder Ihre E-Mail Anschrift ändern möchten, setzen Sie sich bitte mit unserer <a href="/de/contact.html">Kundenbetreuung</a> in Verbindung.</p>

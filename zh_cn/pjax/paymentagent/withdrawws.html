@@ -28,14 +28,14 @@
             </p>
         </div>
 
-        <div id="viewConfirm" class="viewItem hidden">
+        <form id="viewConfirm" class="viewItem hidden">
             <p>请确认交易详情以完成转账：</p>
 
             <p>转给: <span id="lblAgentName"></span><br />金额: <span id="lblCurrency"></span> <span id="lblAmount"></span></p>
 
             <a class="button" id="btnBack" href="javascript:;"><span class="button">返回</span></a>
-            <a class="button" id="btnConfirm" href="javascript:;"><span class="button">确认</span></a>
-        </div>
+            <button class="button" type="submit">确认</button>
+        </form>
 
         <div id="viewForm" class="viewItem hidden">
             <p>从电邮领取令牌后请提供下列信息：</p>
@@ -44,10 +44,10 @@
 
                   <div class="gr-padding-10 gr-row clear">
                       <div class="gr-4 form_label">
-                          <label for="verification-code">验证令牌</label>
+                          <label for="verification_code">验证令牌</label>
                       </div>
                       <div class="gr-8">
-                          <input type="text" id="verification-code" maxlength="48" autocomplete="off" />
+                          <input type="text" id="verification_code" maxlength="48" autocomplete="off" />
                           <div class="hint">请检查您的电邮领取此令牌号</div>
                       </div>
                   </div>
@@ -89,9 +89,7 @@
 
                     <div class="gr-padding-10">
                         <div class="gr-8 gr-centered center-text">
-                            <span class="button">
-                                <button class="button">提交</button>
-                            </span>
+                            <button class="button" type="submit">提交</button>
                         </div>
                     </div>
 

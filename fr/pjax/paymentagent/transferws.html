@@ -7,10 +7,9 @@
         <div class="container">
 
 
-  <div id="pa-transfer-client">
-    <h1>Virement par agent de paiement</h1>
+  <h1>Virement par agent de paiement</h1>
 
-    <div id="pa_transfer_loading" class="center-text"><div class="barspinner dark">
+<div id="pa_transfer_loading" class="center-text"><div class="barspinner dark">
     <div class="rect1"></div>
     <div class="rect2"></div>
     <div class="rect3"></div>
@@ -18,105 +17,110 @@
     <div class="rect5"></div>
 </div></div>
 
-    <div id="pa_confirm_transfer" class="invisible">
-        <p>Veuillez confirmer les détails de la transaction afin de compléter le transfert:</p>
-        <table class="kv-pairs">
-            <tr>
-                <td>Transfert à: </td>
-                <td id="user-name"></td>
-            </tr>
-            <tr>
-                <td>Identifiant de connexion: </td>
-                <td id="login-id"></td>
-            </tr>
-            <tr>
-                <td>Montant: </td>
-                <td id="amount"></td>
-            </tr>
-        </table>
-        <p class="errorfield invisible"></p>
-        <span class="button ">
-            <button id="back_transfer" class="button ">Retour</button>
-        </span>
-        <span class="button ">
-            <button id="confirm_transfer" class="button " type="submit">Confirmer</button>
-        </span>
-    </div>
+<form id="frm_confirm_transfer" class="invisible">
+    <p>Veuillez confirmer les détails de la transaction afin de compléter le transfert:</p>
 
-    <div id="pa_transfer_done" class="invisible">
-        <p id="confirm-msg" class="invisible"></p>
-        <p>
-            <a class="button" href="/fr/user/statementws.html">
-                <span class="button">Voir votre extrait</span>
+    <fieldset>
+        <legend>Informations</legend>
+
+        <div class="gr-row gr-padding-10">
+            <div class="gr-4 form_label">
+                <label for="user_name">Transfert à</label>
+            </div>
+            <div class="gr-8">
+                <strong><label id="user_name"></label></strong>
+            </div>
+        </div>
+
+        <div class="gr-row gr-padding-10">
+            <div class="gr-4 form_label">
+                <label for="user_name">Identifiant de connexion</label>
+            </div>
+            <div class="gr-8">
+                <strong><label id="loginid"></label></strong>
+            </div>
+        </div>
+
+        <div class="gr-row gr-padding-10">
+            <div class="gr-4 form_label">
+                <label for="amount">Montant</label>
+            </div>
+            <div class="gr-8">
+                <strong><label id="confirm_amount"></label></strong>
+            </div>
+        </div>
+    </fieldset>
+
+    <div class="gr-row gr-padding-10">
+        <div class="gr-4"></div>
+        <div class="gr-8">
+            <p class="errorfield invisible gr-padding-10"></p>
+            <a class="button" href="javascript:;" id="back_transfer">
+                <span class="button">Retour</span>
             </a>
-        </p>
+            <button class="button" type="submit">Confirmer</button>
+        </div>
     </div>
+</form>
 
-    <div id="no_balance_error" class="invisible">
-        <p class="notice-msg">Veuillez effectuer un dépôt avant de virer des fonds vers un compte client.</p>
-        <a href="/cashier?l=EN">Dépôt</a>
+<div id="pa_transfer_done" class="invisible">
+    <p id="confirm_msg" class="invisible"></p>
+    <p>
+        <a class="button" href="/fr/user/statementws.html">
+            <span class="button">Voir votre extrait</span>
+        </a>
+    </p>
+</div>
+
+<div id="no_balance_error" class="invisible">
+    <p class="center-text notice-msg">Please <a href="/fr/cashier/forwardws.html#deposit">deposit</a> before transferring to client.</p>
+</div>
+
+<div id="not_pa_error" class="invisible">
+    <p class="center-text notice-msg">Cette fonction s'applique uniquement aux comptes des agents de paiement.</p>
+</div>
+
+<form id="frm_paymentagent_transfer" class="invisible">
+    <p>Veuillez compléter votre Identifiant de connexion et le Montant que vous souhaitez transférer à votre Client dans le formulaire ci-dessous:</p>
+
+    <fieldset>
+        <legend>Informations</legend>
+
+        <div class="gr-row gr-padding-10">
+            <div class="gr-4 form_label">
+                <label for="client_id">Transfert à l'Identifiant de Connexion</label>
+            </div>
+            <div class="gr-8">
+                <input type="text" name="client_id" id="client_id"/>
+            </div>
+        </div>
+
+        <div class="gr-row gr-padding-10">
+            <div class="gr-4 form_label">
+                <label for="amount">Montant</label>
+            </div>
+            <div class="gr-8">
+                <input type="number" name="amount" id="amount" min="10" max="2000" step="any"/>
+                <p class="hint">Min : 10 Max : 2000</p>
+            </div>
+        </div>
+    </fieldset>
+
+    <div class="gr-row gr-padding-10">
+        <div class="gr-4"></div>
+        <div class="gr-8">
+            <p id="insufficient_balance" class="errorfield invisible gr-padding-10">Solde insuffisant</p>
+            <p id="form_error" class="errorfield invisible gr-padding-10"></p>
+            <button class="button" type="submit">Envoyer</button>
+        </div>
     </div>
+</form>
 
-    <div id="virtual_error" class="invisible">
-        <p class="center-text notice-msg">Cette fonction ne s'applique pas aux comptes virtuels.</p>
-    </div>
-
-    <div id="not_pa_error" class="invisible">
-        <p class="center-text notice-msg">Cette fonction s'applique uniquement aux comptes des agents de paiement.</p>
-    </div>
-
-    <div id="paymentagent_transfer" class="invisible">
-        <p>Veuillez compléter votre Identifiant de connexion et le Montant que vous souhaitez transférer à votre Client dans le formulaire ci-dessous:</p>
-        <table class="kv-pairs">
-            <tr>
-                <td>
-                    <label for="client_id">Transfert à l'Identifiant de Connexion</label>
-                </td>
-                <td>
-                    <input type="text" name="client_id" id="client_id"/>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <span class="errorfield invisible" id="transfer_error_client_id"></span>
-                </td>
-            </tr>
-
-            <tr>
-                <td>
-                    <label for="amount">Montant</label>
-                </td>
-                <td>
-                    <input type="number" name="amount" min="10" max="2000"/>
-                </td>
-            </tr>
-
-            <tr>
-                <td colspan="2">
-                    <span class="errorfield invisible" id="transfer_error_amount">Veuillez entrer un montant valide.</span>
-                </td>
-            </tr>
-
-            <tr>
-                <td colspan="2">
-                    <span class="hint">Min : 10 Max : 2000</span>
-                </td>
-            </tr>
-        </table>
-        <p id="insufficient-balance-error" class="errorfield invisible">Solde insuffisant</p>
-        <br/>
-        <span class="button ">
-            <button class="button " id="submit" name="submit" type="submit" value="Submit">Envoyer</button>
-        </span>
-    </div>
-
-    <br>
-    <div id="paymentagent_transfer_notes" class="invisible">
-        <div>Notes:</div>
-        <ul>
-            <li>Notre site ne facture aucuns frais de transfert.</li>
-            <li>Lorsque vous cliquerez sur le bouton « Envoyer », les fonds seront prélevés sur votre compte et transférés vers votre compte client.</li>
-            <li>Votre Client va recevoir un émail de notification l'informant que le transfert a été effectué.</li>
-        </ul>
-    </div>
+<div id="paymentagent_transfer_notes" class="invisible">
+    <div>Remarques :</div>
+    <ul>
+        <li>Notre site ne facture aucuns frais de transfert.</li>
+        <li>Lorsque vous cliquerez sur le bouton « Envoyer », les fonds seront prélevés sur votre compte et transférés vers votre compte client.</li>
+        <li>Votre Client va recevoir un émail de notification l'informant que le transfert a été effectué.</li>
+    </ul>
 </div>

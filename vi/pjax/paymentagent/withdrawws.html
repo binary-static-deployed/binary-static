@@ -28,14 +28,14 @@
             </p>
         </div>
 
-        <div id="viewConfirm" class="viewItem hidden">
+        <form id="viewConfirm" class="viewItem hidden">
             <p>Xin vui lòng xác nhận chi tiết giao dịch để hoàn thành việc chuyển tiền:</p>
 
             <p>Chuyển tới: <span id="lblAgentName"></span><br />Số tiền: <span id="lblCurrency"></span> <span id="lblAmount"></span></p>
 
             <a class="button" id="btnBack" href="javascript:;"><span class="button">Quay lại</span></a>
-            <a class="button" id="btnConfirm" href="javascript:;"><span class="button">Xác nhận</span></a>
-        </div>
+            <button class="button" type="submit">Xác nhận</button>
+        </form>
 
         <div id="viewForm" class="viewItem hidden">
             <p>Vui lòng cung cấp cho chúng tôi những thông tin sau, sau khi đã tìm được token xác minh từ email của bạn:</p>
@@ -44,10 +44,10 @@
 
                   <div class="gr-padding-10 gr-row clear">
                       <div class="gr-4 form_label">
-                          <label for="verification-code">Mã Token Xác thực</label>
+                          <label for="verification_code">Mã Token Xác thực</label>
                       </div>
                       <div class="gr-8">
-                          <input type="text" id="verification-code" maxlength="48" autocomplete="off" />
+                          <input type="text" id="verification_code" maxlength="48" autocomplete="off" />
                           <div class="hint">Vui lòng kiểm tra email của bạn để biết giá trị của token này</div>
                       </div>
                   </div>
@@ -89,9 +89,7 @@
 
                     <div class="gr-padding-10">
                         <div class="gr-8 gr-centered center-text">
-                            <span class="button">
-                                <button class="button">Gửi</button>
-                            </span>
+                            <button class="button" type="submit">Gửi</button>
                         </div>
                     </div>
 

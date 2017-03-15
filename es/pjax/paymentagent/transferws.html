@@ -7,10 +7,9 @@
         <div class="container">
 
 
-  <div id="pa-transfer-client">
-    <h1>Transferencia del agente de pagos</h1>
+  <h1>Transferencia del agente de pagos</h1>
 
-    <div id="pa_transfer_loading" class="center-text"><div class="barspinner dark">
+<div id="pa_transfer_loading" class="center-text"><div class="barspinner dark">
     <div class="rect1"></div>
     <div class="rect2"></div>
     <div class="rect3"></div>
@@ -18,105 +17,110 @@
     <div class="rect5"></div>
 </div></div>
 
-    <div id="pa_confirm_transfer" class="invisible">
-        <p>Confirme los detalles de la transacción para completar la transferencia:</p>
-        <table class="kv-pairs">
-            <tr>
-                <td>Transferir a: </td>
-                <td id="user-name"></td>
-            </tr>
-            <tr>
-                <td>Identificación de acceso: </td>
-                <td id="login-id"></td>
-            </tr>
-            <tr>
-                <td>Monto: </td>
-                <td id="amount"></td>
-            </tr>
-        </table>
-        <p class="errorfield invisible"></p>
-        <span class="button ">
-            <button id="back_transfer" class="button ">Atrás</button>
-        </span>
-        <span class="button ">
-            <button id="confirm_transfer" class="button " type="submit">Confirmar</button>
-        </span>
-    </div>
+<form id="frm_confirm_transfer" class="invisible">
+    <p>Confirme los detalles de la transacción para completar la transferencia:</p>
 
-    <div id="pa_transfer_done" class="invisible">
-        <p id="confirm-msg" class="invisible"></p>
-        <p>
-            <a class="button" href="/es/user/statementws.html">
-                <span class="button">Vea su extracto</span>
+    <fieldset>
+        <legend>detalles</legend>
+
+        <div class="gr-row gr-padding-10">
+            <div class="gr-4 form_label">
+                <label for="user_name">Transferir a</label>
+            </div>
+            <div class="gr-8">
+                <strong><label id="user_name"></label></strong>
+            </div>
+        </div>
+
+        <div class="gr-row gr-padding-10">
+            <div class="gr-4 form_label">
+                <label for="user_name">Identificación de acceso</label>
+            </div>
+            <div class="gr-8">
+                <strong><label id="loginid"></label></strong>
+            </div>
+        </div>
+
+        <div class="gr-row gr-padding-10">
+            <div class="gr-4 form_label">
+                <label for="amount">Monto</label>
+            </div>
+            <div class="gr-8">
+                <strong><label id="confirm_amount"></label></strong>
+            </div>
+        </div>
+    </fieldset>
+
+    <div class="gr-row gr-padding-10">
+        <div class="gr-4"></div>
+        <div class="gr-8">
+            <p class="errorfield invisible gr-padding-10"></p>
+            <a class="button" href="javascript:;" id="back_transfer">
+                <span class="button">Atrás</span>
             </a>
-        </p>
+            <button class="button" type="submit">Confirmar</button>
+        </div>
     </div>
+</form>
 
-    <div id="no_balance_error" class="invisible">
-        <p class="notice-msg">Por favor deposite antes de la transferencia al cliente.</p>
-        <a href="/cashier?l=EN">Depósito</a>
+<div id="pa_transfer_done" class="invisible">
+    <p id="confirm_msg" class="invisible"></p>
+    <p>
+        <a class="button" href="/es/user/statementws.html">
+            <span class="button">Vea su extracto</span>
+        </a>
+    </p>
+</div>
+
+<div id="no_balance_error" class="invisible">
+    <p class="center-text notice-msg">Please <a href="/es/cashier/forwardws.html#deposit">deposit</a> before transferring to client.</p>
+</div>
+
+<div id="not_pa_error" class="invisible">
+    <p class="center-text notice-msg">Esta característica sólo es relevante para las cuentas de los agentes de pago.</p>
+</div>
+
+<form id="frm_paymentagent_transfer" class="invisible">
+    <p>Complete con su identificación de acceso y el monto que desea transferir a su cliente en el formulario a continuación:</p>
+
+    <fieldset>
+        <legend>detalles</legend>
+
+        <div class="gr-row gr-padding-10">
+            <div class="gr-4 form_label">
+                <label for="client_id">Transferir a usuario</label>
+            </div>
+            <div class="gr-8">
+                <input type="text" name="client_id" id="client_id"/>
+            </div>
+        </div>
+
+        <div class="gr-row gr-padding-10">
+            <div class="gr-4 form_label">
+                <label for="amount">Monto</label>
+            </div>
+            <div class="gr-8">
+                <input type="number" name="amount" id="amount" min="10" max="2000" step="any"/>
+                <p class="hint">Mín: 10 Máx: 2000</p>
+            </div>
+        </div>
+    </fieldset>
+
+    <div class="gr-row gr-padding-10">
+        <div class="gr-4"></div>
+        <div class="gr-8">
+            <p id="insufficient_balance" class="errorfield invisible gr-padding-10">Saldo insuficiente</p>
+            <p id="form_error" class="errorfield invisible gr-padding-10"></p>
+            <button class="button" type="submit">Enviar</button>
+        </div>
     </div>
+</form>
 
-    <div id="virtual_error" class="invisible">
-        <p class="center-text notice-msg">Esta característica no es relevante para cuentas de dinero virtual.</p>
-    </div>
-
-    <div id="not_pa_error" class="invisible">
-        <p class="center-text notice-msg">Esta característica sólo es relevante para las cuentas de los agentes de pago.</p>
-    </div>
-
-    <div id="paymentagent_transfer" class="invisible">
-        <p>Complete con su identificación de acceso y el monto que desea transferir a su cliente en el formulario a continuación:</p>
-        <table class="kv-pairs">
-            <tr>
-                <td>
-                    <label for="client_id">Transferir a usuario</label>
-                </td>
-                <td>
-                    <input type="text" name="client_id" id="client_id"/>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <span class="errorfield invisible" id="transfer_error_client_id"></span>
-                </td>
-            </tr>
-
-            <tr>
-                <td>
-                    <label for="amount">Monto</label>
-                </td>
-                <td>
-                    <input type="number" name="amount" min="10" max="2000"/>
-                </td>
-            </tr>
-
-            <tr>
-                <td colspan="2">
-                    <span class="errorfield invisible" id="transfer_error_amount">Ingrese un monto válido.</span>
-                </td>
-            </tr>
-
-            <tr>
-                <td colspan="2">
-                    <span class="hint">Mín: 10 Máx: 2000</span>
-                </td>
-            </tr>
-        </table>
-        <p id="insufficient-balance-error" class="errorfield invisible">Saldo insuficiente</p>
-        <br/>
-        <span class="button ">
-            <button class="button " id="submit" name="submit" type="submit" value="Submit">Enviar</button>
-        </span>
-    </div>
-
-    <br>
-    <div id="paymentagent_transfer_notes" class="invisible">
-        <div>Notes:</div>
-        <ul>
-            <li>Nuestro sitio no cobra ninguna tarifa de transferencia.</li>
-            <li>Una vez que haga clic en el botón "Enviar" los fondos se retirarán de su cuenta y se enviarán a la cuenta de su Cliente.</li>
-            <li>Su Cliente recibirá una notificación por correo electrónico informándole a él/ella que la transferencia ha sido procesada.</li>
-        </ul>
-    </div>
+<div id="paymentagent_transfer_notes" class="invisible">
+    <div>Notas:</div>
+    <ul>
+        <li>Nuestro sitio no cobra ninguna tarifa de transferencia.</li>
+        <li>Una vez que haga clic en el botón "Enviar" los fondos se retirarán de su cuenta y se enviarán a la cuenta de su Cliente.</li>
+        <li>Su Cliente recibirá una notificación por correo electrónico informándole a él/ella que la transferencia ha sido procesada.</li>
+    </ul>
 </div>

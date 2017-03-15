@@ -20,9 +20,17 @@
         <li>Send your funds to the payment agent. The deposited funds, less the agent's commission, will show up in your account.</li>
     </ol>
 
+
     <p>
         Show payment agents for:
-        <select id="target_country"></select>
+        <select id="target_country" class="hidden"></select>
+        <div class="loading"><div class="barspinner dark">
+    <div class="rect1"></div>
+    <div class="rect2"></div>
+    <div class="rect3"></div>
+    <div class="rect4"></div>
+    <div class="rect5"></div>
+</div></div>
     </p>
 
     <div id="pa_list">
@@ -70,7 +78,7 @@
         </div>
     </div>
 
-    <p id="no_paymentagent" class="error-msg hidden">Payment agent is unavailable in your country.</p>
+    <p id="no_paymentagent" class="notice-msg center-text hidden">Payment agent is unavailable in your country.</p>
 
     <p>
         Apply to become a Binary.com <a href="/en/payment-agent.html">payment agent</a>.

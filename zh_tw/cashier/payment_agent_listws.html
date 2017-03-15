@@ -55,10 +55,10 @@
           <link rel="alternate" href="/zh_cn/cashier/payment_agent_listws.html" hreflang="ZH_CN" /> 
           <link rel="alternate" href="/zh_tw/cashier/payment_agent_listws.html?l=zh_tw" hreflang="ZH_TW" /> 
         
-         <link rel="stylesheet" href="/css/binary.min.css?o74ig9s9">
-         <link rel="stylesheet" href="https://style.binary.com/binary.css?o74ig9s9">
+         <link rel="stylesheet" href="/css/binary.min.css?dgej1pcg">
+         <link rel="stylesheet" href="https://style.binary.com/binary.css?dgej1pcg">
         
-        <script src='/js/binary.min.js?o74ig9s9'></script>  <script src='https://style.binary.com/binary.js?o74ig9s9'></script>
+        <script src='/js/binary.min.js?dgej1pcg'></script>  <script src='https://style.binary.com/binary.js?dgej1pcg'></script>
     </head>
 
 
@@ -347,9 +347,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <li>將資金存入支付代理。存入資金減去代理佣金的金額將會顯示在您的帳戶中。</li>
     </ol>
 
+
     <p>
         支付代理清單：
-        <select id="target_country"></select>
+        <select id="target_country" class="hidden"></select>
+        <div class="loading"><div class="barspinner dark">
+    <div class="rect1"></div>
+    <div class="rect2"></div>
+    <div class="rect3"></div>
+    <div class="rect4"></div>
+    <div class="rect5"></div>
+</div></div>
     </p>
 
     <div id="pa_list">
@@ -397,10 +405,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </div>
     </div>
 
-    <p id="no_paymentagent" class="error-msg hidden">您的國家無可用支付代理。</p>
+    <p id="no_paymentagent" class="notice-msg center-text hidden">您的國家無可用支付代理。</p>
 
     <p>
-        Apply to become a Binary.com <a href="/zh_tw/payment-agent.html">payment agent</a>.
+        申請成為 Binary.com <a href="/zh_tw/payment-agent.html">支付代理</a>。
     </p>
     <p class="comment">
         <strong>重要免責聲明</strong> - Binary.com 與上述所有支付代理不存在附屬關係。各支付代理均以獨立服務提供商的身份運營，未由Binary.com支持、擔保或經其它方式批准。客戶與支付代理的業務往來，風險自負。我們建議客戶在向支付代理匯款前，應事先查詢其信用狀況。在任何情況下，Binary.com 都不對客戶與支付代理之間的交易承擔責任。
@@ -607,7 +615,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <div class="container">
             <div class="gr-padding-10">
                 <p class="gambling content-inverse-color">
-                    Trading binary options may not be suitable for everyone, so please ensure that you fully understand the risks involved. Your losses can exceed your initial deposit and you do not own or have any interest in the underlying asset. In regards to binary options which are gambling products, remember that gambling can be addictive - please play responsibly. <span class="ja-hide">Read about <a href="/zh_tw/responsible-trading.html">Responsible Trading</a>.</span>
+                    二元期權交易不一定適合每一個人。因此，請確保您完全明白有關的風險。您的虧損可能會超越起始資金存款，而您並不擁有或占有任何標的資產。對於進行博彩產品交易之二元期權，請務必要記住博彩活動可能會上癮，請在玩時提醒自己要承擔責任。<span class="ja-hide">請查閱<a href="/zh_tw/responsible-trading.html">負責任交易</a>。</span>
                 </p>
             </div>
         </div>

@@ -20,9 +20,17 @@
         <li>Senden Sie Ihr Geld dem Zahlungsagent Die eingezahlten Gelder werden nach Abzug der Provision für den Zahlungsabwickler auf Ihrem Konto erscheinen.</li>
     </ol>
 
+
     <p>
         Zahlungsagent anzeigen für:
-        <select id="target_country"></select>
+        <select id="target_country" class="hidden"></select>
+        <div class="loading"><div class="barspinner dark">
+    <div class="rect1"></div>
+    <div class="rect2"></div>
+    <div class="rect3"></div>
+    <div class="rect4"></div>
+    <div class="rect5"></div>
+</div></div>
     </p>
 
     <div id="pa_list">
@@ -70,10 +78,10 @@
         </div>
     </div>
 
-    <p id="no_paymentagent" class="error-msg hidden">Für Ihr Land ist kein Zahlungsagent vorhanden.</p>
+    <p id="no_paymentagent" class="notice-msg center-text hidden">Für Ihr Land ist kein Zahlungsagent vorhanden.</p>
 
     <p>
-        Apply to become a Binary.com <a href="/de/payment-agent.html">payment agent</a>.
+        Bewerben Sie sich als <a href="/de/payment-agent.html">Zahlungsagent</a> von Binary.com.
     </p>
     <p class="comment">
         <strong>WICHTIGE AUSSCHLUSSKLAUSEL</strong> - Binary.com ist kein Geschäftspartner einer der oben aufgeführten Zahlungsagenten. Jeder Zahlungsagent arbeitet als eigenständiger Dienstleister und wird nicht von Binary.com empfohlen, garantiert oder anderweitig genehmigt. DIE KUNDEN HANDELN MIT ZAHLUNGSAGENTEN AUF IHR EIGENES RISIKO UND EIGENE GEFAHR. Den Kunden wird empfohlen, die Angaben der Zahlungsagenten zu überprüfen, bevor sie Geld überweisen. Binary.com kann für Transaktionen zwischen Kunden und Zahlungsagenten nicht haftbar gemacht werden.

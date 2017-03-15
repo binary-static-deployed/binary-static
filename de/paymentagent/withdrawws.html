@@ -55,10 +55,10 @@
           <link rel="alternate" href="/zh_cn/paymentagent/withdrawws.html" hreflang="ZH_CN" /> 
           <link rel="alternate" href="/zh_tw/paymentagent/withdrawws.html" hreflang="ZH_TW" /> 
         
-         <link rel="stylesheet" href="/css/binary.min.css?o74ig9s9">
-         <link rel="stylesheet" href="https://style.binary.com/binary.css?o74ig9s9">
+         <link rel="stylesheet" href="/css/binary.min.css?dgej1pcg">
+         <link rel="stylesheet" href="https://style.binary.com/binary.css?dgej1pcg">
         
-        <script src='/js/binary.min.js?o74ig9s9'></script>  <script src='https://style.binary.com/binary.js?o74ig9s9'></script>
+        <script src='/js/binary.min.js?dgej1pcg'></script>  <script src='https://style.binary.com/binary.js?dgej1pcg'></script>
     </head>
 
 
@@ -355,14 +355,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             </p>
         </div>
 
-        <div id="viewConfirm" class="viewItem hidden">
+        <form id="viewConfirm" class="viewItem hidden">
             <p>Bitte bestätigen Sie die Transaktionsdaten, um den Transfer zu vervollständigen:</p>
 
             <p>Überweisung an: <span id="lblAgentName"></span><br />Betrag: <span id="lblCurrency"></span> <span id="lblAmount"></span></p>
 
             <a class="button" id="btnBack" href="javascript:;"><span class="button">Zurück</span></a>
-            <a class="button" id="btnConfirm" href="javascript:;"><span class="button">Bestätigen</span></a>
-        </div>
+            <button class="button" type="submit">Bestätigen</button>
+        </form>
 
         <div id="viewForm" class="viewItem hidden">
             <p>Nach dem Abruf des Überprüfungstokens aus Ihrer E-Mail, teilen Sie uns bitte folgende Informationen mit:</p>
@@ -371,10 +371,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
                   <div class="gr-padding-10 gr-row clear">
                       <div class="gr-4 form_label">
-                          <label for="verification-code">Verifikationstoken</label>
+                          <label for="verification_code">Verifikationstoken</label>
                       </div>
                       <div class="gr-8">
-                          <input type="text" id="verification-code" maxlength="48" autocomplete="off" />
+                          <input type="text" id="verification_code" maxlength="48" autocomplete="off" />
                           <div class="hint">Bitte überprüfen Sie für den Wert dieses Token Ihren E-Mail Eingang</div>
                       </div>
                   </div>
@@ -416,9 +416,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
                     <div class="gr-padding-10">
                         <div class="gr-8 gr-centered center-text">
-                            <span class="button">
-                                <button class="button">Absenden</button>
-                            </span>
+                            <button class="button" type="submit">Absenden</button>
                         </div>
                     </div>
 
@@ -527,7 +525,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <div class="gr-6 gr-12-m gr-parent gr-no-gutter">
                     <div class="gr-row">
                         <div class="gr-4">
-                           <h4 class="secondary-color">Legal</h4>
+                           <h4 class="secondary-color">Rechtliches</h4>
                            <ul>
                                <li class='ja-hide'>
                                    <a href="/de/terms-and-conditions.html">Allgemeine Geschäftsbedingungen</a>
@@ -634,7 +632,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </div>
         <div id="ratelimit-error-message">
             <div class="message">
-                You have reached the rate limit of requests per second. Please try later.
+                Sie haben das Kurslimit für Anfragen pro Sekunde erreicht. Bitte versuchen Sie es später.
             </div>
         </div>
     </div>
@@ -642,7 +640,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <div class="container">
             <div class="gr-padding-10">
                 <p class="gambling content-inverse-color">
-                    Trading binary options may not be suitable for everyone, so please ensure that you fully understand the risks involved. Your losses can exceed your initial deposit and you do not own or have any interest in the underlying asset. In regards to binary options which are gambling products, remember that gambling can be addictive - please play responsibly. <span class="ja-hide">Read about <a href="/de/responsible-trading.html">Responsible Trading</a>.</span>
+                    Der Handel von binären Optionen ist nicht für jeden geeignet. Daher müssen Sie dafür sorgen, dass Sie die damit verbundenen Risiken erkennen. Ihre Verluste können Ihre ursprüngliche Einzahlung übersteigen und Sie besitzen die zugrundeliegenden Werte nicht oder haben keinen Anteil daran. Hinsichtlich der binären Optionen, die Glücksspielprodukte sind, müssen Sie beachten, dass Glücksspiel süchtig machen kann - Bitte spielen Sie verantwortungsbewusst. <span class="ja-hide">Hier finden Sie informationen über das <a href="/de/responsible-trading.html">Verantwortungsbewusste Trading</a>.</span>
                 </p>
             </div>
         </div>

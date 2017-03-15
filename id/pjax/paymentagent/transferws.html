@@ -7,10 +7,9 @@
         <div class="container">
 
 
-  <div id="pa-transfer-client">
-    <h1>Transfer Agen Pembayaran</h1>
+  <h1>Transfer Agen Pembayaran</h1>
 
-    <div id="pa_transfer_loading" class="center-text"><div class="barspinner dark">
+<div id="pa_transfer_loading" class="center-text"><div class="barspinner dark">
     <div class="rect1"></div>
     <div class="rect2"></div>
     <div class="rect3"></div>
@@ -18,105 +17,110 @@
     <div class="rect5"></div>
 </div></div>
 
-    <div id="pa_confirm_transfer" class="invisible">
-        <p>Pastikan Anda telah memilih Agen Pembayaran yang benar, salah transfer adalah diluar tanggungjawab kami:</p>
-        <table class="kv-pairs">
-            <tr>
-                <td>Kirim ke: </td>
-                <td id="user-name"></td>
-            </tr>
-            <tr>
-                <td>Login ID: </td>
-                <td id="login-id"></td>
-            </tr>
-            <tr>
-                <td>Jumlah: </td>
-                <td id="amount"></td>
-            </tr>
-        </table>
-        <p class="errorfield invisible"></p>
-        <span class="button ">
-            <button id="back_transfer" class="button ">Kembali</button>
-        </span>
-        <span class="button ">
-            <button id="confirm_transfer" class="button " type="submit">Lanjutkan</button>
-        </span>
-    </div>
+<form id="frm_confirm_transfer" class="invisible">
+    <p>Pastikan Anda telah memilih Agen Pembayaran yang benar, salah transfer adalah diluar tanggungjawab kami:</p>
 
-    <div id="pa_transfer_done" class="invisible">
-        <p id="confirm-msg" class="invisible"></p>
-        <p>
-            <a class="button" href="/id/user/statementws.html">
-                <span class="button">Lihat pernyataan Anda</span>
+    <fieldset>
+        <legend>Rincian</legend>
+
+        <div class="gr-row gr-padding-10">
+            <div class="gr-4 form_label">
+                <label for="user_name">Kirim ke</label>
+            </div>
+            <div class="gr-8">
+                <strong><label id="user_name"></label></strong>
+            </div>
+        </div>
+
+        <div class="gr-row gr-padding-10">
+            <div class="gr-4 form_label">
+                <label for="user_name">Login ID</label>
+            </div>
+            <div class="gr-8">
+                <strong><label id="loginid"></label></strong>
+            </div>
+        </div>
+
+        <div class="gr-row gr-padding-10">
+            <div class="gr-4 form_label">
+                <label for="amount">Jumlah</label>
+            </div>
+            <div class="gr-8">
+                <strong><label id="confirm_amount"></label></strong>
+            </div>
+        </div>
+    </fieldset>
+
+    <div class="gr-row gr-padding-10">
+        <div class="gr-4"></div>
+        <div class="gr-8">
+            <p class="errorfield invisible gr-padding-10"></p>
+            <a class="button" href="javascript:;" id="back_transfer">
+                <span class="button">Kembali</span>
             </a>
-        </p>
+            <button class="button" type="submit">Lanjutkan</button>
+        </div>
     </div>
+</form>
 
-    <div id="no_balance_error" class="invisible">
-        <p class="notice-msg">Silahkan deposit sebelum melakukan transfer ke klien.</p>
-        <a href="/cashier?l=EN">Deposit</a>
+<div id="pa_transfer_done" class="invisible">
+    <p id="confirm_msg" class="invisible"></p>
+    <p>
+        <a class="button" href="/id/user/statementws.html">
+            <span class="button">Lihat pernyataan Anda</span>
+        </a>
+    </p>
+</div>
+
+<div id="no_balance_error" class="invisible">
+    <p class="center-text notice-msg">Silahkan <a href="/id/cashier/forwardws.html#deposit">mendeposit</a> sebelum mentransfer kepada klien.</p>
+</div>
+
+<div id="not_pa_error" class="invisible">
+    <p class="center-text notice-msg">Fitur ini hanya relevan untuk akun agen pembayaran.</p>
+</div>
+
+<form id="frm_paymentagent_transfer" class="invisible">
+    <p>Silahkan isi Login ID dan jumlah yang ingin Anda transfer ke klien Anda dalam formulir di bawah ini:</p>
+
+    <fieldset>
+        <legend>Rincian</legend>
+
+        <div class="gr-row gr-padding-10">
+            <div class="gr-4 form_label">
+                <label for="client_id">Transfer ke Login ID</label>
+            </div>
+            <div class="gr-8">
+                <input type="text" name="client_id" id="client_id"/>
+            </div>
+        </div>
+
+        <div class="gr-row gr-padding-10">
+            <div class="gr-4 form_label">
+                <label for="amount">Jumlah</label>
+            </div>
+            <div class="gr-8">
+                <input type="number" name="amount" id="amount" min="10" max="2000" step="any"/>
+                <p class="hint">Min: 10 Mak: 2000</p>
+            </div>
+        </div>
+    </fieldset>
+
+    <div class="gr-row gr-padding-10">
+        <div class="gr-4"></div>
+        <div class="gr-8">
+            <p id="insufficient_balance" class="errorfield invisible gr-padding-10">Saldo tidak mencukupi</p>
+            <p id="form_error" class="errorfield invisible gr-padding-10"></p>
+            <button class="button" type="submit">Mengajukan</button>
+        </div>
     </div>
+</form>
 
-    <div id="virtual_error" class="invisible">
-        <p class="center-text notice-msg">Fasilitas ini tidak tersedia untuk akun uang virtual.</p>
-    </div>
-
-    <div id="not_pa_error" class="invisible">
-        <p class="center-text notice-msg">Fitur ini hanya relevan untuk akun agen pembayaran.</p>
-    </div>
-
-    <div id="paymentagent_transfer" class="invisible">
-        <p>Silahkan isi Login ID dan jumlah yang ingin Anda transfer ke klien Anda dalam formulir di bawah ini:</p>
-        <table class="kv-pairs">
-            <tr>
-                <td>
-                    <label for="client_id">Transfer ke Login ID</label>
-                </td>
-                <td>
-                    <input type="text" name="client_id" id="client_id"/>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <span class="errorfield invisible" id="transfer_error_client_id"></span>
-                </td>
-            </tr>
-
-            <tr>
-                <td>
-                    <label for="amount">Jumlah</label>
-                </td>
-                <td>
-                    <input type="number" name="amount" min="10" max="2000"/>
-                </td>
-            </tr>
-
-            <tr>
-                <td colspan="2">
-                    <span class="errorfield invisible" id="transfer_error_amount">Tolong masukan jumlah yang benar.</span>
-                </td>
-            </tr>
-
-            <tr>
-                <td colspan="2">
-                    <span class="hint">Min: 10 Mak: 2000</span>
-                </td>
-            </tr>
-        </table>
-        <p id="insufficient-balance-error" class="errorfield invisible">Saldo tidak mencukupi</p>
-        <br/>
-        <span class="button ">
-            <button class="button " id="submit" name="submit" type="submit" value="Submit">Mengajukan</button>
-        </span>
-    </div>
-
-    <br>
-    <div id="paymentagent_transfer_notes" class="invisible">
-        <div>Notes:</div>
-        <ul>
-            <li>Situs kami tidak membebankan biaya transfer.</li>
-            <li>Setelah mengklik tombol 'Kirim', dana akan ditarik dari akun Anda dan ditransfer ke dalam akun Klien Anda.</li>
-            <li>Klien Anda akan menerima e-mail pemberitahuan bahwa transfer mereka telah diproses.</li>
-        </ul>
-    </div>
+<div id="paymentagent_transfer_notes" class="invisible">
+    <div>Catatan:</div>
+    <ul>
+        <li>Situs kami tidak membebankan biaya transfer.</li>
+        <li>Setelah mengklik tombol 'Kirim', dana akan ditarik dari akun Anda dan ditransfer ke dalam akun Klien Anda.</li>
+        <li>Klien Anda akan menerima e-mail pemberitahuan bahwa transfer mereka telah diproses.</li>
+    </ul>
 </div>

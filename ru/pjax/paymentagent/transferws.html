@@ -7,10 +7,9 @@
         <div class="container">
 
 
-  <div id="pa-transfer-client">
-    <h1>Перевод через агента</h1>
+  <h1>Перевод через агента</h1>
 
-    <div id="pa_transfer_loading" class="center-text"><div class="barspinner dark">
+<div id="pa_transfer_loading" class="center-text"><div class="barspinner dark">
     <div class="rect1"></div>
     <div class="rect2"></div>
     <div class="rect3"></div>
@@ -18,105 +17,110 @@
     <div class="rect5"></div>
 </div></div>
 
-    <div id="pa_confirm_transfer" class="invisible">
-        <p>Просим подтвердить данные транзакции для завершения перевода:</p>
-        <table class="kv-pairs">
-            <tr>
-                <td>Перевести на имя: </td>
-                <td id="user-name"></td>
-            </tr>
-            <tr>
-                <td>Логин: </td>
-                <td id="login-id"></td>
-            </tr>
-            <tr>
-                <td>Количество: </td>
-                <td id="amount"></td>
-            </tr>
-        </table>
-        <p class="errorfield invisible"></p>
-        <span class="button ">
-            <button id="back_transfer" class="button ">назад</button>
-        </span>
-        <span class="button ">
-            <button id="confirm_transfer" class="button " type="submit">Подтвердить</button>
-        </span>
-    </div>
+<form id="frm_confirm_transfer" class="invisible">
+    <p>Просим подтвердить данные транзакции для завершения перевода:</p>
 
-    <div id="pa_transfer_done" class="invisible">
-        <p id="confirm-msg" class="invisible"></p>
-        <p>
-            <a class="button" href="/ru/user/statementws.html">
-                <span class="button">Смотрите свою историю счета</span>
+    <fieldset>
+        <legend>Подробности</legend>
+
+        <div class="gr-row gr-padding-10">
+            <div class="gr-4 form_label">
+                <label for="user_name">Перевести на имя</label>
+            </div>
+            <div class="gr-8">
+                <strong><label id="user_name"></label></strong>
+            </div>
+        </div>
+
+        <div class="gr-row gr-padding-10">
+            <div class="gr-4 form_label">
+                <label for="user_name">Логин</label>
+            </div>
+            <div class="gr-8">
+                <strong><label id="loginid"></label></strong>
+            </div>
+        </div>
+
+        <div class="gr-row gr-padding-10">
+            <div class="gr-4 form_label">
+                <label for="amount">Количество</label>
+            </div>
+            <div class="gr-8">
+                <strong><label id="confirm_amount"></label></strong>
+            </div>
+        </div>
+    </fieldset>
+
+    <div class="gr-row gr-padding-10">
+        <div class="gr-4"></div>
+        <div class="gr-8">
+            <p class="errorfield invisible gr-padding-10"></p>
+            <a class="button" href="javascript:;" id="back_transfer">
+                <span class="button">назад</span>
             </a>
-        </p>
+            <button class="button" type="submit">Подтвердить</button>
+        </div>
     </div>
+</form>
 
-    <div id="no_balance_error" class="invisible">
-        <p class="notice-msg">Пожалуйста, пополните счёт перед переводом клиенту.</p>
-        <a href="/cashier?l=EN">Пополнение</a>
+<div id="pa_transfer_done" class="invisible">
+    <p id="confirm_msg" class="invisible"></p>
+    <p>
+        <a class="button" href="/ru/user/statementws.html">
+            <span class="button">Смотрите свою историю счета</span>
+        </a>
+    </p>
+</div>
+
+<div id="no_balance_error" class="invisible">
+    <p class="center-text notice-msg">Please <a href="/ru/cashier/forwardws.html#deposit">deposit</a> before transferring to client.</p>
+</div>
+
+<div id="not_pa_error" class="invisible">
+    <p class="center-text notice-msg">Данная функция доступна лишь на счетах платёжных агентов.</p>
+</div>
+
+<form id="frm_paymentagent_transfer" class="invisible">
+    <p>Просим указать логин и сумму, которую Вы желаете перевести Клиенту, в форме ниже:</p>
+
+    <fieldset>
+        <legend>Подробности</legend>
+
+        <div class="gr-row gr-padding-10">
+            <div class="gr-4 form_label">
+                <label for="client_id">Перевести на логин</label>
+            </div>
+            <div class="gr-8">
+                <input type="text" name="client_id" id="client_id"/>
+            </div>
+        </div>
+
+        <div class="gr-row gr-padding-10">
+            <div class="gr-4 form_label">
+                <label for="amount">Количество</label>
+            </div>
+            <div class="gr-8">
+                <input type="number" name="amount" id="amount" min="10" max="2000" step="any"/>
+                <p class="hint">Мин.: 10 Макс.: 2000</p>
+            </div>
+        </div>
+    </fieldset>
+
+    <div class="gr-row gr-padding-10">
+        <div class="gr-4"></div>
+        <div class="gr-8">
+            <p id="insufficient_balance" class="errorfield invisible gr-padding-10">Недостаточно баланса</p>
+            <p id="form_error" class="errorfield invisible gr-padding-10"></p>
+            <button class="button" type="submit">Подтвердить</button>
+        </div>
     </div>
+</form>
 
-    <div id="virtual_error" class="invisible">
-        <p class="center-text notice-msg">Данная функция недоступна на демо-счетах.</p>
-    </div>
-
-    <div id="not_pa_error" class="invisible">
-        <p class="center-text notice-msg">Данная функция доступна лишь на счетах платёжных агентов.</p>
-    </div>
-
-    <div id="paymentagent_transfer" class="invisible">
-        <p>Просим указать логин и сумму, которую Вы желаете перевести Клиенту, в форме ниже:</p>
-        <table class="kv-pairs">
-            <tr>
-                <td>
-                    <label for="client_id">Перевести на логин</label>
-                </td>
-                <td>
-                    <input type="text" name="client_id" id="client_id"/>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <span class="errorfield invisible" id="transfer_error_client_id"></span>
-                </td>
-            </tr>
-
-            <tr>
-                <td>
-                    <label for="amount">Количество</label>
-                </td>
-                <td>
-                    <input type="number" name="amount" min="10" max="2000"/>
-                </td>
-            </tr>
-
-            <tr>
-                <td colspan="2">
-                    <span class="errorfield invisible" id="transfer_error_amount">Пожалуйста, введите правильную сумму.</span>
-                </td>
-            </tr>
-
-            <tr>
-                <td colspan="2">
-                    <span class="hint">Мин.: 10 Макс.: 2000</span>
-                </td>
-            </tr>
-        </table>
-        <p id="insufficient-balance-error" class="errorfield invisible">Недостаточно баланса</p>
-        <br/>
-        <span class="button ">
-            <button class="button " id="submit" name="submit" type="submit" value="Submit">Подтвердить</button>
-        </span>
-    </div>
-
-    <br>
-    <div id="paymentagent_transfer_notes" class="invisible">
-        <div>Notes:</div>
-        <ul>
-            <li>Наш сайт не берёт комиссий за перевод.</li>
-            <li>Когда Вы нажмете кнопку 'Подтвердить', средства будет сняты с Вашего счета и перечислены на счет клиента.</li>
-            <li>Ваш клиент получит по электронной почте уведомление о том, что перевод был выполнен.</li>
-        </ul>
-    </div>
+<div id="paymentagent_transfer_notes" class="invisible">
+    <div>Примечания:</div>
+    <ul>
+        <li>Наш сайт не берёт комиссий за перевод.</li>
+        <li>Когда Вы нажмете кнопку 'Подтвердить', средства будет сняты с Вашего счета и перечислены на счет клиента.</li>
+        <li>Ваш клиент получит по электронной почте уведомление о том, что перевод был выполнен.</li>
+    </ul>
 </div>

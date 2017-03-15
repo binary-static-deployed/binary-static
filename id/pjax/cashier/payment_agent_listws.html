@@ -20,9 +20,17 @@
         <li>Kirim dana Anda kepada agen pembayaran. Jumlah deposit berdasarkan nilai tukar yang berlaku dan akan dikreditkan kedalam akun Anda.</li>
     </ol>
 
+
     <p>
         Lihat agen pembayaran untuk:
-        <select id="target_country"></select>
+        <select id="target_country" class="hidden"></select>
+        <div class="loading"><div class="barspinner dark">
+    <div class="rect1"></div>
+    <div class="rect2"></div>
+    <div class="rect3"></div>
+    <div class="rect4"></div>
+    <div class="rect5"></div>
+</div></div>
     </p>
 
     <div id="pa_list">
@@ -70,10 +78,10 @@
         </div>
     </div>
 
-    <p id="no_paymentagent" class="error-msg hidden">Agen pembayaran tidak tersedia di negara Anda.</p>
+    <p id="no_paymentagent" class="notice-msg center-text hidden">Agen pembayaran tidak tersedia di negara Anda.</p>
 
     <p>
-        Apply to become a Binary.com <a href="/id/payment-agent.html">payment agent</a>.
+        Khusus untuk exchanger, ajukan pendaftaran sebagai <a href="/id/payment-agent.html">agen pembayaran</a> Binary.com.
     </p>
     <p class="comment">
         <strong>SANGGAHAN PENTING</strong> - Binary.com tidak berafiliasi dengan agen pembayaran manapun. Setiap agen pembayaran beroperasi sendiri dan Binary.com tidak bertanggungjawab atas risiko penggunaannya. PELANGGAN BERURUSAN DENGAN AGEN PEMBAYARAN ATAS RISIKO SENDIRI. Pelanggan disarankan untuk mengecek kredibilitas dan eksistensi agen pembayaran bersangkutan sebelum bertransaksi dengan mereka. Binary.com dengan apapun alasan tidak bertanggungjawab kepada transaksi yang dilakukan antara pelanggan dengan agen pembayaran.

@@ -28,14 +28,14 @@
             </p>
         </div>
 
-        <div id="viewConfirm" class="viewItem hidden">
+        <form id="viewConfirm" class="viewItem hidden">
             <p>โปรดยืนยันรายละเอียดของธุรกรรมเพื่อทำให้การโอนสมบูรณ์:</p>
 
             <p>โอนไป: <span id="lblAgentName"></span><br />จำนวน: <span id="lblCurrency"></span> <span id="lblAmount"></span></p>
 
             <a class="button" id="btnBack" href="javascript:;"><span class="button">กลับ</span></a>
-            <a class="button" id="btnConfirm" href="javascript:;"><span class="button">ยืนยัน</span></a>
-        </div>
+            <button class="button" type="submit">ยืนยัน</button>
+        </form>
 
         <div id="viewForm" class="viewItem hidden">
             <p>โปรดให้ข้อมูลต่อไปนี้ ภายหลังการเรียกข้อมูลโทเค่นจากอีเมล์ของท่าน:</p>
@@ -44,10 +44,10 @@
 
                   <div class="gr-padding-10 gr-row clear">
                       <div class="gr-4 form_label">
-                          <label for="verification-code">โทเค่นเพื่อตรวจสอบ</label>
+                          <label for="verification_code">โทเค่นเพื่อตรวจสอบ</label>
                       </div>
                       <div class="gr-8">
-                          <input type="text" id="verification-code" maxlength="48" autocomplete="off" />
+                          <input type="text" id="verification_code" maxlength="48" autocomplete="off" />
                           <div class="hint">โปรดตรวจสอบอีเมล์ของท่านเพื่อการใช้งานโทเค่นนี้</div>
                       </div>
                   </div>
@@ -89,9 +89,7 @@
 
                     <div class="gr-padding-10">
                         <div class="gr-8 gr-centered center-text">
-                            <span class="button">
-                                <button class="button">ส่ง</button>
-                            </span>
+                            <button class="button" type="submit">ส่ง</button>
                         </div>
                     </div>
 

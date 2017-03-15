@@ -20,9 +20,17 @@
         <li>Wyślij swoje środki pośrednikowi płatności. Kwota wpłaty pomniejszona o prowizję pobieraną przez pośrednika będzie widoczna na Twoim koncie.</li>
     </ol>
 
+
     <p>
         Pokaż pośredników płatności dla:
-        <select id="target_country"></select>
+        <select id="target_country" class="hidden"></select>
+        <div class="loading"><div class="barspinner dark">
+    <div class="rect1"></div>
+    <div class="rect2"></div>
+    <div class="rect3"></div>
+    <div class="rect4"></div>
+    <div class="rect5"></div>
+</div></div>
     </p>
 
     <div id="pa_list">
@@ -70,10 +78,10 @@
         </div>
     </div>
 
-    <p id="no_paymentagent" class="error-msg hidden">Ten pośrednik płatności nie jest dostępny w Twoim kraju.</p>
+    <p id="no_paymentagent" class="notice-msg center-text hidden">Ten pośrednik płatności nie jest dostępny w Twoim kraju.</p>
 
     <p>
-        Apply to become a Binary.com <a href="/pl/payment-agent.html">payment agent</a>.
+        Złóż wniosek, aby zostać <a href="/pl/payment-agent.html">pośrednikiem płatności Binary.com</a>.
     </p>
     <p class="comment">
         <strong>WAŻNE ZASTRZEŻENIE</strong> - Binary.com nie jest związane z żadnym z pośredników płatności wymienionych powyżej. Każdy pośrednik płatności działa jako niezależny usługodawca i nie jest w żaden sposób zatwierdzony ani popierany przez Binary.com. KLIENCI KORZYSTAJĄ Z USŁUG POŚREDNIKÓW NA WŁASNE RYZYKO. Zaleca się sprawdzenie danych pośredników płatności przed wysłaniem do nich pieniędzy. Binary.com nie ponosi żadnej odpowiedzialności za transakcje zawarte między klientami a pośrednikami płatności.

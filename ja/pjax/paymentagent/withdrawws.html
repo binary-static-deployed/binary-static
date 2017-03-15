@@ -28,14 +28,14 @@
             </p>
         </div>
 
-        <div id="viewConfirm" class="viewItem hidden">
+        <form id="viewConfirm" class="viewItem hidden">
             <p>送金を完了するために、取引明細をご確認ください。</p>
 
             <p>Transfer to: <span id="lblAgentName"></span><br />金額: <span id="lblCurrency"></span> <span id="lblAmount"></span></p>
 
             <a class="button" id="btnBack" href="javascript:;"><span class="button">戻る</span></a>
-            <a class="button" id="btnConfirm" href="javascript:;"><span class="button">決定</span></a>
-        </div>
+            <button class="button" type="submit">決定</button>
+        </form>
 
         <div id="viewForm" class="viewItem hidden">
             <p>メールからワンタイムパスワードを取得後、下記の情報をご提供下さい。</p>
@@ -44,10 +44,10 @@
 
                   <div class="gr-padding-10 gr-row clear">
                       <div class="gr-4 form_label">
-                          <label for="verification-code">ワンタイムパスワード</label>
+                          <label for="verification_code">ワンタイムパスワード</label>
                       </div>
                       <div class="gr-8">
-                          <input type="text" id="verification-code" maxlength="48" autocomplete="off" />
+                          <input type="text" id="verification_code" maxlength="48" autocomplete="off" />
                           <div class="hint">Eメールアドレスをご確認ください</div>
                       </div>
                   </div>
@@ -89,9 +89,7 @@
 
                     <div class="gr-padding-10">
                         <div class="gr-8 gr-centered center-text">
-                            <span class="button">
-                                <button class="button">送信</button>
-                            </span>
+                            <button class="button" type="submit">送信</button>
                         </div>
                     </div>
 

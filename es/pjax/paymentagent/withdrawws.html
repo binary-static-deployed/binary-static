@@ -28,14 +28,14 @@
             </p>
         </div>
 
-        <div id="viewConfirm" class="viewItem hidden">
+        <form id="viewConfirm" class="viewItem hidden">
             <p>Confirme los detalles de la transacción para completar la transferencia:</p>
 
             <p>Transferir a: <span id="lblAgentName"></span><br />Monto: <span id="lblCurrency"></span> <span id="lblAmount"></span></p>
 
             <a class="button" id="btnBack" href="javascript:;"><span class="button">Atrás</span></a>
-            <a class="button" id="btnConfirm" href="javascript:;"><span class="button">Confirmar</span></a>
-        </div>
+            <button class="button" type="submit">Confirmar</button>
+        </form>
 
         <div id="viewForm" class="viewItem hidden">
             <p>Por favor proporcione la siguiente información, después de conseguir el token de verificación de su correo electrónico:</p>
@@ -44,10 +44,10 @@
 
                   <div class="gr-padding-10 gr-row clear">
                       <div class="gr-4 form_label">
-                          <label for="verification-code">Token de Verificación</label>
+                          <label for="verification_code">Token de Verificación</label>
                       </div>
                       <div class="gr-8">
-                          <input type="text" id="verification-code" maxlength="48" autocomplete="off" />
+                          <input type="text" id="verification_code" maxlength="48" autocomplete="off" />
                           <div class="hint">Por favor verifique su correo electrónico para el valor de este token</div>
                       </div>
                   </div>
@@ -89,9 +89,7 @@
 
                     <div class="gr-padding-10">
                         <div class="gr-8 gr-centered center-text">
-                            <span class="button">
-                                <button class="button">Enviar</button>
-                            </span>
+                            <button class="button" type="submit">Enviar</button>
                         </div>
                     </div>
 

@@ -55,10 +55,10 @@
           <link rel="alternate" href="/zh_cn/paymentagent/withdrawws.html" hreflang="ZH_CN" /> 
           <link rel="alternate" href="/zh_tw/paymentagent/withdrawws.html" hreflang="ZH_TW" /> 
         
-         <link rel="stylesheet" href="/css/binary.min.css?o74ig9s9">
-         <link rel="stylesheet" href="https://style.binary.com/binary.css?o74ig9s9">
+         <link rel="stylesheet" href="/css/binary.min.css?dgej1pcg">
+         <link rel="stylesheet" href="https://style.binary.com/binary.css?dgej1pcg">
         
-        <script src='/js/binary.min.js?o74ig9s9'></script>  <script src='https://style.binary.com/binary.js?o74ig9s9'></script>
+        <script src='/js/binary.min.js?dgej1pcg'></script>  <script src='https://style.binary.com/binary.js?dgej1pcg'></script>
     </head>
 
 
@@ -355,14 +355,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             </p>
         </div>
 
-        <div id="viewConfirm" class="viewItem hidden">
+        <form id="viewConfirm" class="viewItem hidden">
             <p>Per completare il trasferimento, conferma i dettagli della transazione:</p>
 
             <p>Trasferisci a: <span id="lblAgentName"></span><br />Importo: <span id="lblCurrency"></span> <span id="lblAmount"></span></p>
 
             <a class="button" id="btnBack" href="javascript:;"><span class="button">Precedente</span></a>
-            <a class="button" id="btnConfirm" href="javascript:;"><span class="button">Conferma</span></a>
-        </div>
+            <button class="button" type="submit">Conferma</button>
+        </form>
 
         <div id="viewForm" class="viewItem hidden">
             <p>Dopo aver recuperato il token di verifica dalla tua email, forniscici le seguenti informazioni:</p>
@@ -371,10 +371,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
                   <div class="gr-padding-10 gr-row clear">
                       <div class="gr-4 form_label">
-                          <label for="verification-code">Token di verifica</label>
+                          <label for="verification_code">Token di verifica</label>
                       </div>
                       <div class="gr-8">
-                          <input type="text" id="verification-code" maxlength="48" autocomplete="off" />
+                          <input type="text" id="verification_code" maxlength="48" autocomplete="off" />
                           <div class="hint">Verifica il tuo indirizzo e-mail per il valore di questo token</div>
                       </div>
                   </div>
@@ -416,9 +416,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
                     <div class="gr-padding-10">
                         <div class="gr-8 gr-centered center-text">
-                            <span class="button">
-                                <button class="button">Invia</button>
-                            </span>
+                            <button class="button" type="submit">Invia</button>
                         </div>
                     </div>
 

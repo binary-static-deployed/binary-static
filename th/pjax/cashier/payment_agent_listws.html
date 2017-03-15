@@ -20,9 +20,17 @@
         <li>ส่งเงินของท่านให้ตัวแทนรับชำระเงิน เงินทุนที่รับฝาก คอมมิชชั่นของตัวแทนต่ำ และแสดงข้อมูลในบัญชีท่าน</li>
     </ol>
 
+
     <p>
         แสดงตัวแทนรับชำระเงินสำหรับ:
-        <select id="target_country"></select>
+        <select id="target_country" class="hidden"></select>
+        <div class="loading"><div class="barspinner dark">
+    <div class="rect1"></div>
+    <div class="rect2"></div>
+    <div class="rect3"></div>
+    <div class="rect4"></div>
+    <div class="rect5"></div>
+</div></div>
     </p>
 
     <div id="pa_list">
@@ -70,10 +78,10 @@
         </div>
     </div>
 
-    <p id="no_paymentagent" class="error-msg hidden">ไม่สามารถใช้ตัวแทนรับชำระเงินในประเทศของท่าน</p>
+    <p id="no_paymentagent" class="notice-msg center-text hidden">ไม่สามารถใช้ตัวแทนรับชำระเงินในประเทศของท่าน</p>
 
     <p>
-        Apply to become a Binary.com <a href="/th/payment-agent.html">payment agent</a>.
+        สมัครเพื่อเป็น Binary.com <a href="/th/payment-agent.html">ตัวแทนรับชำระเงิน</a>
     </p>
     <p class="comment">
         <strong>ข้อสำคัญการสงวนสิทธิ์</strong> - Binary.com ไม่มีส่วนร่วมในการดำเนินการของตัวแทนรับชำระเงินตามรายการข้างต้น ตัวแทนรับชำระเงินแต่ละรายดำเนินการเป็นผู้ให้บริการอย่างเอกเทศ ไม่ได้รับอนุญาต หรือ รับประกัน หรือ อนุมัติโดย Binary.com ลูกค้าที่ทำการชำระเงินผ่านตัวแทนรับชำระเงินยอมรับความเสี่ยงและผลต่างๆ ที่อาจจะเกิดขึ้นด้วยตนเอง ลูกค้าได้รับคำแนะนำให้ตรวจสอบใบอนุญาตการขึ้นทะเบียนเป็นตัวแทนรับชำระเงินก่อนที่จะทำธุรกรรมการเงินต่างๆ Binary.com ไม่มีส่วนรับผิดชอบในเหตุการณ์ใดๆ ที่จะเกิดขึ้นในธุรกรรมต่างๆ ระหว่างลูกค้าและตัวแทนรับชำระเงิน

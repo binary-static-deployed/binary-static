@@ -349,6 +349,11 @@ input[type=checkbox]#email_consent {
   margin-bottom: 30px;
 }
 
+button .barspinner.white {
+  height: 13px;
+  margin: 3px auto;
+}
+
 *, *:after, *:before {
   transition: opacity 0.2s, color 0.2s, background 0.2s;
 }
@@ -545,6 +550,9 @@ body #topbar #select_language {
 #header #main-logout .main-account > .account-type {
   white-space: nowrap;
 }
+#header #main-logout #all-accounts .main-account {
+  margin-top: 3px;
+}
 
 #footer #footer-menu {
   padding: 10px 0;
@@ -727,33 +735,37 @@ html.mm-right.mm-opening body .mm-page, html.mm-right.mm-opening body #mm-blocke
 }
 
 /* pages */
-.home-content #banner {
+.home-content #banner, .home-jp-content #banner {
   background: url("../images/pages/home/banner-background_1.png") 0 0/100% 108% no-repeat;
 }
-.home-content .signup-box {
+.home-content .signup-box, .home-jp-content .signup-box {
   border-radius: 3px;
 }
-.home-content #verify-email-form input {
+.home-content .signup-box .error-msg, .home-jp-content .signup-box .error-msg {
+  text-align: center;
+  margin-top: 5px;
+}
+.home-content #frm_verify_email input, .home-jp-content #frm_verify_email input {
   width: 100%;
   height: 3em;
   margin: 5px 0;
   font-size: 0.86957rem;
 }
-.home-content #verify-email-form button {
+.home-content #frm_verify_email button, .home-jp-content #frm_verify_email button {
   margin: 5px 0;
   height: 3rem;
   width: 100%;
 }
-.home-content .xlist1 {
+.home-content .xlist1, .home-jp-content .xlist1 {
   background: url("../images/pages/home/xicon-1.png") no-repeat;
 }
-.home-content .xlist2 {
+.home-content .xlist2, .home-jp-content .xlist2 {
   background: url("../images/pages/home/xicon-2.png") no-repeat;
 }
-.home-content .xlist3 {
+.home-content .xlist3, .home-jp-content .xlist3 {
   background: url("../images/pages/home/xicon-3.png") no-repeat;
 }
-.home-content .xlist1, .home-content .xlist2, .home-content .xlist3 {
+.home-content .xlist1, .home-content .xlist2, .home-content .xlist3, .home-jp-content .xlist1, .home-jp-content .xlist2, .home-jp-content .xlist3 {
   padding-left: 40px;
   min-height: 24px;
   background-size: 30px;
@@ -762,21 +774,21 @@ html.mm-right.mm-opening body .mm-page, html.mm-right.mm-opening body #mm-blocke
   text-align: left;
   background-position: left top;
 }
-.home-content .small-image {
+.home-content .small-image, .home-jp-content .small-image {
   width: 10%;
   margin: 0 1em;
 }
-.home-content .mena {
+.home-content .mena, .home-jp-content .mena {
   width: 10%;
   margin: 0 1em;
 }
-.home-content .xquote {
+.home-content .xquote, .home-jp-content .xquote {
   padding: 20px 40px;
 }
-.home-content .xquote p {
+.home-content .xquote p, .home-jp-content .xquote p {
   font-style: italic;
 }
-.home-content .xbubble-right {
+.home-content .xbubble-right, .home-jp-content .xbubble-right {
   content: '';
   width: 0;
   height: 0;
@@ -786,7 +798,7 @@ html.mm-right.mm-opening body .mm-page, html.mm-right.mm-opening body #mm-blocke
   position: relative;
   left: 80%;
 }
-.home-content .xbubble-left {
+.home-content .xbubble-left, .home-jp-content .xbubble-left {
   content: '';
   width: 0;
   height: 0;
@@ -796,23 +808,66 @@ html.mm-right.mm-opening body .mm-page, html.mm-right.mm-opening body #mm-blocke
   position: relative;
   left: 10%;
 }
-.home-content .xquoter-left {
+.home-content .xquoter-left, .home-jp-content .xquoter-left {
   text-align: left;
 }
-.home-content .xquoter-right {
+.home-content .xquoter-right, .home-jp-content .xquoter-right {
   text-align: right;
 }
-.home-content .xquoter-left p span, .home-content .xquoter-right p span {
+.home-content .xquoter-left p span, .home-content .xquoter-right p span, .home-jp-content .xquoter-left p span, .home-jp-content .xquoter-right p span {
   font-size: 12px;
   font-style: italic;
 }
 
+.home-jp-content #banner {
+  background: url("../images/pages/home-jp/banner.png") 0 0/cover no-repeat;
+  opacity: 0.3;
+  z-index: -1;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+.home-jp-content .relative {
+  position: relative;
+}
+.home-jp-content .xquote {
+  position: relative;
+  margin-top: 25%;
+}
+.home-jp-content .xquote p {
+  font-style: normal;
+}
+.home-jp-content .small-image {
+  width: 8%;
+  height: 8%;
+}
+.home-jp-content .medium-image {
+  width: 14%;
+  height: 14%;
+  margin-right: 1em;
+}
+.home-jp-content .align-center {
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+@media screen and (max-width: 768px) {
+  .home-jp-content .xquote {
+    margin-top: auto;
+  }
+}
 @media screen and (max-width: 480px) {
   .home-content .small-image {
     width: 30%;
   }
   .home-content .mena {
     width: 32%;
+  }
+
+  .home-jp-content .gr-padding-30 {
+    padding-top: 10px;
+    padding-bottom: 10px;
   }
 }
 /* GET-STARTED PAGES RULES */
@@ -1815,6 +1870,10 @@ ol.start {
   margin-bottom: auto;
 }
 
+#affiliate-tnc-jp ol li ul li {
+  list-style-type: none !important;
+}
+
 .live_chart_wrapper {
   margin: 0 auto;
 }
@@ -1954,10 +2013,6 @@ ol.start {
 }
 #mt_account_management .fst-container #fst_action .close:hover {
   background-color: #15212d;
-}
-#mt_account_management .fst-container #fst_action button .barspinner.white {
-  height: 13px;
-  margin: 3px;
 }
 
 #pa_list #accordion table {
@@ -3725,6 +3780,9 @@ fieldset .error-msg {
 #mb_trading .prices-wrapper .price-row:nth-child(odd) {
   background: #f2f2f2;
 }
+#mb_trading .prices-wrapper:nth-child(odd) .price-rows .price-button {
+  background: #c03;
+}
 #mb_trading .base-value {
   font-size: 9px;
 }
@@ -3757,7 +3815,7 @@ fieldset .error-msg {
   color: #fff;
   text-align: center;
   line-height: 100%;
-  background: #2e8836;
+  background: #29abe2;
   border-radius: 3px;
   padding: 10px 0;
   cursor: pointer;
@@ -3781,14 +3839,15 @@ fieldset .error-msg {
   right: 3px;
 }
 #mb_trading .price-button:hover {
-  background-color: #14602b;
+  opacity: 0.8;
 }
 #mb_trading .inactive {
   color: #dedede;
 }
-#mb_trading .inactive.price-button {
+#mb_trading .inactive.price-button, #mb_trading .inactive:hover {
   color: #fff;
-  background: #dedede;
+  background: #dedede !important;
+  opacity: 1;
   cursor: default;
   overflow: visible;
 }
@@ -3806,7 +3865,7 @@ fieldset .error-msg {
   max-width: 420px;
   line-height: 1.4em;
 }
-#mb_trading .details-heading {
+#mb_trading .contract-type {
   padding: 45px 16px 0;
   margin-bottom: 0;
   background-repeat: no-repeat;
@@ -3817,30 +3876,6 @@ fieldset .error-msg {
       -ms-flex-item-align: start;
           align-self: flex-start;
   white-space: nowrap;
-}
-#mb_trading .details-heading.CALLE {
-  background-image: url("https://www.binary.com/images/pages/trade/rise_1.png");
-}
-#mb_trading .details-heading.PUT {
-  background-image: url("https://www.binary.com/images/pages/trade/fall_1.png");
-}
-#mb_trading .details-heading.ONETOUCH {
-  background-image: url("https://www.binary.com/images/pages/trade/touch_1.png");
-}
-#mb_trading .details-heading.NOTOUCH {
-  background-image: url("https://www.binary.com/images/pages/trade/no-touch_1.png");
-}
-#mb_trading .details-heading.EXPIRYRANGEE {
-  background-image: url("https://www.binary.com/images/pages/trade/ends-between_1.png");
-}
-#mb_trading .details-heading.EXPIRYMISS {
-  background-image: url("https://www.binary.com/images/pages/trade/ends-outside_1.png");
-}
-#mb_trading .details-heading.RANGE {
-  background-image: url("https://www.binary.com/images/pages/trade/stay-in-between_1.png");
-}
-#mb_trading .details-heading.UPORDOWN {
-  background-image: url("https://www.binary.com/images/pages/trade/stay-out_1.png");
 }
 #mb_trading .select {
   margin-right: 10px;
@@ -3895,9 +3930,6 @@ fieldset .error-msg {
   padding-right: 0;
   margin-left: 5px;
   line-height: 16px;
-}
-#mb_trading .select-box .payout-input .hint, #mb_trading .select-box .payout-input span, #mb_trading .select-box .payout-input label {
-  font-size: 10px;
 }
 #mb_trading .select-box .payout-input select#currency {
   margin: 6px 0;
@@ -3983,8 +4015,24 @@ fieldset .error-msg {
   }
 }
 
-#trading_bottom_content #tab_portfolio-content {
+.mb-trading-wrapper #trading_bottom_content #tab_portfolio-content {
   overflow-x: auto;
+}
+.mb-trading-wrapper #trading_bottom_content #tab_explanation-content #winning_higherlower {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+.mb-trading-wrapper #trading_bottom_content #tab_explanation-content #winning_higherlower p {
+  margin-top: 0;
+}
+.mb-trading-wrapper #trading_bottom_content #tab_explanation-content #winning_higherlower p:first-child {
+  -webkit-order: 2;
+      -ms-flex-order: 2;
+          order: 2;
 }
 
 @keyframes spinning {
@@ -5020,6 +5068,15 @@ iframe#chart_frame {
   white-space: pre-line;
 }
 
+.kv-pairs {
+  width: auto;
+  margin-left: 15px;
+  margin-bottom: 10px;
+}
+.kv-pairs td {
+  border: none;
+}
+
 #profit-table-ws-container th {
   padding-right: 8px;
 }
@@ -5078,15 +5135,6 @@ button:disabled {
 }
 #virtual-form p.error-message-password, #change-password p.error-message-password, .usersettingssecurityws-content p.error-message-password {
   margin: 0.5em 0;
-}
-
-.kv-pairs {
-  width: auto;
-  margin-left: 15px;
-  margin-bottom: 10px;
-}
-.kv-pairs td {
-  border: none;
 }
 
 .big-error-code {
@@ -5237,6 +5285,9 @@ body.JA #footer #footer-regulatory #regulatory-text {
 body.JA #footer #footer-regulatory .gr-9, body.JA #footer #footer-regulatory .gr-p-7 {
   width: 100% !important;
 }
+body.JA #mb_trading .payout-input .hint, body.JA #mb_trading .payout-input span, body.JA #mb_trading .payout-input label {
+  font-size: 10px;
+}
 
 /*Vietnamese Language */
 body.VI #legal-tab li.tm-li-2 {
@@ -5330,7 +5381,7 @@ body.ES .google-play-badge {
   background-image: url("../images/pages/applications/googleplay_es.svg");
 }
 
-body.RU #verify-email-form button {
+body.RU #frm_verify_email button {
   font-size: 80%;
 }
 body.RU #trading_socket_container #contract_form_name_nav {
@@ -5477,7 +5528,7 @@ body.TH .google-play-badge {
     text-align: center;
   }
 
-  #btn-verify-email {
+  #btn_verify_email {
     font-size: 0.9em;
     padding: 0;
   }
@@ -14553,6 +14604,10 @@ body {
 .gr-padding-30 {
   padding-top: 30px;
   padding-bottom: 30px;
+}
+
+.gr-child {
+  padding-bottom: 0 !important;
 }
 
 /*

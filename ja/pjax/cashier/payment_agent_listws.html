@@ -20,9 +20,17 @@
         <li>決済サービスに資金を送金してください。ご入金された資金から代行手数料が差し引かれた額が、お客さまの口座に表示されます。</li>
     </ol>
 
+
     <p>
         決済サービスを表示する
-        <select id="target_country"></select>
+        <select id="target_country" class="hidden"></select>
+        <div class="loading"><div class="barspinner dark">
+    <div class="rect1"></div>
+    <div class="rect2"></div>
+    <div class="rect3"></div>
+    <div class="rect4"></div>
+    <div class="rect5"></div>
+</div></div>
     </p>
 
     <div id="pa_list">
@@ -70,7 +78,7 @@
         </div>
     </div>
 
-    <p id="no_paymentagent" class="error-msg hidden">お客さまの居住国では決済サービスをご利用いただけません。</p>
+    <p id="no_paymentagent" class="notice-msg center-text hidden">お客さまの居住国では決済サービスをご利用いただけません。</p>
 
     <p>
         Binary.comでの <a href="/ja/payment-agent.html">決済サービスエージェント</a>として申し込む

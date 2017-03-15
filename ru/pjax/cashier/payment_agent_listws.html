@@ -20,9 +20,17 @@
         <li>Переведите средства платежному агенту. Сумма депозита (минус агентская комиссия) будет указана на Вашем счету.</li>
     </ol>
 
+
     <p>
         Показать платежных агентов для:
-        <select id="target_country"></select>
+        <select id="target_country" class="hidden"></select>
+        <div class="loading"><div class="barspinner dark">
+    <div class="rect1"></div>
+    <div class="rect2"></div>
+    <div class="rect3"></div>
+    <div class="rect4"></div>
+    <div class="rect5"></div>
+</div></div>
     </p>
 
     <div id="pa_list">
@@ -70,7 +78,7 @@
         </div>
     </div>
 
-    <p id="no_paymentagent" class="error-msg hidden">Платежный Агент недоступен в Вашей стране.</p>
+    <p id="no_paymentagent" class="notice-msg center-text hidden">Платежный Агент недоступен в Вашей стране.</p>
 
     <p>
         Apply to become a Binary.com <a href="/ru/payment-agent.html">payment agent</a>.

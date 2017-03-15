@@ -55,10 +55,10 @@
           <link rel="alternate" href="/zh_cn/paymentagent/withdrawws.html" hreflang="ZH_CN" /> 
           <link rel="alternate" href="/zh_tw/paymentagent/withdrawws.html" hreflang="ZH_TW" /> 
         
-         <link rel="stylesheet" href="/css/binary.min.css?o74ig9s9">
-         <link rel="stylesheet" href="https://style.binary.com/binary.css?o74ig9s9">
+         <link rel="stylesheet" href="/css/binary.min.css?dgej1pcg">
+         <link rel="stylesheet" href="https://style.binary.com/binary.css?dgej1pcg">
         
-        <script src='/js/binary.min.js?o74ig9s9'></script>  <script src='https://style.binary.com/binary.js?o74ig9s9'></script>
+        <script src='/js/binary.min.js?dgej1pcg'></script>  <script src='https://style.binary.com/binary.js?dgej1pcg'></script>
     </head>
 
 
@@ -355,14 +355,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             </p>
         </div>
 
-        <div id="viewConfirm" class="viewItem hidden">
+        <form id="viewConfirm" class="viewItem hidden">
             <p>Proszę potwierdzić szczegóły transakcji w celu zakończenia przelewu:</p>
 
             <p>Przelew do: <span id="lblAgentName"></span><br />Kwota: <span id="lblCurrency"></span> <span id="lblAmount"></span></p>
 
             <a class="button" id="btnBack" href="javascript:;"><span class="button">Poprzedni</span></a>
-            <a class="button" id="btnConfirm" href="javascript:;"><span class="button">Potwierdź</span></a>
-        </div>
+            <button class="button" type="submit">Potwierdź</button>
+        </form>
 
         <div id="viewForm" class="viewItem hidden">
             <p>Po odzyskaniu tokenu weryfikującego wysłanego na Twój adres e-mail, podaj następujące informacje:</p>
@@ -371,10 +371,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
                   <div class="gr-padding-10 gr-row clear">
                       <div class="gr-4 form_label">
-                          <label for="verification-code">Token weryfikacyjny</label>
+                          <label for="verification_code">Token weryfikacyjny</label>
                       </div>
                       <div class="gr-8">
-                          <input type="text" id="verification-code" maxlength="48" autocomplete="off" />
+                          <input type="text" id="verification_code" maxlength="48" autocomplete="off" />
                           <div class="hint">Informacja na temat tego tokenu została wysłana na Twój adres e-mail</div>
                       </div>
                   </div>
@@ -416,9 +416,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
                     <div class="gr-padding-10">
                         <div class="gr-8 gr-centered center-text">
-                            <span class="button">
-                                <button class="button">Prześlij</button>
-                            </span>
+                            <button class="button" type="submit">Prześlij</button>
                         </div>
                     </div>
 
@@ -642,7 +640,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <div class="container">
             <div class="gr-padding-10">
                 <p class="gambling content-inverse-color">
-                    Trading binary options may not be suitable for everyone, so please ensure that you fully understand the risks involved. Your losses can exceed your initial deposit and you do not own or have any interest in the underlying asset. In regards to binary options which are gambling products, remember that gambling can be addictive - please play responsibly. <span class="ja-hide">Read about <a href="/pl/responsible-trading.html">Responsible Trading</a>.</span>
+                    Handlowanie opcjami binarnymi może nie być odpowiednie dla każdego, więc prosimy o upewnienie się, że w pełni rozumiesz związane z nim ryzyko. Twoje straty mogą przewyższyć Twój wkład początkowy, dodatkowo nie posiadasz żadnego interesu w odniesieniu do aktywów bazowych. W przypadku opcji binarnych, które stanowią produkt hazardowy, należy pamiętać, że hazard może uzależniać – prosimy o rozsądną grę.  <span class="ja-hide">Dowiedz się więcej o <a href="/pl/responsible-trading.html">Odpowiedzialnym handlu</a>.</span>
                 </p>
             </div>
         </div>

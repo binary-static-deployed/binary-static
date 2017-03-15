@@ -20,9 +20,17 @@
         <li>Invia i tuoi fondi all'agente di pagamento. I fondi depositati, tranne le commissioni dell'agente, verranno mostrati sul tuo account.</li>
     </ol>
 
+
     <p>
         Mostra agenti di pagamento per:
-        <select id="target_country"></select>
+        <select id="target_country" class="hidden"></select>
+        <div class="loading"><div class="barspinner dark">
+    <div class="rect1"></div>
+    <div class="rect2"></div>
+    <div class="rect3"></div>
+    <div class="rect4"></div>
+    <div class="rect5"></div>
+</div></div>
     </p>
 
     <div id="pa_list">
@@ -70,7 +78,7 @@
         </div>
     </div>
 
-    <p id="no_paymentagent" class="error-msg hidden">L'Agente di pagamento non è disponibile nel tuo paese.</p>
+    <p id="no_paymentagent" class="notice-msg center-text hidden">L'Agente di pagamento non è disponibile nel tuo paese.</p>
 
     <p>
         Apply to become a Binary.com <a href="/it/payment-agent.html">payment agent</a>.
