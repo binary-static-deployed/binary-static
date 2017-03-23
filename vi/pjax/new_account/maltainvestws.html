@@ -22,9 +22,9 @@
                         <div class="gr-8">
                             <select id="salutation" class="input-disabled">
                               <option value="Mr">Ngài</option>
-                              <option value="Mrs">Bà</option>
+                              <option value="Mrs" class="ru-hide">Bà</option>
                               <option value="Ms">Cô</option>
-                              <option value="Miss">Cô</option>
+                              <option value="Miss" class="ru-hide">Cô</option>
                             </select>
                         </div>
                     </div>
@@ -58,7 +58,7 @@
 
                     <div class="gr-padding-10 gr-row clear">
                         <div class="gr-4 form_label">
-                            <label for="place_of_birth">Place of birth</label>
+                            <label for="place_of_birth">Nơi sinh</label>
                         </div>
                         <div class="gr-8">
                             <select name="place_of_birth" id="place_of_birth"></select>
@@ -70,18 +70,17 @@
                             <label for="residence">Quốc gia cư trú</label>
                         </div>
                         <div class="gr-8">
-                            <span id="move-residence-back"></span>
-                            <select name="residence" id="residence" disabled="disabled"></select>
+                            <label id="lbl_residence"></label>
                         </div>
                     </div>
                 </fieldset>
 
                 <fieldset>
-                    <legend>Tax Information</legend>
+                    <legend>Thông tin thuế</legend>
 
                     <div class="gr-padding-10 gr-row clear">
                         <div class="gr-4 form_label">
-                            <label for="tax_residence">Tax residence</label>
+                            <label for="tax_residence">Thuế cư trú</label>
                         </div>
                         <div class="gr-8">
                             <select name="tax_residence" id="tax_residence" class="invisible" multiple="multiple"></select>
@@ -90,7 +89,7 @@
 
                     <div class="gr-padding-10 gr-row clear">
                         <div class="gr-4 form_label">
-                            <label for="tax_identification_number">Tax identification number</label>
+                            <label for="tax_identification_number">Số nhận dạng thuế</label>
                         </div>
                         <div class="gr-8">
                             <input type="text" class="text" id="tax_identification_number" maxlength="20"/>
@@ -397,14 +396,14 @@
                 <select id="occupation" class="form_input" > 
         <option value="">Vui lòng chọn</option>
         <option value="Chief Executives, Senior Officials and Legislators">Giám đốc điều hành, quan chức cấp cao và các nhà lập pháp</option>
-        <option value="Managers">Managers</option>
-        <option value="Professionals">Professionals</option>
+        <option value="Managers">Người quản lý</option>
+        <option value="Professionals">Các chuyên gia</option>
         <option value="Clerks">Thư ký</option>
         <option value="Personal Care, Sales and Service Workers">Công nhân chăm sóc khách hàng, kinh doanh và dịch vụ</option>
         <option value="Agricultural, Forestry and Fishery Workers">Nông, Lâm, Ngư nghiệp</option>
         <option value="Craft, Metal, Electrical and Electronics Workers">Thợ thủ công, kim khí và điện tử</option>
         <option value="Plant and Machine Operators and Assemblers">Người vận hành nhà máy và xưởng lắp ráp</option>
-        <option value="Cleaners and Helpers">Cleaners and Helpers</option>
+        <option value="Cleaners and Helpers">Tẩy xóa và trợ giúp</option>
         <option value="Mining, Construction, Manufacturing and Transport Workers">Công nhân khai khoáng, xây dựng, sản xuất và vận chuyển</option>
         <option value="Armed Forces">Lực lượng vũ trang</option>
         <option value="Government Officers">Các nhân viên chính phủ</option>
@@ -438,7 +437,7 @@
         <option value="">Vui lòng chọn</option>
         <option value="Salaried Employee">Nhân viên Hưởng lương</option>
         <option value="Self-Employed">Tự kinh doanh</option>
-        <option value="Investments &amp; Dividends">Investments &amp; Dividends</option>
+        <option value="Investments &amp; Dividends">Đầu tư &amp; Cổ tức</option>
         <option value="Pension">Tiền phụ cấp</option>
         <option value="Other">Khác</option>
                 </select>
@@ -453,11 +452,11 @@
     <div class="gr-8 gr-12-m">
                 <select id="net_income" class="form_input" > 
         <option value="">Vui lòng chọn</option>
-        <option value="Less than &#36;25,000">Less than &#36;25,000</option>
-        <option value="&#36;25,000 - &#36;50,000">&#36;25,000 - &#36;50,000</option>
-        <option value="&#36;50,001 - &#36;100,000">&#36;50,001 - &#36;100,000</option>
-        <option value="&#36;100,001 - &#36;500,000">&#36;100,001 - &#36;500,000</option>
-        <option value="Over &#36;500,000">Over &#36;500,001</option>
+        <option value="Less than &#36;25,000">Ít hơn &#36;25,000</option>
+        <option value="&#36;25,000 - &#36;50,000">&#36; 25.000 - &#36; 50.000</option>
+        <option value="&#36;50,001 - &#36;100,000">&#36; 50,001 - &#36; 100.000</option>
+        <option value="&#36;100,001 - &#36;500,000">&#36; 100,001 - &#36; 500.000</option>
+        <option value="Over &#36;500,000">Trên &#36;500,001</option>
                 </select>
     
     </div>
@@ -470,11 +469,11 @@
     <div class="gr-8 gr-12-m">
                 <select id="estimated_worth" class="form_input" > 
         <option value="">Vui lòng chọn</option>
-        <option value="Less than &#36;100,000">Less than &#36;100,000</option>
-        <option value="&#36;100,000 - &#36;250,000">&#36;100,000 - &#36;250,000</option>
-        <option value="&#36;250,001 - &#36;500,000">&#36;250,001 - &#36;500,000</option>
-        <option value="&#36;500,001 - &#36;1,000,000">&#36;500,001 - &#36;1,000,000</option>
-        <option value="Over &#36;1,000,000">Over &#36;1,000,000</option>
+        <option value="Less than &#36;100,000">Ít hơn &#36; 100,000</option>
+        <option value="&#36;100,000 - &#36;250,000">&#36; $100,000 - &#36; $250,000</option>
+        <option value="&#36;250,001 - &#36;500,000">&#36; 250,001 - &#36; 500.000</option>
+        <option value="&#36;500,001 - &#36;1,000,000">&#36; 500,001 - &#36; 1.000.000</option>
+        <option value="Over &#36;1,000,000">Trên &#36;1,000,000</option>
                 </select>
     
     </div>

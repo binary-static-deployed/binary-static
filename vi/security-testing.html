@@ -23,7 +23,10 @@
         <meta property="og:type" content="website" />
         <meta property="og:image" content="/images/common/og_image.gif" />
 
-        <title>Security Testing | Binary.com</title>
+        <title>Kiểm tra bảo mật | Binary.com</title>
+
+        <link rel="manifest" href="/manifest.json">
+        <script type="text/javascript" src="//cdn.pushwoosh.com/webpush/pushwoosh-web-notifications.js" async></script>
 
         <link rel="apple-touch-icon" sizes="57x57" href="https://style.binary.com/images/favicons/apple-touch-icon-57x57.png">
         <link rel="apple-touch-icon" sizes="114x114" href="https://style.binary.com/images/favicons/apple-touch-icon-114x114.png">
@@ -55,15 +58,16 @@
           <link rel="alternate" href="/zh_cn/security-testing.html" hreflang="ZH_CN" /> 
           <link rel="alternate" href="/zh_tw/security-testing.html" hreflang="ZH_TW" /> 
         
-         <link rel="stylesheet" href="/css/binary.min.css?w2rpn55a">
-         <link rel="stylesheet" href="https://style.binary.com/binary.css?w2rpn55a">
+         <link rel="stylesheet" href="/css/binary.min.css?i2wesavq">
+         <link rel="stylesheet" href="https://style.binary.com/binary.css?i2wesavq">
         
-        <script src='/js/binary.min.js?w2rpn55a'></script>  <script src='https://style.binary.com/binary.js?w2rpn55a'></script>
+        <script src='/js/binary.min.js?i2wesavq'></script>  <script src='https://style.binary.com/binary.js?i2wesavq'></script>
     </head>
 
 
 <body class="VI">
-    <div id='page-wrapper'>
+    <div id="msg_notification" class="notice-msg center-text"></div>
+<div id='page-wrapper'>
     <div id="topbar" class="no-print primary-color-dark">
         <div class="container">
             <div class="gr-row">
@@ -327,7 +331,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     <div id="content" class="security-testing-content">
         <div id="page_info" style="display:none;">
-            <title>Security Testing | Binary.com</title>
+            <title>Kiểm tra bảo mật | Binary.com</title>
             <div id="content_class">security-testing-content</div>
         </div>
 
@@ -337,18 +341,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <h1>Cơ hội kiểm tra an ninh</h1>
     <div>
       <p>
-        Want to help us enhance the strength and security of our platform?
+        Bạn muốn giúp chúng tôi nâng cao sức mạnh và an toàn của nền tảng của chúng tôi?
       </p>
       <p>
         Kiểm tra các sản phẩm và dịch vụ cho các lỗ hổng bảo mật. Trong quá trình này, bạn sẽ kiếm được một phần thưởng tiền cho bất kỳ vấn đề kiểm chứng rằng bạn tìm thấy, đúng trách nhiệm của chúng tôi chương trình tiền thưởng lỗi.
       </p>
-      <h2>Benefits</h2>
+      <h2>Các lợi nhuận</h2>
       <ul class="bullet">
-        <li>Hone your security testing skills.</li>
+        <li>Trau dồi các khả năng kiểm tra an ninh của bạn.</li>
         <li>Tăng uy tín HackerOne của bạn để xây dựng sự tín nhiệm và khả năng hiển thị hồ sơ.</li>
         <li>Kiếm được tiền thưởng cho bất kỳ vấn đề kiểm chứng rằng bạn tìm thấy, với một khoản tiền thưởng trị giá lên đến 1.000 USD cho các lỗ hổng bảo mật nguy cơ cao.</li>
       </ul>
-      <h2>Getting started</h2>
+      <h2>Mở đầu với</h2>
       <ul class="bullet">
         <li>Đọc và hiểu chính sách chương trình tiền thưởng lỗi HackerOne của chúng tôi.</li>
         <li>Phân tích và thử nghiệm các tên miền và tên miền phụ được liệt kê trong phạm vi.</li>
@@ -389,6 +393,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                 <li>
                                     <a href="/vi/about-us.html">Thông tin về Chúng tôi</a>
                                 </li>
+                                <li class="gr-hide gr-show-m">
+                                    <a href="/vi/contact.html">Liên hệ</a>
+                                </li>
                                 <li class="id-hide ar-hide">
                                     <a href="/vi/regulation.html">Thông tin điều chỉnh</a>
                                 </li>
@@ -428,13 +435,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                     <a href="/vi/tour-jp.html">Ghé thăm Sàn giao dịch</a>
                                 </li>
                                 <li class="hidden ja-show-block">
-                                    <a href="/vi/service-announcements.html">{JAPAN ONLY}Service Announcements</a>
+                                    <a href="/vi/service-announcements.html">{Nhật bản}Các thông báo dịch vụ</a>
                                 </li>
                                 <li class="ja-hide id-hide">
                                     <a href="http://www.gamcare.org.uk/" target="_blank">Hội cờ bạc GamCare</a>
                                 </li>
                                 <li class="ja-hide academy">
-                                    <a href="http://academy.binary.com" target="_blank">Academy</a>
+                                    <a href="http://academy.binary.com" target="_blank">học viện</a>
                                 </li>
                                 <li class='ja-hide id-hide'>
                                     <a href="https://academy.binary.com/en/events/" target="_blank">Hội thảo trên Web</a>
@@ -564,7 +571,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </div>
         <div id="ratelimit-error-message">
             <div class="message">
-                You have reached the rate limit of requests per second. Please try later.
+                Bạn đã đạt đến giới hạn số lượng lệnh có thể mỗi giây. Xin vui lòng thử lại sau.
             </div>
         </div>
     </div>
@@ -572,7 +579,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <div class="container">
             <div class="gr-padding-10">
                 <p class="gambling content-inverse-color">
-                    Trading binary options may not be suitable for everyone, so please ensure that you fully understand the risks involved. Your losses can exceed your initial deposit and you do not own or have any interest in the underlying asset. In regards to binary options which are gambling products, remember that gambling can be addictive - please play responsibly. <span class="ja-hide">Read about <a href="/vi/responsible-trading.html">Responsible Trading</a>.</span>
+                    Giao dịch quyền chọn nhị phân có thể không thích hợp cho tất cả mọi người, vì vậy vui lòng bảo đảo rằng bạn đã hiểu hoàn toàn về rủi ro có liên quan. Thất thoát của bạn có thể vượt quá số tiền gửi ban đầu và bạn sẽ không được sở hữu hay có bất kì tiền lãi nào trong tài sản cơ sở. Liên quan tới quyền chọn nhị phân, là sản phẩm cá cược, hãy nhớ rằng chơi cá cược có thể bị nghiện - vui lòng chơi một cách có trách nhiệm. <span class="ja-hide">Đọc về <a href="/vi/responsible-trading.html">Giao dịch có Trách nhiệm</a>.</span>
                 </p>
             </div>
         </div>

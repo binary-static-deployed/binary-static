@@ -1,0 +1,66 @@
+<div id="content" class="reality_check_summary-content">
+        <div id="page_info" style="display:none;">
+            <title>Kiểm tra tính Xác thực | Binary.com</title>
+            <div id="content_class">reality_check_summary-content</div>
+        </div>
+        
+        <div class="container">
+
+
+  <div id="reality_check_content">
+    <h1>Kiểm tra tính Xác thực</h1>
+
+    
+    <div class="gr-row gr-padding-10">
+        <div class="gr-3 gr-6-m"><label>Thời gian đăng nhập:</label></div>
+        <div class="gr-9 gr-6-m"><label id="login_time"></label></div>
+    </div>
+    <div class="gr-row gr-padding-10">
+        <div class="gr-3 gr-6-m"><label>Thời gian hiện tại:</label></div>
+        <div class="gr-9 gr-6-m"><label id="current_time"></label></div>
+    </div>
+    <div class="gr-row gr-padding-10">
+        <div class="gr-3 gr-6-m"><label>Thời hạn phiên:</label></div>
+        <div class="gr-9 gr-6-m"><label id="session_duration"></label></div>
+    </div>
+
+    <p id="start_time"></p>
+
+    <div class="table-container">
+        <table>
+            <tr>
+                <th>ID Đăng nhập</th>
+                <th>Tiền tệ</th>
+                <th>Doanh thu</th>
+                <th>Lợi nhuận/Thua lỗ</th>
+                <th>Hợp đồng đã được mua</th>
+                <th>Hợp đồng đã được bán</th>
+                <th>Hợp đồng Mở</th>
+                <th>Lợi nhuận tiềm năng</th>
+            </tr>
+            <tr>
+                <td id="loginid"></td>
+                <td id="rc_currency"></td>
+                <td id="turnover"></td>
+                <td id="profit_loss"></td>
+                <td id="bought"></td>
+                <td id="sold"></td>
+                <td id="open"></td>
+                <td id="potential"></td>
+            </tr>
+        </table>
+    </div>
+
+
+    <form id="frm_reality_check">
+    <div class="gr-padding-10">
+        <label for="num_reality_duration">Hãy chỉ rõ khoảng thời gian kiểm tra thực tế ưa thích của bạn vào biên bản</label>
+        <input id="num_reality_duration" step="1" min="1" size="6" type="number"/>
+    </div>
+    <div class="center-text gr-centered" id="reality_check_nav">
+        <button class="button" type="submit">Tiếp tục Giao dịch</button>
+        <a class="button-secondary" id="statement" href="javascript:;"><span>Xem tuyên bố</span></a>
+        <a class="button-secondary" id="logout" href="javascript:;"><span>Đăng xuất</span></a>
+    </div>
+</form>
+</div>

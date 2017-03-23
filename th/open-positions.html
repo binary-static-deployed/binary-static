@@ -25,6 +25,9 @@
 
         <title>ตำแหน่งงานที่เปิดรับ | Binary.com</title>
 
+        <link rel="manifest" href="/manifest.json">
+        <script type="text/javascript" src="//cdn.pushwoosh.com/webpush/pushwoosh-web-notifications.js" async></script>
+
         <link rel="apple-touch-icon" sizes="57x57" href="https://style.binary.com/images/favicons/apple-touch-icon-57x57.png">
         <link rel="apple-touch-icon" sizes="114x114" href="https://style.binary.com/images/favicons/apple-touch-icon-114x114.png">
         <link rel="apple-touch-icon" sizes="72x72" href="https://style.binary.com/images/favicons/apple-touch-icon-72x72.png">
@@ -55,15 +58,16 @@
           <link rel="alternate" href="/zh_cn/open-positions.html" hreflang="ZH_CN" /> 
           <link rel="alternate" href="/zh_tw/open-positions.html" hreflang="ZH_TW" /> 
         
-         <link rel="stylesheet" href="/css/binary.min.css?w2rpn55a">
-         <link rel="stylesheet" href="https://style.binary.com/binary.css?w2rpn55a">
+         <link rel="stylesheet" href="/css/binary.min.css?i2wesavq">
+         <link rel="stylesheet" href="https://style.binary.com/binary.css?i2wesavq">
         
-        <script src='/js/binary.min.js?w2rpn55a'></script>  <script src='https://style.binary.com/binary.js?w2rpn55a'></script>
+        <script src='/js/binary.min.js?i2wesavq'></script>  <script src='https://style.binary.com/binary.js?i2wesavq'></script>
     </head>
 
 
 <body class="TH">
-    <div id='page-wrapper'>
+    <div id="msg_notification" class="notice-msg center-text"></div>
+<div id='page-wrapper'>
     <div id="topbar" class="no-print primary-color-dark">
         <div class="container">
             <div class="gr-row">
@@ -710,6 +714,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                             <ul>
                                 <li>
                                     <a href="/th/about-us.html">เกี่ยวกับเรา</a>
+                                </li>
+                                <li class="gr-hide gr-show-m">
+                                    <a href="/th/contact.html">ติดต่อเรา</a>
                                 </li>
                                 <li class="id-hide ar-hide">
                                     <a href="/th/regulation.html">ข้อมูลเกี่ยวกับหลักเกณฑ์</a>

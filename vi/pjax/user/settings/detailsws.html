@@ -11,7 +11,7 @@
     <h1>Thông tin cá nhân</h1>
 
     <p class="notice-msg center-text invisible" id="tax_information_notice">
-        Please complete the tax information before proceeding.
+        Vui lòng hoàn thành thông tin thuế trước khi tiếp tục.
     </p>
 
     <form class="form gr-padding-10 hidden" id="frmPersonalDetails">
@@ -54,7 +54,7 @@
             <div class="hidden RealAcc">
                 <div class="gr-padding-10 gr-row clear">
                     <div class="gr-4 form_label">
-                        <label for="place_of_birth">Place of birth</label>
+                        <label for="place_of_birth">Nơi sinh</label>
                     </div>
                     <div class="gr-8">
                         <select name="place_of_birth" id="place_of_birth" class="form_input"></select>
@@ -67,9 +67,7 @@
                     <label><em class="required_asterisk">**</em> Quốc gia cư trú</label>
                 </div>
                 <div class="gr-8">
-                    <span id="inputheading">
-                        <strong id="lbl_country"></strong>
-                    </span>
+                    <label><strong id="lbl_country"></strong></label>
                 </div>
             </div>
 
@@ -105,11 +103,11 @@
         </fieldset>
 
         <fieldset class="hidden RealAcc ja-hide">
-            <legend>Tax Information</legend>
+            <legend>Thông tin thuế</legend>
 
             <div class="gr-padding-10 gr-row clear">
                 <div class="gr-4 form_label">
-                    <label for="tax_residence">Tax residence</label>
+                    <label for="tax_residence">Thuế cư trú</label>
                 </div>
                 <div class="gr-8">
                     <select name="tax_residence" id="tax_residence" class="invisible" multiple="multiple"></select>
@@ -118,7 +116,7 @@
 
             <div class="gr-padding-10 gr-row clear">
                 <div class="gr-4 form_label">
-                    <label for="tax_identification_number">Tax identification number</label>
+                    <label for="tax_identification_number">Số nhận dạng thuế</label>
                 </div>
                 <div class="gr-8">
                     <input type="text" class="text" id="tax_identification_number" name="tax_identification_number" maxlength="20"/>
@@ -264,7 +262,7 @@
                 <div class="gr-8">
                     <select id="annual_income" class="jp_value">
                         <option value="Less than 1 million JPY">Less than 1 million JPY</option>
-                        <option value="1-3 million JPY">1-3 triệu Yên Nhật</option>
+                        <option value="1-3 million JPY">1-3 triệu JPY</option>
                         <option value="3-5 million JPY">3-5 million JPY</option>
                         <option value="5-10 million JPY">5-10 million JPY</option>
                         <option value="10-30 million JPY">10-30 million JPY</option>
@@ -282,7 +280,7 @@
                 <div class="gr-8">
                     <select id="financial_asset" class="jp_value">
                         <option value="Less than 1 million JPY">Less than 1 million JPY</option>
-                        <option value="1-3 million JPY">1-3 triệu Yên Nhật</option>
+                        <option value="1-3 million JPY">1-3 triệu JPY</option>
                         <option value="3-5 million JPY">3-5 million JPY</option>
                         <option value="5-10 million JPY">5-10 million JPY</option>
                         <option value="10-30 million JPY">10-30 million JPY</option>
@@ -447,7 +445,7 @@
         </fieldset>
 
         <fieldset id="fieldset_email_consent" class="invisible">
-            <legend>Preferences</legend>
+            <legend>Tài khoản tham khảo</legend>
 
             <div class="gr-padding-10 gr-row clear">
                 <div class="gr-4 form_label" id="email_consent_label">
@@ -459,20 +457,15 @@
             </div>
         </fieldset>
 
-        <fieldset class="formlayout settings sticky hidden RealAcc JpAcc" id="formlayout">
-            <div class="gr-row gr-padding-10">
-                <div class="gr-4"></div>
-                <div class="gr-8">
+        <div class="gr-row gr-padding-10 invisible" id="btn_update">
+            <div class="gr-4"></div>
+            <div class="gr-8">
+                <div class="gr-padding-10">
                     <div id="formMessage"></div>
                 </div>
+                <button class="button" type="submit">Cập nhật</button>
             </div>
-            <div class="gr-row gr-padding-10">
-                <div class="gr-4"></div>
-                <div class="gr-8">
-                    <button class="button" type="submit">Cập nhật</button>
-                </div>
-            </div>
-        </fieldset>
+        </div>
     </form>
 
     <p class="required hidden RealAcc JpAcc rowCustomerSupport"><em class="required_asterisk">**</em> Để thay đổi tên, ngày sinh, nơi cư trú, hoặc email, vui lòng liên hệ với <a href="/vi/contact.html">Bộ phận Hỗ trợ Khách hàng</a>.</p>

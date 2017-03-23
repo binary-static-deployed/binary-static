@@ -11,25 +11,7 @@
     <h1>การเปิดบัญชีเงินจริง</h1>
     <div class="rbox form gr-padding-10">
         <div class="rbox-wrap">
-            <form id="residence-form" class="invisible">
-                <fieldset id="select-residence">
-                    <legend>โปรดระบุประเทศที่พำนักของท่าน</legend>
-                    <div class="gr-padding-10 gr-row clear">
-                        <div class="gr-4 form_label">
-                            <label for="residence">ประเทศที่พำนัก</label>
-                        </div>
-                        <div class="gr-8">
-                            <span id="move-residence-here"></span>
-                        </div>
-                    </div>
-
-                    <div class="center-text">
-                        <button class="button" id="residence_submit" type="submit">ประมวลผล</button>
-                    </div>
-                </fieldset>
-            </form>
-
-            <form id="real-form" class="invisible">
+            <form id="frm_real">
                 <fieldset>
                     <legend id="details">รายละเอียด</legend>
 
@@ -40,9 +22,9 @@
                         <div class="gr-8">
                             <select id="salutation" name="salutation">
                               <option value="Mr">นาย</option>
-                              <option value="Mrs">นาง</option>
+                              <option value="Mrs" class="ru-hide">นาง</option>
                               <option value="Ms">นางสาว</option>
-                              <option value="Miss">นางสาว</option>
+                              <option value="Miss" class="ru-hide">นางสาว</option>
                             </select>
                         </div>
                     </div>
@@ -79,8 +61,7 @@
                             <label for="residence">ประเทศที่พำนัก</label>
                         </div>
                         <div class="gr-8">
-                            <span id="move-residence-back"></span>
-                            <select name="residence" id="residence" disabled="disabled"></select>
+                            <label id="lbl_residence"></label>
                         </div>
                     </div>
                 </fieldset>

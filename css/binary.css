@@ -354,6 +354,13 @@ button .barspinner.white {
   margin: 3px auto;
 }
 
+#msg_notification {
+  font-size: 0.86957rem;
+  padding: 3px 0;
+  line-height: 20px;
+  display: none;
+}
+
 *, *:after, *:before {
   transition: opacity 0.2s, color 0.2s, background 0.2s;
 }
@@ -699,22 +706,22 @@ html.mm-right.mm-opening body .mm-page, html.mm-right.mm-opening body #mm-blocke
   overflow: auto;
 }
 
-#reality-check-content, #balances-content {
+#reality_check_content, #balances-content {
   padding: 5px;
   text-align: left;
 }
-#reality-check-content td, #balances-content td {
+#reality_check_content td, #balances-content td {
   width: 12.5%;
   text-align: center;
 }
-#reality-check-content [data-balloon], #balances-content [data-balloon] {
+#reality_check_content [data-balloon], #balances-content [data-balloon] {
   border-bottom: none;
 }
 
-#reality-check-nav, #balances-nav {
+#reality_check_nav, #balances-nav {
   margin-top: 1em;
 }
-#reality-check-nav span:nth-child(2), #balances-nav span:nth-child(2) {
+#reality_check_nav span:nth-child(2), #balances-nav span:nth-child(2) {
   display: inline-block;
   width: 10em;
 }
@@ -3884,10 +3891,10 @@ fieldset .error-msg {
   line-height: 30px;
 }
 #mb_trading #spot-dyn.down {
-  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 14' width='10' height='14'%3E%3Cg%3E%3Cpolygon fill='%23cc0033' points='7 8 7 0 3 0 3 8 0 8 5 13 10 8 7 8'/%3E%3C/g%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 14' width='10' height='14'%3E%3Cg%3E%3Cpolygon fill='%2329abe2' points='7 8 7 0 3 0 3 8 0 8 5 13 10 8 7 8'/%3E%3C/g%3E%3C/svg%3E");
 }
 #mb_trading #spot-dyn.up {
-  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 14' width='10' height='14'%3E%3Cg%3E%3Cpolygon fill='%232e8836' points='7 5 7 13 3 13 3 5 0 5 5 0 10 5 7 5'/%3E%3C/g%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 14' width='10' height='14'%3E%3Cg%3E%3Cpolygon fill='%23cc0033' points='7 5 7 13 3 13 3 5 0 5 5 0 10 5 7 5'/%3E%3C/g%3E%3C/svg%3E");
 }
 #mb_trading #spot-dyn.still {
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 14' width='10' height='14'%3E%3Cg%3E%3Ccircle fill='%23c2c2c2' cx='5' cy='7' r='4'/%3E%3C/g%3E%3C/svg%3E");
@@ -5202,6 +5209,47 @@ button:disabled {
 
 .button.full-width, .button.full-width span {
   display: block;
+}
+
+/* Multilevel numbered list */
+#mt-tnc ol {
+  counter-reset: item1;
+  padding-left: 0.2em;
+}
+#mt-tnc ol li {
+  display: block;
+  position: relative;
+}
+#mt-tnc ol li ol li {
+  margin: 0.5em 0 0.5em 1.25em !important;
+}
+#mt-tnc ol li:before {
+  content: counter(item1) ".";
+  counter-increment: item1;
+  position: absolute;
+  margin-right: 100%;
+  right: 10px;
+}
+#mt-tnc ol ol {
+  counter-reset: item2;
+}
+#mt-tnc ol ol li:before {
+  content: counter(item1) "." counter(item2) ".";
+  counter-increment: item2;
+}
+#mt-tnc ol ol ol {
+  counter-reset: item3;
+}
+#mt-tnc ol ol ol li:before {
+  content: counter(item1) "." counter(item2) "." counter(item3) ".";
+  counter-increment: item3;
+}
+#mt-tnc ol ol ol ol {
+  counter-reset: item4;
+}
+#mt-tnc ol ol ol ol li:before {
+  content: counter(item1) "." counter(item2) "." counter(item3) "." counter(item4) ".";
+  counter-increment: item4;
 }
 
 /* Language based rules */

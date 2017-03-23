@@ -67,9 +67,7 @@
                     <label><em class="required_asterisk">**</em> Страна проживания</label>
                 </div>
                 <div class="gr-8">
-                    <span id="inputheading">
-                        <strong id="lbl_country"></strong>
-                    </span>
+                    <label><strong id="lbl_country"></strong></label>
                 </div>
             </div>
 
@@ -86,7 +84,7 @@
 
             <div class="gr-padding-10 gr-row clear JpAcc invisible">
                 <div class="gr-4 form_label">
-                    <label for="occupation">Occupation</label>
+                    <label for="occupation">Вид деятельности</label>
                 </div>
                 <div class="gr-8">
                     <select id="occupation" class="jp_value">
@@ -98,7 +96,7 @@
                         <option value="Contract / Temporary / Part Time">Contract / Temporary / Part Time</option>
                         <option value="Student">Student</option>
                         <option value="Unemployed">Unemployed</option>
-                        <option value="Others">Others</option>
+                        <option value="Others">Другое</option>
                     </select>
                 </div>
             </div>
@@ -459,20 +457,15 @@
             </div>
         </fieldset>
 
-        <fieldset class="formlayout settings sticky hidden RealAcc JpAcc" id="formlayout">
-            <div class="gr-row gr-padding-10">
-                <div class="gr-4"></div>
-                <div class="gr-8">
+        <div class="gr-row gr-padding-10 invisible" id="btn_update">
+            <div class="gr-4"></div>
+            <div class="gr-8">
+                <div class="gr-padding-10">
                     <div id="formMessage"></div>
                 </div>
+                <button class="button" type="submit">Обновить</button>
             </div>
-            <div class="gr-row gr-padding-10">
-                <div class="gr-4"></div>
-                <div class="gr-8">
-                    <button class="button" type="submit">Обновить</button>
-                </div>
-            </div>
-        </fieldset>
+        </div>
     </form>
 
     <p class="required hidden RealAcc JpAcc rowCustomerSupport"><em class="required_asterisk">**</em> Чтобы изменить имя, дату рождения, страну проживания или эл. адрес, пожалуйста, обратитесь в <a href="/ru/contact.html">службу поддержки</a>.</p>

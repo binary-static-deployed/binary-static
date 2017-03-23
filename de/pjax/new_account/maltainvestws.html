@@ -22,9 +22,9 @@
                         <div class="gr-8">
                             <select id="salutation" class="input-disabled">
                               <option value="Mr">Herr</option>
-                              <option value="Mrs">Frau</option>
+                              <option value="Mrs" class="ru-hide">Frau</option>
                               <option value="Ms">Frl.</option>
-                              <option value="Miss">Verpasst</option>
+                              <option value="Miss" class="ru-hide">Verpasst</option>
                             </select>
                         </div>
                     </div>
@@ -70,8 +70,7 @@
                             <label for="residence">Wohnsitzland</label>
                         </div>
                         <div class="gr-8">
-                            <span id="move-residence-back"></span>
-                            <select name="residence" id="residence" disabled="disabled"></select>
+                            <label id="lbl_residence"></label>
                         </div>
                     </div>
                 </fieldset>

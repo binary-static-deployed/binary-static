@@ -67,9 +67,7 @@
                     <label><em class="required_asterisk">**</em> 居住国</label>
                 </div>
                 <div class="gr-8">
-                    <span id="inputheading">
-                        <strong id="lbl_country"></strong>
-                    </span>
+                    <label><strong id="lbl_country"></strong></label>
                 </div>
             </div>
 
@@ -127,7 +125,7 @@
         </fieldset>
 
         <fieldset class="hidden RealAcc ja-hide">
-            <legend>現住所</legend>
+            <legend>所在地</legend>
 
             <div class="gr-padding-10 gr-row clear">
                 <div class="gr-4 form_label">
@@ -185,7 +183,7 @@
         </fieldset>
 
         <fieldset class="JpAcc invisible">
-            <legend>現住所</legend>
+            <legend>所在地</legend>
 
             <div class="gr-padding-10 gr-row clear">
                 <div class="gr-4 form_label">
@@ -459,20 +457,15 @@
             </div>
         </fieldset>
 
-        <fieldset class="formlayout settings sticky hidden RealAcc JpAcc" id="formlayout">
-            <div class="gr-row gr-padding-10">
-                <div class="gr-4"></div>
-                <div class="gr-8">
+        <div class="gr-row gr-padding-10 invisible" id="btn_update">
+            <div class="gr-4"></div>
+            <div class="gr-8">
+                <div class="gr-padding-10">
                     <div id="formMessage"></div>
                 </div>
+                <button class="button" type="submit">更新</button>
             </div>
-            <div class="gr-row gr-padding-10">
-                <div class="gr-4"></div>
-                <div class="gr-8">
-                    <button class="button" type="submit">更新</button>
-                </div>
-            </div>
-        </fieldset>
+        </div>
     </form>
 
     <p class="required hidden RealAcc JpAcc rowCustomerSupport"><em class="required_asterisk">**</em> お名前及び現住所の変更が生じた場合は速やかに<a href="/ja/contact.html">カスタマーサポート</a>までご連絡ください。</p>

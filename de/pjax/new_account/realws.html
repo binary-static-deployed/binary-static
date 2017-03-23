@@ -11,25 +11,7 @@
     <h1>Echtgeldkonto Eröffnung</h1>
     <div class="rbox form gr-padding-10">
         <div class="rbox-wrap">
-            <form id="residence-form" class="invisible">
-                <fieldset id="select-residence">
-                    <legend>Bitte wählen Sie Ihr Wohnsitzland aus</legend>
-                    <div class="gr-padding-10 gr-row clear">
-                        <div class="gr-4 form_label">
-                            <label for="residence">Wohnsitzland</label>
-                        </div>
-                        <div class="gr-8">
-                            <span id="move-residence-here"></span>
-                        </div>
-                    </div>
-
-                    <div class="center-text">
-                        <button class="button" id="residence_submit" type="submit">Fortfahren</button>
-                    </div>
-                </fieldset>
-            </form>
-
-            <form id="real-form" class="invisible">
+            <form id="frm_real">
                 <fieldset>
                     <legend id="details">Angaben</legend>
 
@@ -40,9 +22,9 @@
                         <div class="gr-8">
                             <select id="salutation" name="salutation">
                               <option value="Mr">Herr</option>
-                              <option value="Mrs">Frau</option>
+                              <option value="Mrs" class="ru-hide">Frau</option>
                               <option value="Ms">Frl.</option>
-                              <option value="Miss">Verpasst</option>
+                              <option value="Miss" class="ru-hide">Verpasst</option>
                             </select>
                         </div>
                     </div>
@@ -79,8 +61,7 @@
                             <label for="residence">Wohnsitzland</label>
                         </div>
                         <div class="gr-8">
-                            <span id="move-residence-back"></span>
-                            <select name="residence" id="residence" disabled="disabled"></select>
+                            <label id="lbl_residence"></label>
                         </div>
                     </div>
                 </fieldset>

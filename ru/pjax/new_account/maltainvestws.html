@@ -22,9 +22,9 @@
                         <div class="gr-8">
                             <select id="salutation" class="input-disabled">
                               <option value="Mr">Господин</option>
-                              <option value="Mrs">Госпожа</option>
+                              <option value="Mrs" class="ru-hide">Госпожа</option>
                               <option value="Ms">Госпожа</option>
-                              <option value="Miss">Госпожа</option>
+                              <option value="Miss" class="ru-hide">Госпожа</option>
                             </select>
                         </div>
                     </div>
@@ -70,8 +70,7 @@
                             <label for="residence">Cтрана проживания</label>
                         </div>
                         <div class="gr-8">
-                            <span id="move-residence-back"></span>
-                            <select name="residence" id="residence" disabled="disabled"></select>
+                            <label id="lbl_residence"></label>
                         </div>
                     </div>
                 </fieldset>
@@ -107,7 +106,7 @@
                         </div>
                         <div class="gr-8">
                             <input type="text" class="text" id="address_line_1" maxlength="70"/>
-                            <p class="hint">Kindly provide your complete address.<br>This will be used to authenticate your identity when you open a real account.</p>
+                            <p class="hint">Пожалуйста, укажите Ваш точный адрес.<br>Данная информация необходима нам для проверки Вашей личности при открытии реального счёта.</p>
                         </div>
                     </div>
 
@@ -391,7 +390,7 @@
 
     <div class="gr-row form-row center-text-m ">
     <div class="gr-4 gr-12-m">
-        <label for="occupation">Occupation</label>
+        <label for="occupation">Вид деятельности</label>
     </div>
     <div class="gr-8 gr-12-m">
                 <select id="occupation" class="form_input" > 
@@ -408,7 +407,7 @@
         <option value="Mining, Construction, Manufacturing and Transport Workers">Работники горнодобывающей промышленности, строительства, производства и транспорта</option>
         <option value="Armed Forces">Вооруженные Силы</option>
         <option value="Government Officers">Гос. служащие</option>
-        <option value="Others">Others</option>
+        <option value="Others">Другое</option>
                 </select>
     
     </div>
@@ -438,7 +437,7 @@
         <option value="">Выберите</option>
         <option value="Salaried Employee">Наемный работник</option>
         <option value="Self-Employed">Частный предприниматель</option>
-        <option value="Investments &amp; Dividends">Инвестиции &amp; Дивиденды</option>
+        <option value="Investments &amp; Dividends">Инвестиции и дивиденды</option>
         <option value="Pension">Пенсия</option>
         <option value="Other">Другое</option>
                 </select>

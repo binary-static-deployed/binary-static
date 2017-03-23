@@ -18,7 +18,7 @@
                     <a href="#volatility" class="tm-a">Индексы волатильности</a>
                 </li>
                 <li id="cash" class="tm-li last">
-                    <a href="#cash" class="tm-a">Cash Indices</a>
+                    <a href="#cash" class="tm-a">Индексы Cash Index</a>
                 </li>
             </ul>
         </div>
@@ -36,7 +36,7 @@
                         <th>Символ валюты</th>
                         <th>Размер лота (объём = 1.0)</th>
                         <th>Минимальный объём</th>
-                        <th>Minimum Volume Increment</th>
+                        <th>Увеличение минимального объёма</th>
                         <th>Максимальный кредитный рычаг</th>
                     </tr>
                 </thead>
@@ -215,25 +215,25 @@
     </div>
 
     <div class="gr-12 gr-padding-10">
-        <h2>How to read the table above</h2>
+        <h2>Как читать таблицу выше</h2>
         <p>The Forex is typically traded in <i>lots</i>. One standard <i>lots</i> is equivalent to 100,000 units. Each time you open a position on a currency symbol, you can start with a minimum transaction of <i>0.01 lots</i>.</p>
-        <p>Leverage indicates how much capital you can control based on your initial deposit. For example, a 100:1 leverage will allow you to control up to USD 100,000 using only USD 1,000 of your own money as deposit.</p>
+        <p>Кредитный рычаг показывает, каким капиталом Вы можете управлять, в зависимости от размера Вашего первоначального взноса на счёт. Например, кредитный рычаг в размере 100:1 позволит Вам контролировать до USD 100 000, имея на счету всего USD 1 000.</p>
         <p>To learn more, read our <a href="/ru/metatrader/margin-policy.html">Margin Policy</a> that further explains our 100% forced liquidation level for Forex.</p>
 
-        <h2>Important notes on our swap rates (overnight funding)</h2>
-        <p>If you keep any positions open overnight, an interest adjustment will be made to your trading account as indication of the cost required to keep your position open. This adjustment is based on interbank lending rates, on top of a 2% fee.</p>
+        <h2>Важные примечания к нашему курсу своп (перенос позиции на следующий день)</h2>
+        <p>Если Вы хотите перенести открытые позиции на следующий день, на Вашем торговом счету будет произведена корректировка процентов с вычетом стоимости поддержания Вашей открытой позиции. Данная корректировка состоит из ставки межбанковского кредитования и комиссии в размере 2%.</p>
         <p>The interest adjustment is calculated in points, meaning we will convert the relevant interbank lending rates to points in the base currency.</p>
         <p>The swap rate will depend on the direction of the position you take:</p>
         <div class="gr-prefix-1">
             <ul class="bullet">
-                <li><strong>Long positions</strong>: We charge a 2% fee on top of interbank lending rates.
-                    <span data-balloon-length="large" data-balloon="Let's say the points adjustment for a long position on the EUR/USD symbol is -5.64. This would require an overnight fee of 5.64 points for one lot of open position in EUR/USD, where the size of one lot is 100,000 units. The points will then be converted into the deposit currency (which is the euro in this example). As a result, you will incur an interest fee of EUR5.64 for keeping the position open overnight.">
+                <li><strong>Длинные позиции</strong>: помимо ставки межбанковского кредитования, мы взимаем комиссию в размере 2%.
+                    <span data-balloon-length="large" data-balloon="Предположим, что корректировка пунктов на длинной позиции на паре EUR/USD составляет -5.64. Это означает, что за поддержание одного лота открытой позиции на паре EUR/USD требуется комиссия в размере 5.64 пункта, где размер одного лота составляет 100 000 единиц. Затем пункты будут переведены в валюту счёта (в данном примере, это евро). В результате, Ваша комиссия за поддержание открытой позиции на ночь составит EUR5.64.">
                         Как мы рассчитываем проценты на длинных позициях?
                     </span>
                 </li>
-                <li><strong>Short positions</strong>: We charge a 2% fee on top of interbank lending rates.
-                    <span data-balloon-length="large" data-balloon="Let's say the points adjustment for a short position on the EUR/USD symbol is 1.64. This would result in an overnight credit of 1.64 points for one lot of open position in EUR/USD where the size of one lot is 100,000 units. The points will then be converted into the deposit currency (which is the euro in this example). As a result, you will be credited with EUR1.64 for keeping the position open overnight.">
-                        How do we calculate interest fees for short positions?
+                <li><strong>Короткие позиции</strong>: помимо ставки межбанковского кредитования, мы взимаем комиссию в размере 2%.
+                    <span data-balloon-length="large" data-balloon="Предположим, что корректировка пунктов на короткой позиции на паре EUR/USD составляет 1.64. Это означает, что за поддержание одного лота открытой позиции на паре EUR/USD требуется кредит в размере 1.64 пункта, где размер одного лота составляет 100 000 единиц. Затем пункты будут переведены в валюту счёта (в данном примере, это евро). В результате, Ваша комиссия за поддержание открытой позиции на ночь составит EUR1.64.">
+                        Как мы рассчитываем комиссии на коротких позициях?
                     </span>
                 </li>
             </ul>
@@ -252,7 +252,7 @@
             <div id="volatility-content" class="toggle-content invisible">
                 <div id="volatility-specs" class="gr-row">
     <div class="gr-12 gr-padding-10">
-        <h1>Contract Specifications (CFD) - Volatility Indices</h1>
+        <h1>Характеристики контракта (CFD) – Индексы волатильности</h1>
         <div class="table-container">
             <table>
                 <thead>
@@ -261,7 +261,7 @@
                         <th>Volume 1.0 (Trade Size)</th>
                         <th>Мин. объём (размер контракта)</th>
                         <th>Макс. объём (размер контракта)</th>
-                        <th>Minimum Volume Increment</th>
+                        <th>Увеличение минимального объёма</th>
                         <th>Размер пипса</th>
                         <th>Минимальный спред</th>
                         <th>Маржа</th>
@@ -354,17 +354,17 @@
     </div>
 
     <div class="gr-12 gr-padding-10">
-        <h2>How to read the table above</h2>
-        <p>CFD (Contract for Difference): CFD is an instrument that allows you to profit by speculating on the rise or fall of an instrument. The profit/loss is estimated as a function of the difference in the buy/sell prices of the underlying instrument.</p>
-        <p>For example, the CFDs on Volatility Indices offer a USD 1 per point contract. If you buy a Volume 1.0 contract for the Volatility 100 Index with current ask price of USD 20,000 and later sell it at a bid price of USD 20,010, your net profit will be calculated as follows:</p>
+        <h2>Как читать таблицу выше</h2>
+        <p>CFD (контракты на разницу): CFD – это инструмент, позволяющий получать прибыль, делая ставки на рост или снижение рыночной цены определённого актива. Прибыль/убыток рассчитывается на основе разницы между ценой покупки/продажи данного актива.</p>
+        <p>Например, контракты на разницу на Индексах волатильности предоставляют USD 1 за один пункт контракта. Если Вы приобретёте контракт в объёме 1.0 на Индексе волатильности 100 по текущей цене USD 20,000 и позже продадите его по цене бид USD 20,010, Ваша чистая прибыль будет рассчитана следующим образом:</p>
         <div class="gr-12 gr-padding-10 fill-bg-color">
             <div class="gr-prefix-1">
                 <p>(Цена продажи - Цена покупки) x Объём x Цена за пункт = Прибыль</p>
-                <p>I.e. (20010 - 20000) x 1 x 1 = USD 10</p>
+                <p>Например, (20010 - 20000) x 1 x 1 = USD 10</p>
             </div>
         </div>
-        <p>Each time you open a position on a Volatility Index symbol, you can start with a minimum volume transaction of 0.01 (trade size), which translates to USD 0.01 per point movement of the index.</p>
-        <p>Margin indicates how much investment you can control based on your initial capital. For example, a 0.2% margin will allow you to control up to USD 500,000 using only USD 1,000 of your own money as deposit.</p>
+        <p>Каждый раз, когда Вы открываете контракт на индексах волатильности, Вы можете заключить сделку на минимальную сумму: 0.01 (от размера контракта), что означает USD 0.01 за каждый пункт, на который продвинется индекс.</p>
+        <p>Маржа демонстрирует, какой размер капитала Вы можете контролировать, в зависимости от размера Вашей первоначальной инвестиции. Например, маржа в размере 0.2% позволит Вам контролировать сумму до USD 500,000, внеся на счёт всего USD 1,000.</p>
         <p>To learn more, read our <a href="/ru/metatrader/margin-policy.html">Margin Policy</a> that further explains our 50% forced liquidation level for Volatility Indices.</p>
     </div>
 </div>
@@ -372,7 +372,7 @@
             <div id="cash-content" class="toggle-content invisible">
                 <div id="cash-specs" class="gr-row">
     <div class="gr-12 gr-padding-10">
-        <h1>Contract Specifications (CFD) - Cash Indices</h1>
+        <h1>Характеристики контракта (CFD) – индексы Cash Index</h1>
         <div class="table-container">
             <table>
                 <thead>
@@ -389,7 +389,7 @@
                 <tr>
                     <td>AUS_200</td>
                     <td>Australia 200 Cash Index</td>
-                    <td>AUD 1 per point</td>
+                    <td>AUD 1 за пункт</td>
                     <td>1</td>
                     <td>100</td>
                     <td>0.2%</td>
@@ -397,7 +397,7 @@
                 <tr>
                     <td>JP_225</td>
                     <td>Japan Cash Index</td>
-                    <td>JPY 1 per point</td>
+                    <td>JPY 1 за пункт</td>
                     <td>10</td>
                     <td>1000</td>
                     <td>0.2%</td>
@@ -413,7 +413,7 @@
                 <tr>
                     <td>ESP_35</td>
                     <td>Spain 35 Cash Index</td>
-                    <td>EUR 1 per point</td>
+                    <td>EUR 1 за пункт</td>
                     <td>1</td>
                     <td>100</td>
                     <td>0.2%</td>
@@ -421,7 +421,7 @@
                 <tr>
                     <td>EUR_50</td>
                     <td>Euro 50 Cash Index</td>
-                    <td>EUR 1 per point</td>
+                    <td>EUR 1 за пункт</td>
                     <td>1</td>
                     <td>500</td>
                     <td>0.2%</td>
@@ -429,7 +429,7 @@
                 <tr>
                     <td>FRA_40</td>
                     <td>France 40 Cash Index</td>
-                    <td>EUR 1 per point</td>
+                    <td>EUR 1 за пункт</td>
                     <td>1</td>
                     <td>500</td>
                     <td>0.2%</td>
@@ -437,7 +437,7 @@
                 <tr>
                     <td>GBR_100</td>
                     <td>UK 100 Cash Index</td>
-                    <td>GBP 1 per point</td>
+                    <td>GBP 1 за пункт</td>
                     <td>1</td>
                     <td>500</td>
                     <td>0.2%</td>
@@ -445,7 +445,7 @@
                 <tr>
                     <td>NED_25</td>
                     <td>Netherlands 25 Cash Index</td>
-                    <td>EUR 1 per point</td>
+                    <td>EUR 1 за пункт</td>
                     <td>1</td>
                     <td>100</td>
                     <td>0.2%</td>
@@ -461,7 +461,7 @@
                 <tr>
                     <td>DAX_30</td>
                     <td>German 30 Cash Index</td>
-                    <td>EUR 1 per point</td>
+                    <td>EUR 1 за пункт</td>
                     <td>1</td>
                     <td>100</td>
                     <td>0.2%</td>
@@ -469,7 +469,7 @@
                 <tr>
                     <td>CAN_60</td>
                     <td>Canada 60 Cash Index</td>
-                    <td>CAD 1 per point</td>
+                    <td>CAD 1 за пункт</td>
                     <td>1</td>
                     <td>100</td>
                     <td>0.2%</td>
@@ -504,25 +504,25 @@
     </div>
 
     <div class="gr-12 gr-padding-10">
-        <h2>How to read the table above</h2>
-        <p>CFD (Contract for Difference): CFD is an instrument that allows you to profit by speculating on the rise or fall of an instrument. The profit/loss is estimated as a function of the difference in the buy/sell prices of the underlying instrument.</p>
-        <p>For example, the CFDs on US 30 Cash Index offer a USD 1 per point contract. If you buy a Volume 1.0 contract for the US 30 Cash Index with current ask price of USD 20,000 and later sell it at a bid price of USD 20,010, your net profit will be calculated as follows:</p>
+        <h2>Как читать таблицу выше</h2>
+        <p>CFD (контракты на разницу): CFD – это инструмент, позволяющий получать прибыль, делая ставки на рост или снижение рыночной цены определённого актива. Прибыль/убыток рассчитывается на основе разницы между ценой покупки/продажи данного актива.</p>
+        <p>Например, контракты на разницу на индексе US 30 Cash Index предоставляют USD 1 за один пункт контракта. Если Вы приобретаете объём контракта в размере 1.0 на US 30 Cash Index по текущей цене USD 20,000 и позже продаёте его по цене бид USD 20,010, Ваша чистая прибыль будет рассчитана следующим образом:</p>
         <div class="gr-12 gr-padding-10 fill-bg-color">
             <div class="gr-prefix-1">
                 <p>(Цена продажи - Цена покупки) x Объём x Цена за пункт = Прибыль</p>
-                <p>I.e. (20010 - 20000) x 1 x 1 = USD 10</p>
+                <p>Например, (20010 - 20000) x 1 x 1 = USD 10</p>
             </div>
         </div>
-        <p>Margin indicates how much investment you can control based on your initial capital. For example, a 1% margin will allow you to control up to USD 100,000 using only USD 1,000 of your own money as deposit.</p>
+        <p>Маржа демонстрирует, какой размер капитала Вы можете контролировать, в зависимости от суммы Вашей первоначальной инвестиции. Например, маржа в размере 1% позволит Вам контролировать сумму до USD 100,000, внеся на счёт всего USD 1,000.</p>
         <p>To learn more, read our <a href="/ru/metatrader/margin-policy.html">Margin Policy</a> that further explains our margin requirements.</p>
-        <h2>Important notes on our swap rates (overnight funding)</h2>
-        <p>If you keep any positions open overnight, an interest adjustment will be made to your trading account as indication of the cost required to keep your position open. This adjustment is based on interbank lending rates, on top of a 2% fee.</p>
+        <h2>Важные примечания к нашему курсу своп (перенос позиции на следующий день)</h2>
+        <p>Если Вы хотите перенести открытые позиции на следующий день, на Вашем торговом счету будет произведена корректировка процентов с вычетом стоимости поддержания Вашей открытой позиции. Данная корректировка состоит из ставки межбанковского кредитования и комиссии в размере 2%.</p>
         <p>The interest adjustment is calculated in points, meaning we will convert the relevant market rates to points in the base instrument.</p>
         <p>The swap rate will depend on the direction of the position you take:</p>
         <div class="gr-prefix-1">
             <ul class="bullet">
-                <li><strong>Long positions</strong>: We charge a 2% fee on top of market rates.</li>
-                <li><strong>Short positions</strong>: We charge a 2% fee on top of market rates.</li>
+                <li><strong>Длинные позиции</strong>: помимо рыночного курса, мы взимаем комиссию в размере 2%.</li>
+                <li><strong>Короткие позиции</strong>: помимо рыночного курса, мы взимаем комиссию в размере 2%.</li>
             </ul>
         </div>
         <p>Please take note that our swap rate also depends on the time and days you hold your positions open: </p>

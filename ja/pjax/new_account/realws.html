@@ -11,25 +11,7 @@
     <h1>リアル口座開設</h1>
     <div class="rbox form gr-padding-10">
         <div class="rbox-wrap">
-            <form id="residence-form" class="invisible">
-                <fieldset id="select-residence">
-                    <legend>居住国を選択して下さい</legend>
-                    <div class="gr-padding-10 gr-row clear">
-                        <div class="gr-4 form_label">
-                            <label for="residence">居住国</label>
-                        </div>
-                        <div class="gr-8">
-                            <span id="move-residence-here"></span>
-                        </div>
-                    </div>
-
-                    <div class="center-text">
-                        <button class="button" id="residence_submit" type="submit">続行</button>
-                    </div>
-                </fieldset>
-            </form>
-
-            <form id="real-form" class="invisible">
+            <form id="frm_real">
                 <fieldset>
                     <legend id="details">お客さま基本情報</legend>
 
@@ -40,9 +22,9 @@
                         <div class="gr-8">
                             <select id="salutation" name="salutation">
                               <option value="Mr">Mr</option>
-                              <option value="Mrs">Mrs</option>
+                              <option value="Mrs" class="ru-hide">Mrs</option>
                               <option value="Ms">Ms</option>
-                              <option value="Miss">Miss</option>
+                              <option value="Miss" class="ru-hide">Miss</option>
                             </select>
                         </div>
                     </div>
@@ -79,14 +61,13 @@
                             <label for="residence">居住国</label>
                         </div>
                         <div class="gr-8">
-                            <span id="move-residence-back"></span>
-                            <select name="residence" id="residence" disabled="disabled"></select>
+                            <label id="lbl_residence"></label>
                         </div>
                     </div>
                 </fieldset>
 
                 <fieldset>
-                    <legend id="address">現住所</legend>
+                    <legend id="address">所在地</legend>
 
                     <div class="gr-padding-10 gr-row clear">
                         <div class="gr-4 form_label">

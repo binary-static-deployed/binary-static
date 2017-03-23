@@ -11,25 +11,7 @@
     <h1>开立真实资金账户</h1>
     <div class="rbox form gr-padding-10">
         <div class="rbox-wrap">
-            <form id="residence-form" class="invisible">
-                <fieldset id="select-residence">
-                    <legend>请选择您的居住国</legend>
-                    <div class="gr-padding-10 gr-row clear">
-                        <div class="gr-4 form_label">
-                            <label for="residence">居住国</label>
-                        </div>
-                        <div class="gr-8">
-                            <span id="move-residence-here"></span>
-                        </div>
-                    </div>
-
-                    <div class="center-text">
-                        <button class="button" id="residence_submit" type="submit">执行</button>
-                    </div>
-                </fieldset>
-            </form>
-
-            <form id="real-form" class="invisible">
+            <form id="frm_real">
                 <fieldset>
                     <legend id="details">详情</legend>
 
@@ -40,9 +22,9 @@
                         <div class="gr-8">
                             <select id="salutation" name="salutation">
                               <option value="Mr">先生</option>
-                              <option value="Mrs">女士</option>
+                              <option value="Mrs" class="ru-hide">女士</option>
                               <option value="Ms">女士</option>
-                              <option value="Miss">遗漏</option>
+                              <option value="Miss" class="ru-hide">遗漏</option>
                             </select>
                         </div>
                     </div>
@@ -79,8 +61,7 @@
                             <label for="residence">居住国</label>
                         </div>
                         <div class="gr-8">
-                            <span id="move-residence-back"></span>
-                            <select name="residence" id="residence" disabled="disabled"></select>
+                            <label id="lbl_residence"></label>
                         </div>
                     </div>
                 </fieldset>

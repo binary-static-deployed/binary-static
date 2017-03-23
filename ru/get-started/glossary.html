@@ -25,6 +25,9 @@
 
         <title>Глоссарий | Binary.com</title>
 
+        <link rel="manifest" href="/manifest.json">
+        <script type="text/javascript" src="//cdn.pushwoosh.com/webpush/pushwoosh-web-notifications.js" async></script>
+
         <link rel="apple-touch-icon" sizes="57x57" href="https://style.binary.com/images/favicons/apple-touch-icon-57x57.png">
         <link rel="apple-touch-icon" sizes="114x114" href="https://style.binary.com/images/favicons/apple-touch-icon-114x114.png">
         <link rel="apple-touch-icon" sizes="72x72" href="https://style.binary.com/images/favicons/apple-touch-icon-72x72.png">
@@ -55,15 +58,16 @@
           <link rel="alternate" href="/zh_cn/get-started/glossary.html" hreflang="ZH_CN" /> 
           <link rel="alternate" href="/zh_tw/get-started/glossary.html" hreflang="ZH_TW" /> 
         
-         <link rel="stylesheet" href="/css/binary.min.css?w2rpn55a">
-         <link rel="stylesheet" href="https://style.binary.com/binary.css?w2rpn55a">
+         <link rel="stylesheet" href="/css/binary.min.css?i2wesavq">
+         <link rel="stylesheet" href="https://style.binary.com/binary.css?i2wesavq">
         
-        <script src='/js/binary.min.js?w2rpn55a'></script>  <script src='https://style.binary.com/binary.js?w2rpn55a'></script>
+        <script src='/js/binary.min.js?i2wesavq'></script>  <script src='https://style.binary.com/binary.js?i2wesavq'></script>
     </head>
 
 
 <body class="RU">
-    <div id='page-wrapper'>
+    <div id="msg_notification" class="notice-msg center-text"></div>
+<div id='page-wrapper'>
     <div id="topbar" class="no-print primary-color-dark">
         <div class="container">
             <div class="gr-row">
@@ -376,7 +380,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <p>Длительность – это временной период купленного контракта (см."период контракта").</p>
 
     <h2>Закончится между/Закончится вне</h2>
-    <p>Контракт "Закончится внутри" приносит прибыль, если выходная цена рынка строго выше, чем нижний ценовой барьер И строго ниже, чем верхний ценовой барьер. Контракт "Закончится вне" приносит прибыль, если выходная цена рынка ЛИБО строго выше, чем верхний ценовой барьер, ЛИБО строго ниже, чем нижний ценовой барьер.</p>
+    <p>Контракт "Закончится внутри" приносит прибыль, если выходная цена рынка будет строго выше, чем нижний ценовой барьер И строго ниже, чем верхний ценовой барьер. Контракт "Закончится вне" приносит прибыль, если выходная цена рынка ЛИБО строго выше, чем верхний ценовой барьер, ЛИБО строго ниже, чем нижний ценовой барьер.</p>
 
     <h2>Спот-котировка на входе</h2>
     <p>Входная спот-цена – это начальная цена купленного трейдером контракта.</p>
@@ -388,7 +392,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <p>На рынке Forex трейдеры могут заключать контракты, основанные на цене одной валюты по отношению к другой. Например, если трейдер выбирает контракт "Повышение" на EUR/USD, он делает прогноз, что цена евро поднимется по отношению к американскому доллару.</p>
 
     <h2>GMT</h2>
-    <p>GMT – время по Гринвичу или Greenwich Mean Time – это официальное время, используемое в зимний период в Великобритании. Летом время в Великобритании меняется на британское летнее время, которое составляет GMT +1 час. Всё время на сайте Binary.com указывается в GMT круглогодично.</p>
+    <p>GMT – время по Гринвичу или Greenwich Mean Time – это официальное время, используемое в зимний период в Великобритании. Летом время в Великобритании меняется на британское летнее время, которое составляет GMT +1 час. Всё время на сайте Binary.com всегда указывается в GMT.</p>
 
     <h2>Контракты Выше/Ниже</h2>
     <p>Контракты, где трейдер прогнозирует, закончится ли рынок выше или ниже заданного ценового барьера.</p>
@@ -445,7 +449,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <p>Тик – это минимальное движение рыночной цены вверх или вниз.</p>
 
     <h2>Рынок</h2>
-    <p>Каждый бинарный опцион является прогнозом будущего движения конкретного рынка.</p>
+    <p>Каждый бинарный опцион является прогнозом будущего движения конкретного актива.</p>
 </div>
   </div>
   <div class="gr-3 gr-hide-m">
@@ -486,6 +490,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                             <ul>
                                 <li>
                                     <a href="/ru/about-us.html">О нас</a>
+                                </li>
+                                <li class="gr-hide gr-show-m">
+                                    <a href="/ru/contact.html">Контакты</a>
                                 </li>
                                 <li class="id-hide ar-hide">
                                     <a href="/ru/regulation.html">Информация о регулировании</a>

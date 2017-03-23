@@ -22,9 +22,9 @@
                         <div class="gr-8">
                             <select id="salutation" class="input-disabled">
                               <option value="Mr">先生</option>
-                              <option value="Mrs">女士</option>
+                              <option value="Mrs" class="ru-hide">女士</option>
                               <option value="Ms">女士</option>
-                              <option value="Miss">遗漏</option>
+                              <option value="Miss" class="ru-hide">遗漏</option>
                             </select>
                         </div>
                     </div>
@@ -70,8 +70,7 @@
                             <label for="residence">居住国</label>
                         </div>
                         <div class="gr-8">
-                            <span id="move-residence-back"></span>
-                            <select name="residence" id="residence" disabled="disabled"></select>
+                            <label id="lbl_residence"></label>
                         </div>
                     </div>
                 </fieldset>

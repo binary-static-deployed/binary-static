@@ -25,6 +25,9 @@
 
         <title>Thuật ngữ | Binary.com</title>
 
+        <link rel="manifest" href="/manifest.json">
+        <script type="text/javascript" src="//cdn.pushwoosh.com/webpush/pushwoosh-web-notifications.js" async></script>
+
         <link rel="apple-touch-icon" sizes="57x57" href="https://style.binary.com/images/favicons/apple-touch-icon-57x57.png">
         <link rel="apple-touch-icon" sizes="114x114" href="https://style.binary.com/images/favicons/apple-touch-icon-114x114.png">
         <link rel="apple-touch-icon" sizes="72x72" href="https://style.binary.com/images/favicons/apple-touch-icon-72x72.png">
@@ -55,15 +58,16 @@
           <link rel="alternate" href="/zh_cn/get-started/glossary.html" hreflang="ZH_CN" /> 
           <link rel="alternate" href="/zh_tw/get-started/glossary.html" hreflang="ZH_TW" /> 
         
-         <link rel="stylesheet" href="/css/binary.min.css?w2rpn55a">
-         <link rel="stylesheet" href="https://style.binary.com/binary.css?w2rpn55a">
+         <link rel="stylesheet" href="/css/binary.min.css?i2wesavq">
+         <link rel="stylesheet" href="https://style.binary.com/binary.css?i2wesavq">
         
-        <script src='/js/binary.min.js?w2rpn55a'></script>  <script src='https://style.binary.com/binary.js?w2rpn55a'></script>
+        <script src='/js/binary.min.js?i2wesavq'></script>  <script src='https://style.binary.com/binary.js?i2wesavq'></script>
     </head>
 
 
 <body class="VI">
-    <div id='page-wrapper'>
+    <div id="msg_notification" class="notice-msg center-text"></div>
+<div id='page-wrapper'>
     <div id="topbar" class="no-print primary-color-dark">
         <div class="container">
             <div class="gr-row">
@@ -343,7 +347,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <li><a href="/vi/get-started/types-of-trades.html">Loại giao dịch</a></li>
           <li><a href="/vi/get-started/binary-options-basics.html">Cơ bản về quyền chọn nhị phân</a></li>
           <li><a href="/vi/get-started/why-trade-with-us.html">Tại sao giao dịch với Binary.com</a></li>
-          <li><a href="/vi/get-started/how-to-trade-binaries.html">How to trade binary options?</a></li>
+          <li><a href="/vi/get-started/how-to-trade-binaries.html">Làm thế nào để giao dịch các tùy chọn nhị phân?</a></li>
           <li class="ja-hide"><a href="/vi/get-started/volidx-markets.html">Giao dịch thị trường Chỉ số Biến động như thế nào?</a></li>
           <li class="ja-hide"><a href="/vi/get-started/spread.html">Làm thế nào để giao dịch chênh lệch giá?</a></li>
           <li class="ja-hide"><a href="/vi/get-started/smart-indices.html">Thị trường Thông minh</a></li>
@@ -376,7 +380,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <p>Khoảng thời gian là độ dài của giao dịch được mua (xem 'kì hợp đồng').</p>
 
     <h2>Giao dịch Kết thúc ở Giữa/ Kết thúc bên ngoài</h2>
-    <p>An Ends Between trade pays out if the market exit price is strictly higher than the low price target AND strictly lower than the high price target. An Ends Outside binary pays out if the market exit price is EITHER strictly higher than the high price target OR strictly lower than the low price target.</p>
+    <p>Giao dịch Kết thúc ở giữa có tiền thưởng nếu giá thoát thị trường cao hơn so với giá mục tiêu thấp VÀ thấp hơn so với giá mục tiêu cao. Nhị phân Kết thúc bên ngoài có tiền thưởng nếu giá thoát thị trường cao hơn so với giá  mục tiêu cao HOẶC thấp hơn so với giá mục tiêu thấp.</p>
 
     <h2>Giá giao ngay ban đầu</h2>
     <p>Giá giao ngay nhập vào là giá bắt đầu của giao dịch được mua bởi người giao dịch.</p>
@@ -385,7 +389,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <p>Giá đáo hạn là giá của cơ sở khi hợp đồng hết hạn.</p>
 
     <h2>Thị trường ngoại hối</h2>
-    <p>In foreign exchange markets, traders can enter contracts based on the change in price of one currency as it relates to another currency. For example if a trader selects Rise in the EUR/USD market, they are predicting that the value of the Euro will rise in relation to the value of the US dollar.</p>
+    <p>Trong thị trường ngoại tệ, nhà giao dịch có thể giao kết hợp đồng dựa trên sự thay đổi trong giá cả của một đồng tiền vì nó liên quan tới đồng khác. Ví dụ, nếu một nhà giao dịch lựa chọn Tăng trong cặp tiền tệ EUR/USD, họ đang dự đoán rằng giá trị của đồng Euro sẽ tăng tương quan với giá trị của đồng Đô la Mỹ.</p>
 
     <h2>Múi giờ</h2>
     <p>GMT là viết tắt của Greenwich Mean Time, thời gian chính thức được sử dụng ở Vương quốc Anh trong suốt mùa đông. Vào mùa hè, Vương quốc Anh lại chuyển sang Thời gian Mùa hè Anh, đó là GMT + 1 giờ. Tất cả thời gian trên trang Binary.com đều sử dụng GMT trong cả năm.</p>
@@ -418,7 +422,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <p>Lợi nhuận là phần chênh lệch giữa giá mua (cổ phần) và tiền thanh toán trên giao dịch thắng.</p>
 
     <h2>Chỉ số Biến động</h2>
-    <p>The volatility indices simulate various real market situations and provide an ideal platform for getting used to trading and testing strategies under various market conditions. These indices depend on volatility and drift, and help users to try out scenarios like - high volatility, low volatility, bullish and bearish trends.</p>
+    <p>Chỉ số biến động mô phỏng các tình huống thực tế thị trường khác nhau và cung cấp một nền tảng lý tưởng cho việc sử dụng để kinh doanh và thử nghiệm các chiến lược theo các điều kiện thị trường. Những chỉ số phụ thuộc vào biến động và trôi dạt, và giúp người sử dụng để thử ra các tình huống như - biến động cao, bay hơi thấp, xu hướng bullish và hướng giảm.</p>
 
     <h2>Giá bán lại</h2>
     <p>Giá bán lại chỉ giá thị trường hiện tại của hợp đồng. Giá bán lại dựa trên cơ sở nỗ lực nhất và có thể không có sẵn mọi lúc sau khi mua. Xem 'quyền chọn Bán' để biết thêm chi tiết về bán hợp đồng trước khi hết hạn.</p>
@@ -439,7 +443,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <p>Đơn vị vốn (stake) là số tiền nhà giao dịch cần phải trả để được vào một giao dịch.</p>
 
     <h2>Giao dịch Ở Giữa/ Đi ra ngoài</h2>
-    <p>A Stays Between trade pays out if the market stays between (does not touch) BOTH the high barrier or the low barrier at any time during the period chosen by a trader. A Goes Outside trade pays out if the market touches EITHER the high barrier or the low barrier at any time during the period chosen by a trader.</p>
+    <p>Giao dịch Ở giữa có tiền thưởng khi thị trường ở giữa (không chạm) CẢ HAI hàng rào cao hoặc hàng rào thấp tại bất cứ thời điểm nào trong suốt thời gian được người giao dịch lựa chọn. Giao dịch Ra ngoài có tiền thưởng khi thị trường chạm MỘT TRONG HAI hàng rào cao hoặc hàng rào thấp tại bất cứ thời điểm nào trong suốt thời gian được người giao dịch chọn.</p>
 
     <h2>Giây</h2>
     <p>Một điểm là chuyển động nhỏ nhất lên trên hoặc xuống dưới trong giá của thị trường.</p>
@@ -487,6 +491,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                 <li>
                                     <a href="/vi/about-us.html">Thông tin về Chúng tôi</a>
                                 </li>
+                                <li class="gr-hide gr-show-m">
+                                    <a href="/vi/contact.html">Liên hệ</a>
+                                </li>
                                 <li class="id-hide ar-hide">
                                     <a href="/vi/regulation.html">Thông tin điều chỉnh</a>
                                 </li>
@@ -526,13 +533,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                     <a href="/vi/tour-jp.html">Ghé thăm Sàn giao dịch</a>
                                 </li>
                                 <li class="hidden ja-show-block">
-                                    <a href="/vi/service-announcements.html">{JAPAN ONLY}Service Announcements</a>
+                                    <a href="/vi/service-announcements.html">{Nhật bản}Các thông báo dịch vụ</a>
                                 </li>
                                 <li class="ja-hide id-hide">
                                     <a href="http://www.gamcare.org.uk/" target="_blank">Hội cờ bạc GamCare</a>
                                 </li>
                                 <li class="ja-hide academy">
-                                    <a href="http://academy.binary.com" target="_blank">Academy</a>
+                                    <a href="http://academy.binary.com" target="_blank">học viện</a>
                                 </li>
                                 <li class='ja-hide id-hide'>
                                     <a href="https://academy.binary.com/en/events/" target="_blank">Hội thảo trên Web</a>
@@ -662,7 +669,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </div>
         <div id="ratelimit-error-message">
             <div class="message">
-                You have reached the rate limit of requests per second. Please try later.
+                Bạn đã đạt đến giới hạn số lượng lệnh có thể mỗi giây. Xin vui lòng thử lại sau.
             </div>
         </div>
     </div>
@@ -670,7 +677,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <div class="container">
             <div class="gr-padding-10">
                 <p class="gambling content-inverse-color">
-                    Trading binary options may not be suitable for everyone, so please ensure that you fully understand the risks involved. Your losses can exceed your initial deposit and you do not own or have any interest in the underlying asset. In regards to binary options which are gambling products, remember that gambling can be addictive - please play responsibly. <span class="ja-hide">Read about <a href="/vi/responsible-trading.html">Responsible Trading</a>.</span>
+                    Giao dịch quyền chọn nhị phân có thể không thích hợp cho tất cả mọi người, vì vậy vui lòng bảo đảo rằng bạn đã hiểu hoàn toàn về rủi ro có liên quan. Thất thoát của bạn có thể vượt quá số tiền gửi ban đầu và bạn sẽ không được sở hữu hay có bất kì tiền lãi nào trong tài sản cơ sở. Liên quan tới quyền chọn nhị phân, là sản phẩm cá cược, hãy nhớ rằng chơi cá cược có thể bị nghiện - vui lòng chơi một cách có trách nhiệm. <span class="ja-hide">Đọc về <a href="/vi/responsible-trading.html">Giao dịch có Trách nhiệm</a>.</span>
                 </p>
             </div>
         </div>

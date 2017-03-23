@@ -25,6 +25,9 @@
 
         <title>Zarządzanie kontami MetaTrader | Binary.com</title>
 
+        <link rel="manifest" href="/manifest.json">
+        <script type="text/javascript" src="//cdn.pushwoosh.com/webpush/pushwoosh-web-notifications.js" async></script>
+
         <link rel="apple-touch-icon" sizes="57x57" href="https://style.binary.com/images/favicons/apple-touch-icon-57x57.png">
         <link rel="apple-touch-icon" sizes="114x114" href="https://style.binary.com/images/favicons/apple-touch-icon-114x114.png">
         <link rel="apple-touch-icon" sizes="72x72" href="https://style.binary.com/images/favicons/apple-touch-icon-72x72.png">
@@ -55,15 +58,16 @@
           <link rel="alternate" href="/zh_cn/user/metatrader.html" hreflang="ZH_CN" /> 
           <link rel="alternate" href="/zh_tw/user/metatrader.html" hreflang="ZH_TW" /> 
         
-         <link rel="stylesheet" href="/css/binary.min.css?w2rpn55a">
-         <link rel="stylesheet" href="https://style.binary.com/binary.css?w2rpn55a">
+         <link rel="stylesheet" href="/css/binary.min.css?i2wesavq">
+         <link rel="stylesheet" href="https://style.binary.com/binary.css?i2wesavq">
         
-        <script src='/js/binary.min.js?w2rpn55a'></script>  <script src='https://style.binary.com/binary.js?w2rpn55a'></script>
+        <script src='/js/binary.min.js?i2wesavq'></script>  <script src='https://style.binary.com/binary.js?i2wesavq'></script>
     </head>
 
 
 <body class="PL">
-    <div id='page-wrapper'>
+    <div id="msg_notification" class="notice-msg center-text"></div>
+<div id='page-wrapper'>
     <div id="topbar" class="no-print primary-color-dark">
         <div class="container">
             <div class="gr-row">
@@ -404,11 +408,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <a class="invisible" target="_blank">Dowiedz się więcej</a>
             </div>
             <div id="vanuatu_standard">
-                The Standard account is suitable for a wide range of traders, both new and experienced.
+                Standardowe konto jest odpowiednie dla szerokiego grona graczy, zarówno początkujących, jak i doświadczonych.
                 <a class="invisible" target="_blank">Dowiedz się więcej</a>
             </div>
             <div id="vanuatu_stp">
-                The STP account provides you with the tightest spreads and connects you directly to the market.
+                Prawdziwe konto STP zapewnia Ci najniższe spready i bezpośrednie połączenie z rynkiem.
                 <a class="invisible" target="_blank">Dowiedz się więcej</a>
             </div>
             <div id="costarica">
@@ -472,7 +476,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </div>
     <div class="gr-8 gr-12-m">
                 <input type="password" id="txt_main_pass" maxlength="25"  />
-    <div class="hint">Minimum eight characters. Must contain numbers, and mix of upper and lower case letters.</div>
+    <div class="hint">Minimum osiem znaków. Musi zawierać numery oraz małe i wielkie litery.</div>
     </div>
 </div>
             <div class="gr-row form-row center-text-m ">
@@ -537,7 +541,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </div>
     <div class="gr-8 gr-12-m">
                 <input type="password" id="txt_new_password" maxlength="25"  />
-    <div class="hint">Minimum eight characters. Must contain numbers, and mix of upper and lower case letters.</div>
+    <div class="hint">Minimum osiem znaków. Musi zawierać numery oraz małe i wielkie litery.</div>
     </div>
 </div>
             <div class="gr-row form-row center-text-m ">
@@ -665,7 +669,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <div class="align-start">
                     <p>Aby wypłacić środki z Konta finansowego MT5, proszę zweryfikować swoje konto Binary.com.</p>
                     <p>Aby zweryfikować swoją tożsamość i uwierzytelnić konto, proszę przesłać dokumenty wymienione poniżej:</p>
-<ul class="bullet">
+<ul class="checked">
     <li>Potwierdzenie tożsamości – skan Twojego paszportu, prawa jazdy (czasowego lub normalnego) lub dowodu osobistego z Twoim imieniem i nazwiskiem oraz datą urodzenia.</li>
     <li>Potwierdzenie adresu – skan rachunku za media lub wyciągu bankowego z ostatnich 3 miesięcy.</li>
 </ul>
@@ -691,6 +695,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                             <ul>
                                 <li>
                                     <a href="/pl/about-us.html">O nas</a>
+                                </li>
+                                <li class="gr-hide gr-show-m">
+                                    <a href="/pl/contact.html">Napisz do nas</a>
                                 </li>
                                 <li class="id-hide ar-hide">
                                     <a href="/pl/regulation.html">Informacje o przepisach prawnych</a>
