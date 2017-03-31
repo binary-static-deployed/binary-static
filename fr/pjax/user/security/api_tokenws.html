@@ -12,57 +12,57 @@
 
     <p>Pour accéder à nos applications mobiles et aux autres applications tierces, vous devrez d'abord générer un jeton d'API.</p>
     <ul class="bullet">
-      <li>Cliquez simplement sur « Créer » pour générer votre jeton, puis copiez-collez votre jeton dans l'application.</li>
-      <li>Choisissez le type de jeton d'API dont vous avez besoin, selon les fonctionnalités que vous souhaitez proposer.</li>
+        <li>Cliquez simplement sur « Créer » pour générer votre jeton, puis copiez-collez votre jeton dans l'application.</li>
+        <li>Choisissez le type de jeton d'API dont vous avez besoin, selon les fonctionnalités que vous souhaitez proposer.</li>
     </ul>
 
     <div id="token_form" class="gr-12 gr-padding-10">
-        <form class="form rbox" id="frmNewToken">
+        <form>
             <fieldset>
-                <legend>Créer un nouveau jeton</legend>
+    <legend>Créer un nouveau jeton</legend>
+    
+                <div class="gr-row form-row center-text-m ">
+    <div class="gr-4 gr-12-m">
+        <label for="txt_name">Choisissez un nom :</label>
+    </div>
+    <div class="gr-8 gr-12-m">
+                <input type="text" id="txt_name" maxlength="32" />
+    
+    </div>
+</div>
 
-                <div class="gr-row gr-padding-10">
-                    <div class="gr-4 form_label">
-                        <label for="txtName">Choisissez un nom :</label>
-                    </div>
-                    <div class="gr-8">
-                        <input name="name" id="txtName" type="text" maxlength="32" />
-                    </div>
-                </div>
+                <div class="gr-row form-row center-text-m ">
+    <div class="gr-4 gr-12-m">
+        <label for="">Choisissez les champs d'application :</label>
+    </div>
+    <div class="gr-8 gr-12-m">
+                
+                    <input id="chk_scopes_read" type="checkbox" value="read" checked="checked" readonly="readonly" />
+                    <label for="chk_scopes_read" data-balloon="Peut être utilisé pour afficher l'activité du compte, notamment les paramètres, les bilans et l'historique des contrats achetés, entre autres." data-balloon-length="xlarge">Lire</label>
 
-                <div class="gr-row gr-padding-10">
-                    <div class="gr-4 form_label">
-                        <label for="scopes">Choisissez les champs d'application :</label>
-                    </div>
-                    <div class="gr-8">
-                        <input id="scopes" type="checkbox" name="scopes[]" value="read" checked="checked" readonly="readonly" />
-                          <label for="scopes" data-balloon="Peut être utilisé pour afficher l'activité du compte, notamment les paramètres, les bilans et l'historique des contrats achetés, entre autres." data-balloon-length="xlarge">Lire</label>
-                        <input id="scopes-trade" type="checkbox" name="scopes[]" value="trade" />
-                          <label for="scopes-trade" data-balloon="Peut être utilisé pour acheter et vendre des contrats, renouveler des achats expirés et réapprovisionner les comptes virtuels." data-balloon-length="xlarge">Trading</label>
-                        <input id="scopes-payments" type="checkbox" name="scopes[]" value="payments" />
-                          <label for="scopes-payments" data-balloon="Peut être utilisé pour effectuer des retraits par l'intermédiaire d'agents de paiement, transférer des fonds d'un compte à un autre et définir/supprimer les mots de passe de connexion à la Caisse." data-balloon-length="xlarge">Paiements</label>
-                        <input id="scopes-admin" type="checkbox" name="scopes[]" value="admin" />
-                          <label for="scopes-admin" data-balloon="Peut être utilisé pour ouvrir un compte, régler les paramètres et gérer l'utilisation des jetons d'authentification, entre autres." data-balloon-length="xlarge">Administration</label>
-                    </div>
-                </div>
+                    <input id="chk_scopes_trade" type="checkbox" value="trade" />
+                    <label for="chk_scopes_trade" data-balloon="Peut être utilisé pour acheter et vendre des contrats, renouveler des achats expirés et réapprovisionner les comptes virtuels." data-balloon-length="xlarge">Trading</label>
+
+                    <input id="chk_scopes_payments" type="checkbox" value="payments" />
+                    <label for="chk_scopes_payments" data-balloon="Peut être utilisé pour effectuer des retraits par l'intermédiaire d'agents de paiement, transférer des fonds d'un compte à un autre et définir/supprimer les mots de passe de connexion à la Caisse." data-balloon-length="xlarge">Paiements</label>
+
+                    <input id="chk_scopes_admin" type="checkbox" value="admin" />
+                    <label for="chk_scopes_admin" data-balloon="Peut être utilisé pour ouvrir un compte, régler les paramètres et gérer l'utilisation des jetons d'authentification, entre autres." data-balloon-length="xlarge">Administration</label>
+                
+    
+    </div>
+</div>
 
                 <div class="gr-row">
-                    <div class="gr-4"></div>
-                    <div class="gr-8">
-                        <div id="formMessage"></div>
-                    </div>
-                </div>
-
-                <div class="gr-row">
-                    <div class="gr-4"></div>
-                    <div class="gr-8">
-                        <span class="button">
-                            <button class="button" id="btnCreate">Créer</button>
-                        </span>
-                    </div>
-                </div>
-
-            </fieldset>
+    <div class="gr-8 gr-push-4 gr-12-m gr-push-0-m center-text-m">
+    <div id="msg_form" class="error-msg invisible"></div>
+    <div class="gr-padding-10">
+        <button id="btn_submit" type="submit">Créer</button>
+    </div>
+    </div>
+</div>
+            
+</fieldset>
         </form>
     </div>
 
@@ -70,6 +70,11 @@
         <p></p>
     </div>
 
-    <div id="tokens_list" class="gr-12 gr-parent gr-padding-10">
-    </div>
+    <div id="tokens_list" class="gr-12 gr-parent gr-padding-10"><div class="barspinner dark">
+    <div class="rect1"></div>
+    <div class="rect2"></div>
+    <div class="rect3"></div>
+    <div class="rect4"></div>
+    <div class="rect5"></div>
+</div></div>
 </div>

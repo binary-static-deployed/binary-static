@@ -58,10 +58,10 @@
           <link rel="alternate" href="/zh_cn/metatrader/margin-policy.html" hreflang="ZH_CN" /> 
           <link rel="alternate" href="/zh_tw/metatrader/margin-policy.html" hreflang="ZH_TW" /> 
         
-         <link rel="stylesheet" href="/css/binary.min.css?i2wesavq">
-         <link rel="stylesheet" href="https://style.binary.com/binary.css?i2wesavq">
+         <link rel="stylesheet" href="/css/binary.min.css?soe9zyi5">
+         <link rel="stylesheet" href="https://style.binary.com/binary.css?soe9zyi5">
         
-        <script src='/js/binary.min.js?i2wesavq'></script>  <script src='https://style.binary.com/binary.js?i2wesavq'></script>
+        <script src='/js/binary.min.js?soe9zyi5'></script>  <script src='https://style.binary.com/binary.js?soe9zyi5'></script>
     </head>
 
 
@@ -328,6 +328,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-MZWFF7');</script>
 <!-- End Google Tag Manager -->
     <!-- FlushHead -->
+    <a href="javascript:;" id="scrollup"></a>
 
     <div id="content" class="margin-policy-content">
         <div id="page_info" style="display:none;">
@@ -354,11 +355,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <hr class="gr-12 separator">
 
         <div class="gr-12 gr-padding-30 center-text">
-            <h2>How is margin calculated?</h2>
+            <h2>マージンの算出方法は？</h2>
             <p>The margin for our CFDs are calculated as follows:</p>
             <div class="mt-box gr-12">
                 <div class="mt-img mr1-icon"></div>
-                <p class="mt-box-content">If you buy <strong>1 Volume of Volatility 100 Index</strong> at a <strong>price of US&#36 20,000</strong> and a <strong>margin rate of 0.01(1%)</strong>, the margin required to purchase that one lot will be calculated as follows:</p>
+                <p class="mt-box-content"><strong>US&#36 20,000</strong>で<strong> Volatility 100 Indexを数量1</strong>購入し、このトレードのマージン要件が数量1で<strong>マージン率が0.01(1%)</strong>の場合、以下のように算出されます。</p>
                 <div class="mt-img mr2-icon"></div>
             </div>
         </div>
@@ -367,7 +368,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <p>The margin for our Forex symbols is calculated as follows:</p>
             <div class="mt-box gr-12">
                 <div class="mt-img l1-icon"></div>
-                <p class="mt-box-content">If you buy <strong>one lot of the EUR/USD</strong> symbol with a <strong>contract size of 100,000</strong> and <strong>leverage of 100:1</strong>, the margin required to purchase that one lot will be calculated as follows:</p>
+                <p class="mt-box-content"><strong>トレードサイズ100,000</strong>で<strong>EUR/USDシンボルを1ロット</strong><strong>レバレッジ100:1</strong>で購入した場合、1ロット購入に必要なマージンは、以下のように算出されます。</p>
                 <div class="mt-img l2-icon"></div>
             </div>
         </div>
@@ -388,13 +389,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <div class="container">
         <div class="gr-row">
             <div class="gr-12 gr-padding-30">
-                <p>Once your account hits the forced liquidation level, your orders and positions are forcibly closed in the following sequence:</p>
+                <p>強制ロスカットレベルに到達すると、注文とポジションは次の順序で強制的にクローズされます。</p>
                 <div class="gr-prefix-1">
                     <ul class="checked">
                         <li>保留中のトレードを分析します。</li>
                         <li>We delete an order with the largest margin reserved.</li>
-                        <li>If your margin level is still under the stop out level, your next order will be deleted. However, orders without margin requirements will not be deleted.</li>
-                        <li>If your margin level is still under the stop out level, we will close an open position with the largest loss.</li>
+                        <li>マージンレベルが未だストップアウトレベル未満である場合、次の注文は削除されます。しかし、マージン要件なしの注文に関しては削除されることはありません。</li>
+                        <li>マージンレベルが未だストップアウトベル未満である場合、損失が一番大きいオープンポジションをクローズします。</li>
                         <li>マージンレベルがロスカットレベルを超えるまでオープンポジションをクローズします。</li>
                     </ul>
                 </div>

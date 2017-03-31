@@ -197,7 +197,7 @@ label {
 .form-row {
   padding: 10px 0;
 }
-.form-row label {
+.form-row div:first-child label {
   display: block;
   text-align: right;
 }
@@ -359,6 +359,17 @@ button .barspinner.white {
   padding: 3px 0;
   line-height: 20px;
   display: none;
+}
+
+#scrollup {
+  width: 40px;
+  height: 40px;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: none;
+  background: url("../images/common/scrollup_icon.svg") no-repeat;
+  z-index: 999;
 }
 
 *, *:after, *:before {
@@ -857,6 +868,9 @@ html.mm-right.mm-opening body .mm-page, html.mm-right.mm-opening body #mm-blocke
   -webkit-align-items: center;
       -ms-flex-align: center;
           align-items: center;
+}
+.home-jp-content #email {
+  border: 1px solid #ccc;
 }
 
 @media screen and (max-width: 768px) {
@@ -5312,9 +5326,6 @@ body.JA #tradingtimes-forex div.table-header:nth-of-type(n + 3), body.JA #tradin
 body.JA #bet_guide_content div:nth-child(1) {
   display: none !important;
 }
-body.JA .languages {
-  display: none;
-}
 body.JA #header #menu-top li {
   white-space: nowrap;
 }
@@ -5397,9 +5408,6 @@ body.ID #footer #social-networks {
 }
 body.ID .id-hide {
   display: none !important;
-}
-body.ID .languages {
-  display: none;
 }
 body.ID .app-store-badge {
   background-image: url("../images/pages/applications/appstore_id.svg");
@@ -5568,11 +5576,11 @@ body.TH .google-play-badge {
     max-height: 100%;
   }
 
-  input, select {
+  input:not([type='checkbox']), select {
     width: 80%;
   }
 
-  .center-text-m, .center-text-m label {
+  .center-text-m, .center-text-m div:first-child label {
     text-align: center;
   }
 

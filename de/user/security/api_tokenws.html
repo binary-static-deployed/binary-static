@@ -58,10 +58,10 @@
           <link rel="alternate" href="/zh_cn/user/security/api_tokenws.html" hreflang="ZH_CN" /> 
           <link rel="alternate" href="/zh_tw/user/security/api_tokenws.html" hreflang="ZH_TW" /> 
         
-         <link rel="stylesheet" href="/css/binary.min.css?i2wesavq">
-         <link rel="stylesheet" href="https://style.binary.com/binary.css?i2wesavq">
+         <link rel="stylesheet" href="/css/binary.min.css?soe9zyi5">
+         <link rel="stylesheet" href="https://style.binary.com/binary.css?soe9zyi5">
         
-        <script src='/js/binary.min.js?i2wesavq'></script>  <script src='https://style.binary.com/binary.js?i2wesavq'></script>
+        <script src='/js/binary.min.js?soe9zyi5'></script>  <script src='https://style.binary.com/binary.js?soe9zyi5'></script>
     </head>
 
 
@@ -328,6 +328,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-MZWFF7');</script>
 <!-- End Google Tag Manager -->
     <!-- FlushHead -->
+    <a href="javascript:;" id="scrollup"></a>
 
     <div id="content" class="api_tokenws-content">
         <div id="page_info" style="display:none;">
@@ -343,57 +344,57 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     <p>Um Zugang zu unseren mobilen Apps und anderen Drittanbieteranwendungen zu haben, müssen Sie erst einen API Token erzeugen.</p>
     <ul class="bullet">
-      <li>Klicken Sie einfach auf "Erstellen", um Ihren Token zu generieren, dann kopieren Sie ihn und fügen ihn in die App ein.</li>
-      <li>Wählen Sie auf der Grundlage der Möglichkeiten, die Sie gerne zur Verfügung stellen möchten, die spezifische Art des von Ihnen benötigten API-Tokens aus.</li>
+        <li>Klicken Sie einfach auf "Erstellen", um Ihren Token zu generieren, dann kopieren Sie ihn und fügen ihn in die App ein.</li>
+        <li>Wählen Sie auf der Grundlage der Möglichkeiten, die Sie gerne zur Verfügung stellen möchten, die spezifische Art des von Ihnen benötigten API-Tokens aus.</li>
     </ul>
 
     <div id="token_form" class="gr-12 gr-padding-10">
-        <form class="form rbox" id="frmNewToken">
+        <form>
             <fieldset>
-                <legend>Neuen Token erstellen</legend>
+    <legend>Neuen Token erstellen</legend>
+    
+                <div class="gr-row form-row center-text-m ">
+    <div class="gr-4 gr-12-m">
+        <label for="txt_name">Wählen Sie einen Namen aus:</label>
+    </div>
+    <div class="gr-8 gr-12-m">
+                <input type="text" id="txt_name" maxlength="32" />
+    
+    </div>
+</div>
 
-                <div class="gr-row gr-padding-10">
-                    <div class="gr-4 form_label">
-                        <label for="txtName">Wählen Sie einen Namen aus:</label>
-                    </div>
-                    <div class="gr-8">
-                        <input name="name" id="txtName" type="text" maxlength="32" />
-                    </div>
-                </div>
+                <div class="gr-row form-row center-text-m ">
+    <div class="gr-4 gr-12-m">
+        <label for="">Geltungsbereiche auswählen:</label>
+    </div>
+    <div class="gr-8 gr-12-m">
+                
+                    <input id="chk_scopes_read" type="checkbox" value="read" checked="checked" readonly="readonly" />
+                    <label for="chk_scopes_read" data-balloon="Kann zur Anzeige der Kontenaktivität, einschließlich Einstellungen, Limits, Guthaben, Handelsverlauf, und mehr verwendet werden." data-balloon-length="xlarge">Lesen</label>
 
-                <div class="gr-row gr-padding-10">
-                    <div class="gr-4 form_label">
-                        <label for="scopes">Geltungsbereiche auswählen:</label>
-                    </div>
-                    <div class="gr-8">
-                        <input id="scopes" type="checkbox" name="scopes[]" value="read" checked="checked" readonly="readonly" />
-                          <label for="scopes" data-balloon="Kann zur Anzeige der Kontenaktivität, einschließlich Einstellungen, Limits, Guthaben, Handelsverlauf, und mehr verwendet werden." data-balloon-length="xlarge">Lesen</label>
-                        <input id="scopes-trade" type="checkbox" name="scopes[]" value="trade" />
-                          <label for="scopes-trade" data-balloon="Kann verwendet werden, um Kontrakte zu kaufen und zu verkaufen, abgelaufene Kontrakte zu erneuern, und um virtuelle Konten aufzustocken." data-balloon-length="xlarge">Handel</label>
-                        <input id="scopes-payments" type="checkbox" name="scopes[]" value="payments" />
-                          <label for="scopes-payments" data-balloon="Kann verwendet werden, um Auszahlungen an Zahlungsagenten zu machen, Geld zwischen Konten zu transferieren und um Kassenpasswörter einzurichten oder zu löschen." data-balloon-length="xlarge">Zahlungen</label>
-                        <input id="scopes-admin" type="checkbox" name="scopes[]" value="admin" />
-                          <label for="scopes-admin" data-balloon="Kann verwendet werden, um Konten zu eröffnen, Einstellungen vorzunehmen, die Token-Verwendung zu verwalten, und mehr." data-balloon-length="xlarge">Admin</label>
-                    </div>
-                </div>
+                    <input id="chk_scopes_trade" type="checkbox" value="trade" />
+                    <label for="chk_scopes_trade" data-balloon="Kann verwendet werden, um Kontrakte zu kaufen und zu verkaufen, abgelaufene Kontrakte zu erneuern, und um virtuelle Konten aufzustocken." data-balloon-length="xlarge">Handel</label>
+
+                    <input id="chk_scopes_payments" type="checkbox" value="payments" />
+                    <label for="chk_scopes_payments" data-balloon="Kann verwendet werden, um Auszahlungen an Zahlungsagenten zu machen, Geld zwischen Konten zu transferieren und um Kassenpasswörter einzurichten oder zu löschen." data-balloon-length="xlarge">Zahlungen</label>
+
+                    <input id="chk_scopes_admin" type="checkbox" value="admin" />
+                    <label for="chk_scopes_admin" data-balloon="Kann verwendet werden, um Konten zu eröffnen, Einstellungen vorzunehmen, die Token-Verwendung zu verwalten, und mehr." data-balloon-length="xlarge">Admin</label>
+                
+    
+    </div>
+</div>
 
                 <div class="gr-row">
-                    <div class="gr-4"></div>
-                    <div class="gr-8">
-                        <div id="formMessage"></div>
-                    </div>
-                </div>
-
-                <div class="gr-row">
-                    <div class="gr-4"></div>
-                    <div class="gr-8">
-                        <span class="button">
-                            <button class="button" id="btnCreate">Erstellen</button>
-                        </span>
-                    </div>
-                </div>
-
-            </fieldset>
+    <div class="gr-8 gr-push-4 gr-12-m gr-push-0-m center-text-m">
+    <div id="msg_form" class="error-msg invisible"></div>
+    <div class="gr-padding-10">
+        <button id="btn_submit" type="submit">Erstellen</button>
+    </div>
+    </div>
+</div>
+            
+</fieldset>
         </form>
     </div>
 
@@ -401,8 +402,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <p></p>
     </div>
 
-    <div id="tokens_list" class="gr-12 gr-parent gr-padding-10">
-    </div>
+    <div id="tokens_list" class="gr-12 gr-parent gr-padding-10"><div class="barspinner dark">
+    <div class="rect1"></div>
+    <div class="rect2"></div>
+    <div class="rect3"></div>
+    <div class="rect4"></div>
+    <div class="rect5"></div>
+</div></div>
 </div>
 
 

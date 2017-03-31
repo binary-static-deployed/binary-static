@@ -12,57 +12,57 @@
 
     <p>Untuk mengakses aplikasi mobile kami dan aplikasi pihak ketiga lainnya, Anda harus membuat Token API.</p>
     <ul class="bullet">
-      <li>Cukup klik "Membuat" untuk membuat token Anda lalu copy dan paste ke dalam aplikasi.</li>
-      <li>Pilih jenis token API tertentu yang Anda butuhkan, berdasarkan kemampuan yang Anda inginkan.</li>
+        <li>Cukup klik "Membuat" untuk membuat token Anda lalu copy dan paste ke dalam aplikasi.</li>
+        <li>Pilih jenis token API tertentu yang Anda butuhkan, berdasarkan kemampuan yang Anda inginkan.</li>
     </ul>
 
     <div id="token_form" class="gr-12 gr-padding-10">
-        <form class="form rbox" id="frmNewToken">
+        <form>
             <fieldset>
-                <legend>Membuat Token Baru</legend>
+    <legend>Membuat Token Baru</legend>
+    
+                <div class="gr-row form-row center-text-m ">
+    <div class="gr-4 gr-12-m">
+        <label for="txt_name">Pilih Nama:</label>
+    </div>
+    <div class="gr-8 gr-12-m">
+                <input type="text" id="txt_name" maxlength="32" />
+    
+    </div>
+</div>
 
-                <div class="gr-row gr-padding-10">
-                    <div class="gr-4 form_label">
-                        <label for="txtName">Pilih Nama:</label>
-                    </div>
-                    <div class="gr-8">
-                        <input name="name" id="txtName" type="text" maxlength="32" />
-                    </div>
-                </div>
+                <div class="gr-row form-row center-text-m ">
+    <div class="gr-4 gr-12-m">
+        <label for="">Pilih Cangkupan:</label>
+    </div>
+    <div class="gr-8 gr-12-m">
+                
+                    <input id="chk_scopes_read" type="checkbox" value="read" checked="checked" readonly="readonly" />
+                    <label for="chk_scopes_read" data-balloon="Dapat digunakan untuk melihat aktivitas akun, termasuk pengaturan, batas, saldo, sejarah pembelian trading, dan banyak lagi." data-balloon-length="xlarge">Baca</label>
 
-                <div class="gr-row gr-padding-10">
-                    <div class="gr-4 form_label">
-                        <label for="scopes">Pilih Cangkupan:</label>
-                    </div>
-                    <div class="gr-8">
-                        <input id="scopes" type="checkbox" name="scopes[]" value="read" checked="checked" readonly="readonly" />
-                          <label for="scopes" data-balloon="Dapat digunakan untuk melihat aktivitas akun, termasuk pengaturan, batas, saldo, sejarah pembelian trading, dan banyak lagi." data-balloon-length="xlarge">Baca</label>
-                        <input id="scopes-trade" type="checkbox" name="scopes[]" value="trade" />
-                          <label for="scopes-trade" data-balloon="Dapat digunakan untuk membeli dan menjual kontrak, memperbarui kontrak dan menambah saldo pada akun virtual." data-balloon-length="xlarge">Trade</label>
-                        <input id="scopes-payments" type="checkbox" name="scopes[]" value="payments" />
-                          <label for="scopes-payments" data-balloon="Dapat digunakan untuk menarik dana ke agen pembayaran, transfer dana antar akun, dan mengatur/menghapus sandi kasir." data-balloon-length="xlarge">Pembayaran</label>
-                        <input id="scopes-admin" type="checkbox" name="scopes[]" value="admin" />
-                          <label for="scopes-admin" data-balloon="Dapat digunakan untuk mendaftar akun, menyeting, mengelola penggunaan token dan banyak lagi." data-balloon-length="xlarge">Admin</label>
-                    </div>
-                </div>
+                    <input id="chk_scopes_trade" type="checkbox" value="trade" />
+                    <label for="chk_scopes_trade" data-balloon="Dapat digunakan untuk membeli dan menjual kontrak, memperbarui kontrak dan menambah saldo pada akun virtual." data-balloon-length="xlarge">Trade</label>
+
+                    <input id="chk_scopes_payments" type="checkbox" value="payments" />
+                    <label for="chk_scopes_payments" data-balloon="Dapat digunakan untuk menarik dana ke agen pembayaran, transfer dana antar akun, dan mengatur/menghapus sandi kasir." data-balloon-length="xlarge">Pembayaran</label>
+
+                    <input id="chk_scopes_admin" type="checkbox" value="admin" />
+                    <label for="chk_scopes_admin" data-balloon="Dapat digunakan untuk mendaftar akun, menyeting, mengelola penggunaan token dan banyak lagi." data-balloon-length="xlarge">Admin</label>
+                
+    
+    </div>
+</div>
 
                 <div class="gr-row">
-                    <div class="gr-4"></div>
-                    <div class="gr-8">
-                        <div id="formMessage"></div>
-                    </div>
-                </div>
-
-                <div class="gr-row">
-                    <div class="gr-4"></div>
-                    <div class="gr-8">
-                        <span class="button">
-                            <button class="button" id="btnCreate">Membuat</button>
-                        </span>
-                    </div>
-                </div>
-
-            </fieldset>
+    <div class="gr-8 gr-push-4 gr-12-m gr-push-0-m center-text-m">
+    <div id="msg_form" class="error-msg invisible"></div>
+    <div class="gr-padding-10">
+        <button id="btn_submit" type="submit">Membuat</button>
+    </div>
+    </div>
+</div>
+            
+</fieldset>
         </form>
     </div>
 
@@ -70,6 +70,11 @@
         <p></p>
     </div>
 
-    <div id="tokens_list" class="gr-12 gr-parent gr-padding-10">
-    </div>
+    <div id="tokens_list" class="gr-12 gr-parent gr-padding-10"><div class="barspinner dark">
+    <div class="rect1"></div>
+    <div class="rect2"></div>
+    <div class="rect3"></div>
+    <div class="rect4"></div>
+    <div class="rect5"></div>
+</div></div>
 </div>

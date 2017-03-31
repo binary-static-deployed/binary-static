@@ -1,6 +1,6 @@
 <div id="content" class="self_exclusionws-content">
         <div id="page_info" style="display:none;">
-            <title>Informations du compte | Binary.com</title>
+            <title>Auto-exclusion | Binary.com</title>
             <div id="content_class">self_exclusionws-content</div>
         </div>
         
@@ -10,147 +10,150 @@
   <div class="gr-12 gr-padding-10">
 	<h1>Fonctionnalités d'auto-exclusion</h1>
 
-	<p id="selfExclusionDesc">La spéculation financière peut s'avérer addictive. Veuillez remplir le formulaire ci-dessous pour limiter votre participation sur le site Web ou envoyer une lettre ou un fax signé à notre équipe du service clientèle. Une fois vos limites fixées, vous pourrez uniquement les restreindre. Elles ne pourront être supprimées ou élargies qu'au bout de 7 jours, sauf si une date d'auto-exclusion a été sélectionnée, laquelle ne peut être supprimée ou modifiée une fois confirmée. Pour supprimer ou augmenter vos limites, veuillez contacter le <a href="/fr/contact.html">service clientèle</a>.</p>
+	<p>La spéculation financière peut s'avérer addictive. Veuillez remplir le formulaire ci-dessous pour limiter votre participation sur le site Web ou envoyer une lettre ou un fax signé à notre équipe du service clientèle. Une fois vos limites fixées, vous pourrez uniquement les restreindre. Elles ne pourront être supprimées ou élargies qu'au bout de 7 jours, sauf si une date d'auto-exclusion a été sélectionnée, laquelle ne peut être supprimée ou modifiée une fois confirmée. Pour supprimer ou augmenter vos limites, veuillez contacter le <a href="/fr/contact.html">service clientèle</a>.</p>
 
-	<p id="errorMsg" class="center-text notice-msg hidden"></p>
+	<p id="msg_error" class="center-text notice-msg invisible"></p>
 
-	<div id="loading"></div>
+	<div id="loading"><div class="barspinner dark">
+    <div class="rect1"></div>
+    <div class="rect2"></div>
+    <div class="rect3"></div>
+    <div class="rect4"></div>
+    <div class="rect5"></div>
+</div></div>
 
-	<form id="frmSelfExclusion" class="form rbox hidden">
-		<fieldset>
+	<form id="frm_self_exclusion" class="invisible">
+        <fieldset>
+    
+    
+            <div class="gr-row form-row center-text-m ">
+    <div class="gr-4 gr-12-m">
+        <label for="max_balance">Solde de trésorerie maximal du compte</label>
+    </div>
+    <div class="gr-8 gr-12-m">
+                <input type="text" id="max_balance" maxlength="20" />
+    <div class="hint">Une fois cette limite atteinte, vous ne pouvez pas continuer à faire des dépôts.</div>
+    </div>
+</div>
 
-			<div class="gr-row gr-padding-10 row clear">
-				<div class="gr-4 form_label">
-					<label for="max_balance">Solde de trésorerie maximal du compte</label>
-				</div>
-				<div class="gr-8">
-					<input name="max_balance" id="max_balance" type="text" maxlength="20" />
-					<div class="hint">Une fois cette limite atteinte, vous ne pouvez pas continuer à faire des dépôts.</div>
-				</div>
-			</div>
+            <div class="gr-row form-row center-text-m ">
+    <div class="gr-4 gr-12-m">
+        <label for="max_turnover">Limite journalière du volume des transactions</label>
+    </div>
+    <div class="gr-8 gr-12-m">
+                <input type="text" id="max_turnover" maxlength="20" />
+    <div class="hint">Maximum global des achats de contrat par jour.</div>
+    </div>
+</div>
 
-			<div class="gr-row gr-padding-10 row clear">
-				<div class="gr-4 form_label">
-					<label for="max_turnover">Limite journalière du volume des transactions</label>
-				</div>
-				<div class="gr-8">
-					<input name="max_turnover" id="max_turnover" type="text" maxlength="20" />
-					<div class="hint">Maximum global des achats de contrat par jour.</div>
-				</div>
-			</div>
+            <div class="gr-row form-row center-text-m ">
+    <div class="gr-4 gr-12-m">
+        <label for="max_losses">Limite journalière des pertes</label>
+    </div>
+    <div class="gr-8 gr-12-m">
+                <input type="text" id="max_losses" maxlength="20" />
+    <div class="hint">Maximum global des pertes par jour.</div>
+    </div>
+</div>
 
-			<div class="gr-row gr-padding-10 row clear">
-				<div class="gr-4 form_label">
-					<label for="max_losses">Limite journalière des pertes</label>
-				</div>
-				<div class="gr-8">
-					<input name="max_losses" id="max_losses" type="text" maxlength="20" />
-					<div class="hint">Maximum global des pertes par jour.</div>
-				</div>
-			</div>
+            <div class="gr-row form-row center-text-m ">
+    <div class="gr-4 gr-12-m">
+        <label for="max_7day_turnover">Limite du volume des transactions sur 7 jours</label>
+    </div>
+    <div class="gr-8 gr-12-m">
+                <input type="text" id="max_7day_turnover" maxlength="20" />
+    <div class="hint">Maximum global des achats de contrat sur une période de 7 jours.</div>
+    </div>
+</div>
 
-			<div class="gr-row gr-padding-10 row clear">
-				<div class="gr-4 form_label">
-					<label for="max_7day_turnover">Limite du volume des transactions sur 7 jours</label>
-				</div>
-				<div class="gr-8">
-					<input name="max_7day_turnover" id="max_7day_turnover" type="text" maxlength="20" />
-					<div class="hint">Maximum global des achats de contrat sur une période de 7 jours.</div>
-				</div>
-			</div>
+            <div class="gr-row form-row center-text-m ">
+    <div class="gr-4 gr-12-m">
+        <label for="max_7day_losses">Limite des pertes sur 7 jours</label>
+    </div>
+    <div class="gr-8 gr-12-m">
+                <input type="text" id="max_7day_losses" maxlength="20" />
+    <div class="hint">Maximum global des pertes sur une période de 7 jours.</div>
+    </div>
+</div>
 
-			<div class="gr-row gr-padding-10 row clear">
-				<div class="gr-4 form_label">
-					<label for="max_7day_losses">Limite des pertes sur 7 jours </label>
-				</div>
-				<div class="gr-8">
-					<input name="max_7day_losses" id="max_7day_losses" type="text" maxlength="20" />
-					<div class="hint">Maximum global des pertes sur une période de 7 jours.</div>
-				</div>
-			</div>
+            <div class="gr-row form-row center-text-m ">
+    <div class="gr-4 gr-12-m">
+        <label for="max_30day_turnover">Limite du volume des transactions sur 30 jours</label>
+    </div>
+    <div class="gr-8 gr-12-m">
+                <input type="text" id="max_30day_turnover" maxlength="20" />
+    <div class="hint">Maximum global des achats de contrat sur une période de 30 jours.</div>
+    </div>
+</div>
 
-			<div class="gr-row gr-padding-10 row clear">
-				<div class="gr-4 form_label">
-					<label for="max_30day_turnover">Limite du volume des transactions sur 30 jours </label>
-				</div>
-				<div class="gr-8">
-					<input name="max_30day_turnover" id="max_30day_turnover" type="text" maxlength="20" />
-					<div class="hint">Maximum global des achats de contrat sur une période de 30 jours.</div>
-				</div>
-			</div>
+            <div class="gr-row form-row center-text-m ">
+    <div class="gr-4 gr-12-m">
+        <label for="max_30day_losses">Limite des pertes sur 30 jours</label>
+    </div>
+    <div class="gr-8 gr-12-m">
+                <input type="text" id="max_30day_losses" maxlength="20" />
+    <div class="hint">Maximum global des pertes sur une période de 30 jours.</div>
+    </div>
+</div>
 
-			<div class="gr-row gr-padding-10 row clear">
-				<div class="gr-4 form_label">
-					<label for="max_30day_losses">Limite des pertes sur 30 jours</label>
-				</div>
-				<div class="gr-8">
-					<input name="max_30day_losses" id="max_30day_losses" type="text" maxlength="20" />
-					<div class="hint">Maximum global des pertes sur une période de 30 jours.</div>
-				</div>
-			</div>
+            <div class="gr-row form-row center-text-m ">
+    <div class="gr-4 gr-12-m">
+        <label for="max_open_bets">Nombre maximal de positions ouvertes</label>
+    </div>
+    <div class="gr-8 gr-12-m">
+                <input type="text" id="max_open_bets" maxlength="4" />
+    
+    </div>
+</div>
 
-			<div class="gr-row gr-padding-10 row clear">
-				<div class="gr-4 form_label">
-					<label for="max_open_bets">Nombre maximal de positions ouvertes</label>
-				</div>
-				<div class="gr-8">
-					<input name="max_open_bets" id="max_open_bets" type="text" maxlength="4" />
-				</div>
-			</div>
+            <div class="gr-row form-row center-text-m ">
+    <div class="gr-4 gr-12-m">
+        <label for="session_duration_limit">Limite de durée de session, en minutes</label>
+    </div>
+    <div class="gr-8 gr-12-m">
+                <input type="text" id="session_duration_limit" maxlength="5" />
+    <div class="hint">Vous compte sera automatiquement déconnecté à l'issue de ce délai.</div>
+    </div>
+</div>
 
-			<div class="gr-row gr-padding-10 row clear">
-				<div class="gr-4 form_label">
-					<label for="session_duration_limit">Limite de durée de session, en minutes</label>
-				</div>
-				<div class="gr-8">
-					<input name="session_duration_limit" id="session_duration_limit" type="text" maxlength="5" />
-					<div class="hint">Vous compte sera automatiquement déconnecté à l'issue de ce délai.</div>
-				</div>
-			</div>
-
-			<div class="gr-row gr-padding-10 row clear ja-hide">
-				<div class="gr-4 form_label">
-					<label for="timeout_until">Expiration jusqu'à</label>
-				</div>
-                <div class="gr-3 gr-8-m">
-					<input name="timeout_until_duration" id="timeout_until_duration" type="text" maxlength="15" autocomplete="off" />
-				</div>
-				<div class="gr-4-m"></div>
-				<div class="gr-5 gr-8-m">
-                    <input name="timeout_until" id="timeout_until" type="text" maxlength="8" autocomplete="off" />
-				</div>
-                <div class="gr-4"></div>
-                <div class="gr-8">
-                    <div class="hint">Veuillez saisir la date au format JJ MM, AAAA HH:mm (heure locale).</div>
+            <div class="gr-row form-row center-text-m ja-hide">
+    <div class="gr-4 gr-12-m">
+        <label for="timeout_until_date">Expiration jusqu'à</label>
+    </div>
+    <div class="gr-8 gr-12-m">
+                
+                <div class="gr-row">
+                    <div class="gr-4 gr-12-m">
+                        <input type="text" id="timeout_until_date" maxlength="15" autocomplete="off" />
+                    </div>
+                    <div class="gr-4 gr-12-m">
+                        <input type="text" id="timeout_until_time" maxlength="8" autocomplete="off" />
+                    </div>
                 </div>
-			</div>
+            
+    <div class="hint">Veuillez saisir la date au format JJ MM, AAAA HH:mm (heure locale).</div>
+    </div>
+</div>
 
-			<div class="gr-row gr-padding-10 row clear">
-				<div class="gr-4 form_label">
-					<label for="exclude_until">M'auto-exclure du site jusqu'au</label>
-				</div>
-				<div class="gr-8">
-					<input name="exclude_until" id="exclude_until" type="text" maxlength="15" autocomplete="off" />
-					<div class="hint">Veuillez saisir la date au format JJ MM, AAAA.</div>
-				</div>
-			</div>
+            <div class="gr-row form-row center-text-m ">
+    <div class="gr-4 gr-12-m">
+        <label for="exclude_until">M'auto-exclure du site jusqu'au</label>
+    </div>
+    <div class="gr-8 gr-12-m">
+                <input type="text" id="exclude_until" maxlength="15" autocomplete="off" />
+    <div class="hint">Veuillez saisir la date au format JJ MM, AAAA.</div>
+    </div>
+</div>
 
-			<div class="gr-row gr-padding-10 row clear">
-				<div class="gr-4"></div>
-				<div class="gr-8">
-					<span class="button">
-						<button class="button">Mise à jour des paramètres</button>
-					</span>
-				</div>
-			</div>
-
-			<div class="gr-row gr-padding-10 row clear">
-				<div class="gr-4"></div>
-				<div class="gr-8">
-					<div id="formMessage"></div>
-				</div>
-			</div>
-
-		</fieldset>
+            <div class="gr-row">
+    <div class="gr-8 gr-push-4 gr-12-m gr-push-0-m center-text-m">
+    <div id="msg_form" class="error-msg invisible"></div>
+    <div class="gr-padding-10">
+        <button id="btn_submit" type="submit">Mise à jour des paramètres</button>
+    </div>
+    </div>
+</div>
+        
+</fieldset>
 	</form>
 </div>

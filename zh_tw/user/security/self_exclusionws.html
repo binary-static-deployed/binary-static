@@ -23,7 +23,7 @@
         <meta property="og:type" content="website" />
         <meta property="og:image" content="/images/common/og_image.gif" />
 
-        <title>帳戶詳細資料 | Binary.com</title>
+        <title>自我禁止 | Binary.com</title>
 
         <link rel="manifest" href="/manifest.json">
         <script type="text/javascript" src="//cdn.pushwoosh.com/webpush/pushwoosh-web-notifications.js" async></script>
@@ -58,10 +58,10 @@
           <link rel="alternate" href="/zh_cn/user/security/self_exclusionws.html" hreflang="ZH_CN" /> 
           <link rel="alternate" href="/zh_tw/user/security/self_exclusionws.html?l=zh_tw" hreflang="ZH_TW" /> 
         
-         <link rel="stylesheet" href="/css/binary.min.css?i2wesavq">
-         <link rel="stylesheet" href="https://style.binary.com/binary.css?i2wesavq">
+         <link rel="stylesheet" href="/css/binary.min.css?soe9zyi5">
+         <link rel="stylesheet" href="https://style.binary.com/binary.css?soe9zyi5">
         
-        <script src='/js/binary.min.js?i2wesavq'></script>  <script src='https://style.binary.com/binary.js?i2wesavq'></script>
+        <script src='/js/binary.min.js?soe9zyi5'></script>  <script src='https://style.binary.com/binary.js?soe9zyi5'></script>
     </head>
 
 
@@ -328,10 +328,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-MZWFF7');</script>
 <!-- End Google Tag Manager -->
     <!-- FlushHead -->
+    <a href="javascript:;" id="scrollup"></a>
 
     <div id="content" class="self_exclusionws-content">
         <div id="page_info" style="display:none;">
-            <title>帳戶詳細資料 | Binary.com</title>
+            <title>自我禁止 | Binary.com</title>
             <div id="content_class">self_exclusionws-content</div>
         </div>
         
@@ -341,148 +342,151 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div class="gr-12 gr-padding-10">
 	<h1>自我禁止工具</h1>
 
-	<p id="selfExclusionDesc">金融市場交易可能使人上癮。請填寫下表以限制您對本網站的參與，或傳送簽名信或傳真到我們的客服團隊。一旦設定好後，您只能收緊限制。限制只能在7天后取消或放寬，而自我禁止期在您確認後就不能取消或更改。若要解除或增加您的限制，請聯繫<a href="/zh_tw/contact.html">客服部</a>。</p>
+	<p>金融市場交易可能使人上癮。請填寫下表以限制您對本網站的參與，或傳送簽名信或傳真到我們的客服團隊。一旦設定好後，您只能收緊限制。限制只能在7天后取消或放寬，而自我禁止期在您確認後就不能取消或更改。若要解除或增加您的限制，請聯繫<a href="/zh_tw/contact.html">客服部</a>。</p>
 
-	<p id="errorMsg" class="center-text notice-msg hidden"></p>
+	<p id="msg_error" class="center-text notice-msg invisible"></p>
 
-	<div id="loading"></div>
+	<div id="loading"><div class="barspinner dark">
+    <div class="rect1"></div>
+    <div class="rect2"></div>
+    <div class="rect3"></div>
+    <div class="rect4"></div>
+    <div class="rect5"></div>
+</div></div>
 
-	<form id="frmSelfExclusion" class="form rbox hidden">
-		<fieldset>
+	<form id="frm_self_exclusion" class="invisible">
+        <fieldset>
+    
+    
+            <div class="gr-row form-row center-text-m ">
+    <div class="gr-4 gr-12-m">
+        <label for="max_balance">最大帳戶現金餘額</label>
+    </div>
+    <div class="gr-8 gr-12-m">
+                <input type="text" id="max_balance" maxlength="20" />
+    <div class="hint">達到此限額後，您不能再存款。</div>
+    </div>
+</div>
 
-			<div class="gr-row gr-padding-10 row clear">
-				<div class="gr-4 form_label">
-					<label for="max_balance">最大帳戶現金餘額</label>
-				</div>
-				<div class="gr-8">
-					<input name="max_balance" id="max_balance" type="text" maxlength="20" />
-					<div class="hint">達到此限額後，您不能再存款。</div>
-				</div>
-			</div>
+            <div class="gr-row form-row center-text-m ">
+    <div class="gr-4 gr-12-m">
+        <label for="max_turnover">每日交易限額</label>
+    </div>
+    <div class="gr-8 gr-12-m">
+                <input type="text" id="max_turnover" maxlength="20" />
+    <div class="hint">每日最大累計合約買入量。</div>
+    </div>
+</div>
 
-			<div class="gr-row gr-padding-10 row clear">
-				<div class="gr-4 form_label">
-					<label for="max_turnover">每日交易限額</label>
-				</div>
-				<div class="gr-8">
-					<input name="max_turnover" id="max_turnover" type="text" maxlength="20" />
-					<div class="hint">每日最大累計合約買入量。</div>
-				</div>
-			</div>
+            <div class="gr-row form-row center-text-m ">
+    <div class="gr-4 gr-12-m">
+        <label for="max_losses">每日損失限額</label>
+    </div>
+    <div class="gr-8 gr-12-m">
+                <input type="text" id="max_losses" maxlength="20" />
+    <div class="hint">每日最大累計損失量。</div>
+    </div>
+</div>
 
-			<div class="gr-row gr-padding-10 row clear">
-				<div class="gr-4 form_label">
-					<label for="max_losses">每日損失限額</label>
-				</div>
-				<div class="gr-8">
-					<input name="max_losses" id="max_losses" type="text" maxlength="20" />
-					<div class="hint">每日最大累計損失量。</div>
-				</div>
-			</div>
+            <div class="gr-row form-row center-text-m ">
+    <div class="gr-4 gr-12-m">
+        <label for="max_7day_turnover">7天期交易限額</label>
+    </div>
+    <div class="gr-8 gr-12-m">
+                <input type="text" id="max_7day_turnover" maxlength="20" />
+    <div class="hint">7天期最大累計合約買入量。</div>
+    </div>
+</div>
 
-			<div class="gr-row gr-padding-10 row clear">
-				<div class="gr-4 form_label">
-					<label for="max_7day_turnover">7天期交易限額</label>
-				</div>
-				<div class="gr-8">
-					<input name="max_7day_turnover" id="max_7day_turnover" type="text" maxlength="20" />
-					<div class="hint">7天期最大累計合約買入量。</div>
-				</div>
-			</div>
+            <div class="gr-row form-row center-text-m ">
+    <div class="gr-4 gr-12-m">
+        <label for="max_7day_losses">7天期損失限額</label>
+    </div>
+    <div class="gr-8 gr-12-m">
+                <input type="text" id="max_7day_losses" maxlength="20" />
+    <div class="hint">7天期最大累計損失量。</div>
+    </div>
+</div>
 
-			<div class="gr-row gr-padding-10 row clear">
-				<div class="gr-4 form_label">
-					<label for="max_7day_losses">7天期損失限額 </label>
-				</div>
-				<div class="gr-8">
-					<input name="max_7day_losses" id="max_7day_losses" type="text" maxlength="20" />
-					<div class="hint">7天期最大累計損失量。</div>
-				</div>
-			</div>
+            <div class="gr-row form-row center-text-m ">
+    <div class="gr-4 gr-12-m">
+        <label for="max_30day_turnover">30天期交易限額</label>
+    </div>
+    <div class="gr-8 gr-12-m">
+                <input type="text" id="max_30day_turnover" maxlength="20" />
+    <div class="hint">30天期最大累計合約買入量。</div>
+    </div>
+</div>
 
-			<div class="gr-row gr-padding-10 row clear">
-				<div class="gr-4 form_label">
-					<label for="max_30day_turnover">30天期交易限額 </label>
-				</div>
-				<div class="gr-8">
-					<input name="max_30day_turnover" id="max_30day_turnover" type="text" maxlength="20" />
-					<div class="hint">30天期最大累計合約買入量。</div>
-				</div>
-			</div>
+            <div class="gr-row form-row center-text-m ">
+    <div class="gr-4 gr-12-m">
+        <label for="max_30day_losses">30天期損失限額</label>
+    </div>
+    <div class="gr-8 gr-12-m">
+                <input type="text" id="max_30day_losses" maxlength="20" />
+    <div class="hint">30天期最大累計損失量。</div>
+    </div>
+</div>
 
-			<div class="gr-row gr-padding-10 row clear">
-				<div class="gr-4 form_label">
-					<label for="max_30day_losses">30天期損失限額</label>
-				</div>
-				<div class="gr-8">
-					<input name="max_30day_losses" id="max_30day_losses" type="text" maxlength="20" />
-					<div class="hint">30天期最大累計損失量。</div>
-				</div>
-			</div>
+            <div class="gr-row form-row center-text-m ">
+    <div class="gr-4 gr-12-m">
+        <label for="max_open_bets">最大未平倉頭寸數目</label>
+    </div>
+    <div class="gr-8 gr-12-m">
+                <input type="text" id="max_open_bets" maxlength="4" />
+    
+    </div>
+</div>
 
-			<div class="gr-row gr-padding-10 row clear">
-				<div class="gr-4 form_label">
-					<label for="max_open_bets">最大未平倉頭寸數目</label>
-				</div>
-				<div class="gr-8">
-					<input name="max_open_bets" id="max_open_bets" type="text" maxlength="4" />
-				</div>
-			</div>
+            <div class="gr-row form-row center-text-m ">
+    <div class="gr-4 gr-12-m">
+        <label for="session_duration_limit">交易期持續時間限制，以分鐘作單位</label>
+    </div>
+    <div class="gr-8 gr-12-m">
+                <input type="text" id="session_duration_limit" maxlength="5" />
+    <div class="hint">在該時間後您將自動退出登入。</div>
+    </div>
+</div>
 
-			<div class="gr-row gr-padding-10 row clear">
-				<div class="gr-4 form_label">
-					<label for="session_duration_limit">交易期持續時間限制，以分鐘作單位</label>
-				</div>
-				<div class="gr-8">
-					<input name="session_duration_limit" id="session_duration_limit" type="text" maxlength="5" />
-					<div class="hint">在該時間後您將自動退出登入。</div>
-				</div>
-			</div>
-
-			<div class="gr-row gr-padding-10 row clear ja-hide">
-				<div class="gr-4 form_label">
-					<label for="timeout_until">時間已過。下次開啟時間為</label>
-				</div>
-                <div class="gr-3 gr-8-m">
-					<input name="timeout_until_duration" id="timeout_until_duration" type="text" maxlength="15" autocomplete="off" />
-				</div>
-				<div class="gr-4-m"></div>
-				<div class="gr-5 gr-8-m">
-                    <input name="timeout_until" id="timeout_until" type="text" maxlength="8" autocomplete="off" />
-				</div>
-                <div class="gr-4"></div>
-                <div class="gr-8">
-                    <div class="hint">請輸入日期，格式為日-月-年 時:分(當地時間)。</div>
+            <div class="gr-row form-row center-text-m ja-hide">
+    <div class="gr-4 gr-12-m">
+        <label for="timeout_until_date">時間已過。下次開啟時間為</label>
+    </div>
+    <div class="gr-8 gr-12-m">
+                
+                <div class="gr-row">
+                    <div class="gr-4 gr-12-m">
+                        <input type="text" id="timeout_until_date" maxlength="15" autocomplete="off" />
+                    </div>
+                    <div class="gr-4 gr-12-m">
+                        <input type="text" id="timeout_until_time" maxlength="8" autocomplete="off" />
+                    </div>
                 </div>
-			</div>
+            
+    <div class="hint">請輸入日期，格式為日-月-年 時:分(當地時間)。</div>
+    </div>
+</div>
 
-			<div class="gr-row gr-padding-10 row clear">
-				<div class="gr-4 form_label">
-					<label for="exclude_until">禁止我訪問本網站直到</label>
-				</div>
-				<div class="gr-8">
-					<input name="exclude_until" id="exclude_until" type="text" maxlength="15" autocomplete="off" />
-					<div class="hint">請輸入日期，格式為日-月-年。</div>
-				</div>
-			</div>
+            <div class="gr-row form-row center-text-m ">
+    <div class="gr-4 gr-12-m">
+        <label for="exclude_until">禁止我訪問本網站直到</label>
+    </div>
+    <div class="gr-8 gr-12-m">
+                <input type="text" id="exclude_until" maxlength="15" autocomplete="off" />
+    <div class="hint">請輸入日期，格式為日-月-年。</div>
+    </div>
+</div>
 
-			<div class="gr-row gr-padding-10 row clear">
-				<div class="gr-4"></div>
-				<div class="gr-8">
-					<span class="button">
-						<button class="button">更新設定</button>
-					</span>
-				</div>
-			</div>
-
-			<div class="gr-row gr-padding-10 row clear">
-				<div class="gr-4"></div>
-				<div class="gr-8">
-					<div id="formMessage"></div>
-				</div>
-			</div>
-
-		</fieldset>
+            <div class="gr-row">
+    <div class="gr-8 gr-push-4 gr-12-m gr-push-0-m center-text-m">
+    <div id="msg_form" class="error-msg invisible"></div>
+    <div class="gr-padding-10">
+        <button id="btn_submit" type="submit">更新設定</button>
+    </div>
+    </div>
+</div>
+        
+</fieldset>
 	</form>
 </div>
 

@@ -23,7 +23,7 @@
         <meta property="og:type" content="website" />
         <meta property="og:image" content="/images/common/og_image.gif" />
 
-        <title>Contract Specifications | Binary.com</title>
+        <title>Spécifications du contrat | Binary.com</title>
 
         <link rel="manifest" href="/manifest.json">
         <script type="text/javascript" src="//cdn.pushwoosh.com/webpush/pushwoosh-web-notifications.js" async></script>
@@ -58,10 +58,10 @@
           <link rel="alternate" href="/zh_cn/metatrader/contract-specifications.html" hreflang="ZH_CN" /> 
           <link rel="alternate" href="/zh_tw/metatrader/contract-specifications.html" hreflang="ZH_TW" /> 
         
-         <link rel="stylesheet" href="/css/binary.min.css?i2wesavq">
-         <link rel="stylesheet" href="https://style.binary.com/binary.css?i2wesavq">
+         <link rel="stylesheet" href="/css/binary.min.css?soe9zyi5">
+         <link rel="stylesheet" href="https://style.binary.com/binary.css?soe9zyi5">
         
-        <script src='/js/binary.min.js?i2wesavq'></script>  <script src='https://style.binary.com/binary.js?i2wesavq'></script>
+        <script src='/js/binary.min.js?soe9zyi5'></script>  <script src='https://style.binary.com/binary.js?soe9zyi5'></script>
     </head>
 
 
@@ -328,10 +328,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-MZWFF7');</script>
 <!-- End Google Tag Manager -->
     <!-- FlushHead -->
+    <a href="javascript:;" id="scrollup"></a>
 
     <div id="content" class="contract-specifications-content">
         <div id="page_info" style="display:none;">
-            <title>Contract Specifications | Binary.com</title>
+            <title>Spécifications du contrat | Binary.com</title>
             <div id="content_class">contract-specifications-content</div>
         </div>
         
@@ -365,9 +366,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <thead>
                     <tr>
                         <th>Symbole de devise</th>
-                        <th>Lot Size (Volume = 1.0)</th>
+                        <th>Taille du lot (Volume = 1.0)</th>
                         <th>Volume minimum</th>
-                        <th>Minimum Volume Increment</th>
+                        <th>Incrément de Volume Minimum</th>
                         <th>Effet de levier maximum</th>
                     </tr>
                 </thead>
@@ -548,33 +549,33 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <div class="gr-12 gr-padding-10">
         <h2>Comment lire le tableau ci-dessus ?</h2>
         <p>The Forex is typically traded in <i>lots</i>. One standard <i>lots</i> is equivalent to 100,000 units. Each time you open a position on a currency symbol, you can start with a minimum transaction of <i>0.01 lots</i>.</p>
-        <p>Leverage indicates how much capital you can control based on your initial deposit. For example, a 100:1 leverage will allow you to control up to USD 100,000 using only USD 1,000 of your own money as deposit.</p>
+        <p>L'effet de levier indique la somme de capitaux que vous pouvez contrôler en fonction de votre dépôt initial. Par exemple, un effet de levier de 100:1 vous permettra de contrôler jusqu'à 100 000 USD en n'utilisant que 1000 USD de vos fonds en dépôt.</p>
         <p>To learn more, read our <a href="/fr/metatrader/margin-policy.html">Margin Policy</a> that further explains our 100% forced liquidation level for Forex.</p>
 
-        <h2>Important notes on our swap rates (overnight funding)</h2>
-        <p>If you keep any positions open overnight, an interest adjustment will be made to your trading account as indication of the cost required to keep your position open. This adjustment is based on interbank lending rates, on top of a 2% fee.</p>
+        <h2>Informations importantes concernant nos taux de swap</h2>
+        <p>Si vous gardez des positions ouvertes de nuit, un ajustement des intérêts sera fait à votre compte de trading comme indication du coût requis pour garder votre position ouverte. L'ajustement est basé sur le taux de prêt Interbancaire, avec en plus 2% de frais.</p>
         <p>The interest adjustment is calculated in points, meaning we will convert the relevant interbank lending rates to points in the base currency.</p>
         <p>The swap rate will depend on the direction of the position you take:</p>
         <div class="gr-prefix-1">
             <ul class="bullet">
                 <li><strong>Positions longues</strong> : Nous facturons un taux de 2 % en sus des taux de prêt interbancaire.
-                    <span data-balloon-length="large" data-balloon="Let's say the points adjustment for a long position on the EUR/USD symbol is -5.64. This would require an overnight fee of 5.64 points for one lot of open position in EUR/USD, where the size of one lot is 100,000 units. The points will then be converted into the deposit currency (which is the euro in this example). As a result, you will incur an interest fee of EUR5.64 for keeping the position open overnight.">
-                        How do we calculate interest fees for long positions?
+                    <span data-balloon-length="large" data-balloon="Prenons l'exemple d'une position longue pour laquelle le différentiel en points est de -5,64. Des frais de reconduction overnight de 5,64 points sont requis pour un lot de positions ouvertes en EUR/USD, avec une taille de lot de 100 000 unités. Les points seront ensuite convertis dans la devise de dépôt (dans cet exemple il s'agit de l'euro). Par conséquent, les frais d'intérêt vous permettant de maintenir votre position ouverte d'un jour sur l'autre seront de 5,64 EUR.">
+                        Comment calculons-nous les frais d’intérêts pour les positions longues ?
                     </span>
                 </li>
                 <li><strong>Position courte</strong> : Nous facturons un taux de 2 % en sus des atux de prêt interbancaire.
-                    <span data-balloon-length="large" data-balloon="Let's say the points adjustment for a short position on the EUR/USD symbol is 1.64. This would result in an overnight credit of 1.64 points for one lot of open position in EUR/USD where the size of one lot is 100,000 units. The points will then be converted into the deposit currency (which is the euro in this example). As a result, you will be credited with EUR1.64 for keeping the position open overnight.">
-                        How do we calculate interest fees for short positions?
+                    <span data-balloon-length="large" data-balloon="Prenons l'exemple d'une position courte sur l'EUR/USD pour laquelle le différentiel en points est de 1,64. Ceci engendre un crédit overnight de 1,64 points pour un lot de positions ouvertes en EUR/USD, avec une taille de lot de 100 000 unités. Les points seront ensuite convertis dans la devise de dépôt (dans cet exemple il s'agit de l'euro). Par conséquent, vous serez crédités de 1,64 EUR en maintenant votre positions ouverte d'un jour sur l'autre.">
+                        Comment calculons nous les frais d’intérêt pour les positions longues ?
                     </span>
                 </li>
             </ul>
         </div>
-        <p>Please take note that our swap rate also depends on the time and days you hold your positions open: </p>
+        <p>S'il vous plait prenez note que notre taux swap dépend également du temps en heures et jours que vous maintenez vos positions ouvertes: </p>
         <div class="gr-prefix-1">
             <ul class="bullet">
                 <li>You will be subjected to swap rates if you keep a position open past 23:59:59 GMT.</li>
-                <li>Positions that are still open on Wednesday at 23:59:59 GMT will be charged three times the swap rate to account for weekends, a standard practice for all Forex brokers.</li>
-                <li>Our swap rate may also be adjusted to take holidays into account.</li>
+                <li>Les positions qui sont encore ouvertes le mercredi à  23:59:59 GMT seront facturées trois fois le taux swap pour compte durant les weekends, une pratique courante pour tous les courtiers Forex.</li>
+                <li>Notre taux swap peut être aussi ajusté pour prendre en compte les vacances.</li>
             </ul>
         </div>
     </div>
@@ -583,16 +584,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div id="volatility-content" class="toggle-content invisible">
                 <div id="volatility-specs" class="gr-row">
     <div class="gr-12 gr-padding-10">
-        <h1>Contract Specifications (CFD) - Volatility Indices</h1>
+        <h1>Spécifications Contrat (CFD) - Indices de Volatilité</h1>
         <div class="table-container">
             <table>
                 <thead>
                     <tr>
                         <th>Symbol</th>
                         <th>Volume 1.0 (Trade Size)</th>
-                        <th>Minimum Volume (Trade Size)</th>
-                        <th>Maximum Volume (Trade Size)</th>
-                        <th>Minimum Volume Increment</th>
+                        <th>Volume Minimum (Taille de l'Échange)</th>
+                        <th>Volume Maximum (Taille de l'Échange)</th>
+                        <th>Incrément de Volume Minimum</th>
                         <th>Valeur du pip</th>
                         <th>Spread minimum</th>
                         <th>Marge</th>
@@ -601,7 +602,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <tbody>
                     <tr>
                         <th>Volatility 100 Index</th>
-                        <td>USD 1 per point</td>
+                        <td>1 USD par point de base</td>
                         <td>0.01</td>
                         <td>100</td>
                         <td>0.01</td>
@@ -611,7 +612,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     </tr>
                     <tr>
                         <th>Volatility 75 Index</th>
-                        <td>USD 1 per point</td>
+                        <td>1 USD par point de base</td>
                         <td>0.01</td>
                         <td>100</td>
                         <td>0.01</td>
@@ -621,7 +622,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     </tr>
                     <tr>
                         <th>Volatility 50 Index</th>
-                        <td>USD 1 per point</td>
+                        <td>1 USD par point de base</td>
                         <td>0.5</td>
                         <td>100</td>
                         <td>0.01</td>
@@ -631,7 +632,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     </tr>
                     <tr>
                         <th>Volatility 25 Index</th>
-                        <td>USD 1 per point</td>
+                        <td>1 USD par point de base</td>
                         <td>0.5</td>
                         <td>100</td>
                         <td>0.01</td>
@@ -641,7 +642,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     </tr>
                     <tr>
                         <th>Volatility 10 Index</th>
-                        <td>USD 1 per point</td>
+                        <td>1 USD par point de base</td>
                         <td>0.1</td>
                         <td>100</td>
                         <td>0.01</td>
@@ -650,8 +651,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <td>0.2%</td>
                     </tr>
                     <tr>
-                        <th data-balloon="High frequency (2 ticks per second)">HF Volatility 100 Index</th>
-                        <td>USD 1 per point</td>
+                        <th data-balloon="Haute fréquence (2 ticks par seconde)">HF Volatility 100 Index</th>
+                        <td>1 USD par point de base</td>
                         <td>0.3</td>
                         <td>100</td>
                         <td>0.01</td>
@@ -660,8 +661,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <td>0.2%</td>
                     </tr>
                     <tr>
-                        <th data-balloon="High frequency (2 ticks per second)">HF Volatility 50 Index</th>
-                        <td>USD 1 per point</td>
+                        <th data-balloon="Haute fréquence (2 ticks par seconde)">HF Volatility 50 Index</th>
+                        <td>1 USD par point de base</td>
                         <td>0.5</td>
                         <td>100</td>
                         <td>0.01</td>
@@ -670,8 +671,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <td>0.2%</td>
                     </tr>
                     <tr>
-                        <th data-balloon="High frequency (2 ticks per second)">HF Volatility 10 Index</th>
-                        <td>USD 1 per point</td>
+                        <th data-balloon="Haute fréquence (2 ticks par seconde)">HF Volatility 10 Index</th>
+                        <td>1 USD par point de base</td>
                         <td>0.1</td>
                         <td>100</td>
                         <td>0.01</td>
@@ -686,16 +687,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     <div class="gr-12 gr-padding-10">
         <h2>Comment lire le tableau ci-dessus ?</h2>
-        <p>CFD (Contract for Difference): CFD is an instrument that allows you to profit by speculating on the rise or fall of an instrument. The profit/loss is estimated as a function of the difference in the buy/sell prices of the underlying instrument.</p>
-        <p>For example, the CFDs on Volatility Indices offer a USD 1 per point contract. If you buy a Volume 1.0 contract for the Volatility 100 Index with current ask price of USD 20,000 and later sell it at a bid price of USD 20,010, your net profit will be calculated as follows:</p>
+        <p>CFD (contrat pour difference): CFD est un instrument qui vous permet de faire du profit en spéculant sur la hausse ou la baisse d'un instrument. Le profit ou la perte est estimé en fonction de la difference dans les prix achat/vente de l'instrument sous-jacent.</p>
+        <p>Par exemple, les CFD sur les indices de volatilité offrent des contrats à 1 dollar US par point. Si vous achetez un contrat de volume 1,0 pour l'indice « Volatility 100 » à un prix ask (vendeur) de 20 000 USD et le revendez plus tard à un prix bid (acheteur) 20 010, votre profit net sera calculé comme suit :</p>
         <div class="gr-12 gr-padding-10 fill-bg-color">
             <div class="gr-prefix-1">
                 <p>(Prix de vente - Prix d'achat) x Volume x Montant par point = Profit</p>
-                <p>I.e. (20010 - 20000) x 1 x 1 = USD 10</p>
+                <p>par exemple (20010-20000) x 1 x 1 = 10 Dollars</p>
             </div>
         </div>
-        <p>Each time you open a position on a Volatility Index symbol, you can start with a minimum volume transaction of 0.01 (trade size), which translates to USD 0.01 per point movement of the index.</p>
-        <p>Margin indicates how much investment you can control based on your initial capital. For example, a 0.2% margin will allow you to control up to USD 500,000 using only USD 1,000 of your own money as deposit.</p>
+        <p>Chaque fois que vous ouvrez une position sur un Symbole d'Indice de Volatilité, vous pouvez commencer avec un volume minimum de transaction de 0.01 (taille de l'opération), ce qui se convertit en 0.01 dollar par point de mouvement de l'index.</p>
+        <p>La marge indique combien d'investissement vous pouvons contrôler en se basant sur votre capital initial. Par exemple, une marge de 0.2% va vous permettre de contrôler jusqu'à 500,000 dollars en utilisant seulement 1000 dollars de votre propre argent comme depot.</p>
         <p>To learn more, read our <a href="/fr/metatrader/margin-policy.html">Margin Policy</a> that further explains our 50% forced liquidation level for Volatility Indices.</p>
     </div>
 </div>
@@ -703,7 +704,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div id="cash-content" class="toggle-content invisible">
                 <div id="cash-specs" class="gr-row">
     <div class="gr-12 gr-padding-10">
-        <h1>Contract Specifications (CFD) - Cash Indices</h1>
+        <h1>Spécifications contrat (CFD) - Indices Cash</h1>
         <div class="table-container">
             <table>
                 <thead>
@@ -711,8 +712,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     <th>Symbol</th>
                     <th>Description</th>
                     <th>Volume 1.0<br>(Trade Size)</th>
-                    <th>Minimum Volume<br>(Trade Size)</th>
-                    <th>Maximum Volume<br>(Trade Size)</th>
+                    <th>Volume Minimum<br>(Taille de l'Échange)</th>
+                    <th>Volume Maximum<br>(Taille de l'Échange)</th>
                     <th>Marge</th>
                 </tr>
                 </thead>
@@ -736,7 +737,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <tr>
                     <td>IND_50</td>
                     <td>India 50 Cash Index</td>
-                    <td>USD 1 per point</td>
+                    <td>1 USD par point de base</td>
                     <td>1</td>
                     <td>100</td>
                     <td>0.2%</td>
@@ -784,7 +785,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <tr>
                     <td>ZAF_40</td>
                     <td>South Africa 40 Cash Index</td>
-                    <td>ZAR 1 per point</td>
+                    <td>1 ZAR par point de base</td>
                     <td>1</td>
                     <td>100</td>
                     <td>0.2%</td>
@@ -808,7 +809,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <tr>
                     <td>US_30</td>
                     <td>US 30 Cash Index</td>
-                    <td>USD 1 per point</td>
+                    <td>1 USD par point de base</td>
                     <td>1</td>
                     <td>200</td>
                     <td>0.2%</td>
@@ -816,7 +817,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <tr>
                     <td>US_100</td>
                     <td>US 100 Cash Index</td>
-                    <td>USD 1 per point</td>
+                    <td>1 USD par point de base</td>
                     <td>1</td>
                     <td>200</td>
                     <td>0.2%</td>
@@ -824,7 +825,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <tr>
                     <td>US_500</td>
                     <td>US 500 Cash Index</td>
-                    <td>USD 1 per point</td>
+                    <td>1 USD par point de base</td>
                     <td>1</td>
                     <td>200</td>
                     <td>0.2%</td>
@@ -836,18 +837,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     <div class="gr-12 gr-padding-10">
         <h2>Comment lire le tableau ci-dessus ?</h2>
-        <p>CFD (Contract for Difference): CFD is an instrument that allows you to profit by speculating on the rise or fall of an instrument. The profit/loss is estimated as a function of the difference in the buy/sell prices of the underlying instrument.</p>
-        <p>For example, the CFDs on US 30 Cash Index offer a USD 1 per point contract. If you buy a Volume 1.0 contract for the US 30 Cash Index with current ask price of USD 20,000 and later sell it at a bid price of USD 20,010, your net profit will be calculated as follows:</p>
+        <p>CFD (contrat pour difference): CFD est un instrument qui vous permet de faire du profit en spéculant sur la hausse ou la baisse d'un instrument. Le profit ou la perte est estimé en fonction de la difference dans les prix achat/vente de l'instrument sous-jacent.</p>
+        <p>Par exemple, les CFD sur l'indice « US 30 Cash Index » offrent des contrats de 1 dollar US par point. Si vous achetez un contrat de volume 1,0 pour l'indice « US 30 Cash Index » à un prix ask (vendeur) de 20 000 USD et le revendez plus tard à un prix bid (acheteur) de 20 010, votre profit net sera calculé comme suit :</p>
         <div class="gr-12 gr-padding-10 fill-bg-color">
             <div class="gr-prefix-1">
                 <p>(Prix de vente - Prix d'achat) x Volume x Montant par point = Profit</p>
-                <p>I.e. (20010 - 20000) x 1 x 1 = USD 10</p>
+                <p>par exemple (20010-20000) x 1 x 1 = 10 Dollars</p>
             </div>
         </div>
-        <p>Margin indicates how much investment you can control based on your initial capital. For example, a 1% margin will allow you to control up to USD 100,000 using only USD 1,000 of your own money as deposit.</p>
+        <p>La marge indique combien d'investissement vous pouvez contrôler en se basant sur votre capital initial. Par exemple, une marge d'1% vous permettra de contrôler jusqu'à 100 000 dollars en utilisant seulement 1000 dollars de votre argent comme dépôt.</p>
         <p>To learn more, read our <a href="/fr/metatrader/margin-policy.html">Margin Policy</a> that further explains our margin requirements.</p>
-        <h2>Important notes on our swap rates (overnight funding)</h2>
-        <p>If you keep any positions open overnight, an interest adjustment will be made to your trading account as indication of the cost required to keep your position open. This adjustment is based on interbank lending rates, on top of a 2% fee.</p>
+        <h2>Informations importantes concernant nos taux de swap</h2>
+        <p>Si vous gardez des positions ouvertes de nuit, un ajustement des intérêts sera fait à votre compte de trading comme indication du coût requis pour garder votre position ouverte. L'ajustement est basé sur le taux de prêt Interbancaire, avec en plus 2% de frais.</p>
         <p>The interest adjustment is calculated in points, meaning we will convert the relevant market rates to points in the base instrument.</p>
         <p>The swap rate will depend on the direction of the position you take:</p>
         <div class="gr-prefix-1">
@@ -856,12 +857,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <li><strong>Position courte</strong> : Nous facturons un taux de 2 % en sus du cours du marché.</li>
             </ul>
         </div>
-        <p>Please take note that our swap rate also depends on the time and days you hold your positions open: </p>
+        <p>S'il vous plait prenez note que notre taux swap dépend également du temps en heures et jours que vous maintenez vos positions ouvertes: </p>
         <div class="gr-prefix-1">
             <ul class="bullet">
                 <li>You will be subjected to swap rates if you keep a position open past the market close.</li>
-                <li>Positions that are still open on Friday at market close will be charged three times the swap rate to account for weekends, a standard practice for all brokers.</li>
-                <li>Our swap rate may also be adjusted to take holidays into account.</li>
+                <li>Les positions que vous avez encore ouvertes le vendredi à la clôture du marché seront facturées trois fois le taux swap pour compte durant les weekends, une pratique standard pour tous les courtiers.</li>
+                <li>Notre taux swap peut être aussi ajusté pour prendre en compte les vacances.</li>
             </ul>
         </div>
     </div>
@@ -1066,7 +1067,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </div>
         <div id="ratelimit-error-message">
             <div class="message">
-                You have reached the rate limit of requests per second. Please try later.
+                Vous avez atteint la limite de tentatives par seconde. Veuillez réessayer ultérieurement.
             </div>
         </div>
     </div>
@@ -1074,7 +1075,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <div class="container">
             <div class="gr-padding-10">
                 <p class="gambling content-inverse-color">
-                    Trading binary options may not be suitable for everyone, so please ensure that you fully understand the risks involved. Your losses can exceed your initial deposit and you do not own or have any interest in the underlying asset. In regards to binary options which are gambling products, remember that gambling can be addictive - please play responsibly. <span class="ja-hide">Read about <a href="/fr/responsible-trading.html">Responsible Trading</a>.</span>
+                    Le trading d'options binaires ne convient pas nécessairement à tout le monde et vous devez vous assurer de bien comprendre les risques associés. Vos pertes peuvent excéder votre dépôt initial et vous ne détenez aucune partie de l'actif sous-jacent. Les options binaires sont des produits apparentés aux jeux d'argent. N'oubliez pas que ces derniers peuvent s'avérer addictifs : jouez de manière responsable. <span class="ja-hide">Lisez notre article consacré au <a href="/fr/responsible-trading.html">trading responsable</a>.</span>
                 </p>
             </div>
         </div>
