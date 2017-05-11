@@ -63,13 +63,6 @@
                     <p>Si vous sélectionnez « Baisse », vous gagnez si le prix du marché est inférieur au </strong>point d'entrée</strong>.</p>
                 </div>
 
-                <div id="winning_spreads" class="invisible">
-                    <p>Structure de paiement des Contrats Spread sur la base du mouvement de l'indice par rapport au niveau d'entrée du contrat.</p>
-                    <p>Les contrats « <strong>longs</strong> » génèrent des profits lorsque l'indice augmente et des pertes lorsque l'indice baisse.</p>
-                    <p>Les contrats « <strong>courts</strong> » génèrent des pertes lorsque l'indice augmente et des profits lorsque l'indice baisse.</p>
-                    <p>Les niveaux stop-loss et stop-profit sont garantis. Les pertes et profits sont respectivement limités aux niveaux stop-loss et stop-profit. Lorsque le niveau de sortie atteint le stop-loss ou le stop-profit, le contrat est clôturé au niveau stop correspondant.</p>
-                </div>
-
                 <div id="winning_staysinout" class="invisible">
                     <p>Si vous sélectionnez « Reste dans la zone », vous gagnez si le marché ne touche jamais ni la <strong>barrière supérieure<strong> ni la <strong>barrière inférieure<strong>, sur toute la durée de la <strong>période de contrat<strong>.</p>
                     <p>Si vous sélectionnez « Sort de la zone », vous gagnez si le marché touche soit la <strong>barrière supérieure<strong>, soit la <strong>barrière inférieure<strong>, à tout moment de la <strong>période de contrat<strong>.</p>
@@ -170,12 +163,6 @@
                     </p>
                     <br />
                     <p class="hint"><strong>Remarque: </strong>Les contrats « Hausse/Baisse » seront remboursés si les conditions suivantes se présentent : (1) moins de 2 ticks sont enregistrés entre le début et la fin de l'opération, ou (2) pour les contrats d'une durée de un tick, si le contrat n'arrive pas à échéance dans un délai de 5 minutes, ou (3) pour les contrats dont l'horaire d'activation est ultérieur, si aucun tick n'est enregistré dans les 5 minutes précédant l'heure de début.</p>
-                </div>
-
-                <div id="explain_spreads" class="invisible">
-                    <h3>Niveau d'entrée</h3>
-                    <p>Pour les contrats longs, le niveau d'entrée correspond au prix spot (au comptant) plus la moitié du spread, tandis que le niveau de sortie correspond au prix spot moins la moitié du spread. Pour les contrats courts, le niveau d'entrée correspond au spot moins la moitié du spread, tandis que le niveau de sortie correspond au spot plus la moitié du spread.</p>
-                    <p>Le montant des gains/pertes par point de hausse/baisse est multiplié par le montant par point de base. Un montant par point de base élevé générera un volume de gains/pertes élevé par point de mouvement de l'indice.</p>
                 </div>
 
                 <div id="explain_staysinout" class="invisible">

@@ -12,14 +12,14 @@
 
     <div id="paymentagent_withdrawal">
 
-        <div id="viewError" class="viewItem hidden">
-            <p id="custom-error" class="notice-msg center-text hidden"></p>
-            <p id="withdrawal-locked-error" class="notice-msg center-text hidden">
+        <div id="viewError" class="viewItem invisible">
+            <p id="custom-error" class="notice-msg center-text invisible"></p>
+            <p id="withdrawal-locked-error" class="notice-msg center-text invisible">
                 您的帳戶現時無法取款。請聯繫 <a href="mailto:support@binary.com">support@binary.com</a>進行解鎖。
             </p>
         </div>
 
-        <div id="viewSuccess" class="viewItem hidden">
+        <div id="viewSuccess" class="viewItem invisible">
             <p id="successMessage"></p>
             <p>
                 <a class="button" href="/zh_tw/user/statementws.html">
@@ -28,7 +28,7 @@
             </p>
         </div>
 
-        <form id="viewConfirm" class="viewItem hidden">
+        <form id="viewConfirm" class="viewItem invisible">
             <p>請確認交易詳細資料以完成轉帳：</p>
 
             <p>轉給: <span id="lblAgentName"></span><br />金額: <span id="lblCurrency"></span> <span id="lblAmount"></span></p>
@@ -37,7 +37,7 @@
             <button class="button" type="submit">確認</button>
         </form>
 
-        <div id="viewForm" class="viewItem hidden">
+        <div id="viewForm" class="viewItem invisible">
             <p>從電郵領取權杖後請提供下列資訊：</p>
             <form class="form rbox gr-padding-10" id="frmWithdrawal">
                 <fieldset>

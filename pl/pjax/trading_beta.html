@@ -141,44 +141,11 @@
                                                 <option value="payout" id="payout_option">Wypłata</option>
                                                 <option value="stake" id="stake_option">Stawka</option>
                                             </select>
-                                            <label for="amount_per_point" id="amount_per_point_label" class="small_width_input">Kwota na punkt</label>
                                         </div>
                                         <div class="row-inner big-col">
                                             <div class="col-inner">
                                                 <select id="currency" class="small_width_input"></select>
                                                 <input id="amount" type="text" step="any" maxlength="10" value="10" class="medium_width_input" autocomplete="off" />
-                                                <input id="amount_per_point" type="number" step="any" value="1" class="medium_width_input" autocomplete="off" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div id="spread_element_container">
-                                        <div class="row">
-                                            <div class="col form_label">
-                                                <label for="stop_type" id="stop_type_label">Stop-typ</label>
-                                            </div>
-                                            <div class="big-col">
-                                                <input type="radio" name="stop_type" id="stop_type_points" value="point" checked/>
-                                                <label id="stop_type_points_label" class="radio_label" for="stop_type_points">Punkty</label>
-                                                <input type="radio" name="stop_type" id="stop_type_dollar" value="dollar" />
-                                                <label id="stop_type_dollar_label" class="radio_label" for="stop_type_dollar"></label>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col form_label">
-                                                <label for="stop_loss" id="stop_loss_label">Stop-stratom</label>
-                                            </div>
-                                            <div class="big-col">
-                                                <input id="stop_loss" type="number" step="any" value="15" autocomplete="off" />
-                                                <label></label>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col form_label">
-                                                <label for="stop_profit" id="stop_profit_label">Stop-zyskom</label>
-                                            </div>
-                                            <div class="big-col">
-                                                <input id="stop_profit" type="number" step="any" value="10" autocomplete="off" />
-                                                <label></label>
                                             </div>
                                         </div>
                                     </div>
@@ -376,7 +343,7 @@
                 <a href="/pl/cashier/forwardws.html#deposit" class="button nowrap ja-hide">
                     <span>Wpłać środki</span>
                 </a>
-                <a href="/pl/cashier/deposit-jp.html" class="button nowrap all-hide ja-show">
+                <a href="/pl/cashier/deposit-jp.html" class="button nowrap invisible ja-show">
                     <span>Wpłać środki</span>
                 </a>
             </span>
@@ -414,12 +381,37 @@
     </div>
 </div></div>
             <div id="tab_explanation-content" class="toggle-content selectedTab"></div>
-            <div id="tab_last_digit-content" class="toggle-content invisible"></div>
+            <div id="tab_last_digit-content" class="toggle-content invisible">
+                <div class="gr-parent">
+                    <div id="last_digit_histo_form" class="gr-12 gr-12-m gr-centered">
+                        <div class="smallfont gr-row">
+                            <div class="gr-6 gr-12-m center-text">
+                                <label class="gr-padding-10" for="digit_underlying">Wybierz rynek:</label>
+                                <br/>
+                                <select class="smallfont" id="digit_underlying"></select>
+                            </div>
+                            <div class="gr-6 gr-12-m center-text">
+                                <label class="gr-padding-10" for="tick_count">Liczba najmniejszych przyrostów ceny:</label>
+                                <br/>
+                                <select class="smallfont" id="tick_count">
+                                    <option value="25">25</option>
+                                    <option value="50">50</option>
+                                    <option selected="selected" value="100">100</option>
+                                    <option value="500">500</option>
+                                    <option value="1000">1000</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="last_digit_histo" class="gr-12 gr-12-m gr-centered"></div>
+                    <div id="last_digit_title" class="gr-hide"><span id="digit_domain"></span> - Statystyki końcowych cyfr dla ostatnich <span id="digit_info_count">100</span> transakcji z najmniejszym przyrostem ceny dla rynku <span id="digit_info_underlying"></span></div>
+                </div>
+            </div>
             <div id="tab_japan_info-content" class="toggle-content invisible"></div>
             <div id="tab_asset_index-content" class="toggle-content invisible"><h1>Indeks kapitałowy</h1>
 
 <div class="gr-padding-10">
-    <p class="error-msg hidden" id="errorMsg"></p>
+    <p class="error-msg invisible" id="errorMsg"></p>
 
     <div id="asset-index" class="has-tabs gr-parent"></div>
 </div></div>
@@ -431,7 +423,7 @@
 <p>Wszystkie godziny są podane według czasu GMT (Greenwich Mean Time).</p>
 
 <div class="gr-padding-10">
-    <p class="error-msg hidden" id="errorMsg"></p>
+    <p class="error-msg invisible" id="errorMsg"></p>
 
     <div id="trading-times" class="has-tabs gr-parent"></div>
 </div></div>

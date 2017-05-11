@@ -63,13 +63,6 @@
                     <p>Si selecciona "baja", ganará el pago si el precio del mercado es inferior al <strong>punto de entrada</strong>.</p>
                 </div>
 
-                <div id="winning_spreads" class="invisible">
-                    <p>El pago de contratos spread basado en el movimiento del índice con respecto al nivel de entrada del contrato.</p>
-                    <p>Contratos '<strong>largos</strong>' generan beneficios cuando el índice sube y pérdidas cuando este cae.</p>
-                    <p>Los contratos '<strong>cortos</strong>' generan pérdidas cuando el índice sube y beneficios cuando este cae.</p>
-                    <p>Los stop loss y stop profit están garantizados. Las pérdidas y los beneficios se limitan al stop loss y el stop profit respectivamente. Cuando el nivel de salida toca el stop loss o el stop profit, el contrato se cierra al nivel del stop loss o stop profit.</p>
-                </div>
-
                 <div id="winning_staysinout" class="invisible">
                     <p>Si selecciona "Queda dentro", gana el pago si el mercado se mantiene dentro de la <strong>barrera superior</strong> y de la <strong>inferior</strong> (sin tocarlas) en todo momento durante el <strong>plazo del contrato</strong>.</p>
                     <p>Si selecciona "Sale", ganará el pago si el mercado toca ya sea la <strong>barrera superior</strong> o la <strong>inferior</strong> en cualquier momento durante el <strong>plazo del contrato</strong>.</p>
@@ -170,12 +163,6 @@
                     </p>
                     <br />
                     <p class="hint"><strong>Nota: </strong>Los contratos Sube/Baja serán reembolsados con el precio de compra si ocurren las siguientes condiciones: (1) hay menos de 2 ticks entre el tiempo de inicio y el tiempo final, o (2) para contratos de duración tick, si el contrato no termina dentro de 5 minutos, o (3) para los contratos que comienzan en el futuro, si no hay ticks en los 5 minutos antes del tiempo de inicio del contrato.</p>
-                </div>
-
-                <div id="explain_spreads" class="invisible">
-                    <h3>Nivel de entrada</h3>
-                    <p>Para contratos largos, el nivel de entrada será el precio spot más la mitad del spread mientras que el nivel de salida será el precio spot menos la mitad del spread. Para contratos cortos, el nivel de entrada será el precio spot menos la mitad del spread mientras que el nivel de salida será el precio spot más la mitad del spread.</p>
-                    <p>La cantidad de beneficios/pérdidas por cada punto de subida/caída del mercado se multiplica por la cantidad por punto. Una gran cantidad por punto se traducirá en grandes beneficios/pérdidas por punto del movimiento del índice.</p>
                 </div>
 
                 <div id="explain_staysinout" class="invisible">

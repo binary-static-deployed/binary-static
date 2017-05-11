@@ -452,11 +452,11 @@
     <div class="gr-8 gr-12-m">
                 <select id="net_income" class="form_input" > 
         <option value="">Bitte wählen Sie</option>
-        <option value="Less than &#36;25,000">Weniger als 25.000&#36;</option>
-        <option value="&#36;25,000 - &#36;50,000">25.000&#36; - 100.000&#36;</option>
-        <option value="&#36;50,001 - &#36;100,000">50.001&#36; - 100.000&#36;</option>
-        <option value="&#36;100,001 - &#36;500,000">100.000&#36; - 500.000&#36;</option>
-        <option value="Over &#36;500,000">Über 500.001&#36;</option>
+    <option value="Less than $25,000">Less than $25,000</option>
+    <option value="$25,000 - $50,000">$25,000 - $50,000</option>
+    <option value="$50,001 - $100,000">$50,001 - $100,000</option>
+    <option value="$100,001 - $500,000">$100,001 - $500,000</option>
+    <option value="Over $500,000">Over $500,001</option>
                 </select>
     
     </div>
@@ -469,16 +469,46 @@
     <div class="gr-8 gr-12-m">
                 <select id="estimated_worth" class="form_input" > 
         <option value="">Bitte wählen Sie</option>
-        <option value="Less than &#36;100,000">Weniger als 100.000&#36;</option>
-        <option value="&#36;100,000 - &#36;250,000">100.000&#36; - 250.000&#36;</option>
-        <option value="&#36;250,001 - &#36;500,000">250.001&#36; - 500.000&#36;</option>
-        <option value="&#36;500,001 - &#36;1,000,000">500.001&#36; - 1.000.000&#36;</option>
-        <option value="Over &#36;1,000,000">Über 1.000.000&#36;</option>
+        <option value="Less than $100,000">Less than $100,000</option>
+        <option value="$100,000 - $250,000">$100,000 - $250,000</option>
+        <option value="$250,001 - $500,000">$250,001 - $500,000</option>
+        <option value="$500,001 - $1,000,000">$500,001 - $1,000,000</option>
+        <option value="Over $1,000,000">Over $1,000,000</option>
                 </select>
     
     </div>
 </div>
 
+    <div class="gr-row form-row center-text-m ">
+    <div class="gr-4 gr-12-m">
+        <label for="account_turnover">Anticipated Account Turnover</label>
+    </div>
+    <div class="gr-8 gr-12-m">
+                <select id="account_turnover" class="form_input" > 
+        <option value="">Bitte wählen Sie</option>
+    <option value="Less than $25,000">Less than $25,000</option>
+    <option value="$25,000 - $50,000">$25,000 - $50,000</option>
+    <option value="$50,001 - $100,000">$50,001 - $100,000</option>
+    <option value="$100,001 - $500,000">$100,001 - $500,000</option>
+    <option value="Over $500,000">Over $500,001</option>
+                </select>
+    
+    </div>
+</div>
+
+</fieldset>
+
+                <fieldset>
+    <legend>PEP Erklärung</legend>
+
+    <div class="gr-12">
+        <p>Eine PEP ist eine Einzelperson, die mit einem wichtigen, öffentlichen Amt betraut ist oder betraut war. Dieser Status weitet sich auf Verwandte und nahe Kollegen des PEPs aus.</p>
+    </div>
+
+    <div class="gr-padding-10 gr-12">
+        <input id="not_pep" type="checkbox" />
+        <label for="not_pep">Ich bestätige hiermit, dass ich keine politisch exponierte Person (PEP) bin.</label>
+    </div>
 </fieldset>
 
                 <fieldset>
@@ -491,7 +521,7 @@
                     <div class="gr-row">
                         <div class="gr-12-m gr-padding-10 gr-centered">
                             <input type="checkbox" id="tnc" />
-                            <label for="tnc">Ich habe die %? gelesen und stimme ihnen zu <a target="_blank" href="/de/terms-and-conditions.html">Geschäftsbedingungen</a> der Site.</label>
+                            <label for="tnc">Ich habe die <a target="_blank" href="/de/terms-and-conditions.html">Geschäftsbedingungen</a> dieser Seite gelesen und diesen zugestimmt.</label>
                         </div>
                     </div>
 
@@ -499,7 +529,7 @@
                 </fieldset>
             </form>
 
-            <form id="financial-risk" class="hidden">
+            <form id="financial-risk" class="invisible">
                 <fieldset>
                     <div class="gr-12">
                         <p><strong>Eignungstest: ACHTUNG:</strong> Damit wir Ihnen unsere Dienstleistungen zur Verfügung stellen können, müssen wir einige Informationen von Ihnen erhalten, um festzustellen, ob ein Produkt oder Service für Sie geeignet ist (ob Sie die Erfahrung und das Wissen besitzen, die verbundenen Risiken zu erkennen).</p>

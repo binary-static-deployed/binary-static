@@ -12,14 +12,14 @@
 
     <div id="paymentagent_withdrawal">
 
-        <div id="viewError" class="viewItem hidden">
-            <p id="custom-error" class="notice-msg center-text hidden"></p>
-            <p id="withdrawal-locked-error" class="notice-msg center-text hidden">
+        <div id="viewError" class="viewItem invisible">
+            <p id="custom-error" class="notice-msg center-text invisible"></p>
+            <p id="withdrawal-locked-error" class="notice-msg center-text invisible">
                 Rút tiền tại tài khoản của bạn không được phép tại thời điểm này. Xin vui lòng liên hệ với <a href="mailto:support@binary.com">support@binary.com</a> để mở khóa.
             </p>
         </div>
 
-        <div id="viewSuccess" class="viewItem hidden">
+        <div id="viewSuccess" class="viewItem invisible">
             <p id="successMessage"></p>
             <p>
                 <a class="button" href="/vi/user/statementws.html">
@@ -28,7 +28,7 @@
             </p>
         </div>
 
-        <form id="viewConfirm" class="viewItem hidden">
+        <form id="viewConfirm" class="viewItem invisible">
             <p>Xin vui lòng xác nhận chi tiết giao dịch để hoàn thành việc chuyển tiền:</p>
 
             <p>Chuyển tới: <span id="lblAgentName"></span><br />Số tiền: <span id="lblCurrency"></span> <span id="lblAmount"></span></p>
@@ -37,7 +37,7 @@
             <button class="button" type="submit">Xác nhận</button>
         </form>
 
-        <div id="viewForm" class="viewItem hidden">
+        <div id="viewForm" class="viewItem invisible">
             <p>Vui lòng cung cấp cho chúng tôi những thông tin sau, sau khi đã tìm được token xác minh từ email của bạn:</p>
             <form class="form rbox gr-padding-10" id="frmWithdrawal">
                 <fieldset>

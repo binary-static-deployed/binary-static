@@ -8,7 +8,7 @@
 
 
   <div class="gr-12 gr-padding-10">
-	<h1>เครื่องมือสำหรับการพักตัวเอง</h1>
+	<h1>เครื่องมือสำหรับพักการซื้อขาย</h1>
 
 	<p>การซื้อขายผลิตภัณฑ์ทางการเงินอาจทำให้ท่านเสพติดได้ โปรดกรอกข้อมูลในแบบฟอร์มด้านล่างเพื่อกำหนดระดับความต้องการในเว็บไซต์ หรือ ส่งจดหมายที่มีการลงนาม หรือ ส่งแฟกซ์มายังฝ่ายลูกค้าสัมพันธ์ เมื่อมีการตั้งค่าตามความประสงค์ของท่านแล้ว ท่านจะถูกจำกัดตามเงื่อนไขดังกล่าว วงเงินจะถูกปรับหรือผ่อนปรนหลังจาก 7 วันของวันที่กำหนดให้พัก แต่หากท่านต้องการลบหรือเพิ่มวงเงินของท่าน โปรดติดต่อ <a href="/th/contact.html">ฝ่ายลูกค้าสัมพันธ์</a></p>
 
@@ -32,7 +32,7 @@
     </div>
     <div class="gr-8 gr-12-m">
                 <input type="text" id="max_balance" maxlength="20" />
-    <div class="hint">เมื่อวงเงินเต็ม ท่านไม่ต้องดำเนินการฝากเงินอีกต่อไป</div>
+    <div class="hint">เมื่อวงเงินเต็ม ท่านไม่สามารถฝากเงินได้</div>
     </div>
 </div>
 
@@ -42,7 +42,7 @@
     </div>
     <div class="gr-8 gr-12-m">
                 <input type="text" id="max_turnover" maxlength="20" />
-    <div class="hint">มูลค่าสัญญารวมมากที่สุดที่ซื้อต่อวัน</div>
+    <div class="hint">มูลค่าสัญญารวมสูงสุดที่ซื้อต่อวัน</div>
     </div>
 </div>
 
@@ -52,7 +52,7 @@
     </div>
     <div class="gr-8 gr-12-m">
                 <input type="text" id="max_losses" maxlength="20" />
-    <div class="hint">มูลค่ารวมที่ขาดทุนมากที่สุดต่อวัน</div>
+    <div class="hint">มูลค่ารวมที่ขาดทุนสูงสุดต่อวัน</div>
     </div>
 </div>
 
@@ -62,7 +62,7 @@
     </div>
     <div class="gr-8 gr-12-m">
                 <input type="text" id="max_7day_turnover" maxlength="20" />
-    <div class="hint">มูลค่าสัญญารวมมากที่สุดที่ซื้อเกินกว่าระยะเวลา 7 วัน</div>
+    <div class="hint">มูลค่าสัญญารวมสูงสุดที่ซื้อในระยะเวลา 7 วัน</div>
     </div>
 </div>
 
@@ -72,7 +72,7 @@
     </div>
     <div class="gr-8 gr-12-m">
                 <input type="text" id="max_7day_losses" maxlength="20" />
-    <div class="hint">มูลค่ารวมที่ขาดทุนมากที่สุดที่เกินกว่าระยะเวลา 7 วัน</div>
+    <div class="hint">มูลค่ารวมที่ขาดทุนสูงสุดในระยะเวลา 7 วัน</div>
     </div>
 </div>
 
@@ -82,7 +82,7 @@
     </div>
     <div class="gr-8 gr-12-m">
                 <input type="text" id="max_30day_turnover" maxlength="20" />
-    <div class="hint">มูลค่าสัญญารวมมากที่สุดที่ซื้อเกินกว่าระยะเวลา 30 วัน</div>
+    <div class="hint">มูลค่าสัญญารวมสูงสุดที่ซื้อในระยะเวลา 30 วัน</div>
     </div>
 </div>
 
@@ -92,7 +92,7 @@
     </div>
     <div class="gr-8 gr-12-m">
                 <input type="text" id="max_30day_losses" maxlength="20" />
-    <div class="hint">มูลค่ารวมที่ขาดทุนมากที่สุดที่เกินกว่าระยะเวลา 30 วัน</div>
+    <div class="hint">มูลค่ารวมที่ขาดทุนสูงสุดในระยะเวลา 30 วัน</div>
     </div>
 </div>
 
@@ -123,11 +123,11 @@
     <div class="gr-8 gr-12-m">
                 
                 <div class="gr-row">
-                    <div class="gr-4 gr-12-m">
-                        <input type="text" id="timeout_until_date" maxlength="15" autocomplete="off" />
+                    <div class="gr-5 gr-6-t gr-6-p gr-12-m">
+                        <input type="text" class="clearable" id="timeout_until_date" maxlength="15" autocomplete="off" readonly />
                     </div>
-                    <div class="gr-4 gr-12-m">
-                        <input type="text" id="timeout_until_time" maxlength="8" autocomplete="off" />
+                    <div class="gr-4 gr-6-t gr-6-p gr-12-m">
+                        <input type="text" class="clearable" id="timeout_until_time" maxlength="8" autocomplete="off"  />
                     </div>
                 </div>
             
@@ -140,7 +140,7 @@
         <label for="exclude_until">พักฉันจากเว็บกระทั่ง</label>
     </div>
     <div class="gr-8 gr-12-m">
-                <input type="text" id="exclude_until" maxlength="15" autocomplete="off" />
+                <input type="text" id="exclude_until" maxlength="15" autocomplete="off" readonly class="clearable" />
     <div class="hint">โปรดป้อนวันที่ในรูปแบบ DD MMM, YYYY</div>
     </div>
 </div>

@@ -452,11 +452,11 @@
     <div class="gr-8 gr-12-m">
                 <select id="net_income" class="form_input" > 
         <option value="">请选择</option>
-        <option value="Less than &#36;25,000">少于&#36;25,000</option>
-        <option value="&#36;25,000 - &#36;50,000">&#36;25,000 - &#36;50,000</option>
-        <option value="&#36;50,001 - &#36;100,000">&#36;50,001 - &#36;100,000</option>
-        <option value="&#36;100,001 - &#36;500,000">&#36;100,001 - &#36;500,000</option>
-        <option value="Over &#36;500,000">大于&#36;500,001</option>
+    <option value="Less than $25,000">少于$25,000</option>
+    <option value="$25,000 - $50,000">$25,000 - $50,000</option>
+    <option value="$50,001 - $100,000">$50,001 - $100,000</option>
+    <option value="$100,001 - $500,000">$100,001 - $500,000</option>
+    <option value="Over $500,000">大于$500,001</option>
                 </select>
     
     </div>
@@ -469,16 +469,46 @@
     <div class="gr-8 gr-12-m">
                 <select id="estimated_worth" class="form_input" > 
         <option value="">请选择</option>
-        <option value="Less than &#36;100,000">少于 &#36; 100,000</option>
-        <option value="&#36;100,000 - &#36;250,000">&#36;100,000 - &#36;250,000</option>
-        <option value="&#36;250,001 - &#36;500,000">&#36;250,001 - &#36;500,000</option>
-        <option value="&#36;500,001 - &#36;1,000,000">&#36;500,001 - &#36;1,000,000</option>
-        <option value="Over &#36;1,000,000">大于&#36;1,000,000</option>
+        <option value="Less than $100,000">少于 $100,000</option>
+        <option value="$100,000 - $250,000">$100,000 - $250,000</option>
+        <option value="$250,001 - $500,000">$250,001 - $500,000</option>
+        <option value="$500,001 - $1,000,000">$500,001 - $1,000,000</option>
+        <option value="Over $1,000,000">大于$1,000,000</option>
                 </select>
     
     </div>
 </div>
 
+    <div class="gr-row form-row center-text-m ">
+    <div class="gr-4 gr-12-m">
+        <label for="account_turnover">预期的的账户交易额</label>
+    </div>
+    <div class="gr-8 gr-12-m">
+                <select id="account_turnover" class="form_input" > 
+        <option value="">请选择</option>
+    <option value="Less than $25,000">少于$25,000</option>
+    <option value="$25,000 - $50,000">$25,000 - $50,000</option>
+    <option value="$50,001 - $100,000">$50,001 - $100,000</option>
+    <option value="$100,001 - $500,000">$100,001 - $500,000</option>
+    <option value="Over $500,000">大于$500,001</option>
+                </select>
+    
+    </div>
+</div>
+
+</fieldset>
+
+                <fieldset>
+    <legend>PEP声明</legend>
+
+    <div class="gr-12">
+        <p>PEP是被委托进行特出公众任务的个人。此身份包括了PEP的亲属和亲近的人。</p>
+    </div>
+
+    <div class="gr-padding-10 gr-12">
+        <input id="not_pep" type="checkbox" />
+        <label for="not_pep">我声明本人不是政治公众人士(PEP)。</label>
+    </div>
 </fieldset>
 
                 <fieldset>
@@ -491,7 +521,7 @@
                     <div class="gr-row">
                         <div class="gr-12-m gr-padding-10 gr-centered">
                             <input type="checkbox" id="tnc" />
-                            <label for="tnc">我已阅读并同意 <a target="_blank" href="/zh_cn/terms-and-conditions.html">条款与条件</a> 网站的。</label>
+                            <label for="tnc">我已阅读并同意本网站的<a target="_blank" href="/zh_cn/terms-and-conditions.html">条款和条件</a>。</label>
                         </div>
                     </div>
 
@@ -499,7 +529,7 @@
                 </fieldset>
             </form>
 
-            <form id="financial-risk" class="hidden">
+            <form id="financial-risk" class="invisible">
                 <fieldset>
                     <div class="gr-12">
                         <p><strong>合适性测试:警告:</strong>为了给您提供服务，我们必须向您获取信息，以便确定产品或服务是否适合您（也就是说，看您是否拥有足够经验和知识，以了解相关的风险）。</p>

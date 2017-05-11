@@ -12,14 +12,14 @@
 
     <div id="paymentagent_withdrawal">
 
-        <div id="viewError" class="viewItem hidden">
-            <p id="custom-error" class="notice-msg center-text hidden"></p>
-            <p id="withdrawal-locked-error" class="notice-msg center-text hidden">
+        <div id="viewError" class="viewItem invisible">
+            <p id="custom-error" class="notice-msg center-text invisible"></p>
+            <p id="withdrawal-locked-error" class="notice-msg center-text invisible">
                 Penarikan untuk akun Anda tidak dapat dilanjutkan untuk saat ini. Silahkan hubungi <a href="mailto:support@binary.com">support@binary.com</a> untuk pengaktifan.
             </p>
         </div>
 
-        <div id="viewSuccess" class="viewItem hidden">
+        <div id="viewSuccess" class="viewItem invisible">
             <p id="successMessage"></p>
             <p>
                 <a class="button" href="/id/user/statementws.html">
@@ -28,7 +28,7 @@
             </p>
         </div>
 
-        <form id="viewConfirm" class="viewItem hidden">
+        <form id="viewConfirm" class="viewItem invisible">
             <p>Pastikan Anda telah memilih Agen Pembayaran yang benar, salah transfer adalah diluar tanggungjawab kami:</p>
 
             <p>Kirim ke: <span id="lblAgentName"></span><br />Jumlah: <span id="lblCurrency"></span> <span id="lblAmount"></span></p>
@@ -37,7 +37,7 @@
             <button class="button" type="submit">Lanjutkan</button>
         </form>
 
-        <div id="viewForm" class="viewItem hidden">
+        <div id="viewForm" class="viewItem invisible">
             <p>Setelah memperoleh token verifikasi dari email Anda, mohon sediakan informasi sebagai berikut:</p>
             <form class="form rbox gr-padding-10" id="frmWithdrawal">
                 <fieldset>

@@ -58,10 +58,10 @@
           <link rel="alternate" href="/zh_cn/trading.html" hreflang="ZH_CN" /> 
           <link rel="alternate" href="/zh_tw/trading.html" hreflang="ZH_TW" /> 
         
-         <link rel="stylesheet" href="/css/binary.min.css?wsh14gi9">
-         <link rel="stylesheet" href="https://style.binary.com/binary.css?wsh14gi9">
+         <link rel="stylesheet" href="/css/binary.min.css?iqc2mtoi">
+         <link rel="stylesheet" href="https://style.binary.com/binary.css?iqc2mtoi">
         
-        <script src='/js/binary.min.js?wsh14gi9'></script>  <script src='https://style.binary.com/binary.js?wsh14gi9'></script>
+        <script src='/js/binary.min.js?iqc2mtoi'></script>  <script src='https://style.binary.com/binary.js?iqc2mtoi'></script>
     </head>
 
 
@@ -133,25 +133,25 @@
                                 <li class="ja-hide">
                                     <a href="/de/why-us.html">Warum uns?</a>
                                 </li>
-                                <li class="all-hide ja-show-inline-block">
+                                <li class="invisible ja-show">
                                     <a href="/de/why-us-jp.html">Warum uns?</a>
                                 </li>
                                 <li class="ja-hide">
                                     <a href="/de/get-started.html">Erste Schritte</a>
                                 </li>
-                                <li class="all-hide ja-show-inline-block">
+                                <li class="invisible ja-show">
                                   <a href="/de/get-started-jp.html">Erste Schritte</a>
                                 </li>
                                 <li class="ja-hide">
                                     <a href="/de/tour.html">Tour</a>
                                 </li>
-                                <li class="all-hide ja-show-inline-block">
+                                <li class="invisible ja-show">
                                     <a href="/de/tour-jp.html">Tour</a>
                                 </li>
                                 <li class="ja-hide" id="main-navigation-trading">
                                     <a href="/de/platforms.html">Plattformen</a>
                                 </li>
-                                <li class="all-hide ja-show-inline-block" id="main-navigation-jptrading">
+                                <li class="invisible ja-show" id="main-navigation-jptrading">
                                     <a href="/de/multi_barriers_trading.html">Handel</a>
                                 </li>
                             </ul>
@@ -222,7 +222,7 @@
             <ul class="items">  <li id="topMenuTrading" class="item ja-hide hide-tablet-mobile">
                     <a class="link" target="" href="/de/trading.html">Handel</a>
                     
-                </li>  <li id="topMenuJPTrading" class="item all-hide ja-show hide-tablet-mobile">
+                </li>  <li id="topMenuJPTrading" class="item invisible ja-show hide-tablet-mobile">
                     <a class="link" target="" href="/de/multi_barriers_trading.html">Handel</a>
                     
                 </li>  <li id="topMenuPortfolio" class="item client_logged_in invisible">
@@ -262,24 +262,24 @@
             <li class="ja-hide">
                 <a href="/de/why-us.html">Warum uns?</a>
             </li>
-            <li class="all-hide ja-show-block">
+            <li class="invisible ja-show">
                 <a href="/de/why-us-jp.html">Warum uns?</a>
             </li>
             <li class="ja-hide">
               <a href="/de/get-started.html">Erste Schritte</a>
             </li>
-            <li class="all-hide ja-show-block">
+            <li class="invisible ja-show">
                 <a href="/de/get-started-jp.html">Erste Schritte</a>
             </li>
             <li class="ja-hide">
                 <a href="/de/tour.html">Tour</a>
             </li>
-            <li class="all-hide ja-show-block">
+            <li class="invisible ja-show">
                 <a href="/de/tour-jp.html">Tour</a>
             </li>  <li id="topMenuTrading" class="item ja-hide hide-tablet-mobile">
                 <a class="link " href="/de/trading.html">Handel</a>
                 
-            </li>  <li id="topMenuJPTrading" class="item all-hide ja-show hide-tablet-mobile">
+            </li>  <li id="topMenuJPTrading" class="item invisible ja-show hide-tablet-mobile">
                 <a class="link " href="/de/multi_barriers_trading.html">Handel</a>
                 
             </li>  <li id="topMenuPortfolio" class="item client_logged_in invisible">
@@ -312,7 +312,7 @@
             </li>  <li class="ja-hide">
                 <a href="/de/platforms.html">Plattformen</a>
             </li>
-            <li class="all-hide ja-show-block">
+            <li class="invisible ja-show">
                 <a href="/de/multi_barriers_trading.html">Handel</a>
             </li>
         </ul>
@@ -465,41 +465,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                               <option value="payout" id="payout_option">Auszahlung</option>
                               <option value="stake" id="stake_option">Einsatz</option>
                            </select>
-                           <label for="amount_per_point" id="amount_per_point_label" class="small_width_input">Betrag je Punkt</label>
                         </div>
                         <div class="row-inner big-col">
                            <div class="col-inner">
                               <select id="currency" class="small_width_input"></select>
                               <input id="amount" type="text" step="any" maxlength="10" value="10" class="medium_width_input" autocomplete="off" />
-                              <input id="amount_per_point" type="number" step="any" value="1" class="medium_width_input" autocomplete="off" />
                            </div>
-                        </div>
-                     </div>
-                     <div id="spread_element_container">
-                        <div class="row">
-                            <div class="col form_label">
-                                <label for="stop_type" id="stop_type_label">Stopp-Art</label>
-                            </div>
-                            <div class="big-col">
-                                <input type="radio" name="stop_type" id="stop_type_points" value="point" checked/><label id="stop_type_points_label" class="radio_label" for="stop_type_points">Punkte</label>
-                                <input type="radio" name="stop_type" id="stop_type_dollar" value="dollar"/><label id="stop_type_dollar_label" class="radio_label" for="stop_type_dollar"></label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col form_label">
-                                <label for="stop_loss" id="stop_loss_label">Stop-Loss</label>
-                            </div>
-                            <div class="big-col">
-                                <input id="stop_loss" type="number" step="any" value="15" autocomplete="off" /><label></label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col form_label">
-                                <label for="stop_profit" id="stop_profit_label">Stop Profit</label>
-                            </div>
-                            <div class="big-col">
-                                <input id="stop_profit" type="number" step="any" value="10" autocomplete="off" /><label></label>
-                            </div>
                         </div>
                      </div>
                   </form>
@@ -522,7 +493,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <a href="/de/cashier/forwardws.html#deposit" class="button nowrap ja-hide">
                     <span>Eine Einzahlung vornehmen</span>
                 </a>
-                <a href="/de/cashier/deposit-jp.html" class="button nowrap all-hide ja-show">
+                <a href="/de/cashier/deposit-jp.html" class="button nowrap invisible ja-show">
                     <span>Eine Einzahlung vornehmen</span>
                 </a>
             </span>
@@ -682,7 +653,30 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           </div>
         </div>
         <div id="tab_explanation-content" class="toggle-content selectedTab"></div>
-        <div id="tab_last_digit-content" class="toggle-content invisible "></div>
+        <div id="tab_last_digit-content" class="toggle-content invisible ">
+            <div class="gr-parent">
+                <div id="last_digit_histo_form" class="gr-8 gr-12-m gr-centered">
+                    <div class="smallfont gr-row">
+                        <div class="gr-6 gr-12-m">
+                            <label for="digit_underlying">Wählen Sie den Markt:</label>
+                            <select class="smallfont" id="digit_underlying"></select>
+                        </div>
+                        <div class="gr-6 gr-12-m">
+                            <label for="tick_count">Anzahl der Ticks:</label>
+                            <select class="smallfont" id="tick_count">
+                                <option value="25">25</option>
+                                <option value="50">50</option>
+                                <option selected="selected" value="100">100</option>
+                                <option value="500">500</option>
+                                <option value="1000">1000</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div id="last_digit_histo" class="gr-8 gr-12-m gr-centered"></div>
+                <div id="last_digit_title" class="gr-hide"><span id="digit_domain"></span> - Letzte Stellen Statistik der letzten <span id="digit_info_count">100</span> Ticks von <span id="digit_info_underlying"></span></div>
+            </div>
+        </div>
         <div id="tab_japan_info-content" class="toggle-content invisible "></div>
       </div>
     </div>
@@ -728,7 +722,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                     <a href="/de/careers.html">Karrieren</a>
                                 </li>
                                 <li class="ja-hide">
-                                    <a href="http://binarycom.statuspage.io" target="_blank">Netzwerkstatus</a>
+                                    <a href="https://binarycom.statuspage.io" target="_blank">Netzwerkstatus</a>
                                 </li>
                                 <li class="ja-hide id-hide">
                                     <a href="/de/legal/us_patents.html" class="us_patent_link">Patente</a>
@@ -741,29 +735,29 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                 <li class="ja-hide">
                                     <a href="/de/why-us.html">Warum uns?</a>
                                 </li>
-                                <li class="all-hide ja-show-block">
+                                <li class="invisible ja-show">
                                     <a href="/de/why-us-jp.html">Warum uns?</a>
                                 </li>
                                 <li class="ja-hide">
                                     <a href="/de/get-started.html">Erste Schritte</a>
                                 </li>
-                                <li class="all-hide ja-show-block">
+                                <li class="invisible ja-show">
                                     <a href="/de/get-started-jp.html">Erste Schritte</a>
                                 </li>
                                 <li class="ja-hide">
                                     <a href="/de/tour.html">Plattformtour</a>
                                 </li>
-                                <li class="hidden ja-show-block">
+                                <li class="invisible ja-show">
                                     <a href="/de/tour-jp.html">Plattformtour</a>
                                 </li>
-                                <li class="hidden ja-show-block">
+                                <li class="invisible ja-show">
                                     <a href="/de/service-announcements.html">{JAPAN ONLY}Service Announcements</a>
                                 </li>
                                 <li class="ja-hide id-hide">
                                     <a href="http://www.gamcare.org.uk/" target="_blank">GamCare</a>
                                 </li>
                                 <li class="ja-hide academy">
-                                    <a href="http://academy.binary.com" target="_blank">Akademie</a>
+                                    <a href="https://academy.binary.com" target="_blank">Akademie</a>
                                 </li>
                                 <li class='ja-hide id-hide'>
                                     <a href="https://academy.binary.com/en/events/" target="_blank">Webinare</a>
@@ -791,13 +785,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                <li class='ja-hide'>
                                    <a href="/de/terms-and-conditions.html">Allgemeine Geschäftsbedingungen</a>
                                </li>
-                               <li class='hidden ja-show-block'>
+                               <li class='invisible ja-show'>
                                    <a href="/de/terms-and-conditions-jp.html">Allgemeine Geschäftsbedingungen</a>
                                </li>
                                <li class='ja-hide'>
                                    <a href="/de/terms-and-conditions.html?#privacy">Sicherheit und Datenschutz</a>
                                </li>
-                               <li class='hidden ja-show-block'>
+                               <li class='invisible ja-show'>
                                    <a href="/de/terms-and-conditions-jp.html?#account-privacy">Sicherheit und Datenschutz</a>
                                </li>
                                <li class="ja-hide">
@@ -832,11 +826,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                    <a target="_blank" href="https://shop.binary.com">Binary Shop</a>
                                </li>
                                <li>
+                                   <a href="/de/charity.html">Wohltätigkeitsaktivitäten</a>
+                               </li>
+                               <li>
                                    <a href="/de/partners.html">Alle Partnerschaftsoptionen</a>
                                </li>
                            </ul>
                        </div>
-                       <div class="gr-4 all-hide ja-show">
+                       <div class="gr-4 invisible ja-show">
                            <h4 class="secondary-color">{JAPAN ONLY}Company Profile</h4>
                            <ul>
                                <li>
@@ -853,12 +850,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <div class="container">
             <div class="gr-row">
                 <div id="regulatory-text" class="gr-9 gr-12-m gr-7-p gr-padding-10 gr-parent content-inverse-color">
-                    Diese Website wird in Großbritannien und auf der Isle of Man von Binary (IOM) Ltd., First Floor, Millennium House, Victoria Road, Douglas, IM2 4RW, Isle of Man, Britische Inseln vermarktet und wird von (1) der Gambling Commission (Glücksspielbehörde) der Isle of Man, Britische Inseln zugelassen und überwacht - <a href='https://secure.gamblingcommission.gov.uk/gccustomweb/PublicRegister/PRSearch.aspx?ExternalAccountId=39172' target='_blank'>Lizenz anzeigen</a>. Die vorliegende Online Glücksspielgenehmigung wurde am 31. August 2012 erteilt. Diese Website wird in den anderen Ländern der EU für von Binary Investments (Europe) Ltd., Mompalao Building, Suite 2, Tower Road, Msida MSD1825, Malta, angebotene Investmentprodukte vermarktet, die (1) von der Malta Gaming Authority auf Malta zugelassen sind und überwacht werden. Die Lizenznummer lautet MGA/CL2/118/2000, 26. Mai 2015 - <a href='https://secure.gamblingcommission.gov.uk/gccustomweb/PublicRegister/PRSearch.aspx?ExternalAccountId=39495' target='_blank'>Lizenz anzeigen</a>. Die Dienstleistungen dieser Website stehen in manchen Ländern wie den USA, Costa Rica, Hongkong oder Personen unter 18 Jahren nicht zur Verfügung.
+                    Diese Website wird in Großbritannien und auf der Isle of Man von Binary (IOM) Ltd., First Floor, Millennium House, Victoria Road, Douglas, IM2 4RW, Isle of Man, Britische Inseln vermarktet und wird von (1) der Gambling Commission (Glücksspielbehörde) der Isle of Man, Britische Inseln zugelassen und überwacht - <a href='https://secure.gamblingcommission.gov.uk/gccustomweb/PublicRegister/PRSearch.aspx?ExternalAccountId=39172' target='_blank'>Lizenz anzeigen</a>. Die vorliegende Online Glücksspielgenehmigung wurde am 31. August 2012 erteilt. Diese Website wird in den anderen Ländern der EU für von Binary Investments (Europe) Ltd., Mompalao Building, Suite 2, Tower Road, Msida MSD1825, Malta, angebotene Investmentprodukte vermarktet, zugelassen und überwacht als ein Kategorie 3 Investitionsdienstleistung Anbieter von der Malta Financial Services Authority (Lizenznummer IS/70156), und für Wettprodukte von Binary (Europe) Ltd., Mompalao Building, Suite 2, Tower Road, Msida MSD1825, Malta, die (1) von der Malta Gaming Authority auf Malta zugelassen sind und überwacht werden. Die Lizenznummer lautet MGA/CL2/118/2000, 26. Mai 2015 und für Kunden aus Großbritannien von der (2) UK Gambling Commission - <a href='https://secure.gamblingcommission.gov.uk/gccustomweb/PublicRegister/PRSearch.aspx?ExternalAccountId=39495' target='_blank'>Lizenz anzeigen</a> und für Irische Kunden von der (3) Revenue Commissioners in Ireland, aktuelle entfernte Buchmacherlizenz ausgestellt am 29. September 2015 (Lizenznummer 1010285). Die Dienstleistungen dieser Website stehen in manchen Ländern wie den USA, Costa Rica, Hongkong oder Personen unter 18 Jahren nicht zur Verfügung.
                 </div>
                 <div class="ja-hide gr-3 gr-12-m gr-5-p center-text" id="social-networks">
                     <div class="gr-row ja-hide id-hide">
                         <div class="gr-5">
-                            <a href="http://www.gov.im/gambling/" target="_blank">
+                            <a href="https://www.gov.im/gambling/" target="_blank">
                                 <img id="iom_icon_footer" class="responsive" src="/images/pages/footer/isle-of-man.png"/>
                             </a>
                         </div>
@@ -871,7 +868,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     <div id="fb-root">
 </div>
 <div class="social-icons gr-padding-10">
-    <a href="http://www.youtube.com/user/BinaryTradingVideos" target="_blank">
+    <a href="https://www.youtube.com/user/BinaryTradingVideos" target="_blank">
         <img class="responsive social-network-icon" src="/images/pages/footer/youtube.svg"/>
     </a>
     <a href="https://plus.google.com/106251151552682209951" rel="publisher" target="_blank">
@@ -891,10 +888,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </div>
             </div>
         </div>
-        <div id="ratelimit-error-message">
+        <div id="ratelimit-error-message" class="invisible">
             <div class="message">
                 Sie haben das Kurslimit für Anfragen pro Sekunde erreicht. Bitte versuchen Sie es später.
             </div>
+        </div>
+        <div id="site-status-message" class="invisible">
+            <div class="message"></div>
         </div>
     </div>
     <div id="footer-last" class="primary-bg-color">

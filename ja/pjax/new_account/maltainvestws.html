@@ -188,7 +188,7 @@
                 </fieldset>
 
                 <fieldset>
-    <legend>金融情報</legend>
+    <legend>財務情報</legend>
     
     <div class="gr-row form-row center-text-m ">
     <div class="gr-4 gr-12-m">
@@ -452,11 +452,11 @@
     <div class="gr-8 gr-12-m">
                 <select id="net_income" class="form_input" > 
         <option value="">選択して下さい</option>
-        <option value="Less than &#36;25,000">&#36;25,000未満</option>
-        <option value="&#36;25,000 - &#36;50,000">&#36;25,000 - &#36;50,000</option>
-        <option value="&#36;50,001 - &#36;100,000">&#36;50,001 - &#36;100,000</option>
-        <option value="&#36;100,001 - &#36;500,000">&#36;100,001 - &#36;500,000</option>
-        <option value="Over &#36;500,000">&#36;500,001以上</option>
+    <option value="Less than $25,000">$25,000未満</option>
+    <option value="$25,000 - $50,000">$25,000 - $50,000</option>
+    <option value="$50,001 - $100,000">$50,001 - $100,000</option>
+    <option value="$100,001 - $500,000">$100,001 - $500,000</option>
+    <option value="Over $500,000">$500,002以上</option>
                 </select>
     
     </div>
@@ -469,16 +469,46 @@
     <div class="gr-8 gr-12-m">
                 <select id="estimated_worth" class="form_input" > 
         <option value="">選択して下さい</option>
-        <option value="Less than &#36;100,000">&#36;100,000未満</option>
-        <option value="&#36;100,000 - &#36;250,000">&#36;100,000 - &#36;250,000</option>
-        <option value="&#36;250,001 - &#36;500,000">&#36;250,001 - &#36;500,000</option>
-        <option value="&#36;500,001 - &#36;1,000,000">&#36;500,001 - &#36;1,000,000</option>
-        <option value="Over &#36;1,000,000">&#36;1,000,000以上</option>
+        <option value="Less than $100,000">$100,000未満</option>
+        <option value="$100,000 - $250,000">$100,000 - $250,000</option>
+        <option value="$250,001 - $500,000">$250,001 - $500,000</option>
+        <option value="$500,001 - $1,000,000">$500,001 - $1,000,000</option>
+        <option value="Over $1,000,000">$1,000,001以上</option>
                 </select>
     
     </div>
 </div>
 
+    <div class="gr-row form-row center-text-m ">
+    <div class="gr-4 gr-12-m">
+        <label for="account_turnover">予想されるご口座の取引数量</label>
+    </div>
+    <div class="gr-8 gr-12-m">
+                <select id="account_turnover" class="form_input" > 
+        <option value="">選択して下さい</option>
+    <option value="Less than $25,000">$25,000未満</option>
+    <option value="$25,000 - $50,000">$25,000 - $50,000</option>
+    <option value="$50,001 - $100,000">$50,001 - $100,000</option>
+    <option value="$100,001 - $500,000">$100,001 - $500,000</option>
+    <option value="Over $500,000">$500,002以上</option>
+                </select>
+    
+    </div>
+</div>
+
+</fieldset>
+
+                <fieldset>
+    <legend>PEP宣言書</legend>
+
+    <div class="gr-12">
+        <p>PEPとは公的地位に有するまたは委託されている個人をいいます。親族や親しい友人にPEPがいる場合も該当します。</p>
+    </div>
+
+    <div class="gr-padding-10 gr-12">
+        <input id="not_pep" type="checkbox" />
+        <label for="not_pep">私は、犯罪収益移動防止法に規定されている外国人PEPsに該当しないことを宣言いたします。また、該当することになった場合は、当社カスタマーサポートまですみやかに申し出ることに同意します。</label>
+    </div>
 </fieldset>
 
                 <fieldset>
@@ -491,7 +521,7 @@
                     <div class="gr-row">
                         <div class="gr-12-m gr-padding-10 gr-centered">
                             <input type="checkbox" id="tnc" />
-                            <label for="tnc">私は一読したうえで、同意します。 <a target="_blank" href="/ja/terms-and-conditions.html">利用規約</a> サイトのXXX</label>
+                            <label for="tnc">このウェブサイトの<a target="_blank" href="/ja/terms-and-conditions.html">利用規約</a>に同意いたします。</label>
                         </div>
                     </div>
 
@@ -499,7 +529,7 @@
                 </fieldset>
             </form>
 
-            <form id="financial-risk" class="hidden">
+            <form id="financial-risk" class="invisible">
                 <fieldset>
                     <div class="gr-12">
                         <p><strong>適正テスト: 警告:</strong>当サービスでは、どの所定の製品またはサービスがお客様に適しているか評価するためにお客さまの情報を必要とします。（関連するリスクを理解する経験や知識があるかどうかわかります。）</p>

@@ -14,13 +14,13 @@
         โปรดบันทึกข้อมูลภาษีของท่านก่อนการดำเนินการต่อไป
     </p>
 
-    <form class="form gr-padding-10 hidden" id="frmPersonalDetails">
+    <form class="form gr-padding-10 invisible" id="frmPersonalDetails">
         <fieldset>
             <legend>รายละเอียด</legend>
 
-            <div class="gr-padding-10 gr-row rowName clear hidden RealAcc JpAcc">
+            <div class="gr-padding-10 gr-row rowName clear invisible RealAcc JpAcc">
                 <div class="gr-4 form_label">
-                    <label><em class="required_asterisk">**</em> ชื่อ</label>
+                    <label>ชื่อ</label>
                 </div>
                 <div class="gr-8">
                     <span id="inputheading">
@@ -31,7 +31,7 @@
 
             <div class="gr-padding-10 gr-row clear JpAcc invisible">
                 <div class="gr-4 form_label">
-                    <label><em class="required_asterisk">**</em> เพศ</label>
+                    <label>เพศ</label>
                 </div>
                 <div class="gr-8">
                     <span id="inputheading">
@@ -40,9 +40,9 @@
                 </div>
             </div>
 
-            <div class="gr-padding-10 gr-row clear rowBirthDate hidden RealAcc JpAcc">
+            <div class="gr-padding-10 gr-row clear rowBirthDate invisible RealAcc JpAcc">
                 <div class="gr-4 form_label">
-                    <label><em class="required_asterisk">**</em> วันเกิด</label>
+                    <label>วันเกิด</label>
                 </div>
                 <div class="gr-8">
                     <span id="inputheading">
@@ -51,7 +51,7 @@
                 </div>
             </div>
 
-            <div class="hidden RealAcc">
+            <div class="invisible RealAcc">
                 <div class="gr-padding-10 gr-row clear">
                     <div class="gr-4 form_label">
                         <label for="place_of_birth">สถานที่เกิด</label>
@@ -64,7 +64,7 @@
 
             <div class="gr-padding-10 gr-row clear">
                 <div class="gr-4 form_label">
-                    <label><em class="required_asterisk">**</em> ประเทศที่พำนัก</label>
+                    <label>ประเทศที่พำนัก</label>
                 </div>
                 <div class="gr-8">
                     <label><strong id="lbl_country"></strong></label>
@@ -73,7 +73,7 @@
 
             <div class="gr-padding-10 gr-row clear">
                 <div class="gr-4 form_label">
-                    <label><em class="required_asterisk">**</em> อีเมล์</label>
+                    <label>อีเมล์</label>
                 </div>
                 <div class="gr-8">
                     <span id="inputheading">
@@ -102,7 +102,7 @@
             </div>
         </fieldset>
 
-        <fieldset class="hidden RealAcc ja-hide">
+        <fieldset class="invisible RealAcc ja-hide">
             <legend>ข้อมูลภาษี</legend>
 
             <div class="gr-padding-10 gr-row clear">
@@ -124,7 +124,7 @@
             </div>
         </fieldset>
 
-        <fieldset class="hidden RealAcc ja-hide">
+        <fieldset class="invisible RealAcc ja-hide">
             <legend>ที่อยู่</legend>
 
             <div class="gr-padding-10 gr-row clear">
@@ -187,7 +187,7 @@
 
             <div class="gr-padding-10 gr-row clear">
                 <div class="gr-4 form_label">
-                    <label><em class="required_asterisk">**</em> รหัสไปรษณีย์</label>
+                    <label>รหัสไปรษณีย์</label>
                 </div>
                 <div class="gr-8">
                     <span id="inputheading">
@@ -198,7 +198,7 @@
 
             <div class="gr-padding-10 gr-row clear">
                 <div class="gr-4 form_label">
-                    <label><em class="required_asterisk">**</em> รัฐ/จังหวัด</label>
+                    <label>รัฐ/จังหวัด</label>
                 </div>
                 <div class="gr-8">
                     <span id="inputheading">
@@ -209,7 +209,7 @@
 
             <div class="gr-padding-10 gr-row clear">
                 <div class="gr-4 form_label">
-                    <label><em class="required_asterisk">**</em> เมือง</label>
+                    <label>เมือง</label>
                 </div>
                 <div class="gr-8">
                     <span id="inputheading">
@@ -220,7 +220,7 @@
 
             <div class="gr-padding-10 gr-row clear">
                 <div class="gr-4 form_label">
-                    <label><em class="required_asterisk">**</em> บรรทัดแรกของที่อยู่</label>
+                    <label>บรรทัดแรกของที่อยู่</label>
                 </div>
                 <div class="gr-8">
                     <span id="inputheading">
@@ -231,7 +231,7 @@
 
             <div class="gr-padding-10 gr-row clear">
                 <div class="gr-4 form_label">
-                    <label><em class="required_asterisk">**</em> บรรทัดที่สองของที่อยู่ที่พัก</label>
+                    <label>บรรทัดที่สองของที่อยู่ที่พัก</label>
                 </div>
                 <div class="gr-8">
                     <span id="inputheading">
@@ -242,7 +242,7 @@
 
             <div class="gr-padding-10 gr-row clear">
                 <div class="gr-4 form_label">
-                    <label><em class="required_asterisk">**</em> โทรศัพท์</label>
+                    <label>โทรศัพท์</label>
                 </div>
                 <div class="gr-8">
                     <span id="inputheading">
@@ -468,6 +468,6 @@
         </div>
     </form>
 
-    <p class="required hidden RealAcc JpAcc rowCustomerSupport"><em class="required_asterisk">**</em> ในการเปลี่ยนแปลง ชื่อ วันเกิด ประเทศที่พำนัก หรือ อีเมล์ของท่าน โปรดติดต่แ <a href="/th/contact.html">เจ้าหน้าที่บริการลูกค้า</a></p>
+    <p class="required invisible RealAcc JpAcc rowCustomerSupport">ในการเปลี่ยนแปลง ชื่อ วันเกิด ประเทศที่พำนัก หรือ อีเมล์ของท่าน โปรดติดต่แ <a href="/th/contact.html">เจ้าหน้าที่บริการลูกค้า</a></p>
 
 </div>

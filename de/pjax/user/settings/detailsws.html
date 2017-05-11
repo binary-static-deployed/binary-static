@@ -14,13 +14,13 @@
         Bevor Sie fortfahren, füllen Sie bitte die Steuerinformationen aus.
     </p>
 
-    <form class="form gr-padding-10 hidden" id="frmPersonalDetails">
+    <form class="form gr-padding-10 invisible" id="frmPersonalDetails">
         <fieldset>
             <legend>Angaben</legend>
 
-            <div class="gr-padding-10 gr-row rowName clear hidden RealAcc JpAcc">
+            <div class="gr-padding-10 gr-row rowName clear invisible RealAcc JpAcc">
                 <div class="gr-4 form_label">
-                    <label><em class="required_asterisk">**</em> Name</label>
+                    <label>Name</label>
                 </div>
                 <div class="gr-8">
                     <span id="inputheading">
@@ -31,7 +31,7 @@
 
             <div class="gr-padding-10 gr-row clear JpAcc invisible">
                 <div class="gr-4 form_label">
-                    <label><em class="required_asterisk">**</em> Gender</label>
+                    <label>Gender</label>
                 </div>
                 <div class="gr-8">
                     <span id="inputheading">
@@ -40,9 +40,9 @@
                 </div>
             </div>
 
-            <div class="gr-padding-10 gr-row clear rowBirthDate hidden RealAcc JpAcc">
+            <div class="gr-padding-10 gr-row clear rowBirthDate invisible RealAcc JpAcc">
                 <div class="gr-4 form_label">
-                    <label><em class="required_asterisk">**</em> Geburtsdatum</label>
+                    <label>Geburtsdatum</label>
                 </div>
                 <div class="gr-8">
                     <span id="inputheading">
@@ -51,7 +51,7 @@
                 </div>
             </div>
 
-            <div class="hidden RealAcc">
+            <div class="invisible RealAcc">
                 <div class="gr-padding-10 gr-row clear">
                     <div class="gr-4 form_label">
                         <label for="place_of_birth">Geburtsort</label>
@@ -64,7 +64,7 @@
 
             <div class="gr-padding-10 gr-row clear">
                 <div class="gr-4 form_label">
-                    <label><em class="required_asterisk">**</em> Wohnsitzland</label>
+                    <label>Wohnsitzland</label>
                 </div>
                 <div class="gr-8">
                     <label><strong id="lbl_country"></strong></label>
@@ -73,7 +73,7 @@
 
             <div class="gr-padding-10 gr-row clear">
                 <div class="gr-4 form_label">
-                    <label><em class="required_asterisk">**</em> E-Mail Adresse</label>
+                    <label>E-Mail Adresse</label>
                 </div>
                 <div class="gr-8">
                     <span id="inputheading">
@@ -102,7 +102,7 @@
             </div>
         </fieldset>
 
-        <fieldset class="hidden RealAcc ja-hide">
+        <fieldset class="invisible RealAcc ja-hide">
             <legend>Steuerinformationen</legend>
 
             <div class="gr-padding-10 gr-row clear">
@@ -124,7 +124,7 @@
             </div>
         </fieldset>
 
-        <fieldset class="hidden RealAcc ja-hide">
+        <fieldset class="invisible RealAcc ja-hide">
             <legend>Adresse</legend>
 
             <div class="gr-padding-10 gr-row clear">
@@ -187,7 +187,7 @@
 
             <div class="gr-padding-10 gr-row clear">
                 <div class="gr-4 form_label">
-                    <label><em class="required_asterisk">**</em> Postleitzahl / PLZ</label>
+                    <label>Postleitzahl / PLZ</label>
                 </div>
                 <div class="gr-8">
                     <span id="inputheading">
@@ -198,7 +198,7 @@
 
             <div class="gr-padding-10 gr-row clear">
                 <div class="gr-4 form_label">
-                    <label><em class="required_asterisk">**</em> Staat/Provinz</label>
+                    <label>Staat/Provinz</label>
                 </div>
                 <div class="gr-8">
                     <span id="inputheading">
@@ -209,7 +209,7 @@
 
             <div class="gr-padding-10 gr-row clear">
                 <div class="gr-4 form_label">
-                    <label><em class="required_asterisk">**</em> Ort/Stadt</label>
+                    <label>Ort/Stadt</label>
                 </div>
                 <div class="gr-8">
                     <span id="inputheading">
@@ -220,7 +220,7 @@
 
             <div class="gr-padding-10 gr-row clear">
                 <div class="gr-4 form_label">
-                    <label><em class="required_asterisk">**</em> 1. Zeile der Privatanschrift</label>
+                    <label>1. Zeile der Privatanschrift</label>
                 </div>
                 <div class="gr-8">
                     <span id="inputheading">
@@ -231,7 +231,7 @@
 
             <div class="gr-padding-10 gr-row clear">
                 <div class="gr-4 form_label">
-                    <label><em class="required_asterisk">**</em> Privatadresse Zeile 2</label>
+                    <label>Privatadresse Zeile 2</label>
                 </div>
                 <div class="gr-8">
                     <span id="inputheading">
@@ -242,7 +242,7 @@
 
             <div class="gr-padding-10 gr-row clear">
                 <div class="gr-4 form_label">
-                    <label><em class="required_asterisk">**</em> Telefon</label>
+                    <label>Telefon</label>
                 </div>
                 <div class="gr-8">
                     <span id="inputheading">
@@ -468,6 +468,6 @@
         </div>
     </form>
 
-    <p class="required hidden RealAcc JpAcc rowCustomerSupport"><em class="required_asterisk">**</em> Wenn Sie Ihren Namen, das Geburtsdatum, Ihr Wohnsitzland oder Ihre E-Mail Anschrift ändern möchten, setzen Sie sich bitte mit unserer <a href="/de/contact.html">Kundenbetreuung</a> in Verbindung.</p>
+    <p class="required invisible RealAcc JpAcc rowCustomerSupport">Wenn Sie Ihren Namen, das Geburtsdatum, Ihr Wohnsitzland oder Ihre E-Mail Anschrift ändern möchten, setzen Sie sich bitte mit unserer <a href="/de/contact.html">Kundenbetreuung</a> in Verbindung.</p>
 
 </div>

@@ -12,14 +12,14 @@
 
     <div id="paymentagent_withdrawal">
 
-        <div id="viewError" class="viewItem hidden">
-            <p id="custom-error" class="notice-msg center-text hidden"></p>
-            <p id="withdrawal-locked-error" class="notice-msg center-text hidden">
+        <div id="viewError" class="viewItem invisible">
+            <p id="custom-error" class="notice-msg center-text invisible"></p>
+            <p id="withdrawal-locked-error" class="notice-msg center-text invisible">
                 No se permiten las retiradas de su cuenta en este momento. Por favor, póngase en contacto con <a href="mailto:support@binary.com">support@binary.com</a> para desbloquearla.
             </p>
         </div>
 
-        <div id="viewSuccess" class="viewItem hidden">
+        <div id="viewSuccess" class="viewItem invisible">
             <p id="successMessage"></p>
             <p>
                 <a class="button" href="/es/user/statementws.html">
@@ -28,7 +28,7 @@
             </p>
         </div>
 
-        <form id="viewConfirm" class="viewItem hidden">
+        <form id="viewConfirm" class="viewItem invisible">
             <p>Confirme los detalles de la transacción para completar la transferencia:</p>
 
             <p>Transferir a: <span id="lblAgentName"></span><br />Monto: <span id="lblCurrency"></span> <span id="lblAmount"></span></p>
@@ -37,7 +37,7 @@
             <button class="button" type="submit">Confirmar</button>
         </form>
 
-        <div id="viewForm" class="viewItem hidden">
+        <div id="viewForm" class="viewItem invisible">
             <p>Por favor proporcione la siguiente información, después de conseguir el token de verificación de su correo electrónico:</p>
             <form class="form rbox gr-padding-10" id="frmWithdrawal">
                 <fieldset>

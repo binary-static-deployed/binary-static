@@ -223,8 +223,11 @@ label {
 }
 
 /* global styles */
-.required_asterisk {
-  color: #e98024;
+.required_field_asterisk {
+  position: absolute;
+  margin: -3px 3px;
+  font-size: 0.86957rem;
+  color: #c03;
 }
 
 .inpage_popup_container {
@@ -612,8 +615,7 @@ body #topbar #select_language {
   height: 30px;
   padding-left: 5px;
 }
-#footer #footer-regulatory #ratelimit-error-message {
-  display: none;
+#footer #footer-regulatory #ratelimit-error-message, #footer #footer-regulatory #site-status-message {
   position: fixed;
   top: 0;
   width: 100%;
@@ -621,14 +623,15 @@ body #topbar #select_language {
   z-index: 999;
   text-align: center;
 }
-#footer #footer-regulatory #ratelimit-error-message .message {
+#footer #footer-regulatory #ratelimit-error-message .message, #footer #footer-regulatory #site-status-message .message {
   margin: 12px;
-  font-style: italic;
-  color: #c03;
 }
-#footer #footer-regulatory #ratelimit-error-message .message a {
+#footer #footer-regulatory #ratelimit-error-message .message a, #footer #footer-regulatory #site-status-message .message a {
   color: #2e8836;
   font-size: inherit;
+}
+#footer #footer-regulatory #site-status-message {
+  z-index: 9999;
 }
 #footer #footer-last a {
   text-decoration: underline;
@@ -737,6 +740,10 @@ html.mm-right.mm-opening body .mm-page, html.mm-right.mm-opening body #mm-blocke
   width: 10em;
 }
 
+input#num_reality_duration {
+  margin-left: 10px;
+}
+
 #accordion .ui-accordion-content {
   padding-top: 0;
 }
@@ -750,6 +757,26 @@ html.mm-right.mm-opening body .mm-page, html.mm-right.mm-opening body #mm-blocke
 }
 .ui-datepicker.ui-corner-all, .ui-datepicker .ui-corner-all, .ui-timepicker-table.ui-corner-all, .ui-timepicker-table .ui-corner-all {
   border-radius: 0;
+}
+
+.clearable {
+  background: #fff url("data:image/gif;base64,R0lGODlhBwAHAIAAAP///5KSkiH5BAAAAAAALAAAAAAHAAcAAAIMTICmsGrIXnLxuDMLADs=") no-repeat right -10px center;
+  padding: 3px 18px 3px 4px;
+  /* Use the same right padding (18px) in jQ */
+  border-radius: 3px;
+  transition: background 0.4s;
+}
+.clearable.clear {
+  background-position: right 5px center;
+}
+.clearable.onClear {
+  cursor: pointer;
+}
+
+.clearable::-ms-clear {
+  display: none;
+  width: 0;
+  height: 0;
 }
 
 /* pages */
@@ -980,8 +1007,8 @@ html.mm-right.mm-opening body .mm-page, html.mm-right.mm-opening body #mm-blocke
   background: #14602b;
 }
 .get-started dl #what-is-binary-trading, .get-started dl #binary-options-basics, .get-started dl #how-to-trade-binaries, .get-started dl #types-of-trades,
-.get-started dl #why-trade-with-us, .get-started dl #beginners-faq, .get-started dl #glossary, .get-started dl #spread, .get-started dl #random-trades, .get-started-jp dl #what-is-binary-trading, .get-started-jp dl #binary-options-basics, .get-started-jp dl #how-to-trade-binaries, .get-started-jp dl #types-of-trades,
-.get-started-jp dl #why-trade-with-us, .get-started-jp dl #beginners-faq, .get-started-jp dl #glossary, .get-started-jp dl #spread, .get-started-jp dl #random-trades {
+.get-started dl #why-trade-with-us, .get-started dl #beginners-faq, .get-started dl #glossary, .get-started dl #random-trades, .get-started-jp dl #what-is-binary-trading, .get-started-jp dl #binary-options-basics, .get-started-jp dl #how-to-trade-binaries, .get-started-jp dl #types-of-trades,
+.get-started-jp dl #why-trade-with-us, .get-started-jp dl #beginners-faq, .get-started-jp dl #glossary, .get-started-jp dl #random-trades {
   height: 80px;
   background-repeat: no-repeat;
   background-image: url("../images/pages/get-started/intro_2.png");
@@ -1013,9 +1040,6 @@ html.mm-right.mm-opening body .mm-page, html.mm-right.mm-opening body #mm-blocke
 .get-started dl #smart-indices, .get-started dl #partners, .get-started-jp dl #smart-indices, .get-started-jp dl #partners {
   height: 80px;
   background-repeat: no-repeat;
-}
-.get-started dl #spread, .get-started-jp dl #spread {
-  background: url("../images/pages/get-started/spread_bet.svg") 100% 71%;
 }
 .get-started dl #smart-indices, .get-started-jp dl #smart-indices {
   background: url("../images/pages/get-started/smart-indices.svg") 50% 50%/20% #272825;
@@ -1249,9 +1273,6 @@ a.close:hover {
 #sell_popup_container .inpage_popup_content {
   margin: 0;
 }
-#sell_popup_container.spread_popup {
-  width: 300px;
-}
 #sell_popup_container.message_popup {
   width: 500px;
   line-height: 25px;
@@ -1346,10 +1367,6 @@ a.close:hover {
 
 .invisible {
   display: none !important;
-}
-
-.hidden {
-  display: none;
   visibility: hidden;
 }
 
@@ -1909,38 +1926,6 @@ ol.start {
 }
 .live_chart_wrapper hr {
   display: block;
-}
-
-#live_chart_form_wrapper {
-  margin: 0 auto;
-}
-#live_chart_form_wrapper a {
-  text-decoration: underline;
-  cursor: pointer;
-}
-#live_chart_form_wrapper input {
-  border-radius: 4px;
-}
-#live_chart_form_wrapper input[type=button] {
-  color: #fff;
-  text-decoration: none;
-  text-align: center;
-  line-height: 100%;
-  background: #2e8836;
-  border-radius: 3px;
-  text-transform: capitalize;
-  padding: 10px 25px;
-  display: inline-block;
-  letter-spacing: 0.75px;
-  padding: 6px 15px;
-  font-size: 14px;
-}
-#live_chart_form_wrapper input[type=button]:visited {
-  color: #fff;
-}
-#live_chart_form_wrapper input[type=button]:hover, #live_chart_form_wrapper input[type=button]:active {
-  text-decoration: none;
-  background-color: #14602b;
 }
 
 .chart-notice {
@@ -3119,7 +3104,7 @@ fieldset .error-msg {
   display: block;
   position: absolute;
   height: 100%;
-  margin-top: -8px;
+  top: 0;
 }
 #trading_socket_container #contract_container input[type=number]::-webkit-inner-spin-button, #trading_socket_container #contract_container input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none;
@@ -3200,14 +3185,6 @@ fieldset .error-msg {
 }
 #trading_socket_container .contract_heading.EXPIRYMISS {
   background: url("../images/pages/trade/ends-outside_1.png") no-repeat top center;
-}
-#trading_socket_container .contract_heading.SPREADU {
-  background: url("../images/pages/trade/spreads.svg") no-repeat top center;
-  background-size: 40%;
-}
-#trading_socket_container .contract_heading.SPREADD {
-  background: url("../images/pages/trade/spreads_1.svg") no-repeat top center;
-  background-size: 40%;
 }
 #trading_socket_container #contract_prices_container {
   position: relative;
@@ -4285,7 +4262,7 @@ fieldset .error-msg {
   display: block;
   position: absolute;
   height: 100%;
-  margin-top: -8px;
+  top: 0;
 }
 #trading_socket_container_beta #contract_container input[type=number]::-webkit-inner-spin-button, #trading_socket_container_beta #contract_container input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none;
@@ -4368,14 +4345,6 @@ fieldset .error-msg {
 }
 #trading_socket_container_beta .contract_heading.EXPIRYMISS {
   background-image: url("../images/pages/trade/ends-outside_1.png");
-}
-#trading_socket_container_beta .contract_heading.SPREADU {
-  background-image: url("../images/pages/trade/spreads.svg");
-  background-size: 2em;
-}
-#trading_socket_container_beta .contract_heading.SPREADD {
-  background-image: url("../images/pages/trade/spreads_1.svg");
-  background-size: 2em;
 }
 #trading_socket_container_beta #contract_prices_container .price_container {
   border: 1px solid #dedede;
@@ -4922,6 +4891,9 @@ fieldset .error-msg {
 #content #trading_socket_container_beta #trading_analysis_content .content-tab-container #analysis_content #portfolio #portfolio-content > div, #content #trading_socket_container_beta #trading_analysis_content .content-tab-container #analysis_content #tab_trading_times-content > p {
   margin: 0 10px 10px;
 }
+#content #trading_socket_container_beta #trading_analysis_content .content-tab-container #analysis_content #tab_trading_times-content select, #content #trading_socket_container_beta #trading_analysis_content .content-tab-container #analysis_content #tab_asset_index-content select {
+  margin-bottom: 10px;
+}
 #content #trading_socket_container_beta #trading_analysis_content .content-tab-container #analysis_content .toggle-content .gr-padding-10 {
   padding-top: 0;
 }
@@ -5267,9 +5239,6 @@ button:disabled {
 body .calls_recording {
   display: none;
 }
-body .all-hide {
-  display: none !important;
-}
 body ul.checked > li {
   background-position: left top;
   padding-left: 35px;
@@ -5293,22 +5262,6 @@ body.EN .google-play-badge {
 
 body.JA .ja-hide {
   display: none !important;
-}
-body.JA .ja-show {
-  display: inline !important;
-  visibility: visible !important;
-}
-body.JA .ja-show-block {
-  display: block !important;
-  visibility: visible !important;
-}
-body.JA .ja-show-inline-block {
-  display: inline-block !important;
-  visibility: visible !important;
-}
-body.JA .ja-no-padding {
-  padding-top: 0 !important;
-  padding-bottom: 0 !important;
 }
 body.JA .regulatory-logo {
   display: none !important;

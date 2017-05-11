@@ -58,10 +58,10 @@
           <link rel="alternate" href="/zh_cn/new_account/realws.html" hreflang="ZH_CN" /> 
           <link rel="alternate" href="/zh_tw/new_account/realws.html" hreflang="ZH_TW" /> 
         
-         <link rel="stylesheet" href="/css/binary.min.css?wsh14gi9">
-         <link rel="stylesheet" href="https://style.binary.com/binary.css?wsh14gi9">
+         <link rel="stylesheet" href="/css/binary.min.css?iqc2mtoi">
+         <link rel="stylesheet" href="https://style.binary.com/binary.css?iqc2mtoi">
         
-        <script src='/js/binary.min.js?wsh14gi9'></script>  <script src='https://style.binary.com/binary.js?wsh14gi9'></script>
+        <script src='/js/binary.min.js?iqc2mtoi'></script>  <script src='https://style.binary.com/binary.js?iqc2mtoi'></script>
     </head>
 
 
@@ -133,25 +133,25 @@
                                 <li class="ja-hide">
                                     <a href="/vi/why-us.html">Lý do chọn chúng tôi?</a>
                                 </li>
-                                <li class="all-hide ja-show-inline-block">
+                                <li class="invisible ja-show">
                                     <a href="/vi/why-us-jp.html">Lý do chọn chúng tôi?</a>
                                 </li>
                                 <li class="ja-hide">
                                     <a href="/vi/get-started.html">Bắt đầu</a>
                                 </li>
-                                <li class="all-hide ja-show-inline-block">
+                                <li class="invisible ja-show">
                                   <a href="/vi/get-started-jp.html">Bắt đầu</a>
                                 </li>
                                 <li class="ja-hide">
                                     <a href="/vi/tour.html">Trải nghiệm</a>
                                 </li>
-                                <li class="all-hide ja-show-inline-block">
+                                <li class="invisible ja-show">
                                     <a href="/vi/tour-jp.html">Trải nghiệm</a>
                                 </li>
                                 <li class="ja-hide" id="main-navigation-trading">
                                     <a href="/vi/platforms.html">Các sàn giao dịch</a>
                                 </li>
-                                <li class="all-hide ja-show-inline-block" id="main-navigation-jptrading">
+                                <li class="invisible ja-show" id="main-navigation-jptrading">
                                     <a href="/vi/multi_barriers_trading.html">Giao dịch</a>
                                 </li>
                             </ul>
@@ -222,7 +222,7 @@
             <ul class="items">  <li id="topMenuTrading" class="item ja-hide hide-tablet-mobile">
                     <a class="link" target="" href="/vi/trading.html">Giao dịch</a>
                     
-                </li>  <li id="topMenuJPTrading" class="item all-hide ja-show hide-tablet-mobile">
+                </li>  <li id="topMenuJPTrading" class="item invisible ja-show hide-tablet-mobile">
                     <a class="link" target="" href="/vi/multi_barriers_trading.html">Giao dịch</a>
                     
                 </li>  <li id="topMenuPortfolio" class="item client_logged_in invisible">
@@ -262,24 +262,24 @@
             <li class="ja-hide">
                 <a href="/vi/why-us.html">Lý do chọn chúng tôi?</a>
             </li>
-            <li class="all-hide ja-show-block">
+            <li class="invisible ja-show">
                 <a href="/vi/why-us-jp.html">Lý do chọn chúng tôi?</a>
             </li>
             <li class="ja-hide">
               <a href="/vi/get-started.html">Bắt đầu</a>
             </li>
-            <li class="all-hide ja-show-block">
+            <li class="invisible ja-show">
                 <a href="/vi/get-started-jp.html">Bắt đầu</a>
             </li>
             <li class="ja-hide">
                 <a href="/vi/tour.html">Trải nghiệm</a>
             </li>
-            <li class="all-hide ja-show-block">
+            <li class="invisible ja-show">
                 <a href="/vi/tour-jp.html">Trải nghiệm</a>
             </li>  <li id="topMenuTrading" class="item ja-hide hide-tablet-mobile">
                 <a class="link " href="/vi/trading.html">Giao dịch</a>
                 
-            </li>  <li id="topMenuJPTrading" class="item all-hide ja-show hide-tablet-mobile">
+            </li>  <li id="topMenuJPTrading" class="item invisible ja-show hide-tablet-mobile">
                 <a class="link " href="/vi/multi_barriers_trading.html">Giao dịch</a>
                 
             </li>  <li id="topMenuPortfolio" class="item client_logged_in invisible">
@@ -312,7 +312,7 @@
             </li>  <li class="ja-hide">
                 <a href="/vi/platforms.html">Các sàn giao dịch</a>
             </li>
-            <li class="all-hide ja-show-block">
+            <li class="invisible ja-show">
                 <a href="/vi/multi_barriers_trading.html">Giao dịch</a>
             </li>
         </ul>
@@ -488,11 +488,24 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     </div>
                 </fieldset>
 
+                <fieldset>
+    <legend>PEP Declaration</legend>
+
+    <div class="gr-12">
+        <p>A PEP is an individual who is or has been entrusted with a prominent public function. This status extends to a PEP's relatives and close associates.</p>
+    </div>
+
+    <div class="gr-padding-10 gr-12">
+        <input id="not_pep" type="checkbox" />
+        <label for="not_pep">I acknowledge that I am not a politically exposed person (PEP).</label>
+    </div>
+</fieldset>
+
                 <fieldset class="center-text" id="formlayout">
                     <div class="gr-row">
                         <div class="gr-12-m gr-padding-10 gr-centered">
                             <input type="checkbox" name="tnc" id="tnc">
-                            <label for="tnc">Tôi đã đọc và đồng ý với <a target="_blank" href="/vi/terms-and-conditions.html">điều khoản và điều kiện</a> của trang.</label>
+                            <label for="tnc">I have read and agree to the <a target="_blank" href="/vi/terms-and-conditions.html">terms and conditions</a> of the site.</label>
                         </div>
                     </div>
 
@@ -541,7 +554,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                     <a href="/vi/careers.html">Sự nghiệp</a>
                                 </li>
                                 <li class="ja-hide">
-                                    <a href="http://binarycom.statuspage.io" target="_blank">Tình trạng Mạng</a>
+                                    <a href="https://binarycom.statuspage.io" target="_blank">Tình trạng Mạng</a>
                                 </li>
                                 <li class="ja-hide id-hide">
                                     <a href="/vi/legal/us_patents.html" class="us_patent_link">Bằng sáng chế</a>
@@ -554,29 +567,29 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                 <li class="ja-hide">
                                     <a href="/vi/why-us.html">Lý do chọn chúng tôi?</a>
                                 </li>
-                                <li class="all-hide ja-show-block">
+                                <li class="invisible ja-show">
                                     <a href="/vi/why-us-jp.html">Lý do chọn chúng tôi?</a>
                                 </li>
                                 <li class="ja-hide">
                                     <a href="/vi/get-started.html">Bắt đầu</a>
                                 </li>
-                                <li class="all-hide ja-show-block">
+                                <li class="invisible ja-show">
                                     <a href="/vi/get-started-jp.html">Bắt đầu</a>
                                 </li>
                                 <li class="ja-hide">
                                     <a href="/vi/tour.html">Ghé thăm Sàn giao dịch</a>
                                 </li>
-                                <li class="hidden ja-show-block">
+                                <li class="invisible ja-show">
                                     <a href="/vi/tour-jp.html">Ghé thăm Sàn giao dịch</a>
                                 </li>
-                                <li class="hidden ja-show-block">
+                                <li class="invisible ja-show">
                                     <a href="/vi/service-announcements.html">{Nhật bản}Các thông báo dịch vụ</a>
                                 </li>
                                 <li class="ja-hide id-hide">
                                     <a href="http://www.gamcare.org.uk/" target="_blank">Hội cờ bạc GamCare</a>
                                 </li>
                                 <li class="ja-hide academy">
-                                    <a href="http://academy.binary.com" target="_blank">học viện</a>
+                                    <a href="https://academy.binary.com" target="_blank">học viện</a>
                                 </li>
                                 <li class='ja-hide id-hide'>
                                     <a href="https://academy.binary.com/en/events/" target="_blank">Hội thảo trên Web</a>
@@ -604,13 +617,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                <li class='ja-hide'>
                                    <a href="/vi/terms-and-conditions.html">Điều khoản và Điều kiện</a>
                                </li>
-                               <li class='hidden ja-show-block'>
+                               <li class='invisible ja-show'>
                                    <a href="/vi/terms-and-conditions-jp.html">Điều khoản và Điều kiện</a>
                                </li>
                                <li class='ja-hide'>
                                    <a href="/vi/terms-and-conditions.html?#privacy">Bảo mật và Riêng tư</a>
                                </li>
-                               <li class='hidden ja-show-block'>
+                               <li class='invisible ja-show'>
                                    <a href="/vi/terms-and-conditions-jp.html?#account-privacy">Bảo mật và Riêng tư</a>
                                </li>
                                <li class="ja-hide">
@@ -645,11 +658,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                    <a target="_blank" href="https://shop.binary.com">Cửa hàng Nhị phân</a>
                                </li>
                                <li>
+                                   <a href="/vi/charity.html">Charitable Activities</a>
+                               </li>
+                               <li>
                                    <a href="/vi/partners.html">Tất cả các lựa chọn hợp tác</a>
                                </li>
                            </ul>
                        </div>
-                       <div class="gr-4 all-hide ja-show">
+                       <div class="gr-4 invisible ja-show">
                            <h4 class="secondary-color">{JAPAN ONLY}Company Profile</h4>
                            <ul>
                                <li>
@@ -666,12 +682,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <div class="container">
             <div class="gr-row">
                 <div id="regulatory-text" class="gr-9 gr-12-m gr-7-p gr-padding-10 gr-parent content-inverse-color">
-                    Trang web này được giới thiệu trên thị trường Anh và Đảo Man bởi công ty TNHH Binary (IOM), tầng 1, Tòa nhà Millennium, Đường Victoria, Douglas, IM2 4RW, Đảo Man, Anh, được cấp phép và quy định bởi (1) Ủy ban Giám sát Cá cược tại Đảo Man, Anh, giấy phép cá cược trực tuyến hiện ban hành ngày 31 Tháng Tám năm 2012, và (2) Ủy ban Cá cược Anh cấp cho khách hàng nước Anh- <a href='https://secure.gamblingcommission.gov.uk/gccustomweb/PublicRegister/PRSearch.aspx?ExternalAccountId=39172' target='_blank'>xem giấy phép</a>. Trang web này được giới thiệu trên thị trường EU còn lại bởi công ty TNHH Binary Investments (Châu Âu) , Tòa nhà Mompalao, Khu 2, Đường Tower, Msida MSD1825, Malta, được cấp phép và quy định bởi (1) Ủy ban quản lý Cá cược Malta ở Malta, Giấy phép số MGA / CL2 / 118/2000, 26 tháng 5 năm 2015 và (2) Ủy ban quản lý Cá cược UK cấp cho khách hàng của Anh - <a href='https://secure.gamblingcommission.gov.uk/gccustomweb/PublicRegister/PRSearch.aspx?ExternalAccountId=39495' target='_blank'>xem giấy phép</a>, và Các ủy viên Cục thuế Ai-len cấp cho khách hàng Ai-len, giấy phép hiện tại có hiệu lực được ban hành vào ngày 29 tháng 9 năm 2015 (giấy phép số 1010285). Các dịch vụ của trang web này không có tại một số quốc gia nhất định như Hoa Kỳ, Costa Rica,Hong Kong, hay cho người dưới 18 tuổi.
+                    This website is marketed in the UK and Isle of Man by Binary (IOM) Ltd., First Floor, Millennium House, Victoria Road, Douglas, IM2 4RW, Isle of Man, British Isles, licenced and regulated by (1) the Gambling Supervision Commission in the Isle of Man, British Isles, current online gambling licence issued on 31 August 2012, and for UK clients by (2) the UK Gambling Commission - <a href='https://secure.gamblingcommission.gov.uk/gccustomweb/PublicRegister/PRSearch.aspx?ExternalAccountId=39172' target='_blank'>view license</a>. This website is marketed in the rest of the EU, for investment products by Binary Investments (Europe) Ltd., Mompalao Building, Suite 2, Tower Road, Msida MSD1825, Malta, licenced and regulated as a Category 3 Investment Services provider by the Malta Financial Services Authority (license no. IS/70156), and for betting products by Binary (Europe) Ltd., Mompalao Building, Suite 2, Tower Road, Msida MSD1825, Malta, licenced and regulated by (1) the Malta Gaming Authority in Malta, licence no MGA/CL2/118/2000, 26th May 2015 and for UK clients by (2) the UK Gambling Commission - <a href='https://secure.gamblingcommission.gov.uk/gccustomweb/PublicRegister/PRSearch.aspx?ExternalAccountId=39495' target='_blank'>view license</a>, and for Irish clients by (3) the Revenue Commissioners in Ireland, current remote bookmaker's licence issued on 29 September 2015 (licence no 1010285). This website's services are not made available in certain countries such as the USA, Costa Rica, Hong Kong, or to persons under age 18.
                 </div>
                 <div class="ja-hide gr-3 gr-12-m gr-5-p center-text" id="social-networks">
                     <div class="gr-row ja-hide id-hide">
                         <div class="gr-5">
-                            <a href="http://www.gov.im/gambling/" target="_blank">
+                            <a href="https://www.gov.im/gambling/" target="_blank">
                                 <img id="iom_icon_footer" class="responsive" src="/images/pages/footer/isle-of-man.png"/>
                             </a>
                         </div>
@@ -684,7 +700,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     <div id="fb-root">
 </div>
 <div class="social-icons gr-padding-10">
-    <a href="http://www.youtube.com/user/BinaryTradingVideos" target="_blank">
+    <a href="https://www.youtube.com/user/BinaryTradingVideos" target="_blank">
         <img class="responsive social-network-icon" src="/images/pages/footer/youtube.svg"/>
     </a>
     <a href="https://plus.google.com/106251151552682209951" rel="publisher" target="_blank">
@@ -704,10 +720,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </div>
             </div>
         </div>
-        <div id="ratelimit-error-message">
+        <div id="ratelimit-error-message" class="invisible">
             <div class="message">
                 Bạn đã đạt đến giới hạn số lượng lệnh có thể mỗi giây. Xin vui lòng thử lại sau.
             </div>
+        </div>
+        <div id="site-status-message" class="invisible">
+            <div class="message"></div>
         </div>
     </div>
     <div id="footer-last" class="primary-bg-color">
