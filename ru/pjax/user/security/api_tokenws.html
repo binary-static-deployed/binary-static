@@ -1,10 +1,10 @@
 <div id="content" class="api_tokenws-content">
-        <div id="page_info" style="display:none;">
-            <title>Ключ API | Binary.com</title>
-            <div id="content_class">api_tokenws-content</div>
-        </div>
-        
-        <div class="container">
+            <div id="page_info" style="display:none;">
+                <title>Ключ API | Binary.com</title>
+                <div id="content_class">api_tokenws-content</div>
+            </div>
+            <div class="container">
+
 
 
   <div id="api_token" class="api_token">
@@ -19,24 +19,28 @@
     <div id="token_form" class="gr-12 gr-padding-10">
         <form>
             <fieldset>
-    <legend>Создать новый ключ</legend>
-    
+        <legend>Создать новый ключ</legend>
+        
                 <div class="gr-row form-row center-text-m ">
-    <div class="gr-4 gr-12-m">
-        <label for="txt_name">Choose token name</label>
+        <div class="gr-4 gr-12-m">
+            <label for="txt_name">
+                Choose token Name
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <input type="text" id="txt_name" maxlength="32" />
+            
+        </div>
     </div>
-    <div class="gr-8 gr-12-m">
-                <input type="text" id="txt_name" maxlength="32" />
-    
-    </div>
-</div>
 
                 <div class="gr-row form-row center-text-m ">
-    <div class="gr-4 gr-12-m">
-        <label for="">Выберите условия:</label>
-    </div>
-    <div class="gr-8 gr-12-m">
-                
+        <div class="gr-4 gr-12-m">
+            <label for="">
+                Выберите условия:
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                
                     <input id="chk_scopes_read" type="checkbox" value="read" checked="checked" readonly="readonly" />
                     <label for="chk_scopes_read" data-balloon="Может использоваться для просмотра активности на счету, в том числе настроек, лимитов, баланса, истории торговли и др." data-balloon-length="xlarge">Читать</label>
 
@@ -49,20 +53,25 @@
                     <input id="chk_scopes_admin" type="checkbox" value="admin" />
                     <label for="chk_scopes_admin" data-balloon="Может использоваться для открытия счетов, создания настроек, управления ключом и других действий." data-balloon-length="xlarge">Администратор</label>
                 
-    
-    </div>
-</div>
-
-                <div class="gr-row">
-    <div class="gr-8 gr-push-4 gr-12-m gr-push-0-m center-text-m">
-    <div id="msg_form" class="error-msg invisible"></div>
-    <div class="gr-padding-10">
-        <button id="btn_submit" type="submit">Создать</button>
-    </div>
-    </div>
-</div>
             
-</fieldset>
+        </div>
+    </div>
+
+                <div class="gr-row ">
+                <div class="gr-8 gr-push-4 gr-12-m gr-push-0-m center-text-m">
+            
+        
+        <div id="msg_form" class="error-msg invisible"></div>
+        
+        
+        <div class="gr-padding-10">
+            <button id="btn_submit" type="submit">Создать</button>
+        </div>
+    
+                </div>
+            </div>
+            
+    </fieldset>
         </form>
     </div>
 
@@ -71,10 +80,16 @@
     </div>
 
     <div id="tokens_list" class="gr-12 gr-parent gr-padding-10"><div class="barspinner dark">
+    
     <div class="rect1"></div>
+    
     <div class="rect2"></div>
+    
     <div class="rect3"></div>
+    
     <div class="rect4"></div>
+    
     <div class="rect5"></div>
+    
 </div></div>
 </div>

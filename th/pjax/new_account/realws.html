@@ -1,164 +1,195 @@
 <div id="content" class="realws-content">
-        <div id="page_info" style="display:none;">
-            <title>การเปิดบัญชีเงินจริง | Binary.com</title>
-            <div id="content_class">realws-content</div>
-        </div>
-        
-        <div class="container">
+            <div id="page_info" style="display:none;">
+                <title>การเปิดบัญชีเงินจริง | Binary.com</title>
+                <div id="content_class">realws-content</div>
+            </div>
+            <div class="container">
+
 
 
   <div class='gr-12 static_full'>
     <h1>การเปิดบัญชีเงินจริง</h1>
-    <div class="rbox form gr-padding-10">
-        <div class="rbox-wrap">
-            <form id="frm_real">
-                <fieldset>
-                    <legend id="details">รายละเอียด</legend>
+    <form id="frm_real" class="gr-padding-10">
+        <fieldset>
+        <legend>รายละเอียด</legend>
+        
+            <div class="gr-row form-row center-text-m ">
+        <div class="gr-4 gr-12-m">
+            <label for="salutation">
+                คำนำหน้าชื่อ
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <select id="salutation" class="form_input " > 
+        <option value="Mr">นาย</option>
+        <option value="Mrs" class="ru-hide">นาง</option>
+        <option value="Ms">นางสาว</option>
+        <option value="Miss" class="ru-hide">นางสาว</option>
+                        </select>
+            
+        </div>
+    </div>
+            <div class="gr-row form-row center-text-m ">
+        <div class="gr-4 gr-12-m">
+            <label for="first_name">
+                ชื่อ
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <input type="text" id="first_name" maxlength="30" />
+            
+        </div>
+    </div>
+            <div class="gr-row form-row center-text-m ">
+        <div class="gr-4 gr-12-m">
+            <label for="last_name">
+                นามสกุล
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <input type="text" id="last_name" maxlength="30" />
+            
+        </div>
+    </div>
+            <div class="gr-row form-row center-text-m ">
+        <div class="gr-4 gr-12-m">
+            <label for="date_of_birth">
+                วันเกิด
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <input type="text" id="date_of_birth" size="12" readonly="readonly" />
+            
+        </div>
+    </div>
+            <div class="gr-row form-row center-text-m ">
+        <div class="gr-4 gr-12-m">
+            <label for="residence">
+                ประเทศที่พำนัก
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                
+        <label id="lbl_residence"></label>
+    
+            
+        </div>
+    </div>
+        
+    </fieldset>
 
-                    <div class="gr-padding-10 gr-row clear">
-                        <div class="gr-4 form_label">
-                            <label for="salutation">คำนำหน้าชื่อ</label>
-                        </div>
-                        <div class="gr-8">
-                            <select id="salutation" name="salutation">
-                              <option value="Mr">นาย</option>
-                              <option value="Mrs" class="ru-hide">นาง</option>
-                              <option value="Ms">นางสาว</option>
-                              <option value="Miss" class="ru-hide">นางสาว</option>
-                            </select>
-                        </div>
-                    </div>
+        <fieldset>
+        <legend>ที่อยู่</legend>
+        
+            <div class="gr-row form-row center-text-m ">
+        <div class="gr-4 gr-12-m">
+            <label for="address_line_1">
+                บรรทัดแรกของที่อยู่
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <input type="text" id="address_line_1" maxlength="70" />
+            <div class="hint">โปรดแจ้งที่อยู่ของท่านอย่างครบถ้วน<br>ซึ่งใช้ในการตรวจสอบอัตลักษณ์ของท่านในการเปิดบัญชีจริงของท่าน</div>
+        </div>
+    </div>
+            <div class="gr-row form-row center-text-m ">
+        <div class="gr-4 gr-12-m">
+            <label for="address_line_2">
+                บรรทัดที่สองของที่อยู่ที่พัก
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <input type="text" id="address_line_2" maxlength="70" />
+            
+        </div>
+    </div>
+            <div class="gr-row form-row center-text-m ">
+        <div class="gr-4 gr-12-m">
+            <label for="address_city">
+                เมือง
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <input type="text" id="address_city" maxlength="35" />
+            
+        </div>
+    </div>
+            <div class="gr-row form-row center-text-m ">
+        <div class="gr-4 gr-12-m">
+            <label for="address_state">
+                รัฐ/จังหวัด
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <select id="address_state" class="form_input " >                     </select>
+            
+        </div>
+    </div>
+            <div class="gr-row form-row center-text-m ">
+        <div class="gr-4 gr-12-m">
+            <label for="address_postcode">
+                รหัสไปรษณีย์
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <input type="text" id="address_postcode" maxlength="20" />
+            
+        </div>
+    </div>
+            <div class="gr-row form-row center-text-m ">
+        <div class="gr-4 gr-12-m">
+            <label for="phone">
+                โทรศัพท์
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <input type="text" id="phone" maxlength="35" />
+            
+        </div>
+    </div>
+        
+    </fieldset>
 
-                    <div class="gr-padding-10 gr-row clear">
-                        <div class="gr-4 form_label">
-                            <label for="first_name">ชื่อ</label>
-                        </div>
-                        <div class="gr-8">
-                            <input type="text" class="text" id="first_name" name="first_name" maxlength="30"/>
-                        </div>
-                    </div>
+        <fieldset>
+        <legend>หลักทรัพย์</legend>
+        
+            <div class="gr-row form-row center-text-m ">
+        <div class="gr-4 gr-12-m">
+            <label for="secret_question">
+                คำถามลับ
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <select id="secret_question" class="form_input " > 
+        <option value="Favourite dish">อาหารที่ท่านโปรดปราน</option>
+        <option value="Mother's maiden name">ชื่อกลางของมารดา</option>
+        <option value="Name of your pet">ชื่อของสัตว์เลี้ยงของท่าน</option>
+        <option value="Name of first love">ชื่อของคนรักคนแรก</option>
+        <option value="Memorable town/city">เมืองแห่งความทรงจำ</option>
+        <option value="Memorable date">วันแห่งความทรงจำ</option>
+        <option value="Brand of first car">ยี่ห้องของรถยนต์คันแรก</option>
+        <option value="Favourite artist">ศิลปินที่ท่านโปรดปราน</option>
+                        </select>
+            
+        </div>
+    </div>
+            <div class="gr-row form-row center-text-m ">
+        <div class="gr-4 gr-12-m">
+            <label for="secret_answer">
+                คำตอบสำหรับคำถามส่วนตัว
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <input type="text" id="secret_answer" maxlength="50" autocomplete="off" />
+            
+        </div>
+    </div>
+        
+    </fieldset>
 
-                    <div class="gr-padding-10 gr-row clear">
-                        <div class="gr-4 form_label">
-                            <label for="last_name">นามสกุล</label>
-                        </div>
-                        <div class="gr-8">
-                            <input type="text" class="text" id="last_name" name="last_name" maxlength="30"/>
-                        </div>
-                    </div>
-
-                    <div class="gr-padding-10 gr-row clear">
-                        <div class="gr-4 form_label">
-                            <label for="date_of_birth">วันเกิด</label>
-                        </div>
-                        <div class="gr-8">
-                            <input type="text" id="date_of_birth" name="date_of_birth" size="12" readonly="readonly"/>
-                        </div>
-                    </div>
-
-                    <div class="gr-padding-10 gr-row clear">
-                        <div class="gr-4 form_label">
-                            <label for="residence">ประเทศที่พำนัก</label>
-                        </div>
-                        <div class="gr-8">
-                            <label id="lbl_residence"></label>
-                        </div>
-                    </div>
-                </fieldset>
-
-                <fieldset>
-                    <legend id="address">ที่อยู่</legend>
-
-                    <div class="gr-padding-10 gr-row clear">
-                        <div class="gr-4 form_label">
-                            <label for="address_line_1">บรรทัดแรกของที่อยู่</label>
-                        </div>
-                        <div class="gr-8">
-                            <input type="text" class="text" id="address_line_1" name="address_line_1" maxlength="70"/>
-                            <p class="hint">โปรดแจ้งที่อยู่ของท่านอย่างครบถ้วน<br>ซึ่งใช้ในการตรวจสอบอัตลักษณ์ของท่านในการเปิดบัญชีจริงของท่าน</p>
-                        </div>
-                    </div>
-
-                    <div class="gr-padding-10 gr-row clear">
-                        <div class="gr-4 form_label">
-                            <label for="address_line_2">บรรทัดที่สองของที่อยู่ที่พัก</label>
-                        </div>
-                        <div class="gr-8">
-                            <input type="text" class="text" id="address_line_2" name="address_line_2" maxlength="70"/>
-                        </div>
-                    </div>
-
-                    <div class="gr-padding-10 gr-row clear">
-                        <div class="gr-4 form_label">
-                            <label for="address_city">เมือง</label>
-                        </div>
-                        <div class="gr-8">
-                            <input type="text" class="text" id="address_city" name="address_city" maxlength="35"/>
-                        </div>
-                    </div>
-
-                    <div class="gr-padding-10 gr-row clear" style="display:none">
-                        <div class="gr-4 form_label">
-                            <label for="address_state">รัฐ/จังหวัด</label>
-                        </div>
-                        <div class="gr-8">
-                            <select id="address_state" name="address_state"></select>
-                        </div>
-                    </div>
-
-                    <div class="gr-padding-10 gr-row clear">
-                        <div class="gr-4 form_label">
-                            <label for="address_postcode">รหัสไปรษณีย์</label>
-                        </div>
-                        <div class="gr-8">
-                            <input type="text" class="text" id="address_postcode" name="address_postcode" maxlength="20" />
-                        </div>
-                    </div>
-
-                    <div class="gr-padding-10 gr-row clear">
-                        <div class="gr-4 form_label">
-                            <label for="phone">โทรศัพท์</label>
-                        </div>
-                        <div class="gr-8">
-                            <input type="text" class="text" id="phone" name="phone" maxlength="35" />
-                        </div>
-                    </div>
-                </fieldset>
-
-                <fieldset>
-                    <legend id="security">หลักทรัพย์</legend>
-
-                    <div class="gr-padding-10 gr-row clear">
-                        <div class="gr-4 form_label">
-                            <label for="secret_question">คำถามลับ</label>
-                        </div>
-                        <div class="gr-8">
-                            <select id="secret_question" name="secret_question">
-                              <option value="Favourite dish">อาหารที่ท่านโปรดปราน</option>
-                              <option value="Mother's maiden name">ชื่อกลางของมารดา</option>
-                              <option value="Name of your pet">ชื่อของสัตว์เลี้ยงของท่าน</option>
-                              <option value="Name of first love">ชื่อของคนรักคนแรก</option>
-                              <option value="Memorable town/city">เมืองแห่งความทรงจำ</option>
-                              <option value="Memorable date">วันแห่งความทรงจำ</option>
-                              <option value="Brand of first car">ยี่ห้องของรถยนต์คันแรก</option>
-                              <option value="Favourite artist">ศิลปินที่ท่านโปรดปราน</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="gr-padding-10 gr-row clear">
-                        <div class="gr-4 form_label">
-                            <label for="secret_answer">คำตอบสำหรับคำถามส่วนตัว</label>
-                        </div>
-                        <div class="gr-8">
-                            <input type="text" class="text" id="secret_answer" name="secret_answer" maxlength="50" autocomplete="off"/>
-                        </div>
-                    </div>
-                </fieldset>
-
-                <fieldset>
-    <legend>การแสดงเจตนารมณ์ไม่เกี่ยวข้องทางการเมือง (PEP Declaration)</legend>
-
+        <fieldset>
+        <legend>การแสดงเจตนารมณ์ไม่เกี่ยวข้องทางการเมือง (PEP Declaration)</legend>
+        
     <div class="gr-12">
         <p>A PEP is an individual who is or has been entrusted with a prominent public function. This status extends to a PEP's relatives and close associates.</p>
     </div>
@@ -167,26 +198,25 @@
         <input id="not_pep" type="checkbox" />
         <label for="not_pep">ข้าพเจ้าแสดงเจตนารมณ์ ข้าพเจ้าไม่ใช่บุคคลที่เกี่ยวข้องกับการเมือง</label>
     </div>
-</fieldset>
 
-                <fieldset class="center-text" id="formlayout">
-                    <div class="gr-row">
-                        <div class="gr-12-m gr-padding-10 gr-centered">
-                            <input type="checkbox" name="tnc" id="tnc">
-                            <label for="tnc">I have read and agree to the <a target="_blank" href="/th/terms-and-conditions.html">terms and conditions</a> of the site.</label>
-                        </div>
-                    </div>
+    </fieldset>
 
-                    <button class="button" type="submit">เปิดบัญชี</button>
-                </fieldset>
-            </form>
+        <div class="center-text">
+        <div class="gr-row">
+            <div class="gr-12-m gr-padding-10 gr-centered">
+                <input type="checkbox" name="tnc" id="tnc">
+                <label for="tnc">I have read and agree to the <a target="_blank" href="/th/terms-and-conditions.html">terms and conditions</a> of the site.</label>
+            </div>
+        </div>
 
-            <div class="errorbox rbox invisible" id="client_message">
-                <div class="rbox-wrap">
-                    <div class="gr-12 rbox-content" id="client_message_content">
-                        <p class="center notice-msg"></p>
-                    </div>
-                </div>
+        <button class="button" type="submit">เปิดบัญชี</button>
+    </div>
+    </form>
+
+    <div class="errorbox rbox invisible" id="client_message">
+        <div class="rbox-wrap">
+            <div class="gr-12 rbox-content" id="client_message_content">
+                <p class="center-text notice-msg"></p>
             </div>
         </div>
     </div>

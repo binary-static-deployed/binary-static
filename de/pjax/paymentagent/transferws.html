@@ -1,20 +1,26 @@
 <div id="content" class="transferws-content">
-        <div id="page_info" style="display:none;">
-            <title>Zahlungsagent Überweisung | Binary.com</title>
-            <div id="content_class">transferws-content</div>
-        </div>
-        
-        <div class="container">
+            <div id="page_info" style="display:none;">
+                <title>Zahlungsagent Überweisung | Binary.com</title>
+                <div id="content_class">transferws-content</div>
+            </div>
+            <div class="container">
+
 
 
   <h1>Zahlungsagent Überweisung</h1>
 
 <div id="pa_transfer_loading" class="center-text"><div class="barspinner dark">
+    
     <div class="rect1"></div>
+    
     <div class="rect2"></div>
+    
     <div class="rect3"></div>
+    
     <div class="rect4"></div>
+    
     <div class="rect5"></div>
+    
 </div></div>
 
 <form id="frm_confirm_transfer" class="invisible">
@@ -22,45 +28,66 @@
 
     <fieldset>
         <legend>Angaben</legend>
-
-        <div class="gr-row gr-padding-10">
-            <div class="gr-4 form_label">
-                <label for="user_name">Überweisung an</label>
-            </div>
-            <div class="gr-8">
-                <strong><label id="user_name"></label></strong>
-            </div>
+        
+        <div class="gr-row form-row center-text-m ">
+        <div class="gr-4 gr-12-m">
+            <label for="user_name">
+                Überweisung an
+            </label>
         </div>
-
-        <div class="gr-row gr-padding-10">
-            <div class="gr-4 form_label">
-                <label for="user_name">Login ID</label>
-            </div>
-            <div class="gr-8">
-                <strong><label id="loginid"></label></strong>
-            </div>
+        <div class="gr-8 gr-12-m">
+                                
+            <strong><label id="user_name"></label></strong>
+        
+            
         </div>
-
-        <div class="gr-row gr-padding-10">
-            <div class="gr-4 form_label">
-                <label for="amount">Betrag</label>
-            </div>
-            <div class="gr-8">
-                <strong><label id="confirm_amount"></label></strong>
-            </div>
+    </div>
+        <div class="gr-row form-row center-text-m ">
+        <div class="gr-4 gr-12-m">
+            <label for="loginid">
+                Login ID
+            </label>
         </div>
+        <div class="gr-8 gr-12-m">
+                                
+            <strong><label id="loginid"></label></strong>
+        
+            
+        </div>
+    </div>
+        <div class="gr-row form-row center-text-m ">
+        <div class="gr-4 gr-12-m">
+            <label for="confirm_amount">
+                Betrag
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                
+            <strong><label id="confirm_amount"></label></strong>
+        
+            
+        </div>
+    </div>
+    
     </fieldset>
 
-    <div class="gr-row gr-padding-10">
-        <div class="gr-4"></div>
-        <div class="gr-8">
-            <p class="errorfield invisible gr-padding-10"></p>
+    <div class="gr-row ">
+                <div class="gr-8 gr-push-4 gr-12-m gr-push-0-m center-text-m">
+            
+        
+        <div id="msg_form" class="error-msg invisible"></div>
+        
+        
             <a class="button" href="javascript:;" id="back_transfer">
                 <span class="button">Zurück</span>
             </a>
-            <button class="button" type="submit">Bestätigen</button>
+        
+        <div class="gr-padding-10">
+            <button id="btn_submit" type="submit">Bestätigen</button>
         </div>
-    </div>
+    
+                </div>
+            </div>
 </form>
 
 <div id="pa_transfer_done" class="invisible">
@@ -85,35 +112,45 @@
 
     <fieldset>
         <legend>Angaben</legend>
-
-        <div class="gr-row gr-padding-10">
-            <div class="gr-4 form_label">
-                <label for="client_id">Wechsel zur Login ID</label>
-            </div>
-            <div class="gr-8">
-                <input type="text" name="client_id" id="client_id"/>
-            </div>
+        
+        <div class="gr-row form-row center-text-m ">
+        <div class="gr-4 gr-12-m">
+            <label for="client_id">
+                Wechsel zur Login ID
+            </label>
         </div>
-
-        <div class="gr-row gr-padding-10">
-            <div class="gr-4 form_label">
-                <label for="amount">Betrag</label>
-            </div>
-            <div class="gr-8">
-                <input type="number" name="amount" id="amount" min="10" max="2000" step="any"/>
-                <p class="hint">Min.: 10 Max.: 2000</p>
-            </div>
-        </div>
-    </fieldset>
-
-    <div class="gr-row gr-padding-10">
-        <div class="gr-4"></div>
-        <div class="gr-8">
-            <p id="insufficient_balance" class="errorfield invisible gr-padding-10">Unzureichendes Guthaben</p>
-            <p id="form_error" class="errorfield invisible gr-padding-10"></p>
-            <button class="button" type="submit">Absenden</button>
+        <div class="gr-8 gr-12-m">
+                                <input type="text" id="client_id"  />
+            
         </div>
     </div>
+        <div class="gr-row form-row center-text-m ">
+        <div class="gr-4 gr-12-m">
+            <label for="amount">
+                Betrag
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <input type="number" id="amount" min="10" max="2000" step="any" />
+            <div class="hint">Min: 10 Max: 2000</div>
+        </div>
+    </div>
+    
+    </fieldset>
+
+    <div class="gr-row ">
+                <div class="gr-8 gr-push-4 gr-12-m gr-push-0-m center-text-m">
+            
+        
+        <div id="form_error" class="error-msg invisible"></div>
+        
+        
+        <div class="gr-padding-10">
+            <button id="btn_submit" type="submit">Absenden</button>
+        </div>
+    
+                </div>
+            </div>
 </form>
 
 <div id="paymentagent_transfer_notes" class="invisible">

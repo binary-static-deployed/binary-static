@@ -1,114 +1,135 @@
 <div id="content" class="withdrawws-content">
-        <div id="page_info" style="display:none;">
-            <title>Retrait par agent de paiement | Binary.com</title>
-            <div id="content_class">withdrawws-content</div>
-        </div>
-        
-        <div class="container">
-
-
-  <div>
-    <h1>Retrait par agent de paiement</h1>
-
-    <div id="paymentagent_withdrawal">
-
-        <div id="viewError" class="viewItem invisible">
-            <p id="custom-error" class="notice-msg center-text invisible"></p>
-            <p id="withdrawal-locked-error" class="notice-msg center-text invisible">
-                Les retraits sur votre compte ne sont pas autorisés actuellement. Veuillez contacter <a href="mailto:support@binary.com">support@binary.com</a> pour déverrouiller cette fontion.
-            </p>
-        </div>
-
-        <div id="viewSuccess" class="viewItem invisible">
-            <p id="successMessage"></p>
-            <p>
-                <a class="button" href="/fr/user/statementws.html">
-                    <span class="button">Voir votre extrait</span>
-                </a>
-            </p>
-        </div>
-
-        <form id="viewConfirm" class="viewItem invisible">
-            <p>Veuillez confirmer les détails de la transaction afin de compléter le transfert:</p>
-
-            <p>Transfert à: <span id="lblAgentName"></span><br />Montant: <span id="lblCurrency"></span> <span id="lblAmount"></span></p>
-
-            <a class="button" id="btnBack" href="javascript:;"><span class="button">Retour</span></a>
-            <button class="button" type="submit">Confirmer</button>
-        </form>
-
-        <div id="viewForm" class="viewItem invisible">
-            <p>Après avoir récupéré le jeton de vérification envoyé par e-mail, veuillez nous fournir les informations suivantes :</p>
-            <form class="form rbox gr-padding-10" id="frmWithdrawal">
-                <fieldset>
-
-                  <div class="gr-padding-10 gr-row clear">
-                      <div class="gr-4 form_label">
-                          <label for="verification_code">Jeton de vérification</label>
-                      </div>
-                      <div class="gr-8">
-                          <input type="text" id="verification_code" maxlength="8" autocomplete="off" />
-                          <div class="hint">Veuillez consulter vos e-mails pour obtenir ce jeton.</div>
-                      </div>
-                  </div>
-
-                    <div class="gr-padding-10 gr-row clear">
-                        <div class="gr-4 form_label">
-                            <label for="ddlAgents">Transfert à l'Agent de Paiement</label>
-                        </div>
-                        <div class="gr-8">
-                            <select id="ddlAgents"></select>
-                        </div>
-                    </div>
-
-                    <div class="gr-padding-10 gr-row clear">
-                        <div class="gr-4 form_label">
-                            <label for="txtAmount">Montant</label>
-                        </div>
-                        <div class="gr-8">
-                            USD <input type="text" id="txtAmount" />
-                            <div class="hint">Min : 10 Max : 2000</div>
-                        </div>
-                    </div>
-
-                    <div class="gr-padding-10 gr-row clear">
-                        <div class="gr-4 form_label">
-                            <label for="txtDescription">Instructions supplémentaires</label>
-                        </div>
-                        <div class="gr-8">
-                            <textarea id="txtDescription" row="6" cols="60" maxlength="300"></textarea>
-                        </div>
-                    </div>
-
-                    <div class="gr-padding-10">
-                        <div class="gr-4"></div>
-                        <div class="gr-8">
-                            <div id="formMessage"></div>
-                        </div>
-                    </div>
-
-                    <div class="gr-padding-10">
-                        <div class="gr-8 gr-centered center-text">
-                            <button class="button" type="submit">Envoyer</button>
-                        </div>
-                    </div>
-
-                </fieldset>
-            </form>
-
-            <div id="paymentagent_withdrawal_notes">
-                <div>Remarques :</div>
-                <ul>
-                    <li>Binary.com ne facture aucuns frais de transfert.</li>
-                    <li>Dans le champ "Instructions Supplémentaires", veuillez préciser le mode de paiement et le numéro de compte auquel l'Agent va envoyer les fonds. Veuillez vous assurer d'abord que vous êtes d'accord avec l'Agent sur les délais de paiement avant de soumettre votre demande.</li>
-                    <li>Une fois que vous cliquez sur le bouton "Soumettre", les fonds seront prélevés de votre compte et envoyés à l'Agent de Paiement que vous avez choisi.</li>
-                    <li>L'Agent vous enverra le montant de retrait (moins la commission) via votre méthode de paiement préférée.</li>
-                </ul>
+            <div id="page_info" style="display:none;">
+                <title>Retrait par agent de paiement | Binary.com</title>
+                <div id="content_class">withdrawws-content</div>
             </div>
+            <div class="container">
 
-            <p class="comment"><strong>IMPORTANTE CLAUSE DE NON-RESPONSABILITÉ</strong> : Binary.com n'est affiliée à aucun des agents de paiement listés ci-dessus. Chaque agent de paiement agit en tant que fournisseur de services indépendant et Binary.com ne peut en aucun cas recommander, garantir ou approuver les services concernés. LES CLIENTS FONT APPEL AUX AGENTS DE PAIEMENT À LEURS RISQUES ET PÉRILS. Nous conseillons aux clients de vérifier les références des agents de paiement avant de leur envoyer toute somme d'argent. Binary.com ne pourra en aucun cas être tenue responsable des transactions réalisées entre les clients et les agents de paiement.</p>
-        </div>
 
+
+  <h1>Retrait par agent de paiement</h1>
+
+<div id="paymentagent_withdrawal">
+    <div id="viewError" class="viewItem invisible">
+        <p id="custom-error" class="notice-msg center-text invisible"></p>
+        <p id="withdrawal-locked-error" class="notice-msg center-text invisible">
+            Les retraits sur votre compte ne sont pas autorisés actuellement. Veuillez contacter <a href="mailto:support@binary.com">support@binary.com</a> pour déverrouiller cette fontion.
+        </p>
     </div>
 
+    <div id="viewSuccess" class="viewItem invisible">
+        <p id="successMessage"></p>
+        <p>
+            <a class="button" href="/fr/user/statementws.html">
+                <span class="button">Voir votre extrait</span>
+            </a>
+        </p>
+    </div>
+
+    <form id="viewConfirm" class="viewItem invisible">
+        <p>Veuillez confirmer les détails de la transaction afin de compléter le transfert:</p>
+
+        <p>Transfert à: <span id="lblAgentName"></span><br />Montant: <span id="lblCurrency"></span> <span id="lblAmount"></span></p>
+
+        <div class="gr-row ">
+                <div class="gr-8 gr-push-4 gr-12-m gr-push-0-m center-text-m">
+            
+        
+        <div id="msg_form" class="error-msg invisible"></div>
+        
+        
+            <a class="button" href="javascript:;" id="btnBack">
+                <span class="button">Retour</span>
+            </a>
+        
+        <div class="gr-padding-10">
+            <button id="btn_submit" type="submit">Confirmer</button>
+        </div>
+    
+                </div>
+            </div>
+    </form>
+
+    <div id="viewForm" class="viewItem invisible">
+        <p>Après avoir récupéré le jeton de vérification envoyé par e-mail, veuillez nous fournir les informations suivantes :</p>
+
+        <form class="form gr-padding-10" id="frmWithdrawal">
+            <fieldset>
+        
+        
+                <div class="gr-row form-row center-text-m ">
+        <div class="gr-4 gr-12-m">
+            <label for="verification_code">
+                Jeton de vérification
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <input type="text" id="verification_code" maxlength="8" autocomplete="off" />
+            <div class="hint">Veuillez consulter vos e-mails pour obtenir ce jeton.</div>
+        </div>
+    </div>
+                <div class="gr-row form-row center-text-m ">
+        <div class="gr-4 gr-12-m">
+            <label for="ddlAgents">
+                Transfert à l'Agent de Paiement
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <select id="ddlAgents" class="form_input " >                     </select>
+            
+        </div>
+    </div>
+                <div class="gr-row form-row center-text-m ">
+        <div class="gr-4 gr-12-m">
+            <label for="txtAmount">
+                Montant
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                USD <input type="text" id="txtAmount"  />
+            <div class="hint">Min : 10 Max : 2000</div>
+        </div>
+    </div>
+                <div class="gr-row form-row center-text-m ">
+        <div class="gr-4 gr-12-m">
+            <label for="txtDescription">
+                Instructions supplémentaires
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                
+                    <textarea id="txtDescription" row="6" cols="60" maxlength="300"></textarea>
+                
+            
+        </div>
+    </div>
+                <div class="gr-row ">
+                <div class="gr-8 gr-push-4 gr-12-m gr-push-0-m center-text-m">
+            
+        
+        <div id="formMessage" class="error-msg invisible"></div>
+        
+        
+        <div class="gr-padding-10">
+            <button id="btn_submit" type="submit">Envoyer</button>
+        </div>
+    
+                </div>
+            </div>
+            
+    </fieldset>
+        </form>
+
+        <div id="paymentagent_withdrawal_notes">
+            <div>Remarques :</div>
+            <ul>
+                <li>Binary.com ne facture aucuns frais de transfert.</li>
+                <li>Dans le champ "Instructions Supplémentaires", veuillez préciser le mode de paiement et le numéro de compte auquel l'Agent va envoyer les fonds. Veuillez vous assurer d'abord que vous êtes d'accord avec l'Agent sur les délais de paiement avant de soumettre votre demande.</li>
+                <li>Une fois que vous cliquez sur le bouton "Soumettre", les fonds seront prélevés de votre compte et envoyés à l'Agent de Paiement que vous avez choisi.</li>
+                <li>L'Agent vous enverra le montant de retrait (moins la commission) via votre méthode de paiement préférée.</li>
+            </ul>
+        </div>
+
+        <p class="comment"><strong>IMPORTANTE DÉCHARGE</strong> - Binary.com n'est affiliée à aucun des agents de paiement listés ci-dessus. Chaque agent de paiement agit en tant que fournisseur de services indépendant et Binary.com ne peut en aucun cas recommander, garantir ou approuver les services concernés. LES CLIENTS FONT APPEL AUX AGENTS DE PAIEMENT À LEURS RISQUES ET PÉRILS. Nous conseillons aux clients de vérifier les références des agents de paiement avant de leur envoyer toute somme d'argent. Binary.com ne pourra en aucun cas être tenue responsable des transactions réalisées entre les clients et les agents de paiement.</p>
+    </div>
 </div>

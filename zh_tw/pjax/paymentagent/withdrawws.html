@@ -1,114 +1,135 @@
 <div id="content" class="withdrawws-content">
-        <div id="page_info" style="display:none;">
-            <title>支付代理取款 | Binary.com</title>
-            <div id="content_class">withdrawws-content</div>
-        </div>
-        
-        <div class="container">
-
-
-  <div>
-    <h1>支付代理取款</h1>
-
-    <div id="paymentagent_withdrawal">
-
-        <div id="viewError" class="viewItem invisible">
-            <p id="custom-error" class="notice-msg center-text invisible"></p>
-            <p id="withdrawal-locked-error" class="notice-msg center-text invisible">
-                您的帳戶現時無法取款。請聯繫 <a href="mailto:support@binary.com">support@binary.com</a>進行解鎖。
-            </p>
-        </div>
-
-        <div id="viewSuccess" class="viewItem invisible">
-            <p id="successMessage"></p>
-            <p>
-                <a class="button" href="/zh_tw/user/statementws.html">
-                    <span class="button">檢視您的帳單</span>
-                </a>
-            </p>
-        </div>
-
-        <form id="viewConfirm" class="viewItem invisible">
-            <p>請確認交易詳細資料以完成轉帳：</p>
-
-            <p>轉給: <span id="lblAgentName"></span><br />金額: <span id="lblCurrency"></span> <span id="lblAmount"></span></p>
-
-            <a class="button" id="btnBack" href="javascript:;"><span class="button">返回</span></a>
-            <button class="button" type="submit">確認</button>
-        </form>
-
-        <div id="viewForm" class="viewItem invisible">
-            <p>從電郵領取權杖後請提供下列資訊：</p>
-            <form class="form rbox gr-padding-10" id="frmWithdrawal">
-                <fieldset>
-
-                  <div class="gr-padding-10 gr-row clear">
-                      <div class="gr-4 form_label">
-                          <label for="verification_code">驗證權杖</label>
-                      </div>
-                      <div class="gr-8">
-                          <input type="text" id="verification_code" maxlength="8" autocomplete="off" />
-                          <div class="hint">請檢查您的電郵領取此權杖編號</div>
-                      </div>
-                  </div>
-
-                    <div class="gr-padding-10 gr-row clear">
-                        <div class="gr-4 form_label">
-                            <label for="ddlAgents">轉給支付代理</label>
-                        </div>
-                        <div class="gr-8">
-                            <select id="ddlAgents"></select>
-                        </div>
-                    </div>
-
-                    <div class="gr-padding-10 gr-row clear">
-                        <div class="gr-4 form_label">
-                            <label for="txtAmount">金額</label>
-                        </div>
-                        <div class="gr-8">
-                            USD <input type="text" id="txtAmount" />
-                            <div class="hint">最小: 10 最大: 2000</div>
-                        </div>
-                    </div>
-
-                    <div class="gr-padding-10 gr-row clear">
-                        <div class="gr-4 form_label">
-                            <label for="txtDescription">詳細說明</label>
-                        </div>
-                        <div class="gr-8">
-                            <textarea id="txtDescription" row="6" cols="60" maxlength="300"></textarea>
-                        </div>
-                    </div>
-
-                    <div class="gr-padding-10">
-                        <div class="gr-4"></div>
-                        <div class="gr-8">
-                            <div id="formMessage"></div>
-                        </div>
-                    </div>
-
-                    <div class="gr-padding-10">
-                        <div class="gr-8 gr-centered center-text">
-                            <button class="button" type="submit">送出</button>
-                        </div>
-                    </div>
-
-                </fieldset>
-            </form>
-
-            <div id="paymentagent_withdrawal_notes">
-                <div>注：</div>
-                <ul>
-                    <li>Binary.com不收取任何轉帳費用。</li>
-                    <li>請在「詳細說明」欄位指定支付方式及代理將轉帳的帳號。 在送出要求前，請確保您首先同意代理的支付條款。</li>
-                    <li>一旦您點選「送出」按鈕，資金將從您的帳戶取出，並轉至您選擇的支付代理。</li>
-                    <li>代理將通過您的偏好支付方式將取款金額（扣除佣金）支付給您。</li>
-                </ul>
+            <div id="page_info" style="display:none;">
+                <title>支付代理取款 | Binary.com</title>
+                <div id="content_class">withdrawws-content</div>
             </div>
+            <div class="container">
 
-            <p class="comment"><strong>重要免責聲明</strong> - Binary.com 與上述所有支付代理不存在附屬關係。各支付代理均以獨立服務提供商的身份運營，未由Binary.com支持、擔保或經其它方式批准。客戶與支付代理的業務往來，風險自負。我們建議客戶在向支付代理匯款前，應事先查詢其信用狀況。在任何情況下，Binary.com 都不對客戶與支付代理之間的交易承擔責任。</p>
-        </div>
 
+
+  <h1>支付代理取款</h1>
+
+<div id="paymentagent_withdrawal">
+    <div id="viewError" class="viewItem invisible">
+        <p id="custom-error" class="notice-msg center-text invisible"></p>
+        <p id="withdrawal-locked-error" class="notice-msg center-text invisible">
+            您的帳戶現時無法取款。請聯繫 <a href="mailto:support@binary.com">support@binary.com</a>進行解鎖。
+        </p>
     </div>
 
+    <div id="viewSuccess" class="viewItem invisible">
+        <p id="successMessage"></p>
+        <p>
+            <a class="button" href="/zh_tw/user/statementws.html">
+                <span class="button">檢視您的帳單</span>
+            </a>
+        </p>
+    </div>
+
+    <form id="viewConfirm" class="viewItem invisible">
+        <p>請確認交易詳細資料以完成轉帳：</p>
+
+        <p>轉給: <span id="lblAgentName"></span><br />金額: <span id="lblCurrency"></span> <span id="lblAmount"></span></p>
+
+        <div class="gr-row ">
+                <div class="gr-8 gr-push-4 gr-12-m gr-push-0-m center-text-m">
+            
+        
+        <div id="msg_form" class="error-msg invisible"></div>
+        
+        
+            <a class="button" href="javascript:;" id="btnBack">
+                <span class="button">返回</span>
+            </a>
+        
+        <div class="gr-padding-10">
+            <button id="btn_submit" type="submit">確認</button>
+        </div>
+    
+                </div>
+            </div>
+    </form>
+
+    <div id="viewForm" class="viewItem invisible">
+        <p>從電郵領取權杖後請提供下列資訊：</p>
+
+        <form class="form gr-padding-10" id="frmWithdrawal">
+            <fieldset>
+        
+        
+                <div class="gr-row form-row center-text-m ">
+        <div class="gr-4 gr-12-m">
+            <label for="verification_code">
+                驗證權杖
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <input type="text" id="verification_code" maxlength="8" autocomplete="off" />
+            <div class="hint">請檢查您的電郵領取此權杖編號</div>
+        </div>
+    </div>
+                <div class="gr-row form-row center-text-m ">
+        <div class="gr-4 gr-12-m">
+            <label for="ddlAgents">
+                轉給支付代理
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <select id="ddlAgents" class="form_input " >                     </select>
+            
+        </div>
+    </div>
+                <div class="gr-row form-row center-text-m ">
+        <div class="gr-4 gr-12-m">
+            <label for="txtAmount">
+                金額
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                USD <input type="text" id="txtAmount"  />
+            <div class="hint">最小: 10 最大: 2000</div>
+        </div>
+    </div>
+                <div class="gr-row form-row center-text-m ">
+        <div class="gr-4 gr-12-m">
+            <label for="txtDescription">
+                詳細說明
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                
+                    <textarea id="txtDescription" row="6" cols="60" maxlength="300"></textarea>
+                
+            
+        </div>
+    </div>
+                <div class="gr-row ">
+                <div class="gr-8 gr-push-4 gr-12-m gr-push-0-m center-text-m">
+            
+        
+        <div id="formMessage" class="error-msg invisible"></div>
+        
+        
+        <div class="gr-padding-10">
+            <button id="btn_submit" type="submit">送出</button>
+        </div>
+    
+                </div>
+            </div>
+            
+    </fieldset>
+        </form>
+
+        <div id="paymentagent_withdrawal_notes">
+            <div>注：</div>
+            <ul>
+                <li>Binary.com不收取任何轉帳費用。</li>
+                <li>請在「詳細說明」欄位指定支付方式及代理將轉帳的帳號。 在送出要求前，請確保您首先同意代理的支付條款。</li>
+                <li>一旦您點選「送出」按鈕，資金將從您的帳戶取出，並轉至您選擇的支付代理。</li>
+                <li>代理將通過您的偏好支付方式將取款金額（扣除佣金）支付給您。</li>
+            </ul>
+        </div>
+
+        <p class="comment"><strong>重要免責聲明</strong> - Binary.com 與上述所有支付代理不存在附屬關係。各支付代理均以獨立服務提供商的身份運營，未由Binary.com支持、擔保或經其它方式批准。客戶與支付代理的業務往來，風險自負。我們建議客戶在向支付代理匯款前，應事先查詢其信用狀況。在任何情況下，Binary.com 都不對客戶與支付代理之間的交易承擔責任。</p>
+    </div>
 </div>

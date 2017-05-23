@@ -1,10 +1,10 @@
 <div id="content" class="account_transfer-content">
-        <div id="page_info" style="display:none;">
-            <title>Trasferimento dell'account | Binary.com</title>
-            <div id="content_class">account_transfer-content</div>
-        </div>
-        
-        <div class="container">
+            <div id="page_info" style="display:none;">
+                <title>Trasferimento dell'account | Binary.com</title>
+                <div id="content_class">account_transfer-content</div>
+            </div>
+            <div class="container">
+
 
 
   <h1>Trasferimento dell'account</h1>
@@ -30,7 +30,6 @@
             <span id="balance_1"></span>
         </div>
     </div>
-
     <div class="gr-padding-10 gr-row table-body">
         <div class="gr-1"></div>
         <div class="gr-2">
@@ -45,31 +44,46 @@
 <form class="invisible" id="frm_account_transfer">
     <fieldset>
         <legend>Dettagli</legend>
-        <div class="gr-row gr-padding-10">
-            <div class="gr-4 form_label">
-                <label for="transfer">Trasferisci</label>
-            </div>
-            <div class="gr-8">
-                <select id="transfer" name="transfer"></select>
-            </div>
+        
+        <div class="gr-row form-row center-text-m ">
+        <div class="gr-4 gr-12-m">
+            <label for="transfer">
+                Trasferisci
+            </label>
         </div>
-
-        <div class="gr-row gr-padding-10">
-            <div class="gr-4 form_label">
-                <label for="amount" id="transfer_amount">Importo</label>
-            </div>
-            <div class="gr-8">
-                <label id="currency"></label>
-                <input id="amount" name="amount" type="text" maxlength="20" />
-            </div>
-        </div>
-    </fieldset>
-
-    <div class="gr-row gr-padding-10">
-        <div class="gr-4"></div>
-        <div class="gr-8">
-            <p class="gr-padding-10 errorfield no-para-margin invisible" id="form_error"></p>
-            <button class="button" type="submit">Trasferisci</button>
+        <div class="gr-8 gr-12-m">
+                                <select id="transfer" class="form_input " >                     </select>
+            
         </div>
     </div>
+        <div class="gr-row form-row center-text-m ">
+        <div class="gr-4 gr-12-m">
+            <label for="transfer_amount">
+                Importo
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                
+            <label id="currency"></label>
+            <input id="amount" name="amount" type="text" maxlength="20" />
+        
+            
+        </div>
+    </div>
+    
+    </fieldset>
+
+    <div class="gr-row ">
+                <div class="gr-8 gr-push-4 gr-12-m gr-push-0-m center-text-m">
+            
+        
+        <div id="form_error" class="error-msg invisible"></div>
+        
+        
+        <div class="gr-padding-10">
+            <button id="btn_submit" type="submit">Trasferisci</button>
+        </div>
+    
+                </div>
+            </div>
 </form>

@@ -1,8 +1,10 @@
 <div id="content" class="metatrader-content">
-        <div id="page_info" style="display:none;">
-            <title>MetaTrader 账户管理 | Binary.com</title>
-            <div id="content_class">metatrader-content</div>
-        </div>
+            <div id="page_info" style="display:none;">
+                <title>MetaTrader 账户管理 | Binary.com</title>
+                <div id="content_class">metatrader-content</div>
+            </div>
+            
+
 
 
   <div id="mt_account_management" class="container">
@@ -11,11 +13,17 @@
     </div>
     <p id="page_msg" class="notice-msg center-text invisible"></p>
     <div id="mt_loading"><div class="barspinner dark">
+    
     <div class="rect1"></div>
+    
     <div class="rect2"></div>
+    
     <div class="rect3"></div>
+    
     <div class="rect4"></div>
+    
     <div class="rect5"></div>
+    
 </div></div>
     <div class="gr-12">
         <div id="accounts_list" class="gr-row"></div>
@@ -24,12 +32,12 @@
     <div class="fst-container">
         <div id="main_msg" class="notice-msg center-text invisible"></div>
         <fieldset id="fst_action" class="invisible">
-    <legend> </legend>
-    
+        <legend> </legend>
+        
             <span class="close"></span>
             <form id="frm_action"></form>
         
-</fieldset>
+    </fieldset>
     </div>
 
     <div id="templates" class="invisible">
@@ -37,11 +45,17 @@
             <div>
                 <div class="title"></div>
                 <div class="loading"><div class="barspinner dark">
+    
     <div class="rect1"></div>
+    
     <div class="rect2"></div>
+    
     <div class="rect3"></div>
+    
     <div class="rect4"></div>
+    
     <div class="rect5"></div>
+    
 </div></div>
                 <div class="center-text no-account invisible">
                     <div class="info"></div>
@@ -92,42 +106,50 @@
 
         <form id="frm_new_account">
             <div class="gr-row form-row center-text-m ">
-    <div class="gr-4 gr-12-m">
-        <label>账户类型</label>
+        <div class="gr-4 gr-12-m">
+            <label>
+                账户类型
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <span class="text-display">
+                                                    <span id="lbl_account_type" ></span>
+                    </span>
+            
+        </div>
     </div>
-    <div class="gr-8 gr-12-m">
-                <span class="text-display">
-                                <span id="lbl_account_type" ></span>
-            </span>
-    
-    </div>
-</div>
             <div class="gr-row form-row center-text-m ">
-    <div class="gr-4 gr-12-m">
-        <label>电子邮件</label>
+        <div class="gr-4 gr-12-m">
+            <label>
+                电子邮件
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <span class="text-display">
+                                                    <span id="lbl_email" ></span>
+                    </span>
+            
+        </div>
     </div>
-    <div class="gr-8 gr-12-m">
-                <span class="text-display">
-                                <span id="lbl_email" ></span>
-            </span>
-    
-    </div>
-</div>
             <div class="gr-row form-row center-text-m ">
-    <div class="gr-4 gr-12-m">
-        <label for="txt_name">姓名</label>
+        <div class="gr-4 gr-12-m">
+            <label for="txt_name">
+                姓名
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <input type="text" id="txt_name" maxlength="30" autocomplete="off" />
+            
+        </div>
     </div>
-    <div class="gr-8 gr-12-m">
-                <input type="text" id="txt_name" maxlength="30" autocomplete="off" />
-    
-    </div>
-</div>
             <div class="gr-row form-row center-text-m invisible">
-    <div class="gr-4 gr-12-m">
-        <label for="ddl_leverage">杠杆</label>
-    </div>
-    <div class="gr-8 gr-12-m">
-                <select id="ddl_leverage" class="form_input" > 
+        <div class="gr-4 gr-12-m">
+            <label for="ddl_leverage">
+                杠杆
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <select id="ddl_leverage" class="form_input " > 
                 <option value="1">1:1</option>
                 <option value="50">1:50</option>
                 <option value="100" selected="selected">1:100</option>
@@ -135,199 +157,247 @@
                 <option value="300">1:300</option>
                 <option value="500">1:500</option>
                 <option value="1000">1:1000</option>
-                        </select>
-    
+                                </select>
+            
+        </div>
     </div>
-</div>
             <div class="gr-row form-row center-text-m ">
-    <div class="gr-4 gr-12-m">
-        <label for="txt_main_pass">主密码（交易访问）</label>
+        <div class="gr-4 gr-12-m">
+            <label for="txt_main_pass">
+                主密码（交易访问）
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <input type="password" id="txt_main_pass" maxlength="25"  />
+            <div class="hint">最少 8 个字符。必须同时包含数字和大小写字母。</div>
+        </div>
     </div>
-    <div class="gr-8 gr-12-m">
-                <input type="password" id="txt_main_pass" maxlength="25"  />
-    <div class="hint">最少 8 个字符。必须同时包含数字和大小写字母。</div>
-    </div>
-</div>
             <div class="gr-row form-row center-text-m ">
-    <div class="gr-4 gr-12-m">
-        <label for="txt_re_main_pass">主密码验证</label>
+        <div class="gr-4 gr-12-m">
+            <label for="txt_re_main_pass">
+                主密码验证
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <input type="password" id="txt_re_main_pass" maxlength="25"  />
+            
+        </div>
     </div>
-    <div class="gr-8 gr-12-m">
-                <input type="password" id="txt_re_main_pass" maxlength="25"  />
-    
-    </div>
-</div>
             <div class="gr-row form-row center-text-m ">
-    <div class="gr-4 gr-12-m">
-        <label for="txt_investor_pass">投资者密码 （只读访问权限）</label>
+        <div class="gr-4 gr-12-m">
+            <label for="txt_investor_pass">
+                投资者密码 （只读访问权限）
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <input type="password" id="txt_investor_pass" maxlength="25"  />
+            
+        </div>
     </div>
-    <div class="gr-8 gr-12-m">
-                <input type="password" id="txt_investor_pass" maxlength="25"  />
-    
+            <div class="gr-row ">
+        <div class="gr-12-m gr-padding-20 gr-centered">
+            <input id="chk_tnc" type="checkbox" />
+            <label for="chk_tnc">我已阅读并同意本网站的<a target="_blank" href="/zh_cn/terms-and-conditions.html#legal-mt">条款和条件</a>。</label>
+        </div>
     </div>
-</div>
-            <div class="gr-row">
-    <div class="gr-12-m gr-padding-20 gr-centered">
-        <input id="chk_tnc" type="checkbox" />
-        <label for="chk_tnc">我已阅读并同意本网站的<a target="_blank" href="/zh_cn/terms-and-conditions.html#legal-mt">条款和条件</a>。</label>
-    </div>
-</div>
 
-            <div class="gr-row">
-    <div class="gr-8 gr-push-4 gr-12-m gr-push-0-m center-text-m">
-    <div id="msg_form" class="error-msg invisible"></div>
-    <div class="gr-padding-10">
-        <button id="btn_submit" type="submit">开立账户</button>
-    </div>
-    </div>
-</div>
+            <div class="gr-row ">
+                <div class="gr-8 gr-push-4 gr-12-m gr-push-0-m center-text-m">
+            
+        
+        <div id="msg_form" class="error-msg invisible"></div>
+        
+        
+        <div class="gr-padding-10">
+            <button id="btn_submit" type="submit">开立账户</button>
+        </div>
+    
+                </div>
+            </div>
         </form>
 
         <form id="frm_password_change">
             <div class="gr-row form-row center-text-m ">
-    <div class="gr-4 gr-12-m">
-        <label>登录 ID</label>
+        <div class="gr-4 gr-12-m">
+            <label>
+                登录 ID
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <span class="text-display">
+                                                    <span id="lbl_login" ></span>
+                    </span>
+            
+        </div>
     </div>
-    <div class="gr-8 gr-12-m">
-                <span class="text-display">
-                                <span id="lbl_login" ></span>
-            </span>
-    
-    </div>
-</div>
             <div class="gr-row form-row center-text-m ">
-    <div class="gr-4 gr-12-m">
-        <label for="txt_old_password">当前密码</label>
+        <div class="gr-4 gr-12-m">
+            <label for="txt_old_password">
+                当前密码
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <input type="password" id="txt_old_password" maxlength="25"  />
+            
+        </div>
     </div>
-    <div class="gr-8 gr-12-m">
-                <input type="password" id="txt_old_password" maxlength="25"  />
-    
-    </div>
-</div>
             <div class="gr-row form-row center-text-m ">
-    <div class="gr-4 gr-12-m">
-        <label for="txt_new_password">新密码</label>
+        <div class="gr-4 gr-12-m">
+            <label for="txt_new_password">
+                新密码
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <input type="password" id="txt_new_password" maxlength="25"  />
+            <div class="hint">最少 8 个字符。必须同时包含数字和大小写字母。</div>
+        </div>
     </div>
-    <div class="gr-8 gr-12-m">
-                <input type="password" id="txt_new_password" maxlength="25"  />
-    <div class="hint">最少 8 个字符。必须同时包含数字和大小写字母。</div>
-    </div>
-</div>
             <div class="gr-row form-row center-text-m ">
-    <div class="gr-4 gr-12-m">
-        <label for="txt_re_new_password">验证新密码</label>
+        <div class="gr-4 gr-12-m">
+            <label for="txt_re_new_password">
+                验证新密码
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <input type="password" id="txt_re_new_password" maxlength="25"  />
+            
+        </div>
     </div>
-    <div class="gr-8 gr-12-m">
-                <input type="password" id="txt_re_new_password" maxlength="25"  />
-    
-    </div>
-</div>
 
-            <div class="gr-row">
-    <div class="gr-8 gr-push-4 gr-12-m gr-push-0-m center-text-m">
-    <div id="msg_form" class="error-msg invisible"></div>
-    <div class="gr-padding-10">
-        <button id="btn_submit" type="submit">更改密码</button>
-    </div>
-    </div>
-</div>
+            <div class="gr-row ">
+                <div class="gr-8 gr-push-4 gr-12-m gr-push-0-m center-text-m">
+            
+        
+        <div id="msg_form" class="error-msg invisible"></div>
+        
+        
+        <div class="gr-padding-10">
+            <button id="btn_submit" type="submit">更改密码</button>
+        </div>
+    
+                </div>
+            </div>
         </form>
 
         <form id="frm_deposit">
             <p>把资金从Binary.com账户转移到您的MT5账户︰</p>
             <div class="gr-row form-row center-text-m ">
-    <div class="gr-4 gr-12-m">
-        <label>转移自</label>
+        <div class="gr-4 gr-12-m">
+            <label>
+                转移自
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <span class="text-display">
+                                                    <span id="lbl_from" ></span>
+                    </span>
+            
+        </div>
     </div>
-    <div class="gr-8 gr-12-m">
-                <span class="text-display">
-                                <span id="lbl_from" ></span>
-            </span>
-    
-    </div>
-</div>
             <div class="gr-row form-row center-text-m ">
-    <div class="gr-4 gr-12-m">
-        <label>存款到</label>
+        <div class="gr-4 gr-12-m">
+            <label>
+                存款到
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <span class="text-display">
+                                                    <span id="lbl_to" ></span>
+                    </span>
+            
+        </div>
     </div>
-    <div class="gr-8 gr-12-m">
-                <span class="text-display">
-                                <span id="lbl_to" ></span>
-            </span>
-    
-    </div>
-</div>
             <div class="gr-row form-row center-text-m ">
-    <div class="gr-4 gr-12-m">
-        <label for="txt_amount">金额</label>
+        <div class="gr-4 gr-12-m">
+            <label for="txt_amount">
+                金额
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                &#36; <input type="text" id="txt_amount" maxlength="10" />
+            
+        </div>
     </div>
-    <div class="gr-8 gr-12-m">
-                &#36; <input type="text" id="txt_amount" maxlength="10" />
-    
-    </div>
-</div>
 
-            <div class="gr-row">
-    <div class="gr-8 gr-push-4 gr-12-m gr-push-0-m center-text-m">
-    <div id="msg_form" class="error-msg invisible"></div>
-    <div class="gr-padding-10">
-        <button id="btn_submit" type="submit">存款</button>
-    </div>
-    </div>
-</div>
+            <div class="gr-row ">
+                <div class="gr-8 gr-push-4 gr-12-m gr-push-0-m center-text-m">
+            
+        
+        <div id="msg_form" class="error-msg invisible"></div>
+        
+        
+        <div class="gr-padding-10">
+            <button id="btn_submit" type="submit">存款</button>
+        </div>
+    
+                </div>
+            </div>
         </form>
 
         <form id="frm_withdrawal">
             <p>把资金从您的MT5账户转移到Binary.com账户︰</p>
             <div class="gr-row form-row center-text-m ">
-    <div class="gr-4 gr-12-m">
-        <label>提款从</label>
+        <div class="gr-4 gr-12-m">
+            <label>
+                提款从
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <span class="text-display">
+                                                    <span id="lbl_from" ></span>
+                    </span>
+            
+        </div>
     </div>
-    <div class="gr-8 gr-12-m">
-                <span class="text-display">
-                                <span id="lbl_from" ></span>
-            </span>
-    
-    </div>
-</div>
             <div class="gr-row form-row center-text-m ">
-    <div class="gr-4 gr-12-m">
-        <label>转移到</label>
+        <div class="gr-4 gr-12-m">
+            <label>
+                转移到
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <span class="text-display">
+                                                    <span id="lbl_to" ></span>
+                    </span>
+            
+        </div>
     </div>
-    <div class="gr-8 gr-12-m">
-                <span class="text-display">
-                                <span id="lbl_to" ></span>
-            </span>
-    
-    </div>
-</div>
             <div class="gr-row form-row center-text-m ">
-    <div class="gr-4 gr-12-m">
-        <label for="txt_main_pass">MT5 主密码</label>
+        <div class="gr-4 gr-12-m">
+            <label for="txt_main_pass">
+                MT5 主密码
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <input type="password" id="txt_main_pass" maxlength="25"  />
+            
+        </div>
     </div>
-    <div class="gr-8 gr-12-m">
-                <input type="password" id="txt_main_pass" maxlength="25"  />
-    
-    </div>
-</div>
             <div class="gr-row form-row center-text-m ">
-    <div class="gr-4 gr-12-m">
-        <label for="txt_amount">金额</label>
+        <div class="gr-4 gr-12-m">
+            <label for="txt_amount">
+                金额
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                &#36; <input type="text" id="txt_amount" maxlength="10" />
+            
+        </div>
     </div>
-    <div class="gr-8 gr-12-m">
-                &#36; <input type="text" id="txt_amount" maxlength="10" />
-    
-    </div>
-</div>
 
-            <div class="gr-row">
-    <div class="gr-8 gr-push-4 gr-12-m gr-push-0-m center-text-m">
-    <div id="msg_form" class="error-msg invisible"></div>
-    <div class="gr-padding-10">
-        <button id="btn_submit" type="submit">取款</button>
-    </div>
-    </div>
-</div>
+            <div class="gr-row ">
+                <div class="gr-8 gr-push-4 gr-12-m gr-push-0-m center-text-m">
+            
+        
+        <div id="msg_form" class="error-msg invisible"></div>
+        
+        
+        <div class="gr-padding-10">
+            <button id="btn_submit" type="submit">取款</button>
+        </div>
+    
+                </div>
+            </div>
         </form>
 
         <div id="messages">

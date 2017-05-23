@@ -1,381 +1,446 @@
 <div id="content" class="maltainvestws-content">
-        <div id="page_info" style="display:none;">
-            <title>Otwarcie konta finansowego | Binary.com</title>
-            <div id="content_class">maltainvestws-content</div>
-        </div>
-        
-        <div class="container">
+            <div id="page_info" style="display:none;">
+                <title>Otwarcie konta finansowego | Binary.com</title>
+                <div id="content_class">maltainvestws-content</div>
+            </div>
+            <div class="container">
+
 
 
   <div class='gr-12 static_full'>
     <h1>Otwarcie konta finansowego</h1>
-    <div class="rbox form gr-padding-10">
-        <div class="rbox-wrap">
-            <form id="financial-form">
-                <fieldset>
-                    <legend id="details">Szczegóły</legend>
-
-                    <div class="gr-padding-10 gr-row clear">
-                        <div class="gr-4 form_label">
-                            <label for="salutation">Tytuł</label>
-                        </div>
-                        <div class="gr-8">
-                            <select id="salutation" class="input-disabled">
-                              <option value="Mr">Pan</option>
-                              <option value="Mrs" class="ru-hide">Pani</option>
-                              <option value="Ms">Pani</option>
-                              <option value="Miss" class="ru-hide">Pani</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="gr-padding-10 gr-row clear">
-                        <div class="gr-4 form_label">
-                            <label for="first_name">Imię</label>
-                        </div>
-                        <div class="gr-8">
-                            <input type="text" class="text input-disabled" id="first_name" maxlength="30"/>
-                        </div>
-                    </div>
-
-                    <div class="gr-padding-10 gr-row clear">
-                        <div class="gr-4 form_label">
-                            <label for="last_name">Nazwisko</label>
-                        </div>
-                        <div class="gr-8">
-                            <input type="text" class="text input-disabled" id="last_name" maxlength="30"/>
-                        </div>
-                    </div>
-
-                    <div class="gr-padding-10 gr-row clear">
-                        <div class="gr-4 form_label">
-                            <label for="date_of_birth">Data urodzenia</label>
-                        </div>
-                        <div class="gr-8">
-                            <input type="text" id="date_of_birth" name="date_of_birth" class="input-disabled" size="12" readonly="readonly"/>
-                        </div>
-                    </div>
-
-                    <div class="gr-padding-10 gr-row clear">
-                        <div class="gr-4 form_label">
-                            <label for="place_of_birth">Data urodzenia</label>
-                        </div>
-                        <div class="gr-8">
-                            <select name="place_of_birth" id="place_of_birth"></select>
-                        </div>
-                    </div>
-
-                    <div class="gr-padding-10 gr-row clear">
-                        <div class="gr-4 form_label">
-                            <label for="residence">Kraj zamieszkania</label>
-                        </div>
-                        <div class="gr-8">
-                            <label id="lbl_residence"></label>
-                        </div>
-                    </div>
-                </fieldset>
-
-                <fieldset>
-                    <legend>Informacje podatkowe</legend>
-
-                    <div class="gr-padding-10 gr-row clear">
-                        <div class="gr-4 form_label">
-                            <label for="tax_residence">Rezydencja podatkowa</label>
-                        </div>
-                        <div class="gr-8">
-                            <select name="tax_residence" id="tax_residence" class="invisible" multiple="multiple"></select>
-                        </div>
-                    </div>
-
-                    <div class="gr-padding-10 gr-row clear">
-                        <div class="gr-4 form_label">
-                            <label for="tax_identification_number">Numer identyfikacji podatkowej</label>
-                        </div>
-                        <div class="gr-8">
-                            <input type="text" class="text" id="tax_identification_number" maxlength="20"/>
-                        </div>
-                    </div>
-                </fieldset>
-
-                <fieldset>
-                    <legend id="address">Adres</legend>
-
-                    <div class="gr-padding-10 gr-row clear">
-                        <div class="gr-4 form_label">
-                            <label for="address_line_1">Pierwsza część adresu zamieszkania</label>
-                        </div>
-                        <div class="gr-8">
-                            <input type="text" class="text" id="address_line_1" maxlength="70"/>
-                            <p class="hint">Proszę podać swój pełny adres.<br>Będzie on potrzebny do przeprowadzenia weryfikacji przy otwieraniu konta z prawdziwymi pieniędzmi.</p>
-                        </div>
-                    </div>
-
-                    <div class="gr-padding-10 gr-row clear">
-                        <div class="gr-4 form_label">
-                            <label for="address_line_2">Druga część adresu zamieszkania</label>
-                        </div>
-                        <div class="gr-8">
-                            <input type="text" class="text" id="address_line_2" maxlength="70"/>
-                        </div>
-                    </div>
-
-                    <div class="gr-padding-10 gr-row clear">
-                        <div class="gr-4 form_label">
-                            <label for="address_city">Miasto</label>
-                        </div>
-                        <div class="gr-8">
-                            <input type="text" class="text" id="address_city" maxlength="35"/>
-                        </div>
-                    </div>
-
-                    <div class="gr-padding-10 gr-row clear" style="display:none">
-                        <div class="gr-4 form_label">
-                            <label for="address_state">Stan/prowincja</label>
-                        </div>
-                        <div class="gr-8">
-                            <select id="address_state"></select>
-                        </div>
-                    </div>
-
-                    <div class="gr-padding-10 gr-row clear">
-                        <div class="gr-4 form_label">
-                            <label for="address_postcode">Kod pocztowy</label>
-                        </div>
-                        <div class="gr-8">
-                            <input type="text" class="text" id="address_postcode" maxlength="20" />
-                        </div>
-                    </div>
-
-                    <div class="gr-padding-10 gr-row clear">
-                        <div class="gr-4 form_label">
-                            <label for="phone">Telefon</label>
-                        </div>
-                        <div class="gr-8">
-                            <input type="text" class="text" id="phone" maxlength="35" />
-                        </div>
-                    </div>
-                </fieldset>
-
-                <fieldset class="security">
-                    <legend id="security">Bezpieczeństwo</legend>
-
-                    <div class="gr-padding-10 gr-row clear">
-                        <div class="gr-4 form_label">
-                            <label for="secret_question">Sekretne pytanie</label>
-                        </div>
-                        <div class="gr-8">
-                            <select id="secret_question">
-                              <option value="Favourite dish">Ulubione danie</option>
-                              <option value="Mother's maiden name">Nazwisko panieńskie matki</option>
-                              <option value="Name of your pet">Imię Twojego zwierzątka</option>
-                              <option value="Name of first love">Imię pierwszej miłości</option>
-                              <option value="Memorable town/city">Pamiętne miasto</option>
-                              <option value="Memorable date">Pamiętna data</option>
-                              <option value="Brand of first car">Marka pierwszego samochodu</option>
-                              <option value="Favourite artist">Ulubiony artysta</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="gr-padding-10 gr-row clear">
-                        <div class="gr-4 form_label">
-                            <label for="secret_answer">Odpowiedź na sekretne pytanie</label>
-                        </div>
-                        <div class="gr-8">
-                            <input type="text" class="text" id="secret_answer" maxlength="50" autocomplete="off"/>
-                        </div>
-                    </div>
-                </fieldset>
-
-                <fieldset>
-    <legend>Informacje finansowe</legend>
-    
-    <div class="gr-row form-row center-text-m ">
-    <div class="gr-4 gr-12-m">
-        <label for="forex_trading_experience">Doświadczenie w handlowaniu walutami</label>
+    <form id="financial-form" class="gr-padding-10">
+        <fieldset>
+        <legend>Szczegóły</legend>
+        
+            <div class="gr-row form-row center-text-m ">
+        <div class="gr-4 gr-12-m">
+            <label for="salutation">
+                Tytuł
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <select id="salutation" class="form_input input-disabled" > 
+        <option value="Mr">Pan</option>
+        <option value="Mrs" class="ru-hide">Pani</option>
+        <option value="Ms">Pani</option>
+        <option value="Miss" class="ru-hide">Pani</option>
+                        </select>
+            
+        </div>
     </div>
-    <div class="gr-8 gr-12-m">
-                <select id="forex_trading_experience" class="form_input" > 
+            <div class="gr-row form-row center-text-m ">
+        <div class="gr-4 gr-12-m">
+            <label for="first_name">
+                Imię
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <input type="text" id="first_name" maxlength="30" class="input-disabled" />
+            
+        </div>
+    </div>
+            <div class="gr-row form-row center-text-m ">
+        <div class="gr-4 gr-12-m">
+            <label for="last_name">
+                Nazwisko
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <input type="text" id="last_name" maxlength="30" class="input-disabled" />
+            
+        </div>
+    </div>
+            <div class="gr-row form-row center-text-m ">
+        <div class="gr-4 gr-12-m">
+            <label for="date_of_birth">
+                Data urodzenia
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <input type="text" id="date_of_birth" size="12" readonly="readonly" class="input-disabled" />
+            
+        </div>
+    </div>
+            <div class="gr-row form-row center-text-m ">
+        <div class="gr-4 gr-12-m">
+            <label for="place_of_birth">
+                Data urodzenia
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <select id="place_of_birth" class="form_input " >                     </select>
+            
+        </div>
+    </div>
+            <div class="gr-row form-row center-text-m ">
+        <div class="gr-4 gr-12-m">
+            <label for="residence">
+                Kraj zamieszkania
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                
+        <label id="lbl_residence"></label>
+    
+            
+        </div>
+    </div>
+        
+    </fieldset>
+
+        <fieldset>
+        <legend>Informacje podatkowe</legend>
+        
+            <div class="gr-row form-row center-text-m ">
+        <div class="gr-4 gr-12-m">
+            <label for="tax_residence">
+                Rezydencja podatkowa
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <select id="tax_residence" class="form_input invisible" multiple="multiple">                     </select>
+            
+        </div>
+    </div>
+            <div class="gr-row form-row center-text-m ">
+        <div class="gr-4 gr-12-m">
+            <label for="tax_identification_number">
+                Numer identyfikacji podatkowej
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <input type="text" id="tax_identification_number" maxlength="20" />
+            
+        </div>
+    </div>
+        
+    </fieldset>
+
+        <fieldset>
+        <legend>Adres</legend>
+        
+            <div class="gr-row form-row center-text-m ">
+        <div class="gr-4 gr-12-m">
+            <label for="address_line_1">
+                Pierwsza część adresu zamieszkania
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <input type="text" id="address_line_1" maxlength="70" />
+            <div class="hint">Proszę podać swój pełny adres.<br>Będzie on potrzebny do przeprowadzenia weryfikacji przy otwieraniu konta z prawdziwymi pieniędzmi.</div>
+        </div>
+    </div>
+            <div class="gr-row form-row center-text-m ">
+        <div class="gr-4 gr-12-m">
+            <label for="address_line_2">
+                Druga część adresu zamieszkania
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <input type="text" id="address_line_2" maxlength="70" />
+            
+        </div>
+    </div>
+            <div class="gr-row form-row center-text-m ">
+        <div class="gr-4 gr-12-m">
+            <label for="address_city">
+                Miasto
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <input type="text" id="address_city" maxlength="35" />
+            
+        </div>
+    </div>
+            <div class="gr-row form-row center-text-m ">
+        <div class="gr-4 gr-12-m">
+            <label for="address_state">
+                Stan/prowincja
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <select id="address_state" class="form_input " >                     </select>
+            
+        </div>
+    </div>
+            <div class="gr-row form-row center-text-m ">
+        <div class="gr-4 gr-12-m">
+            <label for="address_postcode">
+                Kod pocztowy
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <input type="text" id="address_postcode" maxlength="20" />
+            
+        </div>
+    </div>
+            <div class="gr-row form-row center-text-m ">
+        <div class="gr-4 gr-12-m">
+            <label for="phone">
+                Telefon
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <input type="text" id="phone" maxlength="35" />
+            
+        </div>
+    </div>
+        
+    </fieldset>
+
+        <fieldset>
+        <legend>Bezpieczeństwo</legend>
+        
+            <div class="gr-row form-row center-text-m ">
+        <div class="gr-4 gr-12-m">
+            <label for="secret_question">
+                Sekretne pytanie
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <select id="secret_question" class="form_input " > 
+        <option value="Favourite dish">Ulubione danie</option>
+        <option value="Mother's maiden name">Nazwisko panieńskie matki</option>
+        <option value="Name of your pet">Imię Twojego zwierzątka</option>
+        <option value="Name of first love">Imię pierwszej miłości</option>
+        <option value="Memorable town/city">Pamiętne miasto</option>
+        <option value="Memorable date">Pamiętna data</option>
+        <option value="Brand of first car">Marka pierwszego samochodu</option>
+        <option value="Favourite artist">Ulubiony artysta</option>
+                        </select>
+            
+        </div>
+    </div>
+            <div class="gr-row form-row center-text-m ">
+        <div class="gr-4 gr-12-m">
+            <label for="secret_answer">
+                Odpowiedź na sekretne pytanie
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <input type="text" id="secret_answer" maxlength="50" autocomplete="off" />
+            
+        </div>
+    </div>
+        
+    </fieldset>
+
+        <fieldset>
+        <legend>Informacje finansowe</legend>
+        
+    <div class="gr-row form-row center-text-m ">
+        <div class="gr-4 gr-12-m">
+            <label for="forex_trading_experience">
+                Doświadczenie w handlowaniu walutami
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <select id="forex_trading_experience" class="form_input " > 
         <option value="">Wybierz</option>
     <option value="0-1 year">0-1 rok</option>
     <option value="1-2 years">1-2 lata</option>
     <option value="Over 3 years">Ponad 3 lata</option>
-                </select>
-    
+                        </select>
+            
+        </div>
     </div>
-</div>
 
     <div class="gr-row form-row center-text-m ">
-    <div class="gr-4 gr-12-m">
-        <label for="forex_trading_frequency">Częstotliwość handlowania walutami</label>
-    </div>
-    <div class="gr-8 gr-12-m">
-                <select id="forex_trading_frequency" class="form_input" > 
+        <div class="gr-4 gr-12-m">
+            <label for="forex_trading_frequency">
+                Częstotliwość handlowania walutami
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <select id="forex_trading_frequency" class="form_input " > 
         <option value="">Wybierz</option>
     <option value="0-5 transactions in the past 12 months">0-5 transakcji w ciągu ostatnich 12 miesięcy</option>
     <option value="6-10 transactions in the past 12 months">6-10 transakcji w ciągu ostatnich 12 miesięcy</option>
     <option value="40 transactions or more in the past 12 months">Co najmniej 40 transakcji w ciągu ostatnich 12 miesięcy</option>
-                </select>
-    
+                        </select>
+            
+        </div>
     </div>
-</div>
 
     <div class="gr-row form-row center-text-m ">
-    <div class="gr-4 gr-12-m">
-        <label for="indices_trading_experience">Doświadczenie w handlowaniu wskaźnikami</label>
-    </div>
-    <div class="gr-8 gr-12-m">
-                <select id="indices_trading_experience" class="form_input" > 
+        <div class="gr-4 gr-12-m">
+            <label for="indices_trading_experience">
+                Doświadczenie w handlowaniu wskaźnikami
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <select id="indices_trading_experience" class="form_input " > 
         <option value="">Wybierz</option>
     <option value="0-1 year">0-1 rok</option>
     <option value="1-2 years">1-2 lata</option>
     <option value="Over 3 years">Ponad 3 lata</option>
-                </select>
-    
+                        </select>
+            
+        </div>
     </div>
-</div>
 
     <div class="gr-row form-row center-text-m ">
-    <div class="gr-4 gr-12-m">
-        <label for="indices_trading_frequency">Częstotliwość handlowania wskaźnikami</label>
-    </div>
-    <div class="gr-8 gr-12-m">
-                <select id="indices_trading_frequency" class="form_input" > 
+        <div class="gr-4 gr-12-m">
+            <label for="indices_trading_frequency">
+                Częstotliwość handlowania wskaźnikami
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <select id="indices_trading_frequency" class="form_input " > 
         <option value="">Wybierz</option>
     <option value="0-5 transactions in the past 12 months">0-5 transakcji w ciągu ostatnich 12 miesięcy</option>
     <option value="6-10 transactions in the past 12 months">6-10 transakcji w ciągu ostatnich 12 miesięcy</option>
     <option value="40 transactions or more in the past 12 months">Co najmniej 40 transakcji w ciągu ostatnich 12 miesięcy</option>
-                </select>
-    
+                        </select>
+            
+        </div>
     </div>
-</div>
 
     <div class="gr-row form-row center-text-m ">
-    <div class="gr-4 gr-12-m">
-        <label for="commodities_trading_experience">Doświadczenie w handlowaniu towarami</label>
-    </div>
-    <div class="gr-8 gr-12-m">
-                <select id="commodities_trading_experience" class="form_input" > 
+        <div class="gr-4 gr-12-m">
+            <label for="commodities_trading_experience">
+                Doświadczenie w handlowaniu towarami
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <select id="commodities_trading_experience" class="form_input " > 
         <option value="">Wybierz</option>
     <option value="0-1 year">0-1 rok</option>
     <option value="1-2 years">1-2 lata</option>
     <option value="Over 3 years">Ponad 3 lata</option>
-                </select>
-    
+                        </select>
+            
+        </div>
     </div>
-</div>
 
     <div class="gr-row form-row center-text-m ">
-    <div class="gr-4 gr-12-m">
-        <label for="commodities_trading_frequency">Częstotliwość handlowania towarami</label>
-    </div>
-    <div class="gr-8 gr-12-m">
-                <select id="commodities_trading_frequency" class="form_input" > 
+        <div class="gr-4 gr-12-m">
+            <label for="commodities_trading_frequency">
+                Częstotliwość handlowania towarami
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <select id="commodities_trading_frequency" class="form_input " > 
         <option value="">Wybierz</option>
     <option value="0-5 transactions in the past 12 months">0-5 transakcji w ciągu ostatnich 12 miesięcy</option>
     <option value="6-10 transactions in the past 12 months">6-10 transakcji w ciągu ostatnich 12 miesięcy</option>
     <option value="40 transactions or more in the past 12 months">Co najmniej 40 transakcji w ciągu ostatnich 12 miesięcy</option>
-                </select>
-    
+                        </select>
+            
+        </div>
     </div>
-</div>
 
     <div class="gr-row form-row center-text-m ">
-    <div class="gr-4 gr-12-m">
-        <label for="stocks_trading_experience">Doświadczenie w handlowaniu akcjami</label>
-    </div>
-    <div class="gr-8 gr-12-m">
-                <select id="stocks_trading_experience" class="form_input" > 
+        <div class="gr-4 gr-12-m">
+            <label for="stocks_trading_experience">
+                Doświadczenie w handlowaniu akcjami
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <select id="stocks_trading_experience" class="form_input " > 
         <option value="">Wybierz</option>
     <option value="0-1 year">0-1 rok</option>
     <option value="1-2 years">1-2 lata</option>
     <option value="Over 3 years">Ponad 3 lata</option>
-                </select>
-    
+                        </select>
+            
+        </div>
     </div>
-</div>
 
     <div class="gr-row form-row center-text-m ">
-    <div class="gr-4 gr-12-m">
-        <label for="stocks_trading_frequency">Częstotliwość handlowania akcjami</label>
-    </div>
-    <div class="gr-8 gr-12-m">
-                <select id="stocks_trading_frequency" class="form_input" > 
+        <div class="gr-4 gr-12-m">
+            <label for="stocks_trading_frequency">
+                Częstotliwość handlowania akcjami
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <select id="stocks_trading_frequency" class="form_input " > 
         <option value="">Wybierz</option>
     <option value="0-5 transactions in the past 12 months">0-5 transakcji w ciągu ostatnich 12 miesięcy</option>
     <option value="6-10 transactions in the past 12 months">6-10 transakcji w ciągu ostatnich 12 miesięcy</option>
     <option value="40 transactions or more in the past 12 months">Co najmniej 40 transakcji w ciągu ostatnich 12 miesięcy</option>
-                </select>
-    
+                        </select>
+            
+        </div>
     </div>
-</div>
 
     <div class="gr-row form-row center-text-m ">
-    <div class="gr-4 gr-12-m">
-        <label for="other_derivatives_trading_experience">Doświadczenie w handlowaniu opcjami binarnymi lub innymi instrumentami pochodnymi</label>
-    </div>
-    <div class="gr-8 gr-12-m">
-                <select id="other_derivatives_trading_experience" class="form_input" > 
+        <div class="gr-4 gr-12-m">
+            <label for="other_derivatives_trading_experience">
+                Doświadczenie w handlowaniu opcjami binarnymi lub innymi instrumentami pochodnymi
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <select id="other_derivatives_trading_experience" class="form_input " > 
         <option value="">Wybierz</option>
     <option value="0-1 year">0-1 rok</option>
     <option value="1-2 years">1-2 lata</option>
     <option value="Over 3 years">Ponad 3 lata</option>
-                </select>
-    
+                        </select>
+            
+        </div>
     </div>
-</div>
 
     <div class="gr-row form-row center-text-m ">
-    <div class="gr-4 gr-12-m">
-        <label for="other_derivatives_trading_frequency">Częstotliwość handlowania opcjami binarnymi lub innymi instrumentami pochodnymi</label>
-    </div>
-    <div class="gr-8 gr-12-m">
-                <select id="other_derivatives_trading_frequency" class="form_input" > 
+        <div class="gr-4 gr-12-m">
+            <label for="other_derivatives_trading_frequency">
+                Częstotliwość handlowania opcjami binarnymi lub innymi instrumentami pochodnymi
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <select id="other_derivatives_trading_frequency" class="form_input " > 
         <option value="">Wybierz</option>
     <option value="0-5 transactions in the past 12 months">0-5 transakcji w ciągu ostatnich 12 miesięcy</option>
     <option value="6-10 transactions in the past 12 months">6-10 transakcji w ciągu ostatnich 12 miesięcy</option>
     <option value="40 transactions or more in the past 12 months">Co najmniej 40 transakcji w ciągu ostatnich 12 miesięcy</option>
-                </select>
-    
+                        </select>
+            
+        </div>
     </div>
-</div>
 
     <div class="gr-row form-row center-text-m ">
-    <div class="gr-4 gr-12-m">
-        <label for="other_instruments_trading_experience">Doświadczenie w handlowaniu innymi instrumentami finansowymi</label>
-    </div>
-    <div class="gr-8 gr-12-m">
-                <select id="other_instruments_trading_experience" class="form_input" > 
+        <div class="gr-4 gr-12-m">
+            <label for="other_instruments_trading_experience">
+                Doświadczenie w handlowaniu innymi instrumentami finansowymi
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <select id="other_instruments_trading_experience" class="form_input " > 
         <option value="">Wybierz</option>
     <option value="0-1 year">0-1 rok</option>
     <option value="1-2 years">1-2 lata</option>
     <option value="Over 3 years">Ponad 3 lata</option>
-                </select>
-    
+                        </select>
+            
+        </div>
     </div>
-</div>
 
     <div class="gr-row form-row center-text-m ">
-    <div class="gr-4 gr-12-m">
-        <label for="other_instruments_trading_frequency">Częstotliwość handlowania innymi instrumentami finansowymi</label>
-    </div>
-    <div class="gr-8 gr-12-m">
-                <select id="other_instruments_trading_frequency" class="form_input" > 
+        <div class="gr-4 gr-12-m">
+            <label for="other_instruments_trading_frequency">
+                Częstotliwość handlowania innymi instrumentami finansowymi
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <select id="other_instruments_trading_frequency" class="form_input " > 
         <option value="">Wybierz</option>
     <option value="0-5 transactions in the past 12 months">0-5 transakcji w ciągu ostatnich 12 miesięcy</option>
     <option value="6-10 transactions in the past 12 months">6-10 transakcji w ciągu ostatnich 12 miesięcy</option>
     <option value="40 transactions or more in the past 12 months">Co najmniej 40 transakcji w ciągu ostatnich 12 miesięcy</option>
-                </select>
-    
+                        </select>
+            
+        </div>
     </div>
-</div>
 
     <div class="gr-row form-row center-text-m ">
-    <div class="gr-4 gr-12-m">
-        <label for="employment_industry">Sektor zatrudnienia</label>
-    </div>
-    <div class="gr-8 gr-12-m">
-                <select id="employment_industry" class="form_input" > 
+        <div class="gr-4 gr-12-m">
+            <label for="employment_industry">
+                Sektor zatrudnienia
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <select id="employment_industry" class="form_input " > 
         <option value="">Wybierz</option>
         <option value="Construction">Budownictwo</option>
         <option value="Education">Edukacja</option>
@@ -383,17 +448,19 @@
         <option value="Health">Zdrowie</option>
         <option value="Tourism">Turystyka</option>
         <option value="Other">Inne</option>
-                </select>
-    
+                        </select>
+            
+        </div>
     </div>
-</div>
 
     <div class="gr-row form-row center-text-m ">
-    <div class="gr-4 gr-12-m">
-        <label for="occupation">Occupation</label>
-    </div>
-    <div class="gr-8 gr-12-m">
-                <select id="occupation" class="form_input" > 
+        <div class="gr-4 gr-12-m">
+            <label for="occupation">
+                Occupation
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <select id="occupation" class="form_input " > 
         <option value="">Wybierz</option>
         <option value="Chief Executives, Senior Officials and Legislators">Dyrektorzy, urzędnicy wysokiego szczebla, prawodawcy</option>
         <option value="Managers">Kierownicy</option>
@@ -408,147 +475,156 @@
         <option value="Armed Forces">Wojskowi</option>
         <option value="Government Officers">Urzędnicy państwowi</option>
         <option value="Others">Others</option>
-                </select>
-    
+                        </select>
+            
+        </div>
     </div>
-</div>
 
     <div class="gr-row form-row center-text-m ">
-    <div class="gr-4 gr-12-m">
-        <label for="education_level">Poziom wykształcenia</label>
-    </div>
-    <div class="gr-8 gr-12-m">
-                <select id="education_level" class="form_input" > 
+        <div class="gr-4 gr-12-m">
+            <label for="education_level">
+                Poziom wykształcenia
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <select id="education_level" class="form_input " > 
         <option value="">Wybierz</option>
         <option value="Primary">Podstawowy</option>
         <option value="Secondary">Drugorzędne</option>
         <option value="Tertiary">Wyższe</option>
-                </select>
-    
+                        </select>
+            
+        </div>
     </div>
-</div>
 
     <div class="gr-row form-row center-text-m ">
-    <div class="gr-4 gr-12-m">
-        <label for="income_source">Źródło dochodu</label>
-    </div>
-    <div class="gr-8 gr-12-m">
-                <select id="income_source" class="form_input" > 
+        <div class="gr-4 gr-12-m">
+            <label for="income_source">
+                Źródło dochodu
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <select id="income_source" class="form_input " > 
         <option value="">Wybierz</option>
         <option value="Salaried Employee">Pracownik etatowy</option>
         <option value="Self-Employed">Samozatrudnienie</option>
         <option value="Investments &amp; Dividends">Inwestycje i dywidenda</option>
         <option value="Pension">Emerytura</option>
         <option value="Other">Inne</option>
-                </select>
-    
+                        </select>
+            
+        </div>
     </div>
-</div>
 
     <div class="gr-row form-row center-text-m ">
-    <div class="gr-4 gr-12-m">
-        <label for="net_income">Roczny dochód netto</label>
-    </div>
-    <div class="gr-8 gr-12-m">
-                <select id="net_income" class="form_input" > 
+        <div class="gr-4 gr-12-m">
+            <label for="net_income">
+                Roczny dochód netto
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <select id="net_income" class="form_input " > 
         <option value="">Wybierz</option>
     <option value="Less than $25,000">Less than $25,000</option>
     <option value="$25,000 - $50,000">$25,000 - $50,000</option>
     <option value="$50,001 - $100,000">$50,001 - $100,000</option>
     <option value="$100,001 - $500,000">$100,001 - $500,000</option>
     <option value="Over $500,000">Over $500,001</option>
-                </select>
-    
+                        </select>
+            
+        </div>
     </div>
-</div>
 
     <div class="gr-row form-row center-text-m ">
-    <div class="gr-4 gr-12-m">
-        <label for="estimated_worth">Szacowana wartość netto</label>
-    </div>
-    <div class="gr-8 gr-12-m">
-                <select id="estimated_worth" class="form_input" > 
+        <div class="gr-4 gr-12-m">
+            <label for="estimated_worth">
+                Szacowana wartość netto
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <select id="estimated_worth" class="form_input " > 
         <option value="">Wybierz</option>
         <option value="Less than $100,000">Less than $100,000</option>
         <option value="$100,000 - $250,000">$100,000 - $250,000</option>
         <option value="$250,001 - $500,000">$250,001 - $500,000</option>
         <option value="$500,001 - $1,000,000">$500,001 - $1,000,000</option>
         <option value="Over $1,000,000">Over $1,000,000</option>
-                </select>
-    
+                        </select>
+            
+        </div>
     </div>
-</div>
 
     <div class="gr-row form-row center-text-m ">
-    <div class="gr-4 gr-12-m">
-        <label for="account_turnover">Anticipated Account Turnover</label>
-    </div>
-    <div class="gr-8 gr-12-m">
-                <select id="account_turnover" class="form_input" > 
+        <div class="gr-4 gr-12-m">
+            <label for="account_turnover">
+                Anticipated Account Turnover
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <select id="account_turnover" class="form_input " > 
         <option value="">Wybierz</option>
     <option value="Less than $25,000">Less than $25,000</option>
     <option value="$25,000 - $50,000">$25,000 - $50,000</option>
     <option value="$50,001 - $100,000">$50,001 - $100,000</option>
     <option value="$100,001 - $500,000">$100,001 - $500,000</option>
     <option value="Over $500,000">Over $500,001</option>
-                </select>
-    
+                        </select>
+            
+        </div>
     </div>
-</div>
 
-</fieldset>
+    </fieldset>
 
-                <fieldset>
-    <legend>PEP Declaration</legend>
-
+        <fieldset>
+        <legend>PEP Declaration</legend>
+        
     <div class="gr-12">
-        <p>A PEP is an individual who is or has been entrusted with a prominent public function. This status extends to a PEP's relatives and close associates.</p>
+        <p>PEP to osoba, która wykonuje lub wykonywała znaczącą funkcję publiczną. Status odnosi się również do członków rodziny takiej osoby i jej bliskich współpracowników.</p>
     </div>
 
     <div class="gr-padding-10 gr-12">
         <input id="not_pep" type="checkbox" />
-        <label for="not_pep">I acknowledge that I am not a politically exposed person (PEP).</label>
+        <label for="not_pep">Oświadczam, że nie jestem osobą zajmującą eksponowane stanowisko polityczne (PEP).</label>
     </div>
-</fieldset>
 
-                <fieldset>
-                    <div class="gr-12">
-                      <p>Usługi zawierania transakcji finansowych oferowane na niniejszym portalu są odpowiednie tylko dla klientów, którzy są w stanie ponieść stratę wszystkich zainwestowanych pieniędzy i którzy rozumieją zagrożenia związane z nabywaniem kontraktów finansowych i mają doświadczenie w tym zakresie. Transakcje finansowe niosą ze sobą wysokie ryzyko. Jeśli zakupiony kontrakt zakończy się bez wartości, stracisz całą zainwestowaną sumę, na którą składać się będzie premia z kontraktu.</p>
-                    </div>
-                </fieldset>
+    </fieldset>
 
-                <fieldset class="center-text" id="formlayout">
-                    <div class="gr-row">
-                        <div class="gr-12-m gr-padding-10 gr-centered">
-                            <input type="checkbox" id="tnc" />
-                            <label for="tnc">I have read and agree to the <a target="_blank" href="/pl/terms-and-conditions.html">terms and conditions</a> of the site.</label>
-                        </div>
-                    </div>
+        <fieldset>
+            <div class="gr-12">
+              <p>Usługi zawierania transakcji finansowych oferowane na niniejszym portalu są odpowiednie tylko dla klientów, którzy są w stanie ponieść stratę wszystkich zainwestowanych pieniędzy i którzy rozumieją zagrożenia związane z nabywaniem kontraktów finansowych i mają doświadczenie w tym zakresie. Transakcje finansowe niosą ze sobą wysokie ryzyko. Jeśli zakupiony kontrakt zakończy się bez wartości, stracisz całą zainwestowaną sumę, na którą składać się będzie premia z kontraktu.</p>
+            </div>
+        </fieldset>
 
-                    <button class="button" id="btn_submit" type="submit">Otwórz konto</button>
-                </fieldset>
-            </form>
+        <div class="center-text">
+        <div class="gr-row">
+            <div class="gr-12-m gr-padding-10 gr-centered">
+                <input type="checkbox" name="tnc" id="tnc">
+                <label for="tnc">I have read and agree to the <a target="_blank" href="/pl/terms-and-conditions.html">terms and conditions</a> of the site.</label>
+            </div>
+        </div>
 
-            <form id="financial-risk" class="invisible">
-                <fieldset>
-                    <div class="gr-12">
-                        <p><strong>Ocena zdolności: UWAGA:</strong> Świadcząc nasze usługi, jesteśmy zobligowani do uzyskania od Ciebie informacji w celu przeprowadzenia oceny, czy dany produkt lub usługa jest odpowiednia dla Ciebie (tzn. czy posiadasz odpowiednie doświadczenie i wiedzę potrzebne do zrozumienia ryzyka związanego z danym produktem).</p>
-                        <p>Na podstawie przedstawionych informacji dotyczących Twojej wiedzy i doświadczenia uznaliśmy, że inwestycje dostępne za pośrednictwem naszej strony są dla Ciebie nieodpowiednie.</p>
-                        <p>Kliknięcie poniższego przycisku <strong>Akceptuję</strong> i kontynuowanie procedury otwarcia konta oznacza, że zdajesz sobie sprawę z tego, że możesz być narażony/a na ryzyka (które mogą być znaczne, w tym na ryzyko utraty całej zainwestowanej sumy) i możesz nie posiadać wystarczającej wiedzy i wystarczającego doświadczenia, aby sobie z nimi poradzić.</p>
-                        <p class="center-text">
-                            <button class="button" type="submit">Akceptuję</button>
-                            <a class="button" href="/pl/trading.html"><span>Odrzuć</span></a>
-                        </p>
-                    </div>
-                </fieldset>
-            </form>
+        <button class="button" type="submit">Otwórz konto</button>
+    </div>
+    </form>
 
-            <div class="errorbox rbox invisible" id="client_message">
-                <div class="rbox-wrap">
-                    <div class="gr-12 rbox-content" id="client_message_content">
-                        <p class="center-text notice-msg"></p>
-                    </div>
-                </div>
+    <form id="financial-risk" class="invisible">
+        <fieldset>
+            <div class="gr-12">
+                <p><strong>Ocena zdolności: UWAGA:</strong> Świadcząc nasze usługi, jesteśmy zobligowani do uzyskania od Ciebie informacji w celu przeprowadzenia oceny, czy dany produkt lub usługa jest odpowiednia dla Ciebie (tzn. czy posiadasz odpowiednie doświadczenie i wiedzę potrzebne do zrozumienia ryzyka związanego z danym produktem).</p>
+                <p>Na podstawie przedstawionych informacji dotyczących Twojej wiedzy i doświadczenia uznaliśmy, że inwestycje dostępne za pośrednictwem naszej strony są dla Ciebie nieodpowiednie.</p>
+                <p>Kliknięcie poniższego przycisku <strong>Akceptuję</strong> i kontynuowanie procedury otwarcia konta oznacza, że zdajesz sobie sprawę z tego, że możesz być narażony/a na ryzyka (które mogą być znaczne, w tym na ryzyko utraty całej zainwestowanej sumy) i możesz nie posiadać wystarczającej wiedzy i wystarczającego doświadczenia, aby sobie z nimi poradzić.</p>
+                <p class="center-text">
+                    <button class="button" type="submit">Akceptuję</button>
+                    <a class="button" href="/pl/trading.html"><span>Odrzuć</span></a>
+                </p>
+            </div>
+        </fieldset>
+    </form>
+
+    <div class="errorbox rbox invisible" id="client_message">
+        <div class="rbox-wrap">
+            <div class="gr-12 rbox-content" id="client_message_content">
+                <p class="center-text notice-msg"></p>
             </div>
         </div>
     </div>

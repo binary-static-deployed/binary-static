@@ -1,74 +1,75 @@
 <div id="content" class="virtualws-content">
-        <div id="page_info" style="display:none;">
-            <title>Create New Account | Binary.com</title>
-            <div id="content_class">virtualws-content</div>
-        </div>
-        
-        <div class="container">
+            <div id="page_info" style="display:none;">
+                <title>Create New Account | Binary.com</title>
+                <div id="content_class">virtualws-content</div>
+            </div>
+            <div class="container">
+
 
 
   <div class='gr-12 static_full'>
     <h1>Create New Account</h1>
     <p class='notice-message'>Thank you for signing up! Please check your email to retrieve the verification token.</p>
-    <div class="rbox form gr-padding-10">
-        <div class="rbox-wrap">
-            <form id="virtual-form">
-                <fieldset>
-                    <legend id="details">Details</legend>
-
-                    <div class="gr-padding-10 gr-row clear">
-                        <div class="gr-4 form_label">
-                            <label for="verification_code">Verification token</label>
-                        </div>
-                        <div class="gr-8">
-                            <input type="text" name="verification_code" id="verification_code" maxlength="8" autocomplete="off"/>
-                            <div class="hint">Please check your email for the value of this token</div>
-                        </div>
-                    </div>
-
-                    <div class="gr-padding-10 gr-row clear">
-                        <div class="gr-4 form_label">
-                            <label for="client_password">Choose a password</label>
-                        </div>
-                        <div class="gr-8">
-                            <input type="password" id="client_password" name="client_password" maxlength="25"/>
-                            <div class="hint">Minimum of six lower and uppercase letters with numbers</div>
-                        </div>
-                    </div>
-
-                    <div class="gr-padding-10 gr-row clear">
-                        <div class="gr-4 form_label">
-                            <label for="repeat_password">Re-enter password</label>
-                        </div>
-                        <div class="gr-8">
-                            <input type="password" id="repeat_password" name="repeat_password" maxlength="25"/>
-                        </div>
-                    </div>
-
-                    <div class="gr-padding-10 gr-row clear">
-                        <div class="gr-4 form_label">
-                            <label for="residence">Country of residence</label>
-                        </div>
-                        <div class="gr-8">
-                            <select name="residence" id="residence" class="invisible"></select>
-                        </div>
-                    </div>
-
-                    <div class="gr-padding-10 gr-row clear invisible">
-                        <div class="gr-4 form_label" id="email_consent_label">
-                            <label for="email_consent">Receive news and special offers</label>
-                        </div>
-                        <div class="gr-8">
-                            <input type="checkbox" id="email_consent" checked="checked"/>
-                        </div>
-                    </div>
-                </fieldset>
-
-                <fieldset class="center-text" id="formlayout">
-                    <button class="button" type="submit">Create New Account</button>
-                    <p class="errorfield invisible" id="error-account-opening"></p>
-                </fieldset>
-            </form>
+    <form id="virtual-form" class="gr-padding-10">
+        <fieldset>
+        <legend>Details</legend>
+        
+            <div class="gr-row form-row center-text-m ">
+        <div class="gr-4 gr-12-m">
+            <label for="verification_code">
+                Verification token
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <input type="text" id="verification_code" maxlength="8" autocomplete="off" />
+            <div class="hint">Please check your email for the value of this token</div>
         </div>
     </div>
+            <div class="gr-row form-row center-text-m ">
+        <div class="gr-4 gr-12-m">
+            <label for="client_password">
+                Choose a password
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <input type="password" id="client_password" maxlength="25"  />
+            <div class="hint">Minimum of six lower and uppercase letters with numbers</div>
+        </div>
+    </div>
+            <div class="gr-row form-row center-text-m ">
+        <div class="gr-4 gr-12-m">
+            <label for="repeat_password">
+                Re-enter password
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <input type="password" id="repeat_password" maxlength="25"  />
+            
+        </div>
+    </div>
+            <div class="gr-row form-row center-text-m ">
+        <div class="gr-4 gr-12-m">
+            <label for="residence">
+                Country of residence
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <select id="residence" class="form_input invisible" >                     </select>
+            
+        </div>
+    </div>
+            <div class="gr-row invisible">
+        <div class="gr-12-m gr-padding-20 gr-centered">
+            <input id="email_consent" type="checkbox" />
+            <label for="email_consent">Receive news and special offers</label>
+        </div>
+    </div>
+        
+    </fieldset>
+
+        <div class="center-text">
+            <button class="button" type="submit">Create New Account</button>
+            <p class="errorfield invisible" id="error-account-opening"></p>
+        </div>
+    </form>
 </div>

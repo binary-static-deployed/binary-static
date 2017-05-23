@@ -1,10 +1,10 @@
 <div id="content" class="limitsws-content">
-        <div id="page_info" style="display:none;">
-            <title>ご利用制限額 | Binary.com | バイナリードットコム</title>
-            <div id="content_class">limitsws-content</div>
-        </div>
-        
-        <div class="container">
+            <div id="page_info" style="display:none;">
+                <title>ご利用制限額 | Binary.com | バイナリードットコム</title>
+                <div id="content_class">limitsws-content</div>
+            </div>
+            <div class="container">
+
 
 
   <div id="limits-container" class="gr-12 gr-padding-10">
@@ -12,65 +12,121 @@
     <div class="invisible" id="limits-title">
         <h2 id="trading-limits">取引上限について</h2>
         <div class="gr-padding-10">
-            <table class="flex-table" id="client-limits">
-                <thead>
-                    <tr class="flex-tr">
-                        <th class="flex-tr-child align-start">項目</th>
-                        <th class="flex-tr-child limit align-start">制限</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="flex-tr">
-                        <td class="flex-tr-child">
-                            最大保有ポジション
-                            <a href="javascript:;" data-balloon-length="xlarge" class="no-underline" data-balloon="最大保有ポジションの総数を示し、各行を１件分のオープンポジションとしてカウントします。最大件数を超えてのポジション保有はできませんので既存のオープンポジションを閉めて頂いてから新規トレードの購入が可能になります。">
-                                <img src="/images/common/question_1.png">
-                            </a>
-                        </td>
-                        <td class="flex-tr-child" id="open-positions"></td>
-                    </tr>
-                    <tr class="flex-tr">
-                        <td class="flex-tr-child">
-                            入金限度額
-                            <a href="javascript:;" data-balloon-length="xlarge" class="no-underline" data-balloon="口座で保有可能な口座残高の限度額を示します。限度額を超えた場合は出金手続きをお願いいたします。">
-                                <img src="/images/common/question_1.png">
-                            </a>
-                        </td>
-                        <td class="flex-tr-child" id="account-balance"></td>
-                    </tr>
-                    <tr class="flex-tr">
-                        <td class="flex-tr-child">
-                            未現実利益限度額
-                            <a href="javascript:;" data-balloon-length="xlarge" class="no-underline" data-balloon="保有ポジションに対する未現実利益利益を示します。上限額に達した場合、保有ポジションを一部決済するまで新規注文を行えません。">
-                                <img src="/images/common/question_1.png">
-                            </a>
-                        </td>
-                        <td class="flex-tr-child" id="payout"></td>
-                    </tr>
-                    <tr class="flex-tr">
-                        <td class="flex-tr-child">
-                            未現実利益限度額
-                            <a href="javascript:;" data-balloon-length="xlarge" class="no-underline" data-balloon="オープンポジションがない場合、未現実利益限度額がペイアウト限度額まで超えることがあります。">
-                                <img src="/images/common/question_1.png">
-                            </a>
-                        </td>
-                        <td class="flex-tr-child" id="payout-per-symbol-and-contract-type"></td>
-                    </tr>
-                    <tr>
-                        <td style="padding:10px;"></td>
-                        <td></td>
-                    </tr>
-                    <tr class="flex-tr">
-                        <th class="flex-tr-child align-start">
-                            １日の取引数量限度額
-                            <a href="javascript:;" data-balloon-length="xlarge" class="no-underline" data-balloon="購入可能な１日あたりのトレードの総額を示します。">
-                                <img src="/images/common/question_1.png">
-                            </a>
-                        </th>
-                        <th class="flex-tr-child limit align-start">制限</th>
-                    </tr>
-                </tbody>
-            </table>
+            <table id="client-limits">
+        
+        <thead>
+            
+                <tr>
+                    
+                        <th class="align-start">項目</th>
+                    
+                        <th class="limit align-start">制限</th>
+                    
+                </tr>
+            
+        </thead>
+        
+        <tbody>
+        
+            <tr>
+                
+                    
+                    <td>
+                        最大保有ポジション <a href="javascript:;" data-balloon-length="xlarge" class="no-underline" data-balloon="最大保有ポジションの総数を示し、各行を１件分のオープンポジションとしてカウントします。最大件数を超えてのポジション保有はできませんので既存のオープンポジションを閉めて頂いてから新規トレードの購入が可能になります。"><img src="/images/common/question_1.png"></a>
+                    </td>
+                    
+                
+                    
+                    <td id="open-positions">
+                        
+                    </td>
+                    
+                
+            </tr>
+        
+            <tr>
+                
+                    
+                    <td>
+                        入金限度額 <a href="javascript:;" data-balloon-length="xlarge" class="no-underline" data-balloon="口座で保有可能な口座残高の限度額を示します。限度額を超えた場合は出金手続きをお願いいたします。"><img src="/images/common/question_1.png"></a>
+                    </td>
+                    
+                
+                    
+                    <td id="account-balance">
+                        
+                    </td>
+                    
+                
+            </tr>
+        
+            <tr>
+                
+                    
+                    <td>
+                        未現実利益限度額 <a href="javascript:;" data-balloon-length="xlarge" class="no-underline" data-balloon="保有ポジションに対する未現実利益利益を示します。上限額に達した場合、保有ポジションを一部決済するまで新規注文を行えません。"><img src="/images/common/question_1.png"></a>
+                    </td>
+                    
+                
+                    
+                    <td id="payout">
+                        
+                    </td>
+                    
+                
+            </tr>
+        
+            <tr>
+                
+                    
+                    <td>
+                        未現実利益限度額 <a href="javascript:;" data-balloon-length="xlarge" class="no-underline" data-balloon="オープンポジションがない場合、未現実利益限度額がペイアウト限度額まで超えることがあります。"><img src="/images/common/question_1.png"></a>
+                    </td>
+                    
+                
+                    
+                    <td id="payout-per-symbol-and-contract-type">
+                        
+                    </td>
+                    
+                
+            </tr>
+        
+            <tr>
+                
+                    
+                    <td class="gr-padding-10">
+                        
+                    </td>
+                    
+                
+                    
+                    <td>
+                        
+                    </td>
+                    
+                
+            </tr>
+        
+            <tr>
+                
+                    
+                    <th class="align-start">
+                        １日の取引数量限度額 <a href="javascript:;" data-balloon-length="xlarge" class="no-underline" data-balloon="購入可能な１日あたりのトレードの総額を示します。"><img src="/images/common/question_1.png"></a>
+                    </th>
+                    
+                
+                    
+                    <th class="limit align-start">
+                        制限
+                    </th>
+                    
+                
+            </tr>
+        
+    </tbody>
+        
+    </table>
             <p class="hint">
                 上記の1日取引限度額を変更する場合、当社のホームページ上でお知らせいたします。
             </p>

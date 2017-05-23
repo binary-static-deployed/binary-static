@@ -1,18 +1,15 @@
 <div id="content" class="payment_agent_listws-content">
-        <div id="page_info" style="display:none;">
-            <title>Dépôt à un Agent de Paiement | Binary.com</title>
-            <div id="content_class">payment_agent_listws-content</div>
-        </div>
-        
-        <div class="container">
+            <div id="page_info" style="display:none;">
+                <title>Dépôt à un Agent de Paiement | Binary.com</title>
+                <div id="content_class">payment_agent_listws-content</div>
+            </div>
+            <div class="container">
+
 
 
   <div id="paymentagent_deposit">
     <h1>Comment utiliser un agent de paiement ?</h1>
-
-    <p>
-        Vous pouvez utiliser un agent de paiement autorisé pour prendre en charge les dépôts et les retraits pour les méthodes de paiement ou les devises locales non prises en charge par Binary.com. C'est simple.
-    </p>
+    <p>Vous pouvez utiliser un agent de paiement autorisé pour prendre en charge les dépôts et les retraits pour les méthodes de paiement ou les devises locales non prises en charge par Binary.com. C'est simple.</p>
     <ol>
         <li>Vérifiez les méthodes de paiement acceptées par les agents de paiement dans la liste ci-dessous.</li>
         <li>Sélectionnez le moyen de paiement que vous souhaitez utiliser.</li>
@@ -20,70 +17,111 @@
         <li>Envoyez vos fonds à l'agent de paiement. Les fonds versés, dont a été soustraite la commission de l'agent, s'afficheront sur votre compte.</li>
     </ol>
 
+    <p><label for="target_country">Montrer les agents de paiement pour:</label> <select id="target_country" class="invisible"></select></p>
 
-    <p>
-        Montrer les agents de paiement pour:
-        <select id="target_country" class="invisible"></select>
-        <div class="loading"><div class="barspinner dark">
+    <div class="loading"><div class="barspinner dark">
+    
     <div class="rect1"></div>
+    
     <div class="rect2"></div>
+    
     <div class="rect3"></div>
+    
     <div class="rect4"></div>
+    
     <div class="rect5"></div>
+    
 </div></div>
-    </p>
 
     <div id="pa_list">
         <div id="accordion" class="invisible">
             <h3>%name</h3>
             <div>
-                <p>
-                    <table>
-                        <tr>
-                            <td colspan="1">Nom :</td>
-                            <td colspan="3">%name</td>
-                        </tr>
-                        <tr>
-                            <td colspan="1">Relevé :</td>
-                            <td colspan="3">%summary</td>
-                        </tr>
-                        <tr>
-                            <td colspan="1">Commission sur les dépôts:</td>
-                            <td colspan="3">%deposit_commission%</td>
-                        </tr>
-                        <tr>
-                            <td colspan="1">Commission sur les retraits:</td>
-                            <td colspan="3">%withdrawal_commission%</td>
-                        </tr>
-                        <tr>
-                            <td colspan="1">Site Web:</label>
-                            <td colspan="3"><a href='%url' target="_blank">%url</a></td>
-                        </tr>
-                        <tr>
-                            <td colspan="1">E-mail:</td>
-                            <td colspan="3"><a href="mailto:%email" target="_blank">%email</a></td>
-                        </tr>
-                        <tr>
-                            <td colspan="1">Tél.:</td>
-                            <td colspan="3">%telephone</td>
-                        </tr>
-                        <tr>
-                            <td colspan="1">Informations supplémentaires:</td>
-                            <td colspan="3">%further_information</td>
-                        </tr>
-                    </table>
-                    <div class="supported_banks">%supported_banks</div>
-                </p>
+                <p></p>
+                <table>
+    
+        <tr>
+            <td colspan="1">Nom</td>
+            <td colspan="3">
+                
+                %name
+                
+            </td>
+        </tr>
+    
+        <tr>
+            <td colspan="1">Sommaire</td>
+            <td colspan="3">
+                
+                %summary
+                
+            </td>
+        </tr>
+    
+        <tr>
+            <td colspan="1">Commission sur les dépôts</td>
+            <td colspan="3">
+                
+                %deposit_commission%
+                
+            </td>
+        </tr>
+    
+        <tr>
+            <td colspan="1">Commission sur les retraits</td>
+            <td colspan="3">
+                
+                %withdrawal_commission%
+                
+            </td>
+        </tr>
+    
+        <tr>
+            <td colspan="1">Site Web</td>
+            <td colspan="3">
+                <a href="%url" target="_blank">
+                %url
+                </a>
+            </td>
+        </tr>
+    
+        <tr>
+            <td colspan="1">E-mail</td>
+            <td colspan="3">
+                <a href="mailto:%email" target="_blank">
+                %email
+                </a>
+            </td>
+        </tr>
+    
+        <tr>
+            <td colspan="1">Tél.</td>
+            <td colspan="3">
+                
+                %telephone
+                
+            </td>
+        </tr>
+    
+        <tr>
+            <td colspan="1">Informations supplémentaires</td>
+            <td colspan="3">
+                
+                %further_information
+                
+            </td>
+        </tr>
+    
+</table>
+                <div class="supported_banks">%supported_banks</div>
             </div>
         </div>
     </div>
 
     <p id="no_paymentagent" class="notice-msg center-text invisible">Les agents de paiement ne sont pas disponibles pour votre pays.</p>
 
-    <p>
-        Postuler pour devenir un <a href="/fr/payment-agent.html">agent de paiement</a> de Binary.com.
-    </p>
+    <p>Postuler pour devenir un <a href="/fr/payment-agent.html">agent de paiement</a> de Binary.com.</p>
     <p class="comment">
-        <strong>IMPORTANTE CLAUSE DE NON-RESPONSABILITÉ</strong> : Binary.com n'est affiliée à aucun des agents de paiement listés ci-dessus. Chaque agent de paiement agit en tant que fournisseur de services indépendant et Binary.com ne peut en aucun cas recommander, garantir ou approuver les services concernés. LES CLIENTS FONT APPEL AUX AGENTS DE PAIEMENT À LEURS RISQUES ET PÉRILS. Nous conseillons aux clients de vérifier les références des agents de paiement avant de leur envoyer toute somme d'argent. Binary.com ne pourra en aucun cas être tenue responsable des transactions réalisées entre les clients et les agents de paiement.
+        <strong>IMPORTANTE DÉCHARGE</strong> - Binary.com n'est affiliée à aucun des agents de paiement listés ci-dessus. Chaque agent de paiement agit en tant que fournisseur de services indépendant et Binary.com ne peut en aucun cas recommander, garantir ou approuver les services concernés. LES CLIENTS FONT APPEL AUX AGENTS DE PAIEMENT À LEURS RISQUES ET PÉRILS. Nous conseillons aux clients de vérifier les références des agents de paiement avant de leur envoyer toute somme d'argent. Binary.com ne pourra en aucun cas être tenue responsable des transactions réalisées entre les clients et les agents de paiement.
     </p>
 </div>

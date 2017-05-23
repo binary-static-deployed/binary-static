@@ -1,114 +1,135 @@
 <div id="content" class="withdrawws-content">
-        <div id="page_info" style="display:none;">
-            <title>Rút tiền tại Đại lý Thanh toán | Binary.com</title>
-            <div id="content_class">withdrawws-content</div>
-        </div>
-        
-        <div class="container">
-
-
-  <div>
-    <h1>Rút tiền tại Đại lý Thanh toán</h1>
-
-    <div id="paymentagent_withdrawal">
-
-        <div id="viewError" class="viewItem invisible">
-            <p id="custom-error" class="notice-msg center-text invisible"></p>
-            <p id="withdrawal-locked-error" class="notice-msg center-text invisible">
-                Rút tiền tại tài khoản của bạn không được phép tại thời điểm này. Xin vui lòng liên hệ với <a href="mailto:support@binary.com">support@binary.com</a> để mở khóa.
-            </p>
-        </div>
-
-        <div id="viewSuccess" class="viewItem invisible">
-            <p id="successMessage"></p>
-            <p>
-                <a class="button" href="/vi/user/statementws.html">
-                    <span class="button">Xem báo cáo của bạn</span>
-                </a>
-            </p>
-        </div>
-
-        <form id="viewConfirm" class="viewItem invisible">
-            <p>Xin vui lòng xác nhận chi tiết giao dịch để hoàn thành việc chuyển tiền:</p>
-
-            <p>Chuyển tới: <span id="lblAgentName"></span><br />Số tiền: <span id="lblCurrency"></span> <span id="lblAmount"></span></p>
-
-            <a class="button" id="btnBack" href="javascript:;"><span class="button">Quay lại</span></a>
-            <button class="button" type="submit">Xác nhận</button>
-        </form>
-
-        <div id="viewForm" class="viewItem invisible">
-            <p>Vui lòng cung cấp cho chúng tôi những thông tin sau, sau khi đã tìm được token xác minh từ email của bạn:</p>
-            <form class="form rbox gr-padding-10" id="frmWithdrawal">
-                <fieldset>
-
-                  <div class="gr-padding-10 gr-row clear">
-                      <div class="gr-4 form_label">
-                          <label for="verification_code">Mã Token Xác thực</label>
-                      </div>
-                      <div class="gr-8">
-                          <input type="text" id="verification_code" maxlength="8" autocomplete="off" />
-                          <div class="hint">Vui lòng kiểm tra email của bạn để biết giá trị của token này</div>
-                      </div>
-                  </div>
-
-                    <div class="gr-padding-10 gr-row clear">
-                        <div class="gr-4 form_label">
-                            <label for="ddlAgents">Chuyển tới Đại lý Thanh toán</label>
-                        </div>
-                        <div class="gr-8">
-                            <select id="ddlAgents"></select>
-                        </div>
-                    </div>
-
-                    <div class="gr-padding-10 gr-row clear">
-                        <div class="gr-4 form_label">
-                            <label for="txtAmount">Số tiền</label>
-                        </div>
-                        <div class="gr-8">
-                            USD <input type="text" id="txtAmount" />
-                            <div class="hint">Tối thiểu: 10 Tối đa: 2000</div>
-                        </div>
-                    </div>
-
-                    <div class="gr-padding-10 gr-row clear">
-                        <div class="gr-4 form_label">
-                            <label for="txtDescription">Chỉ dẫn bổ sung</label>
-                        </div>
-                        <div class="gr-8">
-                            <textarea id="txtDescription" row="6" cols="60" maxlength="300"></textarea>
-                        </div>
-                    </div>
-
-                    <div class="gr-padding-10">
-                        <div class="gr-4"></div>
-                        <div class="gr-8">
-                            <div id="formMessage"></div>
-                        </div>
-                    </div>
-
-                    <div class="gr-padding-10">
-                        <div class="gr-8 gr-centered center-text">
-                            <button class="button" type="submit">Gửi</button>
-                        </div>
-                    </div>
-
-                </fieldset>
-            </form>
-
-            <div id="paymentagent_withdrawal_notes">
-                <div>Chú ý:</div>
-                <ul>
-                    <li>Binary.com không tính bất kì phí chuyển tiền nào.</li>
-                    <li>Trong mục 'Hướng dẫn thêm' vui lòng nhập chi tiết phương thức thanh toán và số tài khoản để Nhân viên có thể gửi tiền qua. Vui lòng chắc chắn rằng trước hết bạn đồng ý với Đại lý các điều khoản thanh toán trước khi gửi yêu cầu.</li>
-                    <li>Khi bạn nhấp chuột vào nút "Gửi yêu cầu" tiền sẽ được rút khỏi tài khoản của bạn và sẽ được gửi về Đại lý Thanh toán bạn đã chọn.</li>
-                    <li>Đại lý sẽ gửi cho bạn số tiền rút (trừ đi tiền hoa hồng) qua phương thức thanh toán bạn đã chọn.</li>
-                </ul>
+            <div id="page_info" style="display:none;">
+                <title>Rút tiền tại Đại lý Thanh toán | Binary.com</title>
+                <div id="content_class">withdrawws-content</div>
             </div>
+            <div class="container">
 
-            <p class="comment"><strong>TIẾT LỘ QUAN TRỌNG</strong> - Binary.com không liên kết với bất kỳ Đại lý Thanh toán nào nêu trên. Từng Đại lý thanh toán hoạt động với vai trò một nhà cung cấp dịch vụ độc lập và chưa được chứng thực, bảo đảm và chấp thuận bởi Binary.com. KHÁCH HÀNG TỰ GIAO DỊCH VỚI CÁC ĐẠI LÝ THANH TOÁN VÀ CHỊU MỌI RỦI RO PHÁT SINH. Chúng tôi khuyên khách hàng nên tìm hiểu kỹ lịch sử hoạt động của các Đại lý Thanh toán trước khi gửi tiền cho họ. Dưới bất kỳ tình huống nào, Binary.com đều không chịu trách nhiệm cho những giao dịch giữa khách với các Đại lý Thanh toán nêu trên.</p>
-        </div>
 
+
+  <h1>Rút tiền tại Đại lý Thanh toán</h1>
+
+<div id="paymentagent_withdrawal">
+    <div id="viewError" class="viewItem invisible">
+        <p id="custom-error" class="notice-msg center-text invisible"></p>
+        <p id="withdrawal-locked-error" class="notice-msg center-text invisible">
+            Rút tiền tại tài khoản của bạn không được phép tại thời điểm này. Xin vui lòng liên hệ với <a href="mailto:support@binary.com">support@binary.com</a> để mở khóa.
+        </p>
     </div>
 
+    <div id="viewSuccess" class="viewItem invisible">
+        <p id="successMessage"></p>
+        <p>
+            <a class="button" href="/vi/user/statementws.html">
+                <span class="button">Xem báo cáo của bạn</span>
+            </a>
+        </p>
+    </div>
+
+    <form id="viewConfirm" class="viewItem invisible">
+        <p>Xin vui lòng xác nhận chi tiết giao dịch để hoàn thành việc chuyển tiền:</p>
+
+        <p>Chuyển tới: <span id="lblAgentName"></span><br />Số tiền: <span id="lblCurrency"></span> <span id="lblAmount"></span></p>
+
+        <div class="gr-row ">
+                <div class="gr-8 gr-push-4 gr-12-m gr-push-0-m center-text-m">
+            
+        
+        <div id="msg_form" class="error-msg invisible"></div>
+        
+        
+            <a class="button" href="javascript:;" id="btnBack">
+                <span class="button">Quay lại</span>
+            </a>
+        
+        <div class="gr-padding-10">
+            <button id="btn_submit" type="submit">Xác nhận</button>
+        </div>
+    
+                </div>
+            </div>
+    </form>
+
+    <div id="viewForm" class="viewItem invisible">
+        <p>Vui lòng cung cấp cho chúng tôi những thông tin sau, sau khi đã tìm được token xác minh từ email của bạn:</p>
+
+        <form class="form gr-padding-10" id="frmWithdrawal">
+            <fieldset>
+        
+        
+                <div class="gr-row form-row center-text-m ">
+        <div class="gr-4 gr-12-m">
+            <label for="verification_code">
+                Mã Token Xác minh
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <input type="text" id="verification_code" maxlength="8" autocomplete="off" />
+            <div class="hint">Vui lòng kiểm tra email của bạn để biết giá trị của token này</div>
+        </div>
+    </div>
+                <div class="gr-row form-row center-text-m ">
+        <div class="gr-4 gr-12-m">
+            <label for="ddlAgents">
+                Chuyển tới Đại lý Thanh toán
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <select id="ddlAgents" class="form_input " >                     </select>
+            
+        </div>
+    </div>
+                <div class="gr-row form-row center-text-m ">
+        <div class="gr-4 gr-12-m">
+            <label for="txtAmount">
+                Số tiền
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                USD <input type="text" id="txtAmount"  />
+            <div class="hint">Tối thiểu: 10 Tối đa: 2000</div>
+        </div>
+    </div>
+                <div class="gr-row form-row center-text-m ">
+        <div class="gr-4 gr-12-m">
+            <label for="txtDescription">
+                Chỉ dẫn bổ sung
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                
+                    <textarea id="txtDescription" row="6" cols="60" maxlength="300"></textarea>
+                
+            
+        </div>
+    </div>
+                <div class="gr-row ">
+                <div class="gr-8 gr-push-4 gr-12-m gr-push-0-m center-text-m">
+            
+        
+        <div id="formMessage" class="error-msg invisible"></div>
+        
+        
+        <div class="gr-padding-10">
+            <button id="btn_submit" type="submit">Gửi</button>
+        </div>
+    
+                </div>
+            </div>
+            
+    </fieldset>
+        </form>
+
+        <div id="paymentagent_withdrawal_notes">
+            <div>Chú ý:</div>
+            <ul>
+                <li>Binary.com không tính bất kì phí chuyển tiền nào.</li>
+                <li>Trong mục 'Hướng dẫn thêm' vui lòng nhập chi tiết phương thức thanh toán và số tài khoản để Nhân viên có thể gửi tiền qua. Vui lòng chắc chắn rằng trước hết bạn đồng ý với Đại lý các điều khoản thanh toán trước khi gửi yêu cầu.</li>
+                <li>Khi bạn nhấp chuột vào nút "Gửi yêu cầu" tiền sẽ được rút khỏi tài khoản của bạn và sẽ được gửi về Đại lý Thanh toán bạn đã chọn.</li>
+                <li>Đại lý sẽ gửi cho bạn số tiền rút (trừ đi tiền hoa hồng) qua phương thức thanh toán bạn đã chọn.</li>
+            </ul>
+        </div>
+
+        <p class="comment"><strong>IMPORTANT DISCLAIMER</strong> - Binary.com is not affiliated with any of the Payment Agents listed above. Each Payment Agent operates as an independent service provider and is not endorsed, guaranteed or otherwise approved by Binary.com. CUSTOMERS DEAL WITH PAYMENT AGENTS AT THEIR SOLE RISK AND PERIL. Customers are advised to check the credentials of Payment Agents before sending them any money. Binary.com shall not in any circumstance be held responsible for transactions made between customers and Payment Agents.</p>
+    </div>
 </div>

@@ -1,10 +1,10 @@
 <div id="content" class="limitsws-content">
-        <div id="page_info" style="display:none;">
-            <title>Limites da Conta | Binary.com</title>
-            <div id="content_class">limitsws-content</div>
-        </div>
-        
-        <div class="container">
+            <div id="page_info" style="display:none;">
+                <title>Limites da Conta | Binary.com</title>
+                <div id="content_class">limitsws-content</div>
+            </div>
+            <div class="container">
+
 
 
   <div id="limits-container" class="gr-12 gr-padding-10">
@@ -12,65 +12,121 @@
     <div class="invisible" id="limits-title">
         <h2 id="trading-limits">Limites de Negociação</h2>
         <div class="gr-padding-10">
-            <table class="flex-table" id="client-limits">
-                <thead>
-                    <tr class="flex-tr">
-                        <th class="flex-tr-child align-start">Artigo</th>
-                        <th class="flex-tr-child limit align-start">Limite</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="flex-tr">
-                        <td class="flex-tr-child">
-                            Número máximo de posições em aberto
-                            <a href="javascript:;" data-balloon-length="xlarge" class="no-underline" data-balloon="Representa o número máximo de contratos pendentes no seu portfólio. Cada linha do seu portfólio conta para uma posição em aberto. Depois de atingido o máximo, não poderá abrir novas posições sem fechar primeiro uma posição existente.">
-                                <img src="/images/common/question_1.png">
-                            </a>
-                        </td>
-                        <td class="flex-tr-child" id="open-positions"></td>
-                    </tr>
-                    <tr class="flex-tr">
-                        <td class="flex-tr-child">
-                            Saldo máximo em conta
-                            <a href="javascript:;" data-balloon-length="xlarge" class="no-underline" data-balloon="Representa a quantia máxima de dinheiro que pode manter na sua conta. Se o máximo for atingido, vamos solicitar-lhe a retirada dos fundos.">
-                                <img src="/images/common/question_1.png">
-                            </a>
-                        </td>
-                        <td class="flex-tr-child" id="account-balance"></td>
-                    </tr>
-                    <tr class="flex-tr">
-                        <td class="flex-tr-child">
-                            Máximo de pagamentos agregados sobre posições em aberto
-                            <a href="javascript:;" data-balloon-length="xlarge" class="no-underline" data-balloon="Apresenta os pagamentos agregados máximos referentes aos contratos pendentes do seu portfólio. Se o máximo for atingido, você não poderá comprar contratos adicionais sem primeiro fechar as posições existentes.">
-                                <img src="/images/common/question_1.png">
-                            </a>
-                        </td>
-                        <td class="flex-tr-child" id="payout"></td>
-                    </tr>
-                    <tr class="flex-tr">
-                        <td class="flex-tr-child">
-                            Maximum aggregate payouts on open positions per symbol and contract type
-                            <a href="javascript:;" data-balloon-length="xlarge" class="no-underline" data-balloon="O máximo do agregado de pagamentos sobre posições abertas por símbolo e tipo de contrato. Este limite pode ser excedido até ao limite de pagamentos global caso não exista nenhuma posição aberta anterior.">
-                                <img src="/images/common/question_1.png">
-                            </a>
-                        </td>
-                        <td class="flex-tr-child" id="payout-per-symbol-and-contract-type"></td>
-                    </tr>
-                    <tr>
-                        <td style="padding:10px;"></td>
-                        <td></td>
-                    </tr>
-                    <tr class="flex-tr">
-                        <th class="flex-tr-child align-start">
-                            Volume de negócios máximo diário
-                            <a href="javascript:;" data-balloon-length="xlarge" class="no-underline" data-balloon="Representa o volume máximo de contratos que pode comprar em qualquer dia de negociações.">
-                                <img src="/images/common/question_1.png">
-                            </a>
-                        </th>
-                        <th class="flex-tr-child limit align-start">Limite</th>
-                    </tr>
-                </tbody>
-            </table>
+            <table id="client-limits">
+        
+        <thead>
+            
+                <tr>
+                    
+                        <th class="align-start">Artigo</th>
+                    
+                        <th class="limit align-start">Limite</th>
+                    
+                </tr>
+            
+        </thead>
+        
+        <tbody>
+        
+            <tr>
+                
+                    
+                    <td>
+                        Número máximo de posições em aberto <a href="javascript:;" data-balloon-length="xlarge" class="no-underline" data-balloon="Representa o número máximo de contratos pendentes no seu portfólio. Cada linha do seu portfólio conta para uma posição em aberto. Depois de atingido o máximo, não poderá abrir novas posições sem fechar primeiro uma posição existente."><img src="/images/common/question_1.png"></a>
+                    </td>
+                    
+                
+                    
+                    <td id="open-positions">
+                        
+                    </td>
+                    
+                
+            </tr>
+        
+            <tr>
+                
+                    
+                    <td>
+                        Saldo máximo em conta <a href="javascript:;" data-balloon-length="xlarge" class="no-underline" data-balloon="Representa a quantia máxima de dinheiro que pode manter na sua conta. Se o máximo for atingido, vamos solicitar-lhe a retirada dos fundos."><img src="/images/common/question_1.png"></a>
+                    </td>
+                    
+                
+                    
+                    <td id="account-balance">
+                        
+                    </td>
+                    
+                
+            </tr>
+        
+            <tr>
+                
+                    
+                    <td>
+                        Máximo de pagamentos agregados sobre posições em aberto <a href="javascript:;" data-balloon-length="xlarge" class="no-underline" data-balloon="Apresenta os pagamentos agregados máximos referentes aos contratos pendentes do seu portfólio. Se o máximo for atingido, você não poderá comprar contratos adicionais sem primeiro fechar as posições existentes."><img src="/images/common/question_1.png"></a>
+                    </td>
+                    
+                
+                    
+                    <td id="payout">
+                        
+                    </td>
+                    
+                
+            </tr>
+        
+            <tr>
+                
+                    
+                    <td>
+                        Maximum aggregate payouts on open positions per symbol and contract type <a href="javascript:;" data-balloon-length="xlarge" class="no-underline" data-balloon="O máximo do agregado de pagamentos sobre posições abertas por símbolo e tipo de contrato. Este limite pode ser excedido até ao limite de pagamentos global caso não exista nenhuma posição aberta anterior."><img src="/images/common/question_1.png"></a>
+                    </td>
+                    
+                
+                    
+                    <td id="payout-per-symbol-and-contract-type">
+                        
+                    </td>
+                    
+                
+            </tr>
+        
+            <tr>
+                
+                    
+                    <td class="gr-padding-10">
+                        
+                    </td>
+                    
+                
+                    
+                    <td>
+                        
+                    </td>
+                    
+                
+            </tr>
+        
+            <tr>
+                
+                    
+                    <th class="align-start">
+                        Volume de negócios máximo diário <a href="javascript:;" data-balloon-length="xlarge" class="no-underline" data-balloon="Representa o volume máximo de contratos que pode comprar em qualquer dia de negociações."><img src="/images/common/question_1.png"></a>
+                    </th>
+                    
+                
+                    
+                    <th class="limit align-start">
+                        Limite
+                    </th>
+                    
+                
+            </tr>
+        
+    </tbody>
+        
+    </table>
             <p class="hint">
                 Os limites mencionados estão sujeitos a alterações sem aviso prévio.
             </p>

@@ -1,381 +1,446 @@
 <div id="content" class="maltainvestws-content">
-        <div id="page_info" style="display:none;">
-            <title>การเปิดบัญชี | Binary.com</title>
-            <div id="content_class">maltainvestws-content</div>
-        </div>
-        
-        <div class="container">
+            <div id="page_info" style="display:none;">
+                <title>การเปิดบัญชี | Binary.com</title>
+                <div id="content_class">maltainvestws-content</div>
+            </div>
+            <div class="container">
+
 
 
   <div class='gr-12 static_full'>
     <h1>การเปิดบัญชี</h1>
-    <div class="rbox form gr-padding-10">
-        <div class="rbox-wrap">
-            <form id="financial-form">
-                <fieldset>
-                    <legend id="details">รายละเอียด</legend>
-
-                    <div class="gr-padding-10 gr-row clear">
-                        <div class="gr-4 form_label">
-                            <label for="salutation">คำนำหน้าชื่อ</label>
-                        </div>
-                        <div class="gr-8">
-                            <select id="salutation" class="input-disabled">
-                              <option value="Mr">นาย</option>
-                              <option value="Mrs" class="ru-hide">นาง</option>
-                              <option value="Ms">นางสาว</option>
-                              <option value="Miss" class="ru-hide">นางสาว</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="gr-padding-10 gr-row clear">
-                        <div class="gr-4 form_label">
-                            <label for="first_name">ชื่อ</label>
-                        </div>
-                        <div class="gr-8">
-                            <input type="text" class="text input-disabled" id="first_name" maxlength="30"/>
-                        </div>
-                    </div>
-
-                    <div class="gr-padding-10 gr-row clear">
-                        <div class="gr-4 form_label">
-                            <label for="last_name">นามสกุล</label>
-                        </div>
-                        <div class="gr-8">
-                            <input type="text" class="text input-disabled" id="last_name" maxlength="30"/>
-                        </div>
-                    </div>
-
-                    <div class="gr-padding-10 gr-row clear">
-                        <div class="gr-4 form_label">
-                            <label for="date_of_birth">วันเกิด</label>
-                        </div>
-                        <div class="gr-8">
-                            <input type="text" id="date_of_birth" name="date_of_birth" class="input-disabled" size="12" readonly="readonly"/>
-                        </div>
-                    </div>
-
-                    <div class="gr-padding-10 gr-row clear">
-                        <div class="gr-4 form_label">
-                            <label for="place_of_birth">สถานที่เกิด</label>
-                        </div>
-                        <div class="gr-8">
-                            <select name="place_of_birth" id="place_of_birth"></select>
-                        </div>
-                    </div>
-
-                    <div class="gr-padding-10 gr-row clear">
-                        <div class="gr-4 form_label">
-                            <label for="residence">ประเทศที่พำนัก</label>
-                        </div>
-                        <div class="gr-8">
-                            <label id="lbl_residence"></label>
-                        </div>
-                    </div>
-                </fieldset>
-
-                <fieldset>
-                    <legend>ข้อมูลภาษี</legend>
-
-                    <div class="gr-padding-10 gr-row clear">
-                        <div class="gr-4 form_label">
-                            <label for="tax_residence">สถานที่เกิดแหล่งรายได้</label>
-                        </div>
-                        <div class="gr-8">
-                            <select name="tax_residence" id="tax_residence" class="invisible" multiple="multiple"></select>
-                        </div>
-                    </div>
-
-                    <div class="gr-padding-10 gr-row clear">
-                        <div class="gr-4 form_label">
-                            <label for="tax_identification_number">เลขประจำตัวผู้เสียภาษี</label>
-                        </div>
-                        <div class="gr-8">
-                            <input type="text" class="text" id="tax_identification_number" maxlength="20"/>
-                        </div>
-                    </div>
-                </fieldset>
-
-                <fieldset>
-                    <legend id="address">ที่อยู่</legend>
-
-                    <div class="gr-padding-10 gr-row clear">
-                        <div class="gr-4 form_label">
-                            <label for="address_line_1">บรรทัดแรกของที่อยู่</label>
-                        </div>
-                        <div class="gr-8">
-                            <input type="text" class="text" id="address_line_1" maxlength="70"/>
-                            <p class="hint">โปรดแจ้งที่อยู่ของท่านอย่างครบถ้วน<br>ซึ่งใช้ในการตรวจสอบอัตลักษณ์ของท่านในการเปิดบัญชีจริงของท่าน</p>
-                        </div>
-                    </div>
-
-                    <div class="gr-padding-10 gr-row clear">
-                        <div class="gr-4 form_label">
-                            <label for="address_line_2">บรรทัดที่สองของที่อยู่ที่พัก</label>
-                        </div>
-                        <div class="gr-8">
-                            <input type="text" class="text" id="address_line_2" maxlength="70"/>
-                        </div>
-                    </div>
-
-                    <div class="gr-padding-10 gr-row clear">
-                        <div class="gr-4 form_label">
-                            <label for="address_city">เมือง</label>
-                        </div>
-                        <div class="gr-8">
-                            <input type="text" class="text" id="address_city" maxlength="35"/>
-                        </div>
-                    </div>
-
-                    <div class="gr-padding-10 gr-row clear" style="display:none">
-                        <div class="gr-4 form_label">
-                            <label for="address_state">รัฐ/จังหวัด</label>
-                        </div>
-                        <div class="gr-8">
-                            <select id="address_state"></select>
-                        </div>
-                    </div>
-
-                    <div class="gr-padding-10 gr-row clear">
-                        <div class="gr-4 form_label">
-                            <label for="address_postcode">รหัสไปรษณีย์</label>
-                        </div>
-                        <div class="gr-8">
-                            <input type="text" class="text" id="address_postcode" maxlength="20" />
-                        </div>
-                    </div>
-
-                    <div class="gr-padding-10 gr-row clear">
-                        <div class="gr-4 form_label">
-                            <label for="phone">โทรศัพท์</label>
-                        </div>
-                        <div class="gr-8">
-                            <input type="text" class="text" id="phone" maxlength="35" />
-                        </div>
-                    </div>
-                </fieldset>
-
-                <fieldset class="security">
-                    <legend id="security">หลักทรัพย์</legend>
-
-                    <div class="gr-padding-10 gr-row clear">
-                        <div class="gr-4 form_label">
-                            <label for="secret_question">คำถามลับ</label>
-                        </div>
-                        <div class="gr-8">
-                            <select id="secret_question">
-                              <option value="Favourite dish">อาหารที่ท่านโปรดปราน</option>
-                              <option value="Mother's maiden name">ชื่อกลางของมารดา</option>
-                              <option value="Name of your pet">ชื่อของสัตว์เลี้ยงของท่าน</option>
-                              <option value="Name of first love">ชื่อของคนรักคนแรก</option>
-                              <option value="Memorable town/city">เมืองแห่งความทรงจำ</option>
-                              <option value="Memorable date">วันแห่งความทรงจำ</option>
-                              <option value="Brand of first car">ยี่ห้องของรถยนต์คันแรก</option>
-                              <option value="Favourite artist">ศิลปินที่ท่านโปรดปราน</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="gr-padding-10 gr-row clear">
-                        <div class="gr-4 form_label">
-                            <label for="secret_answer">คำตอบสำหรับคำถามส่วนตัว</label>
-                        </div>
-                        <div class="gr-8">
-                            <input type="text" class="text" id="secret_answer" maxlength="50" autocomplete="off"/>
-                        </div>
-                    </div>
-                </fieldset>
-
-                <fieldset>
-    <legend>ข้อมูลทางการเงิน</legend>
-    
-    <div class="gr-row form-row center-text-m ">
-    <div class="gr-4 gr-12-m">
-        <label for="forex_trading_experience">ประสบการณ์ของการเทรดฟอเร็กซ์</label>
+    <form id="financial-form" class="gr-padding-10">
+        <fieldset>
+        <legend>รายละเอียด</legend>
+        
+            <div class="gr-row form-row center-text-m ">
+        <div class="gr-4 gr-12-m">
+            <label for="salutation">
+                คำนำหน้าชื่อ
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <select id="salutation" class="form_input input-disabled" > 
+        <option value="Mr">นาย</option>
+        <option value="Mrs" class="ru-hide">นาง</option>
+        <option value="Ms">นางสาว</option>
+        <option value="Miss" class="ru-hide">นางสาว</option>
+                        </select>
+            
+        </div>
     </div>
-    <div class="gr-8 gr-12-m">
-                <select id="forex_trading_experience" class="form_input" > 
+            <div class="gr-row form-row center-text-m ">
+        <div class="gr-4 gr-12-m">
+            <label for="first_name">
+                ชื่อ
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <input type="text" id="first_name" maxlength="30" class="input-disabled" />
+            
+        </div>
+    </div>
+            <div class="gr-row form-row center-text-m ">
+        <div class="gr-4 gr-12-m">
+            <label for="last_name">
+                นามสกุล
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <input type="text" id="last_name" maxlength="30" class="input-disabled" />
+            
+        </div>
+    </div>
+            <div class="gr-row form-row center-text-m ">
+        <div class="gr-4 gr-12-m">
+            <label for="date_of_birth">
+                วันเกิด
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <input type="text" id="date_of_birth" size="12" readonly="readonly" class="input-disabled" />
+            
+        </div>
+    </div>
+            <div class="gr-row form-row center-text-m ">
+        <div class="gr-4 gr-12-m">
+            <label for="place_of_birth">
+                สถานที่เกิด
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <select id="place_of_birth" class="form_input " >                     </select>
+            
+        </div>
+    </div>
+            <div class="gr-row form-row center-text-m ">
+        <div class="gr-4 gr-12-m">
+            <label for="residence">
+                ประเทศที่พำนัก
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                
+        <label id="lbl_residence"></label>
+    
+            
+        </div>
+    </div>
+        
+    </fieldset>
+
+        <fieldset>
+        <legend>ข้อมูลภาษี</legend>
+        
+            <div class="gr-row form-row center-text-m ">
+        <div class="gr-4 gr-12-m">
+            <label for="tax_residence">
+                สถานที่เกิดแหล่งรายได้
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <select id="tax_residence" class="form_input invisible" multiple="multiple">                     </select>
+            
+        </div>
+    </div>
+            <div class="gr-row form-row center-text-m ">
+        <div class="gr-4 gr-12-m">
+            <label for="tax_identification_number">
+                เลขประจำตัวผู้เสียภาษี
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <input type="text" id="tax_identification_number" maxlength="20" />
+            
+        </div>
+    </div>
+        
+    </fieldset>
+
+        <fieldset>
+        <legend>ที่อยู่</legend>
+        
+            <div class="gr-row form-row center-text-m ">
+        <div class="gr-4 gr-12-m">
+            <label for="address_line_1">
+                บรรทัดแรกของที่อยู่
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <input type="text" id="address_line_1" maxlength="70" />
+            <div class="hint">โปรดแจ้งที่อยู่ของท่านอย่างครบถ้วน<br>ซึ่งใช้ในการตรวจสอบอัตลักษณ์ของท่านในการเปิดบัญชีจริงของท่าน</div>
+        </div>
+    </div>
+            <div class="gr-row form-row center-text-m ">
+        <div class="gr-4 gr-12-m">
+            <label for="address_line_2">
+                บรรทัดที่สองของที่อยู่ที่พัก
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <input type="text" id="address_line_2" maxlength="70" />
+            
+        </div>
+    </div>
+            <div class="gr-row form-row center-text-m ">
+        <div class="gr-4 gr-12-m">
+            <label for="address_city">
+                เมือง
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <input type="text" id="address_city" maxlength="35" />
+            
+        </div>
+    </div>
+            <div class="gr-row form-row center-text-m ">
+        <div class="gr-4 gr-12-m">
+            <label for="address_state">
+                รัฐ/จังหวัด
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <select id="address_state" class="form_input " >                     </select>
+            
+        </div>
+    </div>
+            <div class="gr-row form-row center-text-m ">
+        <div class="gr-4 gr-12-m">
+            <label for="address_postcode">
+                รหัสไปรษณีย์
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <input type="text" id="address_postcode" maxlength="20" />
+            
+        </div>
+    </div>
+            <div class="gr-row form-row center-text-m ">
+        <div class="gr-4 gr-12-m">
+            <label for="phone">
+                โทรศัพท์
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <input type="text" id="phone" maxlength="35" />
+            
+        </div>
+    </div>
+        
+    </fieldset>
+
+        <fieldset>
+        <legend>หลักทรัพย์</legend>
+        
+            <div class="gr-row form-row center-text-m ">
+        <div class="gr-4 gr-12-m">
+            <label for="secret_question">
+                คำถามลับ
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <select id="secret_question" class="form_input " > 
+        <option value="Favourite dish">อาหารที่ท่านโปรดปราน</option>
+        <option value="Mother's maiden name">ชื่อกลางของมารดา</option>
+        <option value="Name of your pet">ชื่อของสัตว์เลี้ยงของท่าน</option>
+        <option value="Name of first love">ชื่อของคนรักคนแรก</option>
+        <option value="Memorable town/city">เมืองแห่งความทรงจำ</option>
+        <option value="Memorable date">วันแห่งความทรงจำ</option>
+        <option value="Brand of first car">ยี่ห้องของรถยนต์คันแรก</option>
+        <option value="Favourite artist">ศิลปินที่ท่านโปรดปราน</option>
+                        </select>
+            
+        </div>
+    </div>
+            <div class="gr-row form-row center-text-m ">
+        <div class="gr-4 gr-12-m">
+            <label for="secret_answer">
+                คำตอบสำหรับคำถามส่วนตัว
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <input type="text" id="secret_answer" maxlength="50" autocomplete="off" />
+            
+        </div>
+    </div>
+        
+    </fieldset>
+
+        <fieldset>
+        <legend>ข้อมูลทางการเงิน</legend>
+        
+    <div class="gr-row form-row center-text-m ">
+        <div class="gr-4 gr-12-m">
+            <label for="forex_trading_experience">
+                ประสบการณ์ของการเทรดฟอเร็กซ์
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <select id="forex_trading_experience" class="form_input " > 
         <option value="">โปรดระบุ</option>
     <option value="0-1 year">0-1 ปี</option>
     <option value="1-2 years">1-2 ปี</option>
     <option value="Over 3 years">มากกว่า 3 ปี</option>
-                </select>
-    
+                        </select>
+            
+        </div>
     </div>
-</div>
 
     <div class="gr-row form-row center-text-m ">
-    <div class="gr-4 gr-12-m">
-        <label for="forex_trading_frequency">ความถี่ของการเทรดฟอเร็กซ์</label>
-    </div>
-    <div class="gr-8 gr-12-m">
-                <select id="forex_trading_frequency" class="form_input" > 
+        <div class="gr-4 gr-12-m">
+            <label for="forex_trading_frequency">
+                ความถี่ของการเทรดฟอเร็กซ์
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <select id="forex_trading_frequency" class="form_input " > 
         <option value="">โปรดระบุ</option>
     <option value="0-5 transactions in the past 12 months">0-5 ธุรกรรมในระยะเวลา 12 เดือน ที่ผ่านมา</option>
     <option value="6-10 transactions in the past 12 months">มี 6-10 ธุรกรรมใน 12 เดือนที่ผ่านมา</option>
     <option value="40 transactions or more in the past 12 months">มีมากกว่า 40 ธุรกรรม ภายใน 12 เดือนที่ผ่านมา</option>
-                </select>
-    
+                        </select>
+            
+        </div>
     </div>
-</div>
 
     <div class="gr-row form-row center-text-m ">
-    <div class="gr-4 gr-12-m">
-        <label for="indices_trading_experience">ประสบการณ์การเทรดดัชนีต่างๆ</label>
-    </div>
-    <div class="gr-8 gr-12-m">
-                <select id="indices_trading_experience" class="form_input" > 
+        <div class="gr-4 gr-12-m">
+            <label for="indices_trading_experience">
+                ประสบการณ์การเทรดดัชนีต่างๆ
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <select id="indices_trading_experience" class="form_input " > 
         <option value="">โปรดระบุ</option>
     <option value="0-1 year">0-1 ปี</option>
     <option value="1-2 years">1-2 ปี</option>
     <option value="Over 3 years">มากกว่า 3 ปี</option>
-                </select>
-    
+                        </select>
+            
+        </div>
     </div>
-</div>
 
     <div class="gr-row form-row center-text-m ">
-    <div class="gr-4 gr-12-m">
-        <label for="indices_trading_frequency">ความถี่ในการเทรดดัชนี</label>
-    </div>
-    <div class="gr-8 gr-12-m">
-                <select id="indices_trading_frequency" class="form_input" > 
+        <div class="gr-4 gr-12-m">
+            <label for="indices_trading_frequency">
+                ความถี่ในการเทรดดัชนี
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <select id="indices_trading_frequency" class="form_input " > 
         <option value="">โปรดระบุ</option>
     <option value="0-5 transactions in the past 12 months">0-5 ธุรกรรมในระยะเวลา 12 เดือน ที่ผ่านมา</option>
     <option value="6-10 transactions in the past 12 months">มี 6-10 ธุรกรรมใน 12 เดือนที่ผ่านมา</option>
     <option value="40 transactions or more in the past 12 months">มีมากกว่า 40 ธุรกรรม ภายใน 12 เดือนที่ผ่านมา</option>
-                </select>
-    
+                        </select>
+            
+        </div>
     </div>
-</div>
 
     <div class="gr-row form-row center-text-m ">
-    <div class="gr-4 gr-12-m">
-        <label for="commodities_trading_experience">ประสบการณ์ในการซื้อขายสินค้าโภคภัณฑ์</label>
-    </div>
-    <div class="gr-8 gr-12-m">
-                <select id="commodities_trading_experience" class="form_input" > 
+        <div class="gr-4 gr-12-m">
+            <label for="commodities_trading_experience">
+                ประสบการณ์ในการซื้อขายสินค้าโภคภัณฑ์
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <select id="commodities_trading_experience" class="form_input " > 
         <option value="">โปรดระบุ</option>
     <option value="0-1 year">0-1 ปี</option>
     <option value="1-2 years">1-2 ปี</option>
     <option value="Over 3 years">มากกว่า 3 ปี</option>
-                </select>
-    
+                        </select>
+            
+        </div>
     </div>
-</div>
 
     <div class="gr-row form-row center-text-m ">
-    <div class="gr-4 gr-12-m">
-        <label for="commodities_trading_frequency">ความถี่ในการซื้อขายสินค้าโภคภัณฑ์</label>
-    </div>
-    <div class="gr-8 gr-12-m">
-                <select id="commodities_trading_frequency" class="form_input" > 
+        <div class="gr-4 gr-12-m">
+            <label for="commodities_trading_frequency">
+                ความถี่ในการซื้อขายสินค้าโภคภัณฑ์
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <select id="commodities_trading_frequency" class="form_input " > 
         <option value="">โปรดระบุ</option>
     <option value="0-5 transactions in the past 12 months">0-5 ธุรกรรมในระยะเวลา 12 เดือน ที่ผ่านมา</option>
     <option value="6-10 transactions in the past 12 months">มี 6-10 ธุรกรรมใน 12 เดือนที่ผ่านมา</option>
     <option value="40 transactions or more in the past 12 months">มีมากกว่า 40 ธุรกรรม ภายใน 12 เดือนที่ผ่านมา</option>
-                </select>
-    
+                        </select>
+            
+        </div>
     </div>
-</div>
 
     <div class="gr-row form-row center-text-m ">
-    <div class="gr-4 gr-12-m">
-        <label for="stocks_trading_experience">ประสบการณ์ในการซื้อขายหลักทรัพย์ต่างๆ</label>
-    </div>
-    <div class="gr-8 gr-12-m">
-                <select id="stocks_trading_experience" class="form_input" > 
+        <div class="gr-4 gr-12-m">
+            <label for="stocks_trading_experience">
+                ประสบการณ์ในการซื้อขายหลักทรัพย์ต่างๆ
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <select id="stocks_trading_experience" class="form_input " > 
         <option value="">โปรดระบุ</option>
     <option value="0-1 year">0-1 ปี</option>
     <option value="1-2 years">1-2 ปี</option>
     <option value="Over 3 years">มากกว่า 3 ปี</option>
-                </select>
-    
+                        </select>
+            
+        </div>
     </div>
-</div>
 
     <div class="gr-row form-row center-text-m ">
-    <div class="gr-4 gr-12-m">
-        <label for="stocks_trading_frequency">ความถี่ในการซื้อขายหลักทรัพย์ต่างๆ</label>
-    </div>
-    <div class="gr-8 gr-12-m">
-                <select id="stocks_trading_frequency" class="form_input" > 
+        <div class="gr-4 gr-12-m">
+            <label for="stocks_trading_frequency">
+                ความถี่ในการซื้อขายหลักทรัพย์ต่างๆ
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <select id="stocks_trading_frequency" class="form_input " > 
         <option value="">โปรดระบุ</option>
     <option value="0-5 transactions in the past 12 months">0-5 ธุรกรรมในระยะเวลา 12 เดือน ที่ผ่านมา</option>
     <option value="6-10 transactions in the past 12 months">มี 6-10 ธุรกรรมใน 12 เดือนที่ผ่านมา</option>
     <option value="40 transactions or more in the past 12 months">มีมากกว่า 40 ธุรกรรม ภายใน 12 เดือนที่ผ่านมา</option>
-                </select>
-    
+                        </select>
+            
+        </div>
     </div>
-</div>
 
     <div class="gr-row form-row center-text-m ">
-    <div class="gr-4 gr-12-m">
-        <label for="other_derivatives_trading_experience">ประสบการณ์การเทรดไบนารีออปชั่น หรือ อนุพันธ์อื่นๆ</label>
-    </div>
-    <div class="gr-8 gr-12-m">
-                <select id="other_derivatives_trading_experience" class="form_input" > 
+        <div class="gr-4 gr-12-m">
+            <label for="other_derivatives_trading_experience">
+                ประสบการณ์การเทรดไบนารีออปชั่น หรือ อนุพันธ์อื่นๆ
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <select id="other_derivatives_trading_experience" class="form_input " > 
         <option value="">โปรดระบุ</option>
     <option value="0-1 year">0-1 ปี</option>
     <option value="1-2 years">1-2 ปี</option>
     <option value="Over 3 years">มากกว่า 3 ปี</option>
-                </select>
-    
+                        </select>
+            
+        </div>
     </div>
-</div>
 
     <div class="gr-row form-row center-text-m ">
-    <div class="gr-4 gr-12-m">
-        <label for="other_derivatives_trading_frequency">ความถี่ในการเทรดไบนารีออปชั่น หรือ อนุพันธ์อื่นๆ</label>
-    </div>
-    <div class="gr-8 gr-12-m">
-                <select id="other_derivatives_trading_frequency" class="form_input" > 
+        <div class="gr-4 gr-12-m">
+            <label for="other_derivatives_trading_frequency">
+                ความถี่ในการเทรดไบนารีออปชั่น หรือ อนุพันธ์อื่นๆ
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <select id="other_derivatives_trading_frequency" class="form_input " > 
         <option value="">โปรดระบุ</option>
     <option value="0-5 transactions in the past 12 months">0-5 ธุรกรรมในระยะเวลา 12 เดือน ที่ผ่านมา</option>
     <option value="6-10 transactions in the past 12 months">มี 6-10 ธุรกรรมใน 12 เดือนที่ผ่านมา</option>
     <option value="40 transactions or more in the past 12 months">มีมากกว่า 40 ธุรกรรม ภายใน 12 เดือนที่ผ่านมา</option>
-                </select>
-    
+                        </select>
+            
+        </div>
     </div>
-</div>
 
     <div class="gr-row form-row center-text-m ">
-    <div class="gr-4 gr-12-m">
-        <label for="other_instruments_trading_experience">ประสบการณ์ซื้อขายเครื่องมือทางการเงินอื่นๆ</label>
-    </div>
-    <div class="gr-8 gr-12-m">
-                <select id="other_instruments_trading_experience" class="form_input" > 
+        <div class="gr-4 gr-12-m">
+            <label for="other_instruments_trading_experience">
+                ประสบการณ์ซื้อขายเครื่องมือทางการเงินอื่นๆ
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <select id="other_instruments_trading_experience" class="form_input " > 
         <option value="">โปรดระบุ</option>
     <option value="0-1 year">0-1 ปี</option>
     <option value="1-2 years">1-2 ปี</option>
     <option value="Over 3 years">มากกว่า 3 ปี</option>
-                </select>
-    
+                        </select>
+            
+        </div>
     </div>
-</div>
 
     <div class="gr-row form-row center-text-m ">
-    <div class="gr-4 gr-12-m">
-        <label for="other_instruments_trading_frequency">ความถี่ในการซื้อขายเครื่องมือทางการเงินอื่นๆ</label>
-    </div>
-    <div class="gr-8 gr-12-m">
-                <select id="other_instruments_trading_frequency" class="form_input" > 
+        <div class="gr-4 gr-12-m">
+            <label for="other_instruments_trading_frequency">
+                ความถี่ในการซื้อขายเครื่องมือทางการเงินอื่นๆ
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <select id="other_instruments_trading_frequency" class="form_input " > 
         <option value="">โปรดระบุ</option>
     <option value="0-5 transactions in the past 12 months">0-5 ธุรกรรมในระยะเวลา 12 เดือน ที่ผ่านมา</option>
     <option value="6-10 transactions in the past 12 months">มี 6-10 ธุรกรรมใน 12 เดือนที่ผ่านมา</option>
     <option value="40 transactions or more in the past 12 months">มีมากกว่า 40 ธุรกรรม ภายใน 12 เดือนที่ผ่านมา</option>
-                </select>
-    
+                        </select>
+            
+        </div>
     </div>
-</div>
 
     <div class="gr-row form-row center-text-m ">
-    <div class="gr-4 gr-12-m">
-        <label for="employment_industry">อุตสาหกรรมของการจ้างงาน</label>
-    </div>
-    <div class="gr-8 gr-12-m">
-                <select id="employment_industry" class="form_input" > 
+        <div class="gr-4 gr-12-m">
+            <label for="employment_industry">
+                อุตสาหกรรมของการจ้างงาน
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <select id="employment_industry" class="form_input " > 
         <option value="">โปรดระบุ</option>
         <option value="Construction">การก่อสร้าง / สิ่งปลูกสร้าง / การคิดค้น</option>
         <option value="Education">การศึกษา</option>
@@ -383,17 +448,19 @@
         <option value="Health">สุขภาพ</option>
         <option value="Tourism">การท่องเที่ยว</option>
         <option value="Other">อื่นๆ</option>
-                </select>
-    
+                        </select>
+            
+        </div>
     </div>
-</div>
 
     <div class="gr-row form-row center-text-m ">
-    <div class="gr-4 gr-12-m">
-        <label for="occupation">อาชีพ</label>
-    </div>
-    <div class="gr-8 gr-12-m">
-                <select id="occupation" class="form_input" > 
+        <div class="gr-4 gr-12-m">
+            <label for="occupation">
+                อาชีพ
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <select id="occupation" class="form_input " > 
         <option value="">โปรดระบุ</option>
         <option value="Chief Executives, Senior Officials and Legislators">ผู้บริหารระดับสูง เจ้าหน้าที่อาวุโส และสมาชิกของสภานิติบัญญัติ</option>
         <option value="Managers">ผู้จัดการ</option>
@@ -408,99 +475,109 @@
         <option value="Armed Forces">เหล่าทัพ</option>
         <option value="Government Officers">ข้าราชการ</option>
         <option value="Others">อื่นๆ</option>
-                </select>
-    
+                        </select>
+            
+        </div>
     </div>
-</div>
 
     <div class="gr-row form-row center-text-m ">
-    <div class="gr-4 gr-12-m">
-        <label for="education_level">ระดับการศึกษา</label>
-    </div>
-    <div class="gr-8 gr-12-m">
-                <select id="education_level" class="form_input" > 
+        <div class="gr-4 gr-12-m">
+            <label for="education_level">
+                ระดับการศึกษา
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <select id="education_level" class="form_input " > 
         <option value="">โปรดระบุ</option>
         <option value="Primary">หลัก</option>
         <option value="Secondary">ลำดับที่สอง</option>
         <option value="Tertiary">ลำดับที่สาม</option>
-                </select>
-    
+                        </select>
+            
+        </div>
     </div>
-</div>
 
     <div class="gr-row form-row center-text-m ">
-    <div class="gr-4 gr-12-m">
-        <label for="income_source">แหล่งที่มาของรายได้</label>
-    </div>
-    <div class="gr-8 gr-12-m">
-                <select id="income_source" class="form_input" > 
+        <div class="gr-4 gr-12-m">
+            <label for="income_source">
+                แหล่งที่มาของรายได้
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <select id="income_source" class="form_input " > 
         <option value="">โปรดระบุ</option>
         <option value="Salaried Employee">พนักงานที่ได้รับเงินเดือน</option>
         <option value="Self-Employed">อาชีพอิสระ</option>
         <option value="Investments &amp; Dividends">เงินปันผลและการลงทุน</option>
         <option value="Pension">บำนาญ</option>
         <option value="Other">อื่นๆ</option>
-                </select>
-    
+                        </select>
+            
+        </div>
     </div>
-</div>
 
     <div class="gr-row form-row center-text-m ">
-    <div class="gr-4 gr-12-m">
-        <label for="net_income">รายได้สุทธิต่อปี</label>
-    </div>
-    <div class="gr-8 gr-12-m">
-                <select id="net_income" class="form_input" > 
+        <div class="gr-4 gr-12-m">
+            <label for="net_income">
+                รายได้สุทธิต่อปี
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <select id="net_income" class="form_input " > 
         <option value="">โปรดระบุ</option>
     <option value="Less than $25,000">Less than $25,000</option>
     <option value="$25,000 - $50,000">$25,000 - $50,000</option>
     <option value="$50,001 - $100,000">$50,001 - $100,000</option>
     <option value="$100,001 - $500,000">$100,001 - $500,000</option>
     <option value="Over $500,000">Over $500,001</option>
-                </select>
-    
+                        </select>
+            
+        </div>
     </div>
-</div>
 
     <div class="gr-row form-row center-text-m ">
-    <div class="gr-4 gr-12-m">
-        <label for="estimated_worth">ประมาณการมูลค่าสุทธิ</label>
-    </div>
-    <div class="gr-8 gr-12-m">
-                <select id="estimated_worth" class="form_input" > 
+        <div class="gr-4 gr-12-m">
+            <label for="estimated_worth">
+                ประมาณการมูลค่าสุทธิ
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <select id="estimated_worth" class="form_input " > 
         <option value="">โปรดระบุ</option>
         <option value="Less than $100,000">Less than $100,000</option>
         <option value="$100,000 - $250,000">$100,000 - $250,000</option>
         <option value="$250,001 - $500,000">$250,001 - $500,000</option>
         <option value="$500,001 - $1,000,000">$500,001 - $1,000,000</option>
         <option value="Over $1,000,000">Over $1,000,000</option>
-                </select>
-    
+                        </select>
+            
+        </div>
     </div>
-</div>
 
     <div class="gr-row form-row center-text-m ">
-    <div class="gr-4 gr-12-m">
-        <label for="account_turnover">Anticipated Account Turnover</label>
-    </div>
-    <div class="gr-8 gr-12-m">
-                <select id="account_turnover" class="form_input" > 
+        <div class="gr-4 gr-12-m">
+            <label for="account_turnover">
+                Anticipated Account Turnover
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <select id="account_turnover" class="form_input " > 
         <option value="">โปรดระบุ</option>
     <option value="Less than $25,000">Less than $25,000</option>
     <option value="$25,000 - $50,000">$25,000 - $50,000</option>
     <option value="$50,001 - $100,000">$50,001 - $100,000</option>
     <option value="$100,001 - $500,000">$100,001 - $500,000</option>
     <option value="Over $500,000">Over $500,001</option>
-                </select>
-    
+                        </select>
+            
+        </div>
     </div>
-</div>
 
-</fieldset>
+    </fieldset>
 
-                <fieldset>
-    <legend>การแสดงเจตนารมณ์ไม่เกี่ยวข้องทางการเมือง (PEP Declaration)</legend>
-
+        <fieldset>
+        <legend>การแสดงเจตนารมณ์ไม่เกี่ยวข้องทางการเมือง (PEP Declaration)</legend>
+        
     <div class="gr-12">
         <p>A PEP is an individual who is or has been entrusted with a prominent public function. This status extends to a PEP's relatives and close associates.</p>
     </div>
@@ -509,46 +586,45 @@
         <input id="not_pep" type="checkbox" />
         <label for="not_pep">ข้าพเจ้าแสดงเจตนารมณ์ ข้าพเจ้าไม่ใช่บุคคลที่เกี่ยวข้องกับการเมือง</label>
     </div>
-</fieldset>
 
-                <fieldset>
-                    <div class="gr-12">
-                      <p>บริการการซื้อขายทางการเงินในเว็บไซต์นี้เหมาะกับลูกค้าผู้ซึ่งพึงรับรู้ต่อภาวะขาดทุนต่อเงินทั้งหมดที่ได้ลงทุน และผู้ซึ่งเข้าใจและมีประสบการณ์ต่อความเสี่ยงที่เกี่ยวข้องกับสัญญาทางการเงินต่างๆ ธุรกรรมที่เกี่ยวข้องกับสัญญาทางการเงินมีความเสี่ยงระดับสูง หากสัญญาที่ซื้อหมดอายุ ท่านจะสูญเสียเงินลงทุนของท่านทั้งหมด</p>
-                    </div>
-                </fieldset>
+    </fieldset>
 
-                <fieldset class="center-text" id="formlayout">
-                    <div class="gr-row">
-                        <div class="gr-12-m gr-padding-10 gr-centered">
-                            <input type="checkbox" id="tnc" />
-                            <label for="tnc">I have read and agree to the <a target="_blank" href="/th/terms-and-conditions.html">terms and conditions</a> of the site.</label>
-                        </div>
-                    </div>
+        <fieldset>
+            <div class="gr-12">
+              <p>บริการการซื้อขายทางการเงินในเว็บไซต์นี้เหมาะกับลูกค้าผู้ซึ่งพึงรับรู้ต่อภาวะขาดทุนต่อเงินทั้งหมดที่ได้ลงทุน และผู้ซึ่งเข้าใจและมีประสบการณ์ต่อความเสี่ยงที่เกี่ยวข้องกับสัญญาทางการเงินต่างๆ ธุรกรรมที่เกี่ยวข้องกับสัญญาทางการเงินมีความเสี่ยงระดับสูง หากสัญญาที่ซื้อหมดอายุ ท่านจะสูญเสียเงินลงทุนของท่านทั้งหมด</p>
+            </div>
+        </fieldset>
 
-                    <button class="button" id="btn_submit" type="submit">เปิดบัญชี</button>
-                </fieldset>
-            </form>
+        <div class="center-text">
+        <div class="gr-row">
+            <div class="gr-12-m gr-padding-10 gr-centered">
+                <input type="checkbox" name="tnc" id="tnc">
+                <label for="tnc">I have read and agree to the <a target="_blank" href="/th/terms-and-conditions.html">terms and conditions</a> of the site.</label>
+            </div>
+        </div>
 
-            <form id="financial-risk" class="invisible">
-                <fieldset>
-                    <div class="gr-12">
-                        <p><strong>การทดสอบความเหมาะสม: คำเตือน:</strong> ในการให้บริการ พวกเราขออนุญาตสอบถามข้อมูลจากท่านเพื่อประเมินผลิตภัณฑ์และบริการที่เหมาะสมให้กับท่าน (ซึ่งรายละเอียดจะเกี่ยวข้องกับประสบการณ์และความรู้ของท่านเพื่อให้เข้าใจถึงระดับความเสี่ยงที่เกี่ยวข้องในผลิตภัณฑ์แต่ละประเภท)</p>
-                        <p>บนพื้นฐานของข้อมูลที่สัมพันธ์กับความรู้และประสบการณ์ของท่าน พวกเราพิจารณาว่า การลงทุนที่มีอยู่ทางเว็บไซต์แห่งนี้ไม่เหมาะสมกับท่าน</p>
-                        <p>โดยการคลิก <strong>ยอมรับ</strong> ด้านล่างนี้ เพื่อดำเนินการเปิดบัญชี ขอเรียนให้ท่านทราบว่า ท่านอาจะมีความเสี่ยง (ที่อาจจะมีนัยสำคัญ รวมถึงความเสี่ยงในการขาดทุนมูลค่าทั้งหมดที่ได้ลงทุน) ซึ่งท่านอาจจะไม่มีความรู้และประสบการณ์เพื่อประเมินและจัดการอย่างเหมาะสม</p>
-                        <p class="center-text">
-                            <button class="button" type="submit">ยอมรับ</button>
-                            <a class="button" href="/th/trading.html"><span>ปฏิเสธ</span></a>
-                        </p>
-                    </div>
-                </fieldset>
-            </form>
+        <button class="button" type="submit">เปิดบัญชี</button>
+    </div>
+    </form>
 
-            <div class="errorbox rbox invisible" id="client_message">
-                <div class="rbox-wrap">
-                    <div class="gr-12 rbox-content" id="client_message_content">
-                        <p class="center-text notice-msg"></p>
-                    </div>
-                </div>
+    <form id="financial-risk" class="invisible">
+        <fieldset>
+            <div class="gr-12">
+                <p><strong>การทดสอบความเหมาะสม: คำเตือน:</strong> ในการให้บริการ พวกเราขออนุญาตสอบถามข้อมูลจากท่านเพื่อประเมินผลิตภัณฑ์และบริการที่เหมาะสมให้กับท่าน (ซึ่งรายละเอียดจะเกี่ยวข้องกับประสบการณ์และความรู้ของท่านเพื่อให้เข้าใจถึงระดับความเสี่ยงที่เกี่ยวข้องในผลิตภัณฑ์แต่ละประเภท)</p>
+                <p>บนพื้นฐานของข้อมูลที่สัมพันธ์กับความรู้และประสบการณ์ของท่าน พวกเราพิจารณาว่า การลงทุนที่มีอยู่ทางเว็บไซต์แห่งนี้ไม่เหมาะสมกับท่าน</p>
+                <p>โดยการคลิก <strong>ยอมรับ</strong> ด้านล่างนี้ เพื่อดำเนินการเปิดบัญชี ขอเรียนให้ท่านทราบว่า ท่านอาจะมีความเสี่ยง (ที่อาจจะมีนัยสำคัญ รวมถึงความเสี่ยงในการขาดทุนมูลค่าทั้งหมดที่ได้ลงทุน) ซึ่งท่านอาจจะไม่มีความรู้และประสบการณ์เพื่อประเมินและจัดการอย่างเหมาะสม</p>
+                <p class="center-text">
+                    <button class="button" type="submit">ยอมรับ</button>
+                    <a class="button" href="/th/trading.html"><span>ปฏิเสธ</span></a>
+                </p>
+            </div>
+        </fieldset>
+    </form>
+
+    <div class="errorbox rbox invisible" id="client_message">
+        <div class="rbox-wrap">
+            <div class="gr-12 rbox-content" id="client_message_content">
+                <p class="center-text notice-msg"></p>
             </div>
         </div>
     </div>

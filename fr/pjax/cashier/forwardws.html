@@ -1,10 +1,10 @@
 <div id="content" class="forwardws-content">
-        <div id="page_info" style="display:none;">
-            <title>Caisse | Binary.com</title>
-            <div id="content_class">forwardws-content</div>
-        </div>
-        
-        <div class="container">
+            <div id="page_info" style="display:none;">
+                <title>Caisse | Binary.com</title>
+                <div id="content_class">forwardws-content</div>
+            </div>
+            <div class="container">
+
 
 
   <div id="deposit_withdraw">
@@ -28,7 +28,7 @@
             <span id="activation_error">Ce compte n'est pas activé, veuillez contacter le <a href="/fr/contact.html">service clientèle</a> pour obtenir des informations supplémentaires.</span>
             <span id="age_error">Ce compte requiert une vérification de l'âge, veuillez contacter le <a href="/fr/contact.html">service clientèle</a> pour obtenir des informations supplémentaires.</span>
             <span id="tnc_error">Veuillez <a href="/fr/user/tnc_approvalws.html">accepter la dernière version des conditions générales</a>.</span>
-            <span id="limits_error">Please set your 30-day turnover limit in our <a href="/fr/user/security/self_exclusionws.html#max_30day_turnover">self-exclusion facilities</a> to access the cashier.</span>
+            <span id="limits_error">S'il vous plaît définissez votre limite de chiffre d'affaire de 30 jours <a href="/fr/user/security/self_exclusionws.html#max_30day_turnover">infrastructures d'auto exclusion</a> pour accéder au caissier.</span>
             <span id="custom_error">Désolé, une erreur s'est produite pendant le traitement de votre demande.</span>
         </p>
     </div>
@@ -53,36 +53,57 @@
 
     <form id="frm_currency" class="invisible">
         <fieldset>
-            <div class="gr-padding-10 gr-row clear">
-                <div class="gr-4 form_label">
-                    <label for="select_currency">Faire la transaction en</label>
-                </div>
-                <div class="gr-8">
-                    <select id="select_currency"></select>
-                </div>
+        
+        
+            <div class="gr-row form-row center-text-m ">
+        <div class="gr-4 gr-12-m">
+            <label for="select_currency">
+                Faire la transaction en
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <select id="select_currency" class="form_input " >                     </select>
+            
+        </div>
+    </div>
+            <div class="center-text ">
+            
+        
+        
+        <div class="gr-padding-10">
+            <button id="btn_submit" type="submit">Continuer</button>
+        </div>
+    
             </div>
-            <div class="gr-padding-10 row clear center-text">
-                <div class="gr-8">
-                    <button class="button" type="submit">Continuer</button>
-                </div>
-            </div>
-        </fieldset>
+        
+    </fieldset>
     </form>
 
     <form id="frm_withdraw" class="invisible">
         <fieldset>
-            <div class="gr-row gr-parent gr-padding-10">
-                <div class="form_label gr-4">
-                    <label for="verification_code">Jeton de vérification</label>
-                </div>
-                <div class="gr-8">
-                    <input id="verification_code" name="verification_code" type="text" maxlength="8" autocomplete="off" />
-                    <div class="hint">Veuillez consulter vos e-mails pour obtenir ce jeton.</div>
-                </div>
-            </div>
-        </fieldset>
-        <div class="gr-12 gr-parent gr-centered center-text">
-            <button class="button" type="submit">Envoyer</button>
+        
+        
+            <div class="gr-row form-row center-text-m ">
+        <div class="gr-4 gr-12-m">
+            <label for="verification_code">
+                Jeton de vérification
+            </label>
         </div>
+        <div class="gr-8 gr-12-m">
+                                <input type="text" id="verification_code" maxlength="8" autocomplete="off" />
+            <div class="hint">Veuillez consulter vos e-mails pour obtenir ce jeton.</div>
+        </div>
+    </div>
+        
+    </fieldset>
+        <div class="center-text ">
+            
+        
+        
+        <div class="gr-padding-10">
+            <button id="btn_submit" type="submit">Envoyer</button>
+        </div>
+    
+            </div>
     </form>
 </div>

@@ -1,10 +1,10 @@
 <div id="content" class="limitsws-content">
-        <div id="page_info" style="display:none;">
-            <title>帳戶限額 | Binary.com</title>
-            <div id="content_class">limitsws-content</div>
-        </div>
-        
-        <div class="container">
+            <div id="page_info" style="display:none;">
+                <title>帳戶限額 | Binary.com</title>
+                <div id="content_class">limitsws-content</div>
+            </div>
+            <div class="container">
+
 
 
   <div id="limits-container" class="gr-12 gr-padding-10">
@@ -12,65 +12,121 @@
     <div class="invisible" id="limits-title">
         <h2 id="trading-limits">交易限制</h2>
         <div class="gr-padding-10">
-            <table class="flex-table" id="client-limits">
-                <thead>
-                    <tr class="flex-tr">
-                        <th class="flex-tr-child align-start">項目</th>
-                        <th class="flex-tr-child limit align-start">限額</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="flex-tr">
-                        <td class="flex-tr-child">
-                            最大未平倉頭寸數目
-                            <a href="javascript:;" data-balloon-length="xlarge" class="no-underline" data-balloon="表示您的投資組合中未平倉合約的最大數量。您投資組合中的每一行都算作是一個未平倉頭寸。一旦達到該最大值，在開設新頭寸之前您需要先了結一個現有頭寸。">
-                                <img src="/images/common/question_1.png">
-                            </a>
-                        </td>
-                        <td class="flex-tr-child" id="open-positions"></td>
-                    </tr>
-                    <tr class="flex-tr">
-                        <td class="flex-tr-child">
-                            最大帳戶現金餘額
-                            <a href="javascript:;" data-balloon-length="xlarge" class="no-underline" data-balloon="表示您的帳戶中可持有的最高現金額。如果達到該最高額，將會要求您提取資金。">
-                                <img src="/images/common/question_1.png">
-                            </a>
-                        </td>
-                        <td class="flex-tr-child" id="account-balance"></td>
-                    </tr>
-                    <tr class="flex-tr">
-                        <td class="flex-tr-child">
-                            未平倉頭寸的最大賠付總額
-                            <a href="javascript:;" data-balloon-length="xlarge" class="no-underline" data-balloon="表示您證券組合中未平倉合約的最大總賠付額。如果達到該最大值，那麼您在購買更多合約之前需要先對現有頭寸進行平倉。">
-                                <img src="/images/common/question_1.png">
-                            </a>
-                        </td>
-                        <td class="flex-tr-child" id="payout"></td>
-                    </tr>
-                    <tr class="flex-tr">
-                        <td class="flex-tr-child">
-                            每個符號和合約未平倉頭寸的最大累積賠付額
-                            <a href="javascript:;" data-balloon-length="xlarge" class="no-underline" data-balloon="每個符號和合約未平倉頭寸的最大累積賠付額。如之前沒有未平倉頭寸, 可超出此限額至總賠付限額為止。">
-                                <img src="/images/common/question_1.png">
-                            </a>
-                        </td>
-                        <td class="flex-tr-child" id="payout-per-symbol-and-contract-type"></td>
-                    </tr>
-                    <tr>
-                        <td style="padding:10px;"></td>
-                        <td></td>
-                    </tr>
-                    <tr class="flex-tr">
-                        <th class="flex-tr-child align-start">
-                            最大日成交量
-                            <a href="javascript:;" data-balloon-length="xlarge" class="no-underline" data-balloon="表示任一指定交易日您可以買入的最大合約數量。">
-                                <img src="/images/common/question_1.png">
-                            </a>
-                        </th>
-                        <th class="flex-tr-child limit align-start">限額</th>
-                    </tr>
-                </tbody>
-            </table>
+            <table id="client-limits">
+        
+        <thead>
+            
+                <tr>
+                    
+                        <th class="align-start">項目</th>
+                    
+                        <th class="limit align-start">限額</th>
+                    
+                </tr>
+            
+        </thead>
+        
+        <tbody>
+        
+            <tr>
+                
+                    
+                    <td>
+                        最大未平倉頭寸數目 <a href="javascript:;" data-balloon-length="xlarge" class="no-underline" data-balloon="表示您的投資組合中未平倉合約的最大數量。您投資組合中的每一行都算作是一個未平倉頭寸。一旦達到該最大值，在開設新頭寸之前您需要先了結一個現有頭寸。"><img src="/images/common/question_1.png"></a>
+                    </td>
+                    
+                
+                    
+                    <td id="open-positions">
+                        
+                    </td>
+                    
+                
+            </tr>
+        
+            <tr>
+                
+                    
+                    <td>
+                        最大帳戶現金餘額 <a href="javascript:;" data-balloon-length="xlarge" class="no-underline" data-balloon="表示您的帳戶中可持有的最高現金額。如果達到該最高額，將會要求您提取資金。"><img src="/images/common/question_1.png"></a>
+                    </td>
+                    
+                
+                    
+                    <td id="account-balance">
+                        
+                    </td>
+                    
+                
+            </tr>
+        
+            <tr>
+                
+                    
+                    <td>
+                        未平倉頭寸的最大賠付總額 <a href="javascript:;" data-balloon-length="xlarge" class="no-underline" data-balloon="表示您證券組合中未平倉合約的最大總賠付額。如果達到該最大值，那麼您在購買更多合約之前需要先對現有頭寸進行平倉。"><img src="/images/common/question_1.png"></a>
+                    </td>
+                    
+                
+                    
+                    <td id="payout">
+                        
+                    </td>
+                    
+                
+            </tr>
+        
+            <tr>
+                
+                    
+                    <td>
+                        每個符號和合約未平倉頭寸的最大累積賠付額 <a href="javascript:;" data-balloon-length="xlarge" class="no-underline" data-balloon="每個符號和合約未平倉頭寸的最大累積賠付額。如之前沒有未平倉頭寸, 可超出此限額至總賠付限額為止。"><img src="/images/common/question_1.png"></a>
+                    </td>
+                    
+                
+                    
+                    <td id="payout-per-symbol-and-contract-type">
+                        
+                    </td>
+                    
+                
+            </tr>
+        
+            <tr>
+                
+                    
+                    <td class="gr-padding-10">
+                        
+                    </td>
+                    
+                
+                    
+                    <td>
+                        
+                    </td>
+                    
+                
+            </tr>
+        
+            <tr>
+                
+                    
+                    <th class="align-start">
+                        最大日成交量 <a href="javascript:;" data-balloon-length="xlarge" class="no-underline" data-balloon="表示任一指定交易日您可以買入的最大合約數量。"><img src="/images/common/question_1.png"></a>
+                    </th>
+                    
+                
+                    
+                    <th class="limit align-start">
+                        限額
+                    </th>
+                    
+                
+            </tr>
+        
+    </tbody>
+        
+    </table>
             <p class="hint">
                 我們保留隨時在沒有預先通知的情況下更改所述限制的權利。
             </p>

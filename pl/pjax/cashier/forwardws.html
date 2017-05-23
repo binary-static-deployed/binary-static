@@ -1,10 +1,10 @@
 <div id="content" class="forwardws-content">
-        <div id="page_info" style="display:none;">
-            <title>Kasjer | Binary.com</title>
-            <div id="content_class">forwardws-content</div>
-        </div>
-        
-        <div class="container">
+            <div id="page_info" style="display:none;">
+                <title>Kasjer | Binary.com</title>
+                <div id="content_class">forwardws-content</div>
+            </div>
+            <div class="container">
+
 
 
   <div id="deposit_withdraw">
@@ -53,36 +53,57 @@
 
     <form id="frm_currency" class="invisible">
         <fieldset>
-            <div class="gr-padding-10 gr-row clear">
-                <div class="gr-4 form_label">
-                    <label for="select_currency">Zawieraj transakcje na</label>
-                </div>
-                <div class="gr-8">
-                    <select id="select_currency"></select>
-                </div>
+        
+        
+            <div class="gr-row form-row center-text-m ">
+        <div class="gr-4 gr-12-m">
+            <label for="select_currency">
+                Zawieraj transakcje na
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <select id="select_currency" class="form_input " >                     </select>
+            
+        </div>
+    </div>
+            <div class="center-text ">
+            
+        
+        
+        <div class="gr-padding-10">
+            <button id="btn_submit" type="submit">Dalej</button>
+        </div>
+    
             </div>
-            <div class="gr-padding-10 row clear center-text">
-                <div class="gr-8">
-                    <button class="button" type="submit">Dalej</button>
-                </div>
-            </div>
-        </fieldset>
+        
+    </fieldset>
     </form>
 
     <form id="frm_withdraw" class="invisible">
         <fieldset>
-            <div class="gr-row gr-parent gr-padding-10">
-                <div class="form_label gr-4">
-                    <label for="verification_code">Token weryfikacyjny</label>
-                </div>
-                <div class="gr-8">
-                    <input id="verification_code" name="verification_code" type="text" maxlength="8" autocomplete="off" />
-                    <div class="hint">Informacja na temat tego tokenu została wysłana na Twój adres e-mail</div>
-                </div>
-            </div>
-        </fieldset>
-        <div class="gr-12 gr-parent gr-centered center-text">
-            <button class="button" type="submit">Prześlij</button>
+        
+        
+            <div class="gr-row form-row center-text-m ">
+        <div class="gr-4 gr-12-m">
+            <label for="verification_code">
+                Token weryfikacyjny
+            </label>
         </div>
+        <div class="gr-8 gr-12-m">
+                                <input type="text" id="verification_code" maxlength="8" autocomplete="off" />
+            <div class="hint">Informacja na temat tego tokenu została wysłana na Twój adres e-mail</div>
+        </div>
+    </div>
+        
+    </fieldset>
+        <div class="center-text ">
+            
+        
+        
+        <div class="gr-padding-10">
+            <button id="btn_submit" type="submit">Prześlij</button>
+        </div>
+    
+            </div>
     </form>
 </div>

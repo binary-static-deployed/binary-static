@@ -1,74 +1,75 @@
 <div id="content" class="virtualws-content">
-        <div id="page_info" style="display:none;">
-            <title>Crea un nuovo account | Binary.com</title>
-            <div id="content_class">virtualws-content</div>
-        </div>
-        
-        <div class="container">
+            <div id="page_info" style="display:none;">
+                <title>Crea un nuovo account | Binary.com</title>
+                <div id="content_class">virtualws-content</div>
+            </div>
+            <div class="container">
+
 
 
   <div class='gr-12 static_full'>
     <h1>Crea un nuovo account</h1>
     <p class='notice-message'>Grazie per esserti registrato! Controlla la tua email per recuperare il token di verifica.</p>
-    <div class="rbox form gr-padding-10">
-        <div class="rbox-wrap">
-            <form id="virtual-form">
-                <fieldset>
-                    <legend id="details">Dettagli</legend>
-
-                    <div class="gr-padding-10 gr-row clear">
-                        <div class="gr-4 form_label">
-                            <label for="verification_code">Token di verifica</label>
-                        </div>
-                        <div class="gr-8">
-                            <input type="text" name="verification_code" id="verification_code" maxlength="8" autocomplete="off"/>
-                            <div class="hint">Verifica il tuo indirizzo e-mail per il valore di questo token</div>
-                        </div>
-                    </div>
-
-                    <div class="gr-padding-10 gr-row clear">
-                        <div class="gr-4 form_label">
-                            <label for="client_password">Scegli una password</label>
-                        </div>
-                        <div class="gr-8">
-                            <input type="password" id="client_password" name="client_password" maxlength="25"/>
-                            <div class="hint">Minimo sei lettere minuscole e maiuscole con numeri</div>
-                        </div>
-                    </div>
-
-                    <div class="gr-padding-10 gr-row clear">
-                        <div class="gr-4 form_label">
-                            <label for="repeat_password">Inserisci nuovamente la password</label>
-                        </div>
-                        <div class="gr-8">
-                            <input type="password" id="repeat_password" name="repeat_password" maxlength="25"/>
-                        </div>
-                    </div>
-
-                    <div class="gr-padding-10 gr-row clear">
-                        <div class="gr-4 form_label">
-                            <label for="residence">Paese di residenza</label>
-                        </div>
-                        <div class="gr-8">
-                            <select name="residence" id="residence" class="invisible"></select>
-                        </div>
-                    </div>
-
-                    <div class="gr-padding-10 gr-row clear invisible">
-                        <div class="gr-4 form_label" id="email_consent_label">
-                            <label for="email_consent">Ricevi aggiornamenti e offerte speciali</label>
-                        </div>
-                        <div class="gr-8">
-                            <input type="checkbox" id="email_consent" checked="checked"/>
-                        </div>
-                    </div>
-                </fieldset>
-
-                <fieldset class="center-text" id="formlayout">
-                    <button class="button" type="submit">Crea un nuovo account</button>
-                    <p class="errorfield invisible" id="error-account-opening"></p>
-                </fieldset>
-            </form>
+    <form id="virtual-form" class="gr-padding-10">
+        <fieldset>
+        <legend>Dettagli</legend>
+        
+            <div class="gr-row form-row center-text-m ">
+        <div class="gr-4 gr-12-m">
+            <label for="verification_code">
+                Token di verifica
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <input type="text" id="verification_code" maxlength="8" autocomplete="off" />
+            <div class="hint">Verifica il tuo indirizzo e-mail per il valore di questo token</div>
         </div>
     </div>
+            <div class="gr-row form-row center-text-m ">
+        <div class="gr-4 gr-12-m">
+            <label for="client_password">
+                Scegli una password
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <input type="password" id="client_password" maxlength="25"  />
+            <div class="hint">Minimo sei lettere minuscole e maiuscole con numeri</div>
+        </div>
+    </div>
+            <div class="gr-row form-row center-text-m ">
+        <div class="gr-4 gr-12-m">
+            <label for="repeat_password">
+                Inserisci nuovamente la password
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <input type="password" id="repeat_password" maxlength="25"  />
+            
+        </div>
+    </div>
+            <div class="gr-row form-row center-text-m ">
+        <div class="gr-4 gr-12-m">
+            <label for="residence">
+                Paese di residenza
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <select id="residence" class="form_input invisible" >                     </select>
+            
+        </div>
+    </div>
+            <div class="gr-row invisible">
+        <div class="gr-12-m gr-padding-20 gr-centered">
+            <input id="email_consent" type="checkbox" />
+            <label for="email_consent">Ricevi aggiornamenti e offerte speciali</label>
+        </div>
+    </div>
+        
+    </fieldset>
+
+        <div class="center-text">
+            <button class="button" type="submit">Crea un nuovo account</button>
+            <p class="errorfield invisible" id="error-account-opening"></p>
+        </div>
+    </form>
 </div>

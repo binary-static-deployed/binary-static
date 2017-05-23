@@ -1,18 +1,15 @@
 <div id="content" class="payment_agent_listws-content">
-        <div id="page_info" style="display:none;">
-            <title>Wpłata dla pośrednika płatności | Binary.com</title>
-            <div id="content_class">payment_agent_listws-content</div>
-        </div>
-        
-        <div class="container">
+            <div id="page_info" style="display:none;">
+                <title>Wpłata dla pośrednika płatności | Binary.com</title>
+                <div id="content_class">payment_agent_listws-content</div>
+            </div>
+            <div class="container">
+
 
 
   <div id="paymentagent_deposit">
     <h1>Jak korzystać z usług pośredników płatności?</h1>
-
-    <p>
-        Możesz skorzystać z usług autoryzowanego pośrednika płatności oferującego metody płatności i lokalne waluty nieobsługiwane przez Binary.com. To bardzo proste.
-    </p>
+    <p>Możesz skorzystać z usług autoryzowanego pośrednika płatności oferującego metody płatności i lokalne waluty nieobsługiwane przez Binary.com. To bardzo proste.</p>
     <ol>
         <li>Zapoznaj się z metodami płatności akceptowanymi przez pośredników płatności (lista poniżej).</li>
         <li>Wybierz metodę płatności, z której chcesz skorzystać.</li>
@@ -20,70 +17,111 @@
         <li>Wyślij swoje środki pośrednikowi płatności. Kwota wpłaty pomniejszona o prowizję pobieraną przez pośrednika będzie widoczna na Twoim koncie.</li>
     </ol>
 
+    <p><label for="target_country">Pokaż pośredników płatności dla:</label> <select id="target_country" class="invisible"></select></p>
 
-    <p>
-        Pokaż pośredników płatności dla:
-        <select id="target_country" class="invisible"></select>
-        <div class="loading"><div class="barspinner dark">
+    <div class="loading"><div class="barspinner dark">
+    
     <div class="rect1"></div>
+    
     <div class="rect2"></div>
+    
     <div class="rect3"></div>
+    
     <div class="rect4"></div>
+    
     <div class="rect5"></div>
+    
 </div></div>
-    </p>
 
     <div id="pa_list">
         <div id="accordion" class="invisible">
             <h3>%name</h3>
             <div>
-                <p>
-                    <table>
-                        <tr>
-                            <td colspan="1">Imię:</td>
-                            <td colspan="3">%name</td>
-                        </tr>
-                        <tr>
-                            <td colspan="1">Podsumowanie:</td>
-                            <td colspan="3">%summary</td>
-                        </tr>
-                        <tr>
-                            <td colspan="1">Prowizja od wpłat:</td>
-                            <td colspan="3">%deposit_commission%</td>
-                        </tr>
-                        <tr>
-                            <td colspan="1">Prowizja od wypłat:</td>
-                            <td colspan="3">%withdrawal_commission%</td>
-                        </tr>
-                        <tr>
-                            <td colspan="1">Strona internetowa:</label>
-                            <td colspan="3"><a href='%url' target="_blank">%url</a></td>
-                        </tr>
-                        <tr>
-                            <td colspan="1">E-mail:</td>
-                            <td colspan="3"><a href="mailto:%email" target="_blank">%email</a></td>
-                        </tr>
-                        <tr>
-                            <td colspan="1">Telefon:</td>
-                            <td colspan="3">%telephone</td>
-                        </tr>
-                        <tr>
-                            <td colspan="1">Dalsze informacje:</td>
-                            <td colspan="3">%further_information</td>
-                        </tr>
-                    </table>
-                    <div class="supported_banks">%supported_banks</div>
-                </p>
+                <p></p>
+                <table>
+    
+        <tr>
+            <td colspan="1">Nazwisko</td>
+            <td colspan="3">
+                
+                %name
+                
+            </td>
+        </tr>
+    
+        <tr>
+            <td colspan="1">Podsumowanie</td>
+            <td colspan="3">
+                
+                %summary
+                
+            </td>
+        </tr>
+    
+        <tr>
+            <td colspan="1">Prowizja od wpłat</td>
+            <td colspan="3">
+                
+                %deposit_commission%
+                
+            </td>
+        </tr>
+    
+        <tr>
+            <td colspan="1">Prowizja od wypłat</td>
+            <td colspan="3">
+                
+                %withdrawal_commission%
+                
+            </td>
+        </tr>
+    
+        <tr>
+            <td colspan="1">Strona internetowa</td>
+            <td colspan="3">
+                <a href="%url" target="_blank">
+                %url
+                </a>
+            </td>
+        </tr>
+    
+        <tr>
+            <td colspan="1">E-mail</td>
+            <td colspan="3">
+                <a href="mailto:%email" target="_blank">
+                %email
+                </a>
+            </td>
+        </tr>
+    
+        <tr>
+            <td colspan="1">Telefon</td>
+            <td colspan="3">
+                
+                %telephone
+                
+            </td>
+        </tr>
+    
+        <tr>
+            <td colspan="1">Dalsze informacje</td>
+            <td colspan="3">
+                
+                %further_information
+                
+            </td>
+        </tr>
+    
+</table>
+                <div class="supported_banks">%supported_banks</div>
             </div>
         </div>
     </div>
 
     <p id="no_paymentagent" class="notice-msg center-text invisible">Ten pośrednik płatności nie jest dostępny w Twoim kraju.</p>
 
-    <p>
-        Złóż wniosek, aby zostać <a href="/pl/payment-agent.html">pośrednikiem płatności Binary.com</a>.
-    </p>
+    <p>Złóż wniosek, aby zostać <a href="/pl/payment-agent.html">pośrednikiem płatności Binary.com</a>.</p>
     <p class="comment">
-        <strong>WAŻNE ZASTRZEŻENIE</strong> - Binary.com nie jest związane z żadnym z pośredników płatności wymienionych powyżej. Każdy pośrednik płatności działa jako niezależny usługodawca i nie jest w żaden sposób zatwierdzony ani popierany przez Binary.com. KLIENCI KORZYSTAJĄ Z USŁUG POŚREDNIKÓW NA WŁASNE RYZYKO. Zaleca się sprawdzenie danych pośredników płatności przed wysłaniem do nich pieniędzy. Binary.com nie ponosi żadnej odpowiedzialności za transakcje zawarte między klientami a pośrednikami płatności.
+        <strong>IMPORTANT DISCLAIMER</strong> - Binary.com is not affiliated with any of the payment agents listed above. Each payment agent operates as an independent service provider and is not endorsed, guaranteed or otherwise approved by Binary.com. CUSTOMERS DEAL WITH PAYMENT AGENTS AT THEIR SOLE RISK AND PERIL. Customers are advised to check the credentials of payment agents before sending them any money. Binary.com shall not in any circumstance be held responsible for transactions made between customers and payment agents.
     </p>
 </div>

@@ -1,18 +1,15 @@
 <div id="content" class="payment_agent_listws-content">
-        <div id="page_info" style="display:none;">
-            <title>ตัวแทนรับชำระเงินสำหรับฝากเงิน | Binary.com</title>
-            <div id="content_class">payment_agent_listws-content</div>
-        </div>
-        
-        <div class="container">
+            <div id="page_info" style="display:none;">
+                <title>ตัวแทนรับชำระเงินสำหรับฝากเงิน | Binary.com</title>
+                <div id="content_class">payment_agent_listws-content</div>
+            </div>
+            <div class="container">
+
 
 
   <div id="paymentagent_deposit">
     <h1>จะใช้ตัวแทนรับชำระเงินอย่างไร?</h1>
-
-    <p>
-        ท่านสามารถใช้ตัวแทนรับชำระเงินที่ได้รับอนุญาตในการดำเนินการฝากเงิน และ ถอนเงิน ตามวิธีชำระเงิน หรือ สกุลเงินท้องถิ่นที่ไม่ได้รับรองโดย Binary.com ซึ่งเป็นวิธีที่ง่ายกว่าในทางปฏิบัติ
-    </p>
+    <p>ท่านสามารถใช้ตัวแทนรับชำระเงินที่ได้รับอนุญาตในการดำเนินการฝากเงิน และ ถอนเงิน ตามวิธีชำระเงิน หรือ สกุลเงินท้องถิ่นที่ไม่ได้รับรองโดย Binary.com ซึ่งเป็นวิธีที่ง่ายกว่าในทางปฏิบัติ</p>
     <ol>
         <li>ตรวจสอบวิธีการชำระเงินโดยตัวแทนรับชำระเงินจากข้อมูลด้านล่าง</li>
         <li>กำหนดวิธีการชำระเงินที่ท่านต้องการ</li>
@@ -20,70 +17,111 @@
         <li>ส่งเงินของท่านให้ตัวแทนรับชำระเงิน เงินทุนที่รับฝาก คอมมิชชั่นของตัวแทนต่ำ และแสดงข้อมูลในบัญชีท่าน</li>
     </ol>
 
+    <p><label for="target_country">แสดงตัวแทนรับชำระเงินสำหรับ:</label> <select id="target_country" class="invisible"></select></p>
 
-    <p>
-        แสดงตัวแทนรับชำระเงินสำหรับ:
-        <select id="target_country" class="invisible"></select>
-        <div class="loading"><div class="barspinner dark">
+    <div class="loading"><div class="barspinner dark">
+    
     <div class="rect1"></div>
+    
     <div class="rect2"></div>
+    
     <div class="rect3"></div>
+    
     <div class="rect4"></div>
+    
     <div class="rect5"></div>
+    
 </div></div>
-    </p>
 
     <div id="pa_list">
         <div id="accordion" class="invisible">
             <h3>%name</h3>
             <div>
-                <p>
-                    <table>
-                        <tr>
-                            <td colspan="1">ชื่อ:</td>
-                            <td colspan="3">%name</td>
-                        </tr>
-                        <tr>
-                            <td colspan="1">ผลสรุป:</td>
-                            <td colspan="3">%summary</td>
-                        </tr>
-                        <tr>
-                            <td colspan="1">ผลตอบแทนเมื่อฝากเงิน:</td>
-                            <td colspan="3">%deposit_commission%</td>
-                        </tr>
-                        <tr>
-                            <td colspan="1">ผลตอบแทนเมื่อถอนเงิน:</td>
-                            <td colspan="3">%withdrawal_commission%</td>
-                        </tr>
-                        <tr>
-                            <td colspan="1">เว็บไซต์:</label>
-                            <td colspan="3"><a href='%url' target="_blank">%url</a></td>
-                        </tr>
-                        <tr>
-                            <td colspan="1">อีเมล์:</td>
-                            <td colspan="3"><a href="mailto:%email" target="_blank">%email</a></td>
-                        </tr>
-                        <tr>
-                            <td colspan="1">โทร:</td>
-                            <td colspan="3">%telephone</td>
-                        </tr>
-                        <tr>
-                            <td colspan="1">ข้อมูลเพิ่มเติม:</td>
-                            <td colspan="3">%further_information</td>
-                        </tr>
-                    </table>
-                    <div class="supported_banks">%supported_banks</div>
-                </p>
+                <p></p>
+                <table>
+    
+        <tr>
+            <td colspan="1">ชื่อ</td>
+            <td colspan="3">
+                
+                %name
+                
+            </td>
+        </tr>
+    
+        <tr>
+            <td colspan="1">Summary</td>
+            <td colspan="3">
+                
+                %summary
+                
+            </td>
+        </tr>
+    
+        <tr>
+            <td colspan="1">ผลตอบแทนเมื่อฝากเงิน</td>
+            <td colspan="3">
+                
+                %deposit_commission%
+                
+            </td>
+        </tr>
+    
+        <tr>
+            <td colspan="1">ผลตอบแทนเมื่อถอนเงิน</td>
+            <td colspan="3">
+                
+                %withdrawal_commission%
+                
+            </td>
+        </tr>
+    
+        <tr>
+            <td colspan="1">เว็บไซต์</td>
+            <td colspan="3">
+                <a href="%url" target="_blank">
+                %url
+                </a>
+            </td>
+        </tr>
+    
+        <tr>
+            <td colspan="1">อีเมล์</td>
+            <td colspan="3">
+                <a href="mailto:%email" target="_blank">
+                %email
+                </a>
+            </td>
+        </tr>
+    
+        <tr>
+            <td colspan="1">โทร</td>
+            <td colspan="3">
+                
+                %telephone
+                
+            </td>
+        </tr>
+    
+        <tr>
+            <td colspan="1">ข้อมูลเพิ่มเติม</td>
+            <td colspan="3">
+                
+                %further_information
+                
+            </td>
+        </tr>
+    
+</table>
+                <div class="supported_banks">%supported_banks</div>
             </div>
         </div>
     </div>
 
     <p id="no_paymentagent" class="notice-msg center-text invisible">ไม่สามารถใช้ตัวแทนรับชำระเงินในประเทศของท่าน</p>
 
-    <p>
-        สมัครเพื่อเป็น Binary.com <a href="/th/payment-agent.html">ตัวแทนรับชำระเงิน</a>
-    </p>
+    <p>สมัครเพื่อเป็น Binary.com <a href="/th/payment-agent.html">ตัวแทนรับชำระเงิน</a></p>
     <p class="comment">
-        <strong>ข้อสำคัญการสงวนสิทธิ์</strong> - Binary.com ไม่มีส่วนร่วมในการดำเนินการของตัวแทนรับชำระเงินตามรายการข้างต้น ตัวแทนรับชำระเงินแต่ละรายดำเนินการเป็นผู้ให้บริการอย่างเอกเทศ ไม่ได้รับอนุญาต หรือ รับประกัน หรือ อนุมัติโดย Binary.com ลูกค้าที่ทำการชำระเงินผ่านตัวแทนรับชำระเงินยอมรับความเสี่ยงและผลต่างๆ ที่อาจจะเกิดขึ้นด้วยตนเอง ลูกค้าได้รับคำแนะนำให้ตรวจสอบใบอนุญาตการขึ้นทะเบียนเป็นตัวแทนรับชำระเงินก่อนที่จะทำธุรกรรมการเงินต่างๆ Binary.com ไม่มีส่วนรับผิดชอบในเหตุการณ์ใดๆ ที่จะเกิดขึ้นในธุรกรรมต่างๆ ระหว่างลูกค้าและตัวแทนรับชำระเงิน
+        <strong>IMPORTANT DISCLAIMER</strong> - Binary.com is not affiliated with any of the payment agents listed above. Each payment agent operates as an independent service provider and is not endorsed, guaranteed or otherwise approved by Binary.com. CUSTOMERS DEAL WITH PAYMENT AGENTS AT THEIR SOLE RISK AND PERIL. Customers are advised to check the credentials of payment agents before sending them any money. Binary.com shall not in any circumstance be held responsible for transactions made between customers and payment agents.
     </p>
 </div>
