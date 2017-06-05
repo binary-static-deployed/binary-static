@@ -1500,7 +1500,40 @@ div.kineticjs-content {
 .home-jp-content #email {
   border: 1px solid #ccc;
 }
+.home-jp-content #mb_trading .contract-type {
+  padding: 45px 26px 0;
+}
+.home-jp-content .align-self-center {
+  -webkit-align-self: center;
+      -ms-flex-item-align: center;
+              -ms-grid-row-align: center;
+          align-self: center;
+}
+.home-jp-content .go-right, .home-jp-content .go-left {
+  width: 25px;
+  height: 25px;
+}
+.home-jp-content .go-right:not(.disabled):hover, .home-jp-content .go-left:not(.disabled):hover {
+  cursor: pointer;
+}
+.home-jp-content .product {
+  display: inline-block;
+}
+.home-jp-content #product_wrapper {
+  white-space: nowrap;
+}
+.home-jp-content #product_wrapper li {
+  white-space: normal;
+}
+.home-jp-content .no-scroll, .home-jp-content .product {
+  width: 800px;
+}
 
+@media screen and (max-width: 959px) {
+  .home-jp-content .no-scroll, .home-jp-content .product {
+    width: 600px;
+  }
+}
 @media screen and (max-width: 768px) {
   .home-jp-content .box {
     margin-top: auto;
@@ -1517,6 +1550,9 @@ div.kineticjs-content {
   .home-jp-content .gr-padding-30 {
     padding-top: 10px;
     padding-bottom: 10px;
+  }
+  .home-jp-content .no-scroll, .home-jp-content .product {
+    width: 200px;
   }
 }
 .open-positions .eq:not(:first-child) {
@@ -2415,6 +2451,10 @@ div.kineticjs-content {
   width: 72px;
   height: 57px;
   margin: 3px;
+}
+
+body #not_authenticated_financial ul.checked > li {
+  list-style: none;
 }
 
 .timeline {

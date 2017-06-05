@@ -84,9 +84,9 @@
           <link rel="alternate" href="/zh_cn/user/security/self_exclusionws.html" hreflang="ZH_CN" /> 
           <link rel="alternate" href="/zh_tw/user/security/self_exclusionws.html" hreflang="ZH_TW" /> 
         
-         <link rel="stylesheet" href="/css/binary.min.css?2oy8z61f">
-         <link rel="stylesheet" href="https://style.binary.com/binary.css?2oy8z61f">
-          <script src='/js/binary.min.js?2oy8z61f'></script>  <script src='https://style.binary.com/binary.js?2oy8z61f'></script>  </head>
+         <link rel="stylesheet" href="/css/binary.min.css?za83qkxd">
+         <link rel="stylesheet" href="https://style.binary.com/binary.css?za83qkxd">
+          <script src='/js/binary.min.js?za83qkxd'></script>  <script src='https://style.binary.com/binary.js?za83qkxd'></script>  </head>
 
 
 
@@ -422,10 +422,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
 
-  <h1>取引上限の設定</h1>
-
-<p>お客さまの過度な取引を防止するため、お客さま自身で下記の該当する取引上限設定を行えます。
+  <div class="invisible" id="description">
+    <h1>取引上限の設定</h1>
+    <p>お客さまの過度な取引を防止するため、お客さま自身で下記の該当する取引上限設定を行えます。
 自動ログアウトと任意でログインしない以外の項目は1度設定されますと、次回からは設定した数値より低い数値以外は変更ができませんのでご注意下さい。制限の解除または緩和をご希望の場合は、<a href="/ja/contact.html">カスタマーサポート</a>までご連絡ください。</p>
+</div>
+<div class="invisible" id="description_max_30day_turnover">
+    <h1>取引数量限度額</h1>
+    <p>入出金にアクセスいただくには、お客様の口座にて30日の取引数量限度額を設定いただくことになっています。
+取引数量とはオープンにした全トレードの集計金額です。そのため、この制限は30日間で取引されたい合計数量を設定することになります。</p>
+</div>
 
 <p id="msg_error" class="center-text notice-msg invisible"></p>
 
@@ -507,7 +513,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </div>
     </div>
 
-        <div class="gr-row form-row center-text-m ">
+        <div class="gr-row form-row center-text-m max_30day_turnover">
         <div class="gr-4 gr-12-m">
             <label for="max_30day_turnover">
                 30日の取引数量限度額

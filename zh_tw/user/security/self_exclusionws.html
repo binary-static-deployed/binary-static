@@ -84,9 +84,9 @@
           <link rel="alternate" href="/zh_cn/user/security/self_exclusionws.html" hreflang="ZH_CN" /> 
           <link rel="alternate" href="/zh_tw/user/security/self_exclusionws.html?l=zh_tw" hreflang="ZH_TW" /> 
         
-         <link rel="stylesheet" href="/css/binary.min.css?2oy8z61f">
-         <link rel="stylesheet" href="https://style.binary.com/binary.css?2oy8z61f">
-          <script src='/js/binary.min.js?2oy8z61f'></script>  <script src='https://style.binary.com/binary.js?2oy8z61f'></script>  </head>
+         <link rel="stylesheet" href="/css/binary.min.css?za83qkxd">
+         <link rel="stylesheet" href="https://style.binary.com/binary.css?za83qkxd">
+          <script src='/js/binary.min.js?za83qkxd'></script>  <script src='https://style.binary.com/binary.js?za83qkxd'></script>  </head>
 
 
 
@@ -422,9 +422,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
 
-  <h1>自我禁止工具</h1>
-
-<p>金融市場交易可能使人上癮。請填寫下表以限制您對本網站的參與，或傳送簽名信或傳真到我們的客服團隊。一旦設定好後，您只能收緊限制。限制只能在7天后取消或放寬，而自我禁止期在您確認後就不能取消或更改。若要解除或增加您的限制，請聯繫<a href="/zh_tw/contact.html">客服部</a>。</p>
+  <div class="invisible" id="description">
+    <h1>自我禁止工具</h1>
+    <p>金融市場交易可能使人上癮。請填寫下表以限制您對本網站的參與，或傳送簽名信或傳真到我們的客服團隊。一旦設定好後，您只能收緊限制。限制只能在7天后取消或放寬，而自我禁止期在您確認後就不能取消或更改。若要解除或增加您的限制，請聯繫<a href="/zh_tw/contact.html">客服部</a>。</p>
+</div>
+<div class="invisible" id="description_max_30day_turnover">
+    <h1>交易限額</h1>
+    <p>您必須為帳戶設定30天交易限額，以便存取收銀台。交易額是用於開設交易的累積總金額。因此，您必須為30天期內的總交易量設定此限額。</p>
+</div>
 
 <p id="msg_error" class="center-text notice-msg invisible"></p>
 
@@ -506,7 +511,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </div>
     </div>
 
-        <div class="gr-row form-row center-text-m ">
+        <div class="gr-row form-row center-text-m max_30day_turnover">
         <div class="gr-4 gr-12-m">
             <label for="max_30day_turnover">
                 30天期交易限額

@@ -345,6 +345,19 @@
             
         </div>
     </div>
+        <div class="gr-row form-row center-text-m ">
+        <div class="gr-4 gr-12-m">
+            <label>
+                Límite diario de pérdidas
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <span class="text-display">
+                                                    <span id="daily_loss_limit" class="jp_value format_money"></span>
+                    </span>
+            <div class="hint">Maximum aggregate loss per day. Update this value in our <a href="/es/user/security/self_exclusionws.html#max_losses">self exclusion facility</a>.</div>
+        </div>
+    </div>
     
     </fieldset>
     <fieldset class="invisible JpAcc">
@@ -394,6 +407,24 @@
         </div>
         <div class="gr-8 gr-12-m">
                                 <select id="trading_experience_foreign_currency_deposit" class="form_input " class="jp_value"> 
+            <option value="No experience">Sin experiencia</option>
+    <option value="Less than 6 months">Menos de 6 meses</option>
+    <option value="6 months to 1 year">6 meses a un año</option>
+    <option value="1-3 years">1-3 años</option>
+    <option value="3-5 years">3-5 años</option>
+    <option value="Over 5 years">Más de 5 años</option>
+                            </select>
+            
+        </div>
+    </div>
+        <div class="gr-row form-row center-text-m ">
+        <div class="gr-4 gr-12-m">
+            <label for="trading_experience_margin_fx">
+                Margen FX
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <select id="trading_experience_margin_fx" class="form_input " class="jp_value"> 
             <option value="No experience">Sin experiencia</option>
     <option value="Less than 6 months">Menos de 6 meses</option>
     <option value="6 months to 1 year">6 meses a un año</option>
@@ -496,7 +527,7 @@
             </label>
         </div>
         <div class="gr-8 gr-12-m">
-                                <input type="text" id="hedge_asset_amount" maxlength="20" />
+                                ¥<input type="text" id="hedge_asset_amount" maxlength="20" />
             
         </div>
     </div>

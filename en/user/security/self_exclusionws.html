@@ -84,9 +84,9 @@
           <link rel="alternate" href="/zh_cn/user/security/self_exclusionws.html" hreflang="ZH_CN" /> 
           <link rel="alternate" href="/zh_tw/user/security/self_exclusionws.html" hreflang="ZH_TW" /> 
         
-         <link rel="stylesheet" href="/css/binary.min.css?2oy8z61f">
-         <link rel="stylesheet" href="https://style.binary.com/binary.css?2oy8z61f">
-          <script src='/js/binary.min.js?2oy8z61f'></script>  <script src='https://style.binary.com/binary.js?2oy8z61f'></script>  </head>
+         <link rel="stylesheet" href="/css/binary.min.css?za83qkxd">
+         <link rel="stylesheet" href="https://style.binary.com/binary.css?za83qkxd">
+          <script src='/js/binary.min.js?za83qkxd'></script>  <script src='https://style.binary.com/binary.js?za83qkxd'></script>  </head>
 
 
 
@@ -422,9 +422,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
 
-  <h1>Self-Exclusion Facilities</h1>
-
-<p>Trading the financial markets can become addictive. Fill in the form below to limit your participation on the website or send a signed letter or fax to our customer support team. Once set, you can only tighten your limits. Limits will only be removed or loosened after 7 days with the exception of the self-exclusion date, which cannot be removed or altered once you have confirmed it. To remove or increase your limits, please contact <a href="/en/contact.html">customer support</a>.</p>
+  <div class="invisible" id="description">
+    <h1>Self-Exclusion Facilities</h1>
+    <p>Trading the financial markets can become addictive. Fill in the form below to limit your participation on the website or send a signed letter or fax to our customer support team. Once set, you can only tighten your limits. Limits will only be removed or loosened after 7 days with the exception of the self-exclusion date, which cannot be removed or altered once you have confirmed it. To remove or increase your limits, please contact <a href="/en/contact.html">customer support</a>.</p>
+</div>
+<div class="invisible" id="description_max_30day_turnover">
+    <h1>Turnover Limit</h1>
+    <p>In order to access the cashier, we kindly request that you set a 30-day turnover limit for your account. Turnover is the total aggregate amount that is used to open trades. Therefore, this limit should be set to the total volume that you wish to trade with over 30 days.</p>
+</div>
 
 <p id="msg_error" class="center-text notice-msg invisible"></p>
 
@@ -506,7 +511,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </div>
     </div>
 
-        <div class="gr-row form-row center-text-m ">
+        <div class="gr-row form-row center-text-m max_30day_turnover">
         <div class="gr-4 gr-12-m">
             <label for="max_30day_turnover">
                 30-day turnover limit

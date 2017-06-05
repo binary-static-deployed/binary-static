@@ -345,6 +345,19 @@
             
         </div>
     </div>
+        <div class="gr-row form-row center-text-m ">
+        <div class="gr-4 gr-12-m">
+            <label>
+                損失限度額（1日）
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <span class="text-display">
+                                                    <span id="daily_loss_limit" class="jp_value format_money"></span>
+                    </span>
+            <div class="hint">1日の最大損失に達しました。<a href="/ja/user/security/self_exclusionws.html#max_losses">s取引制限</a>にてこの値を更新してください。</div>
+        </div>
+    </div>
     
     </fieldset>
     <fieldset class="invisible JpAcc">
@@ -363,7 +376,7 @@
     <option value="6 months to 1 year">6ヶ月から1年</option>
     <option value="1-3 years">1〜3年</option>
     <option value="3-5 years">3〜5年</option>
-    <option value="Over 5 years">6年以上</option>
+    <option value="Over 5 years">5年以上</option>
                             </select>
             
         </div>
@@ -381,7 +394,7 @@
     <option value="6 months to 1 year">6ヶ月から1年</option>
     <option value="1-3 years">1〜3年</option>
     <option value="3-5 years">3〜5年</option>
-    <option value="Over 5 years">6年以上</option>
+    <option value="Over 5 years">5年以上</option>
                             </select>
             
         </div>
@@ -399,7 +412,25 @@
     <option value="6 months to 1 year">6ヶ月から1年</option>
     <option value="1-3 years">1〜3年</option>
     <option value="3-5 years">3〜5年</option>
-    <option value="Over 5 years">6年以上</option>
+    <option value="Over 5 years">5年以上</option>
+                            </select>
+            
+        </div>
+    </div>
+        <div class="gr-row form-row center-text-m ">
+        <div class="gr-4 gr-12-m">
+            <label for="trading_experience_margin_fx">
+                外国為替証拠金取引
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <select id="trading_experience_margin_fx" class="form_input " class="jp_value"> 
+            <option value="No experience">経験なし</option>
+    <option value="Less than 6 months">6ヶ月未満</option>
+    <option value="6 months to 1 year">6ヶ月から1年</option>
+    <option value="1-3 years">1〜3年</option>
+    <option value="3-5 years">3〜5年</option>
+    <option value="Over 5 years">5年以上</option>
                             </select>
             
         </div>
@@ -417,7 +448,7 @@
     <option value="6 months to 1 year">6ヶ月から1年</option>
     <option value="1-3 years">1〜3年</option>
     <option value="3-5 years">3〜5年</option>
-    <option value="Over 5 years">6年以上</option>
+    <option value="Over 5 years">5年以上</option>
                             </select>
             
         </div>
@@ -435,7 +466,7 @@
     <option value="6 months to 1 year">6ヶ月から1年</option>
     <option value="1-3 years">1〜3年</option>
     <option value="3-5 years">3〜5年</option>
-    <option value="Over 5 years">6年以上</option>
+    <option value="Over 5 years">5年以上</option>
                             </select>
             
         </div>
@@ -453,7 +484,7 @@
     <option value="6 months to 1 year">6ヶ月から1年</option>
     <option value="1-3 years">1〜3年</option>
     <option value="3-5 years">3〜5年</option>
-    <option value="Over 5 years">6年以上</option>
+    <option value="Over 5 years">5年以上</option>
                             </select>
             
         </div>
@@ -496,7 +527,7 @@
             </label>
         </div>
         <div class="gr-8 gr-12-m">
-                                <input type="text" id="hedge_asset_amount" maxlength="20" />
+                                ¥<input type="text" id="hedge_asset_amount" maxlength="20" />
             
         </div>
     </div>

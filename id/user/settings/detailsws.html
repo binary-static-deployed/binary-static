@@ -84,9 +84,9 @@
           <link rel="alternate" href="/zh_cn/user/settings/detailsws.html" hreflang="ZH_CN" /> 
           <link rel="alternate" href="/zh_tw/user/settings/detailsws.html" hreflang="ZH_TW" /> 
         
-         <link rel="stylesheet" href="/css/binary.min.css?2oy8z61f">
-         <link rel="stylesheet" href="https://style.binary.com/binary.css?2oy8z61f">
-          <script src='/js/binary.min.js?2oy8z61f'></script>  <script src='https://style.binary.com/binary.js?2oy8z61f'></script>  </head>
+         <link rel="stylesheet" href="/css/binary.min.css?za83qkxd">
+         <link rel="stylesheet" href="https://style.binary.com/binary.css?za83qkxd">
+          <script src='/js/binary.min.js?za83qkxd'></script>  <script src='https://style.binary.com/binary.js?za83qkxd'></script>  </head>
 
 
 
@@ -760,6 +760,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             
         </div>
     </div>
+        <div class="gr-row form-row center-text-m ">
+        <div class="gr-4 gr-12-m">
+            <label>
+                Batas harian kerugian
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <span class="text-display">
+                                                    <span id="daily_loss_limit" class="jp_value format_money"></span>
+                    </span>
+            <div class="hint">Maksimal jumlah kerugian per hari. Perbarui nilai ini pada <a href="/id/user/security/self_exclusionws.html#max_losses">fasilitas pengecualian diri</a> kami.</div>
+        </div>
+    </div>
     
     </fieldset>
     <fieldset class="invisible JpAcc">
@@ -809,6 +822,24 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </div>
         <div class="gr-8 gr-12-m">
                                 <select id="trading_experience_foreign_currency_deposit" class="form_input " class="jp_value"> 
+            <option value="No experience">No experience</option>
+    <option value="Less than 6 months">Less than 6 months</option>
+    <option value="6 months to 1 year">6 bulan hingga 1 tahun</option>
+    <option value="1-3 years">1-3 tahun</option>
+    <option value="3-5 years">3-5 tahun</option>
+    <option value="Over 5 years">Over 5 years</option>
+                            </select>
+            
+        </div>
+    </div>
+        <div class="gr-row form-row center-text-m ">
+        <div class="gr-4 gr-12-m">
+            <label for="trading_experience_margin_fx">
+                Margin FX
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <select id="trading_experience_margin_fx" class="form_input " class="jp_value"> 
             <option value="No experience">No experience</option>
     <option value="Less than 6 months">Less than 6 months</option>
     <option value="6 months to 1 year">6 bulan hingga 1 tahun</option>
@@ -911,7 +942,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             </label>
         </div>
         <div class="gr-8 gr-12-m">
-                                <input type="text" id="hedge_asset_amount" maxlength="20" />
+                                ¥<input type="text" id="hedge_asset_amount" maxlength="20" />
             
         </div>
     </div>
