@@ -84,9 +84,9 @@
           <link rel="alternate" href="/zh_cn/user/metatrader.html" hreflang="ZH_CN" /> 
           <link rel="alternate" href="/zh_tw/user/metatrader.html" hreflang="ZH_TW" /> 
         
-         <link rel="stylesheet" href="/css/binary.min.css?za83qkxd">
-         <link rel="stylesheet" href="https://style.binary.com/binary.css?za83qkxd">
-          <script src='/js/binary.min.js?za83qkxd'></script>  <script src='https://style.binary.com/binary.js?za83qkxd'></script>  </head>
+         <link rel="stylesheet" href="/css/binary.min.css?33efw6pm">
+         <link rel="stylesheet" href="https://style.binary.com/binary.css?33efw6pm">
+          <script src='/js/binary.min.js?33efw6pm'></script>  <script src='https://style.binary.com/binary.js?33efw6pm'></script>  </head>
 
 
 
@@ -422,7 +422,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
 
-  <div id="mt_account_management" class="container">
+  <div class="container">
     <div>
         <h1>Gestione degli account MetaTrader</h1>
     </div>
@@ -440,87 +440,136 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <div class="rect5"></div>
     
 </div></div>
-    <div class="gr-12">
-        <div id="accounts_list" class="gr-row"></div>
-    </div>
-
-    <div class="fst-container">
-        <div id="main_msg" class="notice-msg center-text invisible"></div>
-        <fieldset id="fst_action" class="invisible">
-        <legend> </legend>
-        
-            <span class="close"></span>
-            <form id="frm_action"></form>
-        
-    </fieldset>
-    </div>
-
-    <div id="templates" class="invisible">
-        <div class="acc-box gr-12-m gr-6-p gr-4-t gr-4">
-            <div>
-                <div class="title"></div>
-                <div class="loading"><div class="barspinner dark">
-    
-    <div class="rect1"></div>
-    
-    <div class="rect2"></div>
-    
-    <div class="rect3"></div>
-    
-    <div class="rect4"></div>
-    
-    <div class="rect5"></div>
-    
-</div></div>
-                <div class="center-text no-account invisible">
-                    <div class="info"></div>
-                    <span class="button"><span class="act_new_account">Crea un account</span></span>
+    <div id="mt_account_management" class="gr-row fill-bg-color invisible">
+        <div id="mt_left_panel" class="mt-panel gr-3 gr-4-t gr-12-p gr-12-m gr-no-gutter">
+            <div class="top gr-hide-p gr-hide-m">
+                <div style="width: 80px; height: 80px; margin: 0 auto; background: #f2f2f2; border: 1px solid #004385; border-radius: 40px;"></div> <!-- TODO: replace with image -->
+            </div>
+            <div id="account_selector">
+                <h4 id="mt5_account"></h4>
+                <div id="accounts_list">
+                    <div></div>
                 </div>
-                <div class="acc-info has-account gr-row invisible">
-                    <div class="gr-4">ID di accesso:</div><div data="login" class="gr-8"></div>
-                    <div class="gr-4">Nome:</div><div data="name" class="gr-7"></div>
-                    <div class="gr-4">Saldo:</div><div data="balance" class="gr-8"></div>
-                    <div class="gr-4">Leva:</div><div data="leverage" class="gr-8"></div>
+            </div>
+            <div id="account_detail">
+                <div class="acc-info mt-container has-account invisible">
+                    <div class="gr-row">
+                        <div class="gr-5">ID di accesso:</div><div data="login" class="gr-7"></div>
+                        <div class="gr-5">Nome:</div><div data="name" class="gr-7"></div>
+                        <div class="gr-5">Saldo:</div><div data="balance" class="gr-7"></div>
+                        <div class="gr-5 invisible">Leva:</div><div data="leverage" class="gr-7 invisible"></div>
+                    </div>
                 </div>
-                <div class="acc-actions has-account center-text invisible">
+                <div class="acc-actions has-account invisible">
+                    <span class="invisible"><a href="javascript:;" class="act_new_account"></a></span>
                     <a href="javascript:;" class="act_deposit">
                         <img src="/images/pages/metatrader/deposit.svg" alt="" />
-                        Deposita
+                        <span>Deposita</span>
                     </a>
                     <a href="javascript:;" class="act_withdrawal">
                         <img src="/images/pages/metatrader/withdraw.svg" alt="" />
-                        Preleva
+                        <span>Preleva</span>
                     </a>
                     <a href="javascript:;" class="act_password_change">
                         <img src="/images/pages/metatrader/password.svg" alt="" />
-                        Password
+                        <span>Password</span>
                     </a>
+                </div>
+                <div id="account_desc" class="mt-container"></div>
+            </div>
+        </div>
+        <div id="mt_right_panel" class="mt-panel gr-9 gr-8-t gr-12-p gr-12-m gr-no-gutter">
+            <div class="top mt-container gr-hide-p gr-hide-m">
+                <p id="top_msg" class="notice-msg center-text invisible">Please <a href="/it/new_account/realws.html">upgrade</a> to be able to create real MetaTrader 5 accounts.</p>
+            </div>
+            <div class="fst-container mt-container">
+                <div id="fst_action" class="invisible">
+                    <h3></h3>
+                    <div class="separator primary-color"></div>
+                    <p id="main_msg" class="notice-msg center-text invisible"></p>
+                    <fieldset>
+                        <form id="frm_action" class="invisible"></form>
+                    </fieldset>
                 </div>
             </div>
         </div>
 
-        <div id="no_account_info">
-            <div id="demo">Apri un account demo gratuito.</div>
-            <div id="vanuatu_cent">
-                The Cent account offers the highest leverage, as well as low margin call and stop out level.
-                <a class="invisible" target="_blank">Leggi altro</a>
+        <div id="templates" class="invisible">
+            <div class="acc-name">
+                <div class="mt-new invisible">
+                    <img src="/images/pages/metatrader/signup.svg" />
+                </div>
+                <div class="mt-balance">&nbsp;</div>
+                <div class="mt-type"></div>
+                <div class="mt-login invisible"></div>
             </div>
-            <div id="vanuatu_standard">
-                The Standard account is suitable for a wide range of traders, both new and experienced.
-                <a class="invisible" target="_blank">Leggi altro</a>
-            </div>
-            <div id="vanuatu_stp">
-                The STP account provides you with the tightest spreads and connects you directly to the market.
-                <a class="invisible" target="_blank">Leggi altro</a>
-            </div>
-            <div id="costarica">
-                The Volatility account allows you to profit by speculating on the rise or fall of an instrument.
-                <a class="invisible" target="_blank">Leggi altro</a>
-            </div>
-        </div>
 
-        <form id="frm_new_account">
-            <div class="gr-row form-row center-text-m ">
+            
+            <div class="account-desc">
+                <div class="demo_vanuatu_cent real_vanuatu_cent">
+                    <p>Our MetaTrader 5 Cent account is ideal for new traders who want to start trading with a smaller capital.</p>
+                    <ul class="checked small no-padding">
+                        
+                            <li>Offers the highest leverage – up to 1:1,000</li>
+                        
+                            <li>Fixed spreads</li>
+                        
+                            <li>Instant execution</li>
+                        
+                            <li>No commission</li>
+                        
+                    </ul>
+                    <a class="more" href="#" target="_blank">Leggi altro</a>
+                </div>
+                <div class="demo_vanuatu_standard real_vanuatu_standard">
+                    <p>Our MetaTrader 5 Standard account comes with mid-range leverage and variable spreads suitable for a wide range of traders.</p>
+                    <ul class="checked small no-padding">
+                        
+                            <li>Leverage up to 1:300</li>
+                        
+                            <li>Variable spreads</li>
+                        
+                            <li>Market execution</li>
+                        
+                            <li>No commission</li>
+                        
+                    </ul>
+                    <a class="more" href="#" target="_blank">Leggi altro</a>
+                </div>
+                <div class="demo_vanuatu_stp real_vanuatu_stp">
+                    <p>Our MetaTrader 5 STP account provides you with the tightest spreads and connects you directly to the market.</p>
+                    <ul class="checked small no-padding">
+                        
+                            <li>Leverage up to 1:100</li>
+                        
+                            <li>Variable spreads</li>
+                        
+                            <li>Market execution</li>
+                        
+                            <li>No commission</li>
+                        
+                    </ul>
+                    <a class="more" href="#" target="_blank">Leggi altro</a>
+                </div>
+                <div class="demo_costarica real_costarica">
+                    <p>The Volatility account allows you to profit by speculating on the rise or fall of an instrument.</p>
+                    <ul class="checked small no-padding">
+                        
+                            <li>Leverage up to 1:100</li>
+                        
+                            <li>Variable spreads</li>
+                        
+                            <li>Market execution</li>
+                        
+                            <li>No commission</li>
+                        
+                    </ul>
+                    <a class="more" href="#" target="_blank">Leggi altro</a>
+                </div>
+            </div>
+
+            <form id="frm_new_account">
+                <div class="gr-row form-row center-text-m ">
         <div class="gr-4 gr-12-m">
             <label>
                 Tipologia dell'account
@@ -533,7 +582,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             
         </div>
     </div>
-            <div class="gr-row form-row center-text-m ">
+                <div class="gr-row form-row center-text-m ">
         <div class="gr-4 gr-12-m">
             <label>
                 Email
@@ -546,7 +595,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             
         </div>
     </div>
-            <div class="gr-row form-row center-text-m ">
+                <div class="gr-row form-row center-text-m ">
         <div class="gr-4 gr-12-m">
             <label for="txt_name">
                 Nome
@@ -557,7 +606,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             
         </div>
     </div>
-            <div class="gr-row form-row center-text-m invisible">
+                <div class="gr-row form-row center-text-m invisible">
         <div class="gr-4 gr-12-m">
             <label for="ddl_leverage">
                 Leva
@@ -565,18 +614,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </div>
         <div class="gr-8 gr-12-m">
                                 <select id="ddl_leverage" class="form_input " > 
-                <option value="1">1:1</option>
-                <option value="50">1:50</option>
-                <option value="100" selected="selected">1:100</option>
-                <option value="200">1:200</option>
-                <option value="300">1:300</option>
-                <option value="500">1:500</option>
-                <option value="1000">1:1000</option>
-                                </select>
+                    <option value="1">1:1</option>
+                    <option value="50">1:50</option>
+                    <option value="100" selected="selected">1:100</option>
+                    <option value="200">1:200</option>
+                    <option value="300">1:300</option>
+                    <option value="500">1:500</option>
+                    <option value="1000">1:1000</option>
+                                    </select>
             
         </div>
     </div>
-            <div class="gr-row form-row center-text-m ">
+                <div class="gr-row form-row center-text-m ">
         <div class="gr-4 gr-12-m">
             <label for="txt_main_pass">
                 Password principale (accesso al trading)
@@ -587,7 +636,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="hint">Minimum eight characters. Must contain numbers, and mix of upper and lower case letters.</div>
         </div>
     </div>
-            <div class="gr-row form-row center-text-m ">
+                <div class="gr-row form-row center-text-m ">
         <div class="gr-4 gr-12-m">
             <label for="txt_re_main_pass">
                 Verifica la password principale
@@ -598,7 +647,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             
         </div>
     </div>
-            <div class="gr-row form-row center-text-m ">
+                <div class="gr-row form-row center-text-m ">
         <div class="gr-4 gr-12-m">
             <label for="txt_investor_pass">
                 Password dell'investitore (accesso solo di lettura)
@@ -609,14 +658,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             
         </div>
     </div>
-            <div class="gr-row ">
+                <div class="gr-row ">
         <div class="gr-12-m gr-padding-20 gr-centered">
             <input id="chk_tnc" type="checkbox" />
             <label for="chk_tnc">Ho letto e accettato i <a target="_blank" href="/it/terms-and-conditions.html#legal-mt">termini e condizioni</a> del sito.</label>
         </div>
     </div>
 
-            <div class="gr-row ">
+                <div class="gr-row ">
                 <div class="gr-8 gr-push-4 gr-12-m gr-push-0-m center-text-m">
             
         
@@ -629,10 +678,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     
                 </div>
             </div>
-        </form>
+            </form>
 
-        <form id="frm_password_change">
-            <div class="gr-row form-row center-text-m ">
+            <form id="frm_password_change">
+                <div class="gr-row form-row center-text-m invisible">
         <div class="gr-4 gr-12-m">
             <label>
                 ID di accesso
@@ -645,7 +694,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             
         </div>
     </div>
-            <div class="gr-row form-row center-text-m ">
+                <div class="gr-row form-row center-text-m ">
         <div class="gr-4 gr-12-m">
             <label for="txt_old_password">
                 Password attuale
@@ -656,7 +705,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             
         </div>
     </div>
-            <div class="gr-row form-row center-text-m ">
+                <div class="gr-row form-row center-text-m ">
         <div class="gr-4 gr-12-m">
             <label for="txt_new_password">
                 Nuova password
@@ -667,7 +716,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="hint">Minimum eight characters. Must contain numbers, and mix of upper and lower case letters.</div>
         </div>
     </div>
-            <div class="gr-row form-row center-text-m ">
+                <div class="gr-row form-row center-text-m ">
         <div class="gr-4 gr-12-m">
             <label for="txt_re_new_password">
                 Verifica la nuova password
@@ -679,7 +728,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </div>
     </div>
 
-            <div class="gr-row ">
+                <div class="gr-row ">
                 <div class="gr-8 gr-push-4 gr-12-m gr-push-0-m center-text-m">
             
         
@@ -692,11 +741,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     
                 </div>
             </div>
-        </form>
+            </form>
 
-        <form id="frm_deposit">
-            <p>Transfer funds from Binary.com account into your MT5 account:</p>
-            <div class="gr-row form-row center-text-m ">
+            <form id="frm_deposit">
+                <p>Transfer funds from Binary.com account into your MetaTrader 5 account:</p>
+                <div class="gr-row form-row center-text-m ">
         <div class="gr-4 gr-12-m">
             <label>
                 Trasferisci da
@@ -709,7 +758,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             
         </div>
     </div>
-            <div class="gr-row form-row center-text-m ">
+                <div class="gr-row form-row center-text-m ">
         <div class="gr-4 gr-12-m">
             <label>
                 Deposit into
@@ -722,7 +771,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             
         </div>
     </div>
-            <div class="gr-row form-row center-text-m ">
+                <div class="gr-row form-row center-text-m ">
         <div class="gr-4 gr-12-m">
             <label for="txt_amount">
                 Importo
@@ -734,7 +783,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </div>
     </div>
 
-            <div class="gr-row ">
+                <div class="gr-row ">
                 <div class="gr-8 gr-push-4 gr-12-m gr-push-0-m center-text-m">
             
         
@@ -747,11 +796,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     
                 </div>
             </div>
-        </form>
 
-        <form id="frm_withdrawal">
-            <p>Transfer funds from your MT5 account into your Binary.com account:</p>
-            <div class="gr-row form-row center-text-m ">
+                <p class="notice-msg">Want to fund your Binary.com Real Account? <a href="/it/cashier.html">Go to the Cashier</a></p>
+            </form>
+
+            <form id="frm_withdrawal">
+                <p>Transfer funds from your MetaTrader 5 account into your Binary.com account:</p>
+                <div class="gr-row form-row center-text-m ">
         <div class="gr-4 gr-12-m">
             <label>
                 Preleva da
@@ -764,7 +815,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             
         </div>
     </div>
-            <div class="gr-row form-row center-text-m ">
+                <div class="gr-row form-row center-text-m ">
         <div class="gr-4 gr-12-m">
             <label>
                 Trasferisci su
@@ -777,10 +828,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             
         </div>
     </div>
-            <div class="gr-row form-row center-text-m ">
+                <div class="gr-row form-row center-text-m ">
         <div class="gr-4 gr-12-m">
             <label for="txt_main_pass">
-                MT5 main password
+                MetaTrader 5 main password
             </label>
         </div>
         <div class="gr-8 gr-12-m">
@@ -788,7 +839,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             
         </div>
     </div>
-            <div class="gr-row form-row center-text-m ">
+                <div class="gr-row form-row center-text-m ">
         <div class="gr-4 gr-12-m">
             <label for="txt_amount">
                 Importo
@@ -800,7 +851,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </div>
     </div>
 
-            <div class="gr-row ">
+                <div class="gr-row ">
                 <div class="gr-8 gr-push-4 gr-12-m gr-push-0-m center-text-m">
             
         
@@ -813,21 +864,24 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     
                 </div>
             </div>
-        </form>
 
-        <div id="messages">
-            <div id="msg_switch">Per effettuare questa azione, passa al tuo account reale Binary.com.</div>
-            <div id="msg_upgrade">To perform this action, please <a href="/it/new_account/realws.html">upgrade to Binary.com Real Account</a>.</div>
-            <div id="msg_assessment">Per creare un account finanziario MT5 completa la <a href="/it/user/settings/assessmentws.html">Valutazione finanziaria</a>.</div>
-            <div id="msg_authenticate">
-                <div class="align-start">
-                    <p>To withdraw from MT5 Financial Account please Authenticate your Binary.com account.</p>
-                    <p>Authenticate your account now by verifying your identity and address. To proceed, simply send the following documents to <a href='mailto:support@binary.com' rel='nofollow'>support@binary.com</a>:</p>
+                <p class="notice-msg">Want to withdraw funds from your Binary.com Real Account? <a href="/it/cashier.html">Go to the Cashier</a></p>
+            </form>
+
+            <div id="messages">
+                <div id="msg_switch">Per effettuare questa azione, passa al tuo account reale Binary.com.</div>
+                <div id="msg_upgrade">To perform this action, please <a href="/it/new_account/realws.html">upgrade to Binary.com Real Account</a>.</div>
+                <div id="msg_assessment">To create an MetaTrader 5 Financial Account please complete the <a href="/it/user/settings/assessmentws.html">Financial Assessment</a>.</div>
+                <div id="msg_authenticate">
+                    <div class="align-start">
+                        <p>To withdraw from MetaTrader 5 Financial Account please Authenticate your Binary.com account.</p>
+                        <p>Authenticate your account now by verifying your identity and address. To proceed, simply send the following documents to <a href='mailto:support@binary.com' rel='nofollow'>support@binary.com</a>:</p>
 <ul class="checked">
     <li>Proof of identity - A scanned copy of your passport, driving license (either provisional or full), or identity card that shows your full name and date of birth.</li>
     <li>Proof of address - A scanned copy of a utility bill or bank statement that's not more than three months old. Your proof of address must contain your name, address, date of issue, and the name of the issuing organisation.</li>
 </ul>
 <p>Alternatively, you can also <a href="/it/user/video-facility.html">authenticate your account by video call</a>.</p>
+                    </div>
                 </div>
             </div>
         </div>

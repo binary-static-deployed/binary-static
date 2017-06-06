@@ -7,7 +7,7 @@
 
 
 
-  <div id="mt_account_management" class="container">
+  <div class="container">
     <div>
         <h1>MetaTrader 账户管理</h1>
     </div>
@@ -25,87 +25,136 @@
     <div class="rect5"></div>
     
 </div></div>
-    <div class="gr-12">
-        <div id="accounts_list" class="gr-row"></div>
-    </div>
-
-    <div class="fst-container">
-        <div id="main_msg" class="notice-msg center-text invisible"></div>
-        <fieldset id="fst_action" class="invisible">
-        <legend> </legend>
-        
-            <span class="close"></span>
-            <form id="frm_action"></form>
-        
-    </fieldset>
-    </div>
-
-    <div id="templates" class="invisible">
-        <div class="acc-box gr-12-m gr-6-p gr-4-t gr-4">
-            <div>
-                <div class="title"></div>
-                <div class="loading"><div class="barspinner dark">
-    
-    <div class="rect1"></div>
-    
-    <div class="rect2"></div>
-    
-    <div class="rect3"></div>
-    
-    <div class="rect4"></div>
-    
-    <div class="rect5"></div>
-    
-</div></div>
-                <div class="center-text no-account invisible">
-                    <div class="info"></div>
-                    <span class="button"><span class="act_new_account">开立账户</span></span>
+    <div id="mt_account_management" class="gr-row fill-bg-color invisible">
+        <div id="mt_left_panel" class="mt-panel gr-3 gr-4-t gr-12-p gr-12-m gr-no-gutter">
+            <div class="top gr-hide-p gr-hide-m">
+                <div style="width: 80px; height: 80px; margin: 0 auto; background: #f2f2f2; border: 1px solid #004385; border-radius: 40px;"></div> <!-- TODO: replace with image -->
+            </div>
+            <div id="account_selector">
+                <h4 id="mt5_account"></h4>
+                <div id="accounts_list">
+                    <div></div>
                 </div>
-                <div class="acc-info has-account gr-row invisible">
-                    <div class="gr-4">登录 ID：</div><div data="login" class="gr-8"></div>
-                    <div class="gr-4">姓名:</div><div data="name" class="gr-7"></div>
-                    <div class="gr-4">余额：</div><div data="balance" class="gr-8"></div>
-                    <div class="gr-4">杠杆：</div><div data="leverage" class="gr-8"></div>
+            </div>
+            <div id="account_detail">
+                <div class="acc-info mt-container has-account invisible">
+                    <div class="gr-row">
+                        <div class="gr-5">登录 ID：</div><div data="login" class="gr-7"></div>
+                        <div class="gr-5">姓名:</div><div data="name" class="gr-7"></div>
+                        <div class="gr-5">余额：</div><div data="balance" class="gr-7"></div>
+                        <div class="gr-5 invisible">杠杆：</div><div data="leverage" class="gr-7 invisible"></div>
+                    </div>
                 </div>
-                <div class="acc-actions has-account center-text invisible">
+                <div class="acc-actions has-account invisible">
+                    <span class="invisible"><a href="javascript:;" class="act_new_account"></a></span>
                     <a href="javascript:;" class="act_deposit">
                         <img src="/images/pages/metatrader/deposit.svg" alt="" />
-                        存款
+                        <span>存款</span>
                     </a>
                     <a href="javascript:;" class="act_withdrawal">
                         <img src="/images/pages/metatrader/withdraw.svg" alt="" />
-                        取款
+                        <span>取款</span>
                     </a>
                     <a href="javascript:;" class="act_password_change">
                         <img src="/images/pages/metatrader/password.svg" alt="" />
-                        密码
+                        <span>密码</span>
                     </a>
+                </div>
+                <div id="account_desc" class="mt-container"></div>
+            </div>
+        </div>
+        <div id="mt_right_panel" class="mt-panel gr-9 gr-8-t gr-12-p gr-12-m gr-no-gutter">
+            <div class="top mt-container gr-hide-p gr-hide-m">
+                <p id="top_msg" class="notice-msg center-text invisible">Please <a href="/zh_cn/new_account/realws.html">upgrade</a> to be able to create real MetaTrader 5 accounts.</p>
+            </div>
+            <div class="fst-container mt-container">
+                <div id="fst_action" class="invisible">
+                    <h3></h3>
+                    <div class="separator primary-color"></div>
+                    <p id="main_msg" class="notice-msg center-text invisible"></p>
+                    <fieldset>
+                        <form id="frm_action" class="invisible"></form>
+                    </fieldset>
                 </div>
             </div>
         </div>
 
-        <div id="no_account_info">
-            <div id="demo">开立免费演示账户。</div>
-            <div id="vanuatu_cent">
-                美分账户提供最大杆杠、以及低额追加保证金与强制平仓水平。
-                <a class="invisible" target="_blank">阅读更多</a>
+        <div id="templates" class="invisible">
+            <div class="acc-name">
+                <div class="mt-new invisible">
+                    <img src="/images/pages/metatrader/signup.svg" />
+                </div>
+                <div class="mt-balance">&nbsp;</div>
+                <div class="mt-type"></div>
+                <div class="mt-login invisible"></div>
             </div>
-            <div id="vanuatu_standard">
-                标准账户适合广泛的交易者，包括新手和经验丰富的操盘手。
-                <a class="invisible" target="_blank">阅读更多</a>
-            </div>
-            <div id="vanuatu_stp">
-                STP账户提供最低价差，并让您与市场直接连接。
-                <a class="invisible" target="_blank">阅读更多</a>
-            </div>
-            <div id="costarica">
-                波动率账户允许您通过预测一种工具的价格是否会上涨或下跌而获利。
-                <a class="invisible" target="_blank">阅读更多</a>
-            </div>
-        </div>
 
-        <form id="frm_new_account">
-            <div class="gr-row form-row center-text-m ">
+            
+            <div class="account-desc">
+                <div class="demo_vanuatu_cent real_vanuatu_cent">
+                    <p>Our MetaTrader 5 Cent account is ideal for new traders who want to start trading with a smaller capital.</p>
+                    <ul class="checked small no-padding">
+                        
+                            <li>Offers the highest leverage – up to 1:1,000</li>
+                        
+                            <li>Fixed spreads</li>
+                        
+                            <li>Instant execution</li>
+                        
+                            <li>No commission</li>
+                        
+                    </ul>
+                    <a class="more" href="#" target="_blank">阅读更多</a>
+                </div>
+                <div class="demo_vanuatu_standard real_vanuatu_standard">
+                    <p>Our MetaTrader 5 Standard account comes with mid-range leverage and variable spreads suitable for a wide range of traders.</p>
+                    <ul class="checked small no-padding">
+                        
+                            <li>Leverage up to 1:300</li>
+                        
+                            <li>Variable spreads</li>
+                        
+                            <li>Market execution</li>
+                        
+                            <li>No commission</li>
+                        
+                    </ul>
+                    <a class="more" href="#" target="_blank">阅读更多</a>
+                </div>
+                <div class="demo_vanuatu_stp real_vanuatu_stp">
+                    <p>Our MetaTrader 5 STP account provides you with the tightest spreads and connects you directly to the market.</p>
+                    <ul class="checked small no-padding">
+                        
+                            <li>Leverage up to 1:100</li>
+                        
+                            <li>Variable spreads</li>
+                        
+                            <li>Market execution</li>
+                        
+                            <li>No commission</li>
+                        
+                    </ul>
+                    <a class="more" href="#" target="_blank">阅读更多</a>
+                </div>
+                <div class="demo_costarica real_costarica">
+                    <p>波动率账户允许您通过预测一种工具的价格是否会上涨或下跌而获利。</p>
+                    <ul class="checked small no-padding">
+                        
+                            <li>Leverage up to 1:100</li>
+                        
+                            <li>Variable spreads</li>
+                        
+                            <li>Market execution</li>
+                        
+                            <li>No commission</li>
+                        
+                    </ul>
+                    <a class="more" href="#" target="_blank">阅读更多</a>
+                </div>
+            </div>
+
+            <form id="frm_new_account">
+                <div class="gr-row form-row center-text-m ">
         <div class="gr-4 gr-12-m">
             <label>
                 账户类型
@@ -118,7 +167,7 @@
             
         </div>
     </div>
-            <div class="gr-row form-row center-text-m ">
+                <div class="gr-row form-row center-text-m ">
         <div class="gr-4 gr-12-m">
             <label>
                 电子邮件
@@ -131,7 +180,7 @@
             
         </div>
     </div>
-            <div class="gr-row form-row center-text-m ">
+                <div class="gr-row form-row center-text-m ">
         <div class="gr-4 gr-12-m">
             <label for="txt_name">
                 姓名
@@ -142,7 +191,7 @@
             
         </div>
     </div>
-            <div class="gr-row form-row center-text-m invisible">
+                <div class="gr-row form-row center-text-m invisible">
         <div class="gr-4 gr-12-m">
             <label for="ddl_leverage">
                 杠杆
@@ -150,18 +199,18 @@
         </div>
         <div class="gr-8 gr-12-m">
                                 <select id="ddl_leverage" class="form_input " > 
-                <option value="1">1:1</option>
-                <option value="50">1:50</option>
-                <option value="100" selected="selected">1:100</option>
-                <option value="200">1:200</option>
-                <option value="300">1:300</option>
-                <option value="500">1:500</option>
-                <option value="1000">1:1000</option>
-                                </select>
+                    <option value="1">1:1</option>
+                    <option value="50">1:50</option>
+                    <option value="100" selected="selected">1:100</option>
+                    <option value="200">1:200</option>
+                    <option value="300">1:300</option>
+                    <option value="500">1:500</option>
+                    <option value="1000">1:1000</option>
+                                    </select>
             
         </div>
     </div>
-            <div class="gr-row form-row center-text-m ">
+                <div class="gr-row form-row center-text-m ">
         <div class="gr-4 gr-12-m">
             <label for="txt_main_pass">
                 主密码（交易访问）
@@ -172,7 +221,7 @@
             <div class="hint">最少 8 个字符。必须同时包含数字和大小写字母。</div>
         </div>
     </div>
-            <div class="gr-row form-row center-text-m ">
+                <div class="gr-row form-row center-text-m ">
         <div class="gr-4 gr-12-m">
             <label for="txt_re_main_pass">
                 主密码验证
@@ -183,7 +232,7 @@
             
         </div>
     </div>
-            <div class="gr-row form-row center-text-m ">
+                <div class="gr-row form-row center-text-m ">
         <div class="gr-4 gr-12-m">
             <label for="txt_investor_pass">
                 投资者密码 （只读访问权限）
@@ -194,14 +243,14 @@
             
         </div>
     </div>
-            <div class="gr-row ">
+                <div class="gr-row ">
         <div class="gr-12-m gr-padding-20 gr-centered">
             <input id="chk_tnc" type="checkbox" />
             <label for="chk_tnc">我已阅读并同意本网站的<a target="_blank" href="/zh_cn/terms-and-conditions.html#legal-mt">条款和条件</a>。</label>
         </div>
     </div>
 
-            <div class="gr-row ">
+                <div class="gr-row ">
                 <div class="gr-8 gr-push-4 gr-12-m gr-push-0-m center-text-m">
             
         
@@ -214,10 +263,10 @@
     
                 </div>
             </div>
-        </form>
+            </form>
 
-        <form id="frm_password_change">
-            <div class="gr-row form-row center-text-m ">
+            <form id="frm_password_change">
+                <div class="gr-row form-row center-text-m invisible">
         <div class="gr-4 gr-12-m">
             <label>
                 登录 ID
@@ -230,7 +279,7 @@
             
         </div>
     </div>
-            <div class="gr-row form-row center-text-m ">
+                <div class="gr-row form-row center-text-m ">
         <div class="gr-4 gr-12-m">
             <label for="txt_old_password">
                 当前密码
@@ -241,7 +290,7 @@
             
         </div>
     </div>
-            <div class="gr-row form-row center-text-m ">
+                <div class="gr-row form-row center-text-m ">
         <div class="gr-4 gr-12-m">
             <label for="txt_new_password">
                 新密码
@@ -252,7 +301,7 @@
             <div class="hint">最少 8 个字符。必须同时包含数字和大小写字母。</div>
         </div>
     </div>
-            <div class="gr-row form-row center-text-m ">
+                <div class="gr-row form-row center-text-m ">
         <div class="gr-4 gr-12-m">
             <label for="txt_re_new_password">
                 验证新密码
@@ -264,7 +313,7 @@
         </div>
     </div>
 
-            <div class="gr-row ">
+                <div class="gr-row ">
                 <div class="gr-8 gr-push-4 gr-12-m gr-push-0-m center-text-m">
             
         
@@ -277,11 +326,11 @@
     
                 </div>
             </div>
-        </form>
+            </form>
 
-        <form id="frm_deposit">
-            <p>把资金从Binary.com账户转移到您的MT5账户︰</p>
-            <div class="gr-row form-row center-text-m ">
+            <form id="frm_deposit">
+                <p>Transfer funds from Binary.com account into your MetaTrader 5 account:</p>
+                <div class="gr-row form-row center-text-m ">
         <div class="gr-4 gr-12-m">
             <label>
                 转移自
@@ -294,7 +343,7 @@
             
         </div>
     </div>
-            <div class="gr-row form-row center-text-m ">
+                <div class="gr-row form-row center-text-m ">
         <div class="gr-4 gr-12-m">
             <label>
                 存款到
@@ -307,7 +356,7 @@
             
         </div>
     </div>
-            <div class="gr-row form-row center-text-m ">
+                <div class="gr-row form-row center-text-m ">
         <div class="gr-4 gr-12-m">
             <label for="txt_amount">
                 金额
@@ -319,7 +368,7 @@
         </div>
     </div>
 
-            <div class="gr-row ">
+                <div class="gr-row ">
                 <div class="gr-8 gr-push-4 gr-12-m gr-push-0-m center-text-m">
             
         
@@ -332,11 +381,13 @@
     
                 </div>
             </div>
-        </form>
 
-        <form id="frm_withdrawal">
-            <p>把资金从您的MT5账户转移到Binary.com账户︰</p>
-            <div class="gr-row form-row center-text-m ">
+                <p class="notice-msg">Want to fund your Binary.com Real Account? <a href="/zh_cn/cashier.html">Go to the Cashier</a></p>
+            </form>
+
+            <form id="frm_withdrawal">
+                <p>Transfer funds from your MetaTrader 5 account into your Binary.com account:</p>
+                <div class="gr-row form-row center-text-m ">
         <div class="gr-4 gr-12-m">
             <label>
                 提款从
@@ -349,7 +400,7 @@
             
         </div>
     </div>
-            <div class="gr-row form-row center-text-m ">
+                <div class="gr-row form-row center-text-m ">
         <div class="gr-4 gr-12-m">
             <label>
                 转移到
@@ -362,10 +413,10 @@
             
         </div>
     </div>
-            <div class="gr-row form-row center-text-m ">
+                <div class="gr-row form-row center-text-m ">
         <div class="gr-4 gr-12-m">
             <label for="txt_main_pass">
-                MT5 主密码
+                MetaTrader 5 main password
             </label>
         </div>
         <div class="gr-8 gr-12-m">
@@ -373,7 +424,7 @@
             
         </div>
     </div>
-            <div class="gr-row form-row center-text-m ">
+                <div class="gr-row form-row center-text-m ">
         <div class="gr-4 gr-12-m">
             <label for="txt_amount">
                 金额
@@ -385,7 +436,7 @@
         </div>
     </div>
 
-            <div class="gr-row ">
+                <div class="gr-row ">
                 <div class="gr-8 gr-push-4 gr-12-m gr-push-0-m center-text-m">
             
         
@@ -398,21 +449,24 @@
     
                 </div>
             </div>
-        </form>
 
-        <div id="messages">
-            <div id="msg_switch">如要执行此操作，请切换到 Binary.com 真实账户。</div>
-            <div id="msg_upgrade">如要执行此操作，请<a href="/zh_cn/new_account/realws.html">升级到 Binary.com 真实账户</a>。</div>
-            <div id="msg_assessment">要开立MT5金融账户，请完成<a href="/zh_cn/user/settings/assessmentws.html">财务评估</a>。</div>
-            <div id="msg_authenticate">
-                <div class="align-start">
-                    <p>如果您想从MT5金融账户提款，请验证您的Binary.com账户。</p>
-                    <p>请提交身份与地址证明，立刻进行账户验证。继续操作，请将以下文件发送到<a href='mailto:support@binary.com' rel='nofollow'>support@binary.com</a>：</p>
+                <p class="notice-msg">Want to withdraw funds from your Binary.com Real Account? <a href="/zh_cn/cashier.html">Go to the Cashier</a></p>
+            </form>
+
+            <div id="messages">
+                <div id="msg_switch">如要执行此操作，请切换到 Binary.com 真实账户。</div>
+                <div id="msg_upgrade">如要执行此操作，请<a href="/zh_cn/new_account/realws.html">升级到 Binary.com 真实账户</a>。</div>
+                <div id="msg_assessment">To create an MetaTrader 5 Financial Account please complete the <a href="/zh_cn/user/settings/assessmentws.html">Financial Assessment</a>.</div>
+                <div id="msg_authenticate">
+                    <div class="align-start">
+                        <p>To withdraw from MetaTrader 5 Financial Account please Authenticate your Binary.com account.</p>
+                        <p>请提交身份与地址证明，立刻进行账户验证。继续操作，请将以下文件发送到<a href='mailto:support@binary.com' rel='nofollow'>support@binary.com</a>：</p>
 <ul class="checked">
     <li>身份证明 - 显示您名字和出生日期的护照、驾照（临时或永久）或身份证的扫描件。</li>
     <li>地址证明 - 水电煤账单或银行月结单扫描件（日期不得超过3个月）。地址证明必须包括您的姓名、地址、发证日期和发证机构名称。</li>
 </ul>
 <p>另外，您还可以<a href="/zh_cn/user/video-facility.html">通过视频通话进行账户验证</a>。</p>
+                    </div>
                 </div>
             </div>
         </div>

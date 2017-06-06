@@ -7,7 +7,7 @@
 
 
 
-  <div id="mt_account_management" class="container">
+  <div class="container">
     <div>
         <h1>MetaTrader Kontenverwaltung</h1>
     </div>
@@ -25,87 +25,136 @@
     <div class="rect5"></div>
     
 </div></div>
-    <div class="gr-12">
-        <div id="accounts_list" class="gr-row"></div>
-    </div>
-
-    <div class="fst-container">
-        <div id="main_msg" class="notice-msg center-text invisible"></div>
-        <fieldset id="fst_action" class="invisible">
-        <legend> </legend>
-        
-            <span class="close"></span>
-            <form id="frm_action"></form>
-        
-    </fieldset>
-    </div>
-
-    <div id="templates" class="invisible">
-        <div class="acc-box gr-12-m gr-6-p gr-4-t gr-4">
-            <div>
-                <div class="title"></div>
-                <div class="loading"><div class="barspinner dark">
-    
-    <div class="rect1"></div>
-    
-    <div class="rect2"></div>
-    
-    <div class="rect3"></div>
-    
-    <div class="rect4"></div>
-    
-    <div class="rect5"></div>
-    
-</div></div>
-                <div class="center-text no-account invisible">
-                    <div class="info"></div>
-                    <span class="button"><span class="act_new_account">Konto einrichten</span></span>
+    <div id="mt_account_management" class="gr-row fill-bg-color invisible">
+        <div id="mt_left_panel" class="mt-panel gr-3 gr-4-t gr-12-p gr-12-m gr-no-gutter">
+            <div class="top gr-hide-p gr-hide-m">
+                <div style="width: 80px; height: 80px; margin: 0 auto; background: #f2f2f2; border: 1px solid #004385; border-radius: 40px;"></div> <!-- TODO: replace with image -->
+            </div>
+            <div id="account_selector">
+                <h4 id="mt5_account"></h4>
+                <div id="accounts_list">
+                    <div></div>
                 </div>
-                <div class="acc-info has-account gr-row invisible">
-                    <div class="gr-4">Login ID:</div><div data="login" class="gr-8"></div>
-                    <div class="gr-4">Name:</div><div data="name" class="gr-7"></div>
-                    <div class="gr-4">Guthaben:</div><div data="balance" class="gr-8"></div>
-                    <div class="gr-4">Leverage:</div><div data="leverage" class="gr-8"></div>
+            </div>
+            <div id="account_detail">
+                <div class="acc-info mt-container has-account invisible">
+                    <div class="gr-row">
+                        <div class="gr-5">Login ID:</div><div data="login" class="gr-7"></div>
+                        <div class="gr-5">Name:</div><div data="name" class="gr-7"></div>
+                        <div class="gr-5">Guthaben:</div><div data="balance" class="gr-7"></div>
+                        <div class="gr-5 invisible">Leverage:</div><div data="leverage" class="gr-7 invisible"></div>
+                    </div>
                 </div>
-                <div class="acc-actions has-account center-text invisible">
+                <div class="acc-actions has-account invisible">
+                    <span class="invisible"><a href="javascript:;" class="act_new_account"></a></span>
                     <a href="javascript:;" class="act_deposit">
                         <img src="/images/pages/metatrader/deposit.svg" alt="" />
-                        Einzahlung
+                        <span>Einzahlung</span>
                     </a>
                     <a href="javascript:;" class="act_withdrawal">
                         <img src="/images/pages/metatrader/withdraw.svg" alt="" />
-                        Abheben
+                        <span>Abheben</span>
                     </a>
                     <a href="javascript:;" class="act_password_change">
                         <img src="/images/pages/metatrader/password.svg" alt="" />
-                        Passwort
+                        <span>Passwort</span>
                     </a>
+                </div>
+                <div id="account_desc" class="mt-container"></div>
+            </div>
+        </div>
+        <div id="mt_right_panel" class="mt-panel gr-9 gr-8-t gr-12-p gr-12-m gr-no-gutter">
+            <div class="top mt-container gr-hide-p gr-hide-m">
+                <p id="top_msg" class="notice-msg center-text invisible">Please <a href="/de/new_account/realws.html">upgrade</a> to be able to create real MetaTrader 5 accounts.</p>
+            </div>
+            <div class="fst-container mt-container">
+                <div id="fst_action" class="invisible">
+                    <h3></h3>
+                    <div class="separator primary-color"></div>
+                    <p id="main_msg" class="notice-msg center-text invisible"></p>
+                    <fieldset>
+                        <form id="frm_action" class="invisible"></form>
+                    </fieldset>
                 </div>
             </div>
         </div>
 
-        <div id="no_account_info">
-            <div id="demo">Eröffnen Sie ein kostenloses Demo-Konto.</div>
-            <div id="vanuatu_cent">
-                Das Cent Konto bietet die höchste Leverage, sowie eine niedrige Nachschlussforderung und ein niedriges Stop Out Level.
-                <a class="invisible" target="_blank">Mehr lesen</a>
+        <div id="templates" class="invisible">
+            <div class="acc-name">
+                <div class="mt-new invisible">
+                    <img src="/images/pages/metatrader/signup.svg" />
+                </div>
+                <div class="mt-balance">&nbsp;</div>
+                <div class="mt-type"></div>
+                <div class="mt-login invisible"></div>
             </div>
-            <div id="vanuatu_standard">
-                Das Standard Konto passt für ein breites Spektrum an Händlern, Neue un Erfahrene.
-                <a class="invisible" target="_blank">Mehr lesen</a>
-            </div>
-            <div id="vanuatu_stp">
-                Das STP Konto bietet Ihnen die engsten Spannen an und verbindet Sie direkt mit dem Markt.
-                <a class="invisible" target="_blank">Mehr lesen</a>
-            </div>
-            <div id="costarica">
-                Das Volatilität Konto erlaubt Ihnen Gewinn zu machen, indem Sie auf das Steigen und Fallen eines Instruments spekulieren.
-                <a class="invisible" target="_blank">Mehr lesen</a>
-            </div>
-        </div>
 
-        <form id="frm_new_account">
-            <div class="gr-row form-row center-text-m ">
+            
+            <div class="account-desc">
+                <div class="demo_vanuatu_cent real_vanuatu_cent">
+                    <p>Our MetaTrader 5 Cent account is ideal for new traders who want to start trading with a smaller capital.</p>
+                    <ul class="checked small no-padding">
+                        
+                            <li>Offers the highest leverage – up to 1:1,000</li>
+                        
+                            <li>Fixed spreads</li>
+                        
+                            <li>Instant execution</li>
+                        
+                            <li>No commission</li>
+                        
+                    </ul>
+                    <a class="more" href="#" target="_blank">Mehr lesen</a>
+                </div>
+                <div class="demo_vanuatu_standard real_vanuatu_standard">
+                    <p>Our MetaTrader 5 Standard account comes with mid-range leverage and variable spreads suitable for a wide range of traders.</p>
+                    <ul class="checked small no-padding">
+                        
+                            <li>Leverage up to 1:300</li>
+                        
+                            <li>Variable spreads</li>
+                        
+                            <li>Market execution</li>
+                        
+                            <li>No commission</li>
+                        
+                    </ul>
+                    <a class="more" href="#" target="_blank">Mehr lesen</a>
+                </div>
+                <div class="demo_vanuatu_stp real_vanuatu_stp">
+                    <p>Our MetaTrader 5 STP account provides you with the tightest spreads and connects you directly to the market.</p>
+                    <ul class="checked small no-padding">
+                        
+                            <li>Leverage up to 1:100</li>
+                        
+                            <li>Variable spreads</li>
+                        
+                            <li>Market execution</li>
+                        
+                            <li>No commission</li>
+                        
+                    </ul>
+                    <a class="more" href="#" target="_blank">Mehr lesen</a>
+                </div>
+                <div class="demo_costarica real_costarica">
+                    <p>Das Volatilität Konto erlaubt Ihnen Gewinn zu machen, indem Sie auf das Steigen und Fallen eines Instruments spekulieren.</p>
+                    <ul class="checked small no-padding">
+                        
+                            <li>Leverage up to 1:100</li>
+                        
+                            <li>Variable spreads</li>
+                        
+                            <li>Market execution</li>
+                        
+                            <li>No commission</li>
+                        
+                    </ul>
+                    <a class="more" href="#" target="_blank">Mehr lesen</a>
+                </div>
+            </div>
+
+            <form id="frm_new_account">
+                <div class="gr-row form-row center-text-m ">
         <div class="gr-4 gr-12-m">
             <label>
                 Kontoart
@@ -118,7 +167,7 @@
             
         </div>
     </div>
-            <div class="gr-row form-row center-text-m ">
+                <div class="gr-row form-row center-text-m ">
         <div class="gr-4 gr-12-m">
             <label>
                 E-Mail
@@ -131,7 +180,7 @@
             
         </div>
     </div>
-            <div class="gr-row form-row center-text-m ">
+                <div class="gr-row form-row center-text-m ">
         <div class="gr-4 gr-12-m">
             <label for="txt_name">
                 Name
@@ -142,7 +191,7 @@
             
         </div>
     </div>
-            <div class="gr-row form-row center-text-m invisible">
+                <div class="gr-row form-row center-text-m invisible">
         <div class="gr-4 gr-12-m">
             <label for="ddl_leverage">
                 Leverage
@@ -150,18 +199,18 @@
         </div>
         <div class="gr-8 gr-12-m">
                                 <select id="ddl_leverage" class="form_input " > 
-                <option value="1">1:1</option>
-                <option value="50">1:50</option>
-                <option value="100" selected="selected">1:100</option>
-                <option value="200">1:200</option>
-                <option value="300">1:300</option>
-                <option value="500">1:500</option>
-                <option value="1000">1:1000</option>
-                                </select>
+                    <option value="1">1:1</option>
+                    <option value="50">1:50</option>
+                    <option value="100" selected="selected">1:100</option>
+                    <option value="200">1:200</option>
+                    <option value="300">1:300</option>
+                    <option value="500">1:500</option>
+                    <option value="1000">1:1000</option>
+                                    </select>
             
         </div>
     </div>
-            <div class="gr-row form-row center-text-m ">
+                <div class="gr-row form-row center-text-m ">
         <div class="gr-4 gr-12-m">
             <label for="txt_main_pass">
                 Hauptpasswort (Handelszugang)
@@ -172,7 +221,7 @@
             <div class="hint">Zumindest acht Zeichen. Muss Zahlen, und einen Mix aus Groß- und Kleinbuchstaben enthalten.</div>
         </div>
     </div>
-            <div class="gr-row form-row center-text-m ">
+                <div class="gr-row form-row center-text-m ">
         <div class="gr-4 gr-12-m">
             <label for="txt_re_main_pass">
                 Hauptpasswort bestätigen
@@ -183,7 +232,7 @@
             
         </div>
     </div>
-            <div class="gr-row form-row center-text-m ">
+                <div class="gr-row form-row center-text-m ">
         <div class="gr-4 gr-12-m">
             <label for="txt_investor_pass">
                 Investor Passwort (nur-lesen Zugriff)
@@ -194,14 +243,14 @@
             
         </div>
     </div>
-            <div class="gr-row ">
+                <div class="gr-row ">
         <div class="gr-12-m gr-padding-20 gr-centered">
             <input id="chk_tnc" type="checkbox" />
             <label for="chk_tnc">Ich habe die <a target="_blank" href="/de/terms-and-conditions.html#legal-mt">Geschäftsbedingungen</a> dieser Seite gelesen und diesen zugestimmt.</label>
         </div>
     </div>
 
-            <div class="gr-row ">
+                <div class="gr-row ">
                 <div class="gr-8 gr-push-4 gr-12-m gr-push-0-m center-text-m">
             
         
@@ -214,10 +263,10 @@
     
                 </div>
             </div>
-        </form>
+            </form>
 
-        <form id="frm_password_change">
-            <div class="gr-row form-row center-text-m ">
+            <form id="frm_password_change">
+                <div class="gr-row form-row center-text-m invisible">
         <div class="gr-4 gr-12-m">
             <label>
                 Login ID
@@ -230,7 +279,7 @@
             
         </div>
     </div>
-            <div class="gr-row form-row center-text-m ">
+                <div class="gr-row form-row center-text-m ">
         <div class="gr-4 gr-12-m">
             <label for="txt_old_password">
                 Aktuelles Passwort
@@ -241,7 +290,7 @@
             
         </div>
     </div>
-            <div class="gr-row form-row center-text-m ">
+                <div class="gr-row form-row center-text-m ">
         <div class="gr-4 gr-12-m">
             <label for="txt_new_password">
                 Neues Passwort
@@ -252,7 +301,7 @@
             <div class="hint">Zumindest acht Zeichen. Muss Zahlen, und einen Mix aus Groß- und Kleinbuchstaben enthalten.</div>
         </div>
     </div>
-            <div class="gr-row form-row center-text-m ">
+                <div class="gr-row form-row center-text-m ">
         <div class="gr-4 gr-12-m">
             <label for="txt_re_new_password">
                 Neues Passwort bestätigen
@@ -264,7 +313,7 @@
         </div>
     </div>
 
-            <div class="gr-row ">
+                <div class="gr-row ">
                 <div class="gr-8 gr-push-4 gr-12-m gr-push-0-m center-text-m">
             
         
@@ -277,11 +326,11 @@
     
                 </div>
             </div>
-        </form>
+            </form>
 
-        <form id="frm_deposit">
-            <p>Überweisen Sie Geld von Ihrem Binary.com Konto auf Ihr MT5-Konto:</p>
-            <div class="gr-row form-row center-text-m ">
+            <form id="frm_deposit">
+                <p>Transfer funds from Binary.com account into your MetaTrader 5 account:</p>
+                <div class="gr-row form-row center-text-m ">
         <div class="gr-4 gr-12-m">
             <label>
                 Überweisung von
@@ -294,7 +343,7 @@
             
         </div>
     </div>
-            <div class="gr-row form-row center-text-m ">
+                <div class="gr-row form-row center-text-m ">
         <div class="gr-4 gr-12-m">
             <label>
                 Einzahlen in
@@ -307,7 +356,7 @@
             
         </div>
     </div>
-            <div class="gr-row form-row center-text-m ">
+                <div class="gr-row form-row center-text-m ">
         <div class="gr-4 gr-12-m">
             <label for="txt_amount">
                 Betrag
@@ -319,7 +368,7 @@
         </div>
     </div>
 
-            <div class="gr-row ">
+                <div class="gr-row ">
                 <div class="gr-8 gr-push-4 gr-12-m gr-push-0-m center-text-m">
             
         
@@ -332,11 +381,13 @@
     
                 </div>
             </div>
-        </form>
 
-        <form id="frm_withdrawal">
-            <p>Überweisen Sie Geld von Ihrem MT5-Konto auf Ihr Binary.com Konto:</p>
-            <div class="gr-row form-row center-text-m ">
+                <p class="notice-msg">Want to fund your Binary.com Real Account? <a href="/de/cashier.html">Go to the Cashier</a></p>
+            </form>
+
+            <form id="frm_withdrawal">
+                <p>Transfer funds from your MetaTrader 5 account into your Binary.com account:</p>
+                <div class="gr-row form-row center-text-m ">
         <div class="gr-4 gr-12-m">
             <label>
                 Abheben von
@@ -349,7 +400,7 @@
             
         </div>
     </div>
-            <div class="gr-row form-row center-text-m ">
+                <div class="gr-row form-row center-text-m ">
         <div class="gr-4 gr-12-m">
             <label>
                 Überweisung auf
@@ -362,10 +413,10 @@
             
         </div>
     </div>
-            <div class="gr-row form-row center-text-m ">
+                <div class="gr-row form-row center-text-m ">
         <div class="gr-4 gr-12-m">
             <label for="txt_main_pass">
-                MT5 Hauptpasswort
+                MetaTrader 5 main password
             </label>
         </div>
         <div class="gr-8 gr-12-m">
@@ -373,7 +424,7 @@
             
         </div>
     </div>
-            <div class="gr-row form-row center-text-m ">
+                <div class="gr-row form-row center-text-m ">
         <div class="gr-4 gr-12-m">
             <label for="txt_amount">
                 Betrag
@@ -385,7 +436,7 @@
         </div>
     </div>
 
-            <div class="gr-row ">
+                <div class="gr-row ">
                 <div class="gr-8 gr-push-4 gr-12-m gr-push-0-m center-text-m">
             
         
@@ -398,21 +449,24 @@
     
                 </div>
             </div>
-        </form>
 
-        <div id="messages">
-            <div id="msg_switch">Um diese Aktion durchzuführen, wechseln Sie bitte zu Ihrem Binary.com Echtgeldkonto.</div>
-            <div id="msg_upgrade">Um diese Aktion durchzuführen, bessern Sie bitte <a href="/de/new_account/realws.html">auf ein Binary.com Echtes Konto</a> auf.</div>
-            <div id="msg_assessment">Um ein MT5 Konto zu erstellen, füllen Sie bitte die <a href="/de/user/settings/assessmentws.html">Finanzielle Beurteilung</a> aus.</div>
-            <div id="msg_authenticate">
-                <div class="align-start">
-                    <p>Um vom MT5 Finanzkonto zu beheben, authentifizieren Sie bitte Ihr Binary.com Konto.</p>
-                    <p>Bestätigen Sie jetzt Ihr Konto, indem Sie Ihre Identität und Adresse überprüfen. Um fortzufahren, senden Sie einfach die folgenden Dokumente an <a href='mailto:support@binary.com' rel='nofollow'>support@binary.com</a>:</p>
+                <p class="notice-msg">Want to withdraw funds from your Binary.com Real Account? <a href="/de/cashier.html">Go to the Cashier</a></p>
+            </form>
+
+            <div id="messages">
+                <div id="msg_switch">Um diese Aktion durchzuführen, wechseln Sie bitte zu Ihrem Binary.com Echtgeldkonto.</div>
+                <div id="msg_upgrade">Um diese Aktion durchzuführen, bessern Sie bitte <a href="/de/new_account/realws.html">auf ein Binary.com Echtes Konto</a> auf.</div>
+                <div id="msg_assessment">To create an MetaTrader 5 Financial Account please complete the <a href="/de/user/settings/assessmentws.html">Financial Assessment</a>.</div>
+                <div id="msg_authenticate">
+                    <div class="align-start">
+                        <p>To withdraw from MetaTrader 5 Financial Account please Authenticate your Binary.com account.</p>
+                        <p>Bestätigen Sie jetzt Ihr Konto, indem Sie Ihre Identität und Adresse überprüfen. Um fortzufahren, senden Sie einfach die folgenden Dokumente an <a href='mailto:support@binary.com' rel='nofollow'>support@binary.com</a>:</p>
 <ul class="checked">
     <li>Identitätsnachweis - Eine gescannte Kopie Ihres Reisepasses, gültigen Führerscheins (entweder vorläufig oder endgültig), oder Personalausweises, auf dem Ihr voller Name und das Geburtsdatum erkennbar sind.</li>
     <li>Nachweis der Adresse - Eine gescannte Kopie einer Abrechnung öffentlicher Versorgungsbetriebe oder eines Bankkontoauszuges, die nicht älter als drei Monate ist. Ihr Nachweis der Adresse muss Ihren Namen, Ihre Adresse, das Datum der Ausstellung und den Namen der ausstellenden Organisation beinhalten.</li>
 </ul>
 <p>Alternativ können Sie auch <a href="/de/user/video-facility.html">Ihr Konto mittels Video-Gespräch authentifizieren</a>.</p>
+                    </div>
                 </div>
             </div>
         </div>
