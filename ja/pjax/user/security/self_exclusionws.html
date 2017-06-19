@@ -13,9 +13,9 @@
 自動ログアウトと任意でログインしない以外の項目は1度設定されますと、次回からは設定した数値より低い数値以外は変更ができませんのでご注意下さい。制限の解除または緩和をご希望の場合は、<a href="/ja/contact.html">カスタマーサポート</a>までご連絡ください。</p>
 </div>
 <div class="invisible" id="description_max_30day_turnover">
-    <h1>取引数量限度額</h1>
-    <p>入出金にアクセスいただくには、お客様の口座にて30日の取引数量限度額を設定いただくことになっています。
-取引数量とはオープンにした全トレードの集計金額です。そのため、この制限は30日間で取引されたい合計数量を設定することになります。</p>
+    <h1>取引限度額</h1>
+    <p>入出金にアクセスいただくには、お客様の口座にて30日間の取引数量限度額を設定いただくことになっています。
+取引限度とはオープンにした全トレードの集計金額です。そのため、この制限は30日間で取引されたい合計額を設定することになります。</p>
 </div>
 
 <p id="msg_error" class="center-text notice-msg invisible"></p>
@@ -53,7 +53,7 @@
         <div class="gr-row form-row center-text-m ">
         <div class="gr-4 gr-12-m">
             <label for="max_turnover">
-                1日の取引数量限度額
+                取引限度額（1日）
             </label>
         </div>
         <div class="gr-8 gr-12-m">
@@ -77,31 +77,31 @@
         <div class="gr-row form-row center-text-m ">
         <div class="gr-4 gr-12-m">
             <label for="max_7day_turnover">
-                7日の取引数量限度額
+                取引限度額（7日間）
             </label>
         </div>
         <div class="gr-8 gr-12-m">
                                 <input type="text" id="max_7day_turnover" maxlength="20" />
-            <div class="hint">7日間の最大取引額 (半角)</div>
+            <div class="hint">7日間の最大取引数量 (半角)</div>
         </div>
     </div>
 
         <div class="gr-row form-row center-text-m ">
         <div class="gr-4 gr-12-m">
             <label for="max_7day_losses">
-                7日間の損失制限
+                損失限度額（7日間）
             </label>
         </div>
         <div class="gr-8 gr-12-m">
                                 <input type="text" id="max_7day_losses" maxlength="20" />
-            <div class="hint">7日間の最大損失 (半角)</div>
+            <div class="hint">7日間で許容できる最大損失額 (半角)</div>
         </div>
     </div>
 
         <div class="gr-row form-row center-text-m max_30day_turnover">
         <div class="gr-4 gr-12-m">
             <label for="max_30day_turnover">
-                30日の取引数量限度額
+                取引限度額（30日間）
             </label>
         </div>
         <div class="gr-8 gr-12-m">
@@ -113,12 +113,12 @@
         <div class="gr-row form-row center-text-m ">
         <div class="gr-4 gr-12-m">
             <label for="max_30day_losses">
-                30日間の損失制限
+                損失限度額（30日間）
             </label>
         </div>
         <div class="gr-8 gr-12-m">
                                 <input type="text" id="max_30day_losses" maxlength="20" />
-            <div class="hint">30日間の最大損失 (半角)</div>
+            <div class="hint">30日間で許容できる最大損失額 (半角)</div>
         </div>
     </div>
 
@@ -155,10 +155,10 @@
         <div class="gr-8 gr-12-m">
                                 
             <div class="gr-row">
-                <div class="gr-5 gr-6-t gr-6-p gr-12-m">
+                <div class="gr-5 gr-6-t gr-12-p gr-12-m">
                     <input type="text" class="clearable" id="timeout_until_date" maxlength="15" autocomplete="off" readonly />
                 </div>
-                <div class="gr-4 gr-6-t gr-6-p gr-12-m">
+                <div class="gr-4 gr-6-t gr-12-p gr-12-m">
                     <input type="text" class="clearable" id="timeout_until_time" maxlength="8" autocomplete="off"  />
                 </div>
             </div>

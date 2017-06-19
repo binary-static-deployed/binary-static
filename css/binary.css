@@ -372,6 +372,13 @@ button .barspinner.white {
           align-items: center;
 }
 
+.align-self-center {
+  -webkit-align-self: center;
+      -ms-flex-item-align: center;
+              -ms-grid-row-align: center;
+          align-self: center;
+}
+
 .align-start {
   text-align: left;
 }
@@ -382,6 +389,10 @@ button .barspinner.white {
 
 .clear {
   clear: both;
+}
+
+.sidebar-container {
+  position: relative;
 }
 
 .sidebar ul {
@@ -724,26 +735,26 @@ html.mm-right.mm-opening body .mm-page, html.mm-right.mm-opening body #mm-blocke
   border-radius: 0;
 }
 
-.clearable {
-  background: #fff url("data:image/gif;base64,R0lGODlhBwAHAIAAAP///5KSkiH5BAAAAAAALAAAAAAHAAcAAAIMTICmsGrIXnLxuDMLADs=") no-repeat right -10px center;
-  padding: 3px 18px 3px 4px;
-  /* Use the same right padding (18px) in jQ */
-  border-radius: 3px;
-  transition: background 0.4s;
+@media screen and (min-width: 770px) {
+  .clearable {
+    background: #fff url("data:image/gif;base64,R0lGODlhBwAHAIAAAP///5KSkiH5BAAAAAAALAAAAAAHAAcAAAIMTICmsGrIXnLxuDMLADs=") no-repeat right -10px center;
+    padding: 3px 18px 3px 4px;
+    /* Use the same right padding (18px) in jQ */
+    border-radius: 3px;
+    transition: background 0.4s;
+  }
+  .clearable.clear {
+    background-position: right 5px center;
+  }
+  .clearable.onClear {
+    cursor: pointer;
+  }
+  .clearable::-ms-clear {
+    display: none;
+    width: 0;
+    height: 0;
+  }
 }
-.clearable.clear {
-  background-position: right 5px center;
-}
-.clearable.onClear {
-  cursor: pointer;
-}
-
-.clearable::-ms-clear {
-  display: none;
-  width: 0;
-  height: 0;
-}
-
 table {
   border-collapse: collapse;
   line-height: 1.5em;
@@ -4574,6 +4585,7 @@ body.ZH_TW .google-play-badge {
 
   input:not([type='checkbox']), select {
     width: 80%;
+    height: 26px;
   }
 
   .center-text-m, .center-text-m div:first-child label {
