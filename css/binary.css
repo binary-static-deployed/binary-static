@@ -4357,7 +4357,8 @@ body.JA #mb_trading .payout-input .hint, body.JA #mb_trading .payout-input label
 
 /*Vietnamese Language */
 body.VI {
-  font-kerning: none;
+  -webkit-font-kerning: none;
+          font-kerning: none;
 }
 body.VI #legal-tab li.tm-li-2 {
   margin-right: 0 !important;
