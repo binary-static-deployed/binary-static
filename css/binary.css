@@ -213,6 +213,10 @@ label {
   font-size: 0.86957rem;
   color: #c03;
 }
+.required_field_asterisk.no-margin {
+  position: relative;
+  margin: 0;
+}
 
 .inpage_popup_container {
   position: fixed;
@@ -268,10 +272,6 @@ label {
   top: 0;
   left: 0;
   z-index: 10;
-}
-
-.light-yellow-background {
-  background-color: #fef1cf;
 }
 
 _:-ms-fullscreen, :root #content-holder {
@@ -2949,6 +2949,7 @@ body #not_authenticated_financial ul.checked > li {
   padding: 20px;
   font-style: italic;
   vertical-align: middle;
+  line-height: 1.3225rem;
 }
 #trading_socket_container #contract_prices_container .price_container#price_container_top {
   margin-bottom: 1rem;
@@ -3154,6 +3155,15 @@ body #not_authenticated_financial ul.checked > li {
 }
 #trading_socket_container #expiry_date, #trading_socket_container #expiry_time {
   font-size: 1rem;
+}
+#trading_socket_container #date_start {
+  margin-bottom: 5px;
+}
+#trading_socket_container #time_start_row {
+  white-space: nowrap;
+}
+#trading_socket_container #time_start_row .time_start {
+  margin-left: 5px;
 }
 #trading_socket_container .barrier_class input {
   width: 175px;
