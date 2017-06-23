@@ -35481,11 +35481,14 @@
 
 	'use strict';
 	
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+	
 	var moment = __webpack_require__(305);
 	var CookieStorage = __webpack_require__(428).CookieStorage;
 	var LocalStore = __webpack_require__(428).LocalStore;
 	var State = __webpack_require__(428).State;
 	var defaultRedirectUrl = __webpack_require__(430).defaultRedirectUrl;
+	var getPropertyValue = __webpack_require__(424).getPropertyValue;
 	var getLoginToken = __webpack_require__(438).getLoginToken;
 	var jpClient = __webpack_require__(432).jpClient;
 	var BinarySocket = __webpack_require__(435);
@@ -35526,6 +35529,8 @@
 	        set('email', Cookies.get('email'));
 	        set('loginid', Cookies.get('loginid'));
 	        set('residence', Cookies.get('residence'));
+	
+	        backwardCompatibility();
 	    };
 	
 	    var isLoggedIn = function isLoggedIn() {
@@ -35597,16 +35602,36 @@
 	        }
 	    };
 	
+	    var getAccountObj = function getAccountObj(client_loginid) {
+	        return getPropertyValue(JSON.parse(get('tokens') || '{}'), [client_loginid]) || {};
+	    };
+	
 	    var getToken = function getToken(client_loginid) {
-	        var token = void 0;
+	        return getPropertyValue(getAccountObj(client_loginid), ['token']);
+	    };
+	
+	    var setCurrency = function setCurrency(currency) {
 	        var tokens = get('tokens');
-	        if (client_loginid && tokens) {
-	            var tokens_obj = JSON.parse(tokens);
-	            if (tokens_obj.hasOwnProperty(client_loginid) && tokens_obj[client_loginid]) {
-	                token = tokens_obj[client_loginid].token;
-	            }
+	        var tokens_obj = tokens && tokens.length > 0 ? JSON.parse(tokens) : {};
+	        var account_obj = tokens_obj[get('loginid')];
+	        if (!account_obj.currency) {
+	            account_obj.currency = currency;
+	            set('tokens', JSON.stringify(tokens_obj));
 	        }
-	        return token;
+	        set('currency', currency);
+	    };
+	
+	    var backwardCompatibility = function backwardCompatibility() {
+	        // upgrade client.tokens structure to the new one (for clients which already are logged-in with the old version)
+	        var account_obj = getAccountObj(get('loginid'));
+	        if ((typeof account_obj === 'undefined' ? 'undefined' : _typeof(account_obj)) !== 'object') {
+	            var tokens = get('tokens');
+	            var tokens_obj = tokens && tokens.length > 0 ? JSON.parse(tokens) : {};
+	            Object.keys(tokens_obj).forEach(function (loginid) {
+	                tokens_obj[loginid] = { token: tokens_obj[loginid] };
+	            });
+	            set('tokens', JSON.stringify(tokens_obj));
+	        }
 	    };
 	
 	    var addToken = function addToken(client_loginid, token) {
@@ -35757,17 +35782,6 @@
 	        return group ? group.replace('\\', '_') : '';
 	    };
 	
-	    var setCurrency = function setCurrency(currency) {
-	        var tokens = get('tokens');
-	        var tokens_obj = tokens && tokens.length > 0 ? JSON.parse(tokens) : {};
-	        var loginid = tokens_obj[get('loginid')];
-	        if (!loginid.currency) {
-	            loginid.currency = currency;
-	            set('tokens', JSON.stringify(tokens_obj));
-	        }
-	        set('currency', currency);
-	    };
-	
 	    return {
 	        init: init,
 	        validateLoginid: validateLoginid,
@@ -35777,6 +35791,7 @@
 	        shouldAcceptTnc: shouldAcceptTnc,
 	        clear: clear,
 	        getToken: getToken,
+	        setCurrency: setCurrency,
 	        setCookie: setCookie,
 	        processNewAccount: processNewAccount,
 	        isLoggedIn: isLoggedIn,
@@ -35785,7 +35800,6 @@
 	        isFinancial: isFinancial,
 	        shouldCompleteTax: shouldCompleteTax,
 	        getMT5AccountType: getMT5AccountType,
-	        setCurrency: setCurrency,
 	
 	        canUpgradeGamingToFinancial: canUpgradeGamingToFinancial,
 	        canUpgradeVirtualToFinancial: canUpgradeVirtualToFinancial,
@@ -37534,9 +37548,12 @@
 	};
 	
 	var addComma = function addComma(num, decimal_points, is_crypto) {
-	    var number = (String(num || 0).replace(/,/g, '') * 1).toFixed(decimal_points || 2);
+	    var number = String(num || 0).replace(/,/g, '');
+	    if (typeof decimal_points !== 'undefined') {
+	        number = (+number).toFixed(decimal_points);
+	    }
 	    if (is_crypto) {
-	        number = parseFloat(number);
+	        number = parseFloat(+number);
 	    }
 	
 	    return number.toString().replace(/(^|[^\w.])(\d{4,})/g, function ($0, $1, $2) {
@@ -37576,6 +37593,7 @@
 	        return map_currency[currency];
 	    },
 	    isCryptocurrency: isCryptocurrency,
+	    addComma: addComma,
 	    getDecimalPlaces: getDecimalPlaces
 	};
 
@@ -37674,6 +37692,7 @@
 	var localize = __webpack_require__(436).localize;
 	var State = __webpack_require__(428).State;
 	var isEmptyObject = __webpack_require__(424).isEmptyObject;
+	var addComma = __webpack_require__(442).addComma;
 	var formatMoney = __webpack_require__(442).formatMoney;
 	
 	var ViewPopup = function () {
@@ -37770,10 +37789,11 @@
 	        var indicative_price = final_price && is_ended ? contract.sell_price || contract.bid_price : contract.bid_price ? contract.bid_price : null;
 	
 	        if (contract.barrier_count > 1) {
-	            containerSetText('trade_details_barrier', formatMoney(1, contract.high_barrier, 1), '', true);
-	            containerSetText('trade_details_barrier_low', formatMoney(1, contract.low_barrier, 1), '', true);
+	            containerSetText('trade_details_barrier', addComma(contract.high_barrier), '', true);
+	            containerSetText('trade_details_barrier_low', addComma(contract.low_barrier), '', true);
 	        } else if (contract.barrier) {
-	            containerSetText('trade_details_barrier', contract.entry_tick_time ? contract.contract_type === 'DIGITMATCH' ? localize('Equals') + ' ' + formatMoney(1, contract.barrier, 1) : contract.contract_type === 'DIGITDIFF' ? localize('Not') + ' ' + formatMoney(1, contract.barrier, 1) : formatMoney(1, contract.barrier, 1) : '-', '', true);
+	            var formatted_barrier = addComma(contract.barrier);
+	            containerSetText('trade_details_barrier', contract.entry_tick_time ? contract.contract_type === 'DIGITMATCH' ? localize('Equals') + ' ' + formatted_barrier : contract.contract_type === 'DIGITDIFF' ? localize('Not') + ' ' + formatted_barrier : formatted_barrier : '-', '', true);
 	        }
 	
 	        var current_spot = !is_ended ? contract.current_spot : user_sold ? '' : contract.exit_tick;
@@ -37799,7 +37819,7 @@
 	
 	        if (final_price) {
 	            profit_loss = final_price - contract.buy_price;
-	            percentage = formatMoney(contract.currency, profit_loss * 100 / contract.buy_price, 1);
+	            percentage = addComma(profit_loss * 100 / contract.buy_price, 2);
 	            containerSetText('trade_details_profit_loss', formatMoney(contract.currency, profit_loss) + '<span>(' + (percentage > 0 ? '+' : '') + percentage + '%)</span>', { class: profit_loss >= 0 ? 'profit' : 'loss' });
 	        } else {
 	            containerSetText('trade_details_profit_loss', '-', { class: 'loss' });
@@ -37810,7 +37830,7 @@
 	            containerSetText('trade_details_message', localize('Contract has not started yet'));
 	        } else {
 	            if (contract.entry_spot > 0) {
-	                containerSetText('trade_details_entry_spot', formatMoney(1, contract.entry_spot, 1));
+	                containerSetText('trade_details_entry_spot', addComma(contract.entry_spot));
 	            }
 	            containerSetText('trade_details_message', contract.validation_error ? contract.validation_error : '&nbsp;');
 	        }
@@ -38305,7 +38325,7 @@
 	var localize = __webpack_require__(436).localize;
 	var State = __webpack_require__(428).State;
 	var jpClient = __webpack_require__(432).jpClient;
-	var formatMoney = __webpack_require__(442).formatMoney;
+	var addComma = __webpack_require__(442).addComma;
 	__webpack_require__(463)(Highcharts);
 	
 	var Highchart = function () {
@@ -38647,10 +38667,10 @@
 	            var high_barrier = contract.high_barrier;
 	            var low_barrier = contract.low_barrier;
 	            if (barrier) {
-	                addPlotLine({ id: 'barrier', value: barrier * 1, label: localize('Barrier ([_1])', [formatMoney(1, barrier, 1)]), dashStyle: 'Dot' }, 'y');
+	                addPlotLine({ id: 'barrier', value: barrier * 1, label: localize('Barrier ([_1])', [addComma(barrier)]), dashStyle: 'Dot' }, 'y');
 	            } else if (high_barrier && low_barrier) {
-	                addPlotLine({ id: 'high_barrier', value: high_barrier * 1, label: localize('High Barrier ([_1])', [formatMoney(1, high_barrier, 1)]), dashStyle: 'Dot' }, 'y');
-	                addPlotLine({ id: 'low_barrier', value: low_barrier * 1, label: localize('Low Barrier ([_1])', [formatMoney(1, low_barrier, 1)]), dashStyle: 'Dot' }, 'y');
+	                addPlotLine({ id: 'high_barrier', value: high_barrier * 1, label: localize('High Barrier ([_1])', [addComma(high_barrier)]), dashStyle: 'Dot' }, 'y');
+	                addPlotLine({ id: 'low_barrier', value: low_barrier * 1, label: localize('Low Barrier ([_1])', [addComma(low_barrier)]), dashStyle: 'Dot' }, 'y');
 	            }
 	        }
 	    };
@@ -74126,9 +74146,9 @@
 	            }));
 	        }
 	
-	        // For verifying there are 2 digits after decimal
+	        // Verify number of decimal places doesn't exceed the allowed decimal places according to the currency
 	        var isStandardFloat = function isStandardFloat(value) {
-	            return !isNaN(value) && value % 1 !== 0 && (+parseFloat(value)).toFixed(10).replace(/^-?\d*\.?|0+$/g, '').length > 2;
+	            return !isNaN(value) && value % 1 !== 0 && (+parseFloat(value)).toFixed(10).replace(/^-?\d*\.?|0+$/g, '').length > getDecimalPlaces(Defaults.get('currency'));
 	        };
 	
 	        var init_logo = document.getElementById('trading_init_progress');
