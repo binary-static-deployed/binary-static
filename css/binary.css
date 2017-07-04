@@ -2385,7 +2385,7 @@ div.kineticjs-content {
   counter-reset: mycounter;
 }
 
-.payment-agent .faded {
+.faded {
   color: #c2c2c2;
   font-size: 1rem;
   margin-bottom: 0;
@@ -2570,6 +2570,10 @@ div.kineticjs-content {
 
 body #not_authenticated_financial ul.checked > li {
   list-style: none;
+}
+
+.ico-subscribe-content #portfolio th.details {
+  width: auto;
 }
 
 .timeline {
@@ -2944,6 +2948,7 @@ body #not_authenticated_financial ul.checked > li {
 }
 #trading_socket_container #contract_prices_container #contract_purchase_reference {
   margin-bottom: 10px;
+  padding: 7px;
 }
 #trading_socket_container #contract_prices_container #confirmation_error {
   padding: 20px;
@@ -2980,14 +2985,32 @@ body #not_authenticated_financial ul.checked > li {
   background-color: #fff;
   border: 2px solid #dedede;
   margin: 0 10px;
-  padding: 10px 5px;
+  padding: 10px;
   text-align: justify;
+  line-height: 1.4em;
 }
 #trading_socket_container #contract_prices_container #contract_purchase_profit_list, #trading_socket_container #contract_prices_container #contract_purchase_spots .row {
   padding: 3px 0;
   -webkit-flex-direction: row !important;
       -ms-flex-direction: row !important;
           flex-direction: row !important;
+}
+#trading_socket_container #contract_prices_container #contract_purchase_profit_list {
+  margin: 10px 0;
+}
+#trading_socket_container #contract_prices_container #contract_purchase_profit_list > div {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  line-height: 1.4em;
+  padding: 0 10px;
+}
+#trading_socket_container #contract_prices_container #contract_purchase_profit_list > div > p {
+  margin: auto 0 5px;
+  padding-top: 10px;
 }
 #trading_socket_container #contract_prices_container #contract_purchase_spots {
   height: 110px;
@@ -2998,9 +3021,6 @@ body #not_authenticated_financial ul.checked > li {
 }
 #trading_socket_container #contract_prices_container #contract_purchase_spots.lost {
   background-color: rgba(204, 0, 0, 0.1);
-}
-#trading_socket_container #contract_prices_container #contract_purchase_heading {
-  padding-bottom: 10px;
 }
 #trading_socket_container #contract_prices_container #contract_purchase_payout {
   border-right: 1px solid #dedede;
@@ -4357,8 +4377,7 @@ body.JA #mb_trading .payout-input .hint, body.JA #mb_trading .payout-input label
 
 /*Vietnamese Language */
 body.VI {
-  -webkit-font-kerning: none;
-          font-kerning: none;
+  font-kerning: none;
 }
 body.VI #legal-tab li.tm-li-2 {
   margin-right: 0 !important;
