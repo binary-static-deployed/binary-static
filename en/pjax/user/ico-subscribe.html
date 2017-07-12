@@ -9,49 +9,61 @@
 
   <h1>Binary Initial Coin Offering (ICO)</h1>
 
-<div id="msg_no_balance" class="invisible">
-    <p>Before subscribing to the ICO, you must first <a href='/en/cashier/forwardws.html#deposit'>deposit money into your account</a>.</p>
-</div>
-
 <div id="ico_subscribe" class="invisible">
     <p>Binary.com is offering up to <strong>10,000,000</strong> tokens in an open auction. You may place your bids using the form below. The minimum bid is <strong>USD 1</strong> or equivalent in other currency.</p>
-    <form id="frm_ico_bid">
-        <div class="gr-row form-row center-text-m ">
-        <div class="gr-4 gr-12-m">
-            <label for="duration">
-                Number of tokens
-            </label>
+    <div class="gr-row">
+        <div class="gr-7 gr-12-p gr-12-m">
+            <img class="responsive" src="/images/pages/ico/auction.svg" />
         </div>
-        <div class="gr-8 gr-12-m">
-                                <input type="text" id="duration" maxlength="30" />
-            
-        </div>
-    </div>
-        <div class="gr-row form-row center-text-m ">
-        <div class="gr-4 gr-12-m">
-            <label for="price">
-                Price/token:
-            </label>
-        </div>
-        <div class="gr-8 gr-12-m">
-                                <input type="text" id="price" maxlength="30" />
-            
-        </div>
-    </div>
-        <div class="gr-row ">
-                <div class="gr-8 gr-push-4 gr-12-m gr-push-0-m center-text-m">
-            
-        
-        <div id="form_error" class="error-msg invisible"></div>
-        
-        <div class="gr-padding-10">
-        
-            <button id="btn_submit" type="submit">Place bid</button>
-        </div>
-    
+        <div class="gr-5 gr-12-p gr-12-m border-gray border-radius">
+            <form id="frm_ico_bid">
+                <div class="gr-row fill-bg-color gr-padding-10 border-radius">
+                    <h3 class="gr-5 no-margin">Bid Binary ICO:</h3>
+                    <div class="gr-7 hint align-end">
+                        <span class="currency"></span> Balance:
+                        <strong class="topMenuBalance"></strong>
+                    </div>
                 </div>
-            </div>
-    </form>
+                <div class="gr-row center-text-m">
+                    <div class="gr-12 gr-padding-10">
+                        <label for="duration">Number of tokens</label>
+                    </div>
+                    <div class="gr-12">
+                        <div class="gr-12">
+                            <div class="gr-row">
+                                <input class="gr-9" type="text" id="duration" maxlength="30" autocomplete="off">
+                                <div class="fill-bg-color gr-3"><div class="center-text margin-top">Tokens</div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="gr-row center-text-m ">
+                    <div class="gr-12 gr-padding-10">
+                        <label for="price">Price/token:</label>
+                    </div>
+                    <div class="gr-12">
+                        <div class="gr-12">
+                            <div class="gr-row">
+                                <input class="gr-9" type="text" id="price" maxlength="30" autocomplete="off">
+                                <div class="fill-bg-color gr-3"><div class="center-text margin-top currency">-</div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="gr-12 align-end hint">Total: <span id="total"></span></div>
+                <div class="center-text">
+                    <div id="form_error" class="error-msg invisible"></div>
+                    <div class="gr-padding-10">
+                        <button id="btn_submit" type="submit">Place bid</button>
+                        <div class="gr-row invisible hint" id="topup_wrapper">
+                            <div class="gr-8 align-start error-msg">You have insufficient funds in your account.</div>
+                            <div class="gr-4 align-end"><a href="/en/cashier/forwardws.html#deposit">top up in cashier</a></div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
     <div id="ico_bids">
         <h1>Binary ICO Auction Bids</h1>
         

@@ -1,6 +1,6 @@
 <div id="content" class="ico-subscribe-content">
             <div id="page_info" style="display:none;">
-                <title>Subscribe to ICO | Binary.com</title>
+                <title>Abonnieren Sie ICO | Binary.com</title>
                 <div id="content_class">ico-subscribe-content</div>
             </div>
             <div class="container">
@@ -9,51 +9,63 @@
 
   <h1>Binary Initial Coin Offering (ICO)</h1>
 
-<div id="msg_no_balance" class="invisible">
-    <p>Before subscribing to the ICO, you must first <a href='/de/cashier/forwardws.html#deposit'>deposit money into your account</a>.</p>
-</div>
-
 <div id="ico_subscribe" class="invisible">
-    <p>Binary.com is offering up to <strong>10,000,000</strong> tokens in an open auction. You may place your bids using the form below. The minimum bid is <strong>USD 1</strong> or equivalent in other currency.</p>
-    <form id="frm_ico_bid">
-        <div class="gr-row form-row center-text-m ">
-        <div class="gr-4 gr-12-m">
-            <label for="duration">
-                Number of tokens
-            </label>
+    <p>Binary.com bietet bis zu <strong>10.000.000</strong> Token in einer offenen Auktion an. Sie können Ihre Gebote mit dem unten stehenden Formular platzieren. Das Mindestgebot beträgt <strong>1 USD</strong> oder den Gegenwert in einer anderer Währung.</p>
+    <div class="gr-row">
+        <div class="gr-7 gr-12-p gr-12-m">
+            <img class="responsive" src="/images/pages/ico/auction.svg" />
         </div>
-        <div class="gr-8 gr-12-m">
-                                <input type="text" id="duration" maxlength="30" />
-            
-        </div>
-    </div>
-        <div class="gr-row form-row center-text-m ">
-        <div class="gr-4 gr-12-m">
-            <label for="price">
-                Price/token:
-            </label>
-        </div>
-        <div class="gr-8 gr-12-m">
-                                <input type="text" id="price" maxlength="30" />
-            
-        </div>
-    </div>
-        <div class="gr-row ">
-                <div class="gr-8 gr-push-4 gr-12-m gr-push-0-m center-text-m">
-            
-        
-        <div id="form_error" class="error-msg invisible"></div>
-        
-        <div class="gr-padding-10">
-        
-            <button id="btn_submit" type="submit">Place bid</button>
-        </div>
-    
+        <div class="gr-5 gr-12-p gr-12-m border-gray border-radius">
+            <form id="frm_ico_bid">
+                <div class="gr-row fill-bg-color gr-padding-10 border-radius">
+                    <h3 class="gr-5 no-margin">Binary ICO anbieten:</h3>
+                    <div class="gr-7 hint align-end">
+                        <span class="currency"></span> Guthaben:
+                        <strong class="topMenuBalance"></strong>
+                    </div>
                 </div>
-            </div>
-    </form>
+                <div class="gr-row center-text-m">
+                    <div class="gr-12 gr-padding-10">
+                        <label for="duration">Anzahl von Token</label>
+                    </div>
+                    <div class="gr-12">
+                        <div class="gr-12">
+                            <div class="gr-row">
+                                <input class="gr-9" type="text" id="duration" maxlength="30" autocomplete="off">
+                                <div class="fill-bg-color gr-3"><div class="center-text margin-top">Token</div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="gr-row center-text-m ">
+                    <div class="gr-12 gr-padding-10">
+                        <label for="price">Preis/Token:</label>
+                    </div>
+                    <div class="gr-12">
+                        <div class="gr-12">
+                            <div class="gr-row">
+                                <input class="gr-9" type="text" id="price" maxlength="30" autocomplete="off">
+                                <div class="fill-bg-color gr-3"><div class="center-text margin-top currency">-</div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="gr-12 align-end hint">Gesamt: <span id="total"></span></div>
+                <div class="center-text">
+                    <div id="form_error" class="error-msg invisible"></div>
+                    <div class="gr-padding-10">
+                        <button id="btn_submit" type="submit">Gebot abgeben</button>
+                        <div class="gr-row invisible hint" id="topup_wrapper">
+                            <div class="gr-8 align-start error-msg">Sie haben kein ausreichendes Guthaben auf Ihrem Konto.</div>
+                            <div class="gr-4 align-end"><a href="/de/cashier/forwardws.html#deposit">in Kasse auffüllen</a></div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
     <div id="ico_bids">
-        <h1>Binary ICO Auction Bids</h1>
+        <h1>Binary ICO Auktionsgebote</h1>
         
 
         <div id="portfolio">
@@ -63,7 +75,7 @@
 
             <div id="portfolio-content" class="invisible">
                 <div id="portfolio-no-contract">
-                    <p>You have no open bids.</p>
+                    <p>Sie haben keine offenen Angebote.</p>
                 </div>
 
                 <div class="table-container">
@@ -75,11 +87,11 @@
                     
                         <th class="ref">Ref.</th>
                     
-                        <th class="payout nowrap">No. of Tokens</th>
+                        <th class="payout nowrap">Nr. der Token</th>
                     
-                        <th class="bid">Bid Price Per Token</th>
+                        <th class="bid">Gebotspreis pro Token</th>
                     
-                        <th class="purchase">Total Bid Price</th>
+                        <th class="purchase">Gesamtgebot Preis</th>
                     
                         <th class="details">Status</th>
                     
@@ -101,8 +113,8 @@
     <div class="faded">
         <p>Anmerkungen:</p>
         <ol>
-            <li>Bid cancellation can be done with a 2% cancellation fee.</li>
-            <li>Due to US regulations, US investors can only claim their tokens after 1 year.</li>
+            <li>Eine Gebots-Stornierung kann mit einer 2 % Stornogebühr vorgenommen werden.</li>
+            <li>Aufgrund der US-Vorschriften können US-Investoren ihre Token nur nach 1 Jahr beanspruchen.</li>
         </ol>
     </div>
 </div>
