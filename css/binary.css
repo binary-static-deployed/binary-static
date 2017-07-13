@@ -1505,6 +1505,7 @@ div.kineticjs-content {
   border: 1px solid #ccc;
 }
 .home-jp-content #mb_trading .contract-type {
+  background-repeat: no-repeat;
   padding: 45px 26px 0;
 }
 .home-jp-content .align-self-center {
@@ -2298,6 +2299,7 @@ div.kineticjs-content {
 
 #trading_socket_container_beta #tab_portfolio-content #portfolio [data-balloon], #mb-trading-wrapper #tab_portfolio-content #portfolio [data-balloon] {
   cursor: initial;
+  border-bottom: none;
 }
 #trading_socket_container_beta #tab_portfolio-content #portfolio [data-balloon]:after, #trading_socket_container_beta #tab_portfolio-content #portfolio [data-balloon]:before, #mb-trading-wrapper #tab_portfolio-content #portfolio [data-balloon]:after, #mb-trading-wrapper #tab_portfolio-content #portfolio [data-balloon]:before {
   display: none !important;
