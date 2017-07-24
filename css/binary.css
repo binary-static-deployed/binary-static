@@ -295,6 +295,14 @@ _:-ms-fullscreen, :root #content-holder {
   padding: 0;
 }
 
+.border-light-gray {
+  border: 1px solid #f2f2f2;
+}
+
+.border-gray {
+  border: 1px solid #dedede;
+}
+
 .border-dark-gray {
   border: 1px solid #c2c2c2;
 }
@@ -685,6 +693,18 @@ body #topbar #select_language {
 }
 #header #main-logout #all-accounts .main-account {
   margin-top: 3px;
+}
+#header #main-logout #all-accounts .login-id-list {
+  background-color: #f2f2f2;
+}
+#header #main-logout #all-accounts .create_new_account {
+  font-weight: 300;
+  color: #fff;
+  background: url("data:image/svg+xml;charset=utf8,%3Csvg width='20px' height='20px' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg id='Symbols' stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Cg id='ic-create-account'%3E%3Cg id='Group-2'%3E%3Ccircle id='Oval-2' stroke='%23FFFFFF' cx='10' cy='10' r='9.5'%3E%3C/circle%3E%3Cpath d='M10.5,9.5 L10.5,5.5 C10.5,5.22385763 10.2761424,5 10,5 C9.72385763,5 9.5,5.22385763 9.5,5.5 L9.5,5.5 L9.5,9.5 L5.5,9.5 C5.22385763,9.5 5,9.72385763 5,10 C5,10.2761424 5.22385763,10.5 5.5,10.5 L9.5,10.5 L9.5,14.5 C9.5,14.7761424 9.72385763,15 10,15 C10.2761424,15 10.5,14.7761424 10.5,14.5 L10.5,10.5 L14.5,10.5 C14.7761424,10.5 15,10.2761424 15,10 C15,9.72385763 14.7761424,9.5 14.5,9.5 L10.5,9.5 Z' id='Combined-Shape' fill='%23FFFFFF'%3E%3C/path%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E") no-repeat 5px 8px;
+  background-color: #e98024;
+}
+#header #main-logout #all-accounts .create_new_account li.topMenuAccounts:hover {
+  background-color: initial;
 }
 
 #main-menu {
@@ -2666,9 +2686,6 @@ body #not_authenticated_financial ul.checked > li {
   list-style: none;
 }
 
-.ico-subscribe-content .border-gray {
-  border: 1px solid #dedede;
-}
 .ico-subscribe-content .border-radius {
   border-radius: 3px;
 }
@@ -2701,6 +2718,43 @@ body #not_authenticated_financial ul.checked > li {
 }
 .liquidity-solutions-content .white-bg {
   background-color: #fff;
+}
+
+.accounts-content .table-container table {
+  border: 1px solid #f2f2f2;
+}
+.accounts-content .table-container table th, .accounts-content .table-container table td {
+  text-align: center !important;
+  background-color: #fff;
+  padding: 20px;
+  border-bottom: 1px solid #f2f2f2;
+}
+.accounts-content #note .hint {
+  margin-bottom: 3px;
+}
+.accounts-content #accounts_wrapper #no_new_accounts_wrapper {
+  color: #c2c2c2;
+}
+
+.set-currency-content #currency_list > div {
+  border: 1px solid #f2f2f2;
+  padding: 15px;
+  background-image: url("../images/pages/set_currency/tick-normal.svg");
+  background-repeat: no-repeat;
+  background-position: 115px 4px;
+}
+.set-currency-content #currency_list > div:hover {
+  cursor: pointer;
+}
+.set-currency-content #currency_list > div.selected {
+  border: 1px solid #000;
+  background-image: url("../images/pages/set_currency/tick-selected.svg");
+}
+.set-currency-content #currency_list .currency_wrapper > div:last-child {
+  margin-top: 10px;
+}
+.set-currency-content .faded {
+  font-size: 0.75614rem;
 }
 
 .timeline {
