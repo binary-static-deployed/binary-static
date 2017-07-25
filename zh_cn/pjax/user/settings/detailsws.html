@@ -13,6 +13,10 @@
     继续执行之前，请填写完整税务信息。
 </p>
 
+<p class="notice-msg center-text invisible" id="account_opening_reason_notice">
+    Please set your account opening reason before proceeding.
+</p>
+
 <form class="form gr-padding-10 invisible" id="frmPersonalDetails">
     <fieldset>
         <legend>详情</legend>
@@ -70,7 +74,7 @@
             
         </div>
     </div>
-        <div class="gr-row form-row center-text-m ">
+        <div class="gr-row form-row center-text-m " id="row_country">
         <div class="gr-4 gr-12-m">
             <label>
                 居住国
@@ -84,7 +88,7 @@
             
         </div>
     </div>
-        <div class="gr-row form-row center-text-m ">
+        <div class="gr-row form-row center-text-m " id="row_email">
         <div class="gr-4 gr-12-m">
             <label>
                 电子邮件地址
@@ -95,6 +99,36 @@
                                                     <strong id="lbl_email" ></strong>
                         
                     </span>
+            
+        </div>
+    </div>
+        <div class="gr-row form-row center-text-m invisible" id="row_lbl_account_opening_reason">
+        <div class="gr-4 gr-12-m">
+            <label>
+                Account Opening Reason
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <span class="text-display">
+                                                    <span id="lbl_account_opening_reason" ></span>
+                    </span>
+            
+        </div>
+    </div>
+        <div class="gr-row form-row center-text-m invisible" id="row_account_opening_reason">
+        <div class="gr-4 gr-12-m">
+            <label for="account_opening_reason">
+                开立账户的原因
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <select id="account_opening_reason" class="form_input " > 
+        <option value="">请选择</option>
+        <option value="Speculative">投机</option>
+        <option value="Income Earning">赚取收入</option>
+        <option value="Assets Saving">资产保存</option>
+        <option value="Hedging">Hedging</option>
+                        </select>
             
         </div>
     </div>

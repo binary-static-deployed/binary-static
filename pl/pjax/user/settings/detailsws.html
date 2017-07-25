@@ -13,6 +13,10 @@
     Aby przejść dalej, proszę podać dane podatkowe.
 </p>
 
+<p class="notice-msg center-text invisible" id="account_opening_reason_notice">
+    Please set your account opening reason before proceeding.
+</p>
+
 <form class="form gr-padding-10 invisible" id="frmPersonalDetails">
     <fieldset>
         <legend>Szczegóły</legend>
@@ -70,7 +74,7 @@
             
         </div>
     </div>
-        <div class="gr-row form-row center-text-m ">
+        <div class="gr-row form-row center-text-m " id="row_country">
         <div class="gr-4 gr-12-m">
             <label>
                 Kraj zamieszkania
@@ -84,7 +88,7 @@
             
         </div>
     </div>
-        <div class="gr-row form-row center-text-m ">
+        <div class="gr-row form-row center-text-m " id="row_email">
         <div class="gr-4 gr-12-m">
             <label>
                 Adres e-mail
@@ -95,6 +99,36 @@
                                                     <strong id="lbl_email" ></strong>
                         
                     </span>
+            
+        </div>
+    </div>
+        <div class="gr-row form-row center-text-m invisible" id="row_lbl_account_opening_reason">
+        <div class="gr-4 gr-12-m">
+            <label>
+                Account Opening Reason
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <span class="text-display">
+                                                    <span id="lbl_account_opening_reason" ></span>
+                    </span>
+            
+        </div>
+    </div>
+        <div class="gr-row form-row center-text-m invisible" id="row_account_opening_reason">
+        <div class="gr-4 gr-12-m">
+            <label for="account_opening_reason">
+                Powód otwarcia konta
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <select id="account_opening_reason" class="form_input " > 
+        <option value="">Wybierz</option>
+        <option value="Speculative">Spekulacja</option>
+        <option value="Income Earning">Uzyskanie dochodu</option>
+        <option value="Assets Saving">Oszczędność zasobów</option>
+        <option value="Hedging">Hedging</option>
+                        </select>
             
         </div>
     </div>
