@@ -452,6 +452,44 @@
 
     <div class="gr-row form-row center-text-m ">
         <div class="gr-4 gr-12-m">
+            <label for="income_source">
+                収入源
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <select id="income_source" class="form_input " > 
+        <option value="">選択して下さい</option>
+        <option value="Salaried Employee">サラリーマン</option>
+        <option value="Self-Employed">自営業</option>
+        <option value="Investments &amp; Dividends">投資と&amp;配当</option>
+        <option value="Pension">年金</option>
+        <option value="Other">その他</option>
+                        </select>
+            
+        </div>
+    </div>
+
+    <div class="gr-row form-row center-text-m ">
+        <div class="gr-4 gr-12-m">
+            <label for="employment_status">
+                Employment Status
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <select id="employment_status" class="form_input " > 
+        <option value="">選択して下さい</option>
+        <option value="Employed">Employed</option>
+        <option value="Pensioner">Pensioner</option>
+        <option value="Self-Employed">自営業</option>
+        <option value="Student">学生</option>
+        <option value="Unemployed">無職</option>
+                        </select>
+            
+        </div>
+    </div>
+
+    <div class="gr-row form-row center-text-m ">
+        <div class="gr-4 gr-12-m">
             <label for="employment_industry">
                 雇用産業
             </label>
@@ -499,6 +537,28 @@
 
     <div class="gr-row form-row center-text-m ">
         <div class="gr-4 gr-12-m">
+            <label for="source_of_wealth">
+                Source of Wealth
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <select id="source_of_wealth" class="form_input " > 
+        <option value="">選択して下さい</option>
+        <option value="Accumulation of Income/Savings">Accumulation of Income/Savings</option>
+        <option value="Cash Business">Cash Business</option>
+        <option value="Company Ownership">Company Ownership</option>
+        <option value="Divorce Settlement">Divorce Settlement</option>
+        <option value="Inheritance">Inheritance</option>
+        <option value="Investment Income">Investment Income</option>
+        <option value="Sale of Property">Sale of Property</option>
+        <option value="Other">その他</option>
+                        </select>
+            
+        </div>
+    </div>
+
+    <div class="gr-row form-row center-text-m ">
+        <div class="gr-4 gr-12-m">
             <label for="education_level">
                 能力レベル
             </label>
@@ -509,25 +569,6 @@
         <option value="Primary">主要</option>
         <option value="Secondary">第二</option>
         <option value="Tertiary">第三の</option>
-                        </select>
-            
-        </div>
-    </div>
-
-    <div class="gr-row form-row center-text-m ">
-        <div class="gr-4 gr-12-m">
-            <label for="income_source">
-                収入源
-            </label>
-        </div>
-        <div class="gr-8 gr-12-m">
-                                <select id="income_source" class="form_input " > 
-        <option value="">選択して下さい</option>
-        <option value="Salaried Employee">サラリーマン</option>
-        <option value="Self-Employed">自営業</option>
-        <option value="Investments &amp; Dividends">投資と&amp;配当</option>
-        <option value="Pension">年金</option>
-        <option value="Other">その他</option>
                         </select>
             
         </div>
@@ -601,7 +642,12 @@
 
     <div class="gr-padding-10 gr-12">
         <input id="not_pep" type="checkbox" />
-        <label for="not_pep">私は、犯罪収益移動防止法に規定されている外国人PEPsに該当しないことを宣言いたします。また、該当することになった場合は、当社カスタマーサポートまですみやかに申し出ることに同意します。</label>
+        <label for="not_pep">
+            私は、犯罪収益移動防止法に規定されている外国人PEPsに該当しないことを宣言いたします。また、該当することになった場合は、当社カスタマーサポートまですみやかに申し出ることに同意します。
+            <span data-balloon-length="xlarge" data-balloon="A Politically Exposed Person (PEP) is an individual who is or has been entrusted with a prominent public function including his/her immediate family members or persons known to be close associates of such persons, but does not include middle ranking or more junior officials. Such individuals include Heads of State, Ministers, Parliamentary Secretaries, Members of Parliament, Judges, Ambassadors, Senior Government Officials, High Ranking Officers in the Armed Forces, Audit Committees of the boards of central banks, and Directors of state-owned corporations. The “immediate family members” of the above examples will also be considered as PEP, and these include their spouses/partners, parents, and children. Additionally, “persons known to be close associates” of PEPs include their business partners, will also be considered as such. As a general rule, a person considered to be a PEP and who has ceased to be entrusted with a prominent public function for a period of at least twelve months no longer qualifies as a PEP.">
+                What is this?
+            </span>
+        </label>
     </div>
 
     </fieldset>

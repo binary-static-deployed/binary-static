@@ -57,14 +57,14 @@
         <link rel="alternate" href="/zh_cn/new_account/maltainvestws.html" hreflang="ZH_CN" />   
         <link rel="alternate" href="/zh_tw/new_account/maltainvestws.html" hreflang="ZH_TW" />   
 
-         <link rel="stylesheet" href="/css/binary.min.css?0upk2hyc" />
-         <link rel="stylesheet" href="https://style.binary.com/binary.css?0upk2hyc" />
+         <link rel="stylesheet" href="/css/binary.min.css?afb6njxs" />
+         <link rel="stylesheet" href="https://style.binary.com/binary.css?afb6njxs" />
         
-         <script src='/js/texts/en.js?0upk2hyc'></script>
-         <script src='/js/manifest.js?0upk2hyc'></script>
+         <script src='/js/texts/en.js?afb6njxs'></script>
+         <script src='/js/manifest.js?afb6njxs'></script>
          <script src='/js/vendor.min.js?56549ef6'></script>
-         <script src='/js/binary.min.js?0upk2hyc'></script>
-         <script src='https://style.binary.com/binary.js?0upk2hyc'></script>
+         <script src='/js/binary.min.js?afb6njxs'></script>
+         <script src='https://style.binary.com/binary.js?afb6njxs'></script>
         
     </head>
 
@@ -850,6 +850,44 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     <div class="gr-row form-row center-text-m ">
         <div class="gr-4 gr-12-m">
+            <label for="income_source">
+                Income Source
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <select id="income_source" class="form_input " > 
+        <option value="">Please select</option>
+        <option value="Salaried Employee">Salaried Employee</option>
+        <option value="Self-Employed">Self-Employed</option>
+        <option value="Investments &amp; Dividends">Investments &amp; Dividends</option>
+        <option value="Pension">Pension</option>
+        <option value="Other">Other</option>
+                        </select>
+            
+        </div>
+    </div>
+
+    <div class="gr-row form-row center-text-m ">
+        <div class="gr-4 gr-12-m">
+            <label for="employment_status">
+                Employment Status
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <select id="employment_status" class="form_input " > 
+        <option value="">Please select</option>
+        <option value="Employed">Employed</option>
+        <option value="Pensioner">Pensioner</option>
+        <option value="Self-Employed">Self-Employed</option>
+        <option value="Student">Student</option>
+        <option value="Unemployed">Unemployed</option>
+                        </select>
+            
+        </div>
+    </div>
+
+    <div class="gr-row form-row center-text-m ">
+        <div class="gr-4 gr-12-m">
             <label for="employment_industry">
                 Industry of Employment
             </label>
@@ -897,6 +935,28 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     <div class="gr-row form-row center-text-m ">
         <div class="gr-4 gr-12-m">
+            <label for="source_of_wealth">
+                Source of Wealth
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <select id="source_of_wealth" class="form_input " > 
+        <option value="">Please select</option>
+        <option value="Accumulation of Income/Savings">Accumulation of Income/Savings</option>
+        <option value="Cash Business">Cash Business</option>
+        <option value="Company Ownership">Company Ownership</option>
+        <option value="Divorce Settlement">Divorce Settlement</option>
+        <option value="Inheritance">Inheritance</option>
+        <option value="Investment Income">Investment Income</option>
+        <option value="Sale of Property">Sale of Property</option>
+        <option value="Other">Other</option>
+                        </select>
+            
+        </div>
+    </div>
+
+    <div class="gr-row form-row center-text-m ">
+        <div class="gr-4 gr-12-m">
             <label for="education_level">
                 Level of Education
             </label>
@@ -907,25 +967,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <option value="Primary">Primary</option>
         <option value="Secondary">Secondary</option>
         <option value="Tertiary">Tertiary</option>
-                        </select>
-            
-        </div>
-    </div>
-
-    <div class="gr-row form-row center-text-m ">
-        <div class="gr-4 gr-12-m">
-            <label for="income_source">
-                Income Source
-            </label>
-        </div>
-        <div class="gr-8 gr-12-m">
-                                <select id="income_source" class="form_input " > 
-        <option value="">Please select</option>
-        <option value="Salaried Employee">Salaried Employee</option>
-        <option value="Self-Employed">Self-Employed</option>
-        <option value="Investments &amp; Dividends">Investments &amp; Dividends</option>
-        <option value="Pension">Pension</option>
-        <option value="Other">Other</option>
                         </select>
             
         </div>
@@ -999,7 +1040,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     <div class="gr-padding-10 gr-12">
         <input id="not_pep" type="checkbox" />
-        <label for="not_pep">I acknowledge that I am not a politically exposed person (PEP).</label>
+        <label for="not_pep">
+            I acknowledge that I am not a politically exposed person (PEP).
+            <span data-balloon-length="xlarge" data-balloon="A Politically Exposed Person (PEP) is an individual who is or has been entrusted with a prominent public function including his/her immediate family members or persons known to be close associates of such persons, but does not include middle ranking or more junior officials. Such individuals include Heads of State, Ministers, Parliamentary Secretaries, Members of Parliament, Judges, Ambassadors, Senior Government Officials, High Ranking Officers in the Armed Forces, Audit Committees of the boards of central banks, and Directors of state-owned corporations. The “immediate family members” of the above examples will also be considered as PEP, and these include their spouses/partners, parents, and children. Additionally, “persons known to be close associates” of PEPs include their business partners, will also be considered as such. As a general rule, a person considered to be a PEP and who has ceased to be entrusted with a prominent public function for a period of at least twelve months no longer qualifies as a PEP.">
+                What is this?
+            </span>
+        </label>
     </div>
 
     </fieldset>
