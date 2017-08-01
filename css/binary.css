@@ -2631,11 +2631,11 @@ div.kineticjs-content {
 .contact-content #cs_telephone_number {
   width: 100%;
 }
-.contact-content .border-bottom {
+.contact-content #company_addresses .border-bottom {
   min-height: 200px;
 }
 @media screen and (max-width: 480px) {
-  .contact-content .border-bottom {
+  .contact-content #company_addresses .border-bottom {
     min-height: 130px;
   }
 }
@@ -3350,9 +3350,6 @@ body #not_authenticated_financial ul.checked > li {
   width: 175px;
   margin-right: 5px;
   margin-bottom: 5px;
-}
-#trading_socket_container #expiry_time {
-  width: 80px;
 }
 #trading_socket_container #expiry_date, #trading_socket_container #expiry_time {
   font-size: 1rem;
