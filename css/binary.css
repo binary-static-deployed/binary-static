@@ -4787,6 +4787,11 @@ body.ZH_TW .google-play-badge {
 }
 
 /* media queries */
+@media screen and (max-width: 1199px) {
+  body .buorg {
+    font-size: 0.86957rem;
+  }
+}
 @media screen and (max-width: 959px) {
   #header ul#menu-top.smaller-font a {
     font-size: 0.75614rem;
