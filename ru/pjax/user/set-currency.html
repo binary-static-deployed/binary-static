@@ -35,19 +35,43 @@
             <p>Вы успешно открыли счёт!</p>
         </div>
 
-        <div class=" gr-padding-10">
+        <div class=" gr-parent gr-padding-10">
     <div class="separator-line "></div>
 </div>
 
-        <p>Пожалуйста, выберите валюту для данного счёта:</p>
-        <p class="invisible notice-msg hint gr-5 gr-12-m gr-centered" id="currency_notice">
-            Факт: Выбранная Вами валюта (<span id="chosen_currency"></span>) — <span id="chosen_currency_type"></span>.
-        </p>
+        <div class="invisible" id="has_currency">
+            <div>
+                <a class="button-secondary" href="/ru/cashier/forwardws.html#deposit"><span>Deposit page</span></a>
+                <a class="button-secondary gr-gutter-left" href="/ru/trading.html"><span>Trade page</span></a>
+            </div>
+            <p class="hint">or go to <a href="/ru/user/accounts.html">Accounts page</a></p>
+        </div>
+
+        <div class="invisible select_currency">
+            <p>Пожалуйста, выберите валюту для данного счёта:</p>
+        </div>
     </div>
 
-    <div class="center-text">
-        <form class="gr-7 gr-12-m gr-centered" id="frm_set_currency">
-            <div class="gr-row gr-row-align-center gr-padding-20 gr-parent" id="currency_list"></div>
+    <div class="center-text invisible select_currency">
+        <form id="frm_set_currency">
+            
+            <div class="section-divider gr-padding-20 gr-row invisible" id="fiat_currencies">
+                    <div class="align-self-center border-bottom-light-gray"></div>
+                    <div class="faded">Фидуциарные деньги</div>
+                    <div class="align-self-center border-bottom-light-gray"></div>
+                </div>
+                <div class="gr-5 gr-12-m gr-centered">
+                    <div class="gr-row gr-row-align-center gr-padding-20 gr-parent currency_list" id="fiat_currency_list"></div>
+                </div>
+            <div class="section-divider gr-padding-20 gr-row invisible" id="crypto_currencies">
+                    <div class="align-self-center border-bottom-light-gray"></div>
+                    <div class="faded">Криптовалюта</div>
+                    <div class="align-self-center border-bottom-light-gray"></div>
+                </div>
+                <div class="gr-5 gr-12-m gr-centered">
+                    <div class="gr-row gr-row-align-center gr-padding-20 gr-parent currency_list" id="crypto_currency_list"></div>
+                </div>
+
             <p class="invisible error-msg"></p>
             <button type="submit">Подтвердить</button>
         </form>

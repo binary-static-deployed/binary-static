@@ -35,19 +35,43 @@
             <p>Sie haben Ihr Konto erfolgreich erstellt!</p>
         </div>
 
-        <div class=" gr-padding-10">
+        <div class=" gr-parent gr-padding-10">
     <div class="separator-line "></div>
 </div>
 
-        <p>Bitte wählen Sie die Währung für dieses Konto:</p>
-        <p class="invisible notice-msg hint gr-5 gr-12-m gr-centered" id="currency_notice">
-            Fakt ist: Die Währung (<span id="chosen_currency"></span>), die Sie gewählt haben ist ein <span id="chosen_currency_type"></span>.
-        </p>
+        <div class="invisible" id="has_currency">
+            <div>
+                <a class="button-secondary" href="/de/cashier/forwardws.html#deposit"><span>Deposit page</span></a>
+                <a class="button-secondary gr-gutter-left" href="/de/trading.html"><span>Trade page</span></a>
+            </div>
+            <p class="hint">or go to <a href="/de/user/accounts.html">Accounts page</a></p>
+        </div>
+
+        <div class="invisible select_currency">
+            <p>Bitte wählen Sie die Währung für dieses Konto:</p>
+        </div>
     </div>
 
-    <div class="center-text">
-        <form class="gr-7 gr-12-m gr-centered" id="frm_set_currency">
-            <div class="gr-row gr-row-align-center gr-padding-20 gr-parent" id="currency_list"></div>
+    <div class="center-text invisible select_currency">
+        <form id="frm_set_currency">
+            
+            <div class="section-divider gr-padding-20 gr-row invisible" id="fiat_currencies">
+                    <div class="align-self-center border-bottom-light-gray"></div>
+                    <div class="faded">Fiat-Währung</div>
+                    <div class="align-self-center border-bottom-light-gray"></div>
+                </div>
+                <div class="gr-5 gr-12-m gr-centered">
+                    <div class="gr-row gr-row-align-center gr-padding-20 gr-parent currency_list" id="fiat_currency_list"></div>
+                </div>
+            <div class="section-divider gr-padding-20 gr-row invisible" id="crypto_currencies">
+                    <div class="align-self-center border-bottom-light-gray"></div>
+                    <div class="faded">Kryptowährung</div>
+                    <div class="align-self-center border-bottom-light-gray"></div>
+                </div>
+                <div class="gr-5 gr-12-m gr-centered">
+                    <div class="gr-row gr-row-align-center gr-padding-20 gr-parent currency_list" id="crypto_currency_list"></div>
+                </div>
+
             <p class="invisible error-msg"></p>
             <button type="submit">Bestätigen</button>
         </form>

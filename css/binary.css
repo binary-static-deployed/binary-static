@@ -2258,7 +2258,7 @@ div.kineticjs-content {
 #portfolio td.indicative.no_resale {
   color: #c2c2c2;
 }
-#portfolio td.indicative.no_resale span {
+#portfolio td.indicative.no_resale span.message {
   font-size: 0.65752rem;
   display: block;
   margin-top: -11px;
@@ -2447,7 +2447,7 @@ div.kineticjs-content {
 .inpage_popup_container .inpage_popup_content_box #sell_content_wrapper #sell_details_table #trade_details_profit_loss {
   font-weight: bold;
 }
-.inpage_popup_container .inpage_popup_content_box #sell_content_wrapper #sell_details_table #trade_details_profit_loss span {
+.inpage_popup_container .inpage_popup_content_box #sell_content_wrapper #sell_details_table #trade_details_profit_loss span.percent {
   font-size: 0.65752rem;
   padding-left: 7px;
   font-weight: normal;
@@ -2736,25 +2736,18 @@ body #not_authenticated_financial ul.checked > li {
   color: #c2c2c2;
 }
 
-.set-currency-content #currency_list > div {
-  border: 1px solid #f2f2f2;
+.set-currency-content .currency_list > div {
   padding: 15px;
   background-image: url("../images/pages/set_currency/tick-normal.svg");
   background-repeat: no-repeat;
-  background-position: 115px 4px;
+  background-position: center bottom;
+  line-height: 30px;
 }
-.set-currency-content #currency_list > div:hover {
+.set-currency-content .currency_list > div:hover {
   cursor: pointer;
 }
-.set-currency-content #currency_list > div.selected {
-  border: 1px solid #000;
+.set-currency-content .currency_list > div.selected {
   background-image: url("../images/pages/set_currency/tick-selected.svg");
-}
-.set-currency-content #currency_list .currency_wrapper > div:last-child {
-  margin-top: 10px;
-}
-.set-currency-content .faded {
-  font-size: 0.75614rem;
 }
 
 .timeline {
@@ -3313,6 +3306,9 @@ body #not_authenticated_financial ul.checked > li {
       -ms-flex-align: center;
           align-items: center;
   margin-bottom: 10px;
+}
+#trading_socket_container #contract_prices_container .price_container .price_wrapper .amount_wrapper .amount_wrapper_div, #trading_socket_container #contract_prices_container .price_container .price_wrapper .amount_wrapper .amount_wrapper_div .contract_amount, #trading_socket_container #contract_prices_container .price_container .price_wrapper .amount_wrapper .amount_wrapper_div .contract_payout {
+  vertical-align: middle;
 }
 #trading_socket_container #contract_prices_container .price_container .price_wrapper .amount_wrapper .amount_wrapper_div div {
   -webkit-flex-grow: 1;
