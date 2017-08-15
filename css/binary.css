@@ -2472,17 +2472,17 @@ div.kineticjs-content {
   padding: 3px 10px;
 }
 
-.about-us .border-right-top {
-  height: 200px;
+.box-inlay-borders .border-right-top {
+  min-height: 200px;
 }
-.about-us .border-right-bottom {
-  height: 300px;
+.box-inlay-borders .border-right-bottom {
+  min-height: 300px;
 }
-.about-us .border-right-top, .about-us .border-right-bottom {
+.box-inlay-borders .border-right-top, .box-inlay-borders .border-right-bottom {
   border-right: 1px solid #dedede;
 }
 @media screen and (max-width: 480px) {
-  .about-us .border-bottom, .about-us .border-right-top, .about-us .border-right-bottom {
+  .box-inlay-borders .border-bottom, .box-inlay-borders .border-right-top, .box-inlay-borders .border-right-bottom {
     border: none;
   }
 }
