@@ -1496,12 +1496,13 @@ div.kineticjs-content {
 }
 
 .home-jp-content #banner {
-  background: url("../images/pages/home-jp/banner.png") 0 0/cover no-repeat;
+  background: url("../images/pages/home-jp/home-jp-banner.png") 0 0/cover no-repeat;
   opacity: 0.3;
   z-index: -1;
   position: absolute;
   height: 100%;
   width: 100%;
+  background-position: center;
 }
 .home-jp-content .relative {
   position: relative;
@@ -4865,6 +4866,10 @@ body.ZH_TW .google-play-badge {
   #header ul#menu-top.smaller-font a {
     font-size: 0.7561436673rem;
   }
+
+  .home-jp-content #banner {
+    background-position-x: 0;
+  }
 }
 @media screen and (max-width: 768px) {
   #sell_popup_container {
@@ -4903,6 +4908,10 @@ body.ZH_TW .google-play-badge {
 
   #end-note {
     display: none;
+  }
+
+  .home-jp-content #banner {
+    background-position-x: 15%;
   }
 }
 @media print {
