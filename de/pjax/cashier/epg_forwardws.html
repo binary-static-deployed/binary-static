@@ -12,7 +12,7 @@
 
     <div id="messages" class="invisible">
         <p id="cashier_locked_message">Ihre Kasse wurde auf Ihren Antrag hin gesperrt - um Sie wieder zu entsperren, bitte <a href="/de/user/security/cashier_passwordws.html">hier</a>anklicken.</p>
-        <p id="check_email_message">Bitte sehen Sie zur zusätzlichen Sicherheit bei Ihren E-Mails nach, um den Verfikationstoken abzurufen.</p>
+        <p id="check_email_message">Please check your email to complete the process.</p>
         <p id="personal_details_message">
             Bei der Bestätigung Ihrer personenbezogenen Daten ist ein Problem aufgetreten. Bitte aktualisieren Sie diese Felder [_1] <a href="/de/user/settings/detailsws.html">hier</a>.
             <br /> Sollten Sie Hilfe benötigen, können Sie sich gerne mit unserer <a href="/de/contact.html">Kundenbetreuung</a> in Verbindung setzen.
@@ -28,6 +28,7 @@
             <span id="age_error">Das Konto benötigt einen Altersnachweis, bitte kontaktieren Sie die <a href="/de/contact.html">Kundenbetreuung</a>, um weitere Informationen zu erhalten.</span>
             <span id="tnc_error">Bitte <a href="/de/user/tnc_approvalws.html">akzeptieren Sie die aktualisierten Geschäftsbedingungen</a>.</span>
             <span id="limits_error">Bitte legen Sie Ihr <a href="/de/user/security/self_exclusionws.html"> 30-Tage-Umsatzlimit</a> fest, um auf die Kasse zugreifen zu können.</span>
+            <span id="token_error">Verification code is wrong. Please use the link sent to your email.</span>
             <span id="custom_error">Es tut uns leid, bei der Bearbeitung Ihrer Anfrage ist ein Fehler aufgetreten.</span>
         </p>
     </div>
@@ -48,33 +49,5 @@
                 <button class="button" type="submit">Fortfahren</button>
             </div>
         </div>
-    </form>
-
-    <form id="frm_withdraw" class="invisible">
-        <fieldset>
-        
-        
-            <div class="gr-row form-row center-text-m ">
-        <div class="gr-4 gr-12-m">
-            <label for="verification_code">
-                Verifikationstoken
-            </label>
-        </div>
-        <div class="gr-8 gr-12-m">
-                                <input type="text" id="verification_code" maxlength="30" autocomplete="off" />
-            <div class="hint">Bitte überprüfen Sie für den Wert dieses Token Ihren E-Mail Eingang</div>
-        </div>
-    </div>
-        
-    </fieldset>
-        <div class="center-text ">
-            
-        
-        <div class="gr-padding-10">
-        
-            <button id="btn_submit" type="submit">Absenden</button>
-        </div>
-    
-            </div>
     </form>
 </div>

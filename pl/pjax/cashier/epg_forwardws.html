@@ -12,7 +12,7 @@
 
     <div id="messages" class="invisible">
         <p id="cashier_locked_message">Sekcja Kasjer została zablokowana na Twoją prośbę - jeśli chcesz ją odblokować, prosimy kliknąć <a href="/pl/user/security/cashier_passwordws.html">tutaj</a>.</p>
-        <p id="check_email_message">Ze względów bezpieczeństwa token weryfikujący został wysłany na Twój adres e-mail. Sprawdź swoją skrzynkę odbiorczą.</p>
+        <p id="check_email_message">Please check your email to complete the process.</p>
         <p id="personal_details_message">
             Nie udało nam się zweryfikować Twoich danych osobowych. Zaktualizuj <a href="/pl/user/settings/detailsws.html">tutaj</a>.
             <br /> Jeśli potrzebujesz pomocy, skontaktuj się z naszym <a href="/pl/contact.html">działem obsługi klienta</a>.
@@ -28,6 +28,7 @@
             <span id="age_error">W przypadku tego konta wymagana jest weryfikacja wieku, proszę skontaktować się z <a href="/pl/contact.html">działem obsługi klienta</a>, aby uzyskać więcej informacji.</span>
             <span id="tnc_error">Proszę <a href="/pl/user/tnc_approvalws.html">zaakceptować zaktualizowany regulamin</a>.</span>
             <span id="limits_error">Aby uzyskać dostęp do sekcji Kasjer, proszę ustawić <a href="/pl/user/security/self_exclusionws.html">30-dniowy limit obrotów</a>.</span>
+            <span id="token_error">Verification code is wrong. Please use the link sent to your email.</span>
             <span id="custom_error">Przepraszamy, podczas przetwarzania Twojego żądania wystąpił błąd.</span>
         </p>
     </div>
@@ -48,33 +49,5 @@
                 <button class="button" type="submit">Kontynuuj</button>
             </div>
         </div>
-    </form>
-
-    <form id="frm_withdraw" class="invisible">
-        <fieldset>
-        
-        
-            <div class="gr-row form-row center-text-m ">
-        <div class="gr-4 gr-12-m">
-            <label for="verification_code">
-                Token weryfikacyjny
-            </label>
-        </div>
-        <div class="gr-8 gr-12-m">
-                                <input type="text" id="verification_code" maxlength="30" autocomplete="off" />
-            <div class="hint">Informacja na temat tego tokenu została wysłana na Twój adres e-mail</div>
-        </div>
-    </div>
-        
-    </fieldset>
-        <div class="center-text ">
-            
-        
-        <div class="gr-padding-10">
-        
-            <button id="btn_submit" type="submit">Prześlij</button>
-        </div>
-    
-            </div>
     </form>
 </div>

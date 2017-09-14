@@ -12,7 +12,7 @@
 
     <div id="messages" class="invisible">
         <p id="cashier_locked_message">Your cashier is locked as per your request - to unlock it, please click <a href="/es/user/security/cashier_passwordws.html">here</a>.</p>
-        <p id="check_email_message">Para mayor seguridad, por favor revise su correo electrónico para obtener el token de verificación.</p>
+        <p id="check_email_message">Please check your email to complete the process.</p>
         <p id="personal_details_message">
             There was a problem validating your personal details. Please update your [_1] <a href="/es/user/settings/detailsws.html">here</a>.
             <br /> If you need assistance feel free to contact our <a href="/es/contact.html">Customer Support</a>.
@@ -28,6 +28,7 @@
             <span id="age_error">Account needs age verification, please contact <a href="/es/contact.html">customer support</a> for more information.</span>
             <span id="tnc_error">Please <a href="/es/user/tnc_approvalws.html">accept the updated Terms and Conditions</a>.</span>
             <span id="limits_error">Please set your <a href="/es/user/security/self_exclusionws.html">30-day turnover limit</a> to access the cashier.</span>
+            <span id="token_error">Verification code is wrong. Please use the link sent to your email.</span>
             <span id="custom_error">Lo sentimos, ha ocurrido un error mientras se procesaba su petición.</span>
         </p>
     </div>
@@ -48,33 +49,5 @@
                 <button class="button" type="submit">Seguir</button>
             </div>
         </div>
-    </form>
-
-    <form id="frm_withdraw" class="invisible">
-        <fieldset>
-        
-        
-            <div class="gr-row form-row center-text-m ">
-        <div class="gr-4 gr-12-m">
-            <label for="verification_code">
-                Token de verificación
-            </label>
-        </div>
-        <div class="gr-8 gr-12-m">
-                                <input type="text" id="verification_code" maxlength="30" autocomplete="off" />
-            <div class="hint">Por favor verifique su correo electrónico para el valor de este token</div>
-        </div>
-    </div>
-        
-    </fieldset>
-        <div class="center-text ">
-            
-        
-        <div class="gr-padding-10">
-        
-            <button id="btn_submit" type="submit">Enviar</button>
-        </div>
-    
-            </div>
     </form>
 </div>

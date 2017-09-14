@@ -57,14 +57,14 @@
         <link rel="alternate" href="/zh_cn/cashier/epg_forwardws.html" hreflang="ZH_CN" />   
         <link rel="alternate" href="/zh_tw/cashier/epg_forwardws.html" hreflang="ZH_TW" />   
 
-         <link rel="stylesheet" href="/css/binary.min.css?4n6pim4m" />
-         <link rel="stylesheet" href="https://style.binary.com/binary.css?4n6pim4m" />
+         <link rel="stylesheet" href="/css/binary.min.css?98rnak3z" />
+         <link rel="stylesheet" href="https://style.binary.com/binary.css?98rnak3z" />
         
-         <script src='/js/texts/fr.js?4n6pim4m'></script>
-         <script src='/js/manifest.js?4n6pim4m'></script>
-         <script src='/js/vendor.min.js?a08c6b8b'></script>
-         <script src='/js/binary.min.js?4n6pim4m'></script>
-         <script src='https://style.binary.com/binary.js?4n6pim4m'></script>
+         <script src='/js/texts/fr.js?98rnak3z'></script>
+         <script src='/js/manifest.js?98rnak3z'></script>
+         <script src='/js/vendor.min.js?f4fe6651'></script>
+         <script src='/js/binary.min.js?98rnak3z'></script>
+         <script src='https://style.binary.com/binary.js?98rnak3z'></script>
         
     </head>
 
@@ -410,7 +410,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     <div id="messages" class="invisible">
         <p id="cashier_locked_message">Votre caisse est verrouillée conformément à votre demande - si vous souhaitez la déverrouiller, veuillez cliquer <a href="/fr/user/security/cashier_passwordws.html">ici</a>.</p>
-        <p id="check_email_message">Pour une sécurité accrue, veuillez vérifier votre adresse e-mail pour obtenir votre jeton de vérification.</p>
+        <p id="check_email_message">Please check your email to complete the process.</p>
         <p id="personal_details_message">
             Un problème est survenu lors de la validation de vos informations personnelles. Veuillez mettre à jour vos [_1] <a href="/fr/user/settings/detailsws.html">ici</a>.
             <br /> Si vous avez besoin d'aide, n'hésitez pas à contacter notre <a href="/fr/contact.html">Service Clientèle</a>.
@@ -426,6 +426,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <span id="age_error">Ce compte requiert une vérification de l'âge, veuillez contacter le <a href="/fr/contact.html">service clientèle</a> pour obtenir des informations supplémentaires.</span>
             <span id="tnc_error">Veuillez <a href="/fr/user/tnc_approvalws.html">accepter la dernière version des conditions générales</a>.</span>
             <span id="limits_error">Veuillez régler votre <a href="/fr/user/security/self_exclusionws.html"> limite de chiffre d’affaires de 30 jours</a> pour accéder à la caisse.</span>
+            <span id="token_error">Verification code is wrong. Please use the link sent to your email.</span>
             <span id="custom_error">Désolé, une erreur s'est produite pendant le traitement de votre demande.</span>
         </p>
     </div>
@@ -446,34 +447,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <button class="button" type="submit">Continuer</button>
             </div>
         </div>
-    </form>
-
-    <form id="frm_withdraw" class="invisible">
-        <fieldset>
-        
-        
-            <div class="gr-row form-row center-text-m ">
-        <div class="gr-4 gr-12-m">
-            <label for="verification_code">
-                Jeton de vérification
-            </label>
-        </div>
-        <div class="gr-8 gr-12-m">
-                                <input type="text" id="verification_code" maxlength="30" autocomplete="off" />
-            <div class="hint">Veuillez consulter vos e-mails pour obtenir ce jeton.</div>
-        </div>
-    </div>
-        
-    </fieldset>
-        <div class="center-text ">
-            
-        
-        <div class="gr-padding-10">
-        
-            <button id="btn_submit" type="submit">Envoyer</button>
-        </div>
-    
-            </div>
     </form>
 </div>
 

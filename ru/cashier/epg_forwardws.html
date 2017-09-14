@@ -57,14 +57,14 @@
         <link rel="alternate" href="/zh_cn/cashier/epg_forwardws.html" hreflang="ZH_CN" />   
         <link rel="alternate" href="/zh_tw/cashier/epg_forwardws.html" hreflang="ZH_TW" />   
 
-         <link rel="stylesheet" href="/css/binary.min.css?4n6pim4m" />
-         <link rel="stylesheet" href="https://style.binary.com/binary.css?4n6pim4m" />
+         <link rel="stylesheet" href="/css/binary.min.css?98rnak3z" />
+         <link rel="stylesheet" href="https://style.binary.com/binary.css?98rnak3z" />
         
-         <script src='/js/texts/ru.js?4n6pim4m'></script>
-         <script src='/js/manifest.js?4n6pim4m'></script>
-         <script src='/js/vendor.min.js?a08c6b8b'></script>
-         <script src='/js/binary.min.js?4n6pim4m'></script>
-         <script src='https://style.binary.com/binary.js?4n6pim4m'></script>
+         <script src='/js/texts/ru.js?98rnak3z'></script>
+         <script src='/js/manifest.js?98rnak3z'></script>
+         <script src='/js/vendor.min.js?f4fe6651'></script>
+         <script src='/js/binary.min.js?98rnak3z'></script>
+         <script src='https://style.binary.com/binary.js?98rnak3z'></script>
         
     </head>
 
@@ -410,7 +410,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     <div id="messages" class="invisible">
         <p id="cashier_locked_message">Ваша касса закрыта по Вашему запросу - для открытия, пожалуйста, нажмите <a href="/ru/user/security/cashier_passwordws.html">сюда</a>.</p>
-        <p id="check_email_message">Для дополнительной безопасности, пожалуйста, проверьте электронную почту, на которую должен прийти проверочный ключ.</p>
+        <p id="check_email_message">Please check your email to complete the process.</p>
         <p id="personal_details_message">
             Возникла проблема с подтверждением Ваших личных данных. Пожалуйста, обновите [_1] <a href="/ru/user/settings/detailsws.html">здесь</a>.
             <br /> Если Вам нужна помощь, пожалуйста, обратитесь в <a href="/ru/contact.html">службу поддержки</a>.
@@ -426,6 +426,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <span id="age_error">Необходима проверка возраста. Пожалуйста, свяжитесь с отделом <a href="/ru/contact.html">поддержки клиентов</a> для получения дополнительной информации.</span>
             <span id="tnc_error">Пожалуйста, <a href="/ru/user/tnc_approvalws.html">примите Правила и условия</a>.</span>
             <span id="limits_error">Пожалуйста, укажите <a href="/ru/user/security/self_exclusionws.html">30-дневный лимит на объём покупок</a>, чтобы получить доступ к кассе.</span>
+            <span id="token_error">Verification code is wrong. Please use the link sent to your email.</span>
             <span id="custom_error">Извините, при обработке Вашего запроса произошла ошибка.</span>
         </p>
     </div>
@@ -446,34 +447,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <button class="button" type="submit">Далее</button>
             </div>
         </div>
-    </form>
-
-    <form id="frm_withdraw" class="invisible">
-        <fieldset>
-        
-        
-            <div class="gr-row form-row center-text-m ">
-        <div class="gr-4 gr-12-m">
-            <label for="verification_code">
-                Проверочный ключ
-            </label>
-        </div>
-        <div class="gr-8 gr-12-m">
-                                <input type="text" id="verification_code" maxlength="30" autocomplete="off" />
-            <div class="hint">Пожалуйста, проверьте свой email; Вам должен прийти ключ</div>
-        </div>
-    </div>
-        
-    </fieldset>
-        <div class="center-text ">
-            
-        
-        <div class="gr-padding-10">
-        
-            <button id="btn_submit" type="submit">Подтвердить</button>
-        </div>
-    
-            </div>
     </form>
 </div>
 

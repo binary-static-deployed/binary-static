@@ -12,7 +12,7 @@
 
     <div id="messages" class="invisible">
         <p id="cashier_locked_message">Bagian kasir akun Anda telah di batalkan - untuk membukanya, silahkan klik <a href="/id/user/security/cashier_passwordws.html">disini</a>.</p>
-        <p id="check_email_message">Untuk keamanan tambahan, cek email Anda untuk mengambil token verifikasi.</p>
+        <p id="check_email_message">Please check your email to complete the process.</p>
         <p id="personal_details_message">
             Terdapat masalah pada saat memvalidasi data pribadi Anda. Silahkan perbarui [_1] Anda <a href="/id/user/settings/detailsws.html">disini</a>.
             <br /> Jika Anda membutuhkan bantuan jangan ragu untuk menghubungi <a href="/id/contact.html">Customer Support</a> kami.
@@ -28,6 +28,7 @@
             <span id="age_error">Akun perlu melengkapi pembuktian umur, silahkan hubungi <a href="/id/contact.html">customer support</a> untuk informasi lebih lanjut.</span>
             <span id="tnc_error">Silahkan <a href="/id/user/tnc_approvalws.html">setujui Syarat dan Ketentuan terbaru</a>.</span>
             <span id="limits_error">Silahkan susun <a href="/id/user/security/self_exclusionws.html">batasan turnover 30-hari Anda</a> untuk mengakses kasir.</span>
+            <span id="token_error">Verification code is wrong. Please use the link sent to your email.</span>
             <span id="custom_error">Maaf, error terjadi ketika memproses permohonan Anda.</span>
         </p>
     </div>
@@ -48,33 +49,5 @@
                 <button class="button" type="submit">Lanjutkan</button>
             </div>
         </div>
-    </form>
-
-    <form id="frm_withdraw" class="invisible">
-        <fieldset>
-        
-        
-            <div class="gr-row form-row center-text-m ">
-        <div class="gr-4 gr-12-m">
-            <label for="verification_code">
-                Token verifikasi
-            </label>
-        </div>
-        <div class="gr-8 gr-12-m">
-                                <input type="text" id="verification_code" maxlength="30" autocomplete="off" />
-            <div class="hint">Silahkan cek email Anda untuk melihat token ini</div>
-        </div>
-    </div>
-        
-    </fieldset>
-        <div class="center-text ">
-            
-        
-        <div class="gr-padding-10">
-        
-            <button id="btn_submit" type="submit">Mengajukan</button>
-        </div>
-    
-            </div>
     </form>
 </div>

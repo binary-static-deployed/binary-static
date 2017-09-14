@@ -12,7 +12,7 @@
 
     <div id="messages" class="invisible">
         <p id="cashier_locked_message">根据您的请求，您的收银台已被锁定 - 如需解除锁定，请点击<a href="/zh_cn/user/security/cashier_passwordws.html">此处</a>。</p>
-        <p id="check_email_message">为提高安全保障，请查看邮件并提取验证令牌。</p>
+        <p id="check_email_message">Please check your email to complete the process.</p>
         <p id="personal_details_message">
             您的个人资料验证出了问题。请<a href="/zh_cn/user/settings/detailsws.html">在此</a>更新您的[_1]。
             <br /> 如果您需要帮助，请联系我们的<a href="/zh_cn/contact.html">客服部</a>。
@@ -28,6 +28,7 @@
             <span id="age_error">账户需要通过年龄验证。欲知详情，请联系<a href="/zh_cn/contact.html">客服部</a>。</span>
             <span id="tnc_error">请<a href="/zh_cn/user/tnc_approvalws.html">接受更新条款和条件</a>。</span>
             <span id="limits_error">请设置<a href="/zh_cn/user/security/self_exclusionws.html">30天交易限额</a>，以访问收银台。</span>
+            <span id="token_error">Verification code is wrong. Please use the link sent to your email.</span>
             <span id="custom_error">对不起，您的请求处理发生错误。</span>
         </p>
     </div>
@@ -48,33 +49,5 @@
                 <button class="button" type="submit">执行</button>
             </div>
         </div>
-    </form>
-
-    <form id="frm_withdraw" class="invisible">
-        <fieldset>
-        
-        
-            <div class="gr-row form-row center-text-m ">
-        <div class="gr-4 gr-12-m">
-            <label for="verification_code">
-                验证令牌
-            </label>
-        </div>
-        <div class="gr-8 gr-12-m">
-                                <input type="text" id="verification_code" maxlength="30" autocomplete="off" />
-            <div class="hint">请检查您的电邮领取此令牌号</div>
-        </div>
-    </div>
-        
-    </fieldset>
-        <div class="center-text ">
-            
-        
-        <div class="gr-padding-10">
-        
-            <button id="btn_submit" type="submit">提交</button>
-        </div>
-    
-            </div>
     </form>
 </div>
