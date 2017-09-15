@@ -2,14 +2,14 @@
 <html>
     <head>
         <style id="antiClickjack">body{display:none !important;}</style>
-        <script type="text/javascript">
-            if (self === top) {
-                var antiClickjack = document.getElementById("antiClickjack");
-                antiClickjack.parentNode.removeChild(antiClickjack);
-            } else {
-                top.location = self.location;
-            }
-        </script>
+<script type="text/javascript">
+    if (self === top) {
+        var antiClickjack = document.getElementById("antiClickjack");
+        antiClickjack.parentNode.removeChild(antiClickjack);
+    } else {
+        top.location = self.location;
+    }
+</script>
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
         <meta http-equiv="Content-Language" content="PT" />
         <meta name="description" content=" A Binary.com oferece a todos uma forma fácil de participar nos mercados financeiros. Negocie com apenas $1 nas principais moedas, ações, índices e matérias-primas." />
@@ -45,14 +45,14 @@
 
          
 
-         <link rel="stylesheet" href="/css/binary.min.css?98rnak3z" />
-         <link rel="stylesheet" href="https://style.binary.com/binary.css?98rnak3z" />
+         <link rel="stylesheet" href="/css/binary.min.css?6louqm14" />
+         <link rel="stylesheet" href="https://style.binary.com/binary.css?6louqm14" />
         
-         <script src='/js/texts/pt.js?98rnak3z'></script>
-         <script src='/js/manifest.js?98rnak3z'></script>
+         <script src='/js/texts/pt.js?6louqm14'></script>
+         <script src='/js/manifest.js?6louqm14'></script>
          <script src='/js/vendor.min.js?f4fe6651'></script>
-         <script src='/js/binary.min.js?98rnak3z'></script>
-         <script src='https://style.binary.com/binary.js?98rnak3z'></script>
+         <script src='/js/binary.min.js?6louqm14'></script>
+         <script src='https://style.binary.com/binary.js?6louqm14'></script>
         
     </head>
 
@@ -401,7 +401,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <form id="frm_verify_email">
     <div class="gr-row gr-row-align-center">
         <div class="signup-box gr-8 gr-10-p gr-12-m gr-no-gutter secondary-bg-color">
-            <div class="gr-row gr-padding-10">
+            <div class="gr-row gr-padding-10" id="signup">
                 <div class="gr-7 gr-10-m gr-centered">
                     <input autocomplete="off" name="email" id="email" maxlength="50" placeholder="Insira o seu endereço de e-mail" />
                 </div>
@@ -410,6 +410,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </div>
                 <span class="gr-12 gr-padding-10 error-msg hint color-white center-text invisible" id="signup_error"></span>
             </div>
+            
         </div>
     </div>
 </form>
