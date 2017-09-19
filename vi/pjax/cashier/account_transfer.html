@@ -1,17 +1,17 @@
 <div id="content" class="account_transfer-content">
             <div id="page_info" style="display:none;">
-                <title>Chuyển Tài khoản | Binary.com</title>
+                <title>Transfer Between Accounts | Binary.com</title>
                 <div id="content_class">account_transfer-content</div>
             </div>
             <div class="container">
 
 
 
-  <h1>Chuyển Tài khoản</h1>
+  <h1>Transfer Between Accounts</h1>
 
 <div class="invisible" id="client_message">
     <p class="center-text notice-msg">
-        Chuyển giữa hai tài khoản không khả dụng. <a href="/vi/cashier/forwardws.html#deposit"> vui lòng gửi tiền </a> vào tài khoản.
+        <span class="invisible" id="no_account">Fund transfers between accounts are unavailable.</span> <span class="invisible" id="no_balance">Please <a href="/vi/cashier/forwardws.html#deposit">deposit</a> to your account.</span>
     </p>
 </div>
 
@@ -20,39 +20,54 @@
 </div>
 
 <div class="invisible" id="success_form">
-    <p>Chuyển khoản thành công. Số dư mới của bạn là:</p>
+    <p>Your fund transfer is successful. Your new balances are:</p>
     <div class="gr-padding-10 gr-row table-body">
         <div class="gr-1"></div>
         <div class="gr-2">
-            <span id="loginid_1"></span>
+            <span id="from_loginid"></span>
         </div>
         <div class="gr-5">
-            <span id="balance_1"></span>
+            <span id="from_balance"></span>
         </div>
     </div>
     <div class="gr-padding-10 gr-row table-body">
         <div class="gr-1"></div>
         <div class="gr-2">
-            <span id="loginid_2"></span>
+            <span id="to_loginid"></span>
         </div>
         <div class="gr-5">
-            <span id="balance_2"></span>
+            <span id="to_balance"></span>
         </div>
     </div>
 </div>
 
 <form class="invisible" id="frm_account_transfer">
+    <p>Transfer funds between your real money accounts.</p>
+
     <fieldset>
         <legend>Chi tiết</legend>
         
         <div class="gr-row form-row center-text-m ">
         <div class="gr-4 gr-12-m">
-            <label for="transfer">
-                Chuyển khoản
+            <label>
+                Chuyển từ
             </label>
         </div>
         <div class="gr-8 gr-12-m">
-                                <select id="transfer" class="form_input " >                     </select>
+                                <span class="text-display">
+                                                    <span id="lbl_transfer_from" ></span>
+                    </span>
+            
+        </div>
+    </div>
+        <div class="gr-row form-row center-text-m ">
+        <div class="gr-4 gr-12-m">
+            <label for="transfer_to">
+                Chuyển tới
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <select id="transfer_to" class="form_input " >                     </select>
             
         </div>
     </div>
@@ -65,7 +80,7 @@
         <div class="gr-8 gr-12-m">
                                 
             <label id="currency"></label>
-            <input id="amount" name="amount" type="text" maxlength="20" />
+            <input id="amount" name="amount" type="text" maxlength="20" autocomplete="off" />
         
             
         </div>
@@ -87,3 +102,12 @@
                 </div>
             </div>
 </form>
+
+<div class="hint invisible" id="transfer_fee">
+    <p>Note: You may only transfer funds between a fiat account and a cryptocurrency account.</p>
+    <p>Transfer funds between your fiat and cryptocurrency accounts for a fee:</p>
+    <ul class="bullet">
+        <li>From fiat to cryptocurrency: 1% transfer fee</li>
+        <li>From cryptocurrency to fiat: 0.5% transfer fee</li>
+    </ul>
+</div>
