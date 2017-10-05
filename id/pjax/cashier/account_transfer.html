@@ -11,7 +11,8 @@
 
 <div class="invisible" id="client_message">
     <p class="center-text notice-msg">
-        <span class="invisible" id="no_account">Transfer dana antar akun tidak tersedia.</span> <span class="invisible" id="no_balance">Silahkan <a href="/id/cashier/forwardws.html#deposit">deposit</a> kedalam akun Anda.</span>
+        <span class="invisible" id="no_account">Transfer dana antar akun tidak tersedia.</span> <span class="invisible" id="not_enough_balance">Jumlah minimum untuk menggunakan fasilitas transfer antar akun adalah <span id="min_required_amount"></span>.</span> <span class="invisible" id="no_balance">Silahkan <a href="/id/cashier/forwardws.html#deposit">deposit</a> kedalam akun Anda.</span>
+        <span class="invisible" id="limit_reached">Anda telah mencapai batas pencairan Anda.</span>
     </p>
 </div>
 
@@ -81,6 +82,7 @@
                                 
             <label id="currency"></label>
             <input id="amount" name="amount" type="text" maxlength="20" autocomplete="off" />
+            <div class="hint" id="range_hint"></div>
         
             
         </div>

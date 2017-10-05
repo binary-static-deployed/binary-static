@@ -11,7 +11,8 @@
 
 <div class="invisible" id="client_message">
     <p class="center-text notice-msg">
-        <span class="invisible" id="no_account">口座振替はご利用いただけません。</span> <span class="invisible" id="no_balance">ご口座に<a href="/ja/cashier/forwardws.html#deposit">d入金</a>してください。</span>
+        <span class="invisible" id="no_account">口座振替はご利用いただけません。</span> <span class="invisible" id="not_enough_balance">ご選択いただい決済方法での最小金額は<span id="min_required_amount"></span>です。</span> <span class="invisible" id="no_balance">ご口座に<a href="/ja/cashier/forwardws.html#deposit">d入金</a>してください。</span>
+        <span class="invisible" id="limit_reached">You have reached your withdrawal limit.</span>
     </p>
 </div>
 
@@ -81,6 +82,7 @@
                                 
             <label id="currency"></label>
             <input id="amount" name="amount" type="text" maxlength="20" autocomplete="off" />
+            <div class="hint" id="range_hint"></div>
         
             
         </div>

@@ -57,14 +57,14 @@
         <link rel="alternate" href="/zh_cn/cashier/account_transfer.html" hreflang="ZH_CN" />   
         <link rel="alternate" href="/zh_tw/cashier/account_transfer.html" hreflang="ZH_TW" />   
 
-         <link rel="stylesheet" href="/css/binary.min.css?bh0nzve2" />
-         <link rel="stylesheet" href="https://style.binary.com/binary.css?bh0nzve2" />
+         <link rel="stylesheet" href="/css/binary.min.css?lxzvqdzf" />
+         <link rel="stylesheet" href="https://style.binary.com/binary.css?lxzvqdzf" />
         
-         <script src='/js/texts/es.js?bh0nzve2'></script>
-         <script src='/js/manifest.js?bh0nzve2'></script>
-         <script src='/js/vendor.min.js?357979d4'></script>
-         <script src='/js/binary.min.js?bh0nzve2'></script>
-         <script src='https://style.binary.com/binary.js?bh0nzve2'></script>
+         <script src='/js/texts/es.js?lxzvqdzf'></script>
+         <script src='/js/manifest.js?lxzvqdzf'></script>
+         <script src='/js/vendor.min.js?97947cf8'></script>
+         <script src='/js/binary.min.js?lxzvqdzf'></script>
+         <script src='https://style.binary.com/binary.js?lxzvqdzf'></script>
         
     </head>
 
@@ -412,7 +412,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <div class="invisible" id="client_message">
     <p class="center-text notice-msg">
-        <span class="invisible" id="no_account">Fund transfers between accounts are unavailable.</span> <span class="invisible" id="no_balance">Please <a href="/es/cashier/forwardws.html#deposit">deposit</a> to your account.</span>
+        <span class="invisible" id="no_account">Fund transfers between accounts are unavailable.</span> <span class="invisible" id="not_enough_balance">The minimum required amount for using the account transfer facility is <span id="min_required_amount"></span>.</span> <span class="invisible" id="no_balance">Please <a href="/es/cashier/forwardws.html#deposit">deposit</a> to your account.</span>
+        <span class="invisible" id="limit_reached">You have reached your withdrawal limit.</span>
     </p>
 </div>
 
@@ -482,6 +483,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                 
             <label id="currency"></label>
             <input id="amount" name="amount" type="text" maxlength="20" autocomplete="off" />
+            <div class="hint" id="range_hint"></div>
         
             
         </div>
@@ -556,17 +558,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </a>
 </li>
         
-            <li class="ja-hide">
+            <li>
     
-    <a href="/es/careers.html" >
-     Carreras 
+    <a href="/es/binary-in-numbers.html" >
+     Binary in Numbers 
     </a>
 </li>
         
             <li class="ja-hide">
     
-    <a href="https://binarycom.statuspage.io"  target="_blank">
-     Estado de la red 
+    <a href="/es/careers.html" >
+     Carreras 
     </a>
 </li>
         
@@ -752,6 +754,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     
     <a href="/es/resources/asset_indexws.html" >
      Índice de activos 
+    </a>
+</li>
+        
+            <li class="ja-hide">
+    
+    <a href="https://binarycom.statuspage.io"  target="_blank">
+     Estado de la red 
     </a>
 </li>
         

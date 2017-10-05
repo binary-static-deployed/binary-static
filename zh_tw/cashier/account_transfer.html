@@ -57,14 +57,14 @@
         <link rel="alternate" href="/vi/cashier/account_transfer.html" hreflang="VI" />     
         <link rel="alternate" href="/zh_cn/cashier/account_transfer.html" hreflang="ZH_CN" />     
 
-         <link rel="stylesheet" href="/css/binary.min.css?bh0nzve2" />
-         <link rel="stylesheet" href="https://style.binary.com/binary.css?bh0nzve2" />
+         <link rel="stylesheet" href="/css/binary.min.css?lxzvqdzf" />
+         <link rel="stylesheet" href="https://style.binary.com/binary.css?lxzvqdzf" />
         
-         <script src='/js/texts/zh_tw.js?bh0nzve2'></script>
-         <script src='/js/manifest.js?bh0nzve2'></script>
-         <script src='/js/vendor.min.js?357979d4'></script>
-         <script src='/js/binary.min.js?bh0nzve2'></script>
-         <script src='https://style.binary.com/binary.js?bh0nzve2'></script>
+         <script src='/js/texts/zh_tw.js?lxzvqdzf'></script>
+         <script src='/js/manifest.js?lxzvqdzf'></script>
+         <script src='/js/vendor.min.js?97947cf8'></script>
+         <script src='/js/binary.min.js?lxzvqdzf'></script>
+         <script src='https://style.binary.com/binary.js?lxzvqdzf'></script>
         
     </head>
 
@@ -412,7 +412,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <div class="invisible" id="client_message">
     <p class="center-text notice-msg">
-        <span class="invisible" id="no_account">帳戶之間不可轉帳。</span> <span class="invisible" id="no_balance">請 <a href="/zh_tw/cashier/forwardws.html#deposit">存</a>入您的帳戶。</span>
+        <span class="invisible" id="no_account">帳戶之間不可轉帳。</span> <span class="invisible" id="not_enough_balance">使用帳戶資金轉移設施的最小金額為 <span id="min_required_amount"></span>。</span> <span class="invisible" id="no_balance">請 <a href="/zh_tw/cashier/forwardws.html#deposit">存</a>入您的帳戶。</span>
+        <span class="invisible" id="limit_reached">您已達最大提款限額。</span>
     </p>
 </div>
 
@@ -421,7 +422,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 
 <div class="invisible" id="success_form">
-    <p>Your fund transfer is successful. Your new balances are:</p>
+    <p>您已成功轉帳。最新餘額是:</p>
     <div class="gr-padding-10 gr-row table-body">
         <div class="gr-1"></div>
         <div class="gr-2">
@@ -482,6 +483,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                 
             <label id="currency"></label>
             <input id="amount" name="amount" type="text" maxlength="20" autocomplete="off" />
+            <div class="hint" id="range_hint"></div>
         
             
         </div>
@@ -556,17 +558,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </a>
 </li>
         
-            <li class="ja-hide">
+            <li>
     
-    <a href="/zh_tw/careers.html" >
-     工作機會 
+    <a href="/zh_tw/binary-in-numbers.html" >
+     Binary的統計數字 
     </a>
 </li>
         
             <li class="ja-hide">
     
-    <a href="https://binarycom.statuspage.io"  target="_blank">
-     網路狀態 
+    <a href="/zh_tw/careers.html" >
+     工作機會 
     </a>
 </li>
         
@@ -752,6 +754,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     
     <a href="/zh_tw/resources/asset_indexws.html" >
      資產指數 
+    </a>
+</li>
+        
+            <li class="ja-hide">
+    
+    <a href="https://binarycom.statuspage.io"  target="_blank">
+     網路狀態 
     </a>
 </li>
         

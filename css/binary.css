@@ -470,6 +470,23 @@ button .barspinner.white {
   text-decoration: none;
   background-color: #14602b;
 }
+.static_full .padding-top-20 {
+  padding-top: 20px;
+}
+
+.days_to_crack {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 5px;
+  margin-top: 5px;
+}
+.days_to_crack.red {
+  color: #c03;
+}
+.days_to_crack.green {
+  color: #2e8836;
+}
 
 *, *:after, *:before {
   transition: opacity 0.2s, color 0.2s, background 0.2s;
@@ -875,11 +892,11 @@ table td {
 }
 
 a.close {
+  position: absolute;
   display: block;
   padding: 0;
   cursor: pointer;
   color: #fff;
-  position: absolute;
   right: 0;
   z-index: 1;
   width: 35px;
@@ -888,6 +905,26 @@ a.close {
 }
 a.close:hover {
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50 50' width='14' height='14'%3E%3Cpath fill='%23e98024' d='M50,5,45,0,25,20,5,0,0,5,20,25,0,45l5,5L25,30,45,50l5-5L30,25Z'/%3E%3C/svg%3E");
+}
+
+a.previous-wrapper {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  cursor: pointer;
+}
+a.previous-wrapper span.previous {
+  display: block;
+  z-index: 1;
+  width: 16px;
+  height: 14px;
+  background: url("data:image/svg+xml;charset=utf8,%3Csvg width='16' height='14' viewBox='0 0 16 14' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill-rule='nonzero' fill='%232a3052'%3E%3Cpath d='M7.737 1.676L6.263.324.14 7l6.124 6.676 1.474-1.352L2.853 7z'/%3E%3Cpath d='M2 8h14V6H2z'/%3E%3C/g%3E%3C/svg%3E") no-repeat center;
+}
+a.previous-wrapper span.nowrap {
+  padding-left: 5px;
+}
+a.previous-wrapper:hover {
+  text-decoration: none;
 }
 
 .profit {
@@ -2482,44 +2519,93 @@ div.kineticjs-content {
   margin-right: -1px;
   padding: 0;
 }
-.inpage_popup_container .inpage_popup_content_box #sell_content_wrapper #sell_details_table {
+.inpage_popup_container .inpage_popup_content_box #sell_content_wrapper #sell_details_table, .inpage_popup_container .inpage_popup_content_box #sell_content_wrapper #sell_details_audit {
   padding: 0;
   border-left: 1px solid #44484c;
 }
-.inpage_popup_container .inpage_popup_content_box #sell_content_wrapper #sell_details_table th {
+.inpage_popup_container .inpage_popup_content_box #sell_content_wrapper #sell_details_table th, .inpage_popup_container .inpage_popup_content_box #sell_content_wrapper #sell_details_audit th {
   line-height: 24px;
   border-bottom: #c2c2c2;
 }
-.inpage_popup_container .inpage_popup_content_box #sell_content_wrapper #sell_details_table td, .inpage_popup_container .inpage_popup_content_box #sell_content_wrapper #sell_details_table td[data-balloon] {
+.inpage_popup_container .inpage_popup_content_box #sell_content_wrapper #sell_details_table td, .inpage_popup_container .inpage_popup_content_box #sell_content_wrapper #sell_details_table td[data-balloon], .inpage_popup_container .inpage_popup_content_box #sell_content_wrapper #sell_details_audit td, .inpage_popup_container .inpage_popup_content_box #sell_content_wrapper #sell_details_audit td[data-balloon] {
   border-bottom: 1px solid #f2f2f2;
   vertical-align: middle;
 }
-.inpage_popup_container .inpage_popup_content_box #sell_content_wrapper #sell_details_table #trade_details_profit_loss {
+.inpage_popup_container .inpage_popup_content_box #sell_content_wrapper #sell_details_table #trade_details_profit_loss, .inpage_popup_container .inpage_popup_content_box #sell_content_wrapper #sell_details_audit #trade_details_profit_loss {
   font-weight: bold;
 }
-.inpage_popup_container .inpage_popup_content_box #sell_content_wrapper #sell_details_table #trade_details_profit_loss span.percent {
+.inpage_popup_container .inpage_popup_content_box #sell_content_wrapper #sell_details_table #trade_details_profit_loss span.percent, .inpage_popup_container .inpage_popup_content_box #sell_content_wrapper #sell_details_audit #trade_details_profit_loss span.percent {
   font-size: 0.6575162324rem;
   padding-left: 7px;
   font-weight: normal;
 }
-.inpage_popup_container .inpage_popup_content_box #sell_content_wrapper #sell_details_table .last_cell {
+.inpage_popup_container .inpage_popup_content_box #sell_content_wrapper #sell_details_table .last_cell, .inpage_popup_container .inpage_popup_content_box #sell_content_wrapper #sell_details_audit .last_cell {
   border-bottom: 0;
   min-height: 20px;
   padding: 5px 15px;
   text-align: center;
 }
-.inpage_popup_container .inpage_popup_content_box #sell_content_wrapper #sell_details_table #trade_details_message {
+.inpage_popup_container .inpage_popup_content_box #sell_content_wrapper #sell_details_table #trade_details_message, .inpage_popup_container .inpage_popup_content_box #sell_content_wrapper #sell_details_audit #trade_details_message {
   font-style: italic;
 }
-.inpage_popup_container .inpage_popup_content_box #sell_content_wrapper #sell_details_table #contract_sell_message {
+.inpage_popup_container .inpage_popup_content_box #sell_content_wrapper #sell_details_table #contract_sell_message, .inpage_popup_container .inpage_popup_content_box #sell_content_wrapper #sell_details_audit #contract_sell_message {
   font-size: 0.8695652174rem;
   line-height: 20px;
 }
-.inpage_popup_container .inpage_popup_content_box #sell_content_wrapper #sell_details_table #sell_at_market_wrapper .note {
+.inpage_popup_container .inpage_popup_content_box #sell_content_wrapper #sell_details_table #sell_at_market_wrapper .note, .inpage_popup_container .inpage_popup_content_box #sell_content_wrapper #sell_details_audit #sell_at_market_wrapper .note {
   line-height: 18px;
   margin-bottom: 10px;
   font-size: 0.7561436673rem;
   padding: 3px 10px;
+}
+.inpage_popup_container .inpage_popup_content_box #sell_content_wrapper #sell_details_table #trade_details_entry_spot, .inpage_popup_container .inpage_popup_content_box #sell_content_wrapper #sell_details_table #trade_details_current_spot, .inpage_popup_container .inpage_popup_content_box #sell_content_wrapper #sell_details_audit #trade_details_entry_spot, .inpage_popup_container .inpage_popup_content_box #sell_content_wrapper #sell_details_audit #trade_details_current_spot {
+  line-height: 32px;
+}
+.inpage_popup_container .inpage_popup_content_box #sell_content_wrapper #sell_details_table #trade_details_entry_spot a, .inpage_popup_container .inpage_popup_content_box #sell_content_wrapper #sell_details_table #trade_details_current_spot a, .inpage_popup_container .inpage_popup_content_box #sell_content_wrapper #sell_details_audit #trade_details_entry_spot a, .inpage_popup_container .inpage_popup_content_box #sell_content_wrapper #sell_details_audit #trade_details_current_spot a {
+  float: right;
+  margin-bottom: 0;
+  cursor: pointer;
+}
+.inpage_popup_container .inpage_popup_content_box #sell_content_wrapper #sell_details_table .audit-table, .inpage_popup_container .inpage_popup_content_box #sell_content_wrapper #sell_details_audit .audit-table {
+  padding: 40px;
+}
+.inpage_popup_container .inpage_popup_content_box #sell_content_wrapper #sell_details_table .audit-table:nth-child(2), .inpage_popup_container .inpage_popup_content_box #sell_content_wrapper #sell_details_audit .audit-table:nth-child(2) {
+  padding-bottom: 0;
+}
+.inpage_popup_container .inpage_popup_content_box #sell_content_wrapper #sell_details_table .audit-table legend, .inpage_popup_container .inpage_popup_content_box #sell_content_wrapper #sell_details_audit .audit-table legend {
+  font-size: 1.15rem;
+}
+.inpage_popup_container .inpage_popup_content_box #sell_content_wrapper #sell_details_table .audit-table table td, .inpage_popup_container .inpage_popup_content_box #sell_content_wrapper #sell_details_audit .audit-table table td {
+  text-align: center;
+  line-height: 24px;
+  padding-left: 4px;
+  border: none;
+  font-size: 0.8695652174rem;
+}
+.inpage_popup_container .inpage_popup_content_box #sell_content_wrapper #sell_details_table .audit-table table td.remark, .inpage_popup_container .inpage_popup_content_box #sell_content_wrapper #sell_details_table .audit-table table td.secondary-time, .inpage_popup_container .inpage_popup_content_box #sell_content_wrapper #sell_details_table .audit-table table td.secondary-bg-color, .inpage_popup_container .inpage_popup_content_box #sell_content_wrapper #sell_details_audit .audit-table table td.remark, .inpage_popup_container .inpage_popup_content_box #sell_content_wrapper #sell_details_audit .audit-table table td.secondary-time, .inpage_popup_container .inpage_popup_content_box #sell_content_wrapper #sell_details_audit .audit-table table td.secondary-bg-color {
+  font-weight: bold;
+}
+.inpage_popup_container .inpage_popup_content_box #sell_content_wrapper #sell_details_table .audit-table table td.secondary-time, .inpage_popup_container .inpage_popup_content_box #sell_content_wrapper #sell_details_audit .audit-table table td.secondary-time {
+  border-radius: 3px 0 0 3px;
+}
+.inpage_popup_container .inpage_popup_content_box #sell_content_wrapper #sell_details_table .audit-table table td.audit-dates, .inpage_popup_container .inpage_popup_content_box #sell_content_wrapper #sell_details_audit .audit-table table td.audit-dates {
+  border-radius: 0 3px 3px 0;
+}
+.inpage_popup_container .inpage_popup_content_box #sell_content_wrapper #sell_details_table .audit-table table td.secondary-color, .inpage_popup_container .inpage_popup_content_box #sell_content_wrapper #sell_details_audit .audit-table table td.secondary-color {
+  font-size: 1rem;
+}
+@media screen and (max-width: 768px) {
+  .inpage_popup_container .inpage_popup_content_box #sell_content_wrapper #sell_details_table .audit-table, .inpage_popup_container .inpage_popup_content_box #sell_content_wrapper #sell_details_audit .audit-table {
+    padding: 20px;
+  }
+}
+@media screen and (max-width: 480px) {
+  .inpage_popup_container .inpage_popup_content_box #sell_content_wrapper #sell_details_table .audit-table, .inpage_popup_container .inpage_popup_content_box #sell_content_wrapper #sell_details_audit .audit-table {
+    padding: 5px;
+  }
+}
+.inpage_popup_container .inpage_popup_content_box #sell_content_wrapper #sell_details_audit {
+  border-left: none;
 }
 
 .box-inlay-borders .border-right-top {
@@ -4583,6 +4669,62 @@ body #not_authenticated_financial ul.checked > li {
     padding: 10px 15px;
   }
 }
+.binary-in-numbers-content .stacked-charts {
+  margin: 0 auto;
+  overflow: hidden;
+  height: auto;
+  position: relative;
+  list-style-type: none;
+  background: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxNC4wLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDQzMzYzKSAgLS0+DQo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPg0KPHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJMYXllcl8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCINCgkgd2lkdGg9IjVweCIgaGVpZ2h0PSIxcHgiIHZpZXdCb3g9IjAgMCA1IDEiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDUgMSIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+DQo8cmVjdCBmaWxsPSIjRjFGMUYxIiB3aWR0aD0iNSIgaGVpZ2h0PSIxIi8+DQo8L3N2Zz4NCg==") repeat-y 50% 0;
+}
+.binary-in-numbers-content .stacked-charts > div:not(:first-of-type) {
+  padding-top: 50px;
+}
+.binary-in-numbers-content .stacked-charts .icon {
+  display: block;
+  width: 60px;
+  height: 60px;
+  margin: auto;
+  position: relative;
+  top: 30px;
+  box-shadow: 0 3px 2px #c2c2c2;
+  border-radius: 30px;
+  border: 1px solid #c2c2c2;
+  background-color: #f2f2f2;
+  background-position: 50% center;
+  background-repeat: no-repeat;
+}
+.binary-in-numbers-content .stacked-charts .icon:not(:first-of-type) {
+  margin-top: 50px;
+}
+.binary-in-numbers-content .stacked-charts .inner {
+  padding: 50px 25px;
+  width: auto;
+  background-color: #f2f2f2;
+}
+.binary-in-numbers-content .stacked-charts .inner .chart {
+  display: block;
+  width: 100%;
+}
+.binary-in-numbers-content .stacked-charts .client {
+  background: #fff;
+}
+.binary-in-numbers-content .stacked-charts .client .icon {
+  background-image: url("../images/pages/binary_in_numbers/icons/ic-active-trading-clients.svg");
+}
+.binary-in-numbers-content .stacked-charts .transaction .icon {
+  background-image: url("../images/pages/binary_in_numbers/icons/ic-num-transactions.svg");
+}
+.binary-in-numbers-content .stacked-charts .turnover .icon {
+  background-image: url("../images/pages/binary_in_numbers/icons/ic-turnover.svg");
+}
+.binary-in-numbers-content .stacked-charts .withdrawal .icon {
+  background-image: url("../images/pages/binary_in_numbers/icons/ic-client-withdrawals.svg");
+}
+.binary-in-numbers-content .stacked-charts .employee .icon {
+  background-image: url("../images/pages/binary_in_numbers/icons/ic-num-employees.svg");
+}
+
 /* Language based rules */
 /* Specific rules for languages */
 body .calls_recording {
