@@ -57,14 +57,14 @@
         <link rel="alternate" href="/zh_cn/user/security/limitsws.html" hreflang="ZH_CN" />   
         <link rel="alternate" href="/zh_tw/user/security/limitsws.html" hreflang="ZH_TW" />   
 
-         <link rel="stylesheet" href="/css/binary.min.css?lxzvqdzf" />
-         <link rel="stylesheet" href="https://style.binary.com/binary.css?lxzvqdzf" />
+         <link rel="stylesheet" href="/css/binary.min.css?tuh7vmxl" />
+         <link rel="stylesheet" href="https://style.binary.com/binary.css?tuh7vmxl" />
         
-         <script src='/js/texts/it.js?lxzvqdzf'></script>
-         <script src='/js/manifest.js?lxzvqdzf'></script>
-         <script src='/js/vendor.min.js?97947cf8'></script>
-         <script src='/js/binary.min.js?lxzvqdzf'></script>
-         <script src='https://style.binary.com/binary.js?lxzvqdzf'></script>
+         <script src='/js/texts/it.js?tuh7vmxl'></script>
+         <script src='/js/manifest.js?tuh7vmxl'></script>
+         <script src='/js/vendor.min.js?bcd6b1fa'></script>
+         <script src='/js/binary.min.js?tuh7vmxl'></script>
+         <script src='https://style.binary.com/binary.js?tuh7vmxl'></script>
         
     </head>
 
@@ -433,7 +433,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 
                     
                     <td>
-                        Numero massimo di posizioni aperte <a href="javascript:;" data-balloon-length="xlarge" class="no-underline" data-balloon="Rappresenta il numero massimo di contratti in essere nel tuo portafoglio. Ogni riga presente sul tuo portafoglio vale una posizione aperta. Una volta raggiunto il valore massimo, non potrai aprire nuove posizioni senza prima chiudere una posizione esistente."><img src="/images/common/question_1.png"></a>
+                        Numero massimo di posizioni aperte<a href="javascript:;" data-balloon-length="xlarge" class="no-underline" data-balloon="Rappresenta il numero massimo di contratti in essere nel tuo portafoglio. Ogni riga presente sul tuo portafoglio vale una posizione aperta. Una volta raggiunto il valore massimo, non potrai aprire nuove posizioni senza prima chiudere una posizione esistente."><img src="/images/common/question_1.png"></a>
                     </td>
                     
                 
@@ -449,7 +449,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 
                     
                     <td>
-                        Saldo di cassa massimo sull'account <a href="javascript:;" data-balloon-length="xlarge" class="no-underline" data-balloon="Rappresenta l'importo massimo di denaro che può essere tenuto sul tuo account. Se raggiungi tale valore massimo, ti verrà richiesto di prelevare fondi."><img src="/images/common/question_1.png"></a>
+                        Saldo di cassa massimo sull'account<a href="javascript:;" data-balloon-length="xlarge" class="no-underline" data-balloon="Rappresenta l'importo massimo di denaro che può essere tenuto sul tuo account. Se raggiungi tale valore massimo, ti verrà richiesto di prelevare fondi."><img src="/images/common/question_1.png"></a>
                     </td>
                     
                 
@@ -465,7 +465,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 
                     
                     <td>
-                        Payout totali massimi su posizioni aperte <a href="javascript:;" data-balloon-length="xlarge" class="no-underline" data-balloon="Presenta i payout complessivi massimi sui contratti in essere nel tuo portafoglio. Se si raggiunge il numero massimo, non sarà possibile acquistare altri contratti senza prima chiudere delle posizioni esistenti."><img src="/images/common/question_1.png"></a>
+                        Payout totali massimi su posizioni aperte<a href="javascript:;" data-balloon-length="xlarge" class="no-underline" data-balloon="Presenta i payout complessivi massimi sui contratti in essere nel tuo portafoglio. Se si raggiunge il numero massimo, non sarà possibile acquistare altri contratti senza prima chiudere delle posizioni esistenti."><img src="/images/common/question_1.png"></a>
                     </td>
                     
                 
@@ -481,7 +481,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 
                     
                     <td>
-                        Maximum aggregate payouts on open positions per symbol and contract type <a href="javascript:;" data-balloon-length="xlarge" class="no-underline" data-balloon="Maximum aggregate payouts on open positions per symbol and contract type. This limit can be exceeded up to the overall payout limit if there is no prior open position."><img src="/images/common/question_1.png"></a>
+                        Maximum aggregate payouts on open positions per symbol and contract type<a href="javascript:;" data-balloon-length="xlarge" class="no-underline" data-balloon="Maximum aggregate payouts on open positions per symbol and contract type. This limit can be exceeded up to the overall payout limit if there is no prior open position."><img src="/images/common/question_1.png"></a>
                     </td>
                     
                 
@@ -496,7 +496,23 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <tr>
                 
                     
-                    <td class="gr-padding-10">
+                    <td>
+                        Maximum aggregate payouts on open positions per symbol
+                    </td>
+                    
+                
+                    
+                    <td id="payout-per-symbol">
+                        
+                    </td>
+                    
+                
+            </tr>
+        
+            <tr>
+                
+                    
+                    <td class="gr-padding-10" id="gap">
                         
                     </td>
                     
@@ -513,7 +529,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 
                     
                     <th class="align-start">
-                        Turnover massimo giornaliero <a href="javascript:;" data-balloon-length="xlarge" class="no-underline" data-balloon="Rappresenta il volume massimo di contratti che puoi acquistare in un dato giorno di trading."><img src="/images/common/question_1.png"></a>
+                        Turnover massimo giornaliero<a href="javascript:;" data-balloon-length="xlarge" class="no-underline" data-balloon="Rappresenta il volume massimo di contratti che puoi acquistare in un dato giorno di trading."><img src="/images/common/question_1.png"></a>
                     </th>
                     
                 
@@ -535,7 +551,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </div>
     <div id="limits_error"></div>
 </div>
-<div class="invisible" id="withdrawal-limits">
+<div class="invisible ja-hide" id="withdrawal-limits">
     <h2 id="withdrawal-title">Limiti per i Prelievi</h2>
     <div>
         <p id="withdrawal-limit"></p>

@@ -32,7 +32,7 @@
                 
                     
                     <td>
-                        最大保有ポジション <a href="javascript:;" data-balloon-length="xlarge" class="no-underline" data-balloon="最大保有ポジションの総数を示し、各行を１件分のオープンポジションとしてカウントします。最大件数を超えてのポジション保有はできませんので既存のオープンポジションを閉めて頂いてから新規トレードの購入が可能になります。"><img src="/images/common/question_1.png"></a>
+                        最大保有ポジション<a href="javascript:;" data-balloon-length="xlarge" class="no-underline" data-balloon="最大保有ポジションの総数を示し、各行を１件分のオープンポジションとしてカウントします。最大件数を超えてのポジション保有はできませんので既存のオープンポジションを閉めて頂いてから新規トレードの購入が可能になります。"><img src="/images/common/question_1.png"></a>
                     </td>
                     
                 
@@ -48,7 +48,7 @@
                 
                     
                     <td>
-                        口座残高限度額 <a href="javascript:;" data-balloon-length="xlarge" class="no-underline" data-balloon="口座で保有可能な口座残高の限度額を示します。限度額を超えた場合は出金手続きをお願いいたします。"><img src="/images/common/question_1.png"></a>
+                        口座残高限度額<a href="javascript:;" data-balloon-length="xlarge" class="no-underline" data-balloon="口座で保有可能な口座残高の限度額を示します。限度額を超えた場合は出金手続きをお願いいたします。"><img src="/images/common/question_1.png"></a>
                     </td>
                     
                 
@@ -64,7 +64,7 @@
                 
                     
                     <td>
-                        保有ポジション合計ペイアウト上限額 <a href="javascript:;" data-balloon-length="xlarge" class="no-underline" data-balloon="保有ポジションに対する未現実利益利益を示します。上限額に達した場合、保有ポジションを一部決済するまで新規注文を行えません。"><img src="/images/common/question_1.png"></a>
+                        保有ポジション合計ペイアウト上限額<a href="javascript:;" data-balloon-length="xlarge" class="no-underline" data-balloon="保有ポジションに対する未現実利益利益を示します。上限額に達した場合、保有ポジションを一部決済するまで新規注文を行えません。"><img src="/images/common/question_1.png"></a>
                     </td>
                     
                 
@@ -80,7 +80,7 @@
                 
                     
                     <td>
-                        一通貨ごとのペイアウト合計限度額 <a href="javascript:;" data-balloon-length="xlarge" class="no-underline" data-balloon="一通貨ごとのペイアウト合計限度額となります。"><img src="/images/common/question_1.png"></a>
+                        一通貨ごとのペイアウト総合計限度額<a href="javascript:;" data-balloon-length="xlarge" class="no-underline" data-balloon="1通貨ごとのペイアウト合計限度額となります。"><img src="/images/common/question_1.png"></a>
                     </td>
                     
                 
@@ -95,7 +95,23 @@
             <tr>
                 
                     
-                    <td class="gr-padding-10">
+                    <td>
+                        一通貨ごとのペイアウト合計限度額の内訳
+                    </td>
+                    
+                
+                    
+                    <td id="payout-per-symbol">
+                        
+                    </td>
+                    
+                
+            </tr>
+        
+            <tr>
+                
+                    
+                    <td class="gr-padding-10" id="gap">
                         
                     </td>
                     
@@ -112,7 +128,7 @@
                 
                     
                     <th class="align-start">
-                        取引限度額（1日） <a href="javascript:;" data-balloon-length="xlarge" class="no-underline" data-balloon="購入可能な１日あたりのトレードの総額を示します。"><img src="/images/common/question_1.png"></a>
+                        取引限度額（1日）<a href="javascript:;" data-balloon-length="xlarge" class="no-underline" data-balloon="購入可能な１日あたりのトレードの総額を示します。"><img src="/images/common/question_1.png"></a>
                     </th>
                     
                 
@@ -134,7 +150,7 @@
     </div>
     <div id="limits_error"></div>
 </div>
-<div class="invisible" id="withdrawal-limits">
+<div class="invisible ja-hide" id="withdrawal-limits">
     <h2 id="withdrawal-title">出金限度額</h2>
     <div>
         <p id="withdrawal-limit"></p>
