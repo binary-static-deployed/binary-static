@@ -123,14 +123,14 @@ button {
   width: 42px;
   height: 5px;
   border: 0;
-  background-color: #e98024;
+  background-color: #E98024;
 }
 
 hr {
   width: 70vw;
   height: 1px;
   border: 0;
-  background-color: #dedede;
+  background-color: #DEDEDE;
 }
 
 .icon {
@@ -146,7 +146,7 @@ hr {
 }
 
 .box {
-  border: 1px solid #15212d;
+  border: 1px solid #15212D;
   margin: 15px 0;
   padding: 15px;
 }
@@ -180,7 +180,7 @@ hr {
   position: absolute;
   padding: 40px 15px;
   color: #fff;
-  background-color: #2a3052;
+  background-color: #2A3052;
 }
 
 .boxed-heading-center {
@@ -198,7 +198,7 @@ hr {
 #charts .vertical-line {
   position: absolute;
   width: 1px;
-  background-color: #dedede;
+  background-color: #DEDEDE;
   top: 0;
   left: 0;
   right: 0;
@@ -244,7 +244,7 @@ hr {
 .highlight {
   height: 10px;
   border: 0;
-  background-color: #e98024;
+  background-color: #E98024;
   width: 23vw;
   position: absolute;
   top: -109px;
@@ -268,7 +268,7 @@ input[type='submit'] {
   width: 100px;
   padding: 10px;
   margin: 5px 0;
-  background: #2e8836;
+  background: #2E8836;
   color: #fff;
   border: none;
   cursor: pointer;
@@ -288,7 +288,7 @@ input[type='text']:focus, input[type='submit']:focus {
 }
 
 .notice-msg {
-  color: #15212d !important;
+  color: #15212D !important;
 }
 
 .navbar-fixed-top {
@@ -310,7 +310,7 @@ input[type='text']:focus, input[type='submit']:focus {
 }
 
 .logo {
-  background: url("https://style.binary.com/images/logo/binary_logo_light.svg") no-repeat;
+  background: url("../images/logo/binary_logo_light.svg") no-repeat;
   width: 48vw !important;
   height: 40px;
   margin: 15px;
@@ -334,12 +334,12 @@ input[type='text']:focus, input[type='submit']:focus {
 }
 .navbar-nav a:hover, .navbar-nav a:focus {
   text-decoration: none;
-  color: #2e8836;
+  color: #2E8836;
 }
 
 .navbar-fixed-top.top-nav-collapse {
   padding: 0;
-  background: #2a3052 !important;
+  background: #2A3052 !important;
 }
 
 .navbar-toggle {
@@ -371,7 +371,7 @@ input[type='text']:focus, input[type='submit']:focus {
 
   .navbar-fixed-top {
     position: inherit;
-    background: #2a3052;
+    background: #2A3052;
     margin-bottom: 0;
     height: 50px;
     overflow: hidden;
@@ -432,10 +432,10 @@ input[type='text']:focus, input[type='submit']:focus {
 
 .faq {
   margin: 15px 0;
-  border: 1px solid #f2f2f2;
+  border: 1px solid #F2F2F2;
 }
 .faq h4 {
-  background-color: #f2f2f2;
+  background-color: #F2F2F2;
   padding: 20px;
 }
 .faq p {
@@ -491,10 +491,10 @@ input[type='text']:focus, input[type='submit']:focus {
   padding: 30px;
   margin: 20px 0;
   text-align: justify;
-  background: #f2f2f2;
+  background: #F2F2F2;
 }
 .disclaimer .disclaimer-container h2 {
-  color: #2a3052;
+  color: #2A3052;
   font-weight: 400;
 }
 .disclaimer .disclaimer-container p, .disclaimer .disclaimer-container ul li {
@@ -515,7 +515,7 @@ input[type='text']:focus, input[type='submit']:focus {
 
 #board-of-directors {
   position: relative;
-  border-top: 5px solid #e98024;
+  border-top: 5px solid #E98024;
 }
 #board-of-directors img {
   display: block;
@@ -529,7 +529,7 @@ input[type='text']:focus, input[type='submit']:focus {
   position: absolute;
   padding: 35px 15px;
   color: #fff;
-  background-color: #e98024;
+  background-color: #E98024;
 }
 #board-of-directors h4 {
   margin: 1em 0;

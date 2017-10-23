@@ -889,22 +889,22 @@
     <div class="gr-12 gr-padding-10">
         <h2>จะอ่านตารางข้างต้นอย่างไร</h2>
         <p>The Forex is typically traded in <i>lots</i>. One standard <i>lots</i> is equivalent to 100,000 units. Each time you open a position on a currency symbol, you can start with a minimum transaction of <i>0.01 lots</i>.</p>
-        <p>Leverage indicates how much capital you can control based on your initial deposit. For example, a 100:1 leverage will allow you to control up to USD 100,000 using only USD 1,000 of your own money as deposit.</p>
+        <p>เลเวอเรจบ่งชี้ว่าคุณสามารถควบคุมเงินทุนได้เท่าไหร่โดยดูจากเงินฝากขั้นต้นของคุณ เช่น เลเวอเรจ 100:1 ช่วยให้คุณสามารถควบคุมได้ถึง 100,000 เหรียญสหรัฐโดยใช้เงินเพียง 1,000 เหรียญสหรัฐที่เป็นเงินฝาก</p>
         <p>เพื่อศึกษาเพิ่มเติม อ่าน <a href="/th/metatrader/margin-policy.html">นโยบายมาร์จิน</a> ของเรา ซึ่งอธิบายระดับการชำระบัญชีสำหรับฟอเร็กซ์ 100% ของเรา</p>
 
-        <h2>Important notes on our swap rates (overnight funding)</h2>
+        <h2>หมายเหตุสำคัญเกี่ยวกับอัตราการเปลี่ยนแปลงในอัตราดอกเบี้ยของเรา (การให้ทุนข้ามคืน)</h2>
         <p>หากท่านเปิดโพซิชั่นใดๆ ข้ามคืน การปรับปรุงดอกเบี้ยจะดำเนินการให้กับบัญชีซื้อขายของท่าน การปรับปรุงดอกเบี้ยจะเป็นไปตามอัตราดอกเบี้ยกู้ยืมของธนาคารที่กำหนด พร้อมด้วยค่าธรรมเนียมอีก 2%</p>
         <p>The interest adjustment is calculated in points, meaning we will convert the relevant interbank lending rates to points in the base currency.</p>
         <p>The swap rate will depend on the direction of the position you take:</p>
         <div class="gr-prefix-1">
             <ul class="bullet">
                 <li><strong>Long Positions</strong>: พวกเราเรียกเก็บค่าธรรมเนียม 2% จากอัตรากู้ยืมเงินระหว่างทางธนาคารด้วยกันเอง
-                    <span data-balloon-length="large" data-balloon="Let's say the points adjustment for a long position on the EUR/USD symbol is -5.64. This would require an overnight fee of 5.64 points for one lot of open position in EUR/USD, where the size of one lot is 100,000 units. The points will then be converted into the deposit currency (which is the euro in this example). As a result, you will incur an interest fee of EUR5.64 for keeping the position open overnight.">
+                    <span data-balloon-length="large" data-balloon="สมมุติว่าการปรับหน่วยสำหรับสถานะซื้อของสัญลักษณ์ EUR/USD คือ -5.64 ซึ่งต้องมีค่าธรรมเนียมข้ามคืนที่ 5.64 หน่วยสำหรับหนึ่งหน่วยของโพซิชั่นเปิดใน EUR/USD โดยขนาดของหนึ่งหน่วยอยู่ที่ 100,000 หน่วย หน่วยพวกนี้จะถูกเปลี่ยนไปเป็นสกุลเงินที่ฝาก (ซึ่งคือยูโรในตัวอย่างนี้) ดังนั้นแล้วคุณจะเสียค่าธรรมเนียมดอกเบี้ยที่ 5.64 ยูโรเพื่อรักษาโพซิชั่นเปิดข้ามคืน">
                         เราคำนวณค่าธรรมเนียมดอกเบี้ยสำหรับ Long Position อย่างไร?
                     </span>
                 </li>
                 <li><strong>Short Positions</strong>: พวกเราเรียกเก็บค่าธรรมเนียม 2% จากอัตรากู้ยืมเงินระหว่างทางธนาคารด้วยกันเอง
-                    <span data-balloon-length="large" data-balloon="Let's say the points adjustment for a short position on the EUR/USD symbol is 1.64. This would result in an overnight credit of 1.64 points for one lot of open position in EUR/USD where the size of one lot is 100,000 units. The points will then be converted into the deposit currency (which is the euro in this example). As a result, you will be credited with EUR1.64 for keeping the position open overnight.">
+                    <span data-balloon-length="large" data-balloon="สมมุติว่าการปรับหน่วยสำหรับสถานะ Short ของสัญลักษณ์ EUR/USD คือ 1.64 ซึ่งต้องมีเครดิตข้ามคืนที่ 1.64 หน่วยสำหรับหนึ่งหน่วยของโพซิชั่นเปิดใน EUR/USD โดยขนาดของหนึ่งหน่วยอยู่ที่ 100,000 หน่วย หน่วยพวกนี้จะถูกเปลี่ยนไปเป็นสกุลเงินที่ฝาก (ซึ่งคือยูโรในตัวอย่างนี้) ดังนั้นแล้วคุณจะได้เครดิตอยู่ที่ 5.64 ยูโรเพื่อรักษาโพซิชั่นเปิดข้ามคืน">
                         เราคำนวณค่าธรรมเนียมดอกเบี้ยสำหรับ Short Position อย่างไร?
                     </span>
                 </li>
@@ -1379,7 +1379,8 @@
     <div class="gr-12 gr-padding-10">
         <h2>จะอ่านตารางข้างต้นอย่างไร</h2>
         <p>CFD (Contract for Difference): CFD เป็นเครื่องมือในการทำกำไรทั้งขาขึ้นและขาลง กำไร หรือ ขาดทุนนั้นจะถูกประมาณการเมื่อมีการกำหนดราคาซื้อ/ราคาขายของผลิตภัณฑ์อ้างอิง</p>
-        <p>For example, the CFDs on Volatility Indices offer a USD 1 per point contract. If you buy a Volume 1.0 contract for the Volatility 100 Index with current ask price of USD 20,000 and later sell it at a bid price of USD 20,010, your net profit will be calculated as follows:</p>
+        <p>ตัวอย่างเช่น CFD บนดัชนีความผันผวนเสนอที่ 1 เหรียญสหรัฐต่อสัญญาหน่วย ถ้าคุณซื้อจำนวน 1.0 สัญญาสำหรับ
+ดัชนีความผันผวน 100 ด้วยราคาจะซื้อปัจจุบันที่ 20,000 เหรียญสหรัฐ และหลังจากนั้นขายที่ราคา 20,010 เหรียญสหรัฐ กำไรสุทธิของคุณจะถูกคำนวณดังนี้:</p>
         <div class="gr-12 gr-padding-10 fill-bg-color">
             <div class="gr-prefix-1">
                 <p>(ราคาขาย - ราคาซื้อ) x จำนวน x ราคาต่อหน่วย = กำไร</p>
@@ -1387,7 +1388,7 @@
             </div>
         </div>
         <p>แต่ละครั้งที่ท่านเปิดโพซิชั่นสัญลักษณ์ดัชนีผันผวน ท่านสามารถเริ่ม ด้วยธุรกรรมปริมาณขั้นต่ำ 0.01 (มูลค่าซื้อขาย), ซึ่งแปลงเป็นมูลค่า 0.01 เหรียญสหรัฐ ต่อจุดการเคลื่อนไหวของดัชนี</p>
-        <p>Margin indicates how much investment you can control based on your initial capital. For example, a 0.2% margin will allow you to control up to USD 500,000 using only USD 1,000 of your own money as deposit.</p>
+        <p>มาร์จินบ่งชี้ว่าคุณสามารถควบคุมเงินทุนได้เท่าไหร่โดยดูจากเงินฝากขั้นต้นของคุณ เช่น มาร์จิน 0.2% ช่วยให้คุณสามารถควบคุมได้ถึง 500,000 เหรียญสหรัฐโดยใช้เงินเพียง 1,000 เหรียญสหรัฐที่เป็นเงินฝาก</p>
         <p>เพื่อศึกษาเพิ่มเติม อ่าน <a href="/th/metatrader/margin-policy.html">นโยบายมาร์จิน</a> ของเรา ซึ่งอธิบายระดับการชำระบัญชีสำหรับดัชนีผันผวน 50% ของเรา</p>
     </div>
 </div>
@@ -1990,22 +1991,22 @@
     <div class="gr-12 gr-padding-10">
         <h2>จะอ่านตารางข้างต้นอย่างไร</h2>
         <p>CFD (Contract for Difference): CFD เป็นเครื่องมือในการทำกำไรทั้งขาขึ้นและขาลง กำไร หรือ ขาดทุนนั้นจะถูกประมาณการเมื่อมีการกำหนดราคาซื้อ/ราคาขายของผลิตภัณฑ์อ้างอิง</p>
-        <p>For example, the CFDs on US 30 Cash Index offer a USD 1 per point contract. If you buy a Volume 1.0 contract for the US 30 Cash Index with current ask price of USD 20,000 and later sell it at a bid price of USD 20,010, your net profit will be calculated as follows:</p>
+        <p>ตัวอย่างเช่น CFD บนดัชนีเงินสด US 30 เสนอที่ 1 เหรียญสหรัฐต่อสัญญาหน่วย ถ้าคุณซื้อจำนวน 1.0 สัญญาสำหรับดัชนีเงินสด US 30 ด้วยราคาจะซื้อปัจจุบันที่ 20,000 เหรียญสหรัฐ และหลังจากนั้นขายที่ราคา 20,010 เหรียญสหรัฐ กำไรสุทธิของคุณจะถูกคำนวณดังนี้:</p>
         <div class="gr-12 gr-padding-10 fill-bg-color">
             <div class="gr-prefix-1">
                 <p>(ราคาขาย - ราคาซื้อ) x จำนวน x ราคาต่อหน่วย = กำไร</p>
                 <p>เช่น (20010 - 20000) x 1 x 1 = 10 เหรียญสหรัฐ</p>
             </div>
         </div>
-        <p>Margin indicates how much investment you can control based on your initial capital. For example, a 1% margin will allow you to control up to USD 100,000 using only USD 1,000 of your own money as deposit.</p>
+        <p>มาร์จินบ่งชี้ว่าคุณสามารถควบคุมเงินทุนได้เท่าไหร่โดยดูจากเงินฝากขั้นต้นของคุณ เช่น มาร์จิน 1% ช่วยให้คุณสามารถควบคุมได้ถึง 100,000 เหรียญสหรัฐโดยใช้เงินเพียง 1,000 เหรียญสหรัฐที่เป็นเงินฝาก</p>
         <p>เพื่อศึกษาเพิ่มเติม อ่าน <a href="/th/metatrader/margin-policy.html">นโยบายมาร์จิน</a> ของเรา ซึ่งอธิบายข้อกำหนดมาร์จินของเรา</p>
-        <h2>Important notes on our swap rates (overnight funding)</h2>
+        <h2>หมายเหตุสำคัญเกี่ยวกับอัตราการเปลี่ยนแปลงในอัตราดอกเบี้ยของเรา (การให้ทุนข้ามคืน)</h2>
         <p>หากท่านเปิดโพซิชั่นใดๆ ข้ามคืน การปรับปรุงดอกเบี้ยจะดำเนินการให้กับบัญชีซื้อขายของท่าน การปรับปรุงดอกเบี้ยจะเป็นไปตามอัตราดอกเบี้ยกู้ยืมของธนาคารที่กำหนด พร้อมด้วยค่าธรรมเนียมอีก 2%</p>
         <p>The interest adjustment is calculated in points, meaning we will convert the relevant market rates to points in the base instrument.</p>
         <p>The swap rate will depend on the direction of the position you take:</p>
         <div class="gr-prefix-1">
             <ul class="bullet">
-                <li><strong>Long positions</strong>: We charge a 2% fee on top of market rates.</li>
+                <li><strong>สถานะ Long</strong>: We charge a 2% fee on top of market rates.</li>
                 <li><strong>Short positions</strong>: We charge a 2% fee on top of market rates.</li>
             </ul>
         </div>

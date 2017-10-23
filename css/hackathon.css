@@ -51,7 +51,7 @@ table {
 }
 
 body {
-  background: #2a3052;
+  background: #2A3052;
   font-family: roboto, sans-serif;
   font-size: 18px;
   color: #fff;
@@ -88,14 +88,14 @@ section {
 }
 
 .intro {
-  background: #2a3052;
+  background: #2A3052;
   padding-top: 100px;
 }
 .intro span {
   color: #fff;
 }
 .intro span ~ span {
-  color: #e98024;
+  color: #E98024;
 }
 .intro-bg {
   background: url("../images/hackathon/hackathon_bg.svg") 0 0/cover;
@@ -127,7 +127,7 @@ section {
 
 .white-bg {
   background: #fff;
-  color: #2a3052;
+  color: #2A3052;
   margin: -5px;
   padding: 50px 0;
 }
@@ -136,21 +136,21 @@ section {
   width: 400px;
   height: 65px;
   border-radius: 5px;
-  border: 2px solid #e98024;
+  border: 2px solid #E98024;
   padding: 10px 20px;
   text-transform: uppercase;
   font-size: 22px;
   transition: all 0.3s;
 }
 .button-outline:hover {
-  background: #e98024;
+  background: #E98024;
   color: #fff;
   text-decoration: none;
 }
 
 a {
   text-decoration: none;
-  color: #e98024;
+  color: #E98024;
 }
 a:hover {
   text-decoration: underline;
@@ -159,7 +159,7 @@ a:hover {
 hr {
   height: 1px;
   border: 0;
-  border-top: 1px solid #dedede;
+  border-top: 1px solid #DEDEDE;
   margin: 20px;
   padding: 0;
 }
@@ -178,7 +178,7 @@ hr {
   transition: background 0.5s ease-in-out, padding 0.5s ease-in-out;
   overflow: hidden;
   padding: 10px 0;
-  background: #2a3052;
+  background: #2A3052;
 }
 
 .navbar-brand {
@@ -186,7 +186,7 @@ hr {
 }
 
 .logo {
-  background: url("https://style.binary.com/images/logo/binary_logo_light.svg") no-repeat;
+  background: url("../images/logo/binary_logo_light.svg") no-repeat;
   width: 200px !important;
   height: 36px;
   margin: auto;
@@ -210,12 +210,12 @@ hr {
 }
 .navbar-nav a:hover, .navbar-nav a:focus {
   text-decoration: none;
-  color: #2e8836;
+  color: #2E8836;
 }
 
 .navbar-fixed-top.top-nav-collapse {
   padding: 0;
-  background: #2a3052 !important;
+  background: #2A3052 !important;
 }
 
 .navbar-toggle {
@@ -244,7 +244,7 @@ hr {
 
   .navbar {
     position: fixed;
-    background: #2a3052;
+    background: #2A3052;
     margin-bottom: 0;
     height: 50px;
     overflow: hidden;
