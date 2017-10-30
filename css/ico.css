@@ -84,11 +84,11 @@ button {
 }
 
 .content-section {
-  padding: 100px 15px;
+  padding: 100px 30px;
 }
 
 .content-section-sm {
-  padding: 50px 15px;
+  padding: 50px 30px;
 }
 
 .intro {
@@ -582,7 +582,7 @@ input[type='text']:focus, input[type='submit']:focus {
   transition: all 0.3s;
 }
 #media-coverage .media__logo {
-  height: 50px;
+  height: 48px;
   max-width: 100%;
   background-repeat: no-repeat;
   background-size: contain;
@@ -604,7 +604,7 @@ input[type='text']:focus, input[type='submit']:focus {
   }
 }
 #media-coverage .media__headlines {
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 400;
   height: 55px;
 }
@@ -631,46 +631,37 @@ input[type='text']:focus, input[type='submit']:focus {
 .tns-outer {
   display: flex;
   flex-direction: column-reverse;
-  margin: 0 30px;
-}
-@media (max-width: 320px) {
-  .tns-outer {
-    margin: 0 20px;
-  }
 }
 
 .tns-controls [data-controls='prev'], .tns-controls [data-controls='next'] {
   position: absolute;
-  top: 26%;
+  top: 30%;
   background: none;
   color: transparent;
-  width: 20px;
-}
-.tns-controls [data-controls='prev']:before, .tns-controls [data-controls='next']:before {
-  display: inline-block;
+  padding: 0;
+  margin: 10px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 32px;
   width: 17px;
 }
 @media (max-width: 768px) {
-  .tns-controls [data-controls='prev']:before, .tns-controls [data-controls='next']:before {
+  .tns-controls [data-controls='prev'], .tns-controls [data-controls='next'] {
     width: 14px;
   }
 }
 @media (max-width: 576px) {
-  .tns-controls [data-controls='prev']:before, .tns-controls [data-controls='next']:before {
+  .tns-controls [data-controls='prev'], .tns-controls [data-controls='next'] {
     width: 11px;
   }
 }
 .tns-controls [data-controls='prev'] {
-  left: -30px;
-}
-.tns-controls [data-controls='prev']:before {
-  content: url("../images/ico/icons/accordion_left.svg");
+  left: -40px;
+  background-image: url("../images/ico/icons/arrow_left.svg");
 }
 .tns-controls [data-controls='next'] {
-  right: -20px;
-}
-.tns-controls [data-controls='next']:before {
-  content: url("../images/ico/icons/accordion_right.svg");
+  right: -40px;
+  background-image: url("../images/ico/icons/arrow_right.svg");
 }
 
 .tns-nav {
@@ -720,6 +711,10 @@ input[type='text']:focus, input[type='submit']:focus {
 
 .bittox {
   background-image: url("../images/ico/icons/bittox_logo.svg");
+}
+
+.crypto-martez {
+  background-image: url("../images/ico/icons/crypto_martez_logo.svg");
 }
 
 #coming-soon {
