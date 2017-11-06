@@ -45,12 +45,12 @@
 
          
 
-         <link rel="stylesheet" href="/css/binary.min.css?y12rbmf7" />
+         <link rel="stylesheet" href="/css/binary.min.css?0h26z837" />
         
-         <script src='/js/texts/es.js?y12rbmf7'></script>
-         <script src='/js/manifest.js?y12rbmf7'></script>
-         <script src='/js/vendor.min.js?d2d176c8'></script>
-         <script src='/js/binary.min.js?y12rbmf7'></script>
+         <script src='/js/texts/es.js?0h26z837'></script>
+         <script src='/js/manifest.js?0h26z837'></script>
+         <script src='/js/vendor.min.js?dd187a5d'></script>
+         <script src='/js/binary.min.js?0h26z837'></script>
         
     </head>
 
@@ -249,13 +249,13 @@
         <div id="main-menu" class="tab-menu no-print fill-bg-color">
     <div class="tab-menu-wrap container gr-hide-m gr-hide-p">
         <div class="gr-12 gr-no-gutter">
-            <ul class="items">  <li id="topMenuTrading" class="item ja-hide gr-hide-m gr-hide-p">
+            <ul class="items">  <li id="topMenuTrading" class="item ja-hide gr-hide-m gr-hide-p ico-only-hide">
                     <a class="link" target="" href="/es/trading.html">Operar</a>
                     
                 </li>  <li id="topMenuJPTrading" class="item invisible ja-show gr-hide-m gr-hide-p">
                     <a class="link" target="" href="/es/multi_barriers_trading.html">Operar</a>
                     
-                </li>  <li id="topMenuPortfolio" class="item client_logged_in invisible">
+                </li>  <li id="topMenuPortfolio" class="item client_logged_in invisible ico-only-hide">
                     <a class="link" target="" href="/es/user/portfoliows.html">Cartera</a>
                     
                 </li>  <li id="topMenuProfitTable" class="item client_logged_in invisible">
@@ -267,7 +267,7 @@
                 </li>  <li id="topMenuCashier" class="item ">
                     <a class="link" target="" href="/es/cashier.html">Cajero</a>
                     
-                </li>  <li id="topMenuResources" class="item ">
+                </li>  <li id="topMenuResources" class="item client_logged_out client_logged_in invisible ico-only-hide">
                     <a class="link" target="" href="/es/resources.html">Recursos</a>
                     
                         <ul class="sub_items">  <li id="topMenuAssetIndex" class="sub_item ja-hide">
@@ -324,13 +324,13 @@
     <a href="/es/tour-jp.html">
      Visita 
     </a>
-</li>  <li id="topMenuTrading" class="item ja-hide gr-hide-m gr-hide-p">
+</li>  <li id="topMenuTrading" class="item ja-hide gr-hide-m gr-hide-p ico-only-hide">
                 <a class="link " href="/es/trading.html">Operar</a>
                 
             </li>  <li id="topMenuJPTrading" class="item invisible ja-show gr-hide-m gr-hide-p">
                 <a class="link " href="/es/multi_barriers_trading.html">Operar</a>
                 
-            </li>  <li id="topMenuPortfolio" class="item client_logged_in invisible">
+            </li>  <li id="topMenuPortfolio" class="item client_logged_in invisible ico-only-hide">
                 <a class="link " href="/es/user/portfoliows.html">Cartera</a>
                 
             </li>  <li id="topMenuProfitTable" class="item client_logged_in invisible">
@@ -342,7 +342,7 @@
             </li>  <li id="topMenuCashier" class="item">
                 <a class="link " href="/es/cashier.html">Cajero</a>
                 
-            </li>  <li id="topMenuResources" class="item">
+            </li>  <li id="topMenuResources" class="item client_logged_out client_logged_in invisible ico-only-hide">
                 <a class="link " href="/es/resources.html">Recursos</a>
                 
                     <ul class="sub_items">  <li id="topMenuAssetIndex" class="sub_item ja-hide">
@@ -586,6 +586,26 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <img class="responsive ico-auction" />
         </div>
     </a>
+</div>
+
+<div class="invisible" id="ico_professional_message">
+    <p>Please confirm that you are a <a href='/es/user/settings/professional.html'>professional trader</a> to proceed.</p>
+</div>
+
+<div class="invisible" id="ico_account_message">
+    <p>Please select your CR account to proceed.</p>
+</div>
+
+<div class="invisible" id="ico_new_account_message">
+    <p>This feature is only available to CR clients. Please upgrade to proceed.</p>
+    <div class="center-text">
+        <a href="javascript:;" class="button" id="ico_new_account"><span>Upgrade</span></a>
+        <p class="error-msg invisible" id="new_account_error"></p>
+    </div>
+</div>
+
+<div class="invisible" id="feature_not_allowed">
+    <p class="center-text notice-msg">This feature is not available in your jurisdiction.</p>
 </div>
 
 

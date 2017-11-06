@@ -792,10 +792,12 @@ input[type='text']:focus, input[type='submit']:focus {
   border-radius: 50%;
   border: 5px solid;
   border-color: transparent #E98024 transparent transparent;
+  -webkit-transform: rotate(-90deg);
   transform: rotate(-90deg);
 }
 #countdown .arcs .arc_cover {
   border-color: transparent #563e2f transparent transparent;
+  -webkit-transform: rotate(-135deg);
   transform: rotate(-135deg);
 }
 

@@ -546,6 +546,21 @@ ul.bullet.gr-row > li {
   margin-bottom: 0 !important;
 }
 
+.toggle-arrow:after {
+  content: '';
+  display: inline-block;
+  margin-left: 7px;
+  border-left: 4px dashed;
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+}
+.toggle-arrow.open:after {
+  border-top: 4px dashed;
+  border-right: 4px solid transparent;
+  border-left: 4px solid transparent;
+  border-bottom: 0;
+}
+
 *, *:after, *:before {
   transition: opacity 0.2s, color 0.2s, background 0.2s;
 }
