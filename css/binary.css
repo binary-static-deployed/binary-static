@@ -466,6 +466,64 @@ button .barspinner.white {
   background-color: #14602B;
 }
 
+#ico_banner_container .ico-banner {
+  cursor: pointer;
+  border: 1px solid #F2F2F2;
+  background: url("../images/ico/banner/white_background.png") 100% no-repeat/cover;
+}
+#ico_banner_container .ico-banner .ico-box {
+  position: relative;
+}
+#ico_banner_container .ico-banner .ico-box div:nth-child(1) {
+  padding-left: 0;
+}
+#ico_banner_container .ico-banner .ico-box .ico-column {
+  min-height: 80px;
+  -ms-flex-pack: center;
+      justify-content: center;
+}
+#ico_banner_container .ico-banner .ico-box .ico-column .learn-btn {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+      justify-content: center;
+  padding-top: 10px;
+}
+#ico_banner_container .ico-banner .ico-box .ico-column .learn-btn a span {
+  font-size: 1rem;
+}
+#ico_banner_container .ico-banner .ico-box .left-bg {
+  background: url("../images/ico/banner/image_left_area.png") 100% no-repeat/cover;
+}
+#ico_banner_container .ico-banner .ico-box p {
+  text-transform: uppercase;
+  font-size: 1.3225rem;
+  font-weight: 400;
+  color: #2A3052;
+}
+#ico_banner_container .ico-banner .ico-box .close-btn {
+  content: url("../images/ico/banner/close_icon.svg");
+  width: 15px;
+  cursor: pointer;
+  padding: 5px;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+#ico_banner_container .ico-banner.top-margin {
+  margin-top: 2.5em;
+}
+#ico_banner_container .ico-banner.bottom-margin {
+  margin-bottom: 2em;
+}
+#ico_banner_container.ico-banner-container {
+  margin: 0 auto;
+  max-width: 960px;
+  padding-right: 10px;
+  padding-left: 10px;
+  box-sizing: border-box;
+}
+
 .days_to_crack {
   width: -webkit-fit-content;
   width: -moz-fit-content;
@@ -951,6 +1009,62 @@ a.previous-wrapper:hover {
 
 #trading_socket_container #notifications_wrapper .notice-msg, #trading_socket_container_beta #notifications_wrapper .notice-msg {
   margin-bottom: 10px;
+}
+
+/**
+ * Image lightbox.
+ * Example:
+ * Create an element like:
+ * <a href="#<target-name>" class="no-ajax"> <img src=".."></a> //Clicking this element will trigger the lightbox
+ * <a href="#_" class="img-lightbox no-ajax" id="<target-name>">
+ *  <div>
+ *      <img src="..">
+ *  </div>
+ * </a>
+ */
+.img-lightbox {
+  /** Default lightbox to hidden */
+  visibility: hidden;
+  /** Position and style */
+  position: fixed;
+  z-index: 999;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.4);
+  transition: opacity 0.3s;
+}
+.img-lightbox.thumbnail {
+  max-width: 40%;
+  max-height: 40%;
+}
+.img-lightbox > div {
+  max-width: 0%;
+  max-height: 0%;
+  background: #fff;
+  border-radius: 5px;
+  text-align: center;
+  margin: 5% auto;
+  box-shadow: -1px 1px 55px 0.5px #44484c;
+}
+.img-lightbox > div img {
+  width: 90%;
+  height: 90%;
+  padding: 20px;
+}
+.img-lightbox.popup > div {
+  transition: visibility 0s 0.3s, max-width 0.3s 0.5s, max-height 0.3s 0.5s;
+}
+.img-lightbox:target {
+  visibility: visible;
+  outline: none;
+  opacity: 1;
+}
+.img-lightbox:target > div {
+  max-width: 80%;
+  max-height: 80%;
 }
 
 /* pages */
@@ -2829,6 +2943,10 @@ body #not_authenticated_financial ul.checked > li {
 .ico-subscribe-content #frm_ico_bid .inactive:hover {
   cursor: auto;
 }
+.ico-subscribe-content .timer .text {
+  font-size: 0.7561436673rem;
+  font-weight: bold;
+}
 .ico-subscribe-content #portfolio th.details {
   width: auto;
 }
@@ -2898,6 +3016,37 @@ body #not_authenticated_financial ul.checked > li {
 #client-limits img {
   margin-left: 5px;
   margin-bottom: 3px;
+}
+
+.authenticate-content .fields > .gr-row > div > .button {
+  display: block;
+  text-align: center;
+  background: #F2F2F2;
+  padding: 5px 0;
+  border-radius: 3px;
+  width: 100%;
+}
+.authenticate-content .fields > .gr-row > div > .button > span {
+  position: relative;
+  top: 2px;
+  padding: 0;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  width: 1em;
+  height: 1em;
+  margin-left: 10px;
+}
+.authenticate-content .fields > .gr-row > div > .button > span.add {
+  background: url("../images/pages/authenticate/add.svg") no-repeat;
+}
+.authenticate-content .fields > .gr-row > div > .button > span.remove {
+  background: url("../images/pages/authenticate/remove.svg") no-repeat;
+}
+.authenticate-content .fields > .gr-row > div > input[type=file] {
+  display: none;
+}
+.authenticate-content .center-text .button .barspinner {
+  margin: 0 auto;
 }
 
 .timeline {
@@ -4882,6 +5031,25 @@ body.ZH_TW .google-play-badge {
   .table-container {
     overflow-x: auto;
   }
+
+  #ico_banner_container .ico-banner .ico-box div:nth-child(1) {
+    padding-left: unset;
+  }
+  #ico_banner_container .ico-banner .ico-box .ico-column {
+    min-height: unset;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  #ico_banner_container .ico-banner .ico-box .ico-column .learn-btn {
+    padding-top: unset;
+  }
+  #ico_banner_container .ico-banner .ico-box .ico-column .learn-btn a {
+    text-align: center;
+  }
+  #ico_banner_container .ico-banner .ico-box p {
+    text-align: center;
+    font-size: 1.15rem;
+  }
 }
 @media screen and (max-width: 480px) {
   #sell_popup_container {
@@ -4909,10 +5077,23 @@ body.ZH_TW .google-play-badge {
   .home-jp-content #banner {
     background-position-x: 15%;
   }
+
+  #ico_banner_container .ico-banner .ico-box p {
+    padding-top: 10px;
+    margin-bottom: 10px;
+  }
+  #ico_banner_container .ico-banner .ico-box .ico-column .learn-btn a {
+    margin-bottom: 1em;
+  }
 }
 @media print {
   .no-print, .no-print * {
     display: none !important;
+  }
+}
+@media screen and (max-width: 1024px) and (min-width: 769px) {
+  .center-text-t, .center-text-t div:first-child label {
+    text-align: center;
   }
 }
 /* external stylesheets

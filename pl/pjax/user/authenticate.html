@@ -1,9 +1,31 @@
 <div id="content" class="authenticate-content">
+            
+                <div id="ico_banner_container"  class="ico-banner-container">
+    <div id="ico_banner" class="ico-banner invisible ja-hide top-margin bottom-margin" onclick="window.open('https://www.binary.com/en/ico', '_blank');">
+        <div class="gr-row gr-centered">
+            <div class="gr-12">
+                <div class="gr-row gr-no-gutter ico-box">
+                    <div class="gr-3 gr-padding-10 ico-column left-bg"></div>
+                    <div class="gr-9 gr-padding-10 ico-column">
+                        <div class="gr-row gr-no-gutter">
+                            <div class="gr-9 gr-12-p gr-12-m"><p>Binary.com ICO rozpoczyna się 15 listopada 2017 r.</p></div>
+                            <div class="gr-3 gr-12-p gr-12-m learn-btn"><a class="button" target="_blank" href="https://www.binary.com/en/ico"><span>Dowiedz się więcej</span></a></div>
+                        </div>
+                    </div>
+                    <div id="close_ico_banner" class="close-btn"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+            
             <div id="page_info" style="display:none;">
                 <title>Zweryfikuj | Binary.com</title>
                 <div id="content_class">authenticate-content</div>
             </div>
-            <div class="container">
+            
+                <div class="container">
+            
 
 
 
@@ -18,19 +40,235 @@
     </p>
 
     <div id="not_authenticated" class="invisible">
-        <p>Zweryfikuj swoje konto już teraz, potwierdzając swoją tożsamość i swoje dane adresowe. Wystarczy wysłać następujące dokumenty na adres <a href='mailto:authentications@binary.com' rel='nofollow'>authentications@binary.com</a>:</p>
-<ul class="checked">
-    <li>Potwierdzenie tożsamości – skan Twojego paszportu, prawa jazdy (czasowego lub normalnego) lub dowodu osobistego z Twoim imieniem i nazwiskiem oraz datą urodzenia.</li>
-    <li>Potwierdzenie adresu – skan rachunku za media lub wyciągu bankowego z ostatnich sześciu miesięcy. Dokument potwierdzający dane adresowe musi zawierać Twoje imię i nazwisko, adres, datę wystawienia oraz nazwę podmiotu wystawiającego dokument.</li>
-</ul>
+        <p>Zweryfikuj swoje konto, potwierdzając swoją tożsamość i dane adresowe.</p>
+
+<div class="gr-row gr-12">
+        <fieldset>
+            <div class="gr-padding-30 gr-gutter-left gr-gutter-right">
+                <h2>1. Potwierdzenie tożsamości</h2>
+                <div class="gr-row">
+                    <div class="gr-7 gr-12-m">
+                        <strong>Akceptujemy:</strong>
+                        <ul class="bullet">
+                            
+                                <li>Paszport</li>
+                            
+                                <li>Prawo jazdy</li>
+                            
+                                <li>Krajowy dowód osobisty lub dokument wydany przez dowolne władze zawierający Twoje zdjęcie, imię i nazwisko oraz datę urodzenia</li>
+                            
+                        </ul>
+                        <strong>Wymogi:</strong>
+                        <ul class="bullet">
+                            
+                                <li>Musi mieć formę wyraźnego zdjęcia w kolorze lub zeskanowanego obrazu</li>
+                            
+                                <li>Nadal ważny</li>
+                            
+                                <li>Akceptowany jest tylko format JPG, JPEG, GIF, PNG i PDF</li>
+                            
+                                <li>Maksymalny rozmiar każdego pliku to 3 MB</li>
+                            
+                        </ul>
+                    </div>
+                    <div class="gr-5 gr-12-m">
+                        <p class="font-s">Prześlij jeden z poniższych dokumentów:</p>            
+                        <div class="files">
+                            
+                                <h3>Paszport</h3>
+                                <div class="fields">
+                                    
+                                        <div class="gr-row form-row center-text-m">
+                                            <div class="gr-4 gr-12-m">
+                                                <label for="id_number_1">Numer dowodu:</label>
+                                            </div>
+                                            <div class="gr-8 gr-12-m">
+                                                <input id="id_number_1" type="text" maxlength="30">
+                                            </div>
+                                        </div>
+                                        <div class="gr-row form-row center-text-m">
+                                            <div class="gr-4 gr-12-m">
+                                                <label for="exp_date_1">Termin ważności:</label>
+                                            </div>
+                                            <div class="gr-8 gr-12-m">
+                                                <input class="date-picker" id="exp_date_1" type="text" maxlength="200" readonly="true">
+                                            </div>
+                                        </div>
+                                        <div class="gr-row form-row center-text-m">
+                                            <div class="gr-6 gr-12-m">
+                                                <input id="front_file1" class="file-picker" type="file" accept=".jpg, .jpeg, .gif, .png, .pdf" data-type="passport">
+                                                <label for="front_file1" class="button">Przednia strona <span class="add" /></button>
+                                            </div>
+                                            <div class="gr-6 gr-12-m">
+                                                <input id="back_file1" class="file-picker" type="file" accept=".jpg, .jpeg, .gif, .png, .pdf" data-type="passport">
+                                                <label for="back_file1" class="button">Tylna strona <span class="add" /></button>
+                                            </div>
+                                        </div>
+                                    
+                                    
+                                </div>
+                            
+                                <h3>Dowód osobisty</h3>
+                                <div class="fields">
+                                    
+                                        <div class="gr-row form-row center-text-m">
+                                            <div class="gr-4 gr-12-m">
+                                                <label for="id_number_2">Numer dowodu:</label>
+                                            </div>
+                                            <div class="gr-8 gr-12-m">
+                                                <input id="id_number_2" type="text" maxlength="30">
+                                            </div>
+                                        </div>
+                                        <div class="gr-row form-row center-text-m">
+                                            <div class="gr-4 gr-12-m">
+                                                <label for="exp_date_2">Termin ważności:</label>
+                                            </div>
+                                            <div class="gr-8 gr-12-m">
+                                                <input class="date-picker" id="exp_date_2" type="text" maxlength="200" readonly="true">
+                                            </div>
+                                        </div>
+                                        <div class="gr-row form-row center-text-m">
+                                            <div class="gr-6 gr-12-m">
+                                                <input id="front_file2" class="file-picker" type="file" accept=".jpg, .jpeg, .gif, .png, .pdf" data-type="proofid">
+                                                <label for="front_file2" class="button">Przednia strona <span class="add" /></button>
+                                            </div>
+                                            <div class="gr-6 gr-12-m">
+                                                <input id="back_file2" class="file-picker" type="file" accept=".jpg, .jpeg, .gif, .png, .pdf" data-type="proofid">
+                                                <label for="back_file2" class="button">Tylna strona <span class="add" /></button>
+                                            </div>
+                                        </div>
+                                    
+                                    
+                                </div>
+                            
+                                <h3>Prawo jazdy</h3>
+                                <div class="fields">
+                                    
+                                        <div class="gr-row form-row center-text-m">
+                                            <div class="gr-4 gr-12-m">
+                                                <label for="id_number_3">Numer dowodu:</label>
+                                            </div>
+                                            <div class="gr-8 gr-12-m">
+                                                <input id="id_number_3" type="text" maxlength="30">
+                                            </div>
+                                        </div>
+                                        <div class="gr-row form-row center-text-m">
+                                            <div class="gr-4 gr-12-m">
+                                                <label for="exp_date_3">Termin ważności:</label>
+                                            </div>
+                                            <div class="gr-8 gr-12-m">
+                                                <input class="date-picker" id="exp_date_3" type="text" maxlength="200" readonly="true">
+                                            </div>
+                                        </div>
+                                        <div class="gr-row form-row center-text-m">
+                                            <div class="gr-6 gr-12-m">
+                                                <input id="front_file3" class="file-picker" type="file" accept=".jpg, .jpeg, .gif, .png, .pdf" data-type="driverslicense">
+                                                <label for="front_file3" class="button">Przednia strona <span class="add" /></button>
+                                            </div>
+                                            <div class="gr-6 gr-12-m">
+                                                <input id="back_file3" class="file-picker" type="file" accept=".jpg, .jpeg, .gif, .png, .pdf" data-type="driverslicense">
+                                                <label for="back_file3" class="button">Tylna strona <span class="add" /></button>
+                                            </div>
+                                        </div>
+                                    
+                                    
+                                </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+
+<div class="gr-hide-m gr-padding-10">
+    <div class="separator-line "></div>
+</div>
+
+<div class="gr-row gr-12">
+        <fieldset>
+            <div class="gr-padding-30 gr-gutter-left gr-gutter-right">
+                <h2>2. Potwierdzenia adresu</h2>
+                <div class="gr-row">
+                    <div class="gr-7 gr-12-m">
+                        <strong>Akceptujemy:</strong>
+                        <ul class="bullet">
+                            
+                                <li>Rachunek za media (gaz, prąd lub telefon stacjonarny)</li>
+                            
+                                <li>Najnowszy wyciąg bankowy lub list wystawiony przez dowolne władze, na którym widnieją Twoje dane osobowe i adresowe</li>
+                            
+                        </ul>
+                        <strong>Wymogi:</strong>
+                        <ul class="bullet">
+                            
+                                <li>Musi mieć formę wyraźnego zdjęcia w kolorze lub zeskanowanego obrazu</li>
+                            
+                                <li>Wystawione na Twoje imię i nazwisko</li>
+                            
+                                <li>Z datą wystawienia nie starszą niż ostatnie trzy miesiące</li>
+                            
+                                <li>Akceptowany jest tylko format JPG, JPEG, GIF, PNG i PDF</li>
+                            
+                                <li>Maksymalny rozmiar każdego pliku to 3 MB</li>
+                            
+                        </ul>
+                    </div>
+                    <div class="gr-5 gr-12-m">
+                        <p class="font-s">Prześlij jeden z poniższych dokumentów:</p>            
+                        <div class="files">
+                            
+                                <h3>Rachunek za media</h3>
+                                <div class="fields">
+                                    
+                                    
+                                        <div class="gr-row form-row gr-centered">
+                                            <div class="gr-12">
+                                                <input id="add_file1" class="file-picker" type="file" accept=".jpg, .jpeg, .gif, .png, .pdf" data-type="proofaddress">
+                                                <label for="add_file1" class="button">Dodaj <span class="add" /></button>
+                                            </div>
+                                        </div>
+                                    
+                                </div>
+                            
+                                <h3>Wyciąg z rachunku bankowego</h3>
+                                <div class="fields">
+                                    
+                                    
+                                        <div class="gr-row form-row gr-centered">
+                                            <div class="gr-12">
+                                                <input id="add_file2" class="file-picker" type="file" accept=".jpg, .jpeg, .gif, .png, .pdf" data-type="bankstatement">
+                                                <label for="add_file2" class="button">Dodaj <span class="add" /></button>
+                                            </div>
+                                        </div>
+                                    
+                                </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+
+<div class="center-text">
+    <div id="msg_form" class="error-msg invisible"></div>
+    <div class="gr-padding-10">
+        <a class="button-disabled" id="btn_submit" type="submit">
+            <span>Prześlij do sprawdzenia</span>
+        </a>
+    </div>
+</div>
     </div>
     <div id="not_authenticated_financial" class="invisible">
-        <p>Zweryfikuj swoje konto już teraz, potwierdzając swoją tożsamość i swoje dane adresowe. Wystarczy wysłać następujące dokumenty na adres <a href='mailto:authentications@binary.com' rel='nofollow'>authentications@binary.com</a>:</p>
-<ul class="checked">
-    <li>Potwierdzenie tożsamości – skan Twojego paszportu, prawa jazdy (czasowego lub normalnego) lub dowodu osobistego z Twoim imieniem i nazwiskiem oraz datą urodzenia.</li>
-    <li>Potwierdzenie adresu – skan rachunku za media lub wyciągu bankowego z ostatnich sześciu miesięcy. Dokument potwierdzający dane adresowe musi zawierać Twoje imię i nazwisko, adres, datę wystawienia oraz nazwę podmiotu wystawiającego dokument.</li>
-</ul>
-<p>Jako mieszkaniec UE podlegasz również wymogowi zweryfikowania powyższych dokumentów podczas <a href="/pl/user/video-facility.html">wideo rozmowy</a>.</p>
+        <p>Jako mieszkaniec UE podlegasz również wymogowi zweryfikowania powyższych dokumentów podczas <a href="/pl/user/video-facility.html">wideo rozmowy</a>.</p>
+    </div>
+    <div id="success-message" class="center-text invisible">
+        <div class="gr-hide-m gr-padding-10">
+    <div class="separator-line "></div>
+</div>
+        <h2>Dziękujemy za przesłanie wymaganych dokumentów</h2>
+        <p>Sprawdzamy Twoje dokumenty. Skontaktujemy się w ciągu jednego dnia roboczego.</p>
     </div>
 
     <p class="center-text notice-msg invisible" id="error_message"></p>

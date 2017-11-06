@@ -722,9 +722,16 @@ input[type='text']:focus, input[type='submit']:focus {
   padding-bottom: 50px;
 }
 
+#status_loading {
+  margin: 0 auto;
+}
+#status_loading .barspinner {
+  margin: 0;
+}
+
 #countdown {
   text-align: center;
-  margin: 30px auto 60px;
+  margin: 30px auto;
 }
 #countdown .cd-item {
   display: inline-block;

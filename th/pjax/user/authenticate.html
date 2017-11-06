@@ -1,9 +1,31 @@
 <div id="content" class="authenticate-content">
+            
+                <div id="ico_banner_container"  class="ico-banner-container">
+    <div id="ico_banner" class="ico-banner invisible ja-hide top-margin bottom-margin" onclick="window.open('https://www.binary.com/en/ico', '_blank');">
+        <div class="gr-row gr-centered">
+            <div class="gr-12">
+                <div class="gr-row gr-no-gutter ico-box">
+                    <div class="gr-3 gr-padding-10 ico-column left-bg"></div>
+                    <div class="gr-9 gr-padding-10 ico-column">
+                        <div class="gr-row gr-no-gutter">
+                            <div class="gr-9 gr-12-p gr-12-m"><p>Binary.com จะเริ่ม ICO ในวันที่ 15 พฤศจิกายน พ.ศ. 2560</p></div>
+                            <div class="gr-3 gr-12-p gr-12-m learn-btn"><a class="button" target="_blank" href="https://www.binary.com/en/ico"><span>เรียนเพิ่มเติม</span></a></div>
+                        </div>
+                    </div>
+                    <div id="close_ico_banner" class="close-btn"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+            
             <div id="page_info" style="display:none;">
                 <title>ยืนยันตัวตน | Binary.com</title>
                 <div id="content_class">authenticate-content</div>
             </div>
-            <div class="container">
+            
+                <div class="container">
+            
 
 
 
@@ -18,19 +40,235 @@
     </p>
 
     <div id="not_authenticated" class="invisible">
-        <p>การพิสูจน์บัญชีของท่าน ทำได้ขณะนี้โดยตรวจสอบอัตลักษณ์และที่อยู่ของท่าน เพื่อดำเนินการต่อ โปรดส่งเอกสารต่อไปนี้มายัง <a href='mailto:authentications@binary.com' rel='nofollow'>authentications@binary.com</a>:</p>
-<ul class="checked">
-    <li>การตรวจสอบอัตลักษณ์ - สำเนาหนังสือเดินทาง หรือ สำเนาใบขับขี่ (ฉบับชั่วคราว หรือ ฉบับตลอดชีพ) หรือ สำเนาบัตรประชาชน ที่แสดงชื่อสกุลจริงของท่านและวันเดือนปีเกิด จำนวน 1 ฉบับ</li>
-    <li>หลักฐานที่อยู่ - สำเนาของใบเรียกเก็บเงินค่าสาธารณูปโภค หรือใบแจ้งยอดจากธนาคารที่มีอายุไม่เกินหกเดือน หลักฐานที่อยู่นี้จะต้องมีชื่อของท่าน ที่อยู่ วันที่ออกเอกสาร และชื่อขององค์กรที่ออกเอกสาร</li>
-</ul>
+        <p>รับรองความถูกต้องของบัญชีของคุณ โดยการตรวจสอบตัวตนและที่อยู่ของคุณ</p>
+
+<div class="gr-row gr-12">
+        <fieldset>
+            <div class="gr-padding-30 gr-gutter-left gr-gutter-right">
+                <h2>1. หลักฐานแสดงตัวบุคคล</h2>
+                <div class="gr-row">
+                    <div class="gr-7 gr-12-m">
+                        <strong>เรายอมรับ:</strong>
+                        <ul class="bullet">
+                            
+                                <li>หนังสือเดินทาง</li>
+                            
+                                <li>ใบขับขี่</li>
+                            
+                                <li>บัตรประจำตัวประชาชนหรือเอกสารใดๆที่ออกโดยรัฐบาลซึ่งมีรูป ชื่อของคุณ และวันเดือนปีเกิด</li>
+                            
+                        </ul>
+                        <strong>ข้อกำหนดความต้องการ:</strong>
+                        <ul class="bullet">
+                            
+                                <li>จะต้องเป็นรูปสีชัดเจน หรือรูปสแกน</li>
+                            
+                                <li>ยังคงถูกต้อง</li>
+                            
+                                <li>รับเฉพาะไฟล์ JPG, JPEG, GIF, PNG และ PDF เท่านั้น</li>
+                            
+                                <li>ขนาดอัปโหลดที่สูงที่สุดสำหรับแต่ละไฟล์คือ 3MB</li>
+                            
+                        </ul>
+                    </div>
+                    <div class="gr-5 gr-12-m">
+                        <p class="font-s">ส่งเอกสารอย่างใดอย่างหนึ่งด้านล่าง:</p>            
+                        <div class="files">
+                            
+                                <h3>หนังสือเดินทาง</h3>
+                                <div class="fields">
+                                    
+                                        <div class="gr-row form-row center-text-m">
+                                            <div class="gr-4 gr-12-m">
+                                                <label for="id_number_1">หมายเลขประจำตัว:</label>
+                                            </div>
+                                            <div class="gr-8 gr-12-m">
+                                                <input id="id_number_1" type="text" maxlength="30">
+                                            </div>
+                                        </div>
+                                        <div class="gr-row form-row center-text-m">
+                                            <div class="gr-4 gr-12-m">
+                                                <label for="exp_date_1">วันหมดอายุ:</label>
+                                            </div>
+                                            <div class="gr-8 gr-12-m">
+                                                <input class="date-picker" id="exp_date_1" type="text" maxlength="200" readonly="true">
+                                            </div>
+                                        </div>
+                                        <div class="gr-row form-row center-text-m">
+                                            <div class="gr-6 gr-12-m">
+                                                <input id="front_file1" class="file-picker" type="file" accept=".jpg, .jpeg, .gif, .png, .pdf" data-type="passport">
+                                                <label for="front_file1" class="button">ด้านหน้า <span class="add" /></button>
+                                            </div>
+                                            <div class="gr-6 gr-12-m">
+                                                <input id="back_file1" class="file-picker" type="file" accept=".jpg, .jpeg, .gif, .png, .pdf" data-type="passport">
+                                                <label for="back_file1" class="button">อีกด้านหนึ่ง <span class="add" /></button>
+                                            </div>
+                                        </div>
+                                    
+                                    
+                                </div>
+                            
+                                <h3>บัตรแสดงตัวบุคคล</h3>
+                                <div class="fields">
+                                    
+                                        <div class="gr-row form-row center-text-m">
+                                            <div class="gr-4 gr-12-m">
+                                                <label for="id_number_2">หมายเลขประจำตัว:</label>
+                                            </div>
+                                            <div class="gr-8 gr-12-m">
+                                                <input id="id_number_2" type="text" maxlength="30">
+                                            </div>
+                                        </div>
+                                        <div class="gr-row form-row center-text-m">
+                                            <div class="gr-4 gr-12-m">
+                                                <label for="exp_date_2">วันหมดอายุ:</label>
+                                            </div>
+                                            <div class="gr-8 gr-12-m">
+                                                <input class="date-picker" id="exp_date_2" type="text" maxlength="200" readonly="true">
+                                            </div>
+                                        </div>
+                                        <div class="gr-row form-row center-text-m">
+                                            <div class="gr-6 gr-12-m">
+                                                <input id="front_file2" class="file-picker" type="file" accept=".jpg, .jpeg, .gif, .png, .pdf" data-type="proofid">
+                                                <label for="front_file2" class="button">ด้านหน้า <span class="add" /></button>
+                                            </div>
+                                            <div class="gr-6 gr-12-m">
+                                                <input id="back_file2" class="file-picker" type="file" accept=".jpg, .jpeg, .gif, .png, .pdf" data-type="proofid">
+                                                <label for="back_file2" class="button">อีกด้านหนึ่ง <span class="add" /></button>
+                                            </div>
+                                        </div>
+                                    
+                                    
+                                </div>
+                            
+                                <h3>ใบขับขี่</h3>
+                                <div class="fields">
+                                    
+                                        <div class="gr-row form-row center-text-m">
+                                            <div class="gr-4 gr-12-m">
+                                                <label for="id_number_3">หมายเลขประจำตัว:</label>
+                                            </div>
+                                            <div class="gr-8 gr-12-m">
+                                                <input id="id_number_3" type="text" maxlength="30">
+                                            </div>
+                                        </div>
+                                        <div class="gr-row form-row center-text-m">
+                                            <div class="gr-4 gr-12-m">
+                                                <label for="exp_date_3">วันหมดอายุ:</label>
+                                            </div>
+                                            <div class="gr-8 gr-12-m">
+                                                <input class="date-picker" id="exp_date_3" type="text" maxlength="200" readonly="true">
+                                            </div>
+                                        </div>
+                                        <div class="gr-row form-row center-text-m">
+                                            <div class="gr-6 gr-12-m">
+                                                <input id="front_file3" class="file-picker" type="file" accept=".jpg, .jpeg, .gif, .png, .pdf" data-type="driverslicense">
+                                                <label for="front_file3" class="button">ด้านหน้า <span class="add" /></button>
+                                            </div>
+                                            <div class="gr-6 gr-12-m">
+                                                <input id="back_file3" class="file-picker" type="file" accept=".jpg, .jpeg, .gif, .png, .pdf" data-type="driverslicense">
+                                                <label for="back_file3" class="button">อีกด้านหนึ่ง <span class="add" /></button>
+                                            </div>
+                                        </div>
+                                    
+                                    
+                                </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+
+<div class="gr-hide-m gr-padding-10">
+    <div class="separator-line "></div>
+</div>
+
+<div class="gr-row gr-12">
+        <fieldset>
+            <div class="gr-padding-30 gr-gutter-left gr-gutter-right">
+                <h2>2. หลักฐานที่อยู่</h2>
+                <div class="gr-row">
+                    <div class="gr-7 gr-12-m">
+                        <strong>เรายอมรับ:</strong>
+                        <ul class="bullet">
+                            
+                                <li>ใบแจ้งหนี้ค่าสาธารณูปโภค (น้ำมัน ไฟฟ้า และโทรศัพท์)</li>
+                            
+                                <li>เอกสารแสดงบัญชีล่าสุดหรือจดหมายที่ออกโดยรัฐบาลซึ่งมีชื่อและที่อยู่ของคุณ</li>
+                            
+                        </ul>
+                        <strong>ข้อกำหนดความต้องการ:</strong>
+                        <ul class="bullet">
+                            
+                                <li>จะต้องเป็นรูปสีชัดเจน หรือรูปสแกน</li>
+                            
+                                <li>ออกภายใต้ชื่อของคุณ</li>
+                            
+                                <li>ลงวันที่ภายในสามเดือนที่ผ่านมา</li>
+                            
+                                <li>รับเฉพาะไฟล์ JPG, JPEG, GIF, PNG และ PDF เท่านั้น</li>
+                            
+                                <li>ขนาดอัปโหลดที่สูงที่สุดสำหรับแต่ละไฟล์คือ 3MB</li>
+                            
+                        </ul>
+                    </div>
+                    <div class="gr-5 gr-12-m">
+                        <p class="font-s">ส่งเอกสารอย่างใดอย่างหนึ่งด้านล่าง:</p>            
+                        <div class="files">
+                            
+                                <h3>ใบแจ้งหนี้ค่าสาธารณูปโภค</h3>
+                                <div class="fields">
+                                    
+                                    
+                                        <div class="gr-row form-row gr-centered">
+                                            <div class="gr-12">
+                                                <input id="add_file1" class="file-picker" type="file" accept=".jpg, .jpeg, .gif, .png, .pdf" data-type="proofaddress">
+                                                <label for="add_file1" class="button">เพิ่ม <span class="add" /></button>
+                                            </div>
+                                        </div>
+                                    
+                                </div>
+                            
+                                <h3>รายการเงินฝากถอนในบัญชี</h3>
+                                <div class="fields">
+                                    
+                                    
+                                        <div class="gr-row form-row gr-centered">
+                                            <div class="gr-12">
+                                                <input id="add_file2" class="file-picker" type="file" accept=".jpg, .jpeg, .gif, .png, .pdf" data-type="bankstatement">
+                                                <label for="add_file2" class="button">เพิ่ม <span class="add" /></button>
+                                            </div>
+                                        </div>
+                                    
+                                </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+
+<div class="center-text">
+    <div id="msg_form" class="error-msg invisible"></div>
+    <div class="gr-padding-10">
+        <a class="button-disabled" id="btn_submit" type="submit">
+            <span>ส่งเพื่อพิจารณา</span>
+        </a>
+    </div>
+</div>
     </div>
     <div id="not_authenticated_financial" class="invisible">
-        <p>การพิสูจน์บัญชีของท่าน ทำได้ขณะนี้โดยตรวจสอบอัตลักษณ์และที่อยู่ของท่าน เพื่อดำเนินการต่อ โปรดส่งเอกสารต่อไปนี้มายัง <a href='mailto:authentications@binary.com' rel='nofollow'>authentications@binary.com</a>:</p>
-<ul class="checked">
-    <li>การตรวจสอบอัตลักษณ์ - สำเนาหนังสือเดินทาง หรือ สำเนาใบขับขี่ (ฉบับชั่วคราว หรือ ฉบับตลอดชีพ) หรือ สำเนาบัตรประชาชน ที่แสดงชื่อสกุลจริงของท่านและวันเดือนปีเกิด จำนวน 1 ฉบับ</li>
-    <li>หลักฐานที่อยู่ - สำเนาของใบเรียกเก็บเงินค่าสาธารณูปโภค หรือใบแจ้งยอดจากธนาคารที่มีอายุไม่เกินหกเดือน หลักฐานที่อยู่นี้จะต้องมีชื่อของท่าน ที่อยู่ วันที่ออกเอกสาร และชื่อขององค์กรที่ออกเอกสาร</li>
-</ul>
-<p>ในฐานะประชากรของสหภาพยุโรป คุณจะต้องตรวจสอบเอกสารข้างต้นด้วยโดย<a href="/th/user/video-facility.html">การสนทนาทางวีดีโอ</a></p>
+        <p>ในฐานะประชากรของสหภาพยุโรป คุณจะต้องตรวจสอบเอกสารข้างต้นด้วยโดย<a href="/th/user/video-facility.html">การสนทนาทางวีดีโอ</a></p>
+    </div>
+    <div id="success-message" class="center-text invisible">
+        <div class="gr-hide-m gr-padding-10">
+    <div class="separator-line "></div>
+</div>
+        <h2>ขอบคุณที่ส่งเอกสาร</h2>
+        <p>พวกเราจะตรวจทานเอกสารของท่าน และจะติดต่อกลับหาท่านภายในหนึ่งวันทำการ</p>
     </div>
 
     <p class="center-text notice-msg invisible" id="error_message"></p>

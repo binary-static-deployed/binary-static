@@ -57,12 +57,12 @@
         <link rel="alternate" href="/vi/user/metatrader.html" hreflang="VI" />       
         <link rel="alternate" href="/zh_tw/user/metatrader.html" hreflang="ZH_TW" />   
 
-         <link rel="stylesheet" href="/css/binary.min.css?p4ry5el9" />
+         <link rel="stylesheet" href="/css/binary.min.css?y12rbmf7" />
         
-         <script src='/js/texts/zh_cn.js?p4ry5el9'></script>
-         <script src='/js/manifest.js?p4ry5el9'></script>
-         <script src='/js/vendor.min.js?10a9de79'></script>
-         <script src='/js/binary.min.js?p4ry5el9'></script>
+         <script src='/js/texts/zh_cn.js?y12rbmf7'></script>
+         <script src='/js/manifest.js?y12rbmf7'></script>
+         <script src='/js/vendor.min.js?d2d176c8'></script>
+         <script src='/js/binary.min.js?y12rbmf7'></script>
         
     </head>
 
@@ -398,6 +398,26 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
         <div id="content" class="metatrader-content">
+            
+                <div id="ico_banner_container"  class="ico-banner-container">
+    <div id="ico_banner" class="ico-banner invisible ja-hide top-margin" onclick="window.open('https://www.binary.com/en/ico', '_blank');">
+        <div class="gr-row gr-centered">
+            <div class="gr-12">
+                <div class="gr-row gr-no-gutter ico-box">
+                    <div class="gr-3 gr-padding-10 ico-column left-bg"></div>
+                    <div class="gr-9 gr-padding-10 ico-column">
+                        <div class="gr-row gr-no-gutter">
+                            <div class="gr-9 gr-12-p gr-12-m"><p>Binary.com ICO 于2017年11月15日开始</p></div>
+                            <div class="gr-3 gr-12-p gr-12-m learn-btn"><a class="button" target="_blank" href="https://www.binary.com/en/ico"><span>了解更多</span></a></div>
+                        </div>
+                    </div>
+                    <div id="close_ico_banner" class="close-btn"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+            
             <div id="page_info" style="display:none;">
                 <title>MetaTrader 账户管理 | Binary.com</title>
                 <div id="content_class">metatrader-content</div>
@@ -840,11 +860,225 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <div id="msg_authenticate">
                     <div class="align-start">
                         <p>如果您想从MetaTrader 5金融账户提款，请验证您的Binary.com账户。</p>
-                        <p>请提交身份与地址证明，立刻进行账户验证。继续操作，请将以下文件发送到<a href='mailto:authentications@binary.com' rel='nofollow'>authentications@binary.com</a>：</p>
-<ul class="checked">
-    <li>身份证明 - 显示您名字和出生日期的护照、驾照（临时或永久）或身份证的扫描件。</li>
-    <li>地址证明 - 水电煤账单或银行月结单扫描件（日期不得超过6个月）。地址证明必须包括您的姓名、地址、发证日期和发证机构名称。</li>
-</ul>
+                        <p>请提交身份与地址证明，立刻进行账户验证。</p>
+
+<div class="gr-row gr-12">
+        <fieldset>
+            <div class="gr-padding-30 gr-gutter-left gr-gutter-right">
+                <h2>1. 身份证明</h2>
+                <div class="gr-row">
+                    <div class="gr-7 gr-12-m">
+                        <strong>我们接受:</strong>
+                        <ul class="bullet">
+                            
+                                <li>护照</li>
+                            
+                                <li>驾驶执照</li>
+                            
+                                <li>包含您的照片、姓名和出生日期的国民身份证或任何政府出具的文件</li>
+                            
+                        </ul>
+                        <strong>需求:</strong>
+                        <ul class="bullet">
+                            
+                                <li>必须是清晰, 彩色照片或扫描图像</li>
+                            
+                                <li>仍然有效</li>
+                            
+                                <li>只接受 JPG、JPEG、GIF、PNG 和 PDF 格式</li>
+                            
+                                <li>每个文件的最大上载大小为3MB</li>
+                            
+                        </ul>
+                    </div>
+                    <div class="gr-5 gr-12-m">
+                        <p class="font-s">提交下列文件之一:</p>            
+                        <div class="files">
+                            
+                                <h3>护照</h3>
+                                <div class="fields">
+                                    
+                                        <div class="gr-row form-row center-text-m">
+                                            <div class="gr-4 gr-12-m">
+                                                <label for="id_number_1">身份证号码:</label>
+                                            </div>
+                                            <div class="gr-8 gr-12-m">
+                                                <input id="id_number_1" type="text" maxlength="30">
+                                            </div>
+                                        </div>
+                                        <div class="gr-row form-row center-text-m">
+                                            <div class="gr-4 gr-12-m">
+                                                <label for="exp_date_1">到期日:</label>
+                                            </div>
+                                            <div class="gr-8 gr-12-m">
+                                                <input class="date-picker" id="exp_date_1" type="text" maxlength="200" readonly="true">
+                                            </div>
+                                        </div>
+                                        <div class="gr-row form-row center-text-m">
+                                            <div class="gr-6 gr-12-m">
+                                                <input id="front_file1" class="file-picker" type="file" accept=".jpg, .jpeg, .gif, .png, .pdf" data-type="passport">
+                                                <label for="front_file1" class="button">前侧 <span class="add" /></button>
+                                            </div>
+                                            <div class="gr-6 gr-12-m">
+                                                <input id="back_file1" class="file-picker" type="file" accept=".jpg, .jpeg, .gif, .png, .pdf" data-type="passport">
+                                                <label for="back_file1" class="button">反面 <span class="add" /></button>
+                                            </div>
+                                        </div>
+                                    
+                                    
+                                </div>
+                            
+                                <h3>身分证</h3>
+                                <div class="fields">
+                                    
+                                        <div class="gr-row form-row center-text-m">
+                                            <div class="gr-4 gr-12-m">
+                                                <label for="id_number_2">身份证号码:</label>
+                                            </div>
+                                            <div class="gr-8 gr-12-m">
+                                                <input id="id_number_2" type="text" maxlength="30">
+                                            </div>
+                                        </div>
+                                        <div class="gr-row form-row center-text-m">
+                                            <div class="gr-4 gr-12-m">
+                                                <label for="exp_date_2">到期日:</label>
+                                            </div>
+                                            <div class="gr-8 gr-12-m">
+                                                <input class="date-picker" id="exp_date_2" type="text" maxlength="200" readonly="true">
+                                            </div>
+                                        </div>
+                                        <div class="gr-row form-row center-text-m">
+                                            <div class="gr-6 gr-12-m">
+                                                <input id="front_file2" class="file-picker" type="file" accept=".jpg, .jpeg, .gif, .png, .pdf" data-type="proofid">
+                                                <label for="front_file2" class="button">前侧 <span class="add" /></button>
+                                            </div>
+                                            <div class="gr-6 gr-12-m">
+                                                <input id="back_file2" class="file-picker" type="file" accept=".jpg, .jpeg, .gif, .png, .pdf" data-type="proofid">
+                                                <label for="back_file2" class="button">反面 <span class="add" /></button>
+                                            </div>
+                                        </div>
+                                    
+                                    
+                                </div>
+                            
+                                <h3>驾驶执照</h3>
+                                <div class="fields">
+                                    
+                                        <div class="gr-row form-row center-text-m">
+                                            <div class="gr-4 gr-12-m">
+                                                <label for="id_number_3">身份证号码:</label>
+                                            </div>
+                                            <div class="gr-8 gr-12-m">
+                                                <input id="id_number_3" type="text" maxlength="30">
+                                            </div>
+                                        </div>
+                                        <div class="gr-row form-row center-text-m">
+                                            <div class="gr-4 gr-12-m">
+                                                <label for="exp_date_3">到期日:</label>
+                                            </div>
+                                            <div class="gr-8 gr-12-m">
+                                                <input class="date-picker" id="exp_date_3" type="text" maxlength="200" readonly="true">
+                                            </div>
+                                        </div>
+                                        <div class="gr-row form-row center-text-m">
+                                            <div class="gr-6 gr-12-m">
+                                                <input id="front_file3" class="file-picker" type="file" accept=".jpg, .jpeg, .gif, .png, .pdf" data-type="driverslicense">
+                                                <label for="front_file3" class="button">前侧 <span class="add" /></button>
+                                            </div>
+                                            <div class="gr-6 gr-12-m">
+                                                <input id="back_file3" class="file-picker" type="file" accept=".jpg, .jpeg, .gif, .png, .pdf" data-type="driverslicense">
+                                                <label for="back_file3" class="button">反面 <span class="add" /></button>
+                                            </div>
+                                        </div>
+                                    
+                                    
+                                </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+
+<div class="gr-hide-m gr-padding-10">
+    <div class="separator-line "></div>
+</div>
+
+<div class="gr-row gr-12">
+        <fieldset>
+            <div class="gr-padding-30 gr-gutter-left gr-gutter-right">
+                <h2>2. 地址证明</h2>
+                <div class="gr-row">
+                    <div class="gr-7 gr-12-m">
+                        <strong>我们接受:</strong>
+                        <ul class="bullet">
+                            
+                                <li>水电煤账单 (煤气、电气和电话)</li>
+                            
+                                <li>包含您的姓名和地址的最新银行月结单或任何由政府出具的信函</li>
+                            
+                        </ul>
+                        <strong>需求:</strong>
+                        <ul class="bullet">
+                            
+                                <li>必须是清晰, 彩色照片或扫描图像</li>
+                            
+                                <li>以您自己的名字发出</li>
+                            
+                                <li>过去三个月内的日期</li>
+                            
+                                <li>只接受 JPG、JPEG、GIF、PNG 和 PDF 格式</li>
+                            
+                                <li>每个文件的最大上载大小为3MB</li>
+                            
+                        </ul>
+                    </div>
+                    <div class="gr-5 gr-12-m">
+                        <p class="font-s">提交下列文件之一:</p>            
+                        <div class="files">
+                            
+                                <h3>水电煤账单</h3>
+                                <div class="fields">
+                                    
+                                    
+                                        <div class="gr-row form-row gr-centered">
+                                            <div class="gr-12">
+                                                <input id="add_file1" class="file-picker" type="file" accept=".jpg, .jpeg, .gif, .png, .pdf" data-type="proofaddress">
+                                                <label for="add_file1" class="button">添加 <span class="add" /></button>
+                                            </div>
+                                        </div>
+                                    
+                                </div>
+                            
+                                <h3>银行月结单</h3>
+                                <div class="fields">
+                                    
+                                    
+                                        <div class="gr-row form-row gr-centered">
+                                            <div class="gr-12">
+                                                <input id="add_file2" class="file-picker" type="file" accept=".jpg, .jpeg, .gif, .png, .pdf" data-type="bankstatement">
+                                                <label for="add_file2" class="button">添加 <span class="add" /></button>
+                                            </div>
+                                        </div>
+                                    
+                                </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+
+<div class="center-text">
+    <div id="msg_form" class="error-msg invisible"></div>
+    <div class="gr-padding-10">
+        <a class="button-disabled" id="btn_submit" type="submit">
+            <span>提交以供审阅</span>
+        </a>
+    </div>
+</div>
                     </div>
                 </div>
             </div>
@@ -866,7 +1100,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     <div class="gr-row">
                         <div class="gr-4">
     <h4 class="secondary-color"><strong>我们公司</strong></h4>
-    <ul>
+    <ul class="top-margin">
         
             <li>
     
@@ -922,7 +1156,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
                         <div class="gr-4">
     <h4 class="secondary-color"><strong>教育</strong></h4>
-    <ul>
+    <ul class="top-margin">
         
             <li>
     
@@ -971,7 +1205,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
                         <div class="gr-4">
     <h4 class="secondary-color"><strong>资金管理</strong></h4>
-    <ul>
+    <ul class="top-margin">
         
             <li>
     
@@ -995,7 +1229,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     <div class="gr-row">
                         <div class="gr-4">
     <h4 class="secondary-color"><strong>法律</strong></h4>
-    <ul>
+    <ul class="top-margin">
         
             <li>
     
@@ -1030,7 +1264,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
                         <div class="gr-4">
     <h4 class="secondary-color"><strong>交易</strong></h4>
-    <ul>
+    <ul class="top-margin">
         
             <li>
     
@@ -1058,7 +1292,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
                         <div class="gr-4">
     <h4 class="secondary-color"><strong>成为我们的合作伙伴</strong></h4>
-    <ul>
+    <ul class="top-margin">
         
             <li>
     
