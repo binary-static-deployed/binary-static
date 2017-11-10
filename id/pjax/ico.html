@@ -39,8 +39,8 @@
         <link rel="icon" sizes="16x16" type="image/png" href="/images/favicons/favicon-16x16.png" />  
         <link rel="icon" sizes="32x32" type="image/png" href="/images/favicons/favicon-32x32.png" />
 
-        <link href="/css/ico.css?0h26z837" rel="stylesheet" />
-        <link href="https://style.binary.com/binary.css?0h26z837" rel="stylesheet" />
+        <link href="/css/ico.css?zybsbeu8" rel="stylesheet" />
+        <link href="https://style.binary.com/binary.css?zybsbeu8" rel="stylesheet" />
         <link href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.2.4/tiny-slider.css" rel="stylesheet">
     </head>
 
@@ -60,7 +60,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <a class="navbar-brand logo" href="/id/home.html"></a>
             </div>
             <div class="navbar-collapse">
-                <ul class="nav navbar-nav">
+                <ul class="nav navbar-nav invisible">
                     <li class="invisible">
                         <a href="#page-top"></a>
                     </li>
@@ -78,6 +78,29 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     </li>
                     <li>
                         <a class="faq-btn" href="#faq">Pertanyaan Umum</a>
+                    </li>
+                    <li id="language">
+                        <ul class="language-dropdown invisible">
+                            <a id="lang" class="selected" href="javascript:;">
+                                <span class="world"></span>
+                                <span id="selected-lang"></span>
+                                <span class="nav-caret"></span>
+                            </a>
+                            <li class="en">English</li>
+                            <li class="de">Deutsch</li>
+                            <li class="es">Español</li>
+                            <li class="fr">Français</li>
+                            <li class="id">Indonesia</li>
+                            <li class="it">Italiano</li>
+                            <!--li class="ja">日本語</li-->
+                            <li class="pl">Polish</li>
+                            <li class="pt">Português</li>
+                            <li class="ru">Русский</li>
+                            <li class="th">Thai</li>
+                            <li class="vi">Tiếng Việt</li>
+                            <li class="zh_cn">简体中文</li>
+                            <li class="zh_tw">繁體中文</li>
+                        </ul>
                     </li>
                 </ul>
             </div>
@@ -177,49 +200,42 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                     
                                 </div>
                                 <div class="status-toggle status-before-start">
-                                    <p class="intro-subtext">Berlangganan pada milis kami untuk mendapat update eksklusif mengenai ICO.</p>
-                                    <div class="form-container">
-                                        <!-- AWeber Web Form Generator 3.0.1 -->
-                                        <form method="post" class="af-form-wrapper" accept-charset="UTF-8" action="https://www.aweber.com/scripts/addlead.pl">
-                                            <div style="display: none;">
-                                                <input type="hidden" name="meta_web_form_id" value="713141817" />
-                                                <input type="hidden" name="meta_split_id" value="" />
-                                                <input type="hidden" name="listname" value="awlist4685103" />
-                                                <input type="hidden" name="redirect" value="" id="redirect_600c7e6a647457c51ede13e8b4d377e6" />
-                                                <input type="hidden" name="meta_adtracking" value="Binary_ICO" />
-                                                <input type="hidden" name="meta_message" value="1001" />
-                                                <input type="hidden" name="meta_required" value="email" />
-                                                <input type="hidden" name="meta_tooltip" value="" />
-                                                <input type="hidden" name="custom language" value="" class="frm-language" />
-                                            </div>
-                                            <div id="af-form-713141817" class="af-form">
-                                                <div id="af-body-713141817" class="gr-12 gr-12-m af-body af-standards">
-                                                    <div class="af-element gr-row">
-                                                        <div class="gr-8 gr-12-m">
-                                                            <input class="text" placeholder="Enter your email" id="awf_field-90867273" type="text" name="email" value="" tabindex="500" onfocus=" if (this.value == '') { this.value = ''; }" onblur="if (this.value == '') { this.value='';} " />
-                                                        </div>
-                                                        <div class="gr-4 gr-12-m">
-                                                            <input name="submit" id="af-submit-image-713141817" type="submit" class="image" alt="Submit" tabindex="501" value="Submit" />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div style="display: none;">
-                                                    <img src="https://forms.aweber.com/form/displays.htm?id=7IzMjCyMHIzs" alt="" />
-                                                </div>
-                                            </div>
-                                        </form>
-                                        <script type="text/javascript">
-                                            document.getElementById('redirect_600c7e6a647457c51ede13e8b4d377e6').value = document.location + '#done';
-                                        </script>
-                                        <!-- /AWeber Web Form Generator 3.0.1 -->
-                                        <p class="notice-msg gr-8 gr-push-2 gr-push-0-m gr-12-m invisible">Terima kasih telah berlangganan! Pantau email Anda untuk mendapatkan informasi terbaru tentang ICO kami.</p>
-                                    </div>
                                 </div>
                                 <div class="status-toggle status-started">
                                     <a class="button" href="/id/user/ico-subscribe.html"><span>Ikuti penjualan token</span></a>
                                 </div>
                                 <div class="status-toggle status-ended">
                                     <a class="button" href="/id/user/ico-subscribe.html"><span>Bawa saya kesana</span></a>
+                                </div>
+                                <div id="sign-up-section">
+                                    <div class="signup-desc">
+                                        <p>Investor perlu mendaftar akun riil Binary.com untuk mengambil bagian dalam ICO.</p>
+                                        <p>Daftar sekarang gratis.</p>
+                                    </div>
+                                    <div class="signup-container gr-9 gr-12-p gr-12-m gr-centered">
+                                        <form id="frm_verify_email">
+                                            <div class="gr-row gr-row-align-center">
+                                                <div class="signup-box gr-8 gr-10-p gr-12-m gr-no-gutter secondary-bg-color">
+                                                    <div class="gr-row gr-padding-10" id="signup">
+                                                        <div class="gr-7 gr-10-m gr-centered">
+                                                            <input autocomplete="off" name="email" id="email" maxlength="50" placeholder="Masukkan email Anda" />
+                                                            <div id="error_validate_email" class="invisible error-msg">Invalid alamat email</div>
+                                                            <div id="error_no_email" class="invisible error-msg">Bagian ini diperlukan.</div>
+                                                        </div>
+                                                        <div class="gr-5 gr-8-m gr-centered">
+                                                            <button class="primary-bg-color" id="btn_verify_email" type="submit">Daftar Akun Gratis</button>
+                                                        </div>
+                                                        <span class="gr-12 gr-padding-10 error-msg hint color-white center-text invisible" id="signup_error"></span>
+                                                    </div>
+                                                    <div class="invisible" id="success">
+                                                        <div class="gr-padding-10 center-text hint gr-12 align-self-center">
+                                                            <p>Terima kasih karena telah mendaftar! Silahkan cek email Anda untuk melengkapi proses pendaftaran.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -269,7 +285,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         </div>
                     </div>
                     <p class="gr-12">
-                        <a class="button" href="https://ico_documents.binary.com/howto_ico.pdf" target="_blank">
+                        <a class="button" id="howto-btn" href="javascript:;">
                             <span>Bagaimana cara berpartisipasi dalam ICO Binary.com</span>
                         </a>
                     </p>
@@ -369,7 +385,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                             <div class="gr-row">
                                 <div class="gr-6 gr-12-m">
                                     <h4>Harga tajam</h4>
-                                    <p>Teknologi harga terdepan kami memberi Anda tingkat pengembalian yang sama dengan pasar antar bank.</p>
+                                    <p>Teknologi harga mutakhir kami mengukur harga kami sedapat mungkin berbanding dengan harga pasar antar bank.</p>
                                 </div>
                                 <div class="gr-6 gr-12-m">
                                     <h4>Teknologi yang dipatenkan</h4>
@@ -517,7 +533,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <h4 class="secondary-color">Jaminan minimum rendah</h4>
                         <p>Deposit dari serendah USD 5 dan mulai trading dari USD 5 per kontrak.</p>
                         <h4 class="secondary-color">Berbagai peluang trading</h4>
-                        <p>Bertrading jangka pendek atau panjang, pada hitungan tik hingga hari.</p>
+                        <p>Bertrading jangka pendek atau panjang, dari 10 detik hingga 365 hari.</p>
                     </div>
                 </div>
             </div>
@@ -597,6 +613,60 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     </div>
                     <div class="slider-container invisible">
                         <div class="my-slider">
+                            
+                                <div>
+                                    <a href="http://www.ico1.com/a/jiangkaishi/1277.html" target="_blank">
+                                        <div class="media">
+                                            <span class="media__logo ico1"></span>
+                                            <p class="media__headlines">BINARY.COM 宣布开展ICO</p>
+                                        </div>
+                                    </a>
+                                </div>
+                            
+                                <div>
+                                    <a href="https://binguru.net/binary-vyxodit-na-ico-pamyatka-investoru-5371" target="_blank">
+                                        <div class="media">
+                                            <span class="media__logo binguru"></span>
+                                            <p class="media__headlines">Binary выходит на ICO: памятка инвестору</p>
+                                        </div>
+                                    </a>
+                                </div>
+                            
+                                <div>
+                                    <a href="https://www.coinist.io/binary-com-explosive-growth-ico/" target="_blank">
+                                        <div class="media">
+                                            <span class="media__logo coinist"></span>
+                                            <p class="media__headlines">Binary.com’s Explosive Growth & Their Upcoming ICO</p>
+                                        </div>
+                                    </a>
+                                </div>
+                            
+                                <div>
+                                    <a href="https://www.chipin.com/binary-ico-redefining-future-ipos/" target="_blank">
+                                        <div class="media">
+                                            <span class="media__logo chipin"></span>
+                                            <p class="media__headlines">Introducing the Binary ICO – Redefining the Future of IPOs</p>
+                                        </div>
+                                    </a>
+                                </div>
+                            
+                                <div>
+                                    <a href="https://cryptogo.de/binary-analyse/" target="_blank">
+                                        <div class="media">
+                                            <span class="media__logo cryptogo"></span>
+                                            <p class="media__headlines">ICO Analyse - Binary.com</p>
+                                        </div>
+                                    </a>
+                                </div>
+                            
+                                <div>
+                                    <a href="https://hype.codes/future-ipos-blockchain" target="_blank">
+                                        <div class="media">
+                                            <span class="media__logo hype-codes"></span>
+                                            <p class="media__headlines">The future of IPOs is blockchain</p>
+                                        </div>
+                                    </a>
+                                </div>
                             
                                 <div>
                                     <a href="https://www.cryptomartez.com/2017/10/pr-binary-com-announces-ico.html" target="_blank">
@@ -734,8 +804,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <a href="https://www.reddit.com/r/binarydotcom/" target="_blank" class="gr-gutter-right">
                             <img class="responsive" src="/images/ico/icons/reddit.svg" />
                         </a>
-                        <a href="https://www.facebook.com/mybinarycoin" target="_blank">
+                        <a href="https://www.facebook.com/mybinarycoin" target="_blank" class="gr-gutter-right">
                             <img class="responsive" src="/images/ico/icons/facebook.svg" />
+                        </a>
+                        <a href="https://bitcointalk.org/index.php?topic=2368998.0" target="_blank">
+                            <img class="responsive" src="/images/ico/icons/bitcoin_talk.svg" />
                         </a>
                     </div>
                 </div>
@@ -771,12 +844,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                             <h4>Mengapa Binary.com menyelenggarakan ICO?</h4>
                             <p>Binary.com didirikan pada tahun 1999. Saat ini, merupakan perusahaan yang mapan dan sangat sukses. Seperti banyak perusahaan sukses lainnya, pertumbuhan bisnis kami membuat kami mempertimbangkan IPO.</p>
                             <p>Namun, kami percaya bahwa dalam dekade mendatang bursa saham tradisional secara bertahap akan digantikan oleh pertukaran blockchain, dan IPO secara bertahap akan digantikan oleh ICO. Hal ini berhubung teknologi blockchain jauh lebih berprestasi dibandingkan dengan teknologi lama dari bursa saham tradisional, yang menjadikan biaya transaksi menjadi lebih rendah, waktu penyelesaian yang lebih cepat, dan jalur audit kekal yang bebas kesalahan. Oleh karena itu, kami memutuskan untuk melakukan ICO dan bukan IPO.</p>
+                            <p>Untuk informasi latar belakang lebih lanjut silahkan baca postingan blog kami <a href='https://blog.binary.com/ipo-or-ico/' target='_blank'>Mengapa kami melakukan ICO (dan bukan IPO)</a>.</p>
                         </div>
                     </div>
                     <div class="gr-12">
                         <div class="faq">
                             <h4>Bagaimana cara kerja ICO?</h4>
-                            <p>Binary.com akan menawarkan sejumlah token blockchain kepada para investor. Token ini bisa dikeluarkan dalam berbagai bentuk dari beragam jenis blockchain, seperti token ‘ERC20’ pada blockchain Ethereum.</p>
+                            <p>Binary.com akan menawarkan sejumlah token blockchain kepada para investor. Token ini adalah 'ERC20' pada blockchain Ethereum, namun Perusahaan mungkin akan mengeluarkan token pada blockchain lainnya berdasarkan permintaan investor bagi jenis token lainnya.</p>
                             <p>Terlepas dari jenis token yang dikeluarkan, masing-masing token akan memberi investor dua hak:</p>
                             <ol>
                                 <li>Hak untuk menerima pembayaran setara dengan dividen yang dibayarkan pada Saham Biasa Binary Group Ltd, dan</li>
@@ -806,21 +880,40 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     </div>
                     <div class="gr-12">
                         <div class="faq">
+                            <h4>Berapa banyak token yang tersedia?</h4>
+                            <p>Up to 10 million tokens are available via the auction.</p>
+                        </div>
+                    </div>
+                    <div class="gr-12">
+                        <div class="faq">
+                            <h4>What is the minimum bid price?</h4>
+                            <p>Bid minimum adalah USD 1,35/token atau setara dalam mata uang/kriptocurrency lainnya.</p>
+                        </div>
+                    </div>
+                    <div class="gr-12">
+                        <div class="faq">
+                            <h4>Seberapa tinggi saya harus membidding?</h4>
+                            <p>Semakin tinggi bid Anda, semakin besar peluang Anda untuk sukses dalam pelelangan. Namun terlepas dari seberapa tinggi bid Anda, pada akhir lelang, semua tawaran yang berhasil akan menerima harga akhir yang sama, yaitu harga bit berhasil terendah.</p>
+                        </div>
+                    </div>
+                    <div class="gr-12">
+                        <div class="faq">
                             <h4>Siapakah yang dapat membeli token?</h4>
-                            <p>Token hanya akan ditawarkan kepada klien Binary.com yang memiliki akun Uang Riil, dan yang telah melengkapi <a href="https://ico_documents.binary.com/2017_Authentication_Process.pdf" target="_blank">otentikasi akun/proses KYC</a>.</p>
+                            <p>Tokens will only be offered to Binary.com clients who have a Real Money account. Please visit <a href="/id/home.html" target="_blank">www.binary.com</a> to open an account.</p>
                         </div>
                     </div>
                     <div class="gr-12">
                         <div class="faq">
                             <h4>Apakah ICO tersedia pada semua yurisdiksi?</h4>
                             <p>Dalam beberapa yurisdiksi, ICO akan dibatasi untuk investor profesional atau yang memenuhi kualifikasi sesuai dengan aturan dan regulasi pada yurisdiksi tersebut. Secara khusus, ICO tidak tersedia bagi investor AS.</p>
-                            <p>Untuk mengetahui apakah ICO tersedia pada yurisdiksi Anda, dan jika memang demikian, jika Anda memenuhi syarat untuk berlangganan token, pilih negara Anda dari daftar menu pada halaman <a href="/id/ico-disclaimer.html">Memorandum Informasi</a>.</p>
+                            <p>Untuk mengetahui apakah ICO tersedia pada yurisdiksi Anda, dan jika memang demikian, jika Anda memenuhi syarat untuk berlangganan token, pilih negara Anda dari daftar menu pada halaman <a href="/id/ico-disclaimer.html" target="_blank">Memorandum Informasi</a>.</p>
                         </div>
                     </div>
                     <div class="gr-12">
                         <div class="faq">
                             <h4>Bagaimana cara membeli token?</h4>
-                            <p>Anda dapat membeli token menggunakan dana pada akun Binary.com Anda. Anda dapat menggunakan mata uang yang tersedia pada <a href="/id/cashier/payment_methods.html" target="_blank">sistem kasir</a> kami. Jika Anda memilih untuk melakukan penawaran dalam mata uang selain USD, jumlah tawaran harus dikonversi ke dalam USD pada kurs yang berlaku pada saat pelelangan berakhir.</p>
+                            <p>You will be able to purchase tokens using the funds in your Binary.com account. You may use any of the available currencies (including
+cryptocurrencies) in our <a href="/id/cashier/payment_methods.html" target="_blank">cashier system</a>. If you choose to bid in a currency other than USD, the bid amount shall be converted to USD at the prevailing exchange rate at the time the auction ends.</p>
                         </div>
                     </div>
                     <div class="gr-12">
@@ -831,29 +924,41 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     </div>
                     <div class="gr-12">
                         <div class="faq">
+                            <h4>What will be the token symbol?</h4>
+                            <p>We intend to apply for the token symbol BINARY.</p>
+                        </div>
+                    </div>
+                    <div class="gr-12">
+                        <div class="faq">
                             <h4>Apa keuntungan membeli token?</h4>
-                            <p>Akan ada dua manfaat utama dari pembelian token.</p>
+                            <p>Akan ada tiga manfaat utama dari token pembelian.</p>
                             <p>Pertama, pemegang token akan menerima pembayaran dividen terkait dengan dividen yang dibayarkan oleh Perusahaan pada Saham Biasa. Oleh karena itu, pemegang token akan berbagi kesuksesan masa depan Perusahaan dengan cara yang sama seperti pemegang saham.</p>
-                            <p>Kedua, pemegang token akan dapat dengan bebas menukar token mereka. Sebaliknya, Saham Biasa tidak terdaftar dan oleh karena itu tidak dapat diperdagangkan di bursa manapun. Dalam hal ini, token tersebut akan menjadi investasi unggulan bagi Saham Biasa.</p>
+                            <p>Kedua, token dapat dikonversi menjadi Saham Biasa Perusahaan (sesuai dengan kondisi tertentu, seperti yang dijelaskan dalam Memorandum Informasi), sehingga memberikan hubungan hukum antara token dan Saham Biasa.</p>
+                            <p>Third, token holders will be able to freely trade their tokens. In contrast, Ordinary Shares are not listed and therefore cannot be traded on any exchange. In that sense, the tokens will be a superior investment to Ordinary Shares.</p>
+                        </div>
+                    </div>
+                    <div class="gr-12">
+                        <div class="faq">
+                            <h4>Where can I view the source code of the tokens?</h4>
+                            <p>Binary.com bermaksud untuk menyebarkan token <a href='https://github.com/Giveth/minime' target='_blank'>Mini Me</a>. Silakan lihat <a href='https://tech.binary.com/an-erc20-securities-token/' target='_blank'>postingan blog</a> kami mengenai rincian alasan kami memilih token ini.</p>
                         </div>
                     </div>
                     <div class="gr-12">
                         <div class="faq">
                             <h4>Apa sajakah risiko pembelian token?</h4>
-                            <p>Meskipun Binary.com telah menjadi perusahaan yang sukses sejak didirikan pada tahun 1999, token tetap dapat dianggap sebagai investasi berisiko tinggi. Bisnis Binary.com tunduk pada sejumlah risiko yang dapat mempengaruhi perusahaan secara negatif dan karenanya mempengaruhi nilai token di masa depan. Risiko ini dirincikan dalam <a href="/id/ico-disclaimer.html">Memorandum Informasi</a> dan harus dipertimbangkan dengan sangat berhati-hati sebelum melanjutkan investasi pada token.</p>
+                            <p>Meskipun Binary.com telah menjadi perusahaan yang sukses sejak didirikan pada tahun 1999, token tetap dapat dianggap sebagai investasi berisiko tinggi. Bisnis Binary.com tunduk pada sejumlah risiko yang dapat mempengaruhi perusahaan secara negatif dan karenanya mempengaruhi nilai token di masa depan. Risiko ini dirincikan dalam <a href="/id/ico-disclaimer.html" target="_blank">Memorandum Informasi</a> dan harus dipertimbangkan dengan sangat berhati-hati sebelum melanjutkan investasi pada token.</p>
                         </div>
                     </div>
                     <div class="gr-12">
                         <div class="faq">
                             <h4>Bagaimana saya bisa tahu lebih banyak tentang Binary.com?</h4>
                             <p>Untuk mengetahui lebih lanjut tentang Binary.com, Anda dapat membaca tentang <a href="/id/group-history.html" target="_blank">sejarah grup</a>, <a href="/id/regulation.html" target="_blank">status peraturan</a>, dan <a href="/id/careers.html" target="_blank">budaya perusahaan</a> kami. Anda juga bisa membaca <a href="https://blog.binary.com/" target="_blank">blog perusahaan</a>.</p>
-                            <p>Anda juga bisa membaca tentang ICO pada <a href="https://www.financemagnates.com/binary-options/brokers/exclusive-binary-com-ico-shows-company-profits-surpass-20-mln-2017/" target="_blank">FinanceMagnates</a> dan <a href="https://www.leaprate.com/binary-options/broker/binary-com-ico-finances-binary-options-broker/" target="_blank">Leaprate</a>.</p>
                         </div>
                     </div>
                     <div class="gr-12">
                         <div class="faq">
                             <h4>Bagaimana saya bisa belajar lebih banyak tentang ICO dan cryptocurrencies?</h4>
-                            <p>Untuk mempelajari lebih lanjut tentang Bitcoin, kami merekomendasikan Anda untuk mendaftar Bitcoin wallet menggunakan <a href="https://bitcoin-wallet.binary.com/" target="_blank">Binary.com yaitu bitcoin wallet sederhana </a>, dan membeli bitcoin menggunakan exchanger lokal di negara Anda.</p>
+                            <p>Kunjungi saluran <a href=https://www.youtube.com/user/BinaryTradingVideos target='_blank'>YouTube</a> kami untuk mempelajari lebih lanjut tentang ICO, mata uang kripto populer, dan teknologi blockchain. Kami akan menunjukkan cara kerjanya dan bagaimana mereka mengubah cara berbisnis kami.</p>
                         </div>
                     </div>
                     <div class="gr-12">
@@ -874,7 +979,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     <p>untuk update eksklusif mengenai ICO.</p>
                     <div class="form-container">
                         <!-- AWeber Web Form Generator 3.0.1 -->
-                        <form method="post" class="af-form-wrapper" accept-charset="UTF-8" action="https://www.aweber.com/scripts/addlead.pl">
+                        <form id="binary_ico_subscribe" method="post" class="af-form-wrapper" accept-charset="UTF-8" action="https://www.aweber.com/scripts/addlead.pl">
                             <div style="display: none;">
                                 <input type="hidden" name="meta_web_form_id" value="713141817" />
                                 <input type="hidden" name="meta_split_id" value="" />
@@ -890,10 +995,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                 <div id="af-body-713141817" class="gr-12 gr-12-m af-body af-standards">
                                     <div class="af-element gr-row">
                                         <div class="gr-8 gr-12-m">
-                                            <input class="text" placeholder="Enter your email" id="awf_field-90867273" type="text" name="email" value="" tabindex="500" onfocus=" if (this.value == '') { this.value = ''; }" onblur="if (this.value == '') { this.value='';} " />
+                                            <input class="text" placeholder="Masukkan email Anda" id="awf_field-90867273" type="text" name="email" value="" tabindex="500" onfocus=" if (this.value == '') { this.value = ''; }" onblur="if (this.value == '') { this.value='';} " />
                                         </div>
                                         <div class="gr-4 gr-12-m">
-                                            <input name="submit" id="af-submit-image-713141817" type="submit" class="image" alt="Submit" tabindex="501" value="Submit"/>
+                                            <input name="submit" id="af-submit-image-713141817" type="submit" class="image" alt="Submit" tabindex="501" value="Mengajukan"/>
                                         </div>
                                     </div>
                                 </div>
@@ -906,21 +1011,31 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                             document.getElementById('redirect_600c7e6a647457c51ede13e8b4d377e6').value = document.location + '#done';
                         </script>
                         <!-- /AWeber Web Form Generator 3.0.1 -->
-                        <p class="notice-msg gr-8 gr-push-2 gr-push-0-m gr-12-m invisible">Terima kasih telah berlangganan! Pantau email Anda untuk mendapatkan informasi terbaru tentang ICO kami.</p>
+                        <div id="subscribe_success" class="gr-8 gr-12-m gr-centered invisible">
+                            <p class="notice-msg">Terima kasih telah berlangganan! Pantau email Anda untuk mendapatkan informasi terbaru tentang ICO kami.</p>
+                      </div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="primary-bg-color content-inverse-color center-text">
             <div class="footnote">
-                <p>Situs web ini dan ICO yang diusulkan bukan merupakan tawaran atau undangan untuk membeli token tersebut pada yurisdiksi manapun dimana penawaran atau penjualan tersebut mungkin adalah melanggar hukum. Token akan hanya ditawarkan kepada klien yang terdaftar pada Binary.com. Tidak ada sekuritas dan komisi pertukaran Amerika Serikat maupun komisi sekuritas negara bagian, provinsi atau teritori atau otoritas pengatur lainnya dari negara atau yurisdiksi manapun telah menyetujui atau menolak tawaran token yang diajukan. Sehubungan dengan yurisdiksi EEA, dimaksudkan bahwa penawaran token akan dibuat sesuai dengan pengecualian berdasarkan arahan Uni Eropa 2003/71 / EC (sebagaimana telah diubah, termasuk dalam arahan 2010/73/ EU), terutama pengecualian yang berkaitan dengan kualifikasi investor, penawaran token juga terbatas pada investor berkualitas atau profesional pada beberapa yurisdiksi; rincian lebih lanjut dari pembatasan tersebut akan dirinci dalam memorandum informasi penawaran.</p>
-                <p>Investasi pada token yang diusulkan diharapkan akan melibatkan tingkat risiko yang tinggi, tidak akan ada jaminan bahwa para pemegang token akan dapat menerima pengembalian modal mereka atau pengembalian atas investasinya. Calon investor pada token tersebut perlu berhati-hati dalam mempertimbangkan faktor risiko yang akan dijelaskan secara terperinci dalam memorandum informasi.</p>
+                <p>Akses ke dalam versi elektronik dari materi ini disediakan oleh Binary Group Ltd. ("Perusahaan") dengan itikad baik dan untuk tujuan informasi saja. Hal ini bukan merupakan penawaran, atau undangan untuk membeli, token atau sekuritas apa pun. Membuat pengumuman pers dan dokumen lainnya yang tersedia dalam format elektronik bukan merupakan, atau tidak dianggap sebagai, atau merupakan bagian dari, suatu penawaran untuk menjual atau permintaan dari suatu penawaran untuk membeli atau menangani token atau sekuritas lainnya. Selanjutnya, hal ini juga bukan merupakan rekomendasi dari Perusahaan atau pihak lain untuk menjual atau membeli token atau sekuritas lainnya.</p>
+                <p>Berbagai material dan ICO yang diusulkan ini bukan merupakan penawaran atau undangan untuk membeli, token atau sekuritas apa pun di wilayah hukum manapun di mana penawaran atau penjualan tersebut melanggar hukum. Secara khusus, kecuali jika ditentukan lain oleh Perusahaan, dan diizinkan oleh peraturan perundang-undangan yang berlaku, tidak dimaksudkan bahwa setiap penawaran token atau sekuritas harus dibuat, atau dokumentasi apapun dikirim, secara langsung atau tidak langsung, ke dalam atau di dalam, Australia, British Virgin Islands, Kanada, Jepang, Jersey, Selandia Baru, Singapura, Afrika Selatan, Swiss, atau Amerika Serikat ("Wilayah yang Dibatasi") dan juga tidak boleh diakses oleh orang yang merupakan warga negara atau penduduk Wilayah Terbatas, termasuk perusahaan, kemitraan, atau entitas lain yang dibuat atau diatur dalam yurisdiksi tersebut.</p>
+                <p>These materials may only be received by authorised persons (a person determined by the Company, in its sole discretion, entitled to receive the materials as prescribed by applicable laws and regulations, for example in EEA jurisdictions, pursuant to an exemption under the European Union's directive 2003/71/EC (as amended, including by directive 2010/73/EU), which includes, without limitation, the exemption relating to qualified investors (“Authorised Persons”). If an Authorised Person wishes to bid for tokens he may do so if he is registered client of Binary.com and has a Binary.com account, by which method the Company shall be able to verify his qualification as an Authorised Person. The Authorised Person who wishes to acquire tokens will make a bid.  The Company will collate and assess the bids.  The Company may request that bids are reconfirmed before they are considered valid for the purpose of the Company’s offer at the auction.  At the auction the Company will make an offer for the tokens, which offer will be accepted (by the auction process explained in the materials) by the bids, and the consideration for the purchase of such tokens offered and accepted will be settled by credit in the Authorised Person’s Binary.com account, which evidences the contract for sale and purchase of the respective tokens.</p>
+                <p>Untuk menghindari keraguan (dan terlepas dari hal yang sebaliknya), materi ini bukan merupakan penawaran token; materi ini merupakan undangan untuk mengatasi. Token hanya dapat ditawarkan oleh Perusahaan sesuai dengan pelelangan dengan cara yang lebih khusus yang dijelaskan pada bagian 'proses lelang token' pada materi.</p>
+                <p>Baik sekuritas dan komisi pertukaran Amerika Serikat maupun komisi sekuritas negara bagian, provinsi atau teritorial atau otoritas pengatur lainnya dari negara atau yurisdiksi manapun telah menyetujui atau menolak tawaran token yang diajukan.</p>
+                <p>Sehubungan dengan yurisdiksi EEA, dimaksudkan bahwa penawaran token akan dilakukan sesuai dengan pengecualian berdasarkan perintah Uni Eropa 2003/71/EC (sebagaimana telah diubah, termasuk dengan perintah 2010/73/EU), yang mencakup, namun tidak terbatas, pembebasan yang berkaitan dengan investor yang memenuhi syarat, tawaran token serupa juga diharapkan terbatas pada investor berkualitas atau profesional di sejumlah yurisdiksi lain; rincian lebih lanjut dari pembatasan tersebut akan dirinci dalam memorandum informasi penawaran.</p>
+                <p>Investasi pada token yang diusulkan diharapkan akan melibatkan tingkat risiko yang tinggi, tidak akan ada jaminan bahwa para pemegang token akan dapat menerima pengembalian modal mereka atau pengembalian atas investasinya. Calon investor pada token tersebut perlu berhati-hati dalam mempertimbangkan faktor risiko yang akan dijelaskan secara terperinci dalam berbagai material.</p>
             </div>
+        </div>
+        <div class="primary-bg-color-dark content-inverse-color center-text gr-padding-20">
+            <span>Binary Group Ltd., Kingston Chambers, Road Town, Tortola, British Virgin Islands</span>
         </div>
         <!--[if (lt IE 9)]><script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.2.4/min/tiny-slider.helper.ie8.js"></script><![endif]-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.2.4/min/tiny-slider.js"></script>
-        <script src="/js/landing_pages/common.js?0h26z837"></script>
-        <script src="/js/landing_pages/ico.js?0h26z837"></script>
+        <script src="/js/landing_pages/common.js?zybsbeu8"></script>
+        <script src="/js/landing_pages/ico.js?zybsbeu8"></script>
     </body>
 
 </html>

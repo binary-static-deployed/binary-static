@@ -23,7 +23,7 @@
         <meta property="og:type" content="website" />
         <meta property="og:image" content="/images/common/og_image.gif" />
 
-        <title>สมัคร ICO | Binary.com</title>
+        <title>เสนอซื้อ ICO | Binary.com</title>
 
         <link rel="manifest" href="/manifest.json">
         <script type="text/javascript" src="//cdn.pushwoosh.com/webpush/v3/pushwoosh-web-notifications.js" async></script>
@@ -45,12 +45,12 @@
 
          
 
-         <link rel="stylesheet" href="/css/binary.min.css?0h26z837" />
+         <link rel="stylesheet" href="/css/binary.min.css?zybsbeu8" />
         
-         <script src='/js/texts/th.js?0h26z837'></script>
-         <script src='/js/manifest.js?0h26z837'></script>
-         <script src='/js/vendor.min.js?dd187a5d'></script>
-         <script src='/js/binary.min.js?0h26z837'></script>
+         <script src='/js/texts/th.js?zybsbeu8'></script>
+         <script src='/js/manifest.js?zybsbeu8'></script>
+         <script src='/js/vendor.min.js?9bb7a949'></script>
+         <script src='/js/binary.min.js?zybsbeu8'></script>
         
     </head>
 
@@ -388,7 +388,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <div id="content" class="ico-subscribe-content">
             
                 <div id="ico_banner_container"  class="ico-banner-container">
-    <div id="ico_banner" class="ico-banner invisible ja-hide top-margin bottom-margin" onclick="window.open('https://www.binary.com/en/ico', '_blank');">
+    <div id="ico_banner" class="ico-banner invisible ja-hide top-margin bottom-margin" onclick="window.open('/th/ico.html', '_blank');">
         <div class="gr-row gr-centered">
             <div class="gr-12">
                 <div class="gr-row gr-no-gutter ico-box">
@@ -396,7 +396,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     <div class="gr-9 gr-padding-10 ico-column">
                         <div class="gr-row gr-no-gutter">
                             <div class="gr-9 gr-12-p gr-12-m"><p>Binary.com จะเริ่ม ICO ในวันที่ 15 พฤศจิกายน พ.ศ. 2560</p></div>
-                            <div class="gr-3 gr-12-p gr-12-m learn-btn"><a class="button" target="_blank" href="https://www.binary.com/en/ico"><span>เรียนเพิ่มเติม</span></a></div>
+                            <div class="gr-3 gr-12-p gr-12-m learn-btn"><a id="ico_link_button" class="button"><span>ดูเพิ่มเติม</span></a></div>
                         </div>
                     </div>
                     <div id="close_ico_banner" class="close-btn"></div>
@@ -407,7 +407,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
             
             <div id="page_info" style="display:none;">
-                <title>สมัคร ICO | Binary.com</title>
+                <title>เสนอซื้อ ICO | Binary.com</title>
                 <div id="content_class">ico-subscribe-content</div>
             </div>
             
@@ -416,10 +416,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
 
-  <h1>Binary.com การเสนอขายเหรียญในระยะเริ่มต้น หรือ ICO (Initial Coin Offering)</h1>
+  <h1>Binary.com การเสนอขายเหรียญครั้งแรก หรือ ICO (Initial Coin Offering)</h1>
 
 <div id="ico_subscribe" class="invisible">
-    <p>Binary.com เสนอโทเค่นสูงถึง <strong>10,000,000</strong> ในการประมูลแบบเปิด คุณสามารถวางราคาที่เสนอโดยใช้แบบฟอร์มด้านล่าง ราคาขั้นต่ำคือ <strong>1 ดอลลาร์สหรัฐ</strong> หรือเทียบเท่าในเงินสกุลอื่น</p>
+    <p>Binary.com is offering up to <strong>10,000,000</strong> tokens in an open auction. You may place your bids using the form below.</p>
+    <p id="minimum_bid"></p>
     <div class="gr-row">
         <div class="gr-7 gr-12-p gr-12-m">
             <a href="#auction" class="no-ajax">
@@ -529,7 +530,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <div class="separator-line "></div>
 </div>
     <div id="ico_bids">
-        <h1>ราคาเสนอซื้อ Binary.com ICO</h1>
+        <h1>
+            <span>ราคาเสนอซื้อ Binary.com ICO</span>
+            <div class="invisible" id="view_ico_info">
+                <a class="button" href="/th/user/ico-info.html">
+                    <span>
+                        <img src="/images/ico/icons/bar_chart.svg">
+                        ฮิสโตแกรมของราคาเสนอซื้อที่มีอยู่
+                    </span>
+                </a>
+            </div>
+        </h1>
         
 
         <div id="portfolio">
@@ -589,23 +600,68 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 
 <div class="invisible" id="ico_professional_message">
-    <p>Please confirm that you are a <a href='/th/user/settings/professional.html'>professional trader</a> to proceed.</p>
+    <p>โปรดยืนยันว่า ท่านเป็น นักลงทุนมืออาชีพ </a> <a href='/th/user/settings/professional.html'> เพื่อดำเนินการต่อ</p>
+</div>
+<div class="invisible" id="ico_virtual_message">
+    <p>ไม่สามารถสร้างบัญชี ICO เมื่อบัญชีเสมือนถูกเลือกใช้อยู่ โปรดเลือกบัญชีเงินจริงของท่าน และลองอีกครั้ง</p>
 </div>
 
 <div class="invisible" id="ico_account_message">
-    <p>Please select your CR account to proceed.</p>
+    <p>โปรดเลือกบัญชี CR ของท่านเพื่อดำเนินการต่อไป</p>
 </div>
 
 <div class="invisible" id="ico_new_account_message">
-    <p>This feature is only available to CR clients. Please upgrade to proceed.</p>
+    <p id="message_common" class="invisible">เฉพาะลูกค้า CR เท่านั้น ที่สามารถใช้งานฟังก์ชันนี้ได้ กรุณาลงทะเบียนเพื่อดำเนินการต่อไป</p>
+    <p id="message_gaming" class="invisible">เพื่อร่วมระดมทุนกับ Binary.com ท่านจะต้องเปิดบัญชีแยกต่างหาก เพื่อดำเนินการต่อ ท่านรับทราบว่า ท่านกำลังจะยุติบัญชีกับ Binary Investments (Europe) Ltd ที่ได้รับการรับรองโดยสำนักงาน Malta Gaming Authority</p>
+    <p id="message_financial" class="invisible">เพื่อร่วมระดมทุนกับ Binary.com ท่านจะต้องเปิดบัญชีแยกต่างหาก เพื่อดำเนินการต่อ ท่านรับทราบว่า ท่านกำลังจะยุติบัญชีกับ Binary Investments (Europe) Ltd ที่ได้รับการรับรองโดยสำนักงาน Malta Financial Services Authority</p>
+    <p id="message_iom" class="invisible">เพื่อร่วมระดมทุนกับ Binary.com ท่านจะต้องเปิดบัญชีแยกต่างหาก เพื่อดำเนินการต่อ ท่านรับทราบว่า ท่านกำลังจะยุติบัญชีกับ Binary (IOM) Ltd ที่ได้รับการรับรองโดยสำนักงาน The Isle of Man Gambling Supervision Commission</p>
+    <div class="gr-row form-row center-text-m gr-padding-20 invisible" id="row_account_opening_reason">
+        <div class="gr-4 gr-12-m">
+            <label for="account_opening_reason">
+                เหตุผลในการเปิดบัญชี
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <select id="account_opening_reason" class="form_input " > 
+        <option value="">โปรดระบุ</option>
+        <option value="Speculative">เก็งกำไร</option>
+        <option value="Income Earning">การรับรายได้</option>
+        <option value="Hedging">เฮดจิ้ง</option>
+                        </select>
+            
+        </div>
+    </div>
     <div class="center-text">
-        <a href="javascript:;" class="button" id="ico_new_account"><span>Upgrade</span></a>
+        <a href="javascript:;" class="button" id="ico_new_account"><span>ลงทะเบียน</span></a>
         <p class="error-msg invisible" id="new_account_error"></p>
     </div>
 </div>
 
 <div class="invisible" id="feature_not_allowed">
-    <p class="center-text notice-msg">This feature is not available in your jurisdiction.</p>
+    <p class="center-text notice-msg">ขออภัย ฟังก์ชันนี้ไม่พร้อมใช้งานในพื้นที่ของท่าน</p>
+</div>
+
+<div id="cancel_bid_confirmation" class="lightbox invisible">
+    <div class="gr-padding-30 gr-gutter">
+        <div class="gr-gutter">
+            <div class="gr-gutter">
+                <h1>ยกเลิกคำสั่งซื้อ?</h1>
+                <p class="gr-padding-10 gr-child no-margin">ท่านจะมีค่าธรรมเนียม 2% ในการยกเลิก</p>
+                <form id="frm_confirm">
+                    <div class="gr-row ">
+                        <div class="gr-12-m gr-padding-20 gr-centered">
+                            <input id="chk_confirm" type="checkbox">
+                            <label for="chk_confirm">ฉันยินยอมต่อรายการค่าธรรมเนียมการยกเลิกที่ระบุไว้ข้างต้น</label>
+                        <div class="error-msg invisible"></div></div>
+                    </div>
+                    <div class="center-text gr-centered">
+                        <button class="button" type="submit">ใช่ ยกเลิกคำสั่งซื้อของฉัน</button>
+                        <a class="button-secondary" id="cancel" href="javascript:;"><span>ไม่ กลับไปหน้าประมูล ICO</span></a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 
 

@@ -469,7 +469,7 @@ button .barspinner.white {
 #ico_banner_container .ico-banner {
   cursor: pointer;
   border: 1px solid #F2F2F2;
-  background: url("../images/ico/banner/white_background.png") 100% no-repeat/cover;
+  background: no-repeat 100%/cover url("../images/ico/banner/white_background.png");
 }
 #ico_banner_container .ico-banner .ico-box {
   position: relative;
@@ -493,7 +493,7 @@ button .barspinner.white {
   font-size: 1rem;
 }
 #ico_banner_container .ico-banner .ico-box .left-bg {
-  background: url("../images/ico/banner/image_left_area.png") 100% no-repeat/cover;
+  background: no-repeat 100%/cover url("../images/ico/banner/image_left_area.png");
 }
 #ico_banner_container .ico-banner .ico-box p {
   text-transform: uppercase;
@@ -501,11 +501,11 @@ button .barspinner.white {
   font-weight: 400;
   color: #2A3052;
 }
-#ico_banner_container .ico-banner .ico-box .close-btn {
-  content: url("../images/ico/banner/close_icon.svg");
-  width: 15px;
+#ico_banner_container .ico-banner .ico-box .close-btn:after {
+  content: '';
+  background: no-repeat 100%/cover url("../images/ico/banner/close_icon.svg");
   cursor: pointer;
-  padding: 5px;
+  padding: 10px;
   position: absolute;
   top: 0;
   right: 0;
@@ -2965,6 +2965,14 @@ body #not_authenticated_financial ul.checked > li {
 .ico-subscribe-content #portfolio th.details {
   width: auto;
 }
+.ico-subscribe-content #view_ico_info > a > span {
+  background-color: #E98024;
+  font-size: 16px;
+}
+.ico-subscribe-content #cancel_bid_confirmation {
+  left: 0;
+  top: 0;
+}
 
 .liquidity-solutions-content .box {
   border: 1px solid #C2C2C2;
@@ -4745,6 +4753,76 @@ body #not_authenticated_financial ul.checked > li {
   background-image: url("../images/pages/binary_in_numbers/icons/ic-num-employees.svg");
 }
 
+#ico_info {
+  position: relative;
+  margin-top: 50px;
+}
+#ico_info .barChart {
+  min-height: 400px;
+  padding-left: 14px;
+  padding-bottom: 14px;
+  box-sizing: border-box;
+}
+#ico_info .y-label {
+  transform: rotate(90deg);
+  transform-origin: top left;
+  top: 0;
+  left: 14px;
+  width: 400px;
+}
+#ico_info .x-label {
+  width: 100%;
+  left: 0;
+  bottom: 7px;
+}
+#ico_info .y-label, #ico_info .x-label {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+      flex-direction: row;
+  -ms-flex-align: center;
+      align-items: center;
+  font-size: 13px;
+  color: #2A3052;
+  position: absolute;
+  box-sizing: border-box;
+  padding: 0 30px;
+}
+#ico_info .y-label div:nth-child(2), #ico_info .x-label div:nth-child(2) {
+  text-align: center;
+  -ms-flex-positive: 0;
+      flex-grow: 0;
+  margin: 0 10px;
+}
+#ico_info .y-label div:nth-child(2n + 1), #ico_info .x-label div:nth-child(2n + 1) {
+  -ms-flex-positive: 1;
+      flex-grow: 1;
+  height: 2px;
+  box-sizing: border-box;
+  background: #C2C2C2;
+  margin: 0;
+  padding: 0;
+}
+#ico_info .arrow-left, #ico_info .arrow-right {
+  position: relative;
+}
+#ico_info .arrow-left:after, #ico_info .arrow-right:after {
+  content: ' ';
+  position: absolute;
+  background-image: url("../images/ico/images/arrow-head.svg");
+  background-size: 10px 10px;
+  width: 10px;
+  height: 10px;
+  top: -4px;
+}
+#ico_info .arrow-right:after {
+  right: -3px;
+}
+#ico_info .arrow-left:after {
+  left: -3px;
+  transform: rotate(180deg);
+}
+
 /* Language based rules */
 /* Specific rules for languages */
 body .calls_recording {
@@ -4916,6 +4994,13 @@ body.ZH_TW #trading_socket_container #contract_form_name_nav, body.ZH_TW #tradin
 
 body.ZH_CN .contact-content .border-bottom, body.ZH_TW .contact-content .border-bottom {
   min-height: 215px;
+}
+
+body.PL a, body.PL button, body.PL .button, body.PL span, body.PL input {
+  text-transform: initial !important;
+}
+body.PL h1, body.PL h2, body.PL h3, body.PL h4, body.PL h5, body.PL h6 {
+  text-transform: initial !important;
 }
 
 body.EN .app-store-badge {

@@ -39,8 +39,8 @@
         <link rel="icon" sizes="16x16" type="image/png" href="/images/favicons/favicon-16x16.png" />  
         <link rel="icon" sizes="32x32" type="image/png" href="/images/favicons/favicon-32x32.png" />
 
-        <link href="/css/ico.css?0h26z837" rel="stylesheet" />
-        <link href="https://style.binary.com/binary.css?0h26z837" rel="stylesheet" />
+        <link href="/css/ico.css?zybsbeu8" rel="stylesheet" />
+        <link href="https://style.binary.com/binary.css?zybsbeu8" rel="stylesheet" />
         <link href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.2.4/tiny-slider.css" rel="stylesheet">
     </head>
 
@@ -60,7 +60,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <a class="navbar-brand logo" href="/fr/home.html"></a>
             </div>
             <div class="navbar-collapse">
-                <ul class="nav navbar-nav">
+                <ul class="nav navbar-nav invisible">
                     <li class="invisible">
                         <a href="#page-top"></a>
                     </li>
@@ -79,6 +79,29 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     <li>
                         <a class="faq-btn" href="#faq">FAQ</a>
                     </li>
+                    <li id="language">
+                        <ul class="language-dropdown invisible">
+                            <a id="lang" class="selected" href="javascript:;">
+                                <span class="world"></span>
+                                <span id="selected-lang"></span>
+                                <span class="nav-caret"></span>
+                            </a>
+                            <li class="en">English</li>
+                            <li class="de">Deutsch</li>
+                            <li class="es">Español</li>
+                            <li class="fr">Français</li>
+                            <li class="id">Indonesia</li>
+                            <li class="it">Italiano</li>
+                            <!--li class="ja">日本語</li-->
+                            <li class="pl">Polish</li>
+                            <li class="pt">Português</li>
+                            <li class="ru">Русский</li>
+                            <li class="th">Thai</li>
+                            <li class="vi">Tiếng Việt</li>
+                            <li class="zh_cn">简体中文</li>
+                            <li class="zh_tw">繁體中文</li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -89,7 +112,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     <div class="container center-text content-inverse-color">
                         <div class="gr-row">
                             <div class="gr-12">
-                                <h1 class="brand-heading">Binary.com ICO</h1>
+                                <h1 class="brand-heading">L'ICO Binary.com</h1>
                                 <p class="intro-text">Investissez dans la première plate-forme de trading d’options binaires</p>
                                 <p class="intro-subtext">Une Offre Initiale de Pièces (ICO en Anglais) est une méthode de collecte de fonds qui est relativement similaire à une introduction en bourse (IPO). Dans une ICO, des jetons de monnaies cryptées sont émis à la place d'actions.</p>
                             </div>
@@ -112,16 +135,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div></div>
                             <div id="status_container" class="gr-12 invisible">
                                 <div class="status-toggle status-before-start">
-                                    <h3 class="content-inverse-color">Token sale begins in</h3>
+                                    <h3 class="content-inverse-color">La vente de jeton commence dans</h3>
                                 </div>
                                 <div class="status-toggle status-started">
-                                    <h3 class="content-inverse-color">The Binary.com token sale has started</h3>
-                                    <p class="intro-subtext">15 November – 25 December 2017</p>
+                                    <h3 class="content-inverse-color">La vente de jeton Binary.com a commencé</h3>
+                                    <p class="intro-subtext">15 novembre – 25 décembre 2017</p>
                                     <p class="intro-text">Token sale ends in</p>
                                 </div>
                                 <div class="status-toggle status-ended">
-                                    <h3 class="content-inverse-color">The Binary.com token sale has ended</h3>
-                                    <p class="intro-subtext">See your winning bids and claim your tokens</p>
+                                    <h3 class="content-inverse-color">La vente de jeton Binary.com est terminée</h3>
+                                    <p class="intro-subtext">Voir vos enchères gagnantes et réclamer vos jetons</p>
                                 </div>
                                 <div class="status-toggle status-before-start status-started" id="countdown">
                                     
@@ -136,7 +159,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                             <span class="arc_cover"></span>
                                         </span>
                                         <span class="cd-value"></span>
-                                        <span class="cd-label">Days</span>
+                                        <span class="cd-label">Jours</span>
                                     </span>
                                     
                                     <span class="cd-item" id="cd_hours">
@@ -148,7 +171,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                             <span class="arc_cover"></span>
                                         </span>
                                         <span class="cd-value"></span>
-                                        <span class="cd-label">Hours</span>
+                                        <span class="cd-label">Heures</span>
                                     </span>
                                     
                                     <span class="cd-item" id="cd_minutes">
@@ -172,54 +195,47 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                             <span class="arc_cover"></span>
                                         </span>
                                         <span class="cd-value"></span>
-                                        <span class="cd-label">Seconds</span>
+                                        <span class="cd-label">Secondes</span>
                                     </span>
                                     
                                 </div>
                                 <div class="status-toggle status-before-start">
-                                    <p class="intro-subtext">Subscribe to our mailing list for exclusive updates on the ICO.</p>
-                                    <div class="form-container">
-                                        <!-- AWeber Web Form Generator 3.0.1 -->
-                                        <form method="post" class="af-form-wrapper" accept-charset="UTF-8" action="https://www.aweber.com/scripts/addlead.pl">
-                                            <div style="display: none;">
-                                                <input type="hidden" name="meta_web_form_id" value="713141817" />
-                                                <input type="hidden" name="meta_split_id" value="" />
-                                                <input type="hidden" name="listname" value="awlist4685103" />
-                                                <input type="hidden" name="redirect" value="" id="redirect_600c7e6a647457c51ede13e8b4d377e6" />
-                                                <input type="hidden" name="meta_adtracking" value="Binary_ICO" />
-                                                <input type="hidden" name="meta_message" value="1001" />
-                                                <input type="hidden" name="meta_required" value="email" />
-                                                <input type="hidden" name="meta_tooltip" value="" />
-                                                <input type="hidden" name="custom language" value="" class="frm-language" />
-                                            </div>
-                                            <div id="af-form-713141817" class="af-form">
-                                                <div id="af-body-713141817" class="gr-12 gr-12-m af-body af-standards">
-                                                    <div class="af-element gr-row">
-                                                        <div class="gr-8 gr-12-m">
-                                                            <input class="text" placeholder="Enter your email" id="awf_field-90867273" type="text" name="email" value="" tabindex="500" onfocus=" if (this.value == '') { this.value = ''; }" onblur="if (this.value == '') { this.value='';} " />
+                                </div>
+                                <div class="status-toggle status-started">
+                                    <a class="button" href="/fr/user/ico-subscribe.html"><span>Rejoignez la vente jeton</span></a>
+                                </div>
+                                <div class="status-toggle status-ended">
+                                    <a class="button" href="/fr/user/ico-subscribe.html"><span>Aller là-bas</span></a>
+                                </div>
+                                <div id="sign-up-section">
+                                    <div class="signup-desc">
+                                        <p>Les investisseurs ont besoin d’ouvrir un compte en argent réel Binary.com pour participer à l’ICO.</p>
+                                        <p>Inscrivez-vous dès maintenant gratuitement.</p>
+                                    </div>
+                                    <div class="signup-container gr-9 gr-12-p gr-12-m gr-centered">
+                                        <form id="frm_verify_email">
+                                            <div class="gr-row gr-row-align-center">
+                                                <div class="signup-box gr-8 gr-10-p gr-12-m gr-no-gutter secondary-bg-color">
+                                                    <div class="gr-row gr-padding-10" id="signup">
+                                                        <div class="gr-7 gr-10-m gr-centered">
+                                                            <input autocomplete="off" name="email" id="email" maxlength="50" placeholder="Saisissez votre adresse e-mail" />
+                                                            <div id="error_validate_email" class="invisible error-msg">Adresse email non valide</div>
+                                                            <div id="error_no_email" class="invisible error-msg">Ce champ est requis.</div>
                                                         </div>
-                                                        <div class="gr-4 gr-12-m">
-                                                            <input name="submit" id="af-submit-image-713141817" type="submit" class="image" alt="Submit" tabindex="501" value="Submit" />
+                                                        <div class="gr-5 gr-8-m gr-centered">
+                                                            <button class="primary-bg-color" id="btn_verify_email" type="submit">Créer un compte gratuit</button>
+                                                        </div>
+                                                        <span class="gr-12 gr-padding-10 error-msg hint color-white center-text invisible" id="signup_error"></span>
+                                                    </div>
+                                                    <div class="invisible" id="success">
+                                                        <div class="gr-padding-10 center-text hint gr-12 align-self-center">
+                                                            <p>Nous vous remercions pour votre inscription ! Veuillez vérifier votre email pour compléter le processus d’inscription.</p>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div style="display: none;">
-                                                    <img src="https://forms.aweber.com/form/displays.htm?id=7IzMjCyMHIzs" alt="" />
-                                                </div>
                                             </div>
                                         </form>
-                                        <script type="text/javascript">
-                                            document.getElementById('redirect_600c7e6a647457c51ede13e8b4d377e6').value = document.location + '#done';
-                                        </script>
-                                        <!-- /AWeber Web Form Generator 3.0.1 -->
-                                        <p class="notice-msg gr-8 gr-push-2 gr-push-0-m gr-12-m invisible">Merci pour votre inscription! Gardez un œil sur votre boîte de réception pour les dernières mises à jour sur notre ICO.</p>
                                     </div>
-                                </div>
-                                <div class="status-toggle status-started">
-                                    <a class="button" href="/fr/user/ico-subscribe.html"><span>Join the token sale</span></a>
-                                </div>
-                                <div class="status-toggle status-ended">
-                                    <a class="button" href="/fr/user/ico-subscribe.html"><span>Take me there</span></a>
                                 </div>
                             </div>
                         </div>
@@ -230,7 +246,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div id="how-ico-works" class="container content-section center-text">
                 <div class="gr-row">
                     <div class="gr-8 gr-push-2 gr-push-0-m gr-12-m">
-                        <h2>How does the ICO work</h2>
+                        <h2>Comment fonctionne l’ICO</h2>
                     </div>
                 </div>
                 <div class="gr-row">
@@ -269,7 +285,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         </div>
                     </div>
                     <p class="gr-12">
-                        <a class="button" href="https://ico_documents.binary.com/howto_ico.pdf" target="_blank">
+                        <a class="button" id="howto-btn" href="javascript:;">
                             <span>Comment participer à l'ICO Binary.com</span>
                         </a>
                     </p>
@@ -280,13 +296,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <div class="container">
                     <div class="gr-row">
                         <div class="gr-10 gr-push-1">
-                            <h2>Trade your tokens on the Lykke Exchange</h2>
+                            <h2>Échanger vos jetons sur la plateforme d’échange Lykke</h2>
                             <img src="/images/ico/icons/lykke_logo.svg"/>
-                            <p>We've reached an agreement to list the tokens on the <a href="https://www.lykke.com/" target="_blank" rel="noreferrer noopener">Lykke Exchange</a>.</p>
+                            <p>Nous avons trouvé un accord pour répertorier les jetons sur l' <a href="https://www.lykke.com/" target="_blank" rel="noreferrer noopener"> Plateforme d'Échange Lykke</a>.</p>
                             <a class="button" href="https://www.lykke.com/company/news/binary" target="_blank" rel="noreferrer noopener">
-                                <span>Read the official press release</span>
+                                <span>Lire le communiqué de presse officiel</span>
                             </a>
-                            <p>As featured in <a href="https://www.financemagnates.com/cryptocurrency/exchange/binary-com-blockchain-ipo-tokens-list-lykke-vanuatu-exchange/" target="_blank" rel="noreferrer noopener">Finance Magnates</a></p>
+                            <p>Tel que présenté dans <a href="https://www.financemagnates.com/cryptocurrency/exchange/binary-com-blockchain-ipo-tokens-list-lykke-vanuatu-exchange/" target="_blank" rel="noreferrer noopener">Finance Magnates</a></p>
                         </div>
                     </div>
                 </div>
@@ -318,7 +334,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div id="read-im-section" class="content-section primary-bg-color center-text">
                 <div class="gr-row">
                     <div class="gr-6 gr-push-3 gr-12-m gr-push-0-m">
-                        <h2 class="content-inverse-color">Read the Information Memorandum for further information about the proposed offer.</h2>
+                        <h2 class="content-inverse-color">Lire le projet de note d’Information pour plus d’informations sur l’offre proposée.</h2>
                         <button onclick="window.location.href='ico-disclaimer.html'" class="button">Afficher la note d'information</button>
                     </div>
                 </div>
@@ -369,7 +385,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                             <div class="gr-row">
                                 <div class="gr-6 gr-12-m">
                                     <h4>Des prix compétitifs</h4>
-                                    <p>Notre technologie de pointe en matière de détermination des prix vous donne les mêmes taux de rendement que le marché interbancaire.</p>
+                                    <p>Notre technologie de pointe pour établir les prix établissent nos prix par rapport avec le taux du marché interbancaire dans la mesure du possible.</p>
                                 </div>
                                 <div class="gr-6 gr-12-m">
                                     <h4>Technologie breveté</h4>
@@ -460,7 +476,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div id="board-of-directors" class="content-section">
                 <div class="gr-row center-text">
                     <div class="gr-4">
-                        <h2 class="boxed-heading-center">Board of directors</h2>
+                        <h2 class="boxed-heading-center">Conseil d’administration</h2>
                     </div>
                 </div>
                 <div class="container">
@@ -517,7 +533,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <h4 class="secondary-color">Garantie minimale faible</h4>
                         <p>Déposez seulement 5 dollars américains et commencez à trader à partir de 5 dollars américains par contrat.</p>
                         <h4 class="secondary-color">Multiples possibilités d’échanges</h4>
-                        <p>Tradez des contrats à court ou long terme, des ticks jusqu'aux jours.</p>
+                        <p>Trade short-term or long-term contracts, from 10 seconds to 365 days.</p>
                     </div>
                 </div>
             </div>
@@ -592,11 +608,65 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <div class="container">
                     <div class="gr-row">
                         <div class="gr-12">
-                            <h3>Media coverage</h3>
+                            <h3>Couverture médiatique</h3>
                         </div>
                     </div>
                     <div class="slider-container invisible">
                         <div class="my-slider">
+                            
+                                <div>
+                                    <a href="http://www.ico1.com/a/jiangkaishi/1277.html" target="_blank">
+                                        <div class="media">
+                                            <span class="media__logo ico1"></span>
+                                            <p class="media__headlines">BINARY.COM 宣布开展ICO</p>
+                                        </div>
+                                    </a>
+                                </div>
+                            
+                                <div>
+                                    <a href="https://binguru.net/binary-vyxodit-na-ico-pamyatka-investoru-5371" target="_blank">
+                                        <div class="media">
+                                            <span class="media__logo binguru"></span>
+                                            <p class="media__headlines">Binary выходит на ICO: памятка инвестору</p>
+                                        </div>
+                                    </a>
+                                </div>
+                            
+                                <div>
+                                    <a href="https://www.coinist.io/binary-com-explosive-growth-ico/" target="_blank">
+                                        <div class="media">
+                                            <span class="media__logo coinist"></span>
+                                            <p class="media__headlines">Binary.com’s Explosive Growth & Their Upcoming ICO</p>
+                                        </div>
+                                    </a>
+                                </div>
+                            
+                                <div>
+                                    <a href="https://www.chipin.com/binary-ico-redefining-future-ipos/" target="_blank">
+                                        <div class="media">
+                                            <span class="media__logo chipin"></span>
+                                            <p class="media__headlines">Introducing the Binary ICO – Redefining the Future of IPOs</p>
+                                        </div>
+                                    </a>
+                                </div>
+                            
+                                <div>
+                                    <a href="https://cryptogo.de/binary-analyse/" target="_blank">
+                                        <div class="media">
+                                            <span class="media__logo cryptogo"></span>
+                                            <p class="media__headlines">ICO Analyse - Binary.com</p>
+                                        </div>
+                                    </a>
+                                </div>
+                            
+                                <div>
+                                    <a href="https://hype.codes/future-ipos-blockchain" target="_blank">
+                                        <div class="media">
+                                            <span class="media__logo hype-codes"></span>
+                                            <p class="media__headlines">The future of IPOs is blockchain</p>
+                                        </div>
+                                    </a>
+                                </div>
                             
                                 <div>
                                     <a href="https://www.cryptomartez.com/2017/10/pr-binary-com-announces-ico.html" target="_blank">
@@ -734,8 +804,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <a href="https://www.reddit.com/r/binarydotcom/" target="_blank" class="gr-gutter-right">
                             <img class="responsive" src="/images/ico/icons/reddit.svg" />
                         </a>
-                        <a href="https://www.facebook.com/mybinarycoin" target="_blank">
+                        <a href="https://www.facebook.com/mybinarycoin" target="_blank" class="gr-gutter-right">
                             <img class="responsive" src="/images/ico/icons/facebook.svg" />
+                        </a>
+                        <a href="https://bitcointalk.org/index.php?topic=2368998.0" target="_blank">
+                            <img class="responsive" src="/images/ico/icons/bitcoin_talk.svg" />
                         </a>
                     </div>
                 </div>
@@ -771,12 +844,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                             <h4>Pourquoi Binary.com procède-t-il à une ICO ?</h4>
                             <p>Binary.com a été fondée en 1999. Aujourd'hui, c’est une entreprise bien établie et très réussie. Comme beaucoup de compagnies réussies, la croissance de notre entreprise nous conduit à envisager une introduction en bourse.</p>
                             <p>Cependant, nous croyons que, dans la décennie à venir les bourses traditionnelles seront progressivement remplacées par des échanges blockchain, et les IPOs seront progressivement remplacés par des ICOs. C’est parce que les technologies blockchain sont beaucoup plus performantes que les technologies héritées des bourses traditionnelles, menant à abaisser les frais de transaction, à des temps de règlement plus rapides et des pistes d’audit sans erreur immuable. C’est pourquoi nous avons décidé d’effectuer un ICO au lieu d’une introduction en bourse.</p>
+                            <p>For further background information please read our blog post, <a href='https://blog.binary.com/ipo-or-ico/' target='_blank'>Why we are doing an ICO (and not an IPO)</a>.</p>
                         </div>
                     </div>
                     <div class="gr-12">
                         <div class="faq">
-                            <h4>How does the ICO work?</h4>
-                            <p>Binary.com offrira un certain nombre de jetons blockchain aux investisseurs. Ces jetons peuvent être délivrés sous diverses formes sur différents blockchains, tels que les jetons « ERC20 » sur la blockchain de l’Ethereum.</p>
+                            <h4>Comment fonctionne l’ICO ?</h4>
+                            <p>Binary.com will offer a number of blockchain tokens to investors. These tokens will be ‘ERC20’ tokens on the Ethereum blockchain, however the Company may issue tokens on other blockchains if there is sufficient investor demand for different token types.</p>
                             <p>Quel que soit le type de jeton émis, chaque jeton donnera aux investisseurs deux droits :</p>
                             <ol>
                                 <li>Le droit de recevoir des paiements équivalents aux dividendes versés aux actions ordinaires Binary Group Ltd, et</li>
@@ -800,27 +874,46 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     </div>
                     <div class="gr-12">
                         <div class="faq">
-                            <h4>How are the tokens offered?</h4>
+                            <h4>Comment sont offerts les jetons ?</h4>
                             <p>The tokens are offered via an auction process. View our <a href="https://ico_documents.binary.com/howto_ico.pdf" target="_blank">guide</a> to the token auction.</p>
                         </div>
                     </div>
                     <div class="gr-12">
                         <div class="faq">
+                            <h4>How many tokens are available?</h4>
+                            <p>Up to 10 million tokens are available via the auction.</p>
+                        </div>
+                    </div>
+                    <div class="gr-12">
+                        <div class="faq">
+                            <h4>Quel est le prix de l’enchère minimum ?</h4>
+                            <p>The minimum bid is USD 1.35/token or equivalent in other currency/cryptocurrency.</p>
+                        </div>
+                    </div>
+                    <div class="gr-12">
+                        <div class="faq">
+                            <h4>How high should I bid?</h4>
+                            <p>The higher you bid, the more your chances of being successful in the auction. However irrespective of how high you bid, at the end of the auction all winning bids will receive the same final price, which is the lowest winning bid.</p>
+                        </div>
+                    </div>
+                    <div class="gr-12">
+                        <div class="faq">
                             <h4>Qui peut acheter des jetons ?</h4>
-                            <p>Les jetons seront seulement offerts aux clients Binary.com qui ont un compte en argent réel, et qui ont complété notre <a href="https://ico_documents.binary.com/2017_Authentication_Process.pdf" target="_blank">processus d’authentification de compte ou connaissance du client (KYC)</a>.</p>
+                            <p>Tokens will only be offered to Binary.com clients who have a Real Money account. Please visit <a href="/fr/home.html" target="_blank">www.binary.com</a> to open an account.</p>
                         </div>
                     </div>
                     <div class="gr-12">
                         <div class="faq">
                             <h4>L'ICO est elle disponible dans tous les pays ?</h4>
                             <p>L’ICO sera limitée à un certain nombre de juridictions aux investisseurs qualifiés ou professionnels, selon les règles et les règlements de ces juridictions. En particulier, l'ICO ne sera pas disponible aux investisseurs américains.</p>
-                            <p>Pour savoir si l’ICO est disponible dans votre juridiction et, si c'est le cas, si vous êtes qualifié pour souscrire pour les jetons, veuillez sélectionner votre pays dans la liste déroulante sur la page <a href="/fr/ico-disclaimer.html">Information Memorandum</a>.</p>
+                            <p>Pour savoir si l’ICO est disponible dans votre juridiction et, si c'est le cas, si vous êtes qualifié pour souscrire pour les jetons, veuillez sélectionner votre pays dans la liste déroulante sur la page <a href="/fr/ico-disclaimer.html" target="_blank">Information Memorandum</a>.</p>
                         </div>
                     </div>
                     <div class="gr-12">
                         <div class="faq">
                             <h4>Comment puis-je acheter des jetons ?</h4>
-                            <p>Vous serez en mesure d’acheter des jetons en utilisant les fonds dans votre compte Binary.com. Vous pouvez utiliser une des devises disponibles dans notre <a href="/fr/cashier/payment_methods.html" target="_blank">csystème de caisse</a>. Si vous choisissez de faire une offre dans une monnaie autre que l’USD, le montant des offres doit être converti en USD au taux de change qui prévaut à la fin des enchères.</p>
+                            <p>You will be able to purchase tokens using the funds in your Binary.com account. You may use any of the available currencies (including
+cryptocurrencies) in our <a href="/fr/cashier/payment_methods.html" target="_blank">cashier system</a>. If you choose to bid in a currency other than USD, the bid amount shall be converted to USD at the prevailing exchange rate at the time the auction ends.</p>
                         </div>
                     </div>
                     <div class="gr-12">
@@ -831,29 +924,41 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     </div>
                     <div class="gr-12">
                         <div class="faq">
+                            <h4>Quel sera le symbole du jeton ?</h4>
+                            <p>Nous avons l’intention d’appliquer le symbole jeton BINARY.</p>
+                        </div>
+                    </div>
+                    <div class="gr-12">
+                        <div class="faq">
                             <h4>Quels sont les avantages d’acheter des jetons ?</h4>
-                            <p>Il y aura deux principaux avantages à l’achat de jetons.</p>
+                            <p>There will be three main benefits of purchasing tokens.</p>
                             <p>Tout d'abord, les détenteurs de jetons recevront des paiements dividende équivalents aux dividendes versés par la société sur ses actions ordinaires. Par conséquent, les détenteurs de jeton partageront le succès futur de la société comme le font les actionnaires.</p>
-                            <p>Deuxièmement, les détenteurs de jeton seront en mesure d’échanger librement leurs jetons. En revanche, les Actions Ordinaires ne sont pas cotées et ne peuvent donc être négociées en bourse. En ce sens, les jetons seront un investissement supérieur aux actions ordinaires.</p>
+                            <p>Second, tokens may be converted into Ordinary Shares of the Company (subject to certain conditions, as described in the Information Memorandum), thereby providing the legal link between tokens and Ordinary Shares.</p>
+                            <p>Third, token holders will be able to freely trade their tokens. In contrast, Ordinary Shares are not listed and therefore cannot be traded on any exchange. In that sense, the tokens will be a superior investment to Ordinary Shares.</p>
+                        </div>
+                    </div>
+                    <div class="gr-12">
+                        <div class="faq">
+                            <h4>Où puis-je consulter le code source des jetons ?</h4>
+                            <p>Binary.com intends to deploy the <a href='https://github.com/Giveth/minime' target='_blank'>Mini Me</a> token. Please view our <a href='https://tech.binary.com/an-erc20-securities-token/' target='_blank'>blog post</a> detailing our reasons for choosing this token.</p>
                         </div>
                     </div>
                     <div class="gr-12">
                         <div class="faq">
                             <h4>Quels sont les risques d’acheter des jetons ?</h4>
-                            <p>Bien que Binary.com est une entreprise prospère depuis sa création en 1999, les jetons doivent être considérés comme un investissement à haut risque. L’entreprise Binary.com est soumis à un certain nombre de risques qui pourraient nuire à l’entreprise et donc d’affecter la valeur future des jetons. Ces risques sont détaillés dans le <a href="/fr/ico-disclaimer.html">Memorandum d'Information</a> et devraient être étudiés très attentivement avant de procéder à tout investissement dans les jetons.</p>
+                            <p>Bien que Binary.com est une entreprise prospère depuis sa création en 1999, les jetons doivent être considérés comme un investissement à haut risque. L’entreprise Binary.com est soumis à un certain nombre de risques qui pourraient nuire à l’entreprise et donc d’affecter la valeur future des jetons. Ces risques sont détaillés dans le <a href="/fr/ico-disclaimer.html" target="_blank">Memorandum d'Information</a> et devraient être étudiés très attentivement avant de procéder à tout investissement dans les jetons.</p>
                         </div>
                     </div>
                     <div class="gr-12">
                         <div class="faq">
                             <h4>Comment puis-je trouver plus d’informations sur Binary.com ?</h4>
                             <p>Pour en savoir plus sur Binary.com, vous pouvez lire sur notre <a href="/fr/group-history.html" target="_blank">historique du groupe</a>, <a href="/fr/regulation.html" target="_blank">status réglementaires</a> et <a href="/fr/careers.html" target="_blank">la culture de l'entreprise</a>. Vous pouvez également lire le <a href="https://blog.binary.com/" target="_blank">blog de l'entreprise</a>.</p>
-                            <p>Vous pouvez également lire sur l’ICO sur <a href="https://www.financemagnates.com/binary-options/brokers/exclusive-binary-com-ico-shows-company-profits-surpass-20-mln-2017/" target="_blank">FinanceMagnates</a> et <a href="https://www.leaprate.com/binary-options/broker/binary-com-ico-finances-binary-options-broker/" target="_blank">Leaprate</a>.</p>
                         </div>
                     </div>
                     <div class="gr-12">
                         <div class="faq">
                             <h4>Comment puis je en apprendre plus à propos des ICOs et des monnaies cryptées ?</h4>
-                            <p>Pour en savoir plus sur Bitcoin, nous vous recommandons d'ouvrir un portefeuille Bitcoin avec <a href="https://bitcoin-wallet.binary.com/" target="_blank">Binary.com un simple portefeuille bitcoin</a>, et d'acheter des bitcoins à l’aide d’une plateforme d'échange locale de votre pays.</p>
+                            <p>Rendez-vous sur notre chaîne <a href=https://www.youtube.com/user/BinaryTradingVideos target='_blank'> YouTube</a> pour en savoir plus sur les ICOs, cryptocurrencies populaire et de la technologie blockchain. Nous allons vous montrer comment ils fonctionnent et comment ils changent la façon dont nous faisons des affaires.</p>
                         </div>
                     </div>
                     <div class="gr-12">
@@ -871,10 +976,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="gr-row">
                 <div class="gr-12">
                     <h2>Abonnez-vous à notre liste de diffusion</h2>
-                    <p>for exclusive updates on the ICO.</p>
+                    <p>pour les mises à jour exclusives sur l’ICO.</p>
                     <div class="form-container">
                         <!-- AWeber Web Form Generator 3.0.1 -->
-                        <form method="post" class="af-form-wrapper" accept-charset="UTF-8" action="https://www.aweber.com/scripts/addlead.pl">
+                        <form id="binary_ico_subscribe" method="post" class="af-form-wrapper" accept-charset="UTF-8" action="https://www.aweber.com/scripts/addlead.pl">
                             <div style="display: none;">
                                 <input type="hidden" name="meta_web_form_id" value="713141817" />
                                 <input type="hidden" name="meta_split_id" value="" />
@@ -890,10 +995,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                 <div id="af-body-713141817" class="gr-12 gr-12-m af-body af-standards">
                                     <div class="af-element gr-row">
                                         <div class="gr-8 gr-12-m">
-                                            <input class="text" placeholder="Enter your email" id="awf_field-90867273" type="text" name="email" value="" tabindex="500" onfocus=" if (this.value == '') { this.value = ''; }" onblur="if (this.value == '') { this.value='';} " />
+                                            <input class="text" placeholder="Saisissez votre adresse e-mail" id="awf_field-90867273" type="text" name="email" value="" tabindex="500" onfocus=" if (this.value == '') { this.value = ''; }" onblur="if (this.value == '') { this.value='';} " />
                                         </div>
                                         <div class="gr-4 gr-12-m">
-                                            <input name="submit" id="af-submit-image-713141817" type="submit" class="image" alt="Submit" tabindex="501" value="Submit"/>
+                                            <input name="submit" id="af-submit-image-713141817" type="submit" class="image" alt="Submit" tabindex="501" value="Envoyer"/>
                                         </div>
                                     </div>
                                 </div>
@@ -906,21 +1011,31 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                             document.getElementById('redirect_600c7e6a647457c51ede13e8b4d377e6').value = document.location + '#done';
                         </script>
                         <!-- /AWeber Web Form Generator 3.0.1 -->
-                        <p class="notice-msg gr-8 gr-push-2 gr-push-0-m gr-12-m invisible">Merci pour votre inscription! Gardez un œil sur votre boîte de réception pour les dernières mises à jour sur notre ICO.</p>
+                        <div id="subscribe_success" class="gr-8 gr-12-m gr-centered invisible">
+                            <p class="notice-msg">Merci pour votre inscription! Gardez un œil sur votre boîte de réception pour les dernières mises à jour sur notre ICO.</p>
+                      </div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="primary-bg-color content-inverse-color center-text">
             <div class="footnote">
-                <p>Ce site Web et l’ICO proposée ne constitue pas une offre ou une invitation à l’achat, des jetons susmentionnés dans toute juridiction où cette offre ou vente serait illégale. Les jetons seront offerts uniquement aux clients inscrits de Binary.com. Ni la commission des opérations de bourse américaine (SEC) ni aucun État, province ou commission d'opération de bourse territoriale ni toute autre autorité réglementaire d’un pays ou d'une juridiction n'a approuvé ou désapprouvé l’offre proposée de jetons. En ce qui concerne les pays de l'EEE, il est prévu que l’offre de jetons se fera en vertu d’une exemption au titre de la directive 2003/71/CE de l’Union européenne (telle que modifiée par la directive 2010/73/UE), notamment l’exemption relative à des investisseurs qualifiés, l’offre des jetons devrait être réservée à des investisseurs qualifiés ou professionnels dans un certain nombre d’autres juridictions ; plus amples détails de telles restrictions seront détaillées dans la notice d’information de l’offre.</p>
-                <p>L'investissement dans les jetons proposés devrait comporter un degré élevé de risque, il n’y aura aucune assurance que les détenteurs de jetons seront en mesure de recevoir un remboursement de leur capital ou tout retour sur leur investissement. Les investisseurs potentiels dans les jetons devraient examiner attentivement les facteurs de risque qui seront détaillés dans la notice d’information.</p>
+                <p>Access to electronic versions of these materials is being made available by Binary Group Ltd. (“Company”) in good faith and for information purposes only. It does not constitute an offer of, or an invitation to purchase, the tokens or any securities.  Making press announcements and other documents available in electronic format does not constitute, or shall not be deemed to constitute, or form part of, an offer to sell or the solicitation of an offer to buy or otherwise deal in the tokens or any other securities. Further, it does not constitute a recommendation by the Company or any other party to sell or buy tokens or any other securities.</p>
+                <p>These materials and the proposed ICO do not constitute an offer of, or an invitation to purchase, the tokens or any securities in any jurisdiction in which such offer or sale would be unlawful. In particular, unless otherwise determined by the Company, and permitted by applicable law and regulation, it is not intended that any offering of the tokens or any securities should be made, or any documentation be sent, directly or indirectly, in or into, Australia, the British Virgin Islands, Canada,  Japan, Jersey, New Zealand, Singapore, South Africa, Switzerland, or the United States (“Restricted Territory”) and nor should it be accessed by any person who is a national citizen or resident of a Restricted Territory, including corporations, partnerships, or other entities created or organised in any such jurisdiction.</p>
+                <p>These materials may only be received by authorised persons (a person determined by the Company, in its sole discretion, entitled to receive the materials as prescribed by applicable laws and regulations, for example in EEA jurisdictions, pursuant to an exemption under the European Union's directive 2003/71/EC (as amended, including by directive 2010/73/EU), which includes, without limitation, the exemption relating to qualified investors (“Authorised Persons”). If an Authorised Person wishes to bid for tokens he may do so if he is registered client of Binary.com and has a Binary.com account, by which method the Company shall be able to verify his qualification as an Authorised Person. The Authorised Person who wishes to acquire tokens will make a bid.  The Company will collate and assess the bids.  The Company may request that bids are reconfirmed before they are considered valid for the purpose of the Company’s offer at the auction.  At the auction the Company will make an offer for the tokens, which offer will be accepted (by the auction process explained in the materials) by the bids, and the consideration for the purchase of such tokens offered and accepted will be settled by credit in the Authorised Person’s Binary.com account, which evidences the contract for sale and purchase of the respective tokens.</p>
+                <p>For the avoidance of doubt (and notwithstanding anything to the contrary), these materials are not an offer for tokens; they are an invitation to treat.  Tokens will may only be offered by the Company pursuant to an auction in the manner more particularly described in the ‘token auction process’ section of the materials.</p>
+                <p>Neither the United States securities and exchange commission nor any state, provincial or territorial securities commission nor any other regulatory authority of any country or jurisdiction has approved or disapproved of the proposed offer of tokens.</p>
+                <p>In regards to EEA jurisdictions, it is intended that the token offering will be made pursuant to an exemption under the European Union's directive 2003/71/EC (as amended, including by directive 2010/73/EU), which includes, without limitation, the exemption relating to qualified investors, the offer of tokens is similarly expected to be restricted to qualified or professional investors in a number of other jurisdictions; further details of such restrictions will be detailed in the offer information memorandum.</p>
+                <p>Investment in the proposed tokens is expected to involve a high degree of risk, there will be no assurance that tokenholders will be able to receive a return of their capital or any returns on their investment. Prospective investors in the tokens should carefully consider the risk factors that will be detailed in the materials.</p>
             </div>
+        </div>
+        <div class="primary-bg-color-dark content-inverse-color center-text gr-padding-20">
+            <span>Binary Group Ltd., Kingston Chambers, Road Town, Tortola, British Virgin Islands</span>
         </div>
         <!--[if (lt IE 9)]><script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.2.4/min/tiny-slider.helper.ie8.js"></script><![endif]-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.2.4/min/tiny-slider.js"></script>
-        <script src="/js/landing_pages/common.js?0h26z837"></script>
-        <script src="/js/landing_pages/ico.js?0h26z837"></script>
+        <script src="/js/landing_pages/common.js?zybsbeu8"></script>
+        <script src="/js/landing_pages/ico.js?zybsbeu8"></script>
     </body>
 
 </html>

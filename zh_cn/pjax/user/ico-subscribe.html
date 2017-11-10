@@ -1,7 +1,7 @@
 <div id="content" class="ico-subscribe-content">
             
                 <div id="ico_banner_container"  class="ico-banner-container">
-    <div id="ico_banner" class="ico-banner invisible ja-hide top-margin bottom-margin" onclick="window.open('https://www.binary.com/en/ico', '_blank');">
+    <div id="ico_banner" class="ico-banner invisible ja-hide top-margin bottom-margin" onclick="window.open('/zh_cn/ico.html', '_blank');">
         <div class="gr-row gr-centered">
             <div class="gr-12">
                 <div class="gr-row gr-no-gutter ico-box">
@@ -9,7 +9,7 @@
                     <div class="gr-9 gr-padding-10 ico-column">
                         <div class="gr-row gr-no-gutter">
                             <div class="gr-9 gr-12-p gr-12-m"><p>Binary.com ICO 于2017年11月15日开始</p></div>
-                            <div class="gr-3 gr-12-p gr-12-m learn-btn"><a class="button" target="_blank" href="https://www.binary.com/en/ico"><span>了解更多</span></a></div>
+                            <div class="gr-3 gr-12-p gr-12-m learn-btn"><a id="ico_link_button" class="button"><span>了解更多</span></a></div>
                         </div>
                     </div>
                     <div id="close_ico_banner" class="close-btn"></div>
@@ -32,7 +32,8 @@
   <h1>Binary.com首次代币发售 (ICO)</h1>
 
 <div id="ico_subscribe" class="invisible">
-    <p>Binary.com提供高达<strong>10,000,000</strong>个公开拍卖代币。您可使用下面的表格出价。最低出价金额是<strong>1 美元</strong> 或等值的其他货币。</p>
+    <p>Binary.com is offering up to <strong>10,000,000</strong> tokens in an open auction. You may place your bids using the form below.</p>
+    <p id="minimum_bid"></p>
     <div class="gr-row">
         <div class="gr-7 gr-12-p gr-12-m">
             <a href="#auction" class="no-ajax">
@@ -142,7 +143,17 @@
     <div class="separator-line "></div>
 </div>
     <div id="ico_bids">
-        <h1>Binary.com ICO 拍卖出价</h1>
+        <h1>
+            <span>Binary.com ICO 拍卖出价</span>
+            <div class="invisible" id="view_ico_info">
+                <a class="button" href="/zh_cn/user/ico-info.html">
+                    <span>
+                        <img src="/images/ico/icons/bar_chart.svg">
+                        主动出价的直方图
+                    </span>
+                </a>
+            </div>
+        </h1>
         
 
         <div id="portfolio">
@@ -202,21 +213,66 @@
 </div>
 
 <div class="invisible" id="ico_professional_message">
-    <p>Please confirm that you are a <a href='/zh_cn/user/settings/professional.html'>professional trader</a> to proceed.</p>
+    <p>请确认您是<a href='/zh_cn/user/settings/professional.html'>专业交易者</a>以便继续操作。</p>
+</div>
+<div class="invisible" id="ico_virtual_message">
+    <p>选择虚拟账户时无法开立 ICO 账户。请选择真实资金账户并重试。</p>
 </div>
 
 <div class="invisible" id="ico_account_message">
-    <p>Please select your CR account to proceed.</p>
+    <p>请选择您的 CR 账户继续操作。</p>
 </div>
 
 <div class="invisible" id="ico_new_account_message">
-    <p>This feature is only available to CR clients. Please upgrade to proceed.</p>
+    <p id="message_common" class="invisible">此功能仅 CR 客户可用。请注册以继续。</p>
+    <p id="message_gaming" class="invisible">要参与Binary.com首次代币发行, 您必须另外开立一个账户。继续此操作的同时，您确认离开受马耳他博彩管理局监管的Binary (欧洲) 有限公司账户 。</p>
+    <p id="message_financial" class="invisible">要参与Binary.com首次代币发行, 您必须另外开立一个账户。继续此操作的同时，您确认离开受马耳他金融服务管理局监管的Binary投资 (欧洲) 有限公司账户 。</p>
+    <p id="message_iom" class="invisible">要参与Binary.com首次代币发行, 您必须另外开立一个账户。继续此操作的同时，您确认离开受马恩岛赌博监督委员会监管的Binary (IOM) 有限公司账户 。</p>
+    <div class="gr-row form-row center-text-m gr-padding-20 invisible" id="row_account_opening_reason">
+        <div class="gr-4 gr-12-m">
+            <label for="account_opening_reason">
+                开立账户的原因
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <select id="account_opening_reason" class="form_input " > 
+        <option value="">请选择</option>
+        <option value="Speculative">投机</option>
+        <option value="Income Earning">赚取收入</option>
+        <option value="Hedging">Hedging</option>
+                        </select>
+            
+        </div>
+    </div>
     <div class="center-text">
-        <a href="javascript:;" class="button" id="ico_new_account"><span>Upgrade</span></a>
+        <a href="javascript:;" class="button" id="ico_new_account"><span>注册</span></a>
         <p class="error-msg invisible" id="new_account_error"></p>
     </div>
 </div>
 
 <div class="invisible" id="feature_not_allowed">
-    <p class="center-text notice-msg">This feature is not available in your jurisdiction.</p>
+    <p class="center-text notice-msg">您的管辖权内无法使用此功能。</p>
+</div>
+
+<div id="cancel_bid_confirmation" class="lightbox invisible">
+    <div class="gr-padding-30 gr-gutter">
+        <div class="gr-gutter">
+            <div class="gr-gutter">
+                <h1>取消出价?</h1>
+                <p class="gr-padding-10 gr-child no-margin">您需付2%取消费用。</p>
+                <form id="frm_confirm">
+                    <div class="gr-row ">
+                        <div class="gr-12-m gr-padding-20 gr-centered">
+                            <input id="chk_confirm" type="checkbox">
+                            <label for="chk_confirm">我同意以上的取消费用</label>
+                        <div class="error-msg invisible"></div></div>
+                    </div>
+                    <div class="center-text gr-centered">
+                        <button class="button" type="submit">是的, 取消我的出价</button>
+                        <a class="button-secondary" id="cancel" href="javascript:;"><span>不, 返回到 ICO 拍卖页面</span></a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>

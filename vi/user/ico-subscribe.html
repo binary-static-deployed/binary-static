@@ -45,12 +45,12 @@
 
          
 
-         <link rel="stylesheet" href="/css/binary.min.css?0h26z837" />
+         <link rel="stylesheet" href="/css/binary.min.css?zybsbeu8" />
         
-         <script src='/js/texts/vi.js?0h26z837'></script>
-         <script src='/js/manifest.js?0h26z837'></script>
-         <script src='/js/vendor.min.js?dd187a5d'></script>
-         <script src='/js/binary.min.js?0h26z837'></script>
+         <script src='/js/texts/vi.js?zybsbeu8'></script>
+         <script src='/js/manifest.js?zybsbeu8'></script>
+         <script src='/js/vendor.min.js?9bb7a949'></script>
+         <script src='/js/binary.min.js?zybsbeu8'></script>
         
     </head>
 
@@ -388,15 +388,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <div id="content" class="ico-subscribe-content">
             
                 <div id="ico_banner_container"  class="ico-banner-container">
-    <div id="ico_banner" class="ico-banner invisible ja-hide top-margin bottom-margin" onclick="window.open('https://www.binary.com/en/ico', '_blank');">
+    <div id="ico_banner" class="ico-banner invisible ja-hide top-margin bottom-margin" onclick="window.open('/vi/ico.html', '_blank');">
         <div class="gr-row gr-centered">
             <div class="gr-12">
                 <div class="gr-row gr-no-gutter ico-box">
                     <div class="gr-3 gr-padding-10 ico-column left-bg"></div>
                     <div class="gr-9 gr-padding-10 ico-column">
                         <div class="gr-row gr-no-gutter">
-                            <div class="gr-9 gr-12-p gr-12-m"><p>Binary.com ICO starts on 15th November 2017</p></div>
-                            <div class="gr-3 gr-12-p gr-12-m learn-btn"><a class="button" target="_blank" href="https://www.binary.com/en/ico"><span>Tìm hiểu thêm</span></a></div>
+                            <div class="gr-9 gr-12-p gr-12-m"><p>Binary.com ICO bắt đầu từ ngày 15 tháng 11 năm 2017</p></div>
+                            <div class="gr-3 gr-12-p gr-12-m learn-btn"><a id="ico_link_button" class="button"><span>Tìm hiểu thêm</span></a></div>
                         </div>
                     </div>
                     <div id="close_ico_banner" class="close-btn"></div>
@@ -419,7 +419,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <h1>Binary.com Initial Coin Offering (ICO)</h1>
 
 <div id="ico_subscribe" class="invisible">
-    <p>Binary.com is offering up to <strong>10,000,000</strong> tokens in an open auction. You may place your bids using the form below. The minimum bid is <strong>USD 1</strong> or its equivalent in another currency.</p>
+    <p>Binary.com is offering up to <strong>10,000,000</strong> tokens in an open auction. You may place your bids using the form below.</p>
+    <p id="minimum_bid"></p>
     <div class="gr-row">
         <div class="gr-7 gr-12-p gr-12-m">
             <a href="#auction" class="no-ajax">
@@ -477,7 +478,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <div class="separator-line "></div>
 </div>
             <div class="timer invisible center-text gr-gutter-left gr-no-gutter-right">
-                <h3 class="gr-gutter-right">Token Sale Begins In</h3>
+                <h3 class="gr-gutter-right">Phiên giao dịch tiền ảo bắt đầu trong</h3>
                 <div class="time gr-row">
                     <div class="gr-2">
                         <h1 class="days">00</h1>
@@ -503,22 +504,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </div>
                 <div class="text gr-row">
                     <div class="gr-2">
-                        <span>Days</span>
+                        <span>Ngày</span>
                     </div>
                     <div class="gr-1">
                     </div>
                     <div class="gr-2">
-                        <span>Hours</span>
+                        <span>Giờ</span>
                     </div>
                     <div class="gr-1">
                     </div>
                     <div class="gr-2">
-                        <span>Minutes</span>
+                        <span>Phút</span>
                     </div>
                     <div class="gr-1">
                     </div>
                     <div class="gr-2">
-                        <span>Seconds</span>
+                        <span>Giây</span>
                     </div>
                 </div>
 
@@ -529,7 +530,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <div class="separator-line "></div>
 </div>
     <div id="ico_bids">
-        <h1>Binary.com Giá thầu ICO</h1>
+        <h1>
+            <span>Binary.com Giá thầu ICO</span>
+            <div class="invisible" id="view_ico_info">
+                <a class="button" href="/vi/user/ico-info.html">
+                    <span>
+                        <img src="/images/ico/icons/bar_chart.svg">
+                        Histogram of Active Bids
+                    </span>
+                </a>
+            </div>
+        </h1>
         
 
         <div id="portfolio">
@@ -591,21 +602,66 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="invisible" id="ico_professional_message">
     <p>Please confirm that you are a <a href='/vi/user/settings/professional.html'>professional trader</a> to proceed.</p>
 </div>
+<div class="invisible" id="ico_virtual_message">
+    <p>Unable to create ICO account while virtual account is selected. Please select your real money account and try again.</p>
+</div>
 
 <div class="invisible" id="ico_account_message">
     <p>Please select your CR account to proceed.</p>
 </div>
 
 <div class="invisible" id="ico_new_account_message">
-    <p>This feature is only available to CR clients. Please upgrade to proceed.</p>
+    <p id="message_common" class="invisible">This feature is only available to CR clients. Please sign up to proceed.</p>
+    <p id="message_gaming" class="invisible">To participate in the Binary.com initial coin offering you are required to open a separate account. By proceeding you acknowledge that you are leaving the account held with Binary (Europe) Ltd, regulated by the Malta Gaming Authority.</p>
+    <p id="message_financial" class="invisible">To participate in the Binary.com initial coin offering you are required to open a separate account. By proceeding you acknowledge that you are leaving the account held with Binary Investments (Europe) Ltd, regulated by the Malta Financial Services Authority.</p>
+    <p id="message_iom" class="invisible">To participate in the Binary.com initial coin offering you are required to open a separate account. By proceeding you acknowledge that you are leaving the account held with Binary (IOM) Ltd, regulated by the Isle of Man Gambling Supervision Commission.</p>
+    <div class="gr-row form-row center-text-m gr-padding-20 invisible" id="row_account_opening_reason">
+        <div class="gr-4 gr-12-m">
+            <label for="account_opening_reason">
+                Account opening reason
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <select id="account_opening_reason" class="form_input " > 
+        <option value="">Vui lòng chọn</option>
+        <option value="Speculative">Speculative</option>
+        <option value="Income Earning">Thu nhập</option>
+        <option value="Hedging">Hedging</option>
+                        </select>
+            
+        </div>
+    </div>
     <div class="center-text">
-        <a href="javascript:;" class="button" id="ico_new_account"><span>Upgrade</span></a>
+        <a href="javascript:;" class="button" id="ico_new_account"><span>Đăng kí</span></a>
         <p class="error-msg invisible" id="new_account_error"></p>
     </div>
 </div>
 
 <div class="invisible" id="feature_not_allowed">
     <p class="center-text notice-msg">This feature is not available in your jurisdiction.</p>
+</div>
+
+<div id="cancel_bid_confirmation" class="lightbox invisible">
+    <div class="gr-padding-30 gr-gutter">
+        <div class="gr-gutter">
+            <div class="gr-gutter">
+                <h1>Cancel bid?</h1>
+                <p class="gr-padding-10 gr-child no-margin">You will be subject to a 2% cancellation fee.</p>
+                <form id="frm_confirm">
+                    <div class="gr-row ">
+                        <div class="gr-12-m gr-padding-20 gr-centered">
+                            <input id="chk_confirm" type="checkbox">
+                            <label for="chk_confirm">I agree to the cancellation fee stated above</label>
+                        <div class="error-msg invisible"></div></div>
+                    </div>
+                    <div class="center-text gr-centered">
+                        <button class="button" type="submit">Yes, cancel my bid</button>
+                        <a class="button-secondary" id="cancel" href="javascript:;"><span>No, return to the ICO auction page</span></a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 
 

@@ -1,15 +1,15 @@
 <div id="content" class="ico-subscribe-content">
             
                 <div id="ico_banner_container"  class="ico-banner-container">
-    <div id="ico_banner" class="ico-banner invisible ja-hide top-margin bottom-margin" onclick="window.open('https://www.binary.com/en/ico', '_blank');">
+    <div id="ico_banner" class="ico-banner invisible ja-hide top-margin bottom-margin" onclick="window.open('/pl/ico.html', '_blank');">
         <div class="gr-row gr-centered">
             <div class="gr-12">
                 <div class="gr-row gr-no-gutter ico-box">
                     <div class="gr-3 gr-padding-10 ico-column left-bg"></div>
                     <div class="gr-9 gr-padding-10 ico-column">
                         <div class="gr-row gr-no-gutter">
-                            <div class="gr-9 gr-12-p gr-12-m"><p>Binary.com ICO rozpoczyna się 15 listopada 2017 r.</p></div>
-                            <div class="gr-3 gr-12-p gr-12-m learn-btn"><a class="button" target="_blank" href="https://www.binary.com/en/ico"><span>Dowiedz się więcej</span></a></div>
+                            <div class="gr-9 gr-12-p gr-12-m"><p>Binary.com ICO rozpoczyna się 15 listopada 2017</p></div>
+                            <div class="gr-3 gr-12-p gr-12-m learn-btn"><a id="ico_link_button" class="button"><span>Dowiedz się więcej</span></a></div>
                         </div>
                     </div>
                     <div id="close_ico_banner" class="close-btn"></div>
@@ -32,7 +32,8 @@
   <h1>Binary.com ICO (Initial Coin Offering)</h1>
 
 <div id="ico_subscribe" class="invisible">
-    <p>Binary.com oferuje na aukcji otwartej aż do <strong>10 000 000</strong>tokenów. Oferty kupna można składać przy użyciu poniższego formularza. Minimalna kwota oferty wynosi <strong>1 USD</strong> lub ekwiwalent tej kwoty w innej walucie.</p>
+    <p>Binary.com is offering up to <strong>10,000,000</strong> tokens in an open auction. You may place your bids using the form below.</p>
+    <p id="minimum_bid"></p>
     <div class="gr-row">
         <div class="gr-7 gr-12-p gr-12-m">
             <a href="#auction" class="no-ajax">
@@ -142,7 +143,17 @@
     <div class="separator-line "></div>
 </div>
     <div id="ico_bids">
-        <h1>Binary.com uruchamia aukcję ICO</h1>
+        <h1>
+            <span>Binary.com uruchamia aukcję ICO</span>
+            <div class="invisible" id="view_ico_info">
+                <a class="button" href="/pl/user/ico-info.html">
+                    <span>
+                        <img src="/images/ico/icons/bar_chart.svg">
+                        Histogram of Active Bids
+                    </span>
+                </a>
+            </div>
+        </h1>
         
 
         <div id="portfolio">
@@ -202,21 +213,66 @@
 </div>
 
 <div class="invisible" id="ico_professional_message">
-    <p>Please confirm that you are a <a href='/pl/user/settings/professional.html'>professional trader</a> to proceed.</p>
+    <p>Aby przejść dalej, potwierdź, że jesteś <a href='/pl/user/settings/professional.html'>graczem profesjonalnym</a>.</p>
+</div>
+<div class="invisible" id="ico_virtual_message">
+    <p>Unable to create ICO account while virtual account is selected. Please select your real money account and try again.</p>
 </div>
 
 <div class="invisible" id="ico_account_message">
-    <p>Please select your CR account to proceed.</p>
+    <p>Aby przejść dalej, wybierz swoje konto CR.</p>
 </div>
 
 <div class="invisible" id="ico_new_account_message">
-    <p>This feature is only available to CR clients. Please upgrade to proceed.</p>
+    <p id="message_common" class="invisible">This feature is only available to CR clients. Please sign up to proceed.</p>
+    <p id="message_gaming" class="invisible">To participate in the Binary.com initial coin offering you are required to open a separate account. By proceeding you acknowledge that you are leaving the account held with Binary (Europe) Ltd, regulated by the Malta Gaming Authority.</p>
+    <p id="message_financial" class="invisible">To participate in the Binary.com initial coin offering you are required to open a separate account. By proceeding you acknowledge that you are leaving the account held with Binary Investments (Europe) Ltd, regulated by the Malta Financial Services Authority.</p>
+    <p id="message_iom" class="invisible">To participate in the Binary.com initial coin offering you are required to open a separate account. By proceeding you acknowledge that you are leaving the account held with Binary (IOM) Ltd, regulated by the Isle of Man Gambling Supervision Commission.</p>
+    <div class="gr-row form-row center-text-m gr-padding-20 invisible" id="row_account_opening_reason">
+        <div class="gr-4 gr-12-m">
+            <label for="account_opening_reason">
+                Powód otwarcia konta
+            </label>
+        </div>
+        <div class="gr-8 gr-12-m">
+                                <select id="account_opening_reason" class="form_input " > 
+        <option value="">Wybierz</option>
+        <option value="Speculative">Spekulacja</option>
+        <option value="Income Earning">Uzyskanie dochodu</option>
+        <option value="Hedging">Hedging</option>
+                        </select>
+            
+        </div>
+    </div>
     <div class="center-text">
-        <a href="javascript:;" class="button" id="ico_new_account"><span>Upgrade</span></a>
+        <a href="javascript:;" class="button" id="ico_new_account"><span>Zarejestruj się</span></a>
         <p class="error-msg invisible" id="new_account_error"></p>
     </div>
 </div>
 
 <div class="invisible" id="feature_not_allowed">
     <p class="center-text notice-msg">This feature is not available in your jurisdiction.</p>
+</div>
+
+<div id="cancel_bid_confirmation" class="lightbox invisible">
+    <div class="gr-padding-30 gr-gutter">
+        <div class="gr-gutter">
+            <div class="gr-gutter">
+                <h1>Cancel bid?</h1>
+                <p class="gr-padding-10 gr-child no-margin">You will be subject to a 2% cancellation fee.</p>
+                <form id="frm_confirm">
+                    <div class="gr-row ">
+                        <div class="gr-12-m gr-padding-20 gr-centered">
+                            <input id="chk_confirm" type="checkbox">
+                            <label for="chk_confirm">I agree to the cancellation fee stated above</label>
+                        <div class="error-msg invisible"></div></div>
+                    </div>
+                    <div class="center-text gr-centered">
+                        <button class="button" type="submit">Yes, cancel my bid</button>
+                        <a class="button-secondary" id="cancel" href="javascript:;"><span>No, return to the ICO auction page</span></a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
