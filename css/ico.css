@@ -779,6 +779,10 @@ input[type='text']:focus, input[type='submit']:focus {
   margin: 0;
 }
 
+#status_container .ico-subscribe-btn {
+  margin-bottom: 2em;
+}
+
 #countdown {
   text-align: center;
   margin: 30px auto;
@@ -973,6 +977,17 @@ input[type='text']:focus, input[type='submit']:focus {
   height: 3em;
   margin: 5px 0;
   font-size: 0.8695652174rem;
+}
+@media (max-width: 480px) {
+  #sign-up-section #frm_verify_email input {
+    width: 99%;
+    padding: 0;
+  }
+}
+@media (max-width: 480px) {
+  #sign-up-section #frm_verify_email input[placeholder] {
+    text-align: center;
+  }
 }
 #sign-up-section #frm_verify_email button {
   margin: 5px 0;
