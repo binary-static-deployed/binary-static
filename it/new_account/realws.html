@@ -57,12 +57,12 @@
         <link rel="alternate" href="/zh_cn/new_account/realws.html" hreflang="ZH_CN" />   
         <link rel="alternate" href="/zh_tw/new_account/realws.html" hreflang="ZH_TW" />   
 
-         <link rel="stylesheet" href="/css/binary.min.css?0btqe7sy" />
+         <link rel="stylesheet" href="/css/binary.min.css?rm7vbgzr" />
         
-         <script src='/js/texts/it.js?0btqe7sy'></script>
-         <script src='/js/manifest.js?0btqe7sy'></script>
-         <script src='/js/vendor.min.js?98784db4'></script>
-         <script src='/js/binary.min.js?0btqe7sy'></script>
+         <script src='/js/texts/it.js?rm7vbgzr'></script>
+         <script src='/js/manifest.js?rm7vbgzr'></script>
+         <script src='/js/vendor.min.js?52b63c1d'></script>
+         <script src='/js/binary.min.js?rm7vbgzr'></script>
         
     </head>
 
@@ -270,7 +270,7 @@
                 </li>  <li id="topMenuPortfolio" class="item client_logged_in invisible ico-only-hide">
                     <a class="link" target="" href="/it/user/portfoliows.html">Portafoglio</a>
                     
-                </li>  <li id="topMenuProfitTable" class="item client_logged_in invisible">
+                </li>  <li id="topMenuProfitTable" class="item client_logged_in invisible ico-only-hide">
                     <a class="link" target="" href="/it/user/profit_tablews.html">Tabella dei profitti</a>
                     
                 </li>  <li id="topMenuStatement" class="item client_logged_in invisible">
@@ -288,7 +288,7 @@
                                 <a class="link" target="" href="/it/resources/market_timesws.html">Orari di trading</a>
                             </li>  </ul>
                     
-                </li>  <li id="topMenuShop" class="item ja-hide">
+                </li>  <li id="topMenuShop" class="item ja-hide ico-only-hide">
                     <a class="link" target="_blank" href="https://shop.binary.com">Shop</a>
                     
                 </li>  <li id="topMenuPaymentAgent" class="item invisible">
@@ -345,7 +345,7 @@
             </li>  <li id="topMenuPortfolio" class="item client_logged_in invisible ico-only-hide">
                 <a class="link " href="/it/user/portfoliows.html">Portafoglio</a>
                 
-            </li>  <li id="topMenuProfitTable" class="item client_logged_in invisible">
+            </li>  <li id="topMenuProfitTable" class="item client_logged_in invisible ico-only-hide">
                 <a class="link " href="/it/user/profit_tablews.html">Tabella dei profitti</a>
                 
             </li>  <li id="topMenuStatement" class="item client_logged_in invisible">
@@ -363,7 +363,7 @@
                             <a class="link" href="/it/resources/market_timesws.html">Orari di trading</a>
                         </li>  </ul>
                 
-            </li>  <li id="topMenuShop" class="item ja-hide">
+            </li>  <li id="topMenuShop" class="item ja-hide ico-only-hide">
                 <a class="link " href="https://shop.binary.com">Shop</a>
                 
             </li>  <li id="topMenuPaymentAgent" class="item invisible">
@@ -400,7 +400,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <div id="content" class="realws-content">
             
                 <div id="ico_banner_container"  class="ico-banner-container">
-    <div id="ico_banner" class="ico-banner invisible ja-hide top-margin bottom-margin" onclick="window.open('/it/ico.html', '_blank');">
+    <div id="ico_banner" class="ico-banner invisible ja-hide top-margin bottom-margin">
         <div class="gr-row gr-centered">
             <div class="gr-12">
                 <div class="gr-row gr-no-gutter ico-box">
@@ -653,13 +653,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </label>
         <a id="professional_info_toggle" class="toggle-arrow" href="javascript:;">What is this?</a>
         <div id="professional_info" style="display: none;">
-            <p>In order for us to be able to treat you as Professional Client, as a minimum, you have to satisfy two of the following criteria:</p>
-            <ul class="checked">
-                <li>You have carried out transactions, in significant size, on the relevant market that we are going to offer you, at an average frequency of 10 per quarter of the previous four quarters; and/or</li>
-                <li>The size of your instrument portfolio (including Instruments &amp; Cash), with us or elsewhere, exceeds EUR500,000, or the equivalent; and/or</li>
-                <li>You have worked in the financial sector for at least 1 year in a professional position that requires knowledge of the envisaged transactions.</li>
-            </ul>
-            <p>By opting to be treated as a Professional Client, we shall not presume that you possess market knowledge and experience as defined by the term 'Professional Client'. We will take all reasonable steps to ensure that your request for this Categorization meets the aforementioned criteria, including, but not limited to copies of:</p>
+            <div id="non_uk" class="invisible">
+                <p>In order for us to be able to treat you as Professional Client, as a minimum, you have to satisfy two of the following criteria:</p>
+                <ul class="checked">
+                    <li>You have carried out transactions, in significant size, on the relevant market that we are going to offer you, at an average frequency of 10 per quarter of the previous four quarters; and/or</li>
+                    <li>The size of your instrument portfolio (including Instruments &amp; Cash), with us or elsewhere, exceeds EUR500,000, or the equivalent; and/or</li>
+                    <li>You have worked in the financial sector for at least 1 year in a professional position that requires knowledge of the envisaged transactions.</li>
+                </ul>
+                <p>By opting to be treated as a Professional Client, we shall not presume that you possess market knowledge and experience as defined by the term 'Professional Client'. We will take all reasonable steps to ensure that your request for this Categorization meets the aforementioned criteria, including, but not limited to copies of:</p>
+            </div>
+            <div id="uk" class="invisible">
+                <p>By opting to be treated as a Professional Client, we shall not presume that you possess market knowledge and experience as defined by the term 'Professional Client'. We will contact you with the relevant form to complete and will take all reasonable steps to ensure that your request for this Categorization meets the aforementioned criteria, including, but not limited to copies of:</p>
+            </div>
             <ul class="bullet">
                 <li>Statements reflecting your transactions of the previous four quarters;</li>
                 <li>Portfolio held elsewhere;</li>

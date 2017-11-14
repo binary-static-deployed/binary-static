@@ -1,7 +1,7 @@
 <div id="content" class="ico-subscribe-content">
             
                 <div id="ico_banner_container"  class="ico-banner-container">
-    <div id="ico_banner" class="ico-banner invisible ja-hide top-margin bottom-margin" onclick="window.open('/pl/ico.html', '_blank');">
+    <div id="ico_banner" class="ico-banner invisible ja-hide top-margin bottom-margin">
         <div class="gr-row gr-centered">
             <div class="gr-12">
                 <div class="gr-row gr-no-gutter ico-box">
@@ -34,6 +34,7 @@
 <div id="ico_subscribe" class="invisible">
     <p>Binary.com oferuje do <strong>10 000 000</strong>tokenów na aukcji otwartej. Możesz złożyć swoją ofertę kupna, korzystając z poniższego formularza.</p>
     <p id="minimum_bid"></p>
+    <p><a class="button" href="/pl/ico.html" target="_blank"><span>Dowiedz się więcej</span></a></p>
     <div class="gr-row">
         <div class="gr-7 gr-12-p gr-12-m">
             <a href="#auction" class="no-ajax">
@@ -75,6 +76,7 @@
                         </div>
                     </div>
                 </div>
+                <div class="gr-12 align-end hint">Cena za jednostkę: <span id="price_unit"></span></div>
                 <div class="gr-12 align-end hint">W sumie: <span id="total"></span></div>
                 <div class="center-text">
                     <div id="form_error" class="error-msg invisible"></div>
@@ -212,15 +214,13 @@
     </a>
 </div>
 
-<div class="invisible" id="ico_professional_message">
-    <p>Aby przejść dalej, potwierdź, że jesteś <a href='/pl/user/settings/professional.html'>graczem profesjonalnym</a>.</p>
-</div>
+
 <div class="invisible" id="ico_virtual_message">
     <p>Nie można utworzyć konta ICO, gdy wybrane jest konto wirtualne. Proszę wybrać konto z prawdziwymi pieniędzmi i spróbować ponownie.</p>
 </div>
 
 <div class="invisible" id="ico_account_message">
-    <p>Aby przejść dalej, wybierz swoje konto CR.</p>
+    <p>Please select your ICO account to proceed.</p>
 </div>
 
 <div class="invisible" id="ico_new_account_message">

@@ -1,7 +1,7 @@
 <div id="content" class="ico-subscribe-content">
             
                 <div id="ico_banner_container"  class="ico-banner-container">
-    <div id="ico_banner" class="ico-banner invisible ja-hide top-margin bottom-margin" onclick="window.open('/vi/ico.html', '_blank');">
+    <div id="ico_banner" class="ico-banner invisible ja-hide top-margin bottom-margin">
         <div class="gr-row gr-centered">
             <div class="gr-12">
                 <div class="gr-row gr-no-gutter ico-box">
@@ -34,6 +34,7 @@
 <div id="ico_subscribe" class="invisible">
     <p>Binary.com đang cung cấp đến <strong>10.000.000</strong> thẻ trong một phiên đấu giá mở cửa. Bạn có thể đặt giá thầu của bạn bằng cách sử dụng mẫu dưới đây.</p>
     <p id="minimum_bid"></p>
+    <p><a class="button" href="/vi/ico.html" target="_blank"><span>Tìm hiểu thêm</span></a></p>
     <div class="gr-row">
         <div class="gr-7 gr-12-p gr-12-m">
             <a href="#auction" class="no-ajax">
@@ -75,6 +76,7 @@
                         </div>
                     </div>
                 </div>
+                <div class="gr-12 align-end hint">Price per unit: <span id="price_unit"></span></div>
                 <div class="gr-12 align-end hint">Tổng: <span id="total"></span></div>
                 <div class="center-text">
                     <div id="form_error" class="error-msg invisible"></div>
@@ -212,22 +214,20 @@
     </a>
 </div>
 
-<div class="invisible" id="ico_professional_message">
-    <p>Please confirm that you are a <a href='/vi/user/settings/professional.html'>professional trader</a> to proceed.</p>
-</div>
+
 <div class="invisible" id="ico_virtual_message">
     <p>Không thể tạo tài khoản ICO trong khi tài khoản ảo đã được chọn. Vui lòng chọn tài khoản tiền thật của bạn và thử lại.</p>
 </div>
 
 <div class="invisible" id="ico_account_message">
-    <p>Please select your CR account to proceed.</p>
+    <p>Please select your ICO account to proceed.</p>
 </div>
 
 <div class="invisible" id="ico_new_account_message">
     <p id="message_common" class="invisible">Tính năng này chỉ có sẵn cho các khách hàng CR. Xin vui lòng đăng ký để tiến hành.</p>
-    <p id="message_gaming" class="invisible">To participate in the Binary.com initial coin offering you are required to open a separate account. By proceeding you acknowledge that you are leaving the account held with Binary (Europe) Ltd, regulated by the Malta Gaming Authority.</p>
-    <p id="message_financial" class="invisible">To participate in the Binary.com initial coin offering you are required to open a separate account. By proceeding you acknowledge that you are leaving the account held with Binary Investments (Europe) Ltd, regulated by the Malta Financial Services Authority.</p>
-    <p id="message_iom" class="invisible">To participate in the Binary.com initial coin offering you are required to open a separate account. By proceeding you acknowledge that you are leaving the account held with Binary (IOM) Ltd, regulated by the Isle of Man Gambling Supervision Commission.</p>
+    <p id="message_gaming" class="invisible">Để tham gia vào ICO của Binary.com, bạn phải mở thêm một tài khoản riêng. Bằng cách tiếp tục, bạn công nhận rằng bạn đang thoát khỏi tài khoản của bạn ở Binary (Europe)Ltd, quy định bởi cơ quan thẩm quyền trò chơi tại Malta.</p>
+    <p id="message_financial" class="invisible">Để tham gia vào ICO của Binary.com, bạn phải mở thêm một tài khoản riêng. Bằng cách tiếp tục, bạn công nhận rằng bạn đang thoát khỏi tài khoản của bạn ở Binary Investments (Europe)Ltd, quy định bởi cơ quan thẩm quyền tài chính tại Malta.</p>
+    <p id="message_iom" class="invisible">Để tham gia vào ICO của Binary.com, bạn phải mở thêm một tài khoản riêng. Bằng cách tiếp tục, bạn công nhận rằng bạn đang thoát khỏi tài khoản của bạn ở Binary (IOM)Ltd, quy định bởi hội cá độ Đảo Man.</p>
     <div class="gr-row form-row center-text-m gr-padding-20 invisible" id="row_account_opening_reason">
         <div class="gr-4 gr-12-m">
             <label for="account_opening_reason">

@@ -767,6 +767,14 @@ input[type='text']:focus, input[type='submit']:focus {
   background-image: url("../images/ico/icons/ico1_logo.svg");
 }
 
+.portal-do-branco {
+  background-image: url("../images/ico/icons/portal_do_branco_logo.svg");
+}
+
+.coinstaker {
+  background-image: url("../images/ico/icons/coinstaker_logo.svg");
+}
+
 #coming-soon {
   padding-top: 50px;
   padding-bottom: 50px;
@@ -780,7 +788,11 @@ input[type='text']:focus, input[type='submit']:focus {
 }
 
 #status_container .ico-subscribe-btn {
-  margin-bottom: 2em;
+  margin-top: 2em;
+}
+#status_container .ico-subscribe-btn p {
+  color: #fff;
+  font-size: 1.15rem;
 }
 
 #countdown {
@@ -1015,17 +1027,60 @@ input[type='text']:focus, input[type='submit']:focus {
   text-align: center;
 }
 #sign-up-section #frm_verify_email .error-msg {
-  font-style: italic;
-  font-size: 0.7561436673rem;
-  color: #C03;
   text-align: center;
-  margin-top: 5px;
-  padding-bottom: 5px;
 }
 #sign-up-section #frm_verify_email .error-field {
   border: 1px solid #C03 !important;
   box-shadow: 0 0 10px #C03;
   color: #C03;
+}
+
+#ico-bottom-banner {
+  cursor: pointer;
+  width: 100%;
+  position: fixed;
+  bottom: 0%;
+  background-color: #15212D;
+}
+#ico-bottom-banner p {
+  color: #E98024;
+  font-size: 0.8695652174rem;
+  font-weight: 700;
+}
+
+.error-msg {
+  display: block;
+  font-style: italic;
+  font-size: 0.7561436673rem;
+  color: #C03;
+  margin-top: 5px;
+  padding-bottom: 5px;
+}
+
+#reports-section {
+  padding: 50px 0;
+}
+#reports-section h4 {
+  font-size: 22px;
+}
+
+.lykke-mask, .token-mask {
+  background-color: #fff;
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  border: 1px solid #DEDEDE;
+  padding: 50px 30px !important;
+  min-height: 340px;
+  display: flex !important;
+  justify-content: center;
+}
+.lykke-mask.lykke-mask, .token-mask.lykke-mask {
+  background: url("../images/ico/images/lykke-mask.svg") no-repeat bottom left scroll;
+}
+.lykke-mask.token-mask, .token-mask.token-mask {
+  background: url("../images/ico/images/token-mask.svg") no-repeat bottom right scroll;
 }
 
 /* Grid layout system */

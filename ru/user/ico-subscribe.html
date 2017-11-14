@@ -45,12 +45,12 @@
 
          
 
-         <link rel="stylesheet" href="/css/binary.min.css?0btqe7sy" />
+         <link rel="stylesheet" href="/css/binary.min.css?rm7vbgzr" />
         
-         <script src='/js/texts/ru.js?0btqe7sy'></script>
-         <script src='/js/manifest.js?0btqe7sy'></script>
-         <script src='/js/vendor.min.js?98784db4'></script>
-         <script src='/js/binary.min.js?0btqe7sy'></script>
+         <script src='/js/texts/ru.js?rm7vbgzr'></script>
+         <script src='/js/manifest.js?rm7vbgzr'></script>
+         <script src='/js/vendor.min.js?52b63c1d'></script>
+         <script src='/js/binary.min.js?rm7vbgzr'></script>
         
     </head>
 
@@ -258,7 +258,7 @@
                 </li>  <li id="topMenuPortfolio" class="item client_logged_in invisible ico-only-hide">
                     <a class="link" target="" href="/ru/user/portfoliows.html">Портфель</a>
                     
-                </li>  <li id="topMenuProfitTable" class="item client_logged_in invisible">
+                </li>  <li id="topMenuProfitTable" class="item client_logged_in invisible ico-only-hide">
                     <a class="link" target="" href="/ru/user/profit_tablews.html">Анализ счета</a>
                     
                 </li>  <li id="topMenuStatement" class="item client_logged_in invisible">
@@ -276,7 +276,7 @@
                                 <a class="link" target="" href="/ru/resources/market_timesws.html">Время открытия рынков</a>
                             </li>  </ul>
                     
-                </li>  <li id="topMenuShop" class="item ja-hide">
+                </li>  <li id="topMenuShop" class="item ja-hide ico-only-hide">
                     <a class="link" target="_blank" href="https://shop.binary.com">Магазин</a>
                     
                 </li>  <li id="topMenuPaymentAgent" class="item invisible">
@@ -333,7 +333,7 @@
             </li>  <li id="topMenuPortfolio" class="item client_logged_in invisible ico-only-hide">
                 <a class="link " href="/ru/user/portfoliows.html">Портфель</a>
                 
-            </li>  <li id="topMenuProfitTable" class="item client_logged_in invisible">
+            </li>  <li id="topMenuProfitTable" class="item client_logged_in invisible ico-only-hide">
                 <a class="link " href="/ru/user/profit_tablews.html">Анализ счета</a>
                 
             </li>  <li id="topMenuStatement" class="item client_logged_in invisible">
@@ -351,7 +351,7 @@
                             <a class="link" href="/ru/resources/market_timesws.html">Время открытия рынков</a>
                         </li>  </ul>
                 
-            </li>  <li id="topMenuShop" class="item ja-hide">
+            </li>  <li id="topMenuShop" class="item ja-hide ico-only-hide">
                 <a class="link " href="https://shop.binary.com">Магазин</a>
                 
             </li>  <li id="topMenuPaymentAgent" class="item invisible">
@@ -388,7 +388,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <div id="content" class="ico-subscribe-content">
             
                 <div id="ico_banner_container"  class="ico-banner-container">
-    <div id="ico_banner" class="ico-banner invisible ja-hide top-margin bottom-margin" onclick="window.open('/ru/ico.html', '_blank');">
+    <div id="ico_banner" class="ico-banner invisible ja-hide top-margin bottom-margin">
         <div class="gr-row gr-centered">
             <div class="gr-12">
                 <div class="gr-row gr-no-gutter ico-box">
@@ -419,8 +419,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <h1> Первичное предложение средств (ICO) от Binary.com</h1>
 
 <div id="ico_subscribe" class="invisible">
-    <p>Binary.com is offering up to <strong>10,000,000</strong> tokens in an open auction. You may place your bids using the form below.</p>
+    <p>Binary.com предлагает до <strong>10 000 000</strong> токенов в рамках открытого аукциона. Вы можете сделать ставки, воспользовавшись формой ниже.</p>
     <p id="minimum_bid"></p>
+    <p><a class="button" href="/ru/ico.html" target="_blank"><span>Узнать больше</span></a></p>
     <div class="gr-row">
         <div class="gr-7 gr-12-p gr-12-m">
             <a href="#auction" class="no-ajax">
@@ -462,6 +463,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         </div>
                     </div>
                 </div>
+                <div class="gr-12 align-end hint">Цена за единицу: <span id="price_unit"></span></div>
                 <div class="gr-12 align-end hint">Итого: <span id="total"></span></div>
                 <div class="center-text">
                     <div id="form_error" class="error-msg invisible"></div>
@@ -536,7 +538,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <a class="button" href="/ru/user/ico-info.html">
                     <span>
                         <img src="/images/ico/icons/bar_chart.svg">
-                        Histogram of Active Bids
+                        Гистограмма активных ставок
                     </span>
                 </a>
             </div>
@@ -599,22 +601,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </a>
 </div>
 
-<div class="invisible" id="ico_professional_message">
-    <p>Чтобы продолжить, пожалуйста, подтвердите, что Вы являетесь <a href='/ru/user/settings/professional.html'>профессиональным трейдером</a>.</p>
-</div>
+
 <div class="invisible" id="ico_virtual_message">
-    <p>Unable to create ICO account while virtual account is selected. Please select your real money account and try again.</p>
+    <p>не удалось открыть Счёт ICO, т. к. выбран демо-счёт. Пожалуйста, выберите реальный счёт и повторите попытку.</p>
 </div>
 
 <div class="invisible" id="ico_account_message">
-    <p>Please select your CR account to proceed.</p>
+    <p>Please select your ICO account to proceed.</p>
 </div>
 
 <div class="invisible" id="ico_new_account_message">
-    <p id="message_common" class="invisible">This feature is only available to CR clients. Please sign up to proceed.</p>
-    <p id="message_gaming" class="invisible">To participate in the Binary.com initial coin offering you are required to open a separate account. By proceeding you acknowledge that you are leaving the account held with Binary (Europe) Ltd, regulated by the Malta Gaming Authority.</p>
-    <p id="message_financial" class="invisible">To participate in the Binary.com initial coin offering you are required to open a separate account. By proceeding you acknowledge that you are leaving the account held with Binary Investments (Europe) Ltd, regulated by the Malta Financial Services Authority.</p>
-    <p id="message_iom" class="invisible">To participate in the Binary.com initial coin offering you are required to open a separate account. By proceeding you acknowledge that you are leaving the account held with Binary (IOM) Ltd, regulated by the Isle of Man Gambling Supervision Commission.</p>
+    <p id="message_common" class="invisible">Данная функция доступна лишь для клиентов CR. Зарегистрируйтесь, чтобы продолжить.</p>
+    <p id="message_gaming" class="invisible">Чтобы принять участие в первичном предложении средств от Binary.com, необходимо открыть отдельный счёт. Продолжая данное действие, Вы соглашаетесь выйти со счёта на Binary (Europe) Ltd, регулируемого Управлением по лотереям и азартным играм Мальты.</p>
+    <p id="message_financial" class="invisible">Чтобы принять участие в первичном предложении средств от Binary.com, необходимо открыть отдельный счёт. Продолжая данное действие, Вы соглашаетесь выйти со счёта на Binary Investments (Europe) Ltd, регулируемого Мальтийским управлением финансовых услуг.</p>
+    <p id="message_iom" class="invisible">Чтобы принять участие в первичном предложении средств от Binary.com, необходимо открыть отдельный счёт. Продолжая данное действие, Вы соглашаетесь выйти со счёта на Binary (IOM) Ltd, регулируемого Комиссией по надзору за азартными играми острова Мэн.</p>
     <div class="gr-row form-row center-text-m gr-padding-20 invisible" id="row_account_opening_reason">
         <div class="gr-4 gr-12-m">
             <label for="account_opening_reason">
@@ -638,25 +638,25 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 
 <div class="invisible" id="feature_not_allowed">
-    <p class="center-text notice-msg">This feature is not available in your jurisdiction.</p>
+    <p class="center-text notice-msg">Данная функция недоступна в Вашей юрисдикции.</p>
 </div>
 
 <div id="cancel_bid_confirmation" class="lightbox invisible">
     <div class="gr-padding-30 gr-gutter">
         <div class="gr-gutter">
             <div class="gr-gutter">
-                <h1>Cancel bid?</h1>
-                <p class="gr-padding-10 gr-child no-margin">You will be subject to a 2% cancellation fee.</p>
+                <h1>Отменить ставку?</h1>
+                <p class="gr-padding-10 gr-child no-margin">Вы должны будете выплатить комиссию за отмену: 2%.</p>
                 <form id="frm_confirm">
                     <div class="gr-row ">
                         <div class="gr-12-m gr-padding-20 gr-centered">
                             <input id="chk_confirm" type="checkbox">
-                            <label for="chk_confirm">I agree to the cancellation fee stated above</label>
+                            <label for="chk_confirm">Я согласен с вышеуказанной комиссией за отмену</label>
                         <div class="error-msg invisible"></div></div>
                     </div>
                     <div class="center-text gr-centered">
-                        <button class="button" type="submit">Yes, cancel my bid</button>
-                        <a class="button-secondary" id="cancel" href="javascript:;"><span>No, return to the ICO auction page</span></a>
+                        <button class="button" type="submit">Да, отменить мою ставку</button>
+                        <a class="button-secondary" id="cancel" href="javascript:;"><span>Нет, вернуться на страницу аукциона ICO</span></a>
                     </div>
                 </form>
             </div>
