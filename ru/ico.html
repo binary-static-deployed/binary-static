@@ -39,8 +39,8 @@
         <link rel="icon" sizes="16x16" type="image/png" href="/images/favicons/favicon-16x16.png" />  
         <link rel="icon" sizes="32x32" type="image/png" href="/images/favicons/favicon-32x32.png" />
 
-        <link href="/css/ico.css?sispbbd9" rel="stylesheet" />
-        <link href="https://style.binary.com/binary.css?sispbbd9" rel="stylesheet" />
+        <link href="/css/ico.css?b35jvvsv" rel="stylesheet" />
+        <link href="https://style.binary.com/binary.css?b35jvvsv" rel="stylesheet" />
         <link href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.2.4/tiny-slider.css" rel="stylesheet">
     </head>
 
@@ -200,7 +200,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                 </div>
                                 <div class="status-toggle status-before-start">
                                 </div>
-                                <div id="sign-up-section">
+                                <div id="sign-up-section" class="invisible">
                                     <div class="signup-desc">
                                         <p>Инвесторам необходимо открыть реальный счёт на Binary.com, чтобы принять участие в ICO.</p>
                                         <p>Зарегистрируйтесь бесплатно.</p>
@@ -229,15 +229,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                             </div>
                                         </form>
                                     </div>
-                                    <div class="status-toggle status-started ico-subscribe-btn">
-                                        <div class="center-text gr-12 align-self-center">
-                                            <p>У Вас уже есть счёт?</p>
-                                        </div>
-                                        <a class="button" href="/ru/user/ico-subscribe.html"><span>Участвовать сейчас</span></a>
+                                </div>
+                                <div class="status-toggle status-started ico-subscribe-btn">
+                                    <div id="account_exists_message" class="center-text gr-12 align-self-center invisible">
+                                        <p>У Вас уже есть счёт?</p>
                                     </div>
-                                    <div class="status-toggle status-ended ico-subscribe-btn">
-                                        <a class="button" href="/ru/user/ico-subscribe.html"><span>Перейти по ссылке</span></a>
-                                    </div>
+                                    <a class="button" href="/ru/user/ico-subscribe.html"><span>Участвовать сейчас</span></a>
+                                </div>
+                                <div class="status-toggle status-ended ico-subscribe-btn">
+                                    <a class="button" href="/ru/user/ico-subscribe.html"><span>Перейти по ссылке</span></a>
                                 </div>
                             </div>
                         </div>
@@ -370,7 +370,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                             <div class="gr-8 gr-push-4 gr-10-m gr-push-1-m gr-12-p gr-push-0-p">
                                 <h4>Lykke</h4>
                                 <p>Исследование ценных бумаг, выполненное Lykke Accelerator, даёт представление о структуре нашей компании, финансовых показателях, прогнозов будущей прибыли и др. аспектов.</p>
-                                <a href="https://ico_documents.binary.com/research/lykke/lykke_research_report.pdf" target="_blank" rel="noopener noreferrer" class="button">
+                                <a id="lykke-btn" href="javascript:;" target="_blank" rel="noopener noreferrer" class="button">
                                     <span>Просмотреть отчёт Lykke</span>
                                 </a>
                             </div>
@@ -381,7 +381,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                             <div class="gr-8 gr-10-m gr-push-1-m gr-12-p">
                                 <h4>TokenRating</h4>
                                 <p>Данное исследование основано на анализе индийской компании TokenRating и рассматривает структуру нашего предложения токенов, а также потенциальное влияние наших конвертируемых токенов с правом на получение дивидендов.</p>
-                                <a id="token-btn" href="javascript:;" target="_blank" class="button">
+                                <a id="token-btn" href="javascript:;" target="_blank" rel="noopener noreferrer" class="button">
                                     <span>Просмотреть отчёт TokenRating</span>
                                 </a>
                             </div>
@@ -650,6 +650,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     </div>
                     <div class="slider-container invisible">
                         <div class="my-slider">
+                            
+                                <div>
+                                    <a href="https://www.criptomoedasfacil.com/binary-com-anuncia-o-lancamento-da-sua-oferta-inicial-de-moedas-ico-em-novembro/" target="_blank" rel="noopener noreferrer">
+                                        <div class="media">
+                                            <span class="media__logo cripto"></span>
+                                            <p class="media__headlines">Binary.com: anuncia o lançamento da sua oferta inicial de moedas (ICO) em novembro</p>
+                                        </div>
+                                    </a>
+                                </div>
                             
                                 <div>
                                     <a href="https://www.coinstaker.com/binary.com-ico" target="_blank" rel="noopener noreferrer">
@@ -1104,8 +1113,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <p>Доступ к электронной версии данных материалов предоставлен на данной странице группой компаний Binary Group Ltd. (далее именуемой "Компания") на добросовестной основе и исключительно для информативных целей. Это не является предложением или призывом к покупке токенов или любых ценных бумаг. Маркетинговые пресс-релизы и другие документы, доступные в электронном виде, не являются и не должны служить или составлять часть предложения продавать или настойчивое предложение покупать, а также иным образом взаимодействовать с токенами. Кроме того, это не является рекомендацией Компании или любой другой стороны продавать или покупать токены или любые другие ценные бумаги.</p>
                 <p>Данные материалы и ICO не представляют собой предложения  или приглашения приобрести токены или любые ценные бумаги в любой юрисдикции, в которой данное предложение или продажа будут являться незаконными. В частности, если иного не заявлено Компанией и не разрешено действующим законодательством, не следует делать никакого прямого или косвенного предложения токенов или любых ценных бумаг, а также отправлять любые документы в Австралию, Британские Виргинские острова, Канаду, Японию, Джерси, Новую Зеландию, Сингапур, ЮАР, Швейцарию или США (далее именуемые “Запрещёнными странами”). Также любые такие предложения не должны приобретаться любым лицом, являющимся гражданином или проживающим в Запрещённых странах, включая корпорации, партнёрства и любые компании, открытые или основанные в данных странах.</p>
                 <p>Данные материалы могут быть получены лишь уполномоченным лицами (лицами, назначенными Компанией по её единоличному усмотрению, которые будут вправе получать материалы, согласно действующим правилам и применимому законодательству, например, в юрисдикции Европейской экономической зоны, в рамках исключения из Директивы ЕС 2003/71/EC (с учётом всех изменений и дополнений, включая Директиву 2010/73/EU), включая, но не ограничиваясь исключениями, относящимися к квалифицированным инвесторам (“Уполномоченные представители”). Если Уполномоченный представитель пожелает принять участие в аукционе и сделать ставку на токены, он сможет это предпринять, если он является зарегистрированным клиентом Binary.com и имеет счёт на Binary.com. В этом случае Компания сможет проверить, является ли он Уполномоченным представителем. Уполномоченный представитель, желающий приобрести токены, может сделать ставку. Компания сопоставит и сравнит ставки. Также Компания может потребовать подтвердить ставки до того, как они будут приняты ей в качестве предложения на аукционе. На аукционе Компания сделает предложение для токенов, которое будет принято (в рамках процесса аукциона, описанного в данных материалах) для ставок, а решение о приобретении данных токенов будет принято на основе кредита на счету Уполномоченного представителя на Binary.com, что будет являться подтверждением продажи и покупки соответствующих токенов.</p>
-                <p>Во избежание сомнений (и невзирая ни на какие положения об обратном), данные материалы не являются предложением в отношении токенов; также они не являются приглашением. Токены могут быть предложены Компанией в рамках аукциона, в порядке, подробно описанном в разделе "Аукцион токенов" данного сайта.</p>
-                <p>Комиссия по ценным бумагам и биржам США, а также комиссии любой страны, провинции или региона, а также иные регулирующие органы любой страны или юрисдикции не выразили своего одобрения или неодобрения в связи с данным предложением токенов.</p>
+                <p>Во избежание сомнений (и невзирая ни на какие положения об обратном), данные материалы не являются предложением в отношении токенов; также они не являются приглашением. Токены могут быть предложены Компанией в рамках аукциона, в порядке, подробно описанном в разделе "Аукцион токенов".</p>
+                <p>Комиссия по ценным бумагам и биржам США, комиссии любой страны, провинции или региона, а также иные регулирующие органы любой страны или юрисдикции не выразили своего одобрения или неодобрения в связи с данным предложением токенов.</p>
                 <p>В рамках Европейской экономической зоны предложение токенов будет произведено в порядке исключения из Директивы ЕС 2003/71/EC (с учётом всех изменений и дополнений, включая Директиву 2010/73/EU), включая, но не ограничиваясь исключением, относящимся к квалифицированным инвесторам; аналогичным образом ожидается, что предложение токенов будет ограничено и предложено лишь квалифицированным и профессиональным инвесторам в ряде других юрисдикций; более подробная информация о таковых ограничениях будет перечислена в предложении, описанном в Информационном меморандуме.</p>
                 <p>Инвестиции в предложенные токены предполагают высокий уровень риска. Нет никакой гарантии, что владельцы токенов смогут получить прибыль от инвестированных средств или вернуть свои инвестиции. Потенциальные инвесторы в токены должны тщательно обдумать все факторы риска, которые будут изложены в данных материалах.</p>
             </div>
@@ -1118,8 +1127,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </div>
         <!--[if (lt IE 9)]><script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.2.4/min/tiny-slider.helper.ie8.js"></script><![endif]-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.2.4/min/tiny-slider.js"></script>
-        <script src="/js/landing_pages/common.js?sispbbd9"></script>
-        <script src="/js/landing_pages/ico.js?sispbbd9"></script>
+        <script src="/js/landing_pages/common.js?b35jvvsv"></script>
+        <script src="/js/landing_pages/ico.js?b35jvvsv"></script>
     </body>
 
 </html>

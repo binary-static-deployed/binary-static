@@ -39,8 +39,8 @@
         <link rel="icon" sizes="16x16" type="image/png" href="/images/favicons/favicon-16x16.png" />  
         <link rel="icon" sizes="32x32" type="image/png" href="/images/favicons/favicon-32x32.png" />
 
-        <link href="/css/ico.css?sispbbd9" rel="stylesheet" />
-        <link href="https://style.binary.com/binary.css?sispbbd9" rel="stylesheet" />
+        <link href="/css/ico.css?b35jvvsv" rel="stylesheet" />
+        <link href="https://style.binary.com/binary.css?b35jvvsv" rel="stylesheet" />
         <link href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.2.4/tiny-slider.css" rel="stylesheet">
     </head>
 
@@ -200,7 +200,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                 </div>
                                 <div class="status-toggle status-before-start">
                                 </div>
-                                <div id="sign-up-section">
+                                <div id="sign-up-section" class="invisible">
                                     <div class="signup-desc">
                                         <p>要參與 ICO，投資者必須開立Binary.com 真實資金帳戶。</p>
                                         <p>立刻免費註冊。</p>
@@ -229,15 +229,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                             </div>
                                         </form>
                                     </div>
-                                    <div class="status-toggle status-started ico-subscribe-btn">
-                                        <div class="center-text gr-12 align-self-center">
-                                            <p>已經有帳戶？</p>
-                                        </div>
-                                        <a class="button" href="/zh_tw/user/ico-subscribe.html"><span>立刻參與</span></a>
+                                </div>
+                                <div class="status-toggle status-started ico-subscribe-btn">
+                                    <div id="account_exists_message" class="center-text gr-12 align-self-center invisible">
+                                        <p>已經有帳戶？</p>
                                     </div>
-                                    <div class="status-toggle status-ended ico-subscribe-btn">
-                                        <a class="button" href="/zh_tw/user/ico-subscribe.html"><span>帶我去那裡</span></a>
-                                    </div>
+                                    <a class="button" href="/zh_tw/user/ico-subscribe.html"><span>立刻參與</span></a>
+                                </div>
+                                <div class="status-toggle status-ended ico-subscribe-btn">
+                                    <a class="button" href="/zh_tw/user/ico-subscribe.html"><span>帶我去那裡</span></a>
                                 </div>
                             </div>
                         </div>
@@ -370,7 +370,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                             <div class="gr-8 gr-push-4 gr-10-m gr-push-1-m gr-12-p gr-push-0-p">
                                 <h4>Lykke</h4>
                                 <p>這份由Lykke Accelerator撰寫的資產研究報告概述了我們公司的結構、財務業績、未來的收入預測等資訊。</p>
-                                <a href="https://ico_documents.binary.com/research/lykke/lykke_research_report.pdf" target="_blank" rel="noopener noreferrer" class="button">
+                                <a id="lykke-btn" href="javascript:;" target="_blank" rel="noopener noreferrer" class="button">
                                     <span>檢視 Lykke 報告</span>
                                 </a>
                             </div>
@@ -381,7 +381,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                             <div class="gr-8 gr-10-m gr-push-1-m gr-12-p">
                                 <h4>TokenRating</h4>
                                 <p>這份由印度TokenRating撰寫的研究報告分析了我們的代幣發售結構以及我們的可轉換代幣與股息權的潛在影響。</p>
-                                <a id="token-btn" href="javascript:;" target="_blank" class="button">
+                                <a id="token-btn" href="javascript:;" target="_blank" rel="noopener noreferrer" class="button">
                                     <span>檢視 TokenRating 報告</span>
                                 </a>
                             </div>
@@ -650,6 +650,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     </div>
                     <div class="slider-container invisible">
                         <div class="my-slider">
+                            
+                                <div>
+                                    <a href="https://www.criptomoedasfacil.com/binary-com-anuncia-o-lancamento-da-sua-oferta-inicial-de-moedas-ico-em-novembro/" target="_blank" rel="noopener noreferrer">
+                                        <div class="media">
+                                            <span class="media__logo cripto"></span>
+                                            <p class="media__headlines">Binary.com: anuncia o lançamento da sua oferta inicial de moedas (ICO) em novembro</p>
+                                        </div>
+                                    </a>
+                                </div>
                             
                                 <div>
                                     <a href="https://www.coinstaker.com/binary.com-ico" target="_blank" rel="noopener noreferrer">
@@ -1102,7 +1111,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <div class="primary-bg-color content-inverse-color center-text">
             <div class="footnote">
                 <p>Binary集團有限公司（「公司」）真誠地將這些材料的電子版本公開允許用戶使用，但僅限於提供資訊用途。並不構成代幣或任何證卷的發售或邀約購入。以電子格式提供新聞公告及其他文件並不構成、或不應視為構成、或造成代幣或任何其他證卷出售或徵求報價買入或其它處置方式的一部分。此外，它並不構成公司或任何另一方出售或購買代幣或任何其他證券的建議。</p>
-                <p>建議的ICO不構成提供或邀請購買，任何未經授權的司法管轄區的代幣獲任何證卷發售或銷售都是非法的。特別是, 除非公司另有規定, 並經適用的法律和法規允許, 否則公司無意將任何代幣或任何證券發售或任何文件直接或間接發送到澳大利亞、英屬維爾京群島、加拿大、日本、澤西島、紐西蘭、新加坡、南非、瑞士或美國(「限制領土」), 也不應由任何身為限制領土的本國公民或居民，包括在任何所述管轄區內設立或組織的公司、合夥企業或其他實體也不可存取以上發售資訊或文件。</p>
+                <p>這些材料與建議的ICO不構成提供或邀請購買，任何未經授權的司法管轄區的代幣獲任何證卷發售或銷售都是非法的。特別是, 除非公司另有規定, 並經適用的法律和法規允許, 否則公司無意將任何代幣或任何證券發售或任何文件直接或間接發送到澳大利亞、英屬維爾京群島、加拿大、日本、澤西島、紐西蘭、新加坡、南非、瑞士或美國(「限制領土」), 也不應由任何身為限制領土的本國公民或居民，包括在任何所述管轄區內設立或組織的公司、合夥企業或其他實體也不可存取以上發售資訊或文件。</p>
                 <p>這些材料只能由被授權人(由公司自行決定, 有權根據適用的法律和法規, 例如歐洲經濟區的司法管轄區內根據歐洲聯盟2003/71/EC 指令(含陸續修正版本, 包括2010/ 73/EU 指令)的豁免, 其中包括但不限於與合格投資者有關的豁免者("被授權人") 獲取。如被授權人想要競投代幣, 如他是Binary.com 的註冊客戶並擁有Binary.com 帳戶, 則可以進行。公司可藉此方法核實其作為被授權人的資格。希望獲得代幣的被授權人可出價。公司將對出價進行處理和評估。在出價被視為有效符合公司發售拍賣條件前, 公司可要求重新確認出價。拍賣時, 公司將發售代幣, 並決定接受(根據材料中解釋的拍賣過程) 該發售的出價。公司也考慮發售代幣的購入和接受將透過被授權人的Binary.com 帳戶餘款結算, 為個別代幣的銷售和購買合約提供證明。</p>
                 <p>為了避免引起疑慮 (包括任何相反的情況), 這些材料不是關於代幣發售，而是邀約出價。公司只會透過拍賣方式發售代幣，詳情已在「代幣拍賣過程」 一節中特別說明。</p>
                 <p>美國證券交易委員會或任何州、省或地區的證券委員會, 或任何其他國家或管轄區的監管機構, 均未批准或不批准提議的代幣發售。</p>
@@ -1118,8 +1127,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </div>
         <!--[if (lt IE 9)]><script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.2.4/min/tiny-slider.helper.ie8.js"></script><![endif]-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.2.4/min/tiny-slider.js"></script>
-        <script src="/js/landing_pages/common.js?sispbbd9"></script>
-        <script src="/js/landing_pages/ico.js?sispbbd9"></script>
+        <script src="/js/landing_pages/common.js?b35jvvsv"></script>
+        <script src="/js/landing_pages/ico.js?b35jvvsv"></script>
     </body>
 
 </html>

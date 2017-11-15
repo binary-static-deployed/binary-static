@@ -39,8 +39,8 @@
         <link rel="icon" sizes="16x16" type="image/png" href="/images/favicons/favicon-16x16.png" />  
         <link rel="icon" sizes="32x32" type="image/png" href="/images/favicons/favicon-32x32.png" />
 
-        <link href="/css/ico.css?sispbbd9" rel="stylesheet" />
-        <link href="https://style.binary.com/binary.css?sispbbd9" rel="stylesheet" />
+        <link href="/css/ico.css?b35jvvsv" rel="stylesheet" />
+        <link href="https://style.binary.com/binary.css?b35jvvsv" rel="stylesheet" />
         <link href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.2.4/tiny-slider.css" rel="stylesheet">
     </head>
 
@@ -138,7 +138,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                     <h3 class="content-inverse-color">เริ่มระดมทุนเมื่อ</h3>
                                 </div>
                                 <div class="status-toggle status-started">
-                                    <h2 class="content-inverse-color text-uppercase">ICO is live, participate now!</h2>
+                                    <h2 class="content-inverse-color text-uppercase">ICO เปิดแล้ว เข้าร่วมเดี๋ยวนี้!</h2>
                                     <p class="intro-text">สิ้นสุดการระดมทุนเมื่อ </p>
                                 </div>
                                 <div class="status-toggle status-ended">
@@ -200,7 +200,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                 </div>
                                 <div class="status-toggle status-before-start">
                                 </div>
-                                <div id="sign-up-section">
+                                <div id="sign-up-section" class="invisible">
                                     <div class="signup-desc">
                                         <p>นักลงทุนต้องเปิดบัญชีเงินจริง Binary.com จึงจะสามารถดำเนินการ ICO</p>
                                         <p>สมัครตอนนี้ฟรี</p>
@@ -229,15 +229,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                             </div>
                                         </form>
                                     </div>
-                                    <div class="status-toggle status-started ico-subscribe-btn">
-                                        <div class="center-text gr-12 align-self-center">
-                                            <p>Already have an account?</p>
-                                        </div>
-                                        <a class="button" href="/th/user/ico-subscribe.html"><span>Participate now</span></a>
+                                </div>
+                                <div class="status-toggle status-started ico-subscribe-btn">
+                                    <div id="account_exists_message" class="center-text gr-12 align-self-center invisible">
+                                        <p>มีบัญชีอยู่แล้วใช่ไหม</p>
                                     </div>
-                                    <div class="status-toggle status-ended ico-subscribe-btn">
-                                        <a class="button" href="/th/user/ico-subscribe.html"><span>พาฉันมาที่นี่</span></a>
-                                    </div>
+                                    <a class="button" href="/th/user/ico-subscribe.html"><span>เข้าร่วมเดี๋ยวนี้</span></a>
+                                </div>
+                                <div class="status-toggle status-ended ico-subscribe-btn">
+                                    <a class="button" href="/th/user/ico-subscribe.html"><span>พาฉันมาที่นี่</span></a>
                                 </div>
                             </div>
                         </div>
@@ -358,10 +358,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div id="reports-section" class="center-text">
                 <div class="gr-row">
                     <div class="gr-12">
-                        <h2>Independent analysis</h2>
+                        <h2>การวิเคราะห์อิสระ</h2>
                     </div>
                     <div class="gr-6 gr-push-3 gr-12-m gr-push-0-m">
-                        <p>Need a different perspective? Read these independent third-party reports for unbiased insights and opinions on Binary.com and our token offering.</p>
+                        <p>ต้องการมุมมองแตกต่างกันหรือไม่ อ่านรายงานของบุคคลที่สามอิสระเหล่านี้เพื่อเป็นข้อมูลเชิงลึกและความคิดเห็นบน Binary.com และการเสนอโทเค่น</p>
                     </div>
                 </div>
                 <div class="gr-row content-section-sm">
@@ -370,7 +370,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                             <div class="gr-8 gr-push-4 gr-10-m gr-push-1-m gr-12-p gr-push-0-p">
                                 <h4>Lykke</h4>
                                 <p>This equity research report by Lykke Accelerator gives you an overview of our company structure, financial performance, forecasts of future revenue, and more.</p>
-                                <a href="https://ico_documents.binary.com/research/lykke/lykke_research_report.pdf" target="_blank" rel="noopener noreferrer" class="button">
+                                <a id="lykke-btn" href="javascript:;" target="_blank" rel="noopener noreferrer" class="button">
                                     <span>View Lykke report</span>
                                 </a>
                             </div>
@@ -381,7 +381,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                             <div class="gr-8 gr-10-m gr-push-1-m gr-12-p">
                                 <h4>TokenRating</h4>
                                 <p>This research report by India-based TokenRating analyses the structure of our token offering and the potential impact of our convertible tokens with dividend rights.</p>
-                                <a id="token-btn" href="javascript:;" target="_blank" class="button">
+                                <a id="token-btn" href="javascript:;" target="_blank" rel="noopener noreferrer" class="button">
                                     <span>View TokenRating report</span>
                                 </a>
                             </div>
@@ -650,6 +650,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     </div>
                     <div class="slider-container invisible">
                         <div class="my-slider">
+                            
+                                <div>
+                                    <a href="https://www.criptomoedasfacil.com/binary-com-anuncia-o-lancamento-da-sua-oferta-inicial-de-moedas-ico-em-novembro/" target="_blank" rel="noopener noreferrer">
+                                        <div class="media">
+                                            <span class="media__logo cripto"></span>
+                                            <p class="media__headlines">Binary.com: anuncia o lançamento da sua oferta inicial de moedas (ICO) em novembro</p>
+                                        </div>
+                                    </a>
+                                </div>
                             
                                 <div>
                                     <a href="https://www.coinstaker.com/binary.com-ico" target="_blank" rel="noopener noreferrer">
@@ -926,7 +935,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                             <h4>ทำไม Binary.com ต้องระดมทุนผ่าน ICO?</h4>
                             <p>Binary.com ก่อตั้งขึ้นในปี พ.ศ. 2542 (ค.ศ. 1999) ในวันนี้ เราได้ถูกก่อตั้งอย่างมั่นคง และเป็นองค์กรที่ประสบความสำเร็จอย่างมาก เฉกเช่นเดียวกับบริษัทที่ประสบความสำเร็จอื่นๆ การเติบโตของธุรกิจของเราทำให้เราพิจารณาการเสนอขายหุ้นต่อสาธารณะครั้งแรก (IPO)</p>
                             <p>อย่างไรก็ตาม เราเชื่อว่าในทศวรรษที่จะมาถึงนี้ตลาดหลักทรัพย์แบบดั้งเดิมจะค่อยๆ ถูกแทนที่ด้วยการแลกเปลี่ยนแบบบล็อกเชน และ IPO จะค่อยๆ ถูกแทนที่ด้วย ICO ทั้งนี้เนื่องจากเทคโนโลยีบล็อกเชนทำงานได้มีประสิทธิภาพมากกว่าเทคโนโลยีที่สืบทอดกันมาของตลาดหลักทรัพย์แบบดั้งเดิม นำไปสู่การลดค่าธรรมเนียมธุรกรรม ระยะเวลาชำระเงินเร็วกว่า และระบบติดตามเพื่อตรวจสอบที่ไม่มีข้อผิดพลาดและเปลี่ยนแปลงไม่ได้ ดังนั้น เราตัดสินใจที่จะทำเป็น ICO แทน IPO</p>
-                            <p>For further background information please read our blog post, <a href='https://blog.binary.com/ipo-or-ico/' target='_blank' rel='noopener noreferrer'>Why we are doing an ICO (and not an IPO)</a>.</p>
+                            <p>สำหรับข้อมูลที่มาเพิ่มเติมนั้น กรุณาอ่านที่ประกาศของบล็อก <a href='https://blog.binary.com/ipo-or-ico/' target='_blank' rel='noopener noreferrer'>ทำไมเราถึงทำ ICO (ไม่ใช่ IPO)</a></p>
                         </div>
                     </div>
                     <div class="gr-12">
@@ -975,7 +984,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     <div class="gr-12">
                         <div class="faq">
                             <h4>ฉันจะเสนอซื้อมูลค่าสูงที่สุดได้อย่างไร?</h4>
-                            <p>The higher you bid, the more your chances of being successful in the auction. However irrespective of how high you bid, at the end of the auction all winning bids will receive the same final price, which is the lowest winning bid.</p>
+                            <p>ยิ่งคุณเสนอราคาสูงขึ้นเท่าไหร่ โอกาสที่คุณจะประสบความสำเร็จในการประมูลก็มากขึ้นเท่านั้น อย่างไรก็ตาม ไม่ว่าราคาของคุณจะสูงแค่ไหน ในตอนท้ายของการประมูล ข้อเสนอที่ชนะทั้งหมดจะได้รับราคาเดียวกัน หรือราคาชนะที่ต่ำสุด</p>
                         </div>
                     </div>
                     <div class="gr-12">
@@ -1022,7 +1031,7 @@ cryptocurrencies) in our <a href="/th/cashier/payment_methods.html" target="_bla
                     <div class="gr-12">
                         <div class="faq">
                             <h4>Where can I view the source code of the tokens?</h4>
-                            <p>Binary.com intends to deploy the <a href='https://github.com/Giveth/minime' target='_blank' rel='noopener noreferrer'>Mini Me</a> token. Please view our <a href='https://tech.binary.com/an-erc20-securities-token/' target='_blank' rel='noopener noreferrer'>blog post</a> detailing our reasons for choosing this token.</p>
+                            <p>Binary.com ตั้งใจที่จะจัดใช้งาน <a href='https://github.com/Giveth/minime' target='_blank' rel='noopener noreferrer'>Mini Me</a>โทเค่น กรุณาดูที่ <a href='https://tech.binary.com/an-erc20-securities-token/' target='_blank' rel='noopener noreferrer'>ประกาศในบล็อก</a> ที่ให้รายละเอียดของเหตุผลในการเลือกโทเค่นนี้</p>
                         </div>
                     </div>
                     <div class="gr-12">
@@ -1040,7 +1049,7 @@ cryptocurrencies) in our <a href="/th/cashier/payment_methods.html" target="_bla
                     <div class="gr-12">
                         <div class="faq">
                             <h4>ฉันจะศึกษาข้อมูลเกี่ยวกับ ICO และเงินดิจิทัลได้อย่างไร?</h4>
-                            <p>Head over to our <a href=https://www.youtube.com/user/BinaryTradingVideos target='_blank'  rel='noopener noreferrer'>YouTube</a> channel to learn more about ICOs, popular cryptocurrencies, and blockchain technology. We’ll show you how they work and how they are changing the way we do business.</p>
+                            <p>ไปที่ช่อง <a href=https://www.youtube.com/user/BinaryTradingVideos target='_blank'  rel='noopener noreferrer'>YouTube</a> ของเราเพื่อเรียนรู้เพิ่มเติมเกี่ยวกับ ICO เงินดิจิทัลที่เป็นที่นิยม และเทคโนโลยีบล็อกเชน เราจะแสดงให้คุณเห็นว่าทำงานอย่างไรและกำลังเปลี่ยนวิธีการทำธุรกิจอย่างไร</p>
                         </div>
                     </div>
                     <div class="gr-12">
@@ -1117,12 +1126,12 @@ cryptocurrencies) in our <a href="/th/cashier/payment_methods.html" target="_bla
             <span>Binary Group Ltd., Kingston Chambers, Road Town, Tortola, British Virgin Islands</span>
         </div>
         <div id="ico-bottom-banner" class="gr-hide gr-show-m gr-12-m invisible" onclick="openSubscribeLink('/th/user/ico-subscribe.html');">
-            <p class="center-text">The Binary.com ICO is now live. Participate now!</p>
+            <p class="center-text">ICO ของ Binary.com เปิดแล้ว เข้าร่วมเดี๋ยวนี้!</p>
         </div>
         <!--[if (lt IE 9)]><script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.2.4/min/tiny-slider.helper.ie8.js"></script><![endif]-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.2.4/min/tiny-slider.js"></script>
-        <script src="/js/landing_pages/common.js?sispbbd9"></script>
-        <script src="/js/landing_pages/ico.js?sispbbd9"></script>
+        <script src="/js/landing_pages/common.js?b35jvvsv"></script>
+        <script src="/js/landing_pages/ico.js?b35jvvsv"></script>
     </body>
 
 </html>

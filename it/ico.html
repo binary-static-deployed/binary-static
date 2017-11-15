@@ -39,8 +39,8 @@
         <link rel="icon" sizes="16x16" type="image/png" href="/images/favicons/favicon-16x16.png" />  
         <link rel="icon" sizes="32x32" type="image/png" href="/images/favicons/favicon-32x32.png" />
 
-        <link href="/css/ico.css?sispbbd9" rel="stylesheet" />
-        <link href="https://style.binary.com/binary.css?sispbbd9" rel="stylesheet" />
+        <link href="/css/ico.css?b35jvvsv" rel="stylesheet" />
+        <link href="https://style.binary.com/binary.css?b35jvvsv" rel="stylesheet" />
         <link href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.2.4/tiny-slider.css" rel="stylesheet">
     </head>
 
@@ -200,7 +200,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                 </div>
                                 <div class="status-toggle status-before-start">
                                 </div>
-                                <div id="sign-up-section">
+                                <div id="sign-up-section" class="invisible">
                                     <div class="signup-desc">
                                         <p>Gli investitori hanno bisogno di aprire un account con moneta reale di Binary.com per partecipare all'ICO.</p>
                                         <p>Registrati ora gratuitamente.</p>
@@ -229,15 +229,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                             </div>
                                         </form>
                                     </div>
-                                    <div class="status-toggle status-started ico-subscribe-btn">
-                                        <div class="center-text gr-12 align-self-center">
-                                            <p>Hai già un account?</p>
-                                        </div>
-                                        <a class="button" href="/it/user/ico-subscribe.html"><span>Partecipa ora</span></a>
+                                </div>
+                                <div class="status-toggle status-started ico-subscribe-btn">
+                                    <div id="account_exists_message" class="center-text gr-12 align-self-center invisible">
+                                        <p>Hai già un account?</p>
                                     </div>
-                                    <div class="status-toggle status-ended ico-subscribe-btn">
-                                        <a class="button" href="/it/user/ico-subscribe.html"><span>Take me there</span></a>
-                                    </div>
+                                    <a class="button" href="/it/user/ico-subscribe.html"><span>Partecipa ora</span></a>
+                                </div>
+                                <div class="status-toggle status-ended ico-subscribe-btn">
+                                    <a class="button" href="/it/user/ico-subscribe.html"><span>Take me there</span></a>
                                 </div>
                             </div>
                         </div>
@@ -370,7 +370,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                             <div class="gr-8 gr-push-4 gr-10-m gr-push-1-m gr-12-p gr-push-0-p">
                                 <h4>Lykke</h4>
                                 <p>This equity research report by Lykke Accelerator gives you an overview of our company structure, financial performance, forecasts of future revenue, and more.</p>
-                                <a href="https://ico_documents.binary.com/research/lykke/lykke_research_report.pdf" target="_blank" rel="noopener noreferrer" class="button">
+                                <a id="lykke-btn" href="javascript:;" target="_blank" rel="noopener noreferrer" class="button">
                                     <span>View Lykke report</span>
                                 </a>
                             </div>
@@ -381,7 +381,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                             <div class="gr-8 gr-10-m gr-push-1-m gr-12-p">
                                 <h4>TokenRating</h4>
                                 <p>This research report by India-based TokenRating analyses the structure of our token offering and the potential impact of our convertible tokens with dividend rights.</p>
-                                <a id="token-btn" href="javascript:;" target="_blank" class="button">
+                                <a id="token-btn" href="javascript:;" target="_blank" rel="noopener noreferrer" class="button">
                                     <span>View TokenRating report</span>
                                 </a>
                             </div>
@@ -650,6 +650,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     </div>
                     <div class="slider-container invisible">
                         <div class="my-slider">
+                            
+                                <div>
+                                    <a href="https://www.criptomoedasfacil.com/binary-com-anuncia-o-lancamento-da-sua-oferta-inicial-de-moedas-ico-em-novembro/" target="_blank" rel="noopener noreferrer">
+                                        <div class="media">
+                                            <span class="media__logo cripto"></span>
+                                            <p class="media__headlines">Binary.com: anuncia o lançamento da sua oferta inicial de moedas (ICO) em novembro</p>
+                                        </div>
+                                    </a>
+                                </div>
                             
                                 <div>
                                     <a href="https://www.coinstaker.com/binary.com-ico" target="_blank" rel="noopener noreferrer">
@@ -1119,8 +1128,8 @@ cryptocurrencies) in our <a href="/it/cashier/payment_methods.html" target="_bla
         </div>
         <!--[if (lt IE 9)]><script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.2.4/min/tiny-slider.helper.ie8.js"></script><![endif]-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.2.4/min/tiny-slider.js"></script>
-        <script src="/js/landing_pages/common.js?sispbbd9"></script>
-        <script src="/js/landing_pages/ico.js?sispbbd9"></script>
+        <script src="/js/landing_pages/common.js?b35jvvsv"></script>
+        <script src="/js/landing_pages/ico.js?b35jvvsv"></script>
     </body>
 
 </html>

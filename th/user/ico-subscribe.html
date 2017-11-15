@@ -45,12 +45,12 @@
 
          
 
-         <link rel="stylesheet" href="/css/binary.min.css?sispbbd9" />
+         <link rel="stylesheet" href="/css/binary.min.css?b35jvvsv" />
         
-         <script src='/js/texts/th.js?sispbbd9'></script>
-         <script src='/js/manifest.js?sispbbd9'></script>
+         <script src='/js/texts/th.js?b35jvvsv'></script>
+         <script src='/js/manifest.js?b35jvvsv'></script>
          <script src='/js/vendor.min.js?af16bbc2'></script>
-         <script src='/js/binary.min.js?sispbbd9'></script>
+         <script src='/js/binary.min.js?b35jvvsv'></script>
         
     </head>
 
@@ -282,8 +282,8 @@
                 </li>  <li id="topMenuPaymentAgent" class="item invisible">
                     <a class="link" target="" href="/th/paymentagent/transferws.html">ตัวแทนรับชำระเงิน</a>
                     
-                </li>  <li id="topMenuIcoBids" class="item ja-hide invisible client_logged_in">
-                    <a class="link" target="" href="/th/user/ico-subscribe.html">ICO Bids</a>
+                </li>  <li id="topMenuIcoBids" class="item invisible ico-only-show">
+                    <a class="link" target="" href="/th/user/ico-subscribe.html">การเสนอราคา ICO</a>
                     
                 </li>  </ul>
         </div>
@@ -360,8 +360,8 @@
             </li>  <li id="topMenuPaymentAgent" class="item invisible">
                 <a class="link " href="/th/paymentagent/transferws.html">ตัวแทนรับชำระเงิน</a>
                 
-            </li>  <li id="topMenuIcoBids" class="item ja-hide invisible client_logged_in">
-                <a class="link " href="/th/user/ico-subscribe.html">ICO Bids</a>
+            </li>  <li id="topMenuIcoBids" class="item invisible ico-only-show">
+                <a class="link " href="/th/user/ico-subscribe.html">การเสนอราคา ICO</a>
                 
             </li>  <li class="ja-hide" id="main-navigation-trading">
     
@@ -401,8 +401,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     <div class="gr-3 gr-padding-10 ico-column left-bg"></div>
                     <div class="gr-9 gr-padding-10 ico-column">
                         <div class="gr-row gr-no-gutter">
-                            <div class="gr-8 gr-12-p gr-12-m"><p>The Binary.com ICO is now live</p></div>
-                            <div class="gr-4 gr-12-p gr-12-m learn-btn"><a id="ico_link_button" class="button"><span>Participate now</span></a></div>
+                            <div class="gr-8 gr-12-p gr-12-m"><p>ICO ของ Binary.com เปิดแล้ว</p></div>
+                            <div class="gr-4 gr-12-p gr-12-m learn-btn"><a id="ico_link_button" class="button"><span>เข้าร่วมเดี๋ยวนี้</span></a></div>
                         </div>
                     </div>
                 </div>
@@ -468,7 +468,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         </div>
                     </div>
                 </div>
-                <div class="gr-12 align-end hint">Price per unit: <span id="price_unit"></span></div>
+                <div class="gr-12 align-end hint">ราคาต่อหน่วย: <span id="price_unit"></span></div>
                 <div class="gr-12 align-end hint">ผลรวม: <span id="total"></span></div>
                 <div class="center-text">
                     <div id="form_error" class="error-msg invisible"></div>
@@ -612,14 +612,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 
 <div class="invisible" id="ico_account_message">
-    <p>Please select your ICO account to proceed.</p>
+    <p>โปรดเลือกบัญชี ICO ของคุณเพื่อดำเนินการต่อไป</p>
 </div>
 
 <div class="invisible" id="ico_new_account_message">
     <p id="message_common" class="invisible">เฉพาะลูกค้า CR เท่านั้น ที่สามารถใช้งานฟังก์ชันนี้ได้ กรุณาลงทะเบียนเพื่อดำเนินการต่อไป</p>
-    <p id="message_gaming" class="invisible">เพื่อร่วมระดมทุนกับ Binary.com ท่านจะต้องเปิดบัญชีแยกต่างหาก เพื่อดำเนินการต่อ ท่านรับทราบว่า ท่านกำลังจะยุติบัญชีกับ Binary Investments (Europe) Ltd ที่ได้รับการรับรองโดยสำนักงาน Malta Gaming Authority</p>
-    <p id="message_financial" class="invisible">เพื่อร่วมระดมทุนกับ Binary.com ท่านจะต้องเปิดบัญชีแยกต่างหาก เพื่อดำเนินการต่อ ท่านรับทราบว่า ท่านกำลังจะยุติบัญชีกับ Binary Investments (Europe) Ltd ที่ได้รับการรับรองโดยสำนักงาน Malta Financial Services Authority</p>
-    <p id="message_iom" class="invisible">เพื่อร่วมระดมทุนกับ Binary.com ท่านจะต้องเปิดบัญชีแยกต่างหาก เพื่อดำเนินการต่อ ท่านรับทราบว่า ท่านกำลังจะยุติบัญชีกับ Binary (IOM) Ltd ที่ได้รับการรับรองโดยสำนักงาน The Isle of Man Gambling Supervision Commission</p>
+    <p id="message_gaming" class="invisible">To participate in the Binary.com ICO, you are required to open a separate account. By proceeding, you acknowledge that you are creating another account that is not under the jurisdiction of the Malta Gaming Authority.</p>
+    <p id="message_financial" class="invisible">To participate in the Binary.com ICO, you are required to open a separate account. By proceeding, you acknowledge that you are creating another account that is not under the jurisdiction of the Malta Financial Services Authority.</p>
+    <p id="message_iom" class="invisible">To participate in the Binary.com ICO, you are required to open a separate account. By proceeding, you acknowledge that you are creating another account that is not under the jurisdiction of the Isle of Man Gambling Supervision Commission.</p>
     <div class="gr-row form-row center-text-m gr-padding-20 invisible" id="row_account_opening_reason">
         <div class="gr-4 gr-12-m">
             <label for="account_opening_reason">

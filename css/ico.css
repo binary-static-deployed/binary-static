@@ -773,6 +773,10 @@ input[type='text']:focus, input[type='submit']:focus {
   background-image: url("../images/ico/icons/coinstaker_logo.svg");
 }
 
+.cripto {
+  background-image: url("../images/ico/icons/criptomoedas_facil_logo.svg");
+}
+
 #coming-soon {
   padding-top: 50px;
   padding-bottom: 50px;
@@ -858,6 +862,7 @@ input[type='text']:focus, input[type='submit']:focus {
   border-color: transparent #E98024 transparent transparent;
   -webkit-transform: rotate(-90deg);
   transform: rotate(-90deg);
+  transition: transform 0.95s;
 }
 #countdown .arcs .arc_cover {
   border-color: transparent #563e2f transparent transparent;
