@@ -2744,6 +2744,7 @@ div.kineticjs-content {
 .faded {
   color: #C2C2C2;
   font-size: 1rem;
+  font-weight: 100;
   margin-bottom: 0;
 }
 
@@ -2942,6 +2943,9 @@ body #not_authenticated_financial ul.checked > li {
 .ico-subscribe-content .margin-top {
   margin-top: 4px;
 }
+.ico-subscribe-content .no-padding {
+  padding: 0;
+}
 .ico-subscribe-content #frm_ico_bid input {
   padding: 2px 3px;
 }
@@ -2958,6 +2962,13 @@ body #not_authenticated_financial ul.checked > li {
 .ico-subscribe-content #frm_ico_bid .error-msg {
   padding-top: 5px;
 }
+.ico-subscribe-content #frm_ico_bid #minimum_bid {
+  padding-top: 5px;
+  font-size: 0.8695652174rem;
+}
+.ico-subscribe-content #frm_ico_bid .deposit {
+  font-size: 0.6575162324rem;
+}
 .ico-subscribe-content .timer .text {
   font-size: 0.7561436673rem;
   font-weight: bold;
@@ -2972,6 +2983,9 @@ body #not_authenticated_financial ul.checked > li {
 .ico-subscribe-content #cancel_bid_confirmation {
   left: 0;
   top: 0;
+}
+.ico-subscribe-content .faded ol {
+  margin: 0 15px;
 }
 
 .liquidity-solutions-content .box {

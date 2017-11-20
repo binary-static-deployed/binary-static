@@ -45,12 +45,12 @@
 
          
 
-         <link rel="stylesheet" href="/css/binary.min.css?9314n510" />
+         <link rel="stylesheet" href="/css/binary.min.css?mrjd9x88" />
         
-         <script src='/js/texts/ru.js?9314n510'></script>
-         <script src='/js/manifest.js?9314n510'></script>
+         <script src='/js/texts/ru.js?mrjd9x88'></script>
+         <script src='/js/manifest.js?mrjd9x88'></script>
          <script src='/js/vendor.min.js?e57ddfa6'></script>
-         <script src='/js/binary.min.js?9314n510'></script>
+         <script src='/js/binary.min.js?mrjd9x88'></script>
         
     </head>
 
@@ -425,9 +425,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <h1> Первичное предложение средств (ICO) от Binary.com</h1>
 
 <div id="ico_subscribe" class="invisible">
-    <p>Binary.com предлагает до <strong>10 000 000</strong> токенов в рамках открытого аукциона. Вы можете сделать ставки, воспользовавшись формой ниже.</p>
-    <p id="minimum_bid"></p>
-    <p><a class="button" href="/ru/ico.html" target="_blank"><span>Узнать больше</span></a></p>
+    <p>Binary.com is offering up to <strong>10,000,000</strong> tokens in an open auction. You may place your bids using the form below. <a href='/ru/ico.html' target='_blank'>Learn more</a></p>
+    <p>You're only required to deposit <span class="initial_deposit_percent"></span>% of the total bid value for each bid. At the end of the auction, once the final price of the token is determined, you will be given two (2) weeks to pay the balance up to the final price. Bids can be cancelled at any time before the end of auction, without any penalty.</p>
     <div class="gr-row">
         <div class="gr-7 gr-12-p gr-12-m">
             <a href="#auction" class="no-ajax">
@@ -436,11 +435,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </div>
         <div class="gr-5 gr-12-p gr-12-m border-gray border-radius">
             <form id="frm_ico_bid">
-                <div class="gr-row fill-bg-color gr-padding-10 border-radius">
-                    <h3 class="gr-5 no-margin">Ставка на ICO:</h3>
-                    <div class="gr-7 hint align-end">
-                        <span class="currency"></span> Баланс:
-                        <strong class="topMenuBalance"></strong>
+                <div class="gr-row fill-bg-color border-radius">
+                    <div class="gr-12 gr-padding-10">
+                        <h3 class="no-margin">Ставка на ICO:</h3>
+                        <p class="no-margin" id="minimum_bid"></p>
                     </div>
                 </div>
                 <div class="gr-row center-text-m">
@@ -469,78 +467,38 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         </div>
                     </div>
                 </div>
-                <div class="gr-12 align-end hint">Цена за единицу: <span id="price_unit"></span></div>
-                <div class="gr-12 align-end hint">Итого: <span id="total"></span></div>
+                <div class="gr-12 align-start hint no-padding">Цена за единицу: <span id="price_unit"></span></div>
+                <div class="gr-12 align-start hint no-padding">Итого: <span id="total"></span></div>
+                <div class=" gr-padding-10">
+    <div class="separator-line "></div>
+</div>
+                <div class="gr-12 align-start hint no-padding">
+                    Initial deposit required: 
+                    <strong id="payable_amount"></strong>
+                    <span class="deposit">
+                         (<span class="initial_deposit_percent"></span>% of total amount)
+                    </span>
+                </div>
                 <div class="center-text">
                     <div id="form_error" class="error-msg invisible"></div>
                     <div class="gr-padding-10">
                         <button id="btn_submit" type="submit">Разместить ставку</button>
                         <div class="gr-row invisible hint" id="topup_wrapper">
                             <div class="gr-8 align-start error-msg">На Вашем счету недостаточно средств.</div>
-                            <div class="gr-4 align-end"><a href="/ru/cashier/forwardws.html#deposit">пополнить через кассу</a></div>
+                            <div class="gr-4 align-end"><a href="/ru/cashier/forwardws.html#deposit">Top up in cashier</a></div>
                         </div>
                     </div>
                 </div>
             </form>
-            <div class=" gr-padding-10">
-    <div class="separator-line "></div>
-</div>
-            <div class="timer invisible center-text gr-gutter-left gr-no-gutter-right">
-                <h3 class="gr-gutter-right">Продажа токенов начнётся через</h3>
-                <div class="time gr-row">
-                    <div class="gr-2">
-                        <h1 class="days">00</h1>
-                    </div>
-                    <div class="gr-1">
-                        <h1 class="primary-color">:</h1>
-                    </div>
-                    <div class="gr-2">
-                        <h1 class="hours">00</h1>
-                    </div>
-                    <div class="gr-1">
-                        <h1 class="primary-color">:</h1>
-                    </div>
-                    <div class="gr-2">
-                        <h1 class="minutes">00</h1>
-                    </div>
-                    <div class="gr-1">
-                        <h1 class="primary-color">:</h1>
-                    </div>
-                    <div class="gr-2">
-                        <h1 class="seconds">00</h1>
-                    </div>
-                </div>
-                <div class="text gr-row">
-                    <div class="gr-2">
-                        <span>Дней</span>
-                    </div>
-                    <div class="gr-1">
-                    </div>
-                    <div class="gr-2">
-                        <span>Часов</span>
-                    </div>
-                    <div class="gr-1">
-                    </div>
-                    <div class="gr-2">
-                        <span>Минут</span>
-                    </div>
-                    <div class="gr-1">
-                    </div>
-                    <div class="gr-2">
-                        <span>Секунд</span>
-                    </div>
-                </div>
-
-            </div>
         </div>
     </div>
     <div class=" gr-padding-20">
     <div class="separator-line "></div>
 </div>
     <div id="ico_bids">
-        <h1>
-            <span>Ставки на аукционе ICO от Binary.com</span>
-            <div class="invisible" id="view_ico_info">
+        <div class="gr-row">
+            <h1 class="gr-7">Ставки на аукционе ICO от Binary.com</h1>
+            <div class="gr-5 align-end invisible" id="view_ico_info">
                 <a class="button" href="/ru/user/ico-info.html">
                     <span>
                         <img src="/images/ico/icons/bar_chart.svg">
@@ -548,7 +506,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     </span>
                 </a>
             </div>
-        </h1>
+        </div>
         
 
         <div id="portfolio">
@@ -576,6 +534,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     
                         <th class="purchase">Общая цена ставки</th>
                     
+                        <th class="deposit">Пополнение</th>
+                    
                         <th class="details">Статус</th>
                     
                         <th class="button"></th>
@@ -593,10 +553,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             </div>
         </div>
     </div>
+    <div class=" gr-padding-10">
+    <div class="separator-line "></div>
+</div>
     <div class="faded">
-        <p>Примечания:</p>
+        <p class="no-margin">Примечания:</p>
         <ol>
-            <li>При отмене ставки взимается комиссия в размере 2%.</li>
+            <li>Bids can be cancelled at any time before the end of the auction at no cost.</li>
             <li>Неудавшиеся ставки будут возвращены в полном объеме.</li>
         </ol>
     </div>
@@ -607,7 +570,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </a>
 </div>
 
-
+<div class="invisible" id="ico_professional_message">
+    <p>Please confirm that you are a <a href='/ru/user/settings/professional.html'>professional trader</a> to proceed.</p>
+</div>
 <div class="invisible" id="ico_virtual_message">
     <p>не удалось открыть Счёт ICO, т. к. выбран демо-счёт. Пожалуйста, выберите реальный счёт и повторите попытку.</p>
 </div>
@@ -656,14 +621,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <div class="gr-gutter">
             <div class="gr-gutter">
                 <h1>Отменить ставку?</h1>
-                <p class="gr-padding-10 gr-child no-margin">Вы должны будете выплатить комиссию за отмену: 2%.</p>
+                <p class="gr-padding-10 gr-child">Are you sure you want to cancel the bid?</p>
                 <form id="frm_confirm">
-                    <div class="gr-row ">
-                        <div class="gr-12-m gr-padding-20 gr-centered">
-                            <input id="chk_confirm" type="checkbox">
-                            <label for="chk_confirm">Я согласен с вышеуказанной комиссией за отмену</label>
-                        <div class="error-msg invisible"></div></div>
-                    </div>
                     <div class="center-text gr-centered">
                         <button class="button" type="submit">Да, отменить мою ставку</button>
                         <a class="button-secondary" id="cancel" href="javascript:;"><span>Нет, вернуться на страницу аукциона ICO</span></a>

@@ -32,9 +32,8 @@
   <h1>Initial Coin Offering (ICO) di Binary.com</h1>
 
 <div id="ico_subscribe" class="invisible">
-    <p>Binary.com offre fino a <strong>10.000.000</strong> token in un'asta aperta. Puoi piazzare le tue offerte utilizzando il modulo sottostante.</p>
-    <p id="minimum_bid"></p>
-    <p><a class="button" href="/it/ico.html" target="_blank"><span>Per saperne di più</span></a></p>
+    <p>Binary.com is offering up to <strong>10,000,000</strong> tokens in an open auction. You may place your bids using the form below. <a href='/it/ico.html' target='_blank'>Learn more</a></p>
+    <p>You're only required to deposit <span class="initial_deposit_percent"></span>% of the total bid value for each bid. At the end of the auction, once the final price of the token is determined, you will be given two (2) weeks to pay the balance up to the final price. Bids can be cancelled at any time before the end of auction, without any penalty.</p>
     <div class="gr-row">
         <div class="gr-7 gr-12-p gr-12-m">
             <a href="#auction" class="no-ajax">
@@ -43,11 +42,10 @@
         </div>
         <div class="gr-5 gr-12-p gr-12-m border-gray border-radius">
             <form id="frm_ico_bid">
-                <div class="gr-row fill-bg-color gr-padding-10 border-radius">
-                    <h3 class="gr-5 no-margin">Offerta sull'ICO:</h3>
-                    <div class="gr-7 hint align-end">
-                        <span class="currency"></span> Saldo:
-                        <strong class="topMenuBalance"></strong>
+                <div class="gr-row fill-bg-color border-radius">
+                    <div class="gr-12 gr-padding-10">
+                        <h3 class="no-margin">Offerta sull'ICO:</h3>
+                        <p class="no-margin" id="minimum_bid"></p>
                     </div>
                 </div>
                 <div class="gr-row center-text-m">
@@ -76,78 +74,38 @@
                         </div>
                     </div>
                 </div>
-                <div class="gr-12 align-end hint">Price per unit: <span id="price_unit"></span></div>
-                <div class="gr-12 align-end hint">Totale: <span id="total"></span></div>
+                <div class="gr-12 align-start hint no-padding">Price per unit: <span id="price_unit"></span></div>
+                <div class="gr-12 align-start hint no-padding">Totale: <span id="total"></span></div>
+                <div class=" gr-padding-10">
+    <div class="separator-line "></div>
+</div>
+                <div class="gr-12 align-start hint no-padding">
+                    Initial deposit required: 
+                    <strong id="payable_amount"></strong>
+                    <span class="deposit">
+                         (<span class="initial_deposit_percent"></span>% of total amount)
+                    </span>
+                </div>
                 <div class="center-text">
                     <div id="form_error" class="error-msg invisible"></div>
                     <div class="gr-padding-10">
                         <button id="btn_submit" type="submit">Place bid</button>
                         <div class="gr-row invisible hint" id="topup_wrapper">
                             <div class="gr-8 align-start error-msg">You have insufficient funds in your account.</div>
-                            <div class="gr-4 align-end"><a href="/it/cashier/forwardws.html#deposit">top up in cashier</a></div>
+                            <div class="gr-4 align-end"><a href="/it/cashier/forwardws.html#deposit">Top up in cashier</a></div>
                         </div>
                     </div>
                 </div>
             </form>
-            <div class=" gr-padding-10">
-    <div class="separator-line "></div>
-</div>
-            <div class="timer invisible center-text gr-gutter-left gr-no-gutter-right">
-                <h3 class="gr-gutter-right">La vendita dei token inizia tra</h3>
-                <div class="time gr-row">
-                    <div class="gr-2">
-                        <h1 class="days">00</h1>
-                    </div>
-                    <div class="gr-1">
-                        <h1 class="primary-color">:</h1>
-                    </div>
-                    <div class="gr-2">
-                        <h1 class="hours">00</h1>
-                    </div>
-                    <div class="gr-1">
-                        <h1 class="primary-color">:</h1>
-                    </div>
-                    <div class="gr-2">
-                        <h1 class="minutes">00</h1>
-                    </div>
-                    <div class="gr-1">
-                        <h1 class="primary-color">:</h1>
-                    </div>
-                    <div class="gr-2">
-                        <h1 class="seconds">00</h1>
-                    </div>
-                </div>
-                <div class="text gr-row">
-                    <div class="gr-2">
-                        <span>Giorni</span>
-                    </div>
-                    <div class="gr-1">
-                    </div>
-                    <div class="gr-2">
-                        <span>Ore</span>
-                    </div>
-                    <div class="gr-1">
-                    </div>
-                    <div class="gr-2">
-                        <span>Minuti</span>
-                    </div>
-                    <div class="gr-1">
-                    </div>
-                    <div class="gr-2">
-                        <span>Secondi</span>
-                    </div>
-                </div>
-
-            </div>
         </div>
     </div>
     <div class=" gr-padding-20">
     <div class="separator-line "></div>
 </div>
     <div id="ico_bids">
-        <h1>
-            <span>Offerte all'asta dell'ICO di Binary.com</span>
-            <div class="invisible" id="view_ico_info">
+        <div class="gr-row">
+            <h1 class="gr-7">Offerte all'asta dell'ICO di Binary.com</h1>
+            <div class="gr-5 align-end invisible" id="view_ico_info">
                 <a class="button" href="/it/user/ico-info.html">
                     <span>
                         <img src="/images/ico/icons/bar_chart.svg">
@@ -155,7 +113,7 @@
                     </span>
                 </a>
             </div>
-        </h1>
+        </div>
         
 
         <div id="portfolio">
@@ -183,6 +141,8 @@
                     
                         <th class="purchase">Total Bid Price</th>
                     
+                        <th class="deposit">Deposita</th>
+                    
                         <th class="details">Stato</th>
                     
                         <th class="button"></th>
@@ -200,10 +160,13 @@
             </div>
         </div>
     </div>
+    <div class=" gr-padding-10">
+    <div class="separator-line "></div>
+</div>
     <div class="faded">
-        <p>Note:</p>
+        <p class="no-margin">Note:</p>
         <ol>
-            <li>Ogni cancellazione di un'offerta è soggetta a una commissione di cancellazione del 2%.</li>
+            <li>Bids can be cancelled at any time before the end of the auction at no cost.</li>
             <li>Unsuccessful bidders will receive a full refund.</li>
         </ol>
     </div>
@@ -214,7 +177,9 @@
     </a>
 </div>
 
-
+<div class="invisible" id="ico_professional_message">
+    <p>Please confirm that you are a <a href='/it/user/settings/professional.html'>professional trader</a> to proceed.</p>
+</div>
 <div class="invisible" id="ico_virtual_message">
     <p>Unable to create ICO account while virtual account is selected. Please select your real money account and try again.</p>
 </div>
@@ -263,14 +228,8 @@
         <div class="gr-gutter">
             <div class="gr-gutter">
                 <h1>Cancel bid?</h1>
-                <p class="gr-padding-10 gr-child no-margin">You will be subject to a 2% cancellation fee.</p>
+                <p class="gr-padding-10 gr-child">Are you sure you want to cancel the bid?</p>
                 <form id="frm_confirm">
-                    <div class="gr-row ">
-                        <div class="gr-12-m gr-padding-20 gr-centered">
-                            <input id="chk_confirm" type="checkbox">
-                            <label for="chk_confirm">I agree to the cancellation fee stated above</label>
-                        <div class="error-msg invisible"></div></div>
-                    </div>
                     <div class="center-text gr-centered">
                         <button class="button" type="submit">Yes, cancel my bid</button>
                         <a class="button-secondary" id="cancel" href="javascript:;"><span>No, return to the ICO auction page</span></a>

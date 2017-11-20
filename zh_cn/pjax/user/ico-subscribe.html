@@ -32,9 +32,8 @@
   <h1>Binary.com首次代币发售 (ICO)</h1>
 
 <div id="ico_subscribe" class="invisible">
-    <p>Binary.com 将公开拍卖发售多达 <strong> 1千万 </strong> 个代币。您可使用下面的表格出价。</p>
-    <p id="minimum_bid"></p>
-    <p><a class="button" href="/zh_cn/ico.html" target="_blank"><span>了解更多</span></a></p>
+    <p>Binary.com is offering up to <strong>10,000,000</strong> tokens in an open auction. You may place your bids using the form below. <a href='/zh_cn/ico.html' target='_blank'>Learn more</a></p>
+    <p>You're only required to deposit <span class="initial_deposit_percent"></span>% of the total bid value for each bid. At the end of the auction, once the final price of the token is determined, you will be given two (2) weeks to pay the balance up to the final price. Bids can be cancelled at any time before the end of auction, without any penalty.</p>
     <div class="gr-row">
         <div class="gr-7 gr-12-p gr-12-m">
             <a href="#auction" class="no-ajax">
@@ -43,11 +42,10 @@
         </div>
         <div class="gr-5 gr-12-p gr-12-m border-gray border-radius">
             <form id="frm_ico_bid">
-                <div class="gr-row fill-bg-color gr-padding-10 border-radius">
-                    <h3 class="gr-5 no-margin">在 ICO 出价：</h3>
-                    <div class="gr-7 hint align-end">
-                        <span class="currency"></span> 余额：
-                        <strong class="topMenuBalance"></strong>
+                <div class="gr-row fill-bg-color border-radius">
+                    <div class="gr-12 gr-padding-10">
+                        <h3 class="no-margin">在 ICO 出价：</h3>
+                        <p class="no-margin" id="minimum_bid"></p>
                     </div>
                 </div>
                 <div class="gr-row center-text-m">
@@ -76,78 +74,38 @@
                         </div>
                     </div>
                 </div>
-                <div class="gr-12 align-end hint">单价: <span id="price_unit"></span></div>
-                <div class="gr-12 align-end hint">总计： <span id="total"></span></div>
+                <div class="gr-12 align-start hint no-padding">单价: <span id="price_unit"></span></div>
+                <div class="gr-12 align-start hint no-padding">总计： <span id="total"></span></div>
+                <div class=" gr-padding-10">
+    <div class="separator-line "></div>
+</div>
+                <div class="gr-12 align-start hint no-padding">
+                    Initial deposit required: 
+                    <strong id="payable_amount"></strong>
+                    <span class="deposit">
+                         (<span class="initial_deposit_percent"></span>% of total amount)
+                    </span>
+                </div>
                 <div class="center-text">
                     <div id="form_error" class="error-msg invisible"></div>
                     <div class="gr-padding-10">
                         <button id="btn_submit" type="submit">出价竞拍</button>
                         <div class="gr-row invisible hint" id="topup_wrapper">
                             <div class="gr-8 align-start error-msg">您的账户资金不足。</div>
-                            <div class="gr-4 align-end"><a href="/zh_cn/cashier/forwardws.html#deposit">存款入收银台</a></div>
+                            <div class="gr-4 align-end"><a href="/zh_cn/cashier/forwardws.html#deposit">Top up in cashier</a></div>
                         </div>
                     </div>
                 </div>
             </form>
-            <div class=" gr-padding-10">
-    <div class="separator-line "></div>
-</div>
-            <div class="timer invisible center-text gr-gutter-left gr-no-gutter-right">
-                <h3 class="gr-gutter-right">代币销售开始日期剩下</h3>
-                <div class="time gr-row">
-                    <div class="gr-2">
-                        <h1 class="days">00</h1>
-                    </div>
-                    <div class="gr-1">
-                        <h1 class="primary-color">:</h1>
-                    </div>
-                    <div class="gr-2">
-                        <h1 class="hours">00</h1>
-                    </div>
-                    <div class="gr-1">
-                        <h1 class="primary-color">:</h1>
-                    </div>
-                    <div class="gr-2">
-                        <h1 class="minutes">00</h1>
-                    </div>
-                    <div class="gr-1">
-                        <h1 class="primary-color">:</h1>
-                    </div>
-                    <div class="gr-2">
-                        <h1 class="seconds">00</h1>
-                    </div>
-                </div>
-                <div class="text gr-row">
-                    <div class="gr-2">
-                        <span>天</span>
-                    </div>
-                    <div class="gr-1">
-                    </div>
-                    <div class="gr-2">
-                        <span>小时</span>
-                    </div>
-                    <div class="gr-1">
-                    </div>
-                    <div class="gr-2">
-                        <span>分钟</span>
-                    </div>
-                    <div class="gr-1">
-                    </div>
-                    <div class="gr-2">
-                        <span>秒</span>
-                    </div>
-                </div>
-
-            </div>
         </div>
     </div>
     <div class=" gr-padding-20">
     <div class="separator-line "></div>
 </div>
     <div id="ico_bids">
-        <h1>
-            <span>Binary.com ICO 拍卖出价</span>
-            <div class="invisible" id="view_ico_info">
+        <div class="gr-row">
+            <h1 class="gr-7">Binary.com ICO 拍卖出价</h1>
+            <div class="gr-5 align-end invisible" id="view_ico_info">
                 <a class="button" href="/zh_cn/user/ico-info.html">
                     <span>
                         <img src="/images/ico/icons/bar_chart.svg">
@@ -155,7 +113,7 @@
                     </span>
                 </a>
             </div>
-        </h1>
+        </div>
         
 
         <div id="portfolio">
@@ -183,6 +141,8 @@
                     
                         <th class="purchase">总出价</th>
                     
+                        <th class="deposit">存款</th>
+                    
                         <th class="details">统计</th>
                     
                         <th class="button"></th>
@@ -200,10 +160,13 @@
             </div>
         </div>
     </div>
+    <div class=" gr-padding-10">
+    <div class="separator-line "></div>
+</div>
     <div class="faded">
-        <p>注：</p>
+        <p class="no-margin">注：</p>
         <ol>
-            <li>每次取消投标须支付2%取消费。</li>
+            <li>Bids can be cancelled at any time before the end of the auction at no cost.</li>
             <li>竞标失败者将获得全额退款。</li>
         </ol>
     </div>
@@ -214,7 +177,9 @@
     </a>
 </div>
 
-
+<div class="invisible" id="ico_professional_message">
+    <p>Please confirm that you are a <a href='/zh_cn/user/settings/professional.html'>professional trader</a> to proceed.</p>
+</div>
 <div class="invisible" id="ico_virtual_message">
     <p>选择虚拟账户时无法开立 ICO 账户。请选择真实资金账户并重试。</p>
 </div>
@@ -263,14 +228,8 @@
         <div class="gr-gutter">
             <div class="gr-gutter">
                 <h1>取消出价?</h1>
-                <p class="gr-padding-10 gr-child no-margin">您需付2%取消费用。</p>
+                <p class="gr-padding-10 gr-child">Are you sure you want to cancel the bid?</p>
                 <form id="frm_confirm">
-                    <div class="gr-row ">
-                        <div class="gr-12-m gr-padding-20 gr-centered">
-                            <input id="chk_confirm" type="checkbox">
-                            <label for="chk_confirm">我同意以上的取消费用</label>
-                        <div class="error-msg invisible"></div></div>
-                    </div>
                     <div class="center-text gr-centered">
                         <button class="button" type="submit">是的, 取消我的出价</button>
                         <a class="button-secondary" id="cancel" href="javascript:;"><span>不, 返回到 ICO 拍卖页面</span></a>
