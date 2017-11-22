@@ -1,3 +1,6 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,400,700&subset=latin,vietnamese,cyrillic-ext,latin-ext,cyrillic");
+/* stylelint-disable color-no-hex */
+/* stylelint-enable color-no-hex */
 /* stylelint-disable color-no-hex */
 /* stylelint-enable color-no-hex */
 /* common styles */
@@ -46,12 +49,26 @@ table {
   border-spacing: 0;
 }
 
+#end_note {
+  line-height: 25px;
+  background: #c03;
+  font-size: 0.7561436673rem;
+  position: fixed;
+  bottom: 0;
+  z-index: 10;
+  width: 100%;
+  text-align: center;
+}
+#end_note, #end_note a {
+  color: #fff;
+}
+
 .container {
   max-width: 1200px !important;
 }
 
 body {
-  background: #2A3052;
+  background: #2a3052;
   font-family: roboto, sans-serif;
   font-size: 18px;
   color: #fff;
@@ -88,14 +105,14 @@ section {
 }
 
 .intro {
-  background: #2A3052;
+  background: #2a3052;
   padding-top: 100px;
 }
 .intro span {
   color: #fff;
 }
 .intro span ~ span {
-  color: #E98024;
+  color: #e98024;
 }
 .intro-bg {
   background: url("../images/hackathon/hackathon_bg.svg") 0 0/cover;
@@ -127,7 +144,7 @@ section {
 
 .white-bg {
   background: #fff;
-  color: #2A3052;
+  color: #2a3052;
   margin: -5px;
   padding: 50px 0;
 }
@@ -136,21 +153,21 @@ section {
   width: 400px;
   height: 65px;
   border-radius: 5px;
-  border: 2px solid #E98024;
+  border: 2px solid #e98024;
   padding: 10px 20px;
   text-transform: uppercase;
   font-size: 22px;
   transition: all 0.3s;
 }
 .button-outline:hover {
-  background: #E98024;
+  background: #e98024;
   color: #fff;
   text-decoration: none;
 }
 
 a {
   text-decoration: none;
-  color: #E98024;
+  color: #e98024;
 }
 a:hover {
   text-decoration: underline;
@@ -159,7 +176,7 @@ a:hover {
 hr {
   height: 1px;
   border: 0;
-  border-top: 1px solid #DEDEDE;
+  border-top: 1px solid #dedede;
   margin: 20px;
   padding: 0;
 }
@@ -178,7 +195,7 @@ hr {
   transition: background 0.5s ease-in-out, padding 0.5s ease-in-out;
   overflow: hidden;
   padding: 10px 0;
-  background: #2A3052;
+  background: #2a3052;
 }
 
 .navbar-brand {
@@ -210,12 +227,12 @@ hr {
 }
 .navbar-nav a:hover, .navbar-nav a:focus {
   text-decoration: none;
-  color: #2E8836;
+  color: #2e8836;
 }
 
 .navbar-fixed-top.top-nav-collapse {
   padding: 0;
-  background: #2A3052 !important;
+  background: #2a3052 !important;
 }
 
 .navbar-toggle {
@@ -244,7 +261,7 @@ hr {
 
   .navbar {
     position: fixed;
-    background: #2A3052;
+    background: #2a3052;
     margin-bottom: 0;
     height: 50px;
     overflow: hidden;

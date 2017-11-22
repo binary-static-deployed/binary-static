@@ -1,3 +1,6 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,400,700&subset=latin,vietnamese,cyrillic-ext,latin-ext,cyrillic");
+/* stylelint-disable color-no-hex */
+/* stylelint-enable color-no-hex */
 /* stylelint-disable color-no-hex */
 /* stylelint-enable color-no-hex */
 /* common styles */
@@ -44,6 +47,20 @@ ol, ul {
 table {
   border-collapse: collapse;
   border-spacing: 0;
+}
+
+#end_note {
+  line-height: 25px;
+  background: #c03;
+  font-size: 0.7561436673rem;
+  position: fixed;
+  bottom: 0;
+  z-index: 10;
+  width: 100%;
+  text-align: center;
+}
+#end_note, #end_note a {
+  color: #fff;
 }
 
 body {
@@ -132,14 +149,14 @@ button {
   width: 42px;
   height: 5px;
   border: 0;
-  background-color: #E98024;
+  background-color: #e98024;
 }
 
 hr {
   width: 70vw;
   height: 1px;
   border: 0;
-  background-color: #DEDEDE;
+  background-color: #dedede;
 }
 
 .icon {
@@ -154,7 +171,7 @@ hr {
 }
 
 .box {
-  border: 1px solid #15212D;
+  border: 1px solid #15212d;
   margin: 15px 0;
   padding: 15px;
 }
@@ -188,7 +205,7 @@ hr {
   position: absolute;
   padding: 40px 15px;
   color: #fff;
-  background-color: #2A3052;
+  background-color: #2a3052;
 }
 
 .boxed-heading-center {
@@ -206,7 +223,7 @@ hr {
 #charts .vertical-line {
   position: absolute;
   width: 1px;
-  background-color: #DEDEDE;
+  background-color: #dedede;
   top: 0;
   left: 0;
   right: 0;
@@ -252,7 +269,7 @@ hr {
 .highlight {
   height: 10px;
   border: 0;
-  background-color: #E98024;
+  background-color: #e98024;
   width: 23vw;
   position: absolute;
   top: -109px;
@@ -262,7 +279,7 @@ hr {
   font-size: 14px;
   padding: 15px;
   text-align: justify;
-  color: #F2F2F2;
+  color: #f2f2f2;
 }
 
 input[type='text'] {
@@ -277,7 +294,7 @@ input[type='submit'] {
   min-width: 100px;
   padding: 10px;
   margin: 5px 0;
-  background: #2E8836;
+  background: #2e8836;
   color: #fff;
   border: none;
   cursor: pointer;
@@ -297,7 +314,7 @@ input[type='text']:focus, input[type='submit']:focus {
 }
 
 .notice-msg {
-  color: #15212D !important;
+  color: #15212d !important;
 }
 
 .navbar-fixed-top {
@@ -309,7 +326,7 @@ input[type='text']:focus, input[type='submit']:focus {
   border-width: 0 0 1px;
   display: flex;
   align-items: center;
-  background: #2A3052;
+  background: #2a3052;
   -webkit-transition: background 0.5s ease-in-out;
   -moz-transition: background 0.5s ease-in-out;
   transition: background 0.5s ease-in-out;
@@ -378,7 +395,7 @@ input[type='text']:focus, input[type='submit']:focus {
   }
 
   .navbar-fixed-top {
-    background: #2A3052 !important;
+    background: #2a3052 !important;
     margin-bottom: 0;
     padding: 15px;
     overflow: hidden;
@@ -460,10 +477,10 @@ input[type='text']:focus, input[type='submit']:focus {
 
 .faq {
   margin: 15px 0;
-  border: 1px solid #F2F2F2;
+  border: 1px solid #f2f2f2;
 }
 .faq h4 {
-  background-color: #F2F2F2;
+  background-color: #f2f2f2;
   padding: 20px;
 }
 .faq p {
@@ -519,10 +536,10 @@ input[type='text']:focus, input[type='submit']:focus {
   padding: 30px;
   margin: 20px 0;
   text-align: justify;
-  background: #F2F2F2;
+  background: #f2f2f2;
 }
 .disclaimer .disclaimer-container h2 {
-  color: #2A3052;
+  color: #2a3052;
   font-weight: 400;
 }
 .disclaimer .disclaimer-container p, .disclaimer .disclaimer-container ul li {
@@ -543,7 +560,7 @@ input[type='text']:focus, input[type='submit']:focus {
 
 #board-of-directors {
   position: relative;
-  border-top: 5px solid #E98024;
+  border-top: 5px solid #e98024;
 }
 #board-of-directors img {
   display: block;
@@ -557,7 +574,7 @@ input[type='text']:focus, input[type='submit']:focus {
   position: absolute;
   padding: 35px 15px;
   color: #fff;
-  background-color: #E98024;
+  background-color: #e98024;
 }
 #board-of-directors h4 {
   margin: 1em 0;
@@ -643,7 +660,7 @@ input[type='text']:focus, input[type='submit']:focus {
   text-decoration: none;
 }
 #media-coverage a:hover .media, #media-coverage a:active .media {
-  border: 1px solid #E98024;
+  border: 1px solid #e98024;
 }
 #media-coverage a, #media-coverage a:visited {
   outline: none !important;
@@ -698,7 +715,7 @@ input[type='text']:focus, input[type='submit']:focus {
   padding: 0;
   margin: 0 5px;
   border-radius: 50%;
-  background: #DEDEDE;
+  background: #dedede;
   border: 0;
 }
 .tns-nav [aria-selected='true'] {
@@ -789,6 +806,10 @@ input[type='text']:focus, input[type='submit']:focus {
   background-image: url("../images/ico/icons/merkle_logo.svg");
 }
 
+.ituber {
+  background-image: url("../images/ico/icons/ituber_logo.svg");
+}
+
 #coming-soon {
   padding-top: 50px;
   padding-bottom: 50px;
@@ -871,7 +892,7 @@ input[type='text']:focus, input[type='submit']:focus {
   height: 100px;
   border-radius: 50%;
   border: 5px solid;
-  border-color: transparent #E98024 transparent transparent;
+  border-color: transparent #e98024 transparent transparent;
   -webkit-transform: rotate(-90deg);
   transform: rotate(-90deg);
   transition: transform 0.95s;
@@ -924,10 +945,10 @@ input[type='text']:focus, input[type='submit']:focus {
   background-repeat: no-repeat;
 }
 #language .language-dropdown.show {
-  height: 380px;
+  height: auto;
   padding-bottom: 25px;
-  background: #F2F2F2;
-  border: 1px solid #DEDEDE;
+  background: #f2f2f2;
+  border: 1px solid #dedede;
   color: #000;
 }
 #language .language-dropdown.show li {
@@ -947,7 +968,7 @@ input[type='text']:focus, input[type='submit']:focus {
     text-align: left;
     background: none;
     border: none;
-    border-top: 1px solid #F2F2F2;
+    border-top: 1px solid #f2f2f2;
     height: 15px;
   }
   #language .language-dropdown a.selected {
@@ -969,7 +990,7 @@ input[type='text']:focus, input[type='submit']:focus {
     padding-bottom: 10px;
     background: none;
     border: none;
-    border-top: 1px solid #F2F2F2;
+    border-top: 1px solid #f2f2f2;
     color: #fff;
   }
   #language .language-dropdown.show li {
@@ -1028,7 +1049,7 @@ input[type='text']:focus, input[type='submit']:focus {
   padding: 0;
 }
 #sign-up-section #frm_verify_email button:active, #sign-up-section #frm_verify_email button:hover {
-  background-color: #2E8836;
+  background-color: #2e8836;
   text-decoration: none;
 }
 @media (max-width: 480px) {
@@ -1049,9 +1070,9 @@ input[type='text']:focus, input[type='submit']:focus {
   text-align: center;
 }
 #sign-up-section #frm_verify_email .error-field {
-  border: 1px solid #C03 !important;
-  box-shadow: 0 0 10px #C03;
-  color: #C03;
+  border: 1px solid #c03 !important;
+  box-shadow: 0 0 10px #c03;
+  color: #c03;
 }
 
 #ico-bottom-banner {
@@ -1059,10 +1080,10 @@ input[type='text']:focus, input[type='submit']:focus {
   width: 100%;
   position: fixed;
   bottom: 0%;
-  background-color: #15212D;
+  background-color: #15212d;
 }
 #ico-bottom-banner p {
-  color: #E98024;
+  color: #e98024;
   font-size: 0.8695652174rem;
   font-weight: 700;
 }
@@ -1071,7 +1092,7 @@ input[type='text']:focus, input[type='submit']:focus {
   display: block;
   font-style: italic;
   font-size: 0.7561436673rem;
-  color: #C03;
+  color: #c03;
   margin-top: 5px;
   padding-bottom: 5px;
 }
@@ -1089,7 +1110,7 @@ input[type='text']:focus, input[type='submit']:focus {
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
-  border: 1px solid #DEDEDE;
+  border: 1px solid #dedede;
   padding: 50px 30px !important;
   min-height: 340px;
   display: flex !important;
