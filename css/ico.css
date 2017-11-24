@@ -470,6 +470,10 @@ input[type='text']:focus, input[type='submit']:focus {
   #faq .intro {
     padding-top: 0;
   }
+
+  #address {
+    padding-bottom: 60px;
+  }
 }
 #faq-section {
   padding: 100px 15px;
@@ -810,6 +814,18 @@ input[type='text']:focus, input[type='submit']:focus {
   background-image: url("../images/ico/icons/ituber_logo.svg");
 }
 
+.ico-panic {
+  background-image: url("../images/ico/icons/ico_panic_logo.svg");
+}
+
+.coinspeaker {
+  background-image: url("../images/ico/icons/coinspeaker_logo.svg");
+}
+
+.cryptoreader {
+  background-image: url("../images/ico/icons/crypto_reader_logo.svg");
+}
+
 #coming-soon {
   padding-top: 50px;
   padding-bottom: 50px;
@@ -1104,23 +1120,29 @@ input[type='text']:focus, input[type='submit']:focus {
   font-size: 22px;
 }
 
-.lykke-mask, .token-mask {
+.lykke-mask, .token-mask, .nishant-mask {
   background-color: #fff;
-  background-size: cover;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
   border: 1px solid #dedede;
   padding: 50px 30px !important;
   min-height: 340px;
   display: flex !important;
   justify-content: center;
 }
-.lykke-mask.lykke-mask, .token-mask.lykke-mask {
+.lykke-mask.lykke-mask, .token-mask.lykke-mask, .nishant-mask.lykke-mask {
   background: url("../images/ico/images/lykke-mask.svg") no-repeat bottom left scroll;
+  background-size: 35%;
 }
-.lykke-mask.token-mask, .token-mask.token-mask {
-  background: url("../images/ico/images/token-mask.svg") no-repeat bottom right scroll;
+.lykke-mask.token-mask, .token-mask.token-mask, .nishant-mask.token-mask {
+  background: url("../images/ico/images/token-mask-left.svg") no-repeat bottom left scroll;
+  background-size: 20%;
+}
+.lykke-mask.nishant-mask, .token-mask.nishant-mask, .nishant-mask.nishant-mask {
+  background: url("../images/ico/images/nishant-mask.svg") no-repeat bottom left scroll;
+  background-size: 25%;
+}
+
+.overflow-x-hidden {
+  overflow-x: hidden;
 }
 
 /* Grid layout system */
