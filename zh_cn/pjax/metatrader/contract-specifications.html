@@ -29,40 +29,45 @@
 
 
 
-  <div class="content-tab-container static_full cs-content">
+  <div class="static_full">
+    <h1>合约规格</h1>
+    <div class="content-tab-container cs-content light full-width">
         
-    <div class="tab-menu ">
+        <div class="tab-menu ">
     <div class="tab-menu-wrap">
-        <ul id="cs-menu" class="tm-ul">
+        <ul id="cs_tabs" class="tm-ul">
             
                 <li id="forex" class="tm-li active">
                 
-                <a href="#forex" class="tm-a">外汇</a>
+                    <a href="#forex" class="tm-a">外汇</a>
                 
                 </li>
             
                 <li id="volatility" class="tm-li ">
                 
-                <a href="#volatility" class="tm-a">波动率指数</a>
+                    <a href="#volatility" class="tm-a">波动率指数</a>
                 
                 </li>
             
-                <li id="cash" class="tm-li ">
+                <li id="metals" class="tm-li ">
                 
-                <a href="#cash" class="tm-a">现金指数</a>
+                    <a href="#metals" class="tm-a">Metals</a>
+                
+                </li>
+            
+                <li id="cs_tabs_selector" class="tm-li tab-selector">
                 
                 </li>
             
         </ul>
     </div>
 </div>
-    <div class="tab-content">
-        <div class="tab-content-wrapper" id="">
+        <div class="tab-content">
+            <div class="tab-content-wrapper" id="">
         
-            <div id="forex-content" class="toggle-content ">
-        <div id="forex-specs" class="gr-row">
+                <div id="forex-content" class="toggle-content ">
+        <div id="forex_specs" class="gr-row">
     <div class="gr-12 gr-padding-10">
-        <h1>合约规格 - 外汇</h1>
         <div class="table-container">
     <table>
         
@@ -912,7 +917,7 @@
         <h2>如何读取上面的表</h2>
         <p>外汇交易通常以<i>手</i>计量。一个标准 <i>手</i>相当于100,000个单位。每次您在货币符号上开盘交易，可以<i>0.01 手</i>为最小交易量开始。</p>
         <p>杠杆率是基于初始存款的可控制资本额。例如，100: 1 杠杆将允许您仅使用 1,000 美元本身存款控制100,000 美元。</p>
-        <p>要了解关于外汇100%强制清算水平的更多信息，请阅读我们的<a href="/zh_cn/metatrader/margin-policy.html">保证金政策</a>。</p>
+        <p>要了解关于外汇100%强制清算水平的更多信息，请阅读我们的<a href="metatrader/margin-policy">保证金政策</a>。</p>
 
         <h2>掉期利率（隔夜资金）的重要说明</h2>
         <p>如果您持仓过夜，系统将对您的账户收取持仓成本隔夜利息。此费用基于银行间贷款利率加上2%费用。</p>
@@ -943,10 +948,9 @@
     </div>
 </div>
     </div>
-            <div id="volatility-content" class="toggle-content invisible">
-        <div id="volatility-specs" class="gr-row">
+                <div id="volatility-content" class="toggle-content invisible">
+        <div id="volatility_specs" class="gr-row">
     <div class="gr-12 gr-padding-10">
-        <h1>合约规格 (CFD) - 波动性指数</h1>
         <div class="table-container">
     <table>
         
@@ -1410,14 +1414,13 @@
         </div>
         <p>每次您在波动性指数符号上开盘交易时，您可以从最小交易量 0.01（交易额）开始，这将转换成每一指数变动点 0.01 美元。</p>
         <p>保证金是基于初始资金的可控制投资额。例如，0.2%保证金将允许您仅使用 1,000 美元本身存款控制高达500,000 美元。</p>
-        <p>要了解关于波动率指数50%强制清算水平的更多信息，请阅读我们的<a href="/zh_cn/metatrader/margin-policy.html">保证金政策</a>。</p>
+        <p>要了解关于波动率指数50%强制清算水平的更多信息，请阅读我们的<a href="/metatrader/margin-policy">保证金政策</a>。</p>
     </div>
 </div>
     </div>
-            <div id="cash-content" class="toggle-content invisible">
-        <div id="cash-specs" class="gr-row">
+                <div id="metals-content" class="toggle-content invisible">
+        <div id="metals_specs" class="gr-row">
     <div class="gr-12 gr-padding-10">
-        <h1>合约规格 (CFD) - 现金指数</h1>
         <div class="table-container">
     <table>
         
@@ -1429,13 +1432,11 @@
                     
                         <th>说明</th>
                     
-                        <th>量额 1.0<br>（交易量）</th>
+                        <th>Volume 1.0<br>(Lot Size)</th>
                     
-                        <th>最小交易额<br>(交易量)</th>
+                        <th>最小交易额<br>(手量)</th>
                     
-                        <th>最大交易额<br>(交易量)</th>
-                    
-                        <th>保证金</th>
+                        <th>Main. Volume Increment</th>
                     
                 </tr>
             
@@ -1447,25 +1448,13 @@
                 
                     
                     <td>
-                        AUS_200
+                        XAU/USD
                     </td>
                     
                 
                     
                     <td>
-                        澳大利亚 200 现金指数
-                    </td>
-                    
-                
-                    
-                    <td>
-                        每点 1 澳元
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1
+                        黄金兑美元
                     </td>
                     
                 
@@ -1477,7 +1466,13 @@
                 
                     
                     <td>
-                        0.2%
+                        0.01
+                    </td>
+                    
+                
+                    
+                    <td>
+                        0.01
                     </td>
                     
                 
@@ -1487,37 +1482,31 @@
                 
                     
                     <td>
-                        JP_225
+                        XAG/USD
                     </td>
                     
                 
                     
                     <td>
-                        日本现金指数
+                        Silver vs US Dollar
                     </td>
                     
                 
                     
                     <td>
-                        每点 1 日元
+                        5000
                     </td>
                     
                 
                     
                     <td>
-                        10
+                        0.01
                     </td>
                     
                 
                     
                     <td>
-                        1000
-                    </td>
-                    
-                
-                    
-                    <td>
-                        0.2%
+                        0.01
                     </td>
                     
                 
@@ -1527,25 +1516,13 @@
                 
                     
                     <td>
-                        IND_50
+                        XPD/USD
                     </td>
                     
                 
                     
                     <td>
-                        印度 50 现金指数
-                    </td>
-                    
-                
-                    
-                    <td>
-                        每点 1 美元
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1
+                        钯金兑美元
                     </td>
                     
                 
@@ -1557,7 +1534,13 @@
                 
                     
                     <td>
-                        0.2%
+                        0.01
+                    </td>
+                    
+                
+                    
+                    <td>
+                        0.01
                     </td>
                     
                 
@@ -1567,25 +1550,13 @@
                 
                     
                     <td>
-                        ESP_35
+                        XPT/USD
                     </td>
                     
                 
                     
                     <td>
-                        西班牙 35 现金指数
-                    </td>
-                    
-                
-                    
-                    <td>
-                        每点 1 欧元
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1
+                        铂金兑美元
                     </td>
                     
                 
@@ -1597,407 +1568,13 @@
                 
                     
                     <td>
-                        0.2%
-                    </td>
-                    
-                
-            </tr>
-        
-            <tr>
-                
-                    
-                    <td>
-                        EUR_50
+                        0.01
                     </td>
                     
                 
                     
                     <td>
-                        欧元现金 50 指数
-                    </td>
-                    
-                
-                    
-                    <td>
-                        每点 1 欧元
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1
-                    </td>
-                    
-                
-                    
-                    <td>
-                        500
-                    </td>
-                    
-                
-                    
-                    <td>
-                        0.2%
-                    </td>
-                    
-                
-            </tr>
-        
-            <tr>
-                
-                    
-                    <td>
-                        FRA_40
-                    </td>
-                    
-                
-                    
-                    <td>
-                        法国 40 现金指数
-                    </td>
-                    
-                
-                    
-                    <td>
-                        每点 1 欧元
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1
-                    </td>
-                    
-                
-                    
-                    <td>
-                        500
-                    </td>
-                    
-                
-                    
-                    <td>
-                        0.2%
-                    </td>
-                    
-                
-            </tr>
-        
-            <tr>
-                
-                    
-                    <td>
-                        GBR_100
-                    </td>
-                    
-                
-                    
-                    <td>
-                        英国 100 现金指数
-                    </td>
-                    
-                
-                    
-                    <td>
-                        每点 1 英镑
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1
-                    </td>
-                    
-                
-                    
-                    <td>
-                        500
-                    </td>
-                    
-                
-                    
-                    <td>
-                        0.2%
-                    </td>
-                    
-                
-            </tr>
-        
-            <tr>
-                
-                    
-                    <td>
-                        NED_25
-                    </td>
-                    
-                
-                    
-                    <td>
-                        荷兰 25 现金指数
-                    </td>
-                    
-                
-                    
-                    <td>
-                        每点 1 欧元
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1
-                    </td>
-                    
-                
-                    
-                    <td>
-                        100
-                    </td>
-                    
-                
-                    
-                    <td>
-                        0.2%
-                    </td>
-                    
-                
-            </tr>
-        
-            <tr>
-                
-                    
-                    <td>
-                        ZAF_40
-                    </td>
-                    
-                
-                    
-                    <td>
-                        南非 40 现金指数
-                    </td>
-                    
-                
-                    
-                    <td>
-                        每点 1 南非兰特
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1
-                    </td>
-                    
-                
-                    
-                    <td>
-                        100
-                    </td>
-                    
-                
-                    
-                    <td>
-                        0.2%
-                    </td>
-                    
-                
-            </tr>
-        
-            <tr>
-                
-                    
-                    <td>
-                        DAX_30
-                    </td>
-                    
-                
-                    
-                    <td>
-                        德国 30 现金指数
-                    </td>
-                    
-                
-                    
-                    <td>
-                        每点 1 欧元
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1
-                    </td>
-                    
-                
-                    
-                    <td>
-                        100
-                    </td>
-                    
-                
-                    
-                    <td>
-                        0.2%
-                    </td>
-                    
-                
-            </tr>
-        
-            <tr>
-                
-                    
-                    <td>
-                        CAN_60
-                    </td>
-                    
-                
-                    
-                    <td>
-                        加拿大 60 现金指数
-                    </td>
-                    
-                
-                    
-                    <td>
-                        每点 1 加元
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1
-                    </td>
-                    
-                
-                    
-                    <td>
-                        100
-                    </td>
-                    
-                
-                    
-                    <td>
-                        0.2%
-                    </td>
-                    
-                
-            </tr>
-        
-            <tr>
-                
-                    
-                    <td>
-                        US_30
-                    </td>
-                    
-                
-                    
-                    <td>
-                        美国 30 现金指数
-                    </td>
-                    
-                
-                    
-                    <td>
-                        每点 1 美元
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1
-                    </td>
-                    
-                
-                    
-                    <td>
-                        200
-                    </td>
-                    
-                
-                    
-                    <td>
-                        0.2%
-                    </td>
-                    
-                
-            </tr>
-        
-            <tr>
-                
-                    
-                    <td>
-                        US_100
-                    </td>
-                    
-                
-                    
-                    <td>
-                        美国 100 现金指数
-                    </td>
-                    
-                
-                    
-                    <td>
-                        每点 1 美元
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1
-                    </td>
-                    
-                
-                    
-                    <td>
-                        200
-                    </td>
-                    
-                
-                    
-                    <td>
-                        0.2%
-                    </td>
-                    
-                
-            </tr>
-        
-            <tr>
-                
-                    
-                    <td>
-                        US_500
-                    </td>
-                    
-                
-                    
-                    <td>
-                        美国 500 现金指数
-                    </td>
-                    
-                
-                    
-                    <td>
-                        每点 1 美元
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1
-                    </td>
-                    
-                
-                    
-                    <td>
-                        200
-                    </td>
-                    
-                
-                    
-                    <td>
-                        0.2%
+                        0.01
                     </td>
                     
                 
@@ -2009,18 +1586,51 @@
     </div>
     </div>
 
-    <div class="gr-12 gr-padding-10">
-        <h2>如何读取上面的表</h2>
-        <p>CFD （差价合约）︰ CFD 是允许您通过预测一种工具的价格是否会上涨或下跌而获利的工具。损益的估计方式是以标的工具买入/卖出价格差异的函数计算。</p>
-        <p>例如，美国 30 现金指数的差价合约报价每点1美元。如果您以当前20,000 美元的卖出价格购入 1.0 股美国 30 现金指数，然后以20,010 美元的买入价格出售，您的净利润计算方法如下︰</p>
-        <div class="gr-12 gr-padding-10 fill-bg-color">
+    <div class="gr-4 gr-push-4 gr-padding-30">
+        <div class="fill-bg-color gr-padding-10">
             <div class="gr-prefix-1">
-                <p>（售出价 - 购入价） x 交易量 x 每点的价格 = 利润</p>
-                <p>即 (20010 - 20000) x 1 x 1 = 10 美元</p>
+                <h2>最大杠杆</h2>
+                <ul class="bullet">
+        
+            <li>
+    
+    
+     美分帐户: 1:1, 000 
+    
+</li>
+        
+            <li>
+    
+    
+     Standard account: 1:300 
+    
+</li>
+        
+            <li>
+    
+    
+     STP account: 1:100 
+    
+</li>
+        
+            <li>
+    
+    
+     Volatility account: 1:500 
+    
+</li>
+        
+    </ul>
             </div>
         </div>
-        <p>保证金是基于初始资金的可控制投资额。例如，1%保证金将允许您仅使用 1,000 美元本身存款控制高达100,000 美元。</p>
-        <p>要了解关于保证金要求的更多信息，请阅读我们的<a href="/zh_cn/metatrader/margin-policy.html">保证金政策</a>。</p>
+    </div>
+
+    <div class="gr-12 gr-padding-10">
+        <h2>如何读取上面的表</h2>
+        <p>我们的金属对通常以手为交易单位。一个标准手数相当于100个单位，除了白银是一手等于5.000个单位。每次当您为某个符号开仓时，您可以从0.01手的最小交易量开始。</p>
+        <p>Leverage indicates how much capital you can control based on your initial deposit. For example, a 1:100 leverage will allow you to control up to USD 100,000 using only USD 1,000 of your own money as deposit.</p>
+        <p>To learn more, read our <a href="/metatrader/margin-policy">Margin Policy</a> that further explains our 100% forced liquidation level for our metal pairs.</p>
+
         <h2>掉期利率（隔夜资金）的重要说明</h2>
         <p>如果您持仓过夜，系统将对您的账户收取持仓成本隔夜利息。此费用基于银行间贷款利率加上2%费用。</p>
         <p>利息调整以点为计算单位，意味着我们将把相关市场利率转换为基础工具点。</p>
@@ -2042,8 +1652,9 @@
     </div>
 </div>
     </div>
-        
+            
     </div>
+        </div>
+    
     </div>
-
-    </div>
+</div>

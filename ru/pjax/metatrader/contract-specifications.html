@@ -29,40 +29,45 @@
 
 
 
-  <div class="content-tab-container static_full cs-content">
+  <div class="static_full">
+    <h1>Характеристики контрактов</h1>
+    <div class="content-tab-container cs-content light full-width">
         
-    <div class="tab-menu ">
+        <div class="tab-menu ">
     <div class="tab-menu-wrap">
-        <ul id="cs-menu" class="tm-ul">
+        <ul id="cs_tabs" class="tm-ul">
             
                 <li id="forex" class="tm-li active">
                 
-                <a href="#forex" class="tm-a">Форекс</a>
+                    <a href="#forex" class="tm-a">Форекс</a>
                 
                 </li>
             
                 <li id="volatility" class="tm-li ">
                 
-                <a href="#volatility" class="tm-a">Индексы волатильности</a>
+                    <a href="#volatility" class="tm-a">Индексы волатильности</a>
                 
                 </li>
             
-                <li id="cash" class="tm-li ">
+                <li id="metals" class="tm-li ">
                 
-                <a href="#cash" class="tm-a">Индексы Cash Index</a>
+                    <a href="#metals" class="tm-a">Metals</a>
+                
+                </li>
+            
+                <li id="cs_tabs_selector" class="tm-li tab-selector">
                 
                 </li>
             
         </ul>
     </div>
 </div>
-    <div class="tab-content">
-        <div class="tab-content-wrapper" id="">
+        <div class="tab-content">
+            <div class="tab-content-wrapper" id="">
         
-            <div id="forex-content" class="toggle-content ">
-        <div id="forex-specs" class="gr-row">
+                <div id="forex-content" class="toggle-content ">
+        <div id="forex_specs" class="gr-row">
     <div class="gr-12 gr-padding-10">
-        <h1>Характеристики контрактов — Forex</h1>
         <div class="table-container">
     <table>
         
@@ -912,7 +917,7 @@
         <h2>Как читать таблицу выше</h2>
         <p>Как правило, контракты на валютном рынке (Forex) заключаются в <i>лотах</i>. Один стандартный <i>лот</i> равен 100 000 единицам. Каждый раз, когда Вы открываете контракт на определённой валютной паре, Вы можете разместить минимальную сделку в размере <i>0.01 лота</i>.</p>
         <p>Кредитный рычаг показывает, каким капиталом Вы можете управлять, в зависимости от размера Вашего первоначального взноса на счёт. Например, кредитный рычаг в размере 100:1 позволит Вам контролировать до USD 100 000, имея на счету всего USD 1 000.</p>
-        <p>Чтобы получить более подробную информацию, ознакомьтесь с нашей <a href="/ru/metatrader/margin-policy.html">Политикой расчёта маржи</a>, которая также объясняет наш 100%-ный уровень принудительной ликвидации контрактов на рынке Forex.</p>
+        <p>Чтобы получить более подробную информацию, ознакомьтесь с нашей <a href="metatrader/margin-policy">Политикой расчёта маржи</a>, которая также объясняет наш 100%-ный уровень принудительной ликвидации контрактов на рынке Forex.</p>
 
         <h2>Важные примечания к нашему курсу своп (перенос позиции на следующий день)</h2>
         <p>Если Вы хотите перенести открытые позиции на следующий день, на Вашем торговом счету будет произведена корректировка процентов с вычетом стоимости поддержания Вашей открытой позиции. Данная корректировка состоит из ставки межбанковского кредитования и комиссии в размере 2%.</p>
@@ -943,10 +948,9 @@
     </div>
 </div>
     </div>
-            <div id="volatility-content" class="toggle-content invisible">
-        <div id="volatility-specs" class="gr-row">
+                <div id="volatility-content" class="toggle-content invisible">
+        <div id="volatility_specs" class="gr-row">
     <div class="gr-12 gr-padding-10">
-        <h1>Характеристики контракта (CFD) – Индексы волатильности</h1>
         <div class="table-container">
     <table>
         
@@ -1410,14 +1414,13 @@
         </div>
         <p>Каждый раз, когда Вы открываете контракт на индексах волатильности, Вы можете заключить сделку на минимальную сумму: 0.01 (от размера контракта), что означает USD 0.01 за каждый пункт, на который продвинется индекс.</p>
         <p>Маржа демонстрирует, какой размер капитала Вы можете контролировать, в зависимости от размера Вашей первоначальной инвестиции. Например, маржа в размере 0.2% позволит Вам контролировать сумму до USD 500,000, внеся на счёт всего USD 1,000.</p>
-        <p>Чтобы получить более подробную информацию, ознакомьтесь с нашей <a href="/ru/metatrader/margin-policy.html">Политикой расчёта маржи</a>, которая также объясняет наш 50%-ный уровень принудительной ликвидации на Индексах волатильности.</p>
+        <p>Чтобы получить более подробную информацию, ознакомьтесь с нашей <a href="/metatrader/margin-policy">Политикой расчёта маржи</a>, которая также объясняет наш 50%-ный уровень принудительной ликвидации на Индексах волатильности.</p>
     </div>
 </div>
     </div>
-            <div id="cash-content" class="toggle-content invisible">
-        <div id="cash-specs" class="gr-row">
+                <div id="metals-content" class="toggle-content invisible">
+        <div id="metals_specs" class="gr-row">
     <div class="gr-12 gr-padding-10">
-        <h1>Характеристики контракта (CFD) – индексы Cash Index</h1>
         <div class="table-container">
     <table>
         
@@ -1429,13 +1432,11 @@
                     
                         <th>Описание</th>
                     
-                        <th>Объём 1.0<br>(размер контракта)</th>
+                        <th>Volume 1.0<br>(Lot Size)</th>
                     
-                        <th>Мин. объём<br>(размер контракта)</th>
+                        <th>Min. Volume<br>(Lot Size)</th>
                     
-                        <th>Макс. объём<br>(размер контракта)</th>
-                    
-                        <th>Маржа</th>
+                        <th>Main. Volume Increment</th>
                     
                 </tr>
             
@@ -1447,25 +1448,13 @@
                 
                     
                     <td>
-                        AUS_200
+                        XAU/USD
                     </td>
                     
                 
                     
                     <td>
-                        Australia 200 Cash Index
-                    </td>
-                    
-                
-                    
-                    <td>
-                        AUD 1 за пункт
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1
+                        Gold vs US Dollar
                     </td>
                     
                 
@@ -1477,7 +1466,13 @@
                 
                     
                     <td>
-                        0.2%
+                        0.01
+                    </td>
+                    
+                
+                    
+                    <td>
+                        0.01
                     </td>
                     
                 
@@ -1487,37 +1482,31 @@
                 
                     
                     <td>
-                        JP_225
+                        XAG/USD
                     </td>
                     
                 
                     
                     <td>
-                        Japan Cash Index
+                        Silver vs US Dollar
                     </td>
                     
                 
                     
                     <td>
-                        JPY 1 за пункт
+                        5000
                     </td>
                     
                 
                     
                     <td>
-                        10
+                        0.01
                     </td>
                     
                 
                     
                     <td>
-                        1000
-                    </td>
-                    
-                
-                    
-                    <td>
-                        0.2%
+                        0.01
                     </td>
                     
                 
@@ -1527,25 +1516,13 @@
                 
                     
                     <td>
-                        IND_50
+                        XPD/USD
                     </td>
                     
                 
                     
                     <td>
-                        India 50 Cash Index
-                    </td>
-                    
-                
-                    
-                    <td>
-                        USD 1 за пункт
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1
+                        Palladium vs US Dollar
                     </td>
                     
                 
@@ -1557,7 +1534,13 @@
                 
                     
                     <td>
-                        0.2%
+                        0.01
+                    </td>
+                    
+                
+                    
+                    <td>
+                        0.01
                     </td>
                     
                 
@@ -1567,25 +1550,13 @@
                 
                     
                     <td>
-                        ESP_35
+                        XPT/USD
                     </td>
                     
                 
                     
                     <td>
-                        Spain 35 Cash Index
-                    </td>
-                    
-                
-                    
-                    <td>
-                        EUR 1 за пункт
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1
+                        Platinum vs US Dollar
                     </td>
                     
                 
@@ -1597,407 +1568,13 @@
                 
                     
                     <td>
-                        0.2%
-                    </td>
-                    
-                
-            </tr>
-        
-            <tr>
-                
-                    
-                    <td>
-                        EUR_50
+                        0.01
                     </td>
                     
                 
                     
                     <td>
-                        Euro 50 Cash Index
-                    </td>
-                    
-                
-                    
-                    <td>
-                        EUR 1 за пункт
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1
-                    </td>
-                    
-                
-                    
-                    <td>
-                        500
-                    </td>
-                    
-                
-                    
-                    <td>
-                        0.2%
-                    </td>
-                    
-                
-            </tr>
-        
-            <tr>
-                
-                    
-                    <td>
-                        FRA_40
-                    </td>
-                    
-                
-                    
-                    <td>
-                        France 40 Cash Index
-                    </td>
-                    
-                
-                    
-                    <td>
-                        EUR 1 за пункт
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1
-                    </td>
-                    
-                
-                    
-                    <td>
-                        500
-                    </td>
-                    
-                
-                    
-                    <td>
-                        0.2%
-                    </td>
-                    
-                
-            </tr>
-        
-            <tr>
-                
-                    
-                    <td>
-                        GBR_100
-                    </td>
-                    
-                
-                    
-                    <td>
-                        UK 100 Cash Index
-                    </td>
-                    
-                
-                    
-                    <td>
-                        GBP 1 за пункт
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1
-                    </td>
-                    
-                
-                    
-                    <td>
-                        500
-                    </td>
-                    
-                
-                    
-                    <td>
-                        0.2%
-                    </td>
-                    
-                
-            </tr>
-        
-            <tr>
-                
-                    
-                    <td>
-                        NED_25
-                    </td>
-                    
-                
-                    
-                    <td>
-                        Netherlands 25 Cash Index
-                    </td>
-                    
-                
-                    
-                    <td>
-                        EUR 1 за пункт
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1
-                    </td>
-                    
-                
-                    
-                    <td>
-                        100
-                    </td>
-                    
-                
-                    
-                    <td>
-                        0.2%
-                    </td>
-                    
-                
-            </tr>
-        
-            <tr>
-                
-                    
-                    <td>
-                        ZAF_40
-                    </td>
-                    
-                
-                    
-                    <td>
-                        South Africa 40 Cash Index
-                    </td>
-                    
-                
-                    
-                    <td>
-                        ZAR 1 за пункт
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1
-                    </td>
-                    
-                
-                    
-                    <td>
-                        100
-                    </td>
-                    
-                
-                    
-                    <td>
-                        0.2%
-                    </td>
-                    
-                
-            </tr>
-        
-            <tr>
-                
-                    
-                    <td>
-                        DAX_30
-                    </td>
-                    
-                
-                    
-                    <td>
-                        German 30 Cash Index
-                    </td>
-                    
-                
-                    
-                    <td>
-                        EUR 1 за пункт
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1
-                    </td>
-                    
-                
-                    
-                    <td>
-                        100
-                    </td>
-                    
-                
-                    
-                    <td>
-                        0.2%
-                    </td>
-                    
-                
-            </tr>
-        
-            <tr>
-                
-                    
-                    <td>
-                        CAN_60
-                    </td>
-                    
-                
-                    
-                    <td>
-                        Canada 60 Cash Index
-                    </td>
-                    
-                
-                    
-                    <td>
-                        CAD 1 за пункт
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1
-                    </td>
-                    
-                
-                    
-                    <td>
-                        100
-                    </td>
-                    
-                
-                    
-                    <td>
-                        0.2%
-                    </td>
-                    
-                
-            </tr>
-        
-            <tr>
-                
-                    
-                    <td>
-                        US_30
-                    </td>
-                    
-                
-                    
-                    <td>
-                        US 30 Cash Index
-                    </td>
-                    
-                
-                    
-                    <td>
-                        USD 1 за пункт
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1
-                    </td>
-                    
-                
-                    
-                    <td>
-                        200
-                    </td>
-                    
-                
-                    
-                    <td>
-                        0.2%
-                    </td>
-                    
-                
-            </tr>
-        
-            <tr>
-                
-                    
-                    <td>
-                        US_100
-                    </td>
-                    
-                
-                    
-                    <td>
-                        US 100 Cash Index
-                    </td>
-                    
-                
-                    
-                    <td>
-                        USD 1 за пункт
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1
-                    </td>
-                    
-                
-                    
-                    <td>
-                        200
-                    </td>
-                    
-                
-                    
-                    <td>
-                        0.2%
-                    </td>
-                    
-                
-            </tr>
-        
-            <tr>
-                
-                    
-                    <td>
-                        US_500
-                    </td>
-                    
-                
-                    
-                    <td>
-                        US 500 Cash Index
-                    </td>
-                    
-                
-                    
-                    <td>
-                        USD 1 за пункт
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1
-                    </td>
-                    
-                
-                    
-                    <td>
-                        200
-                    </td>
-                    
-                
-                    
-                    <td>
-                        0.2%
+                        0.01
                     </td>
                     
                 
@@ -2009,18 +1586,51 @@
     </div>
     </div>
 
-    <div class="gr-12 gr-padding-10">
-        <h2>Как читать таблицу выше</h2>
-        <p>CFD (контракты на разницу): CFD – это инструмент, позволяющий получать прибыль, делая ставки на рост или снижение рыночной цены определённого актива. Прибыль/убыток рассчитывается на основе разницы между ценой покупки/продажи данного актива.</p>
-        <p>Например, контракты на разницу на индексе US 30 Cash Index предоставляют USD 1 за один пункт контракта. Если Вы приобретаете объём контракта в размере 1.0 на US 30 Cash Index по текущей цене USD 20,000 и позже продаёте его по цене бид USD 20,010, Ваша чистая прибыль будет рассчитана следующим образом:</p>
-        <div class="gr-12 gr-padding-10 fill-bg-color">
+    <div class="gr-4 gr-push-4 gr-padding-30">
+        <div class="fill-bg-color gr-padding-10">
             <div class="gr-prefix-1">
-                <p>(Цена продажи - Цена покупки) x Объём x Цена за пункт = Прибыль</p>
-                <p>Например, (20010 - 20000) x 1 x 1 = USD 10</p>
+                <h2>Максимальный кредитный рычаг</h2>
+                <ul class="bullet">
+        
+            <li>
+    
+    
+     Cent account: 1:1,000 
+    
+</li>
+        
+            <li>
+    
+    
+     Standard account: 1:300 
+    
+</li>
+        
+            <li>
+    
+    
+     STP account: 1:100 
+    
+</li>
+        
+            <li>
+    
+    
+     Volatility account: 1:500 
+    
+</li>
+        
+    </ul>
             </div>
         </div>
-        <p>Маржа демонстрирует, какой размер капитала Вы можете контролировать, в зависимости от суммы Вашей первоначальной инвестиции. Например, маржа в размере 1% позволит Вам контролировать сумму до USD 100,000, внеся на счёт всего USD 1,000.</p>
-        <p>Чтобы получить более подробную информацию, ознакомьтесь с нашей <a href="/ru/metatrader/margin-policy.html">Политикой расчёта маржи</a>, которая также объясняет наши маржевые требования.</p>
+    </div>
+
+    <div class="gr-12 gr-padding-10">
+        <h2>Как читать таблицу выше</h2>
+        <p>Our metal pairs are typically traded in lots. One standard lot is equivalent to 100 units except silver where 1 lot equals 5.000 units. Each time you open a position on a symbol, you can start with a minimum transaction of 0.01 lots.</p>
+        <p>Leverage indicates how much capital you can control based on your initial deposit. For example, a 1:100 leverage will allow you to control up to USD 100,000 using only USD 1,000 of your own money as deposit.</p>
+        <p>To learn more, read our <a href="/metatrader/margin-policy">Margin Policy</a> that further explains our 100% forced liquidation level for our metal pairs.</p>
+
         <h2>Важные примечания к нашему курсу своп (перенос позиции на следующий день)</h2>
         <p>Если Вы хотите перенести открытые позиции на следующий день, на Вашем торговом счету будет произведена корректировка процентов с вычетом стоимости поддержания Вашей открытой позиции. Данная корректировка состоит из ставки межбанковского кредитования и комиссии в размере 2%.</p>
         <p>Корректировка процентов производится в пунктах, что означает, что мы конвертируем соответствующий рыночный курс в пункты базового инструмента.</p>
@@ -2042,8 +1652,9 @@
     </div>
 </div>
     </div>
-        
+            
     </div>
+        </div>
+    
     </div>
-
-    </div>
+</div>

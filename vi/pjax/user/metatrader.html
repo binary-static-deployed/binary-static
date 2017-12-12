@@ -1,7 +1,7 @@
 <div id="content" class="metatrader-content">
             
                 <div id="ico_banner_container"  class="ico-banner-container">
-    <div id="ico_banner" class="ico-banner invisible ja-hide top-margin">
+    <div id="ico_banner" class="ico-banner invisible ja-hide top-margin bottom-margin">
         <div class="gr-row gr-centered">
             <div class="gr-12">
                 <div class="gr-row gr-no-gutter ico-box">
@@ -24,11 +24,13 @@
                 <div id="content_class">metatrader-content</div>
             </div>
             
+                <div class="container">
+            
 
 
 <div class="container">
-    <div>
-        <h1>Quản lý tài khoản MetaTrader</h1>
+    <div class="static_full">
+        <h1>MetaTrader 5 Dashboard</h1>
     </div>
     <p id="page_msg" class="notice-msg center-text invisible"></p>
     <div id="mt_loading"><div class="barspinner dark">
@@ -44,73 +46,132 @@
     <div class="rect5"></div>
     
 </div></div>
-    <div id="mt_account_management" class="gr-row fill-bg-color invisible">
-        <div id="mt_left_panel" class="mt-panel gr-3 gr-4-t gr-12-p gr-12-m gr-no-gutter">
-            <div class="top gr-hide-p gr-hide-m">
-                <div style="width: 80px; height: 80px; margin: 0 auto; background: #f2f2f2; border: 1px solid #004385; border-radius: 40px;"></div> <!-- TODO: replace with image -->
-            </div>
-            <div id="account_selector">
-                <h4 id="mt5_account"></h4>
-                <div id="accounts_list">
-                    <div></div>
-                </div>
-            </div>
-            <div id="account_detail">
-                <div class="acc-info mt-container has-account invisible">
-                    <div class="gr-row">
-                        <div class="gr-5">ID Đăng nhập:</div><div data="login" class="gr-7"></div>
-                        <div class="gr-5">Tên:</div><div data="name" class="gr-7"></div>
-                        <div class="gr-5">Số dư tài khoản:</div><div data="balance" class="gr-7"></div>
-                        <div class="gr-5 invisible">Đòn bẩy:</div><div data="leverage" class="gr-7 invisible"></div>
+    <div id="mt_account_management" class="gr-row invisible">
+        <div id="mt_left_panel" class="gr-9 gr-8-t gr-12-p gr-12-m gr-no-gutter gr-gutter-right gr-no-gutter-p gr-no-gutter-m">
+            <div id="account_details" class="mt-panel mt-container">
+                <div class="gr-row">
+                    <div class="gr-adapt gr-hide-m gr-hide-p">
+                        <div id="acc_icon"></div>
+                    </div>
+                    <div class="gr-grow">
+                        <div class="gr-row">
+                            <div class="gr-grow">
+                                <div id="account_selector">
+                                    <h4 id="mt5_account"></h4>
+                                    <div id="accounts_list">
+                                        <div class="list"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="gr-grow gr-no-gutter">
+                                <a class="button button-secondary act_new_account" href="javascript:;">
+                                    <span>New</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="acc-info has-account invisible">
+                            <div class="gr-row gr-padding-10">
+                                <div class="gr-3">ID Đăng nhập:</div>
+                                <div class="gr-grow" data="login"></div>
+                            </div>
+                            <div class="gr-row">
+                                <div class="gr-3">Tên:</div>
+                                <div class="gr-grow" data="name"></div>
+                            </div>
+                            <div class="gr-row gr-padding-10 gr-hide mobile-balance">
+                                <div class="gr-3">Số dư tài khoản:</div>
+                                <div class="gr-gutter" data="balance"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gr-adapt align-end gr-hide-m gr-hide-p">
+                        <div class="acc-info has-account invisible">
+                            <div>Số dư tài khoản</div>
+                            <div class="balance gr-padding-10" data="balance"></div>
+                        </div>
                     </div>
                 </div>
-                <div class="acc-actions has-account invisible">
-                    <span class="invisible"><a href="javascript:;" class="act_new_account"></a></span>
-                    <a href="javascript:;" class="act_deposit">
-                        <img src="/images/pages/metatrader/deposit.svg" alt="" />
-                        <span>Gửi tiền</span>
+            </div>
+
+            <div class="mt-panel">
+                <div class="acc-actions">
+                    <span class="new-account gr-gutter invisible">
+                        <span></span>
+                    </span>
+                    <a href="javascript:;" class="act_cashier has-account center-text invisible">
+                        <span>Manage Funds</span>
                     </a>
-                    <a href="javascript:;" class="act_withdrawal">
-                        <img src="/images/pages/metatrader/withdraw.svg" alt="" />
-                        <span>Rút tiền</span>
-                    </a>
-                    <a href="javascript:;" class="act_password_change">
-                        <img src="/images/pages/metatrader/password.svg" alt="" />
-                        <span>Mật khẩu</span>
+                    <a href="javascript:;" class="act_password_change has-account center-text invisible">
+                        <span>Thay đổi Mật khẩu</span>
                     </a>
                 </div>
-                <div id="account_desc" class="mt-container"></div>
+                <div class="fst-container mt-container">
+                    <div id="fst_action" class="invisible">
+                        <p id="main_msg" class="notice-msg center-text invisible"></p>
+                        <div id="frm_action" class="invisible"></div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div id="mt_right_panel" class="mt-panel gr-9 gr-8-t gr-12-p gr-12-m gr-no-gutter">
-            <div class="top mt-container gr-hide-p gr-hide-m">
-                <p id="top_msg" class="notice-msg center-text invisible">Xin vui lòng <a href="/vi/new_account/realws.html"> nâng cấp</a> để có thể tạo tài khoản MetaTrader 5 real.</p>
-            </div>
-            <div class="fst-container mt-container">
-                <div id="fst_action" class="invisible">
-                    <h3></h3>
-                    <div class="separator primary-bg-color"></div>
-                    <p id="main_msg" class="notice-msg center-text invisible"></p>
-                    <fieldset>
-                        <form id="frm_action" class="invisible"></form>
-                    </fieldset>
+        <div id="mt_right_panel" class="gr-3 gr-4-t gr-12-p gr-12-m gr-no-gutter gr-gutter-left gr-no-gutter-p gr-no-gutter-m">
+            <div class="mt-panel">
+                <div id="account_desc" class="mt-container border-bottom"></div>
+                <div class="mt-container">
+                    <p>Trade platform quick links:</p>
+                    <ul class="platforms">
+                        <li>
+                            <img src="/images/pages/metatrader/dashboard/web.svg" />
+                            <a href="https://trade.mql5.com/trade?servers=Binary.com-Server&amp;trade_server=Binary.com-Server" target="_blank">Web platform</a>
+                        </li>
+                        <li>
+                            <img src="/images/pages/metatrader/dashboard/mac.svg" />
+                            <a href="https://s3.amazonaws.com/binary-mt5/binary-mt5.dmg" download>Download for Mac</a>
+                        </li>
+                        <li>
+                            <img src="/images/pages/metatrader/dashboard/windows.svg" />
+                            <a href="https://s3.amazonaws.com/binary-mt5/binarycom_mt5.exe" download>Download for Windows</a>
+                        </li>
+                        <li>
+                            <img src="/images/pages/metatrader/dashboard/linux.svg" />
+                            <a href="https://www.metatrader5.com/en/terminal/help/start_advanced/install_linux" target="_blank">Instructions for Linux</a>
+                        </li>
+                        <p class="badges">
+                            <a href="https://download.mql5.com/cdn/mobile/mt5/ios?server=Binary.com-Server" target="_blank">
+                                <span class="app-store-badge"></span>
+                            </a>
+                            <a href="https://download.mql5.com/cdn/mobile/mt5/android?server=Binary.com-Server" target="_blank">
+                                <span class="google-play-badge"></span>
+                            </a>
+                        </p>
+                    </ul>
                 </div>
             </div>
         </div>
 
         <div id="templates" class="invisible">
-            <div class="acc-name">
-                <div class="mt-new invisible">
-                    <img src="/images/pages/metatrader/signup.svg" />
+            <div class="acc-name invisible">
+                <div class="mt-icon">
+                    <img src="/images/pages/metatrader/dashboard/account.svg" />
                 </div>
-                <div class="mt-balance">&nbsp;</div>
+                <div class="mt-balance invisible">&nbsp;</div>
                 <div class="mt-type"></div>
                 <div class="mt-login invisible"></div>
             </div>
 
             
             <div class="account-desc">
-                <div class="demo_vanuatu_cent real_vanuatu_cent">
+                <div class="new_account">
+                    <h3>Choose an account</h3>
+                    <p>Binary.com offers a variety of account types to cater to the diverse needs of traders everywhere, whether you’re an experienced trader or just starting out.</p>
+                    <ul class="checked small no-padding">
+                        
+                    </ul>
+                    <p>
+                        <a href="/vi/metatrader/types-of-accounts.html">MetaTrader 5 Account Comparison</a>
+                    </p>
+                </div>
+                <div class=" demo_vanuatu_cent real_vanuatu_cent">
+                    <h3>Cent Account</h3>
                     <p>Tài khoản MetaTrader 5 Cent của chúng tôi là lý tưởng cho các thương nhân mới, những người muốn bắt đầu kinh doanh với số vốn nhỏ hơn.</p>
                     <ul class="checked small no-padding">
                         
@@ -123,9 +184,12 @@
                             <li>Không có hoa hồng</li>
                         
                     </ul>
-                    <a class="more" href="#" target="_blank">Tìm hiểu thêm</a>
+                    <p>
+                        <a href="/vi/metatrader/types-of-accounts.html">MetaTrader 5 Account Comparison</a>
+                    </p>
                 </div>
-                <div class="demo_vanuatu_standard real_vanuatu_standard">
+                <div class=" demo_vanuatu_standard real_vanuatu_standard">
+                    <h3>Standard Account</h3>
                     <p>Tài khoản MetaTrader 5 tiêu chuẩn của chúng tôi đi kèm với đòn bẩy tầm trung và biến lây lan rộng thích hợp cho một loạt các thương nhân.</p>
                     <ul class="checked small no-padding">
                         
@@ -138,9 +202,12 @@
                             <li>Không có hoa hồng</li>
                         
                     </ul>
-                    <a class="more" href="#" target="_blank">Tìm hiểu thêm</a>
+                    <p>
+                        <a href="/vi/metatrader/types-of-accounts.html">MetaTrader 5 Account Comparison</a>
+                    </p>
                 </div>
-                <div class="demo_vanuatu_stp real_vanuatu_stp">
+                <div class=" demo_vanuatu_stp real_vanuatu_stp">
+                    <h3>STP Account</h3>
                     <p>Tài khoản MetaTrader 5 STP của chúng tôi cung cấp cho bạn với các lây lan nhỏ nhất và kết nối bạn trực tiếp đến thị trường.</p>
                     <ul class="checked small no-padding">
                         
@@ -153,13 +220,16 @@
                             <li>Không có hoa hồng</li>
                         
                     </ul>
-                    <a class="more" href="#" target="_blank">Tìm hiểu thêm</a>
+                    <p>
+                        <a href="/vi/metatrader/types-of-accounts.html">MetaTrader 5 Account Comparison</a>
+                    </p>
                 </div>
-                <div class="demo_costarica real_costarica">
+                <div class=" demo_costarica real_costarica demo_malta real_malta">
+                    <h3>Volatility Account</h3>
                     <p>Tài khoản biến động cho phép bạn thu về lợi nhuận bằng cách dự đoán về tăng hoặc sụp đổ của một công cụ.</p>
                     <ul class="checked small no-padding">
                         
-                            <li>Thúc đẩy tới 1: 100</li>
+                            <li>Leverage up to 1:500</li>
                         
                             <li>Lây lan biến</li>
                         
@@ -168,525 +238,321 @@
                             <li>Không có hoa hồng</li>
                         
                     </ul>
-                    <a class="more" href="#" target="_blank">Tìm hiểu thêm</a>
+                    <p>
+                        <a href="/vi/metatrader/types-of-accounts.html">MetaTrader 5 Account Comparison</a>
+                    </p>
                 </div>
             </div>
 
+            
             <form id="frm_new_account">
-                <div class="gr-row form-row center-text-m ">
-        <div class="gr-4 gr-12-m">
-            <label>
-                                    Loại tài khoản
-            </label>
-        </div>
-        <div class="gr-8 gr-12-m">
-                                <span class="text-display">
-                                                    <span id="lbl_account_type" ></span>
-                    </span>
-            
-        </div>
-    </div>
-                <div class="gr-row form-row center-text-m ">
-        <div class="gr-4 gr-12-m">
-            <label>
-                                    Hòm thư điện tử
-            </label>
-        </div>
-        <div class="gr-8 gr-12-m">
-                                <span class="text-display">
-                                                    <span id="lbl_email" ></span>
-                    </span>
-            
-        </div>
-    </div>
-                <div class="gr-row form-row center-text-m ">
-        <div class="gr-4 gr-12-m">
+                <div id="mv_new_account">
+                    <div id="view_1" class="center-text">
+                        <div class="step-1">
+                            <div class="type-group gr-row">
+                    <div class="gr-12 gr-padding-20 gr-parent">
+                        <h3>Step 1 : Choose demo or real account</h3>
+                        
+                    </div>
+                
+                    <div class="gr-6">
+                        <div id="rbtn_demo" class="mt5_type_box" data-acc-type="demo">
+                            
+                                <div>Thử nghiệm</div>
+                            
+                        </div>
+                        <p class="no-margin gr-padding-10 hint">Each demo account comes with $10,000 virtual money</p>
+                    </div>
+                
+                    <div class="gr-6">
+                        <div id="rbtn_real" class="mt5_type_box" data-acc-type="real">
+                            
+                                <div>Thực tế</div>
+                            
+                        </div>
+                        <p class="no-margin gr-padding-10 hint">Real account allows you to trade in USD real currency</p>
+                    </div>
+                
+                </div>
+                        </div>
+                        <div class="step-2 invisible">
+                            <div class="separator-line gr-padding-10"></div>
+                            <div class="type-group gr-row">
+                    <div class="gr-12 gr-padding-20 gr-parent">
+                        <h3>Step 2 : Choose types of accounts</h3>
+                        
+                                <a class="hint" href="/vi/metatrader/types-of-accounts.html">Which one suits me?</a>
+                            
+                    </div>
+                
+                    <div class="gr-3 gr-6-p gr-6-m gr-centered">
+                        <div id="rbtn_template" class="mt5_type_box" data-acc-type="template">
+                            
+                                <img src="/images/pages/metatrader/icons/acc_cent.svg" />
+                            
+                        </div>
+                        <p class="no-margin gr-padding-10 ">Cent</p>
+                    </div>
+                
+                </div>
+                        </div>
+                        <p id="new_account_msg" class="notice-msg center-text invisible"></p>
+                        <div class="center-text">
+                            <a id="btn_cancel" class="button button-secondary" href="javascript:;">
+                                <span>Hủy bỏ</span>
+                            </a>
+                            <a id="btn_next" class="button button-disabled" href="javascript:;">
+                                <span>Tiếp theo</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div id="view_2" class="gr-row invisible">
+                        <div class="gr-8 gr-12-m">
+                            <div class="gr-row form-row center-text-m two-rows">
+        <div class="gr-12">
             <label for="txt_name">
                                     Tên
             </label>
         </div>
-        <div class="gr-8 gr-12-m">
+        <div class="gr-12">
                                 <input type="text" id="txt_name" maxlength="30" autocomplete="off" />
             
         </div>
     </div>
-                <div class="gr-row form-row center-text-m ">
-        <div class="gr-4 gr-12-m">
+                            <div class="gr-row form-row center-text-m two-rows">
+        <div class="gr-12">
             <label for="txt_main_pass">
                                     Mật khẩu chính (dành cho kinh doanh)
             </label>
         </div>
-        <div class="gr-8 gr-12-m">
+        <div class="gr-12">
                                 <input type="password" id="txt_main_pass" maxlength="25"  />
-            <div class="hint">Tối thiểu tám ký tự. Phải có số điện thoại, và kết hợp của cả chữ hoa và chữ thường.</div>
+            <p class="hint no-margin">Tối thiểu tám ký tự. Phải có số điện thoại, và kết hợp của cả chữ hoa và chữ thường.</p>
         </div>
     </div>
-                <div class="gr-row form-row center-text-m ">
-        <div class="gr-4 gr-12-m">
+                            <div class="gr-row form-row center-text-m two-rows">
+        <div class="gr-12">
             <label for="txt_re_main_pass">
                                     Xác thực Mật Khẩu Chính
             </label>
         </div>
-        <div class="gr-8 gr-12-m">
+        <div class="gr-12">
                                 <input type="password" id="txt_re_main_pass" maxlength="25"  />
             
         </div>
     </div>
-                <div class="gr-row form-row center-text-m ">
-        <div class="gr-4 gr-12-m">
+                            <div class="gr-row form-row center-text-m two-rows">
+        <div class="gr-12">
             <label for="txt_investor_pass">
                                     Mật khẩu chủ đầu tư (chỉ đọc)
             </label>
         </div>
-        <div class="gr-8 gr-12-m">
+        <div class="gr-12">
                                 <input type="password" id="txt_investor_pass" maxlength="25"  />
             
         </div>
     </div>
-                <div class="gr-row ">
-        <div class="gr-12-m gr-padding-20 gr-centered">
-            <input id="chk_tnc" type="checkbox" />
-            <label for="chk_tnc">Tôi đã đọc và đồng ý với <a target="_blank" href="/vi/terms-and-conditions.html#legal-mt">điều khoản và điều kiện</a> của trang web.</label>
-        </div>
-    </div>
-
-                <div class="gr-row ">
-                <div class="gr-8 gr-push-4 gr-12-m gr-push-0-m center-text-m">
-            
-        
-        <div id="msg_form" class="error-msg invisible"></div>
+                            <p id="msg_form" class="error-msg no-margin invisible"></p>
         
         <div class="gr-padding-10">
         
-            <button id="btn_submit" type="submit">Tạo Tài khoản</button>
+            <a class="button button-secondary" href="javascript:;" id="btn_back">
+                <span class="button">Quay lại</span>
+            </a>
+        
+            <button id="btn_submit" type="submit" action="new_account">Tạo Tài khoản</button>
         </div>
-    
+                        </div>
+                    </div>
                 </div>
-            </div>
             </form>
 
             <form id="frm_password_change">
-                <div class="gr-row form-row center-text-m invisible">
-        <div class="gr-4 gr-12-m">
-            <label>
-                                    ID Đăng nhập
-            </label>
-        </div>
-        <div class="gr-8 gr-12-m">
-                                <span class="text-display">
-                                                    <span id="lbl_login" ></span>
-                    </span>
-            
-        </div>
-    </div>
-                <div class="gr-row form-row center-text-m ">
-        <div class="gr-4 gr-12-m">
+                <div class="gr-row">
+                    <div class="gr-8 gr-12-m">
+                        <div class="gr-row form-row center-text-m two-rows">
+        <div class="gr-12">
             <label for="txt_old_password">
                                     Mật khẩu hiện tại
             </label>
         </div>
-        <div class="gr-8 gr-12-m">
+        <div class="gr-12">
                                 <input type="password" id="txt_old_password" maxlength="25"  />
             
         </div>
     </div>
-                <div class="gr-row form-row center-text-m ">
-        <div class="gr-4 gr-12-m">
+                        <div class="gr-row form-row center-text-m two-rows">
+        <div class="gr-12">
             <label for="txt_new_password">
                                     Mật khẩu mới
             </label>
         </div>
-        <div class="gr-8 gr-12-m">
+        <div class="gr-12">
                                 <input type="password" id="txt_new_password" maxlength="25"  />
-            <div class="hint">Tối thiểu tám ký tự. Phải có số điện thoại, và kết hợp của cả chữ hoa và chữ thường.</div>
+            <p class="hint no-margin">Tối thiểu tám ký tự. Phải có số điện thoại, và kết hợp của cả chữ hoa và chữ thường.</p>
         </div>
     </div>
-                <div class="gr-row form-row center-text-m ">
-        <div class="gr-4 gr-12-m">
+                        <div class="gr-row form-row center-text-m two-rows">
+        <div class="gr-12">
             <label for="txt_re_new_password">
                                     Xác thực mật khẩu mới
             </label>
         </div>
-        <div class="gr-8 gr-12-m">
+        <div class="gr-12">
                                 <input type="password" id="txt_re_new_password" maxlength="25"  />
             
         </div>
     </div>
-
-                <div class="gr-row ">
-                <div class="gr-8 gr-push-4 gr-12-m gr-push-0-m center-text-m">
-            
-        
-        <div id="msg_form" class="error-msg invisible"></div>
+                        <p id="msg_form" class="error-msg no-margin invisible"></p>
         
         <div class="gr-padding-10">
         
-            <button id="btn_submit" type="submit">Thay đổi Mật khẩu</button>
+            <button id="btn_submit" type="submit" action="password_change">Thay đổi Mật khẩu</button>
         </div>
-    
+                    </div>
                 </div>
-            </div>
             </form>
 
-            <form id="frm_deposit">
-                <p>Chuyển tiền từ tài khoản Binary.com vào tài khoản MetaTrader 5:</p>
-                <div class="gr-row form-row center-text-m ">
-        <div class="gr-4 gr-12-m">
-            <label>
-                                    Chuyển từ
-            </label>
-        </div>
-        <div class="gr-8 gr-12-m">
-                                <span class="text-display">
-                                                    <span id="lbl_from" ></span>
-                    </span>
             
-        </div>
-    </div>
-                <div class="gr-row form-row center-text-m ">
-        <div class="gr-4 gr-12-m">
-            <label>
-                                    Gửi tiền đến
-            </label>
-        </div>
-        <div class="gr-8 gr-12-m">
-                                <span class="text-display">
-                                                    <span id="lbl_to" ></span>
-                    </span>
-            
-        </div>
-    </div>
-                <div class="gr-row form-row center-text-m ">
-        <div class="gr-4 gr-12-m">
-            <label for="txt_amount">
+            <div id="frm_cashier">
+                <div class="gr-row demo-only invisible">
+                    <p class="gr-8 gr-push-2 gr-12-m gr-push-0-m gr-padding-30">This demo account comes with $10,000.00 of the virtual fund. Contact our customer service to top up your demo account once virtual fund reaches zero.</p>
+                </div>
+                <div class="real-only invisible">
+                    <div class="gr-padding-20 gr-parent">
+                        <div class="fill-bg-color center-text mt-container">
+                            <div class="gr-10 gr-push-1 gr-12-m gr-push-0-m">
+                                <h3 class="secondary-color">Fund overview</h3>
+                                <p class="hint">To deposit your MetaTrader 5 Account, please top up the fund in your Binary Cashier then transfer the fund from Cashier to your MetaTrader 5 account.</p>
+                                <div class="gr-row">
+                                    <div class="gr-5">
+                                        <img src="/images/pages/metatrader/dashboard/binary_wallet.svg" />
+                                        <div class="binary-account gr-padding-10"></div>
+                                        <div class="binary-balance gr-padding-10 gr-parent"></div>
+                                        <a class="secondary-color hint" href="/vi/cashier.html">Add fund</a>
+                                    </div>
+                                    <div class="gr-2 gr-padding-20">
+                                        <img src="/images/pages/metatrader/dashboard/transfer.svg" />
+                                    </div>
+                                    <div class="gr-5">
+                                        <img src="/images/pages/metatrader/dashboard/mt5_wallet.svg" />
+                                        <div class="mt5-account gr-padding-10"></div>
+                                        <div class="mt5-balance gr-padding-10 gr-parent"></div>
+                                        <div class="hint">Deposit or withdraw below</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gr-row">
+                        <div class="gr-6 gr-12-m flex">
+                            <div class="mt-panel mt-container">
+                                <form id="frm_deposit">
+                                    <div class="center-text hint gr-padding-20 gr-parent">
+                    <h3 class="secondary-color">Deposit into MT5 account</h3>
+                    <p>Deposit funds from your Binary account into MetaTrader 5 account.</p>
+                    <div class="vertical-center gr-padding-10">
+                        <img src="/images/pages/metatrader/dashboard/binary_wallet.svg" />
+                        <img src="/images/pages/metatrader/dashboard/arrow_right.svg" class="gr-gutter" />
+                        <img src="/images/pages/metatrader/dashboard/mt5_wallet.svg" />
+                    </div>
+                </div>
+
+                                    <div class="form">
+                                        <div class="gr-row form-row center-text-m two-rows">
+        <div class="gr-12">
+            <label for="txt_amount_deposit">
                                     Số tiền
             </label>
         </div>
-        <div class="gr-8 gr-12-m">
-                                &#36; <input type="text" id="txt_amount" maxlength="10" />
+        <div class="gr-12">
+                                <input type="text" id="txt_amount_deposit" maxlength="10" />
             
         </div>
     </div>
-
-                <div class="gr-row ">
-                <div class="gr-8 gr-push-4 gr-12-m gr-push-0-m center-text-m">
+                                        <div class="center-text ">
             
         
-        <div id="msg_form" class="error-msg invisible"></div>
+        <p id="msg_form" class="error-msg no-margin invisible"></p>
         
         <div class="gr-padding-10">
         
-            <button id="btn_submit" type="submit">Gửi tiền</button>
+            <button id="btn_submit" type="submit" action="deposit" class="full-width">Gửi tiền</button>
         </div>
     
-                </div>
             </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="gr-6 gr-12-m flex">
+                            <div class="mt-panel mt-container">
+                                <form id="frm_withdrawal">
+                                    <div class="center-text hint gr-padding-20 gr-parent">
+                    <h3 class="secondary-color">Withdraw from MT5 account</h3>
+                    <p>Withdraw funds from MetaTrader 5 account into your Binary account.</p>
+                    <div class="vertical-center gr-padding-10">
+                        <img src="/images/pages/metatrader/dashboard/binary_wallet.svg" />
+                        <img src="/images/pages/metatrader/dashboard/arrow_left.svg" class="gr-gutter" />
+                        <img src="/images/pages/metatrader/dashboard/mt5_wallet.svg" />
+                    </div>
+                </div>
 
-                <p class="notice-msg">Bạn muốn tài trợ tài khoản Real Binary.com của bạn? <a href="/vi/cashier.html"> đi đến thu ngân</a></p>
-            </form>
-
-            <form id="frm_withdrawal">
-                <p>Chuyển tiền từ tài khoản MetaTrader 5 của bạn vào tài khoản của bạn Binary.com:</p>
-                <div class="gr-row form-row center-text-m ">
-        <div class="gr-4 gr-12-m">
-            <label>
-                                    Rút tiền từ
-            </label>
-        </div>
-        <div class="gr-8 gr-12-m">
-                                <span class="text-display">
-                                                    <span id="lbl_from" ></span>
-                    </span>
-            
-        </div>
-    </div>
-                <div class="gr-row form-row center-text-m ">
-        <div class="gr-4 gr-12-m">
-            <label>
-                                    Chuyển tới
-            </label>
-        </div>
-        <div class="gr-8 gr-12-m">
-                                <span class="text-display">
-                                                    <span id="lbl_to" ></span>
-                    </span>
-            
-        </div>
-    </div>
-                <div class="gr-row form-row center-text-m ">
-        <div class="gr-4 gr-12-m">
+                                    <div class="form">
+                                        <div class="gr-row form-row center-text-m two-rows">
+        <div class="gr-12">
             <label for="txt_main_pass">
                                     Mật khẩu chính MetaTrader 5
             </label>
         </div>
-        <div class="gr-8 gr-12-m">
+        <div class="gr-12">
                                 <input type="password" id="txt_main_pass" maxlength="25"  />
             
         </div>
     </div>
-                <div class="gr-row form-row center-text-m ">
-        <div class="gr-4 gr-12-m">
-            <label for="txt_amount">
+                                        <div class="gr-row form-row center-text-m two-rows">
+        <div class="gr-12">
+            <label for="txt_amount_withdrawal">
                                     Số tiền
             </label>
         </div>
-        <div class="gr-8 gr-12-m">
-                                &#36; <input type="text" id="txt_amount" maxlength="10" />
+        <div class="gr-12">
+                                <input type="text" id="txt_amount_withdrawal" maxlength="10" />
             
         </div>
     </div>
-
-                <div class="gr-row ">
-                <div class="gr-8 gr-push-4 gr-12-m gr-push-0-m center-text-m">
+                                        <div class="center-text ">
             
         
-        <div id="msg_form" class="error-msg invisible"></div>
+        <p id="msg_form" class="error-msg no-margin invisible"></p>
         
         <div class="gr-padding-10">
         
-            <button id="btn_submit" type="submit">Rút tiền</button>
+            <button id="btn_submit" type="submit" action="withdrawal" class="full-width">Rút tiền</button>
         </div>
     
+            </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-
-                <p class="notice-msg">Bạn muốn rút quỹ từ tài khoản Real Binary.com của bạn? <a href="/vi/cashier.html"> đi đến thu ngân</a></p>
-            </form>
 
             <div id="messages">
+                <div id="title_new_account">Create MetaTrader 5 [_1] account</div>
                 <div id="msg_switch">Để thực hiện hành động này, xin vui lòng chuyển sang tài khoản thật của bạn Binary.com.</div>
                 <div id="msg_upgrade">Để thực hiện hành động này, xin vui lòng <a href="/vi/new_account/realws.html"> nâng cấp lên Binary.com tài khoản thực</a>.</div>
-                <div id="msg_assessment">Để tạo một tài khoản MetaTrader 5 tài chính xin vui lòng hoàn thành <a href="/vi/user/settings/assessmentws.html"> Đánh giá tài chính</a>.</div>
-                <div id="msg_authenticate">
-                    <div class="align-start">
-                        <p>Để rút tiền từ MetaTrader 5 tài khoản tài chính xin vui lòng xác thực tài khoản Binary.com của bạn.</p>
-                        <p>Xác thực tài khoản của bạn bằng cách xác minh danh tính và địa chỉ của bạn.</p>
-
-<div class="gr-row gr-12">
-        <fieldset>
-            <div class="gr-padding-30 gr-gutter-left gr-gutter-right">
-                <h2>1. chứng minh nhân thân</h2>
-                <div class="gr-row">
-                    <div class="gr-7 gr-12-m">
-                        <strong>Chúng tôi chấp nhận:</strong>
-                        <ul class="bullet">
-                            
-                                <li>Hộ chiếu</li>
-                            
-                                <li>Giấy phép lái xe</li>
-                            
-                                <li>Thẻ ID quốc gia hoặc bất kỳ tài liệu được chính phủ đã ban hành có chứa hình ảnh, tên của bạn, và ngày sinh</li>
-                            
-                        </ul>
-                        <strong>Yêu cầu:</strong>
-                        <ul class="bullet">
-                            
-                                <li>Phải là một ảnh rõ ràng, có màu hoặc ảnh được quét hình</li>
-                            
-                                <li>Ít nhất 6 tháng hiệu lực</li>
-                            
-                                <li>Chỉ các định dạng JPG, JPEG, GIF, PNG và PDFX được chấp nhận</li>
-                            
-                                <li>Kích thước tải lên tối đa cho mỗi file là 3MB</li>
-                            
-                        </ul>
-                        <p class="learn_more">
-                            <a href="#" target="_blank">Tìm hiểu thêm</a>
-                        </p>
-                    </div>
-                    <div class="gr-5 gr-12-m">
-                        <p class="font-s">Nộp một trong các giấy tờ dưới đây:</p>
-                        <div class="files">
-                            
-                                <h3>Hộ chiếu</h3>
-                                <div class="fields">
-                                    
-                                        <div class="gr-row form-row center-text-m">
-                                            <div class="gr-4 gr-12-m">
-                                                <label for="id_number_1">Số ID:</label>
-                                            </div>
-                                            <div class="gr-8 gr-12-m">
-                                                <input id="id_number_1" type="text" maxlength="30">
-                                            </div>
-                                        </div>
-                                        <div class="gr-row form-row center-text-m">
-                                            <div class="gr-4 gr-12-m">
-                                                <label for="exp_date_1">Thời gian hết hạn:</label>
-                                            </div>
-                                            <div class="gr-8 gr-12-m">
-                                                <input class="date-picker" id="exp_date_1" type="text" maxlength="200" readonly="true">
-                                            </div>
-                                        </div>
-                                        <div class="gr-row form-row center-text-m">
-                                            <div class="gr-12">
-                                                <input id="front_file1" class="file-picker" type="file" accept=".jpg, .jpeg, .gif, .png, .pdf" data-type="passport">
-                                                <label for="front_file1" class="button">Phụ tân <span class="add" /></button>
-                                            </div>
-                                            <div class="gr-12">
-                                                <input id="back_file1" class="file-picker" type="file" accept=".jpg, .jpeg, .gif, .png, .pdf" data-type="passport">
-                                                <label for="back_file1" class="button">Đảo ngược bên <span class="add" /></button>
-                                            </div>
-                                        </div>
-                                    
-                                    
-                                </div>
-                            
-                                <h3>Thẻ nhận dạng</h3>
-                                <div class="fields">
-                                    
-                                        <div class="gr-row form-row center-text-m">
-                                            <div class="gr-4 gr-12-m">
-                                                <label for="id_number_2">Số ID:</label>
-                                            </div>
-                                            <div class="gr-8 gr-12-m">
-                                                <input id="id_number_2" type="text" maxlength="30">
-                                            </div>
-                                        </div>
-                                        <div class="gr-row form-row center-text-m">
-                                            <div class="gr-4 gr-12-m">
-                                                <label for="exp_date_2">Thời gian hết hạn:</label>
-                                            </div>
-                                            <div class="gr-8 gr-12-m">
-                                                <input class="date-picker" id="exp_date_2" type="text" maxlength="200" readonly="true">
-                                            </div>
-                                        </div>
-                                        <div class="gr-row form-row center-text-m">
-                                            <div class="gr-12">
-                                                <input id="front_file2" class="file-picker" type="file" accept=".jpg, .jpeg, .gif, .png, .pdf" data-type="proofid">
-                                                <label for="front_file2" class="button">Phụ tân <span class="add" /></button>
-                                            </div>
-                                            <div class="gr-12">
-                                                <input id="back_file2" class="file-picker" type="file" accept=".jpg, .jpeg, .gif, .png, .pdf" data-type="proofid">
-                                                <label for="back_file2" class="button">Đảo ngược bên <span class="add" /></button>
-                                            </div>
-                                        </div>
-                                    
-                                    
-                                </div>
-                            
-                                <h3>Giấy phép lái xe</h3>
-                                <div class="fields">
-                                    
-                                        <div class="gr-row form-row center-text-m">
-                                            <div class="gr-4 gr-12-m">
-                                                <label for="id_number_3">Số ID:</label>
-                                            </div>
-                                            <div class="gr-8 gr-12-m">
-                                                <input id="id_number_3" type="text" maxlength="30">
-                                            </div>
-                                        </div>
-                                        <div class="gr-row form-row center-text-m">
-                                            <div class="gr-4 gr-12-m">
-                                                <label for="exp_date_3">Thời gian hết hạn:</label>
-                                            </div>
-                                            <div class="gr-8 gr-12-m">
-                                                <input class="date-picker" id="exp_date_3" type="text" maxlength="200" readonly="true">
-                                            </div>
-                                        </div>
-                                        <div class="gr-row form-row center-text-m">
-                                            <div class="gr-12">
-                                                <input id="front_file3" class="file-picker" type="file" accept=".jpg, .jpeg, .gif, .png, .pdf" data-type="driverslicense">
-                                                <label for="front_file3" class="button">Phụ tân <span class="add" /></button>
-                                            </div>
-                                            <div class="gr-12">
-                                                <input id="back_file3" class="file-picker" type="file" accept=".jpg, .jpeg, .gif, .png, .pdf" data-type="driverslicense">
-                                                <label for="back_file3" class="button">Đảo ngược bên <span class="add" /></button>
-                                            </div>
-                                        </div>
-                                    
-                                    
-                                </div>
-                            
-                        </div>
-                    </div>
+                <div id="msg_currency_not_match">Please switch to a [_1] account to manage funds.</div>
+                <div id="msg_real_financial">
+                    To create a real financial MT5 account, please complete the following:
+                    <ul class="bullet">
+                        <li class="assessment invisible">Complete your <a href="/vi/user/settings/assessmentws.html">Financial Assessment</a>.</li>
+                        <li class="authenticate invisible"><a href="/vi/user/authenticate.html">Authenticate</a> your account by verifying your identity and address.</li>
+                    </ul>
                 </div>
-            </div>
-        </fieldset>
-    </div>
-
-<div class="gr-hide-m gr-padding-10">
-    <div class="separator-line "></div>
-</div>
-
-<div class="gr-row gr-12">
-        <fieldset>
-            <div class="gr-padding-30 gr-gutter-left gr-gutter-right">
-                <h2>2. Chứng minh về địa chỉ</h2>
-                <div class="gr-row">
-                    <div class="gr-7 gr-12-m">
-                        <strong>Chúng tôi chấp nhận:</strong>
-                        <ul class="bullet">
-                            
-                                <li>Hóa đơn điện nước (điện, nước, ga, băng thông và điện thoại cố định)</li>
-                            
-                                <li>Đặt báo cáo ngân hàng hoặc bất kỳ chính phủ phát hành lá thư mà có tên và địa chỉ của bạn</li>
-                            
-                        </ul>
-                        <strong>Yêu cầu:</strong>
-                        <ul class="bullet">
-                            
-                                <li>Phải là một ảnh rõ ràng, có màu hoặc ảnh được quét hình</li>
-                            
-                                <li>Phát hành dưới tên riêng của bạn</li>
-                            
-                                <li>Ngày trong sáu tháng qua</li>
-                            
-                                <li>Chỉ các định dạng JPG, JPEG, GIF, PNG và PDFX được chấp nhận</li>
-                            
-                                <li>Kích thước tải lên tối đa cho mỗi file là 3MB</li>
-                            
-                        </ul>
-                        <p class="learn_more">
-                            <a href="#" target="_blank">Tìm hiểu thêm</a>
-                        </p>
-                    </div>
-                    <div class="gr-5 gr-12-m">
-                        <p class="font-s">Nộp một trong các giấy tờ dưới đây:</p>
-                        <div class="files">
-                            
-                                <h3>Hóa đơn điện nước</h3>
-                                <div class="fields">
-                                    
-                                    
-                                        <div class="gr-row form-row gr-centered">
-                                            <div class="gr-12">
-                                                <input id="add_file1" class="file-picker" type="file" accept=".jpg, .jpeg, .gif, .png, .pdf" data-type="proofaddress">
-                                                <label for="add_file1" class="button">Thêm <span class="add" /></button>
-                                            </div>
-                                        </div>
-                                    
-                                </div>
-                            
-                                <h3>Báo cáo ngân hàng</h3>
-                                <div class="fields">
-                                    
-                                    
-                                        <div class="gr-row form-row gr-centered">
-                                            <div class="gr-12">
-                                                <input id="add_file2" class="file-picker" type="file" accept=".jpg, .jpeg, .gif, .png, .pdf" data-type="bankstatement">
-                                                <label for="add_file2" class="button">Thêm <span class="add" /></button>
-                                            </div>
-                                        </div>
-                                    
-                                </div>
-                            
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </fieldset>
-    </div>
-
-<div class="center-text">
-    <div id="msg_form" class="error-msg invisible"></div>
-    <div class="gr-padding-10">
-        <a class="button-disabled" id="btn_submit" type="submit">
-            <span>Gửi để đánh giá</span>
-        </a>
-    </div>
-</div>
-                    </div>
-                </div>
+                <div id="msg_authenticate">To withdraw from MetaTrader 5 Financial Account please <a href="/vi/user/authenticate.html">Authenticate</a> your Binary account.</div>
             </div>
         </div>
     </div>

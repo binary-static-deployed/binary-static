@@ -29,40 +29,45 @@
 
 
 
-  <div class="content-tab-container static_full cs-content">
+  <div class="static_full">
+    <h1>合約規格</h1>
+    <div class="content-tab-container cs-content light full-width">
         
-    <div class="tab-menu ">
+        <div class="tab-menu ">
     <div class="tab-menu-wrap">
-        <ul id="cs-menu" class="tm-ul">
+        <ul id="cs_tabs" class="tm-ul">
             
                 <li id="forex" class="tm-li active">
                 
-                <a href="#forex" class="tm-a">外匯</a>
+                    <a href="#forex" class="tm-a">外匯</a>
                 
                 </li>
             
                 <li id="volatility" class="tm-li ">
                 
-                <a href="#volatility" class="tm-a">波動率指數</a>
+                    <a href="#volatility" class="tm-a">波動率指數</a>
                 
                 </li>
             
-                <li id="cash" class="tm-li ">
+                <li id="metals" class="tm-li ">
                 
-                <a href="#cash" class="tm-a">現金指數</a>
+                    <a href="#metals" class="tm-a">Metals</a>
+                
+                </li>
+            
+                <li id="cs_tabs_selector" class="tm-li tab-selector">
                 
                 </li>
             
         </ul>
     </div>
 </div>
-    <div class="tab-content">
-        <div class="tab-content-wrapper" id="">
+        <div class="tab-content">
+            <div class="tab-content-wrapper" id="">
         
-            <div id="forex-content" class="toggle-content ">
-        <div id="forex-specs" class="gr-row">
+                <div id="forex-content" class="toggle-content ">
+        <div id="forex_specs" class="gr-row">
     <div class="gr-12 gr-padding-10">
-        <h1>合約規格 - 外匯</h1>
         <div class="table-container">
     <table>
         
@@ -912,7 +917,7 @@
         <h2>如何讀取上面的表</h2>
         <p>外匯交易通常以<i>手</i>計量。一個標準<i>手</i>相當於100,000個單位。每次您在貨幣符號上開盤交易，可以<i>0.01 手</i>為最小交易量開始。</p>
         <p>槓桿率是基於初始存款的可控制資本額。例如，100: 1 槓桿將允許您僅使用 1,000 美元本身存款控制100,000 美元。</p>
-        <p>要了解關於外匯100%強制清算層次的更多資訊，請閱讀我們的<a href="/zh_tw/metatrader/margin-policy.html">保證金政策</a>。</p>
+        <p>要了解關於外匯100%強制清算層次的更多資訊，請閱讀我們的<a href="metatrader/margin-policy">保證金政策</a>。</p>
 
         <h2>掉期利率（隔夜資金）的重要說明</h2>
         <p>如果您持倉過夜，系統將對您的帳戶收取持倉成本隔夜利息。此費用基於銀行間貸款利率加上2%費用。</p>
@@ -943,10 +948,9 @@
     </div>
 </div>
     </div>
-            <div id="volatility-content" class="toggle-content invisible">
-        <div id="volatility-specs" class="gr-row">
+                <div id="volatility-content" class="toggle-content invisible">
+        <div id="volatility_specs" class="gr-row">
     <div class="gr-12 gr-padding-10">
-        <h1>合約規格 (CFD) - 波動性指數</h1>
         <div class="table-container">
     <table>
         
@@ -1410,14 +1414,13 @@
         </div>
         <p>每次您在波動性指數符號上開盤交易時，您可以從最小交易量 0.01（交易額）開始，這將轉換成每一指數變動點 0.01 美元。</p>
         <p>保證金是基於初始資金的可控制投資額。例如，0.2%保證金將允許您僅使用 1,000 美元本身存款控制高達500,000 美元。</p>
-        <p>要了解關於波動率指數50%強制清算層次的更多資訊，請閱讀我們的<a href="/zh_tw/metatrader/margin-policy.html">保證金政策</a>。</p>
+        <p>要了解關於波動率指數50%強制清算層次的更多資訊，請閱讀我們的<a href="/metatrader/margin-policy">保證金政策</a>。</p>
     </div>
 </div>
     </div>
-            <div id="cash-content" class="toggle-content invisible">
-        <div id="cash-specs" class="gr-row">
+                <div id="metals-content" class="toggle-content invisible">
+        <div id="metals_specs" class="gr-row">
     <div class="gr-12 gr-padding-10">
-        <h1>合約規格 (CFD) - 現金指數</h1>
         <div class="table-container">
     <table>
         
@@ -1429,13 +1432,11 @@
                     
                         <th>描述</th>
                     
-                        <th>量額 1.0<br>（交易量）</th>
+                        <th>Volume 1.0<br>(Lot Size)</th>
                     
-                        <th>最小交易額<br>(交易量)</th>
+                        <th>最小交易額<br>(手量)</th>
                     
-                        <th>最大交易額<br>(交易量)</th>
-                    
-                        <th>保證金</th>
+                        <th>Main. Volume Increment</th>
                     
                 </tr>
             
@@ -1447,25 +1448,13 @@
                 
                     
                     <td>
-                        AUS_200
+                        XAU/USD
                     </td>
                     
                 
                     
                     <td>
-                        澳大利亞 200 現金指數
-                    </td>
-                    
-                
-                    
-                    <td>
-                        每點 1 澳元
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1
+                        黃金兌美元
                     </td>
                     
                 
@@ -1477,7 +1466,13 @@
                 
                     
                     <td>
-                        0.2%
+                        0.01
+                    </td>
+                    
+                
+                    
+                    <td>
+                        0.01
                     </td>
                     
                 
@@ -1487,37 +1482,31 @@
                 
                     
                     <td>
-                        JP_225
+                        XAG/USD
                     </td>
                     
                 
                     
                     <td>
-                        日本現金指數
+                        Silver vs US Dollar
                     </td>
                     
                 
                     
                     <td>
-                        每點 1 日圓
+                        5000
                     </td>
                     
                 
                     
                     <td>
-                        10
+                        0.01
                     </td>
                     
                 
                     
                     <td>
-                        1000
-                    </td>
-                    
-                
-                    
-                    <td>
-                        0.2%
+                        0.01
                     </td>
                     
                 
@@ -1527,25 +1516,13 @@
                 
                     
                     <td>
-                        IND_50
+                        XPD/USD
                     </td>
                     
                 
                     
                     <td>
-                        印度 50 現金指數
-                    </td>
-                    
-                
-                    
-                    <td>
-                        每點 1 美元
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1
+                        鈀金兌美元
                     </td>
                     
                 
@@ -1557,7 +1534,13 @@
                 
                     
                     <td>
-                        0.2%
+                        0.01
+                    </td>
+                    
+                
+                    
+                    <td>
+                        0.01
                     </td>
                     
                 
@@ -1567,25 +1550,13 @@
                 
                     
                     <td>
-                        ESP_35
+                        XPT/USD
                     </td>
                     
                 
                     
                     <td>
-                        西班牙 35 現金指數
-                    </td>
-                    
-                
-                    
-                    <td>
-                        每點 1 歐元
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1
+                        鉑金兌美元
                     </td>
                     
                 
@@ -1597,407 +1568,13 @@
                 
                     
                     <td>
-                        0.2%
-                    </td>
-                    
-                
-            </tr>
-        
-            <tr>
-                
-                    
-                    <td>
-                        EUR_50
+                        0.01
                     </td>
                     
                 
                     
                     <td>
-                        歐元現金 50 指數
-                    </td>
-                    
-                
-                    
-                    <td>
-                        每點 1 歐元
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1
-                    </td>
-                    
-                
-                    
-                    <td>
-                        500
-                    </td>
-                    
-                
-                    
-                    <td>
-                        0.2%
-                    </td>
-                    
-                
-            </tr>
-        
-            <tr>
-                
-                    
-                    <td>
-                        FRA_40
-                    </td>
-                    
-                
-                    
-                    <td>
-                        法國 40 現金指數
-                    </td>
-                    
-                
-                    
-                    <td>
-                        每點 1 歐元
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1
-                    </td>
-                    
-                
-                    
-                    <td>
-                        500
-                    </td>
-                    
-                
-                    
-                    <td>
-                        0.2%
-                    </td>
-                    
-                
-            </tr>
-        
-            <tr>
-                
-                    
-                    <td>
-                        GBR_100
-                    </td>
-                    
-                
-                    
-                    <td>
-                        英國 100 現金指數
-                    </td>
-                    
-                
-                    
-                    <td>
-                        每點 1 英鎊
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1
-                    </td>
-                    
-                
-                    
-                    <td>
-                        500
-                    </td>
-                    
-                
-                    
-                    <td>
-                        0.2%
-                    </td>
-                    
-                
-            </tr>
-        
-            <tr>
-                
-                    
-                    <td>
-                        NED_25
-                    </td>
-                    
-                
-                    
-                    <td>
-                        荷蘭 25 現金指數
-                    </td>
-                    
-                
-                    
-                    <td>
-                        每點 1 歐元
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1
-                    </td>
-                    
-                
-                    
-                    <td>
-                        100
-                    </td>
-                    
-                
-                    
-                    <td>
-                        0.2%
-                    </td>
-                    
-                
-            </tr>
-        
-            <tr>
-                
-                    
-                    <td>
-                        ZAF_40
-                    </td>
-                    
-                
-                    
-                    <td>
-                        南非 40 現金指數
-                    </td>
-                    
-                
-                    
-                    <td>
-                        每點 1 南非幣
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1
-                    </td>
-                    
-                
-                    
-                    <td>
-                        100
-                    </td>
-                    
-                
-                    
-                    <td>
-                        0.2%
-                    </td>
-                    
-                
-            </tr>
-        
-            <tr>
-                
-                    
-                    <td>
-                        DAX_30
-                    </td>
-                    
-                
-                    
-                    <td>
-                        德國 30 現金指數
-                    </td>
-                    
-                
-                    
-                    <td>
-                        每點 1 歐元
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1
-                    </td>
-                    
-                
-                    
-                    <td>
-                        100
-                    </td>
-                    
-                
-                    
-                    <td>
-                        0.2%
-                    </td>
-                    
-                
-            </tr>
-        
-            <tr>
-                
-                    
-                    <td>
-                        CAN_60
-                    </td>
-                    
-                
-                    
-                    <td>
-                        加拿大 60 現金指數
-                    </td>
-                    
-                
-                    
-                    <td>
-                        每點 1 加元
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1
-                    </td>
-                    
-                
-                    
-                    <td>
-                        100
-                    </td>
-                    
-                
-                    
-                    <td>
-                        0.2%
-                    </td>
-                    
-                
-            </tr>
-        
-            <tr>
-                
-                    
-                    <td>
-                        US_30
-                    </td>
-                    
-                
-                    
-                    <td>
-                        美國 30 現金指數
-                    </td>
-                    
-                
-                    
-                    <td>
-                        每點 1 美元
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1
-                    </td>
-                    
-                
-                    
-                    <td>
-                        200
-                    </td>
-                    
-                
-                    
-                    <td>
-                        0.2%
-                    </td>
-                    
-                
-            </tr>
-        
-            <tr>
-                
-                    
-                    <td>
-                        US_100
-                    </td>
-                    
-                
-                    
-                    <td>
-                        美國 100 現金指數
-                    </td>
-                    
-                
-                    
-                    <td>
-                        每點 1 美元
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1
-                    </td>
-                    
-                
-                    
-                    <td>
-                        200
-                    </td>
-                    
-                
-                    
-                    <td>
-                        0.2%
-                    </td>
-                    
-                
-            </tr>
-        
-            <tr>
-                
-                    
-                    <td>
-                        US_500
-                    </td>
-                    
-                
-                    
-                    <td>
-                        美國 500 現金指數
-                    </td>
-                    
-                
-                    
-                    <td>
-                        每點 1 美元
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1
-                    </td>
-                    
-                
-                    
-                    <td>
-                        200
-                    </td>
-                    
-                
-                    
-                    <td>
-                        0.2%
+                        0.01
                     </td>
                     
                 
@@ -2009,18 +1586,51 @@
     </div>
     </div>
 
-    <div class="gr-12 gr-padding-10">
-        <h2>如何讀取上面的表</h2>
-        <p>CFD（差價合約）︰CFD 是允許您通過預測一種工具的價格是否會上漲或下跌而獲利的工具。損益的估計方式是以標的工具買入/賣出價格差異的函數計算。</p>
-        <p>例如，美國 30 現金指數的差價合約報價每點1美元。如果您以目前20,000 美元的賣出價格購入 1.0 股美國 30 現金指數，然後以20,010 美元的買入價格出售，您的淨利潤計算方法如下︰</p>
-        <div class="gr-12 gr-padding-10 fill-bg-color">
+    <div class="gr-4 gr-push-4 gr-padding-30">
+        <div class="fill-bg-color gr-padding-10">
             <div class="gr-prefix-1">
-                <p>（售出價 - 購入價） x 交易量 x 每點的價格 = 利潤</p>
-                <p>即 (20010 - 20000) x 1 x 1 = 10 美元</p>
+                <h2>最大杠杆</h2>
+                <ul class="bullet">
+        
+            <li>
+    
+    
+     美分帳戶: 1:1, 000 
+    
+</li>
+        
+            <li>
+    
+    
+     Standard account: 1:300 
+    
+</li>
+        
+            <li>
+    
+    
+     STP account: 1:100 
+    
+</li>
+        
+            <li>
+    
+    
+     Volatility account: 1:500 
+    
+</li>
+        
+    </ul>
             </div>
         </div>
-        <p>保證金是基於初始資金的可控制投資額。例如，1%保證金將允許您僅使用 1,000 美元本身存款控制高達100,000 美元。</p>
-        <p>要了解關於保證金要求的更多資訊，請閱讀我們的<a href="/zh_tw/metatrader/margin-policy.html">保證金政策</a>。</p>
+    </div>
+
+    <div class="gr-12 gr-padding-10">
+        <h2>如何讀取上面的表</h2>
+        <p>我們的金屬對通常以手為交易單位。一個標準手數相當於100個單位，除了白銀是一手等於5.000個單位。每次當您為某個符號開倉時，您可以從0.01手的最小交易量開始。</p>
+        <p>Leverage indicates how much capital you can control based on your initial deposit. For example, a 1:100 leverage will allow you to control up to USD 100,000 using only USD 1,000 of your own money as deposit.</p>
+        <p>To learn more, read our <a href="/metatrader/margin-policy">Margin Policy</a> that further explains our 100% forced liquidation level for our metal pairs.</p>
+
         <h2>掉期利率（隔夜資金）的重要說明</h2>
         <p>如果您持倉過夜，系統將對您的帳戶收取持倉成本隔夜利息。此費用基於銀行間貸款利率加上2%費用。</p>
         <p>利息調整以點為計算單位，意味著我們將把相關市場利率轉換為基礎工具點。</p>
@@ -2042,8 +1652,9 @@
     </div>
 </div>
     </div>
-        
+            
     </div>
+        </div>
+    
     </div>
-
-    </div>
+</div>

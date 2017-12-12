@@ -29,40 +29,45 @@
 
 
 
-  <div class="content-tab-container static_full cs-content">
+  <div class="static_full">
+    <h1>Szczegóły kontraktu</h1>
+    <div class="content-tab-container cs-content light full-width">
         
-    <div class="tab-menu ">
+        <div class="tab-menu ">
     <div class="tab-menu-wrap">
-        <ul id="cs-menu" class="tm-ul">
+        <ul id="cs_tabs" class="tm-ul">
             
                 <li id="forex" class="tm-li active">
                 
-                <a href="#forex" class="tm-a">Forex</a>
+                    <a href="#forex" class="tm-a">Forex</a>
                 
                 </li>
             
                 <li id="volatility" class="tm-li ">
                 
-                <a href="#volatility" class="tm-a">Zmienne wskaźniki</a>
+                    <a href="#volatility" class="tm-a">Zmienne wskaźniki</a>
                 
                 </li>
             
-                <li id="cash" class="tm-li ">
+                <li id="metals" class="tm-li ">
                 
-                <a href="#cash" class="tm-a">Wskaźniki gotówkowe</a>
+                    <a href="#metals" class="tm-a">Metale</a>
+                
+                </li>
+            
+                <li id="cs_tabs_selector" class="tm-li tab-selector">
                 
                 </li>
             
         </ul>
     </div>
 </div>
-    <div class="tab-content">
-        <div class="tab-content-wrapper" id="">
+        <div class="tab-content">
+            <div class="tab-content-wrapper" id="">
         
-            <div id="forex-content" class="toggle-content ">
-        <div id="forex-specs" class="gr-row">
+                <div id="forex-content" class="toggle-content ">
+        <div id="forex_specs" class="gr-row">
     <div class="gr-12 gr-padding-10">
-        <h1>Szczegóły kontraktu – Forex</h1>
         <div class="table-container">
     <table>
         
@@ -912,7 +917,7 @@
         <h2>Jak czytać informacje w powyższej tabeli</h2>
         <p>Kontrakty Forex są zazwyczaj sprzedawane w <i>partiach</i>. Jedna standardowa <i>partia</i> odpowiada 100 000 jednostek. Za każdym razem, gdy otwierasz pozycję dla symbolu walutowego, możesz rozpocząć od transakcji minimalnej wo wielkości <i>0,01 partii</i>.</p>
         <p>Dźwignia wskazuje, ile kapitału możesz kontrolować w oparciu o swój początkowy depozyt. Na przykład: dźwignia na poziomie 100:1 pozwoli na dysponowanie do 100 000 USD, wykorzystując jedynie 1 000 USD ze środków własnego depozytu.</p>
-        <p>Aby dowiedzieć się więcej, zapoznaj się z naszą <a href="/pl/metatrader/margin-policy.html">Polityka dot. depozytu zabezpieczającego</a>, która wyjaśnia dokładniej, na czym polega nasz 100% poziom wymuszonej likwidacji w przypadku rynku Forex.</p>
+        <p>Aby dowiedzieć się więcej, zapoznaj się z naszą <a href="metatrader/margin-policy">Polityka dot. depozytu zabezpieczającego</a>, która wyjaśnia dokładniej, na czym polega nasz 100% poziom wymuszonej likwidacji w przypadku rynku Forex.</p>
 
         <h2>Ważne informacje dotyczące naszych stawek swapowych (finansowanie przez noc)</h2>
         <p>Jeżeli pozostawić jakąkolwiek pozycję otwartą przez noc, na Twoim koncie zostanie dokonana korekta oprocentowania stanowiąca wskazanie kwoty wymaganej do utrzymania pozycji otwartej. Korekta jest zależna od wysokości stóp procentowych kredytów międzybankowych, 2% opłata.</p>
@@ -943,10 +948,9 @@
     </div>
 </div>
     </div>
-            <div id="volatility-content" class="toggle-content invisible">
-        <div id="volatility-specs" class="gr-row">
+                <div id="volatility-content" class="toggle-content invisible">
+        <div id="volatility_specs" class="gr-row">
     <div class="gr-12 gr-padding-10">
-        <h1>Szczegóły kontraktu (CFD) – wskaźniki zmienności</h1>
         <div class="table-container">
     <table>
         
@@ -1410,14 +1414,13 @@
         </div>
         <p>Za każdym razem, gdy otwierasz pozycję z symbolem wskaźnika zmienności, możesz rozpocząć od transakcji o minimalnej wielkości – 0,01 (wielkość zakładu), która odpowiada 0,01 USD za punkt zmiany indeksu.</p>
         <p>depozyt zabezpieczający pokazuje Ci, jaką kwotę inwestycji możesz kontrolować w oparciu o swój kapitał początkowy. Na przykład, depozyt wynoszący 0,2% pozwoli Ci kontrolować do 500 000 USD, posiadając 1 000 USD swoich własnych pieniędzy w formie depozytu.</p>
-        <p>Aby dowiedzieć się więcej, zapoznaj się z naszą <a href="/pl/metatrader/margin-policy.html">Polityka dot. depozytu zabezpieczającego</a>, która wyjaśnia dokładniej, na czym polega nasz 50% poziom wymuszonej likwidacji w przypadku wskaźników zmienności.</p>
+        <p>Aby dowiedzieć się więcej, zapoznaj się z naszą <a href="/metatrader/margin-policy">Polityka dot. depozytu zabezpieczającego</a>, która wyjaśnia dokładniej, na czym polega nasz 50% poziom wymuszonej likwidacji w przypadku wskaźników zmienności.</p>
     </div>
 </div>
     </div>
-            <div id="cash-content" class="toggle-content invisible">
-        <div id="cash-specs" class="gr-row">
+                <div id="metals-content" class="toggle-content invisible">
+        <div id="metals_specs" class="gr-row">
     <div class="gr-12 gr-padding-10">
-        <h1>Szczegóły kontraktu (CFD) – wskaźniki gotówkowe</h1>
         <div class="table-container">
     <table>
         
@@ -1429,13 +1432,11 @@
                     
                         <th>Opis</th>
                     
-                        <th>Wielkość 1,0<br>(rozmiar zakładu)</th>
+                        <th>Volume 1.0<br>(Lot Size)</th>
                     
-                        <th>Minimalna wielkość<br>(rozmiar zakładu)</th>
+                        <th>Min. Volume<br>(Lot Size)</th>
                     
-                        <th>Maksymalna wielkość<br>(rozmiar zakładu)</th>
-                    
-                        <th>Depozyt zabezpieczający</th>
+                        <th>Main. Volume Increment</th>
                     
                 </tr>
             
@@ -1447,25 +1448,13 @@
                 
                     
                     <td>
-                        AUS_200
+                        XAU/USD
                     </td>
                     
                 
                     
                     <td>
-                        Australijski indeks gotówkowy Australia 200
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1 AUD za punkt
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1
+                        Gold vs US Dollar
                     </td>
                     
                 
@@ -1477,7 +1466,13 @@
                 
                     
                     <td>
-                        0.2%
+                        0.01
+                    </td>
+                    
+                
+                    
+                    <td>
+                        0.01
                     </td>
                     
                 
@@ -1487,37 +1482,31 @@
                 
                     
                     <td>
-                        JP_225
+                        XAG/USD
                     </td>
                     
                 
                     
                     <td>
-                        Japoński indeks gotówkowy
+                        Silver vs US Dollar
                     </td>
                     
                 
                     
                     <td>
-                        1 JPY za punkt
+                        5000
                     </td>
                     
                 
                     
                     <td>
-                        10
+                        0.01
                     </td>
                     
                 
                     
                     <td>
-                        1000
-                    </td>
-                    
-                
-                    
-                    <td>
-                        0.2%
+                        0.01
                     </td>
                     
                 
@@ -1527,25 +1516,13 @@
                 
                     
                     <td>
-                        IND_50
+                        XPD/USD
                     </td>
                     
                 
                     
                     <td>
-                        Indyjski indeks gotówkowy India 50
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1 USD za punkt
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1
+                        Palladium vs US Dollar
                     </td>
                     
                 
@@ -1557,7 +1534,13 @@
                 
                     
                     <td>
-                        0.2%
+                        0.01
+                    </td>
+                    
+                
+                    
+                    <td>
+                        0.01
                     </td>
                     
                 
@@ -1567,25 +1550,13 @@
                 
                     
                     <td>
-                        ESP_35
+                        XPT/USD
                     </td>
                     
                 
                     
                     <td>
-                        Hiszpański indeks gotówkowy Spain 35
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1 EUR za punkt
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1
+                        Platinum vs US Dollar
                     </td>
                     
                 
@@ -1597,407 +1568,13 @@
                 
                     
                     <td>
-                        0.2%
-                    </td>
-                    
-                
-            </tr>
-        
-            <tr>
-                
-                    
-                    <td>
-                        EUR_50
+                        0.01
                     </td>
                     
                 
                     
                     <td>
-                        Europejski indeks gotówkowy Euro 50
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1 EUR za punkt
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1
-                    </td>
-                    
-                
-                    
-                    <td>
-                        500
-                    </td>
-                    
-                
-                    
-                    <td>
-                        0.2%
-                    </td>
-                    
-                
-            </tr>
-        
-            <tr>
-                
-                    
-                    <td>
-                        FRA_40
-                    </td>
-                    
-                
-                    
-                    <td>
-                        Francuski indeks gotówkowy France 40
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1 EUR za punkt
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1
-                    </td>
-                    
-                
-                    
-                    <td>
-                        500
-                    </td>
-                    
-                
-                    
-                    <td>
-                        0.2%
-                    </td>
-                    
-                
-            </tr>
-        
-            <tr>
-                
-                    
-                    <td>
-                        GBR_100
-                    </td>
-                    
-                
-                    
-                    <td>
-                        Brytyjski indeks gotówkowy UK 100
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1 GBP za punkt
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1
-                    </td>
-                    
-                
-                    
-                    <td>
-                        500
-                    </td>
-                    
-                
-                    
-                    <td>
-                        0.2%
-                    </td>
-                    
-                
-            </tr>
-        
-            <tr>
-                
-                    
-                    <td>
-                        NED_25
-                    </td>
-                    
-                
-                    
-                    <td>
-                        Holenderski indeks gotówkowy 25
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1 EUR za punkt
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1
-                    </td>
-                    
-                
-                    
-                    <td>
-                        100
-                    </td>
-                    
-                
-                    
-                    <td>
-                        0.2%
-                    </td>
-                    
-                
-            </tr>
-        
-            <tr>
-                
-                    
-                    <td>
-                        ZAF_40
-                    </td>
-                    
-                
-                    
-                    <td>
-                        Południowoafrykański indeks gotówkowy South Africa 40
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1 ZAR za punkt
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1
-                    </td>
-                    
-                
-                    
-                    <td>
-                        100
-                    </td>
-                    
-                
-                    
-                    <td>
-                        0.2%
-                    </td>
-                    
-                
-            </tr>
-        
-            <tr>
-                
-                    
-                    <td>
-                        DAX_30
-                    </td>
-                    
-                
-                    
-                    <td>
-                        Niemiecki indeks gotówkowy German OTC
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1 EUR za punkt
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1
-                    </td>
-                    
-                
-                    
-                    <td>
-                        100
-                    </td>
-                    
-                
-                    
-                    <td>
-                        0.2%
-                    </td>
-                    
-                
-            </tr>
-        
-            <tr>
-                
-                    
-                    <td>
-                        CAN_60
-                    </td>
-                    
-                
-                    
-                    <td>
-                        Kanadyjski indeks gotówkowy Canada 60
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1 CAD za punkt
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1
-                    </td>
-                    
-                
-                    
-                    <td>
-                        100
-                    </td>
-                    
-                
-                    
-                    <td>
-                        0.2%
-                    </td>
-                    
-                
-            </tr>
-        
-            <tr>
-                
-                    
-                    <td>
-                        US_30
-                    </td>
-                    
-                
-                    
-                    <td>
-                        Amerykański indeks gotówkowy US 30
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1 USD za punkt
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1
-                    </td>
-                    
-                
-                    
-                    <td>
-                        200
-                    </td>
-                    
-                
-                    
-                    <td>
-                        0.2%
-                    </td>
-                    
-                
-            </tr>
-        
-            <tr>
-                
-                    
-                    <td>
-                        US_100
-                    </td>
-                    
-                
-                    
-                    <td>
-                        Amerykański indeks gotówkowy US 100
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1 USD za punkt
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1
-                    </td>
-                    
-                
-                    
-                    <td>
-                        200
-                    </td>
-                    
-                
-                    
-                    <td>
-                        0.2%
-                    </td>
-                    
-                
-            </tr>
-        
-            <tr>
-                
-                    
-                    <td>
-                        US_500
-                    </td>
-                    
-                
-                    
-                    <td>
-                        Amerykański indeks gotówkowy US 500
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1 USD za punkt
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1
-                    </td>
-                    
-                
-                    
-                    <td>
-                        200
-                    </td>
-                    
-                
-                    
-                    <td>
-                        0.2%
+                        0.01
                     </td>
                     
                 
@@ -2009,18 +1586,51 @@
     </div>
     </div>
 
-    <div class="gr-12 gr-padding-10">
-        <h2>Jak czytać informacje w powyższej tabeli</h2>
-        <p>Kontrakt CFD (kontrakt różnicy kursowej): to instrument finansowy umożliwiający odnoszenie zysków dzięki spekulacji na wzrost lub spadek ceny instrumentu. Zysk/stratę szacuje się jako funkcję różnicy w cenie zakupu/sprzedaży instrumentu bazowego.</p>
-        <p>Na przykład, Kontrakty CFD na amerykański indeks gotówkowy US 30 oferują kontrakt: 1 USD za punkt. Jeśli kupisz kontrakt na indeks gotówkowy US 30 o wielkości 1.0 z ceną bieżącą wynoszącą 20 000 USD, a potem sprzedaż go po cenie sprzedaży 20 010 USD, Twój zysk netto zostanie obliczony następująco:</p>
-        <div class="gr-12 gr-padding-10 fill-bg-color">
+    <div class="gr-4 gr-push-4 gr-padding-30">
+        <div class="fill-bg-color gr-padding-10">
             <div class="gr-prefix-1">
-                <p>(Cena sprzedaży - cena zakupu) x wielkość x cena za punkt = zysk</p>
-                <p>Np. (20010 - 20000) x 1 x 1 = 10 USD</p>
+                <h2>Maksymalna dźwignia</h2>
+                <ul class="bullet">
+        
+            <li>
+    
+    
+     Cent account: 1:1,000 
+    
+</li>
+        
+            <li>
+    
+    
+     Konto standardowe: 1: 300 
+    
+</li>
+        
+            <li>
+    
+    
+     STP account: 1:100 
+    
+</li>
+        
+            <li>
+    
+    
+     Volatility account: 1:500 
+    
+</li>
+        
+    </ul>
             </div>
         </div>
-        <p>depozyt zabezpieczający pokazuje Ci, jaką kwotę inwestycji możesz kontrolować w oparciu o swój kapitał początkowy. Na przykład, depozyt wynoszący 1% pozwoli Ci kontrolować do 100 000 USD, posiadając 1 000 USD swoich własnych pieniędzy w formie depozytu.</p>
-        <p>Aby dowiedzieć się więcej, zapoznaj się z naszą <a href="/pl/metatrader/margin-policy.html">Polityka dot. depozytu zabezpieczającego</a>, która wyjaśnia dokładniej, na czym polegają wymogi dot. depozytu zabezpieczającego.</p>
+    </div>
+
+    <div class="gr-12 gr-padding-10">
+        <h2>Jak czytać informacje w powyższej tabeli</h2>
+        <p>Our metal pairs are typically traded in lots. One standard lot is equivalent to 100 units except silver where 1 lot equals 5.000 units. Each time you open a position on a symbol, you can start with a minimum transaction of 0.01 lots.</p>
+        <p>Leverage indicates how much capital you can control based on your initial deposit. For example, a 1:100 leverage will allow you to control up to USD 100,000 using only USD 1,000 of your own money as deposit.</p>
+        <p>To learn more, read our <a href="/metatrader/margin-policy">Margin Policy</a> that further explains our 100% forced liquidation level for our metal pairs.</p>
+
         <h2>Ważne informacje dotyczące naszych stawek swapowych (finansowanie przez noc)</h2>
         <p>Jeżeli pozostawić jakąkolwiek pozycję otwartą przez noc, na Twoim koncie zostanie dokonana korekta oprocentowania stanowiąca wskazanie kwoty wymaganej do utrzymania pozycji otwartej. Korekta jest zależna od wysokości stóp procentowych kredytów międzybankowych, 2% opłata.</p>
         <p>Korekta oprocentowania jest obliczana w punktach, co oznacza, że zamienimy odpowiednie rynkowe stopy procentowe na punkty odpowiadające instrumentowi bazowemu.</p>
@@ -2042,8 +1652,9 @@
     </div>
 </div>
     </div>
-        
+            
     </div>
+        </div>
+    
     </div>
-
-    </div>
+</div>

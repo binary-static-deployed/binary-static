@@ -29,40 +29,45 @@
 
 
 
-  <div class="content-tab-container static_full cs-content">
+  <div class="static_full">
+    <h1>ข้อกำหนดสัญญา</h1>
+    <div class="content-tab-container cs-content light full-width">
         
-    <div class="tab-menu ">
+        <div class="tab-menu ">
     <div class="tab-menu-wrap">
-        <ul id="cs-menu" class="tm-ul">
+        <ul id="cs_tabs" class="tm-ul">
             
                 <li id="forex" class="tm-li active">
                 
-                <a href="#forex" class="tm-a">ฟอเร็กซ์</a>
+                    <a href="#forex" class="tm-a">ฟอเร็กซ์</a>
                 
                 </li>
             
                 <li id="volatility" class="tm-li ">
                 
-                <a href="#volatility" class="tm-a">ดัชนีความผันผวน</a>
+                    <a href="#volatility" class="tm-a">ดัชนีความผันผวน</a>
                 
                 </li>
             
-                <li id="cash" class="tm-li ">
+                <li id="metals" class="tm-li ">
                 
-                <a href="#cash" class="tm-a">ดัชนีเงินสกุลต่างๆ</a>
+                    <a href="#metals" class="tm-a">Metals</a>
+                
+                </li>
+            
+                <li id="cs_tabs_selector" class="tm-li tab-selector">
                 
                 </li>
             
         </ul>
     </div>
 </div>
-    <div class="tab-content">
-        <div class="tab-content-wrapper" id="">
+        <div class="tab-content">
+            <div class="tab-content-wrapper" id="">
         
-            <div id="forex-content" class="toggle-content ">
-        <div id="forex-specs" class="gr-row">
+                <div id="forex-content" class="toggle-content ">
+        <div id="forex_specs" class="gr-row">
     <div class="gr-12 gr-padding-10">
-        <h1>ข้อกำหนดสัญญา - ฟอเร็กซ์</h1>
         <div class="table-container">
     <table>
         
@@ -912,7 +917,7 @@
         <h2>จะอ่านตารางข้างต้นอย่างไร</h2>
         <p>โดยทั่วไปแล้วฟอเร็กซ์จะซื้อขายเป็น<i>ล็อต</i> หนึ่ง<i>ล็อต</i>มาตรฐานเท่ากับ 100,000 หน่วย แต่ละครั้งที่คุณเปิดโพซิชั่นบนสัญญลักษณ์ของสกุลเงิน คุณสามารถเริ่มต้นด้วยธุรกรรมต่ำสุดที่<i>0.01ล็อต</i></p>
         <p>เลเวอเรจบ่งชี้ว่าคุณสามารถควบคุมเงินทุนได้เท่าไหร่โดยดูจากเงินฝากขั้นต้นของคุณ เช่น เลเวอเรจ 100:1 ช่วยให้คุณสามารถควบคุมได้ถึง 100,000 เหรียญสหรัฐโดยใช้เงินเพียง 1,000 เหรียญสหรัฐที่เป็นเงินฝาก</p>
-        <p>เพื่อศึกษาเพิ่มเติม อ่าน <a href="/th/metatrader/margin-policy.html">นโยบายมาร์จิน</a> ของเรา ซึ่งอธิบายระดับการชำระบัญชีสำหรับฟอเร็กซ์ 100% ของเรา</p>
+        <p>เพื่อศึกษาเพิ่มเติม อ่าน <a href="metatrader/margin-policy">นโยบายมาร์จิน</a> ของเรา ซึ่งอธิบายระดับการชำระบัญชีสำหรับฟอเร็กซ์ 100% ของเรา</p>
 
         <h2>หมายเหตุสำคัญเกี่ยวกับอัตราการเปลี่ยนแปลงในอัตราดอกเบี้ยของเรา (การให้ทุนข้ามคืน)</h2>
         <p>หากท่านเปิดโพซิชั่นใดๆ ข้ามคืน การปรับปรุงดอกเบี้ยจะดำเนินการให้กับบัญชีซื้อขายของท่าน การปรับปรุงดอกเบี้ยจะเป็นไปตามอัตราดอกเบี้ยกู้ยืมของธนาคารที่กำหนด พร้อมด้วยค่าธรรมเนียมอีก 2%</p>
@@ -943,10 +948,9 @@
     </div>
 </div>
     </div>
-            <div id="volatility-content" class="toggle-content invisible">
-        <div id="volatility-specs" class="gr-row">
+                <div id="volatility-content" class="toggle-content invisible">
+        <div id="volatility_specs" class="gr-row">
     <div class="gr-12 gr-padding-10">
-        <h1>ข้อกำหนดสัญญา (CFD) - ดัชนีผันผวน</h1>
         <div class="table-container">
     <table>
         
@@ -1411,14 +1415,13 @@
         </div>
         <p>แต่ละครั้งที่ท่านเปิดโพซิชั่นสัญลักษณ์ดัชนีผันผวน ท่านสามารถเริ่มด้วยธุรกรรมปริมาณขั้นต่ำ 0.01 (มูลค่าซื้อขาย) ซึ่งแปลงเป็นมูลค่า 0.01 เหรียญสหรัฐ ต่อจุดการเคลื่อนไหวของดัชนี</p>
         <p>มาร์จินบ่งชี้ว่าคุณสามารถควบคุมเงินทุนได้เท่าไหร่โดยดูจากเงินฝากขั้นต้นของคุณ เช่น มาร์จิน 0.2% ช่วยให้คุณสามารถควบคุมได้ถึง 500,000 เหรียญสหรัฐโดยใช้เงินเพียง 1,000 เหรียญสหรัฐที่เป็นเงินฝาก</p>
-        <p>เพื่อศึกษาเพิ่มเติม อ่าน <a href="/th/metatrader/margin-policy.html">นโยบายมาร์จิน</a> ของเรา ซึ่งอธิบายระดับการชำระบัญชีสำหรับดัชนีผันผวน 50% ของเรา</p>
+        <p>เพื่อศึกษาเพิ่มเติม อ่าน <a href="/metatrader/margin-policy">นโยบายมาร์จิน</a> ของเรา ซึ่งอธิบายระดับการชำระบัญชีสำหรับดัชนีผันผวน 50% ของเรา</p>
     </div>
 </div>
     </div>
-            <div id="cash-content" class="toggle-content invisible">
-        <div id="cash-specs" class="gr-row">
+                <div id="metals-content" class="toggle-content invisible">
+        <div id="metals_specs" class="gr-row">
     <div class="gr-12 gr-padding-10">
-        <h1>ข้อกำหนดสัญญา (CFD) - ดัชนีสกุลเงิน</h1>
         <div class="table-container">
     <table>
         
@@ -1430,13 +1433,11 @@
                     
                         <th>รายละเอียด</th>
                     
-                        <th>Volume 1.0 <br> (ขนาดการซื้อขาย)</th>
+                        <th>Volume 1.0<br>(Lot Size)</th>
                     
-                        <th>จำนวนต่ำสุด <br> (ขนาดของการซื้อขาย)</th>
+                        <th>Min. Volume<br>(Lot Size)</th>
                     
-                        <th>จำนวนสูงสุด <br> (ขนาดของการซื้อขาย)</th>
-                    
-                        <th>มาร์จิน</th>
+                        <th>Main. Volume Increment</th>
                     
                 </tr>
             
@@ -1448,25 +1449,13 @@
                 
                     
                     <td>
-                        AUS_200
+                        XAU/USD
                     </td>
                     
                 
                     
                     <td>
-                        ดัชนีเงิน Australian 200
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1 AUD ต่อหน่วย
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1
+                        Gold vs US Dollar
                     </td>
                     
                 
@@ -1478,7 +1467,13 @@
                 
                     
                     <td>
-                        0.2%
+                        0.01
+                    </td>
+                    
+                
+                    
+                    <td>
+                        0.01
                     </td>
                     
                 
@@ -1488,37 +1483,31 @@
                 
                     
                     <td>
-                        JP_225
+                        XAG/USD
                     </td>
                     
                 
                     
                     <td>
-                        ดัชนีเงินของประเทศญี่ปุ่น
+                        Silver vs US Dollar
                     </td>
                     
                 
                     
                     <td>
-                        1 JPY ต่อหน่วย
+                        5000
                     </td>
                     
                 
                     
                     <td>
-                        10
+                        0.01
                     </td>
                     
                 
                     
                     <td>
-                        1000
-                    </td>
-                    
-                
-                    
-                    <td>
-                        0.2%
+                        0.01
                     </td>
                     
                 
@@ -1528,25 +1517,13 @@
                 
                     
                     <td>
-                        IND_50
+                        XPD/USD
                     </td>
                     
                 
                     
                     <td>
-                        ดัชนีเงิน India 50
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1 USD ต่อหน่วย
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1
+                        Palladium vs US Dollar
                     </td>
                     
                 
@@ -1558,7 +1535,13 @@
                 
                     
                     <td>
-                        0.2%
+                        0.01
+                    </td>
+                    
+                
+                    
+                    <td>
+                        0.01
                     </td>
                     
                 
@@ -1568,25 +1551,13 @@
                 
                     
                     <td>
-                        ESP_35
+                        XPT/USD
                     </td>
                     
                 
                     
                     <td>
-                        ดัชนีเงิน Spain 35
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1 EUR ต่อหน่วย
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1
+                        Platinum vs US Dollar
                     </td>
                     
                 
@@ -1598,407 +1569,13 @@
                 
                     
                     <td>
-                        0.2%
-                    </td>
-                    
-                
-            </tr>
-        
-            <tr>
-                
-                    
-                    <td>
-                        EUR_50
+                        0.01
                     </td>
                     
                 
                     
                     <td>
-                        ดัชนีเงิน Euro 50
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1 EUR ต่อหน่วย
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1
-                    </td>
-                    
-                
-                    
-                    <td>
-                        500
-                    </td>
-                    
-                
-                    
-                    <td>
-                        0.2%
-                    </td>
-                    
-                
-            </tr>
-        
-            <tr>
-                
-                    
-                    <td>
-                        FRA_40
-                    </td>
-                    
-                
-                    
-                    <td>
-                        ดัชนีเงิน France 40
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1 EUR ต่อหน่วย
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1
-                    </td>
-                    
-                
-                    
-                    <td>
-                        500
-                    </td>
-                    
-                
-                    
-                    <td>
-                        0.2%
-                    </td>
-                    
-                
-            </tr>
-        
-            <tr>
-                
-                    
-                    <td>
-                        GBR_100
-                    </td>
-                    
-                
-                    
-                    <td>
-                        ดัชนีเงิน UK 100
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1 GBP ต่อหน่วย
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1
-                    </td>
-                    
-                
-                    
-                    <td>
-                        500
-                    </td>
-                    
-                
-                    
-                    <td>
-                        0.2%
-                    </td>
-                    
-                
-            </tr>
-        
-            <tr>
-                
-                    
-                    <td>
-                        NED_25
-                    </td>
-                    
-                
-                    
-                    <td>
-                        ดัชนีเงิน Netherlands 25
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1 EUR ต่อหน่วย
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1
-                    </td>
-                    
-                
-                    
-                    <td>
-                        100
-                    </td>
-                    
-                
-                    
-                    <td>
-                        0.2%
-                    </td>
-                    
-                
-            </tr>
-        
-            <tr>
-                
-                    
-                    <td>
-                        ZAF_40
-                    </td>
-                    
-                
-                    
-                    <td>
-                        ดัชนีเงิน South Africa 40
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1 ZAR ต่อหน่วย
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1
-                    </td>
-                    
-                
-                    
-                    <td>
-                        100
-                    </td>
-                    
-                
-                    
-                    <td>
-                        0.2%
-                    </td>
-                    
-                
-            </tr>
-        
-            <tr>
-                
-                    
-                    <td>
-                        DAX_30
-                    </td>
-                    
-                
-                    
-                    <td>
-                        ดัชนีเงิน German 30
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1 EUR ต่อหน่วย
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1
-                    </td>
-                    
-                
-                    
-                    <td>
-                        100
-                    </td>
-                    
-                
-                    
-                    <td>
-                        0.2%
-                    </td>
-                    
-                
-            </tr>
-        
-            <tr>
-                
-                    
-                    <td>
-                        CAN_60
-                    </td>
-                    
-                
-                    
-                    <td>
-                        ดัชนีเงิน Canada 60
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1 CAD ต่อหน่วย
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1
-                    </td>
-                    
-                
-                    
-                    <td>
-                        100
-                    </td>
-                    
-                
-                    
-                    <td>
-                        0.2%
-                    </td>
-                    
-                
-            </tr>
-        
-            <tr>
-                
-                    
-                    <td>
-                        US_30
-                    </td>
-                    
-                
-                    
-                    <td>
-                        ดัชนีเงิน US 30
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1 USD ต่อหน่วย
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1
-                    </td>
-                    
-                
-                    
-                    <td>
-                        200
-                    </td>
-                    
-                
-                    
-                    <td>
-                        0.2%
-                    </td>
-                    
-                
-            </tr>
-        
-            <tr>
-                
-                    
-                    <td>
-                        US_100
-                    </td>
-                    
-                
-                    
-                    <td>
-                        ดัชนีเงิน US 100
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1 USD ต่อหน่วย
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1
-                    </td>
-                    
-                
-                    
-                    <td>
-                        200
-                    </td>
-                    
-                
-                    
-                    <td>
-                        0.2%
-                    </td>
-                    
-                
-            </tr>
-        
-            <tr>
-                
-                    
-                    <td>
-                        US_500
-                    </td>
-                    
-                
-                    
-                    <td>
-                        ดัชนีเงิน US 500
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1 USD ต่อหน่วย
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1
-                    </td>
-                    
-                
-                    
-                    <td>
-                        200
-                    </td>
-                    
-                
-                    
-                    <td>
-                        0.2%
+                        0.01
                     </td>
                     
                 
@@ -2010,18 +1587,51 @@
     </div>
     </div>
 
-    <div class="gr-12 gr-padding-10">
-        <h2>จะอ่านตารางข้างต้นอย่างไร</h2>
-        <p>CFD (Contract for Difference): CFD เป็นเครื่องมือในการทำกำไรทั้งขาขึ้นและขาลง กำไร หรือ ขาดทุนนั้นจะถูกประมาณการเมื่อมีการกำหนดราคาซื้อ/ราคาขายของผลิตภัณฑ์อ้างอิง</p>
-        <p>ตัวอย่างเช่น CFD บนดัชนีเงินสด US 30 เสนอที่ 1 เหรียญสหรัฐต่อสัญญาหน่วย ถ้าคุณซื้อจำนวน 1.0 สัญญาสำหรับดัชนีเงินสด US 30 ด้วยราคาจะซื้อปัจจุบันที่ 20,000 เหรียญสหรัฐ และหลังจากนั้นขายที่ราคา 20,010 เหรียญสหรัฐ กำไรสุทธิของคุณจะถูกคำนวณดังนี้:</p>
-        <div class="gr-12 gr-padding-10 fill-bg-color">
+    <div class="gr-4 gr-push-4 gr-padding-30">
+        <div class="fill-bg-color gr-padding-10">
             <div class="gr-prefix-1">
-                <p>(ราคาขาย - ราคาซื้อ) x จำนวน x ราคาต่อหน่วย = กำไร</p>
-                <p>เช่น (20010 - 20000) x 1 x 1 = 10 เหรียญสหรัฐ</p>
+                <h2>เลเวอเรจสูงสุด</h2>
+                <ul class="bullet">
+        
+            <li>
+    
+    
+     Cent account: 1:1,000 
+    
+</li>
+        
+            <li>
+    
+    
+     Standard account: 1:300 
+    
+</li>
+        
+            <li>
+    
+    
+     STP account: 1:100 
+    
+</li>
+        
+            <li>
+    
+    
+     Volatility account: 1:500 
+    
+</li>
+        
+    </ul>
             </div>
         </div>
-        <p>มาร์จินบ่งชี้ว่าคุณสามารถควบคุมเงินทุนได้เท่าไหร่โดยดูจากเงินฝากขั้นต้นของคุณ เช่น มาร์จิน 1% ช่วยให้คุณสามารถควบคุมได้ถึง 100,000 เหรียญสหรัฐโดยใช้เงินเพียง 1,000 เหรียญสหรัฐที่เป็นเงินฝาก</p>
-        <p>เพื่อศึกษาเพิ่มเติม อ่าน <a href="/th/metatrader/margin-policy.html">นโยบายมาร์จิน</a> ของเรา ซึ่งอธิบายข้อกำหนดมาร์จินของเรา</p>
+    </div>
+
+    <div class="gr-12 gr-padding-10">
+        <h2>จะอ่านตารางข้างต้นอย่างไร</h2>
+        <p>Our metal pairs are typically traded in lots. One standard lot is equivalent to 100 units except silver where 1 lot equals 5.000 units. Each time you open a position on a symbol, you can start with a minimum transaction of 0.01 lots.</p>
+        <p>Leverage indicates how much capital you can control based on your initial deposit. For example, a 1:100 leverage will allow you to control up to USD 100,000 using only USD 1,000 of your own money as deposit.</p>
+        <p>To learn more, read our <a href="/metatrader/margin-policy">Margin Policy</a> that further explains our 100% forced liquidation level for our metal pairs.</p>
+
         <h2>หมายเหตุสำคัญเกี่ยวกับอัตราการเปลี่ยนแปลงในอัตราดอกเบี้ยของเรา (การให้ทุนข้ามคืน)</h2>
         <p>หากท่านเปิดโพซิชั่นใดๆ ข้ามคืน การปรับปรุงดอกเบี้ยจะดำเนินการให้กับบัญชีซื้อขายของท่าน การปรับปรุงดอกเบี้ยจะเป็นไปตามอัตราดอกเบี้ยกู้ยืมของธนาคารที่กำหนด พร้อมด้วยค่าธรรมเนียมอีก 2%</p>
         <p>การปรับดอกเบี้ยจะถูกคำนวณเป็นจุด ซึ่งหมายความว่า เราจะแปลงอัตราดอกเบี้ยระหว่างธนาคารที่เกี่ยวข้องให้เป็นจุดในเครื่องมือฐาน</p>
@@ -2043,8 +1653,9 @@
     </div>
 </div>
     </div>
-        
+            
     </div>
+        </div>
+    
     </div>
-
-    </div>
+</div>

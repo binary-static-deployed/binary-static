@@ -58,14 +58,14 @@
         <link rel="alternate" href="/zh_cn/metatrader/contract-specifications.html" hreflang="ZH_CN" />   
         <link rel="alternate" href="/zh_tw/metatrader/contract-specifications.html" hreflang="ZH_TW" />   
 
-         <link rel="stylesheet" href="/css/common.min.css?kifx02el" />
-         <link rel="stylesheet" href="/css/app.min.css?kifx02el" />
-         <link rel="stylesheet" href="/css/static.min.css?kifx02el" />
+         <link rel="stylesheet" href="/css/common.min.css?mrzpcz8c" />
+         <link rel="stylesheet" href="/css/app.min.css?mrzpcz8c" />
+         <link rel="stylesheet" href="/css/static.min.css?mrzpcz8c" />
         
-         <script src='/js/texts/ja.js?kifx02el'></script>
-         <script src='/js/manifest.js?kifx02el'></script>
-         <script src='/js/vendor.min.js?ced1816e'></script>
-         <script src='/js/binary.min.js?kifx02el'></script>
+         <script src='/js/texts/ja.js?mrzpcz8c'></script>
+         <script src='/js/manifest.js?mrzpcz8c'></script>
+         <script src='/js/vendor.min.js?1e31abaf'></script>
+         <script src='/js/binary.min.js?mrzpcz8c'></script>
         
     </head>
 
@@ -137,59 +137,87 @@
                         <div id='main-navigation'>
                             <ul class="center-text nowrap" id="menu-top">
         
-            <li class="ja-hide">
+            <li class="ja-hide mt-hide">
     
     <a href="/ja/why-us.html">
      サービス概要 
     </a>
 </li>
         
-            <li class="invisible ja-show">
-    
-    <a href="/ja/why-us-jp.html">
-     サービス概要 
-    </a>
-</li>
-        
-            <li class="ja-hide">
+            <li class="ja-hide mt-hide">
     
     <a href="/ja/get-started.html">
      はじめに 
     </a>
 </li>
         
-            <li class="invisible ja-show">
-    
-    <a href="/ja/get-started-jp.html">
-     はじめに 
-    </a>
-</li>
-        
-            <li class="ja-hide">
+            <li class="ja-hide mt-hide">
     
     <a href="/ja/tour.html">
      ご利用方法 
     </a>
 </li>
         
-            <li class="invisible ja-show">
-    
-    <a href="/ja/tour-jp.html">
-     ご利用方法 
-    </a>
-</li>
-        
-            <li class="ja-hide" id="main-navigation-trading">
+            <li class="ja-hide mt-hide" id="main-navigation-trading">
     
     <a href="/ja/platforms.html">
      プラットフォーム 
     </a>
 </li>
         
-            <li class="invisible ja-show" id="main-navigation-jptrading">
+            <li class="invisible ja-show mt-hide">
+    
+    <a href="/ja/why-us-jp.html">
+     サービス概要 
+    </a>
+</li>
+        
+            <li class="invisible ja-show mt-hide">
+    
+    <a href="/ja/get-started-jp.html">
+     はじめに 
+    </a>
+</li>
+        
+            <li class="invisible ja-show mt-hide">
+    
+    <a href="/ja/tour-jp.html">
+     ご利用方法 
+    </a>
+</li>
+        
+            <li class="invisible ja-show mt-hide" id="main-navigation-jptrading">
     
     <a href="/ja/multi_barriers_trading.html">
      トレード 
+    </a>
+</li>
+        
+            <li class="invisible mt-show">
+    
+    <a href="/ja/user/metatrader.html">
+     MetaTrader 
+    </a>
+</li>
+        
+            <li class="invisible mt-show">
+    
+    <a href="/ja/cashier.html">
+     入出金 
+    </a>
+</li>
+        
+            <li class="invisible mt-show">
+    
+    <a href="/ja/get-started-beta.html?parent=mt5">
+     はじめに 
+    </a>
+</li>
+        
+            <li class="invisible mt-show">
+    
+    <a href="/ja/platforms.html?parent=mt5">
+     プラットフォーム 
     </a>
 </li>
         
@@ -261,7 +289,7 @@
         </div>
     </div>
     <div id="content-holder">
-        <div id="main-menu" class="tab-menu no-print fill-bg-color">
+        <div id="main-menu" class="tab-menu no-print fill-bg-color mt-hide">
     <div class="tab-menu-wrap container gr-hide-m gr-hide-p">
         <div class="gr-12 gr-no-gutter">
             <ul class="items">  <li id="topMenuTrading" class="item ja-hide gr-hide-m gr-hide-p ico-only-hide">
@@ -437,40 +465,45 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
 
-  <div class="content-tab-container static_full cs-content">
+  <div class="static_full">
+    <h1>トレード詳細</h1>
+    <div class="content-tab-container cs-content light full-width">
         
-    <div class="tab-menu ">
+        <div class="tab-menu ">
     <div class="tab-menu-wrap">
-        <ul id="cs-menu" class="tm-ul">
+        <ul id="cs_tabs" class="tm-ul">
             
                 <li id="forex" class="tm-li active">
                 
-                <a href="#forex" class="tm-a">外国為替</a>
+                    <a href="#forex" class="tm-a">外国為替</a>
                 
                 </li>
             
                 <li id="volatility" class="tm-li ">
                 
-                <a href="#volatility" class="tm-a">ボラティリティ指数</a>
+                    <a href="#volatility" class="tm-a">ボラティリティ指数</a>
                 
                 </li>
             
-                <li id="cash" class="tm-li ">
+                <li id="metals" class="tm-li ">
                 
-                <a href="#cash" class="tm-a">店頭インデックス</a>
+                    <a href="#metals" class="tm-a">Metals</a>
+                
+                </li>
+            
+                <li id="cs_tabs_selector" class="tm-li tab-selector">
                 
                 </li>
             
         </ul>
     </div>
 </div>
-    <div class="tab-content">
-        <div class="tab-content-wrapper" id="">
+        <div class="tab-content">
+            <div class="tab-content-wrapper" id="">
         
-            <div id="forex-content" class="toggle-content ">
-        <div id="forex-specs" class="gr-row">
+                <div id="forex-content" class="toggle-content ">
+        <div id="forex_specs" class="gr-row">
     <div class="gr-12 gr-padding-10">
-        <h1>トレード仕様 - 外国為替</h1>
         <div class="table-container">
     <table>
         
@@ -1320,7 +1353,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <h2>上記テーブルの読み方</h2>
         <p>外国為替では通常<i>ロット数</i>にて取引を行います。1スタンダード<i>ロット</i>100,000単位相当です。通貨シンボルを用いてポジションをオープンする際、最小数量である<i>0.01ロット</i>からお取引を開始いただけます。</p>
         <p>Leverage indicates how much capital you can control based on your initial deposit. For example, a 100:1 leverage will allow you to control up to USD 100,000 using only USD 1,000 of your own money as deposit.</p>
-        <p>詳細については、外国為替の100%強制ロスカットレベルが記載されている<a href="/ja/metatrader/margin-policy.html">マージンポリシー</a>をご確認ください。</p>
+        <p>詳細については、外国為替の100%強制ロスカットレベルが記載されている<a href="metatrader/margin-policy">マージンポリシー</a>をご確認ください。</p>
 
         <h2>スワップレートに関する重要事項（翌日返済資金調達）</h2>
         <p>一晩中ポジションをオープンのまま保持されると、ポジションをオープンに保つのに必要な手数料としてお客さまの口座に金利調整が行われます。この調整はインターバンクの貸出金利に基づいた２％の手数料が課せられます。</p>
@@ -1351,10 +1384,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </div>
 </div>
     </div>
-            <div id="volatility-content" class="toggle-content invisible">
-        <div id="volatility-specs" class="gr-row">
+                <div id="volatility-content" class="toggle-content invisible">
+        <div id="volatility_specs" class="gr-row">
     <div class="gr-12 gr-padding-10">
-        <h1>トレード詳細（CFD）- ボラティリティインデックス</h1>
         <div class="table-container">
     <table>
         
@@ -1818,14 +1850,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </div>
         <p>ボラティリティインデックスのシンボルのポジションをオープンにする度に、0.01（取引数量）の最小取引量で始めることができます。インデックスの1ポイントにつきUSD 0.01 に変換されます。</p>
         <p>Margin indicates how much investment you can control based on your initial capital. For example, a 0.2% margin will allow you to control up to USD 500,000 using only USD 1,000 of your own money as deposit.</p>
-        <p>詳細については、ボラティリティインデックスの50%強制ロスカットレベルが記載されている<a href="/ja/metatrader/margin-policy.html">マージンポリシー</a>をご確認ください。</p>
+        <p>詳細については、ボラティリティインデックスの50%強制ロスカットレベルが記載されている<a href="/metatrader/margin-policy">マージンポリシー</a>をご確認ください。</p>
     </div>
 </div>
     </div>
-            <div id="cash-content" class="toggle-content invisible">
-        <div id="cash-specs" class="gr-row">
+                <div id="metals-content" class="toggle-content invisible">
+        <div id="metals_specs" class="gr-row">
     <div class="gr-12 gr-padding-10">
-        <h1>トレード詳細（CFD）- 現金インデックス</h1>
         <div class="table-container">
     <table>
         
@@ -1837,13 +1868,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     
                         <th>取引内容</th>
                     
-                        <th>数量1.0<br>（取引数量）</th>
+                        <th>Volume 1.0<br>(Lot Size)</th>
                     
-                        <th>最小数量<br>（取引数量）</th>
+                        <th>Min. Volume<br>(Lot Size)</th>
                     
-                        <th>最大数量<br>（取引数量）</th>
-                    
-                        <th>証拠金取引</th>
+                        <th>Main. Volume Increment</th>
                     
                 </tr>
             
@@ -1855,25 +1884,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 
                     
                     <td>
-                        AUS_200
+                        XAU/USD
                     </td>
                     
                 
                     
                     <td>
-                        オーストラリア 200現物指数
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1ポイント＝AUD1
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1
+                        Gold vs US Dollar
                     </td>
                     
                 
@@ -1885,7 +1902,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 
                     
                     <td>
-                        0.2%
+                        0.01
+                    </td>
+                    
+                
+                    
+                    <td>
+                        0.01
                     </td>
                     
                 
@@ -1895,37 +1918,31 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 
                     
                     <td>
-                        JP_225
+                        XAG/USD
                     </td>
                     
                 
                     
                     <td>
-                        日本 現物指数
+                        Silver vs US Dollar
                     </td>
                     
                 
                     
                     <td>
-                        1ポイント＝JPY 1
+                        5000
                     </td>
                     
                 
                     
                     <td>
-                        10
+                        0.01
                     </td>
                     
                 
                     
                     <td>
-                        1000
-                    </td>
-                    
-                
-                    
-                    <td>
-                        0.2%
+                        0.01
                     </td>
                     
                 
@@ -1935,25 +1952,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 
                     
                     <td>
-                        IND_50
+                        XPD/USD
                     </td>
                     
                 
                     
                     <td>
-                        インド 50現物指数
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1ポイント＝USD 1
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1
+                        Palladium vs US Dollar
                     </td>
                     
                 
@@ -1965,7 +1970,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 
                     
                     <td>
-                        0.2%
+                        0.01
+                    </td>
+                    
+                
+                    
+                    <td>
+                        0.01
                     </td>
                     
                 
@@ -1975,25 +1986,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 
                     
                     <td>
-                        ESP_35
+                        XPT/USD
                     </td>
                     
                 
                     
                     <td>
-                        スペイン 35現物指数
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1ポイント＝EUR 1
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1
+                        Platinum vs US Dollar
                     </td>
                     
                 
@@ -2005,407 +2004,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 
                     
                     <td>
-                        0.2%
-                    </td>
-                    
-                
-            </tr>
-        
-            <tr>
-                
-                    
-                    <td>
-                        EUR_50
+                        0.01
                     </td>
                     
                 
                     
                     <td>
-                        ユーロ 50現物指数
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1ポイント＝EUR 1
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1
-                    </td>
-                    
-                
-                    
-                    <td>
-                        500
-                    </td>
-                    
-                
-                    
-                    <td>
-                        0.2%
-                    </td>
-                    
-                
-            </tr>
-        
-            <tr>
-                
-                    
-                    <td>
-                        FRA_40
-                    </td>
-                    
-                
-                    
-                    <td>
-                        フランス 40現物指数
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1ポイント＝EUR 1
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1
-                    </td>
-                    
-                
-                    
-                    <td>
-                        500
-                    </td>
-                    
-                
-                    
-                    <td>
-                        0.2%
-                    </td>
-                    
-                
-            </tr>
-        
-            <tr>
-                
-                    
-                    <td>
-                        GBR_100
-                    </td>
-                    
-                
-                    
-                    <td>
-                        イギリス 現物指数
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1ポイント＝GBP 1
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1
-                    </td>
-                    
-                
-                    
-                    <td>
-                        500
-                    </td>
-                    
-                
-                    
-                    <td>
-                        0.2%
-                    </td>
-                    
-                
-            </tr>
-        
-            <tr>
-                
-                    
-                    <td>
-                        NED_25
-                    </td>
-                    
-                
-                    
-                    <td>
-                        ニュージーランド 25現物指数
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1ポイント＝EUR 1
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1
-                    </td>
-                    
-                
-                    
-                    <td>
-                        100
-                    </td>
-                    
-                
-                    
-                    <td>
-                        0.2%
-                    </td>
-                    
-                
-            </tr>
-        
-            <tr>
-                
-                    
-                    <td>
-                        ZAF_40
-                    </td>
-                    
-                
-                    
-                    <td>
-                        南アフリカ 40現物指数
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1ポイント＝ZAR 1
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1
-                    </td>
-                    
-                
-                    
-                    <td>
-                        100
-                    </td>
-                    
-                
-                    
-                    <td>
-                        0.2%
-                    </td>
-                    
-                
-            </tr>
-        
-            <tr>
-                
-                    
-                    <td>
-                        DAX_30
-                    </td>
-                    
-                
-                    
-                    <td>
-                        ドイツ 30現物指数
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1ポイント＝EUR 1
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1
-                    </td>
-                    
-                
-                    
-                    <td>
-                        100
-                    </td>
-                    
-                
-                    
-                    <td>
-                        0.2%
-                    </td>
-                    
-                
-            </tr>
-        
-            <tr>
-                
-                    
-                    <td>
-                        CAN_60
-                    </td>
-                    
-                
-                    
-                    <td>
-                        カナダ 60現物指数
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1ポイント＝CAD 1
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1
-                    </td>
-                    
-                
-                    
-                    <td>
-                        100
-                    </td>
-                    
-                
-                    
-                    <td>
-                        0.2%
-                    </td>
-                    
-                
-            </tr>
-        
-            <tr>
-                
-                    
-                    <td>
-                        US_30
-                    </td>
-                    
-                
-                    
-                    <td>
-                        アメリカ 30現物指数
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1ポイント＝USD 1
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1
-                    </td>
-                    
-                
-                    
-                    <td>
-                        200
-                    </td>
-                    
-                
-                    
-                    <td>
-                        0.2%
-                    </td>
-                    
-                
-            </tr>
-        
-            <tr>
-                
-                    
-                    <td>
-                        US_100
-                    </td>
-                    
-                
-                    
-                    <td>
-                        アメリカ 100現物指数
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1ポイント＝USD 1
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1
-                    </td>
-                    
-                
-                    
-                    <td>
-                        200
-                    </td>
-                    
-                
-                    
-                    <td>
-                        0.2%
-                    </td>
-                    
-                
-            </tr>
-        
-            <tr>
-                
-                    
-                    <td>
-                        US_500
-                    </td>
-                    
-                
-                    
-                    <td>
-                        アメリカ 500現物指数
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1ポイント＝USD 1
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1
-                    </td>
-                    
-                
-                    
-                    <td>
-                        200
-                    </td>
-                    
-                
-                    
-                    <td>
-                        0.2%
+                        0.01
                     </td>
                     
                 
@@ -2417,18 +2022,51 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </div>
     </div>
 
-    <div class="gr-12 gr-padding-10">
-        <h2>上記テーブルの読み方</h2>
-        <p>CFD（差金決済取引）：CFDとは金融商品の上昇または下降の推測から利益を得られる金融商品のことをいいます。利益/損失は原資産商品の購入/売却価格の差額として推定されます。</p>
-        <p>例えば、US 30現金インデックスでのCFD取引は１ポイントUSD 1としてトレードを提供しています。現行価格USD 20,000のUS 30現金インデックスを1.0の数量で購入し、その後USD 20,010の価格で売却した場合、純利益は以下のように算出されます。</p>
-        <div class="gr-12 gr-padding-10 fill-bg-color">
+    <div class="gr-4 gr-push-4 gr-padding-30">
+        <div class="fill-bg-color gr-padding-10">
             <div class="gr-prefix-1">
-                <p>（売却価格 - 購入価格 ）× 数量 × ポイント単価 = 利益</p>
-                <p>(20010 - 20000) x 1 x 1 = USD 10</p>
+                <h2>最大レバレッジ</h2>
+                <ul class="bullet">
+        
+            <li>
+    
+    
+     Cent account: 1:1,000 
+    
+</li>
+        
+            <li>
+    
+    
+     Standard account: 1:300 
+    
+</li>
+        
+            <li>
+    
+    
+     STP account: 1:100 
+    
+</li>
+        
+            <li>
+    
+    
+     Volatility account: 1:500 
+    
+</li>
+        
+    </ul>
             </div>
         </div>
-        <p>Margin indicates how much investment you can control based on your initial capital. For example, a 1% margin will allow you to control up to USD 100,000 using only USD 1,000 of your own money as deposit.</p>
-        <p>詳細はマージンの要件が記載されている当社の<a href="/ja/metatrader/margin-policy.html">マージンポリシー</a>をご確認ください。</p>
+    </div>
+
+    <div class="gr-12 gr-padding-10">
+        <h2>上記テーブルの読み方</h2>
+        <p>Our metal pairs are typically traded in lots. One standard lot is equivalent to 100 units except silver where 1 lot equals 5.000 units. Each time you open a position on a symbol, you can start with a minimum transaction of 0.01 lots.</p>
+        <p>Leverage indicates how much capital you can control based on your initial deposit. For example, a 1:100 leverage will allow you to control up to USD 100,000 using only USD 1,000 of your own money as deposit.</p>
+        <p>To learn more, read our <a href="/metatrader/margin-policy">Margin Policy</a> that further explains our 100% forced liquidation level for our metal pairs.</p>
+
         <h2>スワップレートに関する重要事項（翌日返済資金調達）</h2>
         <p>一晩中ポジションをオープンのまま保持されると、ポジションをオープンに保つのに必要な手数料としてお客さまの口座に金利調整が行われます。この調整はインターバンクの貸出金利に基づいた２％の手数料が課せられます。</p>
         <p>The interest adjustment is calculated in points, meaning we will convert the relevant market rates to points in the base instrument.</p>
@@ -2450,11 +2088,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </div>
 </div>
     </div>
-        
+            
     </div>
+        </div>
+    
     </div>
-
-    </div>
+</div>
 
 
   </div> 

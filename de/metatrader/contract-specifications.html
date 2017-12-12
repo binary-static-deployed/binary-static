@@ -57,14 +57,14 @@
         <link rel="alternate" href="/zh_cn/metatrader/contract-specifications.html" hreflang="ZH_CN" />   
         <link rel="alternate" href="/zh_tw/metatrader/contract-specifications.html" hreflang="ZH_TW" />   
 
-         <link rel="stylesheet" href="/css/common.min.css?kifx02el" />
-         <link rel="stylesheet" href="/css/app.min.css?kifx02el" />
-         <link rel="stylesheet" href="/css/static.min.css?kifx02el" />
+         <link rel="stylesheet" href="/css/common.min.css?mrzpcz8c" />
+         <link rel="stylesheet" href="/css/app.min.css?mrzpcz8c" />
+         <link rel="stylesheet" href="/css/static.min.css?mrzpcz8c" />
         
-         <script src='/js/texts/de.js?kifx02el'></script>
-         <script src='/js/manifest.js?kifx02el'></script>
-         <script src='/js/vendor.min.js?ced1816e'></script>
-         <script src='/js/binary.min.js?kifx02el'></script>
+         <script src='/js/texts/de.js?mrzpcz8c'></script>
+         <script src='/js/manifest.js?mrzpcz8c'></script>
+         <script src='/js/vendor.min.js?1e31abaf'></script>
+         <script src='/js/binary.min.js?mrzpcz8c'></script>
         
     </head>
 
@@ -136,59 +136,87 @@
                         <div id='main-navigation'>
                             <ul class="center-text nowrap" id="menu-top">
         
-            <li class="ja-hide">
+            <li class="ja-hide mt-hide">
     
     <a href="/de/why-us.html">
      Warum uns? 
     </a>
 </li>
         
-            <li class="invisible ja-show">
-    
-    <a href="/de/why-us-jp.html">
-     Warum uns? 
-    </a>
-</li>
-        
-            <li class="ja-hide">
+            <li class="ja-hide mt-hide">
     
     <a href="/de/get-started.html">
      Erste Schritte 
     </a>
 </li>
         
-            <li class="invisible ja-show">
-    
-    <a href="/de/get-started-jp.html">
-     Erste Schritte 
-    </a>
-</li>
-        
-            <li class="ja-hide">
+            <li class="ja-hide mt-hide">
     
     <a href="/de/tour.html">
      Tour 
     </a>
 </li>
         
-            <li class="invisible ja-show">
-    
-    <a href="/de/tour-jp.html">
-     Tour 
-    </a>
-</li>
-        
-            <li class="ja-hide" id="main-navigation-trading">
+            <li class="ja-hide mt-hide" id="main-navigation-trading">
     
     <a href="/de/platforms.html">
      Plattformen 
     </a>
 </li>
         
-            <li class="invisible ja-show" id="main-navigation-jptrading">
+            <li class="invisible ja-show mt-hide">
+    
+    <a href="/de/why-us-jp.html">
+     Warum uns? 
+    </a>
+</li>
+        
+            <li class="invisible ja-show mt-hide">
+    
+    <a href="/de/get-started-jp.html">
+     Erste Schritte 
+    </a>
+</li>
+        
+            <li class="invisible ja-show mt-hide">
+    
+    <a href="/de/tour-jp.html">
+     Tour 
+    </a>
+</li>
+        
+            <li class="invisible ja-show mt-hide" id="main-navigation-jptrading">
     
     <a href="/de/multi_barriers_trading.html">
      Handel 
+    </a>
+</li>
+        
+            <li class="invisible mt-show">
+    
+    <a href="/de/user/metatrader.html">
+     MetaTrader 
+    </a>
+</li>
+        
+            <li class="invisible mt-show">
+    
+    <a href="/de/cashier.html">
+     Kasse 
+    </a>
+</li>
+        
+            <li class="invisible mt-show">
+    
+    <a href="/de/get-started-beta.html?parent=mt5">
+     Erste Schritte 
+    </a>
+</li>
+        
+            <li class="invisible mt-show">
+    
+    <a href="/de/platforms.html?parent=mt5">
+     Plattformen 
     </a>
 </li>
         
@@ -260,7 +288,7 @@
         </div>
     </div>
     <div id="content-holder">
-        <div id="main-menu" class="tab-menu no-print fill-bg-color">
+        <div id="main-menu" class="tab-menu no-print fill-bg-color mt-hide">
     <div class="tab-menu-wrap container gr-hide-m gr-hide-p">
         <div class="gr-12 gr-no-gutter">
             <ul class="items">  <li id="topMenuTrading" class="item ja-hide gr-hide-m gr-hide-p ico-only-hide">
@@ -436,40 +464,45 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
 
-  <div class="content-tab-container static_full cs-content">
+  <div class="static_full">
+    <h1>Vertragsspezifikationen</h1>
+    <div class="content-tab-container cs-content light full-width">
         
-    <div class="tab-menu ">
+        <div class="tab-menu ">
     <div class="tab-menu-wrap">
-        <ul id="cs-menu" class="tm-ul">
+        <ul id="cs_tabs" class="tm-ul">
             
                 <li id="forex" class="tm-li active">
                 
-                <a href="#forex" class="tm-a">Devisenhandel</a>
+                    <a href="#forex" class="tm-a">Devisenhandel</a>
                 
                 </li>
             
                 <li id="volatility" class="tm-li ">
                 
-                <a href="#volatility" class="tm-a">Volatilität Indizes</a>
+                    <a href="#volatility" class="tm-a">Volatilität Indizes</a>
                 
                 </li>
             
-                <li id="cash" class="tm-li ">
+                <li id="metals" class="tm-li ">
                 
-                <a href="#cash" class="tm-a">Cash Indizes</a>
+                    <a href="#metals" class="tm-a">Metals</a>
+                
+                </li>
+            
+                <li id="cs_tabs_selector" class="tm-li tab-selector">
                 
                 </li>
             
         </ul>
     </div>
 </div>
-    <div class="tab-content">
-        <div class="tab-content-wrapper" id="">
+        <div class="tab-content">
+            <div class="tab-content-wrapper" id="">
         
-            <div id="forex-content" class="toggle-content ">
-        <div id="forex-specs" class="gr-row">
+                <div id="forex-content" class="toggle-content ">
+        <div id="forex_specs" class="gr-row">
     <div class="gr-12 gr-padding-10">
-        <h1>Kontrakt Spezifikationen - Forex</h1>
         <div class="table-container">
     <table>
         
@@ -1319,7 +1352,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <h2>Wie man die oberstehende Tabelle liest</h2>
         <p>Der Forex wird normalerweise in <i>Lot</i>gehandelt. Ein standardmäßiges <i>Lot</i> entspricht 100 000 Einheiten. Jedes Mal, wenn Sie eine Position auf einem Währungssymbol öffnen, können Sie mit einer Mindest-Transaktion von <i>0,01 Lot</i>beginnen.</p>
         <p>Leverage gibt an, wie viel Kapital Sie auf Ihrer ursprünglichen Einzahlung basierend, kontrollieren können. Zum Beispiel eine 100:1 Leverage wird Innen erlauben, bis zu 100 000 USD zu kontrollieren, wobei Sie nur 1 000 USD Ihres eigenen Geldes als Einzahlung verwenden.</p>
-        <p>Um mehr zu erfahren, lesen Sie unsere <a href="/de/metatrader/margin-policy.html">Margin Richtlinie</a>, die unser 100% erzwungenes Liquidationslevel für Forex näher erläutert.</p>
+        <p>Um mehr zu erfahren, lesen Sie unsere <a href="metatrader/margin-policy">Margin Richtlinie</a>, die unser 100% erzwungenes Liquidationslevel für Forex näher erläutert.</p>
 
         <h2>Wichtige Hinweise zu Ihren Swapsätzen (Overnight Gelder)</h2>
         <p>Wenn Sie Positionen über Nacht offen lassen, wird ein Zinsausgleich zu Ihrem Handelskonto als ein Indiz zu den Kosten, die erforderlich sind, um Ihre Position offen zu halten, gemacht. Diese Anpassung basiert auf Interbank Kreditzinsen, zuzüglich einer Gebühr von 2%.</p>
@@ -1350,10 +1383,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </div>
 </div>
     </div>
-            <div id="volatility-content" class="toggle-content invisible">
-        <div id="volatility-specs" class="gr-row">
+                <div id="volatility-content" class="toggle-content invisible">
+        <div id="volatility_specs" class="gr-row">
     <div class="gr-12 gr-padding-10">
-        <h1>Kontrakt Spezifikationen (CFD - Contrat Specifications) - Volatilität Indizes</h1>
         <div class="table-container">
     <table>
         
@@ -1817,14 +1849,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </div>
         <p>Jedes Mal, wenn Sie eine Position auf einem Volatilität Index Symbol öffnen, können Sie mit einem Minimum Transaktionsvolumen von 0,01 (Handelsgröße) beginnen, welches als 0,01 USD je Punktbewegung des Index umgesetzt werden kann.</p>
         <p>Margin gibt an, wie viel Investition Sie auf Ihrem ursprünglichen Kapital basierend, kontrollieren können. Zum Beispiel, ein 0,2% Margin wird Ihnen erlauben, bis zu 500 000 USD zu kontrollieren, wobei Sie nur 1 000 Ihres eigenen Geldes als Einzahlung verwenden.</p>
-        <p>Um mehr zu erfahren, lesen Sie unsere <a href="/de/metatrader/margin-policy.html">Margin Richtlinie</a>, die unser 50% erzwungenes Liquidationslevel für Volatilität Indizes näher erläutert.</p>
+        <p>Um mehr zu erfahren, lesen Sie unsere <a href="/metatrader/margin-policy">Margin Richtlinie</a>, die unser 50% erzwungenes Liquidationslevel für Volatilität Indizes näher erläutert.</p>
     </div>
 </div>
     </div>
-            <div id="cash-content" class="toggle-content invisible">
-        <div id="cash-specs" class="gr-row">
+                <div id="metals-content" class="toggle-content invisible">
+        <div id="metals_specs" class="gr-row">
     <div class="gr-12 gr-padding-10">
-        <h1>Kontrakt Spezifikationen (CFD - Contrat Specifications) - Cash Indizes</h1>
         <div class="table-container">
     <table>
         
@@ -1836,13 +1867,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     
                         <th>Beschreibung</th>
                     
-                        <th>Volumen 1,0<br>(Handelsgröße)</th>
+                        <th>Volume 1.0<br>(Lot Size)</th>
                     
-                        <th>Mindest Volumen<br>(Handelsgröße)</th>
+                        <th>Min. Volume<br>(Lot Size)</th>
                     
-                        <th>Maximales Volumen<br>(Handelsgröße)</th>
-                    
-                        <th>Margin</th>
+                        <th>Main. Volume Increment</th>
                     
                 </tr>
             
@@ -1854,25 +1883,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 
                     
                     <td>
-                        AUS_200
+                        XAU/USD
                     </td>
                     
                 
                     
                     <td>
-                        Australischer 200 Cash Index
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1 AUD je Punkt
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1
+                        Gold vs US Dollar
                     </td>
                     
                 
@@ -1884,7 +1901,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 
                     
                     <td>
-                        0.2%
+                        0.01
+                    </td>
+                    
+                
+                    
+                    <td>
+                        0.01
                     </td>
                     
                 
@@ -1894,37 +1917,31 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 
                     
                     <td>
-                        JP_225
+                        XAG/USD
                     </td>
                     
                 
                     
                     <td>
-                        Japanischer Cash Index
+                        Silver vs US Dollar
                     </td>
                     
                 
                     
                     <td>
-                        1 JPY je Punkt
+                        5000
                     </td>
                     
                 
                     
                     <td>
-                        10
+                        0.01
                     </td>
                     
                 
                     
                     <td>
-                        1000
-                    </td>
-                    
-                
-                    
-                    <td>
-                        0.2%
+                        0.01
                     </td>
                     
                 
@@ -1934,25 +1951,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 
                     
                     <td>
-                        IND_50
+                        XPD/USD
                     </td>
                     
                 
                     
                     <td>
-                        Indischer 50 Cash Index
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1 USD je Punkt
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1
+                        Palladium vs US Dollar
                     </td>
                     
                 
@@ -1964,7 +1969,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 
                     
                     <td>
-                        0.2%
+                        0.01
+                    </td>
+                    
+                
+                    
+                    <td>
+                        0.01
                     </td>
                     
                 
@@ -1974,25 +1985,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 
                     
                     <td>
-                        ESP_35
+                        XPT/USD
                     </td>
                     
                 
                     
                     <td>
-                        Spanischer 35 Cash Index
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1 EUR je Punkt
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1
+                        Platinum vs US Dollar
                     </td>
                     
                 
@@ -2004,407 +2003,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 
                     
                     <td>
-                        0.2%
-                    </td>
-                    
-                
-            </tr>
-        
-            <tr>
-                
-                    
-                    <td>
-                        EUR_50
+                        0.01
                     </td>
                     
                 
                     
                     <td>
-                        Euro 50 Cash Index
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1 EUR je Punkt
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1
-                    </td>
-                    
-                
-                    
-                    <td>
-                        500
-                    </td>
-                    
-                
-                    
-                    <td>
-                        0.2%
-                    </td>
-                    
-                
-            </tr>
-        
-            <tr>
-                
-                    
-                    <td>
-                        FRA_40
-                    </td>
-                    
-                
-                    
-                    <td>
-                        Französischer 40 Cash Index
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1 EUR je Punkt
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1
-                    </td>
-                    
-                
-                    
-                    <td>
-                        500
-                    </td>
-                    
-                
-                    
-                    <td>
-                        0.2%
-                    </td>
-                    
-                
-            </tr>
-        
-            <tr>
-                
-                    
-                    <td>
-                        GBR_100
-                    </td>
-                    
-                
-                    
-                    <td>
-                        GB 100 Cash Index
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1 GBP je Punkt
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1
-                    </td>
-                    
-                
-                    
-                    <td>
-                        500
-                    </td>
-                    
-                
-                    
-                    <td>
-                        0.2%
-                    </td>
-                    
-                
-            </tr>
-        
-            <tr>
-                
-                    
-                    <td>
-                        NED_25
-                    </td>
-                    
-                
-                    
-                    <td>
-                        Neuseeland 25 Cash Index
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1 EUR je Punkt
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1
-                    </td>
-                    
-                
-                    
-                    <td>
-                        100
-                    </td>
-                    
-                
-                    
-                    <td>
-                        0.2%
-                    </td>
-                    
-                
-            </tr>
-        
-            <tr>
-                
-                    
-                    <td>
-                        ZAF_40
-                    </td>
-                    
-                
-                    
-                    <td>
-                        Südafrikanischer 40 Cash Index
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1 ZAR je Punkt
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1
-                    </td>
-                    
-                
-                    
-                    <td>
-                        100
-                    </td>
-                    
-                
-                    
-                    <td>
-                        0.2%
-                    </td>
-                    
-                
-            </tr>
-        
-            <tr>
-                
-                    
-                    <td>
-                        DAX_30
-                    </td>
-                    
-                
-                    
-                    <td>
-                        Deutscher 30 Cash Index
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1 EUR je Punkt
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1
-                    </td>
-                    
-                
-                    
-                    <td>
-                        100
-                    </td>
-                    
-                
-                    
-                    <td>
-                        0.2%
-                    </td>
-                    
-                
-            </tr>
-        
-            <tr>
-                
-                    
-                    <td>
-                        CAN_60
-                    </td>
-                    
-                
-                    
-                    <td>
-                        Kanadischer 60 Cash Index
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1 CAD je Punkt
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1
-                    </td>
-                    
-                
-                    
-                    <td>
-                        100
-                    </td>
-                    
-                
-                    
-                    <td>
-                        0.2%
-                    </td>
-                    
-                
-            </tr>
-        
-            <tr>
-                
-                    
-                    <td>
-                        US_30
-                    </td>
-                    
-                
-                    
-                    <td>
-                        US 30 Cash Index
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1 USD je Punkt
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1
-                    </td>
-                    
-                
-                    
-                    <td>
-                        200
-                    </td>
-                    
-                
-                    
-                    <td>
-                        0.2%
-                    </td>
-                    
-                
-            </tr>
-        
-            <tr>
-                
-                    
-                    <td>
-                        US_100
-                    </td>
-                    
-                
-                    
-                    <td>
-                        US 100 Cash Index
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1 USD je Punkt
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1
-                    </td>
-                    
-                
-                    
-                    <td>
-                        200
-                    </td>
-                    
-                
-                    
-                    <td>
-                        0.2%
-                    </td>
-                    
-                
-            </tr>
-        
-            <tr>
-                
-                    
-                    <td>
-                        US_500
-                    </td>
-                    
-                
-                    
-                    <td>
-                        US 500 Cash Index
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1 USD je Punkt
-                    </td>
-                    
-                
-                    
-                    <td>
-                        1
-                    </td>
-                    
-                
-                    
-                    <td>
-                        200
-                    </td>
-                    
-                
-                    
-                    <td>
-                        0.2%
+                        0.01
                     </td>
                     
                 
@@ -2416,18 +2021,51 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </div>
     </div>
 
-    <div class="gr-12 gr-padding-10">
-        <h2>Wie man die oberstehende Tabelle liest</h2>
-        <p>CFD (Contract for Difference - Kontrakt für Differenz): CFD ist ein Instrument, das Ihnen erlaubt, Gewinn zu machen, indem Sie auf das Steigen oder Fallen eines Instruments spekulieren. Der Gewinn/Verlust wird als eine Funktion der Differenz in Kauf/Verkauf Preisen des zugrundeliegenden Instruments geschätzt.</p>
-        <p>Zum Beispiel, die CFDs auf den US 30 Cash Index bieten 1 USD je Punkt Kontrakte an. Wenn Sie einen Volumen 1,0 Kontrakt für den US 30 Cash Index mit einem aktuellen Briefkurs von 20 000 USD kaufen, und ihn später zu einem Geldkurs von 20 010 USD verkaufen, wird Ihr Nettogewinn wie folgt berechnet:</p>
-        <div class="gr-12 gr-padding-10 fill-bg-color">
+    <div class="gr-4 gr-push-4 gr-padding-30">
+        <div class="fill-bg-color gr-padding-10">
             <div class="gr-prefix-1">
-                <p>(Verkaufspreis - Kaufpreis) x Volumen x Preis pro Punkt = Profit</p>
-                <p>D.h. (20 010 - 20 000) x 1 x 1 = 10 USD</p>
+                <h2>Maximale Leverage</h2>
+                <ul class="bullet">
+        
+            <li>
+    
+    
+     Cent account: 1:1,000 
+    
+</li>
+        
+            <li>
+    
+    
+     Standard account: 1:300 
+    
+</li>
+        
+            <li>
+    
+    
+     STP account: 1:100 
+    
+</li>
+        
+            <li>
+    
+    
+     Volatility account: 1:500 
+    
+</li>
+        
+    </ul>
             </div>
         </div>
-        <p>Margin gibt an, wie viel Investition Sie auf Ihrem ursprünglichen Kapital basierend, kontrollieren können. Zum Beispiel, ein 1% Margin wird Ihnen erlauben, bis zu 100 000 USD zu kontrollieren, wobei Sie nur 1 000 Ihres eigenen Geldes als Einzahlung verwenden.</p>
-        <p>Um mehr zu erfahren, lesen Sie unsere <a href="/de/metatrader/margin-policy.html">Margin Richtlinie</a>, die unsere Margin-Anforderungen näher erläutert.</p>
+    </div>
+
+    <div class="gr-12 gr-padding-10">
+        <h2>Wie man die oberstehende Tabelle liest</h2>
+        <p>Our metal pairs are typically traded in lots. One standard lot is equivalent to 100 units except silver where 1 lot equals 5.000 units. Each time you open a position on a symbol, you can start with a minimum transaction of 0.01 lots.</p>
+        <p>Leverage indicates how much capital you can control based on your initial deposit. For example, a 1:100 leverage will allow you to control up to USD 100,000 using only USD 1,000 of your own money as deposit.</p>
+        <p>To learn more, read our <a href="/metatrader/margin-policy">Margin Policy</a> that further explains our 100% forced liquidation level for our metal pairs.</p>
+
         <h2>Wichtige Hinweise zu Ihren Swapsätzen (Overnight Gelder)</h2>
         <p>Wenn Sie Positionen über Nacht offen lassen, wird ein Zinsausgleich zu Ihrem Handelskonto als ein Indiz zu den Kosten, die erforderlich sind, um Ihre Position offen zu halten, gemacht. Diese Anpassung basiert auf Interbank Kreditzinsen, zuzüglich einer Gebühr von 2%.</p>
         <p>Die Zinsanpassung ist in Punkten berechnet, was bedeutet, dass wir die relevanten Marktdaten in Punkte der Basisinstrumente umwandeln werden.</p>
@@ -2449,11 +2087,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </div>
 </div>
     </div>
-        
+            
     </div>
+        </div>
+    
     </div>
-
-    </div>
+</div>
 
 
   </div> 
