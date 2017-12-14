@@ -39,19 +39,7 @@
     opacity: 1;
   }
 }
-@-webkit-keyframes pulsing {
-  0% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.5;
-  }
-  100% {
-    opacity: 1;
-  }
-}
 .pulser {
-  -webkit-animation: pulsing 3s infinite ease;
   animation: pulsing 3s infinite ease;
 }
 
@@ -208,7 +196,6 @@
   text-decoration: none;
 }
 .get-started-beta .circle-wrapper {
-  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
@@ -411,7 +398,6 @@
   text-overflow: clip;
   background: #e98024;
   text-shadow: none;
-  -webkit-transform: rotateZ(45deg);
   transform: rotateZ(45deg);
 }
 
@@ -430,7 +416,6 @@
   text-overflow: clip;
   background: #e98024;
   text-shadow: none;
-  -webkit-transform: rotateZ(-45deg);
   transform: rotateZ(-45deg);
 }
 
@@ -681,7 +666,6 @@ div.kineticjs-content {
   background: url("../images/pages/home-beta/background/payment.png") 0 0/100% 108% no-repeat;
 }
 #content.home-beta-content .tab-circles {
-  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
@@ -727,9 +711,8 @@ div.kineticjs-content {
   margin-right: 1em;
 }
 .home-jp-content .align-center {
-  -webkit-align-items: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+      align-items: center;
 }
 .home-jp-content #email {
   border: 1px solid #ccc;
@@ -739,10 +722,9 @@ div.kineticjs-content {
   padding: 45px 26px 0;
 }
 .home-jp-content .align-self-center {
-  -webkit-align-self: center;
-      -ms-flex-item-align: center;
-              -ms-grid-row-align: center;
-          align-self: center;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
 }
 .home-jp-content .go-right, .home-jp-content .go-left {
   width: 25px;
@@ -795,9 +777,8 @@ div.kineticjs-content {
     width: calc(100% - 10px);
   }
   #content.home-beta-content .order-2-m {
-    -webkit-order: 2;
-        -ms-flex-order: 2;
-            order: 2;
+    -ms-flex-order: 2;
+        order: 2;
     padding-top: 30px;
   }
   #content.home-beta-content .padding-top-20 {
@@ -831,12 +812,10 @@ div.kineticjs-content {
   width: 30%;
 }
 .open-positions .eqWrap {
-  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-flex-wrap: wrap;
-      -ms-flex-wrap: wrap;
-          flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 
 .job-details .dept-image {
@@ -942,10 +921,9 @@ div.kineticjs-content {
   background-image: url("../images/pages/cashier/payment_methods_sprite_new.png");
 }
 #payment_methods div {
-  -webkit-align-self: center;
-      -ms-flex-item-align: center;
-              -ms-grid-row-align: center;
-          align-self: center;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
 }
 #payment_methods #int_bank_wire {
   background-position: -7px -9px;
@@ -1217,7 +1195,6 @@ body #not_authenticated_financial ul.checked > li {
 }
 
 #how_to_trade_mt5 .border-box {
-  display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
   border: 1px solid #2a3052;
@@ -1268,7 +1245,6 @@ body #not_authenticated_financial ul.checked > li {
   position: relative;
   top: 2px;
   padding: 0;
-  display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
   width: 1em;
@@ -1311,9 +1287,7 @@ body #not_authenticated_financial ul.checked > li {
   font-weight: bold;
   font-size: 1.3225rem;
   transition-duration: 0.4s;
-  transition-property: -webkit-transform;
   transition-property: transform;
-  transition-property: transform, -webkit-transform;
   box-shadow: 0 0 2px #dedede;
 }
 @media all and (min-width: 600px) {
@@ -1335,8 +1309,7 @@ body #not_authenticated_financial ul.checked > li {
   }
 }
 .timeline .year:hover {
-  -webkit-transform: scale(1.1);
-          transform: scale(1.1);
+  transform: scale(1.1);
   background: #e98024;
   color: #f2f2f2;
 }
