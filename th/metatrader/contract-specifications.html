@@ -57,14 +57,14 @@
         <link rel="alternate" href="/zh_cn/metatrader/contract-specifications.html" hreflang="ZH_CN" />   
         <link rel="alternate" href="/zh_tw/metatrader/contract-specifications.html" hreflang="ZH_TW" />   
 
-         <link rel="stylesheet" href="/css/common.min.css?2vrsh64o" />
-         <link rel="stylesheet" href="/css/app.min.css?2vrsh64o" />
-         <link rel="stylesheet" href="/css/static.min.css?2vrsh64o" />
+         <link rel="stylesheet" href="/css/common.min.css?y3pa404w" />
+         <link rel="stylesheet" href="/css/app.min.css?y3pa404w" />
+         <link rel="stylesheet" href="/css/static.min.css?y3pa404w" />
         
-         <script src='/js/texts/th.js?2vrsh64o'></script>
-         <script src='/js/manifest.js?2vrsh64o'></script>
-         <script src='/js/vendor.min.js?bd724701'></script>
-         <script src='/js/binary.min.js?2vrsh64o'></script>
+         <script src='/js/texts/th.js?y3pa404w'></script>
+         <script src='/js/manifest.js?y3pa404w'></script>
+         <script src='/js/vendor.min.js?1a6fffb3'></script>
+         <script src='/js/binary.min.js?y3pa404w'></script>
         
     </head>
 
@@ -208,14 +208,14 @@
         
             <li class="invisible mt-show">
     
-    <a href="/th/get-started-beta.html?parent=mt5">
+    <a href="/th/get-started-beta.html?get_started_tabs=mt5">
      เริ่มเลย 
     </a>
 </li>
         
             <li class="invisible mt-show">
     
-    <a href="/th/platforms.html?parent=mt5">
+    <a href="/th/platforms.html?platforms_tabs=mt5">
      แพลตฟอร์ม 
     </a>
 </li>
@@ -468,28 +468,40 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <h1>ข้อกำหนดสัญญา</h1>
     <div class="content-tab-container cs-content light full-width">
         
-        <div class="tab-menu ">
+        <div class="tab-menu tab-selector-wrapper">
     <div class="tab-menu-wrap">
         <ul id="cs_tabs" class="tm-ul">
             
-                <li id="forex" class="tm-li active">
                 
-                    <a href="#forex" class="tm-a">ฟอเร็กซ์</a>
+                    
+                
+                <li id="forex" class="tm-li ">
+                
+                    <a href="?cs_tabs=forex" class="tm-a">ฟอเร็กซ์</a>
                 
                 </li>
             
+                
+                    
+                
                 <li id="volatility" class="tm-li ">
                 
-                    <a href="#volatility" class="tm-a">ดัชนีความผันผวน</a>
+                    <a href="?cs_tabs=volatility" class="tm-a">ดัชนีความผันผวน</a>
                 
                 </li>
             
+                
+                    
+                
                 <li id="metals" class="tm-li ">
                 
-                    <a href="#metals" class="tm-a">Metals</a>
+                    <a href="?cs_tabs=metals" class="tm-a">โลหะ</a>
                 
                 </li>
             
+                
+                    
+                
                 <li id="cs_tabs_selector" class="tm-li tab-selector">
                 
                 </li>
@@ -500,7 +512,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <div class="tab-content">
             <div class="tab-content-wrapper" id="">
         
-                <div id="forex-content" class="toggle-content ">
+                <div id="forex-content" class="toggle-content invisible">
         <div id="forex_specs" class="gr-row">
     <div class="gr-12 gr-padding-10">
         <div class="table-container">
@@ -1870,9 +1882,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     
                         <th>Volume 1.0<br>(Lot Size)</th>
                     
-                        <th>Min. Volume<br>(Lot Size)</th>
+                        <th>จำนวนต่ำสุด <br> (ขนาดของล็อต)</th>
                     
-                        <th>Main. Volume Increment</th>
+                        <th>หลัก ส่วนเพิ่มของขนาด</th>
                     
                 </tr>
             
@@ -1890,7 +1902,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 
                     
                     <td>
-                        Gold vs US Dollar
+                        ทองเทียบกับดอลลาร์สหรัฐ
                     </td>
                     
                 
@@ -1958,7 +1970,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 
                     
                     <td>
-                        Palladium vs US Dollar
+                        พาลาเดียมและดอลลาร์สหรัฐ
                     </td>
                     
                 
@@ -1992,7 +2004,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 
                     
                     <td>
-                        Platinum vs US Dollar
+                        แพลทินัมเทียบกับดอลลาร์สหรัฐ
                     </td>
                     
                 
@@ -2031,7 +2043,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <li>
     
     
-     Cent account: 1:1,000 
+     บัญชีเซนต์ 1:1,000 
     
 </li>
         
@@ -2063,8 +2075,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     <div class="gr-12 gr-padding-10">
         <h2>จะอ่านตารางข้างต้นอย่างไร</h2>
-        <p>Our metal pairs are typically traded in lots. One standard lot is equivalent to 100 units except silver where 1 lot equals 5.000 units. Each time you open a position on a symbol, you can start with a minimum transaction of 0.01 lots.</p>
-        <p>Leverage indicates how much capital you can control based on your initial deposit. For example, a 1:100 leverage will allow you to control up to USD 100,000 using only USD 1,000 of your own money as deposit.</p>
+        <p>การซื้อขายคู่โลหะโดยทั่วไปแล้วทำเป็นล็อต ล็อตมาตรฐานเทียบเท่ากับ 100 หน่วย ยกเว้นเงินซึ่ง 1 ล็อตเท่ากับ 5.000 หน่วย แต่ละครั้งคุณเปิดตำแหน่งในสัญลักษณ์หนึ่ง คุณสามารถเริ่มธุรกรรมได้ที่ขั้นต่ำที่ 0.01 ล็อต</p>
+        <p>เลเวอเรจบ่งชี้ว่าคุณสามารถควบคุมเงินทุนได้เท่าไหร่โดยดูจากเงินฝากขั้นต้นของคุณ เช่น เลเวอเรจ 1:100 ช่วยให้คุณควบคุมได้ถึง 100,000 เหรียญสหรัฐโดยใช้เงินเพียง 1,000 เหรียญสหรัฐที่เป็นเงินฝาก</p>
         <p>To learn more, read our <a href="/metatrader/margin-policy">Margin Policy</a> that further explains our 100% forced liquidation level for our metal pairs.</p>
 
         <h2>หมายเหตุสำคัญเกี่ยวกับอัตราการเปลี่ยนแปลงในอัตราดอกเบี้ยของเรา (การให้ทุนข้ามคืน)</h2>

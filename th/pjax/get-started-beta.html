@@ -33,22 +33,31 @@
     <h1 class="center-text">เริ่มเลย</h1>
     <div class="content-tab-container gr-padding-30 gr-parent full-width light">
         
-        <div class="tab-menu gr-padding-20 gr-parent">
+        <div class="tab-menu gr-padding-20 gr-parent tab-selector-wrapper">
     <div class="tab-menu-wrap">
         <ul id="get_started_tabs" class="tm-ul">
             
-                <li id="binary" class="tm-li active">
                 
-                    <a href="#binary" class="tm-a">ไบนารีออปชั่น (Binary Options)</a>
+                    
+                
+                <li id="binary" class="tm-li ">
+                
+                    <a href="?get_started_tabs=binary" class="tm-a">ไบนารีออปชั่น (Binary Options)</a>
                 
                 </li>
             
+                
+                    
+                
                 <li id="mt5" class="tm-li ">
                 
-                    <a href="#mt5" class="tm-a">MetaTrader 5</a>
+                    <a href="?get_started_tabs=mt5" class="tm-a">MetaTrader 5</a>
                 
                 </li>
             
+                
+                    
+                
                 <li id="get_started_tabs_selector" class="tm-li tab-selector">
                 
                 </li>
@@ -59,9 +68,9 @@
         <div class="tab-content">
             <div class="tab-content-wrapper" id="">
         
-                <div id="binary-content" class="toggle-content ">
+                <div id="binary-content" class="toggle-content invisible">
         
-                    <div class="gr-row">
+                    <div class="gr-row" id="binary-options">
                         <div class="gr-6 gr-12-m gr-padding-30 gr-child">
         <div class="gr-row">
             <div class="gr-4">
@@ -97,7 +106,7 @@
             </div>
             <div class="gr-8">
                 <a href="/th/get-started-beta/binary-options.html#types-of-trades"><h3>ประเภทของการซื้อขาย</h3></a>
-                <p>Learn about the five types of trades that can help you execute your trading strategy on rising, falling, and even sideways markets.</p>
+                <p>เรียนรู้เกี่ยวกับห้าประเภทของการซื้อขายที่สามารถช่วยคุณดำเนินการตามกลยุทธ์การซื้อขายในตลาดที่กำลังขึ้น กำลังลง หรือแม้แต่ที่กำลังไปด้านข้าง</p>
             </div>
         </div>
     </div>
@@ -109,8 +118,8 @@
                 </a>
             </div>
             <div class="gr-8">
-                <a href="/th/get-started-beta/binary-options.html#how-to-trade-binary"><h3>How to trade binary options</h3></a>
-                <p>Learn how to trade with our award-winning binary options platform in this simple step-by-step guide.</p>
+                <a href="/th/get-started-beta/binary-options.html#how-to-trade-binary"><h3>จะซื้อขายไบนารีออปชั่นอย่างไร</h3></a>
+                <p>เรียนรู้วิธีการซื้อขายกับแพลตฟอร์มไบนารีออปชันที่ได้รับรางวัลของเราจากคำแนะนำง่ายๆทีละขั้นตอนนี้</p>
             </div>
         </div>
     </div>
@@ -135,7 +144,7 @@
                     <div class="gr-padding-30 gr-parent" id="forex">
         <div class="center-text">
             <h2>ฟอเร็กซ์</h2>
-            <p>The Foreign Exchange Market (Forex) is the world's largest and most liquid market – where anyone can buy, sell, and exchange currencies.</p>
+            <p>ตลาดอัตราแลกเปลี่ยน (Forex) เป็นตลาดที่ใหญ่ที่สุดและมีสภาพคล่องที่สุดในโลก ที่ทุกคนสามารถซื้อ ขาย และแลกเปลี่ยนสกุลเงิน</p>
         </div>
         
                         <div class="gr-row">
@@ -148,7 +157,7 @@
             </div>
             <div class="gr-8">
                 <a href="/th/get-started-beta/forex.html#what-forex-trading"><h3>What is Forex trading</h3></a>
-                <p>New to Forex? We explain the basics of the world's largest and most liquid market.</p>
+                <p>มือใหม่ต่อฟอเร็กซ์หรือ เราอธิบายพื้นฐานของตลาดที่ใหญ่ที่สุดและมีสภาพคล่องที่สุดในโลก</p>
             </div>
         </div>
     </div>
@@ -160,8 +169,8 @@
                 </a>
             </div>
             <div class="gr-8">
-                <a href="/th/get-started-beta/forex.html#how-to-trade-forex"><h3>How to trade Forex</h3></a>
-                <p>Learn how to read currency pairs, when to go long or short, and how to buy your first currency pair.</p>
+                <a href="/th/get-started-beta/forex.html#how-to-trade-forex"><h3>ซื้อขายฟอเร็กซ์อย่างไร</h3></a>
+                <p>เรียนรู้ วิธีการอ่านสกุลเงินคู่ เมื่อใดจะไปยาว หรือสั้น และวิธีการซื้อคู่สกุลเงินแรก</p>
             </div>
         </div>
     </div>
@@ -173,8 +182,8 @@
                 </a>
             </div>
             <div class="gr-8">
-                <a href="/th/get-started-beta/forex.html#margin-policy"><h3>Margin policy</h3></a>
-                <p>Not sure how margin works? Read our margin policy and learn how to calculate the margin for our currency pairs.</p>
+                <a href="/th/get-started-beta/forex.html#margin-policy"><h3>นโยบายมาร์จิน</h3></a>
+                <p>ไม่แน่ใจว่ามาร์จินทำงานอย่างไรหรือไม่ อ่านนโยบายมาร์จินของเราและเรียนรู้วิธีการคำนวณมาร์จินของคู่สกุลเงิน</p>
             </div>
         </div>
     </div>
@@ -186,8 +195,8 @@
                 </a>
             </div>
             <div class="gr-8">
-                <a href="/th/get-started-beta/forex.html#contract-specification"><h3>Contract specifications</h3></a>
-                <p>Find out more about the costs and details of every currency pair we offer.</p>
+                <a href="/th/get-started-beta/forex.html#contract-specification"><h3>ข้อกำหนดสัญญา</h3></a>
+                <p>ค้นหาข้อมูลเพิ่มเติมเกี่ยวกับต้นทุนและรายละเอียดของคู่สกุลเงินทุกคู่ที่เรานำเสนอ</p>
             </div>
         </div>
     </div>
@@ -200,7 +209,7 @@
                     <div class="gr-padding-30 gr-parent" id="cfds">
         <div class="center-text">
             <h2>CFDs</h2>
-            <p>Contracts for Difference (CFDs) are financial derivatives that allow you to speculate on the movement of an underlying asset without owning it.</p>
+            <p>สัญญาการซื้อขายส่วนต่าง (CFD) คืออนุพันธ์ทางการเงินที่อนุญาตให้คุณมีโอกาสคาดเดาการขึ้นหรือลงของสินทรัพย์ โดยไม่ได้เป็นเจ้าของสินทรัพย์นั้นจริง</p>
         </div>
         
                         <div class="gr-row">
@@ -225,8 +234,8 @@
                 </a>
             </div>
             <div class="gr-8">
-                <a href="/th/get-started-beta/cfds.html#what-cfds-trading"><h3>How to trade CFDs</h3></a>
-                <p>Plan to start trading CFDs? Learn when to buy and sell, how to calculate your profits and losses, and how to close a position.</p>
+                <a href="/th/get-started-beta/cfds.html#what-cfds-trading"><h3>ซื้อขาย CFD อย่างไร</h3></a>
+                <p>วางแผนที่จะเริ่มต้นการซื้อขาย CFD หรือไม่ เรียนรู้ว่าเมื่อไหร่จะซื้อ และขาย วิธีการคำนวณกำไรและขาดทุน และวิธีในการปิดตำแหน่ง</p>
             </div>
         </div>
     </div>
@@ -238,8 +247,8 @@
                 </a>
             </div>
             <div class="gr-8">
-                <a href="/th/get-started-beta/cfds.html#margin-policy"><h3>CFD margin policy</h3></a>
-                <p>Not sure how margin works? Read our margin policy and learn how to calculate the margin for our CFDs.</p>
+                <a href="/th/get-started-beta/cfds.html#margin-policy"><h3>นโยบายกำไรของ CFD</h3></a>
+                <p>ไม่แน่ใจว่ามาร์จินทำงานอย่างไรหรือไม่ อ่านนโยบายมาร์จินของเราและเรียนรู้วิธีการคำนวณมาร์จินของ CFD</p>
             </div>
         </div>
     </div>
@@ -251,8 +260,8 @@
                 </a>
             </div>
             <div class="gr-8">
-                <a href="/th/get-started-beta/cfds.html#contract-specification"><h3>Contract specifications</h3></a>
-                <p>Find out more about the costs and details of each CFD asset we offer.</p>
+                <a href="/th/get-started-beta/cfds.html#contract-specification"><h3>ข้อกำหนดสัญญา</h3></a>
+                <p>ค้นหาข้อมูลเพิ่มเติมเกี่ยวกับต้นทุนและรายละเอียดของสินทรัพย์ CFD แต่ละตัวที่เรานำเสนอ</p>
             </div>
         </div>
     </div>
@@ -264,8 +273,8 @@
 </div>
                     <div class="gr-padding-30 gr-parent" id="metals">
         <div class="center-text">
-            <h2>Metals</h2>
-            <p>Diversify your portfolio with all four types of precious metals that are widely known as "safe haven" investments: gold, silver, platinum, and palladium.</p>
+            <h2>โลหะ</h2>
+            <p>กระจายพอร์ตโฟลิโอด้วยโลหะมีค่าสี่ประเภทที่รู้จักแพร่หลายว่าเป็นการลงทุน "ปลอดภัย": ทอง เงิน แพลทินัม พาลาเดียม</p>
         </div>
         
                         <div class="gr-row">
@@ -278,7 +287,7 @@
             </div>
             <div class="gr-8">
                 <a href="/th/get-started-beta/metals.html#what-metals-trading"><h3>What is metals trading</h3></a>
-                <p>Learn the basics of metals trading and the categories of metals available.</p>
+                <p>เรียนรู้พื้นฐานของการซื้อขายโลหะและประเภทโลหะที่มี</p>
             </div>
         </div>
     </div>
@@ -290,8 +299,8 @@
                 </a>
             </div>
             <div class="gr-8">
-                <a href="/th/get-started-beta/metals.html#how-trade-metals"><h3>How to trade metals</h3></a>
-                <p>Buy or sell all four available precious metals – depending on your market view. Also, learn what factors affect prices.</p>
+                <a href="/th/get-started-beta/metals.html#how-trade-metals"><h3>ซื้อขายโลหะอย่างไร</h3></a>
+                <p>ซื้อหรือขายโลหะมีค่าทั้งหมดที่มีอยู่ - ขึ้นอยู่กับมุมมองทางการตลาดของคุณ และเรียนรู้ปัจจัยที่ส่งผลต่อราคาด้วย</p>
             </div>
         </div>
     </div>
@@ -303,8 +312,8 @@
                 </a>
             </div>
             <div class="gr-8">
-                <a href="/th/get-started-beta/metals.html#margin-policy"><h3>Margin policy</h3></a>
-                <p>Not sure how margin works? Read our margin policy and learn how to calculate the margin for our metal pairs.</p>
+                <a href="/th/get-started-beta/metals.html#margin-policy"><h3>นโยบายมาร์จิน</h3></a>
+                <p>ไม่แน่ใจว่ามาร์จินทำงานอย่างไรหรือไม่ อ่านนโยบายมาร์จินของเราและเรียนรู้วิธีการคำนวณมาร์จินของคู่โลหะ</p>
             </div>
         </div>
     </div>
@@ -316,8 +325,8 @@
                 </a>
             </div>
             <div class="gr-8">
-                <a href="/th/get-started-beta/metals.html#contract-specification"><h3>Contract specifications</h3></a>
-                <p>Find out more about the costs and details of every metal pair we offer.</p>
+                <a href="/th/get-started-beta/metals.html#contract-specification"><h3>ข้อกำหนดสัญญา</h3></a>
+                <p>ค้นหาข้อมูลเพิ่มเติมเกี่ยวกับต้นทุนและรายละเอียดของคู่โลหะทุกคู่ที่เรานำเสนอ</p>
             </div>
         </div>
     </div>
@@ -330,7 +339,7 @@
                     <div class="gr-padding-30 gr-parent" id="cryptocurrencies">
         <div class="center-text">
             <h2>เงินดิจิทัล</h2>
-            <p>Cryptocurrencies such as Bitcoin and Ethereum are decentralised digital assets that enable instant payments to anywhere in the world.</p>
+            <p>เงินดิจิทัลเช่นบิทคอยน์และอีเธอเรียม เป็นสินทรัพย์ดิจิทัลที่ไม่ได้รวมเข้ากับศูนย์กลางซึ่งทำให้สามารถชำระเงินได้ทันทีที่ไหนก็ได้ในโลก</p>
         </div>
         
                         <div class="gr-row">
@@ -355,7 +364,7 @@
                 </a>
             </div>
             <div class="gr-8">
-                <a href="/th/get-started-beta/cryptocurrencies.html#how-trade-crypto"><h3>How to trade cryptocurrencies</h3></a>
+                <a href="/th/get-started-beta/cryptocurrencies.html#how-trade-crypto"><h3>ซื้อขายเงินดิจิทัลอย่างไร</h3></a>
                 <p>Trade popular cryptocurrencies on our MT5 platform with leverage and variable spreads. No wallets are required to start trading.</p>
             </div>
         </div>
@@ -368,8 +377,8 @@
                 </a>
             </div>
             <div class="gr-8">
-                <a href="/th/get-started-beta/cryptocurrencies.html#margin-policy"><h3>Margin policy</h3></a>
-                <p>Not sure how margin works? Read our margin policy and learn how to calculate the margin for our cryptocurrency pairs.</p>
+                <a href="/th/get-started-beta/cryptocurrencies.html#margin-policy"><h3>นโยบายมาร์จิน</h3></a>
+                <p>ไม่แน่ใจว่ามาร์จินทำงานอย่างไรหรือไม่ อ่านนโยบายมาร์จินของเราและเรียนรู้วิธีการคำนวณมาร์จินของคู่เงินดิจิทัล</p>
             </div>
         </div>
     </div>
@@ -381,8 +390,8 @@
                 </a>
             </div>
             <div class="gr-8">
-                <a href="/th/get-started-beta/cryptocurrencies.html#contract-specification"><h3>Contract specifications</h3></a>
-                <p>Find out more about the costs and details of every cryptocurrency pair we offer.</p>
+                <a href="/th/get-started-beta/cryptocurrencies.html#contract-specification"><h3>ข้อกำหนดสัญญา</h3></a>
+                <p>ค้นหาข้อมูลเพิ่มเติมเกี่ยวกับต้นทุนและรายละเอียดของคู่เงินดิจิทัลทุกคู่ที่เรานำเสนอ</p>
             </div>
         </div>
     </div>

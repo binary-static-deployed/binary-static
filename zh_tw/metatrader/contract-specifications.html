@@ -57,14 +57,14 @@
         <link rel="alternate" href="/vi/metatrader/contract-specifications.html" hreflang="VI" />     
         <link rel="alternate" href="/zh_cn/metatrader/contract-specifications.html" hreflang="ZH_CN" />     
 
-         <link rel="stylesheet" href="/css/common.min.css?2vrsh64o" />
-         <link rel="stylesheet" href="/css/app.min.css?2vrsh64o" />
-         <link rel="stylesheet" href="/css/static.min.css?2vrsh64o" />
+         <link rel="stylesheet" href="/css/common.min.css?y3pa404w" />
+         <link rel="stylesheet" href="/css/app.min.css?y3pa404w" />
+         <link rel="stylesheet" href="/css/static.min.css?y3pa404w" />
         
-         <script src='/js/texts/zh_tw.js?2vrsh64o'></script>
-         <script src='/js/manifest.js?2vrsh64o'></script>
-         <script src='/js/vendor.min.js?bd724701'></script>
-         <script src='/js/binary.min.js?2vrsh64o'></script>
+         <script src='/js/texts/zh_tw.js?y3pa404w'></script>
+         <script src='/js/manifest.js?y3pa404w'></script>
+         <script src='/js/vendor.min.js?1a6fffb3'></script>
+         <script src='/js/binary.min.js?y3pa404w'></script>
         
     </head>
 
@@ -208,14 +208,14 @@
         
             <li class="invisible mt-show">
     
-    <a href="/zh_tw/get-started-beta.html?parent=mt5">
+    <a href="/zh_tw/get-started-beta.html?get_started_tabs=mt5">
      開始交易 
     </a>
 </li>
         
             <li class="invisible mt-show">
     
-    <a href="/zh_tw/platforms.html?parent=mt5">
+    <a href="/zh_tw/platforms.html?platforms_tabs=mt5">
      平台 
     </a>
 </li>
@@ -468,28 +468,40 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <h1>合約規格</h1>
     <div class="content-tab-container cs-content light full-width">
         
-        <div class="tab-menu ">
+        <div class="tab-menu tab-selector-wrapper">
     <div class="tab-menu-wrap">
         <ul id="cs_tabs" class="tm-ul">
             
-                <li id="forex" class="tm-li active">
                 
-                    <a href="#forex" class="tm-a">外匯</a>
+                    
+                
+                <li id="forex" class="tm-li ">
+                
+                    <a href="?cs_tabs=forex" class="tm-a">外匯</a>
                 
                 </li>
             
+                
+                    
+                
                 <li id="volatility" class="tm-li ">
                 
-                    <a href="#volatility" class="tm-a">波動率指數</a>
+                    <a href="?cs_tabs=volatility" class="tm-a">波動率指數</a>
                 
                 </li>
             
+                
+                    
+                
                 <li id="metals" class="tm-li ">
                 
-                    <a href="#metals" class="tm-a">Metals</a>
+                    <a href="?cs_tabs=metals" class="tm-a">金屬</a>
                 
                 </li>
             
+                
+                    
+                
                 <li id="cs_tabs_selector" class="tm-li tab-selector">
                 
                 </li>
@@ -500,7 +512,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <div class="tab-content">
             <div class="tab-content-wrapper" id="">
         
-                <div id="forex-content" class="toggle-content ">
+                <div id="forex-content" class="toggle-content invisible">
         <div id="forex_specs" class="gr-row">
     <div class="gr-12 gr-padding-10">
         <div class="table-container">
@@ -1867,11 +1879,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     
                         <th>描述</th>
                     
-                        <th>Volume 1.0<br>(Lot Size)</th>
+                        <th>量額 1.0<br>（手量）</th>
                     
                         <th>最小交易額<br>(手量)</th>
                     
-                        <th>Main. Volume Increment</th>
+                        <th>主要交易增額</th>
                     
                 </tr>
             
@@ -1923,7 +1935,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 
                     
                     <td>
-                        Silver vs US Dollar
+                        白銀兌美元
                     </td>
                     
                 
@@ -2037,21 +2049,21 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <li>
     
     
-     Standard account: 1:300 
+     標準帳戶: 1:300 
     
 </li>
         
             <li>
     
     
-     STP account: 1:100 
+     STP帳戶: 1:100 
     
 </li>
         
             <li>
     
     
-     Volatility account: 1:500 
+     波動帳戶: 1:500 
     
 </li>
         
@@ -2063,8 +2075,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <div class="gr-12 gr-padding-10">
         <h2>如何讀取上面的表</h2>
         <p>我們的金屬對通常以手為交易單位。一個標準手數相當於100個單位，除了白銀是一手等於5.000個單位。每次當您為某個符號開倉時，您可以從0.01手的最小交易量開始。</p>
-        <p>Leverage indicates how much capital you can control based on your initial deposit. For example, a 1:100 leverage will allow you to control up to USD 100,000 using only USD 1,000 of your own money as deposit.</p>
-        <p>To learn more, read our <a href="/metatrader/margin-policy">Margin Policy</a> that further explains our 100% forced liquidation level for our metal pairs.</p>
+        <p>槓桿率是基於初始存款的可控制資本額。例如，1:100 槓桿將允許您僅使用 1,000 美元本身存款控制100,000 美元。</p>
+        <p>要了解關於金屬對100%強制清算層次的更多資訊，請閱讀我們的<a href="/metatrader/margin-policy">保證金政策</a>。</p>
 
         <h2>掉期利率（隔夜資金）的重要說明</h2>
         <p>如果您持倉過夜，系統將對您的帳戶收取持倉成本隔夜利息。此費用基於銀行間貸款利率加上2%費用。</p>

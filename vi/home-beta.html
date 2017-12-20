@@ -57,14 +57,14 @@
         <link rel="alternate" href="/zh_cn/home-beta.html" hreflang="ZH_CN" />   
         <link rel="alternate" href="/zh_tw/home-beta.html" hreflang="ZH_TW" />   
 
-         <link rel="stylesheet" href="/css/common.min.css?2vrsh64o" />
-         <link rel="stylesheet" href="/css/app.min.css?2vrsh64o" />
-         <link rel="stylesheet" href="/css/static.min.css?2vrsh64o" />
+         <link rel="stylesheet" href="/css/common.min.css?y3pa404w" />
+         <link rel="stylesheet" href="/css/app.min.css?y3pa404w" />
+         <link rel="stylesheet" href="/css/static.min.css?y3pa404w" />
         
-         <script src='/js/texts/vi.js?2vrsh64o'></script>
-         <script src='/js/manifest.js?2vrsh64o'></script>
-         <script src='/js/vendor.min.js?bd724701'></script>
-         <script src='/js/binary.min.js?2vrsh64o'></script>
+         <script src='/js/texts/vi.js?y3pa404w'></script>
+         <script src='/js/manifest.js?y3pa404w'></script>
+         <script src='/js/vendor.min.js?1a6fffb3'></script>
+         <script src='/js/binary.min.js?y3pa404w'></script>
         
     </head>
 
@@ -208,14 +208,14 @@
         
             <li class="invisible mt-show">
     
-    <a href="/vi/get-started-beta.html?parent=mt5">
+    <a href="/vi/get-started-beta.html?get_started_tabs=mt5">
      Bắt đầu 
     </a>
 </li>
         
             <li class="invisible mt-show">
     
-    <a href="/vi/platforms.html?parent=mt5">
+    <a href="/vi/platforms.html?platforms_tabs=mt5">
      Các sàn giao dịch 
     </a>
 </li>
@@ -492,40 +492,58 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <h2 class="center-text gr-padding-10">Trade in the world's financial markets</h2>
     <div class="content-tab-container gr-padding-30 gr-parent full-width light">
         
-        <div class="tab-menu gr-padding-20 gr-parent gr-hide-m">
+        <div class="tab-menu gr-padding-20 gr-parent gr-hide-m tab-selector-wrapper">
     <div class="tab-menu-wrap">
         <ul id="market_tabs" class="tm-ul">
             
-                <li id="binary" class="tm-li active">
                 
-                    <a href="#binary" class="tm-a">Binary options</a>
+                    
+                
+                <li id="binary" class="tm-li ">
+                
+                    <a href="?market_tabs=binary" class="tm-a">Binary options</a>
                 
                 </li>
             
+                
+                    
+                
                 <li id="forex" class="tm-li ">
                 
-                    <a href="#forex" class="tm-a">Thị trường ngoại hối</a>
+                    <a href="?market_tabs=forex" class="tm-a">Thị trường ngoại hối</a>
                 
                 </li>
             
+                
+                    
+                
                 <li id="cfds" class="tm-li ">
                 
-                    <a href="#cfds" class="tm-a">CFDs</a>
+                    <a href="?market_tabs=cfds" class="tm-a">CFDs</a>
                 
                 </li>
             
+                
+                    
+                
                 <li id="metals" class="tm-li ">
                 
-                    <a href="#metals" class="tm-a">Metals</a>
+                    <a href="?market_tabs=metals" class="tm-a">Metals</a>
                 
                 </li>
             
+                
+                    
+                
                 <li id="crypto" class="tm-li ">
                 
-                    <a href="#crypto" class="tm-a">Crypto</a>
+                    <a href="?market_tabs=crypto" class="tm-a">Crypto</a>
                 
                 </li>
             
+                
+                    
+                
                 <li id="market_tabs_selector" class="tm-li tab-selector">
                 
                 </li>
@@ -536,16 +554,26 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <div class="tab-content">
             <div class="tab-content-wrapper" id="">
         
-                <div id="binary-content" class="toggle-content ">
+                <div id="binary-content" class="toggle-content invisible">
         
                     <div class="gr-row gr-row-align-middle">
-        <div class="align-self-center gr-1 gr-no-gutter-m">
-        <img class="go-left gr-10 gr-12-p gr-12-m gr-no-gutter-p gr-no-gutter-m gr-centered" data-parent="market_tabs" src="/images/pages/home-beta/arrow_left.svg">
+        <div class="align-self-center gr-1 gr-hide-m">
+        <img class="go-left gr-10 gr-12-p gr-no-gutter-p gr-centered" data-parent="market_tabs" src="/images/pages/home-beta/arrow_left.svg">
     </div>
-        <div class="gr-10">
+        <div class="gr-10 gr-12-m">
             <div class="gr-row">
                 <div class="gr-6 gr-12-m center-text-m order-2-m">
-                    <strong>Binary options</strong>
+                    <div class="gr-10-m gr-centered gr-gutter">
+                        <div class="gr-row">
+                            <div class="align-self-center gr-2 gr-hide gr-show-m gr-no-gutter">
+        <img class="go-left gr-5 gr-no-gutter gr-centered" data-parent="market_tabs" src="/images/pages/home-beta/arrow_left.svg">
+    </div>
+                            <strong class="align-self-center gr-centered-m">Binary options</strong>
+                            <div class="align-self-center gr-2 gr-hide gr-show-m gr-no-gutter">
+        <img class="go-right gr-5 gr-no-gutter gr-centered" data-parent="market_tabs" src="/images/pages/home-beta/arrow_right.svg">
+    </div>
+                        </div>
+                    </div>
                     <p>Options that offer a fixed payout based on a simple yes/no proposition.</p>
                 </div>
                 <div class="gr-6 gr-12-m center-text">
@@ -553,8 +581,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </div>
             </div>
         </div>
-        <div class="align-self-center gr-1 gr-no-gutter-m">
-        <img class="go-right gr-10 gr-12-p gr-12-m gr-no-gutter-p gr-no-gutter-m gr-centered" data-parent="market_tabs" src="/images/pages/home-beta/arrow_right.svg">
+        <div class="align-self-center gr-1 gr-hide-m">
+        <img class="go-right gr-10 gr-12-p gr-no-gutter-p gr-centered" data-parent="market_tabs" src="/images/pages/home-beta/arrow_right.svg">
     </div>
     </div>
                 
@@ -562,13 +590,23 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <div id="forex-content" class="toggle-content invisible">
         
                     <div class="gr-row gr-row-align-middle">
-        <div class="align-self-center gr-1 gr-no-gutter-m">
-        <img class="go-left gr-10 gr-12-p gr-12-m gr-no-gutter-p gr-no-gutter-m gr-centered" data-parent="market_tabs" src="/images/pages/home-beta/arrow_left.svg">
+        <div class="align-self-center gr-1 gr-hide-m">
+        <img class="go-left gr-10 gr-12-p gr-no-gutter-p gr-centered" data-parent="market_tabs" src="/images/pages/home-beta/arrow_left.svg">
     </div>
-        <div class="gr-10">
+        <div class="gr-10 gr-12-m">
             <div class="gr-row">
                 <div class="gr-6 gr-12-m center-text-m order-2-m">
-                    <strong>Thị trường ngoại hối</strong>
+                    <div class="gr-10-m gr-centered gr-gutter">
+                        <div class="gr-row">
+                            <div class="align-self-center gr-2 gr-hide gr-show-m gr-no-gutter">
+        <img class="go-left gr-5 gr-no-gutter gr-centered" data-parent="market_tabs" src="/images/pages/home-beta/arrow_left.svg">
+    </div>
+                            <strong class="align-self-center gr-centered-m">Thị trường ngoại hối</strong>
+                            <div class="align-self-center gr-2 gr-hide gr-show-m gr-no-gutter">
+        <img class="go-right gr-5 gr-no-gutter gr-centered" data-parent="market_tabs" src="/images/pages/home-beta/arrow_right.svg">
+    </div>
+                        </div>
+                    </div>
                     <p>Major, minor and exotic currency pairs.</p>
                 </div>
                 <div class="gr-6 gr-12-m center-text">
@@ -576,8 +614,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </div>
             </div>
         </div>
-        <div class="align-self-center gr-1 gr-no-gutter-m">
-        <img class="go-right gr-10 gr-12-p gr-12-m gr-no-gutter-p gr-no-gutter-m gr-centered" data-parent="market_tabs" src="/images/pages/home-beta/arrow_right.svg">
+        <div class="align-self-center gr-1 gr-hide-m">
+        <img class="go-right gr-10 gr-12-p gr-no-gutter-p gr-centered" data-parent="market_tabs" src="/images/pages/home-beta/arrow_right.svg">
     </div>
     </div>
                 
@@ -585,13 +623,23 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <div id="cfds-content" class="toggle-content invisible">
         
                     <div class="gr-row gr-row-align-middle">
-        <div class="align-self-center gr-1 gr-no-gutter-m">
-        <img class="go-left gr-10 gr-12-p gr-12-m gr-no-gutter-p gr-no-gutter-m gr-centered" data-parent="market_tabs" src="/images/pages/home-beta/arrow_left.svg">
+        <div class="align-self-center gr-1 gr-hide-m">
+        <img class="go-left gr-10 gr-12-p gr-no-gutter-p gr-centered" data-parent="market_tabs" src="/images/pages/home-beta/arrow_left.svg">
     </div>
-        <div class="gr-10">
+        <div class="gr-10 gr-12-m">
             <div class="gr-row">
                 <div class="gr-6 gr-12-m center-text-m order-2-m">
-                    <strong>CFDs</strong>
+                    <div class="gr-10-m gr-centered gr-gutter">
+                        <div class="gr-row">
+                            <div class="align-self-center gr-2 gr-hide gr-show-m gr-no-gutter">
+        <img class="go-left gr-5 gr-no-gutter gr-centered" data-parent="market_tabs" src="/images/pages/home-beta/arrow_left.svg">
+    </div>
+                            <strong class="align-self-center gr-centered-m">CFDs</strong>
+                            <div class="align-self-center gr-2 gr-hide gr-show-m gr-no-gutter">
+        <img class="go-right gr-5 gr-no-gutter gr-centered" data-parent="market_tabs" src="/images/pages/home-beta/arrow_right.svg">
+    </div>
+                        </div>
+                    </div>
                     <p>CFDs Derivatives that profit by speculating on the movement of underlying assets.</p>
                 </div>
                 <div class="gr-6 gr-12-m center-text">
@@ -599,8 +647,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </div>
             </div>
         </div>
-        <div class="align-self-center gr-1 gr-no-gutter-m">
-        <img class="go-right gr-10 gr-12-p gr-12-m gr-no-gutter-p gr-no-gutter-m gr-centered" data-parent="market_tabs" src="/images/pages/home-beta/arrow_right.svg">
+        <div class="align-self-center gr-1 gr-hide-m">
+        <img class="go-right gr-10 gr-12-p gr-no-gutter-p gr-centered" data-parent="market_tabs" src="/images/pages/home-beta/arrow_right.svg">
     </div>
     </div>
                 
@@ -608,13 +656,23 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <div id="metals-content" class="toggle-content invisible">
         
                     <div class="gr-row gr-row-align-middle">
-        <div class="align-self-center gr-1 gr-no-gutter-m">
-        <img class="go-left gr-10 gr-12-p gr-12-m gr-no-gutter-p gr-no-gutter-m gr-centered" data-parent="market_tabs" src="/images/pages/home-beta/arrow_left.svg">
+        <div class="align-self-center gr-1 gr-hide-m">
+        <img class="go-left gr-10 gr-12-p gr-no-gutter-p gr-centered" data-parent="market_tabs" src="/images/pages/home-beta/arrow_left.svg">
     </div>
-        <div class="gr-10">
+        <div class="gr-10 gr-12-m">
             <div class="gr-row">
                 <div class="gr-6 gr-12-m center-text-m order-2-m">
-                    <strong>Metals</strong>
+                    <div class="gr-10-m gr-centered gr-gutter">
+                        <div class="gr-row">
+                            <div class="align-self-center gr-2 gr-hide gr-show-m gr-no-gutter">
+        <img class="go-left gr-5 gr-no-gutter gr-centered" data-parent="market_tabs" src="/images/pages/home-beta/arrow_left.svg">
+    </div>
+                            <strong class="align-self-center gr-centered-m">Metals</strong>
+                            <div class="align-self-center gr-2 gr-hide gr-show-m gr-no-gutter">
+        <img class="go-right gr-5 gr-no-gutter gr-centered" data-parent="market_tabs" src="/images/pages/home-beta/arrow_right.svg">
+    </div>
+                        </div>
+                    </div>
                     <p>Precious metal pairs including gold and platinum.</p>
                 </div>
                 <div class="gr-6 gr-12-m center-text">
@@ -622,8 +680,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </div>
             </div>
         </div>
-        <div class="align-self-center gr-1 gr-no-gutter-m">
-        <img class="go-right gr-10 gr-12-p gr-12-m gr-no-gutter-p gr-no-gutter-m gr-centered" data-parent="market_tabs" src="/images/pages/home-beta/arrow_right.svg">
+        <div class="align-self-center gr-1 gr-hide-m">
+        <img class="go-right gr-10 gr-12-p gr-no-gutter-p gr-centered" data-parent="market_tabs" src="/images/pages/home-beta/arrow_right.svg">
     </div>
     </div>
                 
@@ -631,13 +689,23 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <div id="crypto-content" class="toggle-content invisible">
         
                     <div class="gr-row gr-row-align-middle">
-        <div class="align-self-center gr-1 gr-no-gutter-m">
-        <img class="go-left gr-10 gr-12-p gr-12-m gr-no-gutter-p gr-no-gutter-m gr-centered" data-parent="market_tabs" src="/images/pages/home-beta/arrow_left.svg">
+        <div class="align-self-center gr-1 gr-hide-m">
+        <img class="go-left gr-10 gr-12-p gr-no-gutter-p gr-centered" data-parent="market_tabs" src="/images/pages/home-beta/arrow_left.svg">
     </div>
-        <div class="gr-10">
+        <div class="gr-10 gr-12-m">
             <div class="gr-row">
                 <div class="gr-6 gr-12-m center-text-m order-2-m">
-                    <strong>Cryptocurrencies</strong>
+                    <div class="gr-10-m gr-centered gr-gutter">
+                        <div class="gr-row">
+                            <div class="align-self-center gr-2 gr-hide gr-show-m gr-no-gutter">
+        <img class="go-left gr-5 gr-no-gutter gr-centered" data-parent="market_tabs" src="/images/pages/home-beta/arrow_left.svg">
+    </div>
+                            <strong class="align-self-center gr-centered-m">Cryptocurrencies</strong>
+                            <div class="align-self-center gr-2 gr-hide gr-show-m gr-no-gutter">
+        <img class="go-right gr-5 gr-no-gutter gr-centered" data-parent="market_tabs" src="/images/pages/home-beta/arrow_right.svg">
+    </div>
+                        </div>
+                    </div>
                     <p>Cryptocurrency pairs including Bitcoin, Ethereum, and Litecoin.</p>
                 </div>
                 <div class="gr-6 gr-12-m center-text">
@@ -645,8 +713,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </div>
             </div>
         </div>
-        <div class="align-self-center gr-1 gr-no-gutter-m">
-        <img class="go-right gr-10 gr-12-p gr-12-m gr-no-gutter-p gr-no-gutter-m gr-centered" data-parent="market_tabs" src="/images/pages/home-beta/arrow_right.svg">
+        <div class="align-self-center gr-1 gr-hide-m">
+        <img class="go-right gr-10 gr-12-p gr-no-gutter-p gr-centered" data-parent="market_tabs" src="/images/pages/home-beta/arrow_right.svg">
     </div>
     </div>
                 
@@ -657,15 +725,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <div class="gr-hide gr-show-m center-text">
         <div class="tab-circles" id="market_tabs_circles">
             
-                <div class="tab-circle selected"></div>
+                <div class="tab-circle"></div>
             
-                <div class="tab-circle "></div>
+                <div class="tab-circle"></div>
             
-                <div class="tab-circle "></div>
+                <div class="tab-circle"></div>
             
-                <div class="tab-circle "></div>
+                <div class="tab-circle"></div>
             
-                <div class="tab-circle "></div>
+                <div class="tab-circle"></div>
             
         </div>
     </div>
@@ -680,27 +748,35 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </div>
 </div>
 
-<div id="financial_banner">
-    <div class="container gr-padding-30">
-        <h2 class="center-text">Diverse platforms and account types</h2>
-        <div class="content-tab-container gr-padding-30 gr-parent full-width light">
+<div class="container gr-padding-30">
+    <h2 class="center-text">Diverse platforms and account types</h2>
+    <div class="content-tab-container gr-padding-30 gr-parent full-width light">
         
-            <div class="tab-menu gr-padding-20 gr-parent gr-hide-m">
+        <div class="tab-menu gr-padding-20 gr-parent gr-hide-m tab-selector-wrapper">
     <div class="tab-menu-wrap">
         <ul id="account_tabs" class="tm-ul">
             
-                <li id="binary_options" class="tm-li active">
                 
-                    <a href="#binary_options" class="tm-a">Quyền chọn nhị phân</a>
+                    
+                
+                <li id="binary_options" class="tm-li ">
+                
+                    <a href="?account_tabs=binary_options" class="tm-a">Quyền chọn nhị phân</a>
                 
                 </li>
             
+                
+                    
+                
                 <li id="mt5" class="tm-li ">
                 
-                    <a href="#mt5" class="tm-a">MetaTrader 5</a>
+                    <a href="?account_tabs=mt5" class="tm-a">MetaTrader 5</a>
                 
                 </li>
             
+                
+                    
+                
                 <li id="account_tabs_selector" class="tm-li tab-selector">
                 
                 </li>
@@ -708,24 +784,36 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </ul>
     </div>
 </div>
-            <div class="tab-content">
-                <div class="tab-content-wrapper" id="">
+        <div class="tab-content">
+            <div class="tab-content-wrapper" id="">
         
-                    <div id="binary_options-content" class="toggle-content ">
+                <div id="binary_options-content" class="toggle-content invisible">
         
-                        <p class="center-text gr-10 gr-no-gutter gr-centered gr-hide-m">Trade binary options on a wide range of web and mobile apps. Each comes with unique strengths that complement a variety of trading strategies.</p>
-    <div class="gr-row gr-padding-30">
-        <div class="align-self-center gr-1 gr-no-gutter-m">
-        <img class="go-left gr-10 gr-12-p gr-12-m gr-no-gutter-p gr-no-gutter-m gr-centered" data-parent="account_tabs" src="/images/pages/home-beta/arrow_left.svg">
+                    <div class="gr-hide-m">
+        <p class="center-text gr-10 gr-no-gutter gr-centered">Trade binary options on a wide range of web and mobile apps. Each comes with unique strengths that complement a variety of trading strategies.</p>
     </div>
-        <div class="gr-10">
+    <div class="gr-row gr-padding-30">
+        <div class="align-self-center gr-1 gr-hide-m">
+        <img class="go-left gr-10 gr-12-p gr-no-gutter-p gr-centered" data-parent="account_tabs" src="/images/pages/home-beta/arrow_left.svg">
+    </div>
+        <div class="gr-10 gr-12-m">
             <div class="gr-row">
                 <div class="gr-6 gr-10-m gr-centered align-self-center">
                     <img class="responsive" src="/images/pages/home-beta/binary_options.svg">
                 </div>
                 <div class="center-text gr-12 gr-hide gr-show-m ">
-                    <strong>Quyền chọn nhị phân</strong>
-                    <p>Trade binary options on a wide range of web and mobile apps. Each comes with unique strengths that complement a variety of trading strategies.</p>
+                    <div class="gr-8 gr-centered">
+                        <div class="gr-row">
+                            <div class="align-self-center gr-2 gr-hide gr-show-m gr-no-gutter">
+        <img class="go-left gr-5 gr-no-gutter gr-centered" data-parent="account_tabs" src="/images/pages/home-beta/arrow_left.svg">
+    </div>
+                            <strong class="align-self-center gr-centered">Quyền chọn nhị phân</strong>
+                            <div class="align-self-center gr-2 gr-hide gr-show-m gr-no-gutter">
+        <img class="go-right gr-5 gr-no-gutter gr-centered" data-parent="account_tabs" src="/images/pages/home-beta/arrow_right.svg">
+    </div>
+                        </div>
+                    </div>
+                    <div class="gr-12"><p>Trade binary options on a wide range of web and mobile apps. Each comes with unique strengths that complement a variety of trading strategies.</p></div>
                 </div>
                 <div class="gr-6 gr-12-m">
                     <div class="gr-row gr-padding-10">
@@ -758,27 +846,39 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </div>
             </div>
         </div>
-        <div class="align-self-center gr-1 gr-no-gutter-m">
-        <img class="go-right gr-10 gr-12-p gr-12-m gr-no-gutter-p gr-no-gutter-m gr-centered" data-parent="account_tabs" src="/images/pages/home-beta/arrow_right.svg">
+        <div class="align-self-center gr-1 gr-hide-m">
+        <img class="go-right gr-10 gr-12-p gr-no-gutter-p gr-centered" data-parent="account_tabs" src="/images/pages/home-beta/arrow_right.svg">
     </div>
     </div>
-                    
+                
     </div>
-                    <div id="mt5-content" class="toggle-content invisible">
+                <div id="mt5-content" class="toggle-content invisible">
         
-                        <p class="center-text gr-10 gr-no-gutter gr-centered gr-hide-m">Trade Forex and CFD assets with up to 1,000:1 leverage on the world's most popular institutional multi-asset platform.</p>
-    <div class="gr-row gr-padding-30">
-        <div class="align-self-center gr-1 gr-no-gutter-m">
-        <img class="go-left gr-10 gr-12-p gr-12-m gr-no-gutter-p gr-no-gutter-m gr-centered" data-parent="account_tabs" src="/images/pages/home-beta/arrow_left.svg">
+                    <div class="gr-hide-m">
+        <p class="center-text gr-10 gr-no-gutter gr-centered">Trade Forex and CFD assets with up to 1,000:1 leverage on the world's most popular institutional multi-asset platform.</p>
     </div>
-        <div class="gr-10">
+    <div class="gr-row gr-padding-30">
+        <div class="align-self-center gr-1 gr-hide-m">
+        <img class="go-left gr-10 gr-12-p gr-no-gutter-p gr-centered" data-parent="account_tabs" src="/images/pages/home-beta/arrow_left.svg">
+    </div>
+        <div class="gr-10 gr-12-m">
             <div class="gr-row">
                 <div class="gr-6 gr-10-m gr-centered align-self-center">
                     <img class="responsive" src="/images/pages/home-beta/MT5.svg">
                 </div>
                 <div class="center-text gr-12 gr-hide gr-show-m padding-top-20">
-                    <strong>MetaTrader 5</strong>
-                    <p>Trade Forex and CFD assets with up to 1,000:1 leverage on the world's most popular institutional multi-asset platform.</p>
+                    <div class="gr-8 gr-centered">
+                        <div class="gr-row">
+                            <div class="align-self-center gr-2 gr-hide gr-show-m gr-no-gutter">
+        <img class="go-left gr-5 gr-no-gutter gr-centered" data-parent="account_tabs" src="/images/pages/home-beta/arrow_left.svg">
+    </div>
+                            <strong class="align-self-center gr-centered">MetaTrader 5</strong>
+                            <div class="align-self-center gr-2 gr-hide gr-show-m gr-no-gutter">
+        <img class="go-right gr-5 gr-no-gutter gr-centered" data-parent="account_tabs" src="/images/pages/home-beta/arrow_right.svg">
+    </div>
+                        </div>
+                    </div>
+                    <div class="gr-12"><p>Trade Forex and CFD assets with up to 1,000:1 leverage on the world's most popular institutional multi-asset platform.</p></div>
                 </div>
                 <div class="gr-6 gr-12-m">
                     <div class="gr-row gr-padding-10">
@@ -811,31 +911,30 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </div>
             </div>
         </div>
-        <div class="align-self-center gr-1 gr-no-gutter-m">
-        <img class="go-right gr-10 gr-12-p gr-12-m gr-no-gutter-p gr-no-gutter-m gr-centered" data-parent="account_tabs" src="/images/pages/home-beta/arrow_right.svg">
+        <div class="align-self-center gr-1 gr-hide-m">
+        <img class="go-right gr-10 gr-12-p gr-no-gutter-p gr-centered" data-parent="account_tabs" src="/images/pages/home-beta/arrow_right.svg">
     </div>
-    </div>
-                    
     </div>
                 
     </div>
-            </div>
-            <div class="gr-hide gr-show-m center-text">
+            
+    </div>
+        </div>
+        <div class="gr-hide gr-show-m center-text">
         <div class="tab-circles" id="account_tabs_circles">
             
-                <div class="tab-circle selected"></div>
+                <div class="tab-circle"></div>
             
-                <div class="tab-circle "></div>
+                <div class="tab-circle"></div>
             
         </div>
     </div>
-        
+    
     </div>
 
-        <div class="center-text gr-padding-20 gr-parent">
-            <h3 class="center-text gr-padding-20 gr-parent">Choose the platforms and accounts you need, based on your personal trading style</h3>
-            <a class="button-secondary" href="/vi/platforms.html"><span>View our platforms</span></a>
-        </div>
+    <div class="center-text gr-padding-20 gr-parent">
+        <h3 class="center-text gr-padding-20 gr-parent">Choose the platforms and accounts you need, based on your personal trading style</h3>
+        <a class="button-secondary" href="/vi/platforms.html"><span>View our platforms</span></a>
     </div>
 </div>
 
@@ -887,10 +986,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <div class=" gr-padding-30">
     <div class="separator-line border-bottom"></div>
 </div>
-</div>
 
-<div id="payment_banner">
-    <div class="container" id="payment_methods">
+    <div id="payment_methods">
         <div class="gr-12 gr-padding-20">
             <h2 class="center-text">Phương thức thanh toán</h2>
             <p class="center-text">We support hundreds of deposit and withdrawal options, including Bitcoin.</p>

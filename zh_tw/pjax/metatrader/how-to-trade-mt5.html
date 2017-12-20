@@ -33,28 +33,40 @@
     <h1>如何在MetaTrader 5交易</h1>
     <div class="content-tab-container gr-padding-30 gr-parent full-width light full-width">
         
-        <div class="tab-menu ">
+        <div class="tab-menu tab-selector-wrapper">
     <div class="tab-menu-wrap">
         <ul id="how_to_tabs" class="tm-ul">
             
-                <li id="forex" class="tm-li active">
                 
-                    <a href="#forex" class="tm-a">外匯</a>
+                    
+                
+                <li id="forex" class="tm-li ">
+                
+                    <a href="?how_to_tabs=forex" class="tm-a">外匯</a>
                 
                 </li>
             
+                
+                    
+                
                 <li id="volatility" class="tm-li ">
                 
-                    <a href="#volatility" class="tm-a">波動率指數</a>
+                    <a href="?how_to_tabs=volatility" class="tm-a">波動率指數</a>
                 
                 </li>
             
+                
+                    
+                
                 <li id="metals" class="tm-li ">
                 
-                    <a href="#metals" class="tm-a">Metals</a>
+                    <a href="?how_to_tabs=metals" class="tm-a">金屬</a>
                 
                 </li>
             
+                
+                    
+                
                 <li id="how_to_tabs_selector" class="tm-li tab-selector">
                 
                 </li>
@@ -65,13 +77,13 @@
         <div class="tab-content">
             <div class="tab-content-wrapper" id="">
         
-                <div id="forex-content" class="toggle-content ">
+                <div id="forex-content" class="toggle-content invisible">
         <div id="forex_how_to">
     <div class="gr-row">
         <div class="gr-10 gr-push-1 center-text">
             <h2>外匯如何交易</h2>
             <p>外匯交易者在交易時有一個目標：</p>
-            <p class="border-box">To exchange one currency for another in order to make profit.</p>
+            <p class="border-box">用某一種貨幣兌換成另一種貨幣以賺取利潤。</p>
             <p>但是，如果您是外匯或任何類型金融交易的新手，在您購買第一份合約之前還有很長的路要走。因此我們想出了一個基本的，一步一步的教程，以幫助您彌合差距，並開始第一次交易。</p>
         </div>
     </div>
@@ -88,7 +100,7 @@
     </div>
     <div class="gr-row">
         <div class="gr-3 center-text">
-            <h3 class="secondary-color">Step 1</h3>
+            <h3 class="secondary-color">步驟 1</h3>
             <img src="/images/pages/metatrader/how-to/step1.svg" />
             <div class="vertical-dashed"></div>
         </div>
@@ -125,7 +137,7 @@
                 
                     
                     <td class="no-border">
-                        USD
+                        美元
                     </td>
                     
                 
@@ -137,7 +149,7 @@
                 
                     
                     <td class="no-border align-start">
-                        <h3 class="no-margin">Quote currency</h3>也稱為相對錢幣
+                        <h3 class="no-margin">報價貨幣</h3>也稱為相對錢幣
                     </td>
                     
                 
@@ -146,20 +158,20 @@
     </tbody>
         
     </table>
-        <p>Tips:</p>
+        <p>提示:</p>
         <ul class="checked">
         
             <li>
     
     
-     The base currency is always equal to one unit 
+     基礎貨幣總是相等於一個單位 
     
 </li>
         
             <li>
     
     
-     The price of the currency pair indicates how much of the quote currency is required to buy one unit of base currency. This is more commonly known as the exchange rate. 
+     貨幣對的價格表示買入一單位基準貨幣需要多少報價貨幣。這通常被稱為匯率。 
     
 </li>
         
@@ -178,21 +190,21 @@
     <div class="separator-line border-bottom"></div>
 </div>
             
-            <h2>Understand when to buy and sell</h2>
+            <h2>了解何時買入和賣出</h2>
         </div>
     </div>
     <div class="gr-row">
         <div class="gr-3 center-text">
-            <h3 class="secondary-color">Step 2</h3>
+            <h3 class="secondary-color">步驟 2</h3>
             <img src="/images/pages/metatrader/how-to/step2.svg" />
             <div class="vertical-dashed"></div>
         </div>
         <div class="gr-9">
             
-        <div>You want to buy a certain currency pair if you think the base currency will go up. The reverse holds true:</div>
-        <p class="border-box">You want to sell that currency pair if you think the base currency will go down.</p>
-        <p>You have probably seen the terms 'going long' and 'going short' being used by a lot of Forex brokers and traders. Let's compare the differences between the two terms:</p>
-        <p>Long:</p>
+        <div>如果您認為基礎貨幣將上漲，您會買入某個貨幣對。反之亦然：</div>
+        <p class="border-box">如果您認為基礎貨幣將下跌，您會賣出此貨幣對。</p>
+        <p>您可能看過很多外匯經紀商和交易者使用「開多頭頭寸」和「開空頭頭寸」這兩個術語。讓我們來比較一下兩個術語之間的差異：</p>
+        <p>長倉:</p>
         <ul class="checked">
         
             <li>
@@ -205,19 +217,19 @@
             <li>
     
     
-     You are buying the base currency and selling the quote currency. 
+     您正在買入基本貨幣並賣出報價貨幣。 
     
 </li>
         
             <li>
     
     
-     You are expecting the base currency to rise in value so you can sell it back for a profit. 
+     您預計基礎貨幣將升值，因此您可將其賣出賺取利潤。 
     
 </li>
         
     </ul>
-        <p>Short:</p>
+        <p>短倉:</p>
         <ul class="checked">
         
             <li>
@@ -230,14 +242,14 @@
             <li>
     
     
-     You are selling the base currency and buying the quote currency. 
+     您正在賣出基本貨幣並買入報價貨幣。 
     
 </li>
         
             <li>
     
     
-     You are expecting the base currency to fall in value so you can buy it back at a lower price and make profit. 
+     您預計基礎貨幣的價值會下跌，因此您可以以較低的價格買回並賺取利潤。 
     
 </li>
         
@@ -261,7 +273,7 @@
     </div>
     <div class="gr-row">
         <div class="gr-3 center-text">
-            <h3 class="secondary-color">Step 3</h3>
+            <h3 class="secondary-color">步驟 3</h3>
             <img src="/images/pages/metatrader/how-to/step3.svg" />
             
         </div>
@@ -275,7 +287,7 @@
             </div>
             <div class="gr-grow gr-12-m">英鎊/美元貨幣對及其買賣價格。</div>
         </div>
-        <p>To go long, you will click on 'Buy' to purchase GBP 1 for USD 1.22781. To go short, you will click on 'Sell' to sell GBP 1 and receive USD 1.22771 in return.</p>
+        <p>要持多頭頭寸，您可點擊「買入」，以1.22781美元買入1英鎊。要持空頭頭寸，您可點擊「賣出」，將1英鎊賣出，並獲得1.22771美元作為回報。</p>
     
         </div>
     </div>
@@ -291,7 +303,7 @@
         <div class="gr-8 gr-push-2 center-text">
             <h2>金屬如何交易？</h2>
             <p>了解 MetaTrader 5 進行Meta資產交易的基本概念。</p>
-            <p class="border-box">When you are trading metals, you can choose to open a buy position if you think that the price of an asset will rise or a sell position if you think that the price of an asset will fall.</p>
+            <p class="border-box">當您進行金屬交易時， 如果您認為某資產價格會上漲，可以選擇開買入頭寸，或如果您認為該資產價格會下跌， 可開賣出頭寸 。</p>
         </div>
     </div>
 
@@ -300,7 +312,7 @@
 </div>
 
     <div class="center-text">
-        <h2>When to buy and sell?</h2>
+        <h2>何時買入和賣出?</h2>
         <p>不知道什麼時候買入和賣出？這裡有個簡單的方法:</p>
         <div class="gr-row">
             <div class="gr-8 gr-push-2">
@@ -379,7 +391,7 @@
             <li>
     
     
-     Supply - Decline or increase in supply 
+     供應 - 減少或增加供應 
     
 </li>
         
@@ -393,7 +405,7 @@
             <li>
     
     
-     Market volatility – Political, economic, or social instability may lead to more volatile financial markets that affect the prices of certain metals 
+     市場波動性 - 政治、經濟或社會不穩定可能會導致金融市場更不穩定，對某些金屬價格影響很大 
     
 </li>
         
@@ -411,14 +423,14 @@
             <h2>如何計算利潤和虧損？</h2>
             <p>例如: 黃金/美元(黃金兌美元) 符號對</p>
             <p>請注意，根據我們的合約規格，一手交易量相當於100個單位。您的利潤或虧損的計算方法如下:</p>
-            <p class="border-box">When you are trading metals, you can choose to open a buy position if you think that the price of an asset will rise or a sell position if you think that the price of an asset will fall.</p>
+            <p class="border-box">當您進行金屬交易時， 如果您認為某資產價格會上漲，可以選擇開買入頭寸，或如果您認為該資產價格會下跌， 可開賣出頭寸 。</p>
             <p>平倉價
     <img class="math-sign" src="/images/pages/metatrader/how-to/minus.svg" />
     開盤價
     <img class="math-sign" src="/images/pages/metatrader/how-to/multiply.svg" />
-    Lot units
+    手單位
     <img class="math-sign" src="/images/pages/metatrader/how-to/equal.svg" />
-    Profit or Loss</p>
+    利潤或虧損</p>
             <p class="border-box">US<span class="symbols usd"></span>1,255.80
     <img class="math-sign" src="/images/pages/metatrader/how-to/minus.svg" />
     US<span class="symbols usd"></span>1,255.06
