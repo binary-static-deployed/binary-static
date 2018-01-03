@@ -383,6 +383,7 @@ _:-ms-fullscreen, :root #content-holder {
 
 input[type=checkbox] {
   margin-top: -5px;
+  margin-right: 5px;
 }
 input[type=checkbox]#email_consent {
   margin-top: 5px;
@@ -636,6 +637,14 @@ ul.bullet.gr-row > li {
 .foot-note {
   font-size: 0.7561436673rem;
   color: #c2c2c2;
+}
+
+.button + .button {
+  margin-left: 10px;
+}
+
+li strong.margin-right {
+  margin-right: 5px;
 }
 
 /* main style */

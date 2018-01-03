@@ -1134,10 +1134,6 @@ body #not_authenticated_financial ul.checked > li {
 .ico-subscribe-content #portfolio th.details {
   width: auto;
 }
-.ico-subscribe-content #view_ico_info > a > span {
-  background-color: #e98024;
-  font-size: 16px;
-}
 .ico-subscribe-content #cancel_bid_confirmation {
   left: 0;
   top: 0;
