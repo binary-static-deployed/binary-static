@@ -218,6 +218,10 @@ fieldset .text-display {
   margin-top: 5px;
 }
 
+.secondary-bg-color .error-msg {
+  color: #fff;
+}
+
 textarea {
   height: 8em;
   width: 25em;
@@ -744,7 +748,7 @@ li strong.margin-right {
 #footer #footer-regulatory #site-status-message {
   z-index: 9999;
 }
-#footer #footer-last .gambling {
+#footer #footer-last .gambling, #footer #footer-last .gambling a {
   text-align: justify;
   font-size: 0.7561436673rem;
   font-weight: 400;
