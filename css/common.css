@@ -169,7 +169,7 @@ a.button:hover {
 
 button.full-width, button.full-width span, .button.full-width, .button.full-width span {
   display: block;
-  width: 100%;
+  width: auto;
 }
 button.full-width .barspinner, .button.full-width .barspinner {
   display: inline-block;
@@ -634,10 +634,6 @@ ul.bullet.gr-row > li {
           flex: 1;
 }
 
-#content .content-tab-container.light .tab-menu-wrap ul.tm-ul li.tm-li {
-  font-size: 1.3225rem;
-}
-
 .foot-note {
   font-size: 0.7561436673rem;
   color: #c2c2c2;
@@ -865,6 +861,9 @@ body #topbar .upgrademessage a:hover, body #topbar .upgrademessage a:active, .la
 }
 #main-menu .items li a {
   white-space: nowrap;
+}
+#main-menu .tab-menu-wrap ul li.hover ul {
+  z-index: 1;
 }
 
 /* mobile menu overrides */
@@ -1150,9 +1149,6 @@ body.VI #trading_socket_container #contract_form_name_nav {
 body.VI #trading_socket_container #contract_form_name_nav > li a.tm-a {
   font-size: 0.6575162324rem;
 }
-body.VI #trading_socket_container_beta #contract_symbol_container {
-  font-size: 1rem;
-}
 
 /*French Language */
 body.FR a, body.FR button, body.FR .button, body.FR span, body.FR input {
@@ -1410,6 +1406,14 @@ body.ZH_TW .google-play-badge {
 
   .home-jp-content #banner {
     background-position-x: 15%;
+  }
+
+  #content .content-tab-container.light .tab-menu-wrap ul.tm-ul li.tm-li a {
+    font-size: 0.8695652174rem;
+  }
+
+  #content .light .tab-menu-wrap ul.tm-ul li.tm-li.tab-selector {
+    top: 30px;
   }
 }
 @media print {

@@ -793,9 +793,6 @@ div.kineticjs-content {
   #content.home-beta-content .border-right {
     border-right: none;
   }
-  #content.home-beta-content .content-tab-container.light .tab-menu-wrap ul.tm-ul li.tm-li {
-    font-size: 0.8695652174rem;
-  }
   #content.home-beta-content #market_tabs_selector, #content.home-beta-content #account_tabs_selector {
     top: 24px;
   }
@@ -1219,9 +1216,6 @@ body #not_authenticated_financial ul.checked > li {
 }
 
 #how_to_trade_mt5 .border-box {
-  display: -webkit-inline-box;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
   border: 1px solid #2a3052;
   border-radius: 3px;
   padding: 25px 50px;
