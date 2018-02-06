@@ -1,4 +1,3 @@
-const BinaryPjax       = require('../../base/binary_pjax');
 const Client           = require('../../base/client');
 const BinarySocket     = require('../../base/socket');
 const getDecimalPlaces = require('../../common/currency').getDecimalPlaces;
