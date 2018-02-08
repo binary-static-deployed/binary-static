@@ -63,12 +63,35 @@ table {
   color: #fff;
 }
 
+.lightbox {
+  display: flex;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 2000000000;
+}
+.lightbox > div {
+  margin: auto;
+  max-width: 44em;
+  max-height: 80vh;
+  background-color: #fff;
+  border-radius: 3px;
+  overflow: auto;
+  text-align: center;
+}
+
 body {
   overflow-x: hidden;
   width: 100%;
 }
 body * {
   box-sizing: border-box;
+}
+
+.scroll-lock {
+  overflow: hidden;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -84,6 +107,14 @@ section .bg-shine-v {
 }
 section .margin-bottom-40 {
   margin-bottom: 40px;
+}
+@media (max-width: 575px) {
+  section {
+    padding: 50px 0;
+  }
+  section .bg-shine-v {
+    margin-top: -50px;
+  }
 }
 
 footer {
@@ -118,10 +149,17 @@ form h1 {
 form h1.margin-bottom-30 {
   margin-bottom: 30px;
 }
+@media (max-width: 575px) {
+  form h1 {
+    font-size: 24px;
+  }
+}
 form .input-group {
   display: flex;
   flex-direction: column;
   position: relative;
+  max-width: 510px;
+  margin: auto;
 }
 @media (min-width: 575px) {
   form .input-group {
@@ -159,6 +197,7 @@ form .input-group button {
 form .input-group .error-msg {
   position: absolute;
   top: 100%;
+  left: 3px;
 }
 @media (max-width: 575px) {
   form .input-group .error-msg {
@@ -166,13 +205,13 @@ form .input-group .error-msg {
     margin: 5px 0;
   }
 }
-form .signup-form-success {
+form .signup-form-success, form .signup-form-error {
   background-color: #e98024;
   padding: 5px;
   color: #fff;
   border-radius: 5px;
 }
-form .signup-form-success p {
+form .signup-form-success p, form .signup-form-error p {
   text-align: center;
 }
 
@@ -191,6 +230,9 @@ form .signup-form-success p {
 }
 .flex.margin-top-20 {
   margin: 20px 0 0;
+}
+.flex p {
+  margin: 0;
 }
 
 .flex-end {
@@ -238,8 +280,18 @@ form .signup-form-success p {
   background-image: url("../images/japan/version1/bg-shine-v.svg");
   background-size: cover;
 }
+@media (min-width: 2559px) {
+  .bg-shine-v {
+    padding-bottom: 150px;
+  }
+}
 .bg-shine-v .container {
   padding-bottom: 80px;
+}
+@media (max-width: 575px) {
+  .bg-shine-v .container {
+    padding-bottom: 40px;
+  }
 }
 .bg-shine-rectangle {
   background-color: #15212d;
@@ -262,6 +314,11 @@ form .signup-form-success p {
   color: #fff;
   padding: 15px;
   font-weight: bold;
+}
+@media (max-width: 768px) {
+  .bg-bubble-box h1 {
+    font-size: 24px;
+  }
 }
 .bg-bubble-box + img {
   margin-top: -20px;
@@ -318,14 +375,19 @@ form .signup-form-success p {
   margin: 15px 0;
   float: left;
 }
+@media (max-width: 575px) {
+  .navbar-fixed-top .logo {
+    margin: 10px 0;
+  }
+}
 .navbar-fixed-top .navbar-icon {
   height: 30px;
   margin: 15px 10px;
 }
 @media (max-width: 575px) {
   .navbar-fixed-top .navbar-icon {
-    height: 15px;
-    margin: 15px 5px;
+    height: 20px;
+    margin: 10px 5px;
   }
 }
 .navbar-fixed-top .navbar-header {
@@ -353,11 +415,6 @@ form .signup-form-success p {
   height: 100%;
   padding-top: 0;
   padding-bottom: 0;
-}
-@media (max-width: 575px) {
-  .intro .intro-body .flex {
-    flex-direction: column-reverse;
-  }
 }
 .intro:before {
   position: absolute;
@@ -396,17 +453,24 @@ form .signup-form-success p {
 }
 .intro .intro-text.intro-text {
   font-size: 72px;
-  font-weight: 500;
+  font-weight: 600;
   white-space: nowrap;
   margin-top: 80px;
   margin-bottom: 30px;
+}
+@media (min-width: 576px) and (max-width: 768px) {
+  .intro .intro-text.intro-text {
+    font-size: 50px;
+  }
 }
 @media (max-width: 575px) {
   .intro .intro-text.intro-text {
     font-size: 36px;
     white-space: pre-wrap;
     text-align: center;
-    margin-top: 0;
+    margin-top: -20px;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 .intro .intro-subtext {
@@ -416,17 +480,29 @@ form .signup-form-success p {
   max-width: 500px;
   margin: 30px 0 50px;
 }
+@media (max-width: 768px) {
+  .intro .intro-subtext.intro-subtext {
+    margin: 30px 0;
+    font-size: 16px;
+  }
+}
 .intro form {
   margin-bottom: 80px;
 }
+@media (max-width: 575px) {
+  .intro form {
+    margin-bottom: 30px;
+  }
+}
 .intro form .input-group {
   justify-content: flex-start;
+  margin-left: 0;
 }
 .intro .intro-bottom-text {
   font-weight: 600;
   margin-bottom: 0;
 }
-@media (max-width: 575px) {
+@media (max-width: 786px) {
   .intro .intro-bottom-text {
     font-size: 24px;
   }
@@ -437,7 +513,7 @@ form .signup-form-success p {
 }
 @media (max-width: 575px) {
   .spacing {
-    padding-top: 50px;
+    padding-top: 40px;
   }
 }
 .spacing .section-title {
@@ -456,14 +532,17 @@ form .signup-form-success p {
   margin-bottom: 10px;
 }
 .section-title * {
-  color: #fff;
   padding: 15px;
   border-radius: 5px;
   margin: 0;
+  text-align: center;
 }
-@media (max-width: 575px) {
-  .section-title * {
-    text-align: center;
+.section-title h1 {
+  color: #fff;
+}
+@media (max-width: 768px) {
+  .section-title h1 {
+    font-size: 20px;
   }
 }
 .section-title .rounded-bubble {
@@ -471,6 +550,7 @@ form .signup-form-success p {
   border-radius: 5px;
   position: relative;
   font-weight: bold;
+  text-align: center;
   border-radius: 50%;
   padding: 20px;
 }
@@ -509,7 +589,7 @@ form .signup-form-success p {
 .section-title .bg-ribbon h1 {
   padding: 15px 40px;
 }
-@media (max-width: 575px) {
+@media (max-width: 768px) {
   .section-title .bg-ribbon h1 {
     font-size: 18px;
   }
@@ -546,8 +626,10 @@ form .signup-form-success p {
 
 .cards > [class*='gr-'] {
   margin: 15px 0;
+  display: flex;
 }
-.cards .card, .cards .card--light {
+.cards > [class*='gr-'] .card, .cards > [class*='gr-'] .card--light {
+  flex: 1;
   height: 100%;
 }
 .cards--numbered {
@@ -615,36 +697,49 @@ form .signup-form-success p {
   margin: 0;
   color: #fff;
 }
-.card .card-body .size-1 {
+.card .card-body .size-1, .card .card-footer .size-1 {
   font-size: 10px;
 }
-.card .card-body .size-2 {
+.card .card-body .size-2, .card .card-footer .size-2 {
   font-size: 12px;
 }
-.card .card-body .size-3 {
+.card .card-body .size-3, .card .card-footer .size-3 {
   font-size: 14px;
 }
-.card .card-body .color-gray {
+.card .card-body .color-gray, .card .card-footer .color-gray {
   color: #ccc;
 }
-.card .card-body .bg-gray {
+.card .card-body .bg-gray, .card .card-footer .bg-gray {
   /* stylelint-disable color-no-hex */
   background-color: #f4f4f6 !important;
   /* stylelint-enable color-no-hex */
   border-radius: 5px;
   padding: 15px;
 }
+@media (max-width: 575px) {
+  .card .card-body .text-desc, .card .card-footer .text-desc {
+    font-size: 14px;
+  }
+  .card .card-body .box .size-3, .card .card-body .box-o .size-3, .card .card-footer .box .size-3, .card .card-footer .box-o .size-3 {
+    font-size: 12px;
+  }
+}
 .card .card-footer {
   display: flex;
   flex: 1;
   align-items: flex-end;
   justify-content: center;
-  color: #2a3052;
-  font-size: 13px;
-  font-weight: 300;
 }
 .card .card-footer p {
   margin: 0;
+  color: #2a3052;
+  font-size: 13px;
+  font-weight: 100;
+}
+@media (max-width: 575px) {
+  .card .card-footer p {
+    font-size: 12px;
+  }
 }
 .card .card-header {
   color: #fff;
@@ -667,17 +762,20 @@ form .signup-form-success p {
     padding: 5px;
   }
   .card .card-header__ribbon h1 {
-    font-size: 18px;
+    font-size: 20px;
   }
 }
 .card .card-header__ribbon + .card-body {
   margin-top: 60px;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
 }
 @media (max-width: 575px) {
   .card .card-header__ribbon + .card-body {
-    margin-top: 20px;
+    margin-top: 0;
     margin-bottom: 0;
+  }
+  .card .card-header__ribbon + .card-body .img-md {
+    margin-top: 30px;
   }
 }
 .card .card-body .bg-bubble {
@@ -761,36 +859,49 @@ form .signup-form-success p {
   margin: 0;
   color: #fff;
 }
-.card--light .card-body .size-1 {
+.card--light .card-body .size-1, .card--light .card-footer .size-1 {
   font-size: 10px;
 }
-.card--light .card-body .size-2 {
+.card--light .card-body .size-2, .card--light .card-footer .size-2 {
   font-size: 12px;
 }
-.card--light .card-body .size-3 {
+.card--light .card-body .size-3, .card--light .card-footer .size-3 {
   font-size: 14px;
 }
-.card--light .card-body .color-gray {
+.card--light .card-body .color-gray, .card--light .card-footer .color-gray {
   color: #ccc;
 }
-.card--light .card-body .bg-gray {
+.card--light .card-body .bg-gray, .card--light .card-footer .bg-gray {
   /* stylelint-disable color-no-hex */
   background-color: #f4f4f6 !important;
   /* stylelint-enable color-no-hex */
   border-radius: 5px;
   padding: 15px;
 }
+@media (max-width: 575px) {
+  .card--light .card-body .text-desc, .card--light .card-footer .text-desc {
+    font-size: 14px;
+  }
+  .card--light .card-body .box .size-3, .card--light .card-body .box-o .size-3, .card--light .card-footer .box .size-3, .card--light .card-footer .box-o .size-3 {
+    font-size: 12px;
+  }
+}
 .card--light .card-footer {
   display: flex;
   flex: 1;
   align-items: flex-end;
   justify-content: center;
-  color: #2a3052;
-  font-size: 13px;
-  font-weight: 300;
 }
 .card--light .card-footer p {
   margin: 0;
+  color: #2a3052;
+  font-size: 13px;
+  font-weight: 100;
+}
+@media (max-width: 575px) {
+  .card--light .card-footer p {
+    font-size: 12px;
+  }
 }
 .card--light .card-header__bubble {
   display: flex;
@@ -806,8 +917,10 @@ form .signup-form-success p {
     min-height: 130px;
   }
 }
-.card--light .card-header__bubble-sm {
-  min-height: 70px;
+@media (max-width: 575px) {
+  .card--light .card-header__bubble {
+    min-height: 88px;
+  }
 }
 .card--light .card-header__bubble h3 {
   text-align: center;
@@ -815,10 +928,26 @@ form .signup-form-success p {
   margin-bottom: 0;
   font-size: 20px;
 }
+@media (max-width: 575px) {
+  .card--light .card-header__bubble h3 {
+    font-size: 16px;
+  }
+}
+.card--light .card-header__bubble-sm {
+  min-height: 70px;
+}
+@media (max-width: 575px) {
+  .card--light .card-header__bubble-sm h3 {
+    font-size: 20px;
+  }
+}
 .card--light .card-header__ribbon {
   margin: auto;
   margin-top: -74px;
   margin-bottom: 40px;
+}
+.card--light .card-footer {
+  margin-top: 10px;
 }
 .card--light.icon-heart {
   justify-content: center;
@@ -949,7 +1078,17 @@ form .signup-form-success p {
   justify-content: center;
   align-items: center;
   padding: 0 10px;
-  text-align: center;
+  text-align: left;
+}
+@media (max-width: 768px) {
+  .box-o, .box {
+    max-width: 200px;
+  }
+}
+@media (max-width: 320px) {
+  .box-o, .box {
+    max-width: 160px;
+  }
 }
 .box-o.box-o, .box.box-o {
   border: 1px solid #f2f2f2;
@@ -1028,21 +1167,28 @@ form .signup-form-success p {
 }
 
 .responsive-lg {
-  max-width: 128px;
-  max-height: 128px;
+  max-width: 120px;
+  max-height: 120px;
   margin-left: 10px;
   margin-right: 10px;
 }
 
-.responsive-md {
-  width: 100%;
-  height: auto;
-}
-
-@media (max-width: 575px) {
+@media (max-width: 768px) {
   .gr-padding-5-m {
     padding-left: 5px !important;
     padding-right: 5px !important;
+  }
+
+  h2, h1.color-orange {
+    font-size: 20px !important;
+  }
+
+  .subtitle {
+    font-size: 18px !important;
+  }
+
+  p {
+    font-size: 16px;
   }
 }
 /* Grid layout system */

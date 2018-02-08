@@ -222,6 +222,10 @@ fieldset .text-display {
   color: #fff;
 }
 
+.white-bg-color {
+  background-color: #fff;
+}
+
 textarea {
   height: 8em;
   width: 25em;
@@ -1087,8 +1091,9 @@ body ul.checked > li {
 body .app-store-badge, body .google-play-badge {
   background-repeat: no-repeat;
   width: 140px;
-  height: 40px;
+  height: 38px;
   display: inline-block;
+  background-size: contain;
 }
 
 body.EN .calls_recording {
@@ -1379,6 +1384,10 @@ body.ZH_TW .google-play-badge {
 
   .table-container {
     overflow-x: auto;
+  }
+
+  .no-padding-m {
+    padding: 0 !important;
   }
 }
 @media screen and (max-width: 480px) {

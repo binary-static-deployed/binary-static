@@ -90,6 +90,14 @@
   background-image: url("../images/pages/metatrader/margin-policy/mr2_ai.svg");
   height: 150px;
 }
+#margin-policy .crypto-icon {
+  background-image: url("../images/pages/metatrader/margin-policy/crypto.svg");
+  height: 150px;
+}
+#margin-policy .metal-icon {
+  background-image: url("../images/pages/metatrader/margin-policy/metal.svg");
+  height: 150px;
+}
 
 /* Multilevel numbered list */
 #mt-tnc ol {
@@ -134,6 +142,13 @@
 
 #mt_download .browsers img {
   max-height: 100px;
+}
+
+#new_account_icon {
+  background-image: url("../images/pages/metatrader/icons/new_account.svg");
+  background-repeat: no-repeat;
+  background-position: 18px 6px;
+  padding-left: 48px;
 }
 
 /* GET-STARTED PAGES RULES */
@@ -681,34 +696,34 @@ div.kineticjs-content {
   font-style: italic;
 }
 
-#content.home-beta-content .go-left:hover, #content.home-beta-content .go-right:hover {
+#content.home-content .go-left:hover, #content.home-content .go-right:hover {
   cursor: pointer;
 }
-#content.home-beta-content h3 {
+#content.home-content h3 {
   line-height: 30px;
 }
-#content.home-beta-content .border-right {
+#content.home-content .border-right {
   border-right: 2px solid #dedede;
 }
-#content.home-beta-content .tab-circles {
+#content.home-content .tab-circles {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
-#content.home-beta-content .tab-circles .tab-circle {
+#content.home-content .tab-circles .tab-circle {
   width: 10px;
   height: 10px;
   border-radius: 50%;
   border: 1px solid #e98024;
   margin: 0 3px;
 }
-#content.home-beta-content .tab-circles .tab-circle.selected {
+#content.home-content .tab-circles .tab-circle.selected {
   background-color: #e98024;
 }
-#content.home-beta-content .tab-circles .tab-circle:first-child {
+#content.home-content .tab-circles .tab-circle:first-child {
   margin-left: auto;
 }
-#content.home-beta-content .tab-circles .tab-circle:last-child {
+#content.home-content .tab-circles .tab-circle:last-child {
   margin-right: auto;
 }
 
@@ -790,22 +805,22 @@ div.kineticjs-content {
     width: 32%;
   }
 
-  #content.home-beta-content .border-right {
+  #content.home-content .border-right {
     border-right: none;
   }
-  #content.home-beta-content #market_tabs_selector, #content.home-beta-content #account_tabs_selector {
+  #content.home-content #market_tabs_selector, #content.home-content #account_tabs_selector {
     top: 24px;
   }
-  #content.home-beta-content #frm_verify_email input {
+  #content.home-content #frm_verify_email input {
     width: calc(100% - 10px);
   }
-  #content.home-beta-content .order-2-m {
+  #content.home-content .order-2-m {
     -webkit-box-ordinal-group: 3;
         -ms-flex-order: 2;
             order: 2;
     padding-top: 30px;
   }
-  #content.home-beta-content .padding-top-20 {
+  #content.home-content .padding-top-20 {
     padding-top: 20px;
   }
 
@@ -954,9 +969,6 @@ div.kineticjs-content {
 }
 #payment_methods #local_bank_transfer {
   background-position: -90px -9px;
-}
-#payment_methods #western_union {
-  background-position: -174px -9px;
 }
 #payment_methods #visa {
   background-position: -338px -10px;
@@ -1150,16 +1162,6 @@ body #not_authenticated_financial ul.checked > li {
   background-color: #fff;
 }
 
-.omnibus-content .box {
-  min-height: 156px;
-}
-.omnibus-content .box img {
-  height: 48px;
-}
-.omnibus-content .steps img {
-  height: 43px;
-}
-
 .accounts-content .table-container table {
   border: 1px solid #f2f2f2;
 }
@@ -1196,14 +1198,9 @@ body #not_authenticated_financial ul.checked > li {
   padding: 4px 0;
 }
 
-.platforms-content #binary-content img.responsive {
+.platforms-content img.responsive {
   max-height: 150px;
-}
-.platforms-content #mt5-content .enhanced img.responsive, .platforms-content #mt5-content img.step {
-  max-height: 128px;
-}
-.platforms-content #mt5-content img.step-arrow {
-  max-height: 24px;
+  width: auto;
 }
 
 #mt5_types_of_accounts .box {
@@ -1283,6 +1280,245 @@ body #not_authenticated_financial ul.checked > li {
 }
 .authenticate-content .center-text .button .barspinner {
   margin: 0 auto;
+}
+
+.careers-content .career {
+  margin-top: 0;
+}
+.careers-content .career .top-banner {
+  background: url("../images/pages/careers/careers-1_bg.jpg") no-repeat;
+  background-size: cover;
+  min-height: 300px;
+  position: relative;
+  background-position: center;
+}
+.careers-content .career .top-banner .banner-caption {
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  bottom: -100px;
+}
+.careers-content .career .top-banner .banner-caption .caption-text {
+  margin: 0 auto;
+  max-width: 960px;
+  background-color: #fff;
+  text-align: center;
+  padding: 40px 0px 20px;
+}
+.careers-content .career .top-banner .banner-caption .caption-text p {
+  margin: 1em auto;
+  max-width: 80%;
+}
+@media (max-width: 768px) {
+  .careers-content .career .top-banner {
+    background-position: 75% -30px;
+  }
+}
+.careers-content .career .center-banner {
+  background: url("../images/pages/careers/careers-2_bg.jpg") no-repeat;
+  background-size: cover;
+  min-height: 300px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background-position: center;
+}
+.careers-content .career .center-banner .caption-text {
+  margin: 0 auto;
+  max-width: 960px;
+  text-align: center;
+}
+.careers-content .career .center-banner .caption-text h1 {
+  margin-top: 1em;
+}
+.careers-content .career .center-banner .caption-text p {
+  color: #fff;
+  margin: 1em auto;
+  max-width: 80%;
+  font-weight: 300;
+}
+.careers-content .career .margin-top-100 {
+  margin-top: 100px;
+}
+.careers-content .career .btn-margin-top {
+  margin-top: 1.5em;
+}
+.careers-content .career .column-margin {
+  margin: 0 0 1em;
+}
+.careers-content .career .header-line {
+  border-color: #e98024;
+  border-width: 3px;
+  width: 25%;
+}
+.careers-content .career .fill-text {
+  padding: 1em 0;
+}
+.careers-content .career .box-container.padding {
+  padding: 5px 15px;
+}
+.careers-content .career .box-container > [class*='gr-padding'] {
+  padding-bottom: 0;
+}
+@media (max-width: 768px) {
+  .careers-content .career .box-container > [class*='gr-padding'] {
+    padding-bottom: unset;
+  }
+}
+.careers-content .career .box-container .box.bordered {
+  border: 1px solid #dedede;
+  height: 100%;
+}
+.careers-content .career .box-container .box .items {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.careers-content .career .box-container .box .items img {
+  padding-top: 20px;
+  width: 50px;
+}
+.careers-content .career .box-container .box .items p {
+  font-weight: 600;
+  color: #2a3052;
+}
+.careers-content .career .box-container .box .items > .box-item-end {
+  padding: 0 30px;
+}
+@media (max-width: 768px) {
+  .careers-content .career .box-container .box .items {
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+}
+.careers-content .career h4 {
+  color: #2a3052;
+}
+.careers-content .career .graduate-container {
+  position: relative;
+  margin-top: 1em;
+}
+.careers-content .career .graduate-container .graduate-box {
+  background-color: #2a3052;
+  padding: 30px;
+  position: absolute;
+  z-index: 1;
+  top: 50px;
+}
+@media (max-width: 480px) {
+  .careers-content .career .graduate-container .graduate-box h1 {
+    font-size: 1.520875rem;
+    text-align: center;
+  }
+}
+.careers-content .career .graduate-container .graduate-box p {
+  color: #fff;
+}
+@media (max-width: 480px) {
+  .careers-content .career .graduate-container .graduate-box p {
+    font-size: 0.8695652174rem;
+    text-align: center;
+  }
+}
+.careers-content .career .graduate-container .graduate-box a.button span {
+  background-color: #fff;
+  color: #2a3052;
+  border-radius: 0;
+  font-weight: 600;
+}
+@media screen and (max-width: 1024px) and (min-width: 769px) {
+  .careers-content .career .graduate-container .graduate-box {
+    left: 16%;
+    bottom: 24%;
+    top: unset;
+  }
+}
+@media (max-width: 768px) {
+  .careers-content .career .graduate-container .graduate-box {
+    top: 0;
+  }
+}
+@media (max-width: 480px) {
+  .careers-content .career .graduate-container .graduate-box {
+    background-color: transparent;
+    padding: 15px;
+  }
+}
+.careers-content .career ul.role-section {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-bottom: 20px;
+  border-bottom: 0;
+}
+.careers-content .career ul.role-section li.role {
+  margin: 0;
+  border-radius: 0;
+  padding: 0;
+}
+.careers-content .career ul.role-section li.role a.role-btn {
+  padding: 15px 20px !important;
+}
+.careers-content .career ul.role-section li.role a.role-btn span {
+  color: #2a3052;
+  font-weight: 600;
+  font-size: 1.15rem;
+  text-transform: none;
+}
+@media (max-width: 320px) {
+  .careers-content .career ul.role-section li.role a.role-btn span {
+    font-size: 0.8695652174rem;
+  }
+}
+.careers-content .career ul.role-section li.role a.role-btn:focus {
+  border: 0;
+  outline: 0;
+}
+.careers-content .career ul.role-section li.role.ui-tabs-active a span {
+  color: #fff;
+}
+.careers-content .career ul.role-section li.role:focus {
+  border: 0;
+  outline: 0;
+}
+.careers-content .career .america-careers-link a {
+  text-transform: capitalize;
+}
+.careers-content .career .footer-email {
+  margin-bottom: -20px;
+}
+.careers-content .career .footer-email p {
+  color: #fff;
+  padding: 20px 0;
+  text-align: center;
+}
+@media (max-width: 480px) {
+  .careers-content .career .steps {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
 }
 
 .timeline {

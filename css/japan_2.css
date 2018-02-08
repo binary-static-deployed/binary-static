@@ -63,12 +63,35 @@ table {
   color: #fff;
 }
 
+.lightbox {
+  display: flex;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 2000000000;
+}
+.lightbox > div {
+  margin: auto;
+  max-width: 44em;
+  max-height: 80vh;
+  background-color: #fff;
+  border-radius: 3px;
+  overflow: auto;
+  text-align: center;
+}
+
 body {
   overflow-x: hidden;
   width: 100%;
 }
 body * {
   box-sizing: border-box;
+}
+
+.scroll-lock {
+  overflow: hidden;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -123,18 +146,25 @@ form h1 {
   text-align: center;
   margin-top: 50px;
 }
-form .input-group {
+@media (min-width: 576px) {
+  form .signup-form-input.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+form .signup-form-input .input-group {
   display: flex;
   flex-direction: column;
   position: relative;
 }
 @media (min-width: 576px) {
-  form .input-group {
+  form .signup-form-input .input-group {
     flex-direction: row;
-    justify-content: center;
+    justify-content: flex-start;
   }
 }
-form .input-group input[type='email'] {
+form .signup-form-input .input-group input[type='email'] {
   width: 100%;
   font-size: 14px;
   padding: 10px;
@@ -142,43 +172,49 @@ form .input-group input[type='email'] {
   max-width: 340px;
   outline: none;
 }
+@media (min-width: 576px) {
+  form .signup-form-input .input-group input[type='email'] {
+    width: 340px;
+  }
+}
 @media (max-width: 575px) {
-  form .input-group input[type='email'] {
+  form .signup-form-input .input-group input[type='email'] {
     margin: 5px auto;
   }
 }
-form .input-group input[type='email'].error-field {
+form .signup-form-input .input-group input[type='email'].error-field {
   border: 1px solid #c03;
 }
-form .input-group button {
+form .signup-form-input .input-group button {
   max-width: 340px;
   margin: 5px 20px;
   outline: none;
 }
 @media (max-width: 575px) {
-  form .input-group button {
+  form .signup-form-input .input-group button {
     margin: 5px auto;
     width: 100%;
   }
 }
-form .input-group .error-msg {
+form .signup-form-input .input-group .error-msg {
   position: absolute;
+  left: 0;
   top: 100%;
 }
 @media (max-width: 575px) {
-  form .input-group .error-msg {
+  form .signup-form-input .input-group .error-msg {
     position: relative;
     margin: 5px 0;
   }
 }
-form .signup-form-success {
+form .signup-form-success, form .signup-form-error {
   background-color: #e98024;
   padding: 5px;
   color: #fff;
   border-radius: 5px;
   text-align: center;
 }
-form .signup-form-success.white {
+form .signup-form-success.white, form .signup-form-error.white {
   background-color: #fff;
   color: #000;
 }
@@ -248,10 +284,14 @@ form .signup-form-success.white {
   padding-top: 50px;
   padding-bottom: 50px;
 }
-@media (min-width: 1199px) {
+@media (min-width: 1200px) {
   .padding-bottom-50.override {
     padding-top: 0;
   }
+}
+
+.uppercase-text {
+  text-transform: uppercase;
 }
 
 .bg-orange {
@@ -282,6 +322,7 @@ form .signup-form-success.white {
 .bg-platforms {
   background-image: url("../images/japan/version2/bg-section-platforms@2x.png");
   position: absolute;
+  pointer-events: none;
   width: 100%;
   height: 230%;
   background-repeat: no-repeat;
@@ -328,10 +369,18 @@ form .signup-form-success.white {
 
 .flex-inline {
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   flex-direction: row;
   text-align: left;
+}
+.flex-inline p.desc-text {
+  max-width: 185px;
+}
+@media (max-width: 1199px) {
+  .flex-inline p.desc-text {
+    max-width: 100%;
+  }
 }
 @media (max-width: 1199px) {
   .flex-inline {
@@ -885,41 +934,55 @@ form .signup-form-success.white {
   margin: 0;
   color: #fff;
 }
-.card .card-body .size-1 {
+.card .card-body .size-1, .card .card-footer .size-1 {
   font-size: 10px;
 }
-.card .card-body .size-2 {
+.card .card-body .size-2, .card .card-footer .size-2 {
   font-size: 12px;
 }
-.card .card-body .size-3 {
+.card .card-body .size-3, .card .card-footer .size-3 {
   font-size: 14px;
 }
-.card .card-body .color-gray {
+.card .card-body .color-gray, .card .card-footer .color-gray {
   color: #ccc;
 }
-.card .card-body .bg-gray {
+.card .card-body .bg-gray, .card .card-footer .bg-gray {
   /* stylelint-disable color-no-hex */
   background-color: #f4f4f6 !important;
   /* stylelint-enable color-no-hex */
   border-radius: 5px;
   padding: 15px;
 }
+@media (max-width: 575px) {
+  .card .card-body .text-desc, .card .card-footer .text-desc {
+    font-size: 14px;
+  }
+  .card .card-body .box .size-3, .card .card-body .box-o .size-3, .card .card-footer .box .size-3, .card .card-footer .box-o .size-3 {
+    font-size: 12px;
+  }
+}
 .card .card-footer {
   display: flex;
   flex: 1;
   align-items: flex-end;
   justify-content: center;
-  color: #2a3052;
-  font-size: 13px;
-  font-weight: 300;
 }
 .card .card-footer p {
   margin: 0;
+  color: #2a3052;
+  font-size: 13px;
+  font-weight: 100;
+}
+@media (max-width: 575px) {
+  .card .card-footer p {
+    font-size: 12px;
+  }
 }
 .card .card-header__bubble {
   margin: -21px;
   padding: 15px;
   margin-bottom: 40px;
+  min-height: 106px;
 }
 .card .card-header__bubble h3 {
   text-align: center;
@@ -973,7 +1036,6 @@ form .signup-form-success.white {
   display: flex;
   justify-content: center;
   align-items: center;
-  cursor: pointer;
 }
 .twb-buttons ul {
   display: flex;
@@ -987,6 +1049,7 @@ form .signup-form-success.white {
   border-radius: 50%;
   padding: 2px;
   margin: 0 10px;
+  cursor: pointer;
 }
 .twb-buttons ul li.active {
   background-color: #e98024;
@@ -1004,9 +1067,11 @@ form .signup-form-success.white {
   background-image: url("../images/japan/version2/right_enabled.svg");
 }
 
-.tab-container {
-  padding-top: 50px;
-  padding-bottom: 50px;
+@media (max-width: 1199px) {
+  .tab-container {
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
 }
 @media (min-width: 1439px) {
   .tab-container {
@@ -1014,7 +1079,7 @@ form .signup-form-success.white {
     padding-top: 0;
     width: 55vw;
   }
-  .tab-container .ic-1, .tab-container .ic-2, .tab-container .ic-3, .tab-container .ic-4, .tab-container .ic-5, .tab-container .ic-6 {
+  .tab-container .ic-1, .tab-container .ic-2, .tab-container .ic-3, .tab-container .ic-4, .tab-container .ic-5, .tab-container .ic-6, .tab-container .ic-7, .tab-container .ic-8 {
     background-size: cover;
   }
   .tab-container .icon-sm {
@@ -1090,6 +1155,14 @@ form .signup-form-success.white {
   background-image: url("../images/japan/version1/icon-6.svg");
 }
 
+.ic-7 {
+  background-image: url("../images/japan/version1/icon-7.svg");
+}
+
+.ic-8 {
+  background-image: url("../images/japan/version1/icon-8.svg");
+}
+
 .ic-new-account {
   background-image: url("../images/japan/version1/new-acc.svg");
 }
@@ -1099,7 +1172,7 @@ form .signup-form-success.white {
 }
 
 .ic-knowledge-test {
-  background-image: url("../images/japan/version1/knowledge-test.svg");
+  background-image: url("../images/japan/version2/ic-knowledge-test.svg");
 }
 
 .ic-deposit-money {
@@ -1117,7 +1190,7 @@ form .signup-form-success.white {
 }
 @media (max-width: 1199px) {
   .ic-award {
-    height: 70px;
+    height: 80px;
     padding: 0;
   }
 }

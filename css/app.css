@@ -669,6 +669,14 @@ a.previous-wrapper:hover {
           box-sizing: border-box;
   font-size: 0.8695652174rem;
 }
+#mt_account_management #account_selector #accounts_list .acc-group {
+  line-height: 30px;
+  padding: 0 5px;
+  color: #44484c;
+}
+#mt_account_management #account_selector #accounts_list .acc-group:hover {
+  cursor: auto;
+}
 #mt_account_management #account_selector #accounts_list .acc-name {
   line-height: 30px;
   padding: 0 20px;
@@ -695,11 +703,21 @@ a.previous-wrapper:hover {
 }
 #mt_account_management #mt_right_panel .platforms li {
   margin-bottom: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 #mt_account_management #mt_right_panel .platforms li img {
   width: 16px;
   height: 16px;
-  margin-right: 5px;
+  margin-right: 10px;
 }
 #mt_account_management #mt_right_panel .badges span {
   width: 85px;
@@ -719,17 +737,14 @@ a.previous-wrapper:hover {
   background: no-repeat center;
   background-size: 60px;
 }
-#mt_account_management #account_details #acc_icon.cent {
-  background-image: url("../images/pages/metatrader/icons/acc_cent.svg");
-}
 #mt_account_management #account_details #acc_icon.standard {
   background-image: url("../images/pages/metatrader/icons/acc_standard.svg");
 }
-#mt_account_management #account_details #acc_icon.stp {
-  background-image: url("../images/pages/metatrader/icons/acc_stp.svg");
+#mt_account_management #account_details #acc_icon.advanced {
+  background-image: url("../images/pages/metatrader/icons/acc_advanced.svg");
 }
 #mt_account_management #account_details #acc_icon.volatility {
-  background-image: url("../images/pages/metatrader/icons/acc_volatility.svg");
+  background-image: url("../images/pages/metatrader/icons/acc_volatility_indices.svg");
 }
 #mt_account_management #account_details .acc-info {
   font-size: 0.8695652174rem;
