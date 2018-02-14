@@ -984,6 +984,9 @@ table td {
 .table-container td[data-balloon] {
   border-bottom: 3px solid #f2f2f2;
 }
+.table-container .w-80 {
+  width: 80px;
+}
 @media (max-width: 600px) {
   .table-container td {
     padding-left: 5px !important;

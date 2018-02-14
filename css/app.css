@@ -202,6 +202,7 @@ a.previous-wrapper:hover {
 }
 #mb-trading-wrapper #mb_trading #panel #payout_amount {
   line-height: 49px;
+  white-space: nowrap;
 }
 #mb-trading-wrapper #mb_trading #panel .trade_form > div .list {
   background-color: #fff;

@@ -137,11 +137,54 @@ footer > div {
 footer p {
   margin: 0;
 }
+footer p.black-text {
+  color: #000;
+}
+@media (max-width: 575px) {
+  footer p {
+    text-align: center;
+  }
+}
+footer .badges {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+footer .badges img {
+  width: auto;
+  max-width: 100%;
+}
+footer .badges img.fsa-badge, footer .badges img.tffa-badge {
+  max-height: 42px;
+}
+@media (max-width: 768px) {
+  footer .badges img.fsa-badge, footer .badges img.tffa-badge {
+    margin: 20px 0 0;
+    max-height: 50px;
+  }
+}
+@media (max-width: 768px) {
+  footer .badges {
+    margin: 20px 0 0;
+    justify-content: space-evenly;
+  }
+}
+@media (max-width: 575px) {
+  footer .badges {
+    flex-direction: column;
+  }
+}
 
 form {
   margin-bottom: 40px;
 }
 form h1 {
+  color: #fff;
+  text-align: center;
+  margin-top: 50px;
+}
+form h2.email {
   color: #fff;
   text-align: center;
   margin-top: 50px;
@@ -747,6 +790,8 @@ form .signup-form-success.white, form .signup-form-error.white {
     margin: 0;
     width: 100%;
     height: 0;
+    pointer-events: none;
+    opacity: 0;
     -webkit-transition: height 0.3s;
     -moz-transition: height 0.3s;
     -ms-transition: height 0.3s;
@@ -769,6 +814,8 @@ form .signup-form-success.white, form .signup-form-error.white {
     font-size: 18px;
   }
   .navbar-fixed-top .navbar-collapse.expand {
+    opacity: 1;
+    pointer-events: auto;
     height: 100%;
   }
 }
@@ -934,17 +981,31 @@ form .signup-form-success.white, form .signup-form-error.white {
   margin: 0;
   color: #fff;
 }
+.card .card-body.fixed-height {
+  min-height: 581px;
+}
 .card .card-body .size-1, .card .card-footer .size-1 {
   font-size: 10px;
 }
 .card .card-body .size-2, .card .card-footer .size-2 {
   font-size: 12px;
 }
+.card .card-body .size-2.fixed-width, .card .card-footer .size-2.fixed-width {
+  padding: 0 17%;
+}
+.card .card-body .size-2.big-spacing, .card .card-footer .size-2.big-spacing {
+  line-height: 2.8em;
+}
 .card .card-body .size-3, .card .card-footer .size-3 {
   font-size: 14px;
 }
+.card .card-body .size-desc, .card .card-footer .size-desc {
+  font-size: 13px;
+}
 .card .card-body .color-gray, .card .card-footer .color-gray {
-  color: #ccc;
+  /* stylelint-disable color-no-hex */
+  color: #d2d3dd;
+  /* stylelint-enable color-no-hex */
 }
 .card .card-body .bg-gray, .card .card-footer .bg-gray {
   /* stylelint-disable color-no-hex */
@@ -967,10 +1028,13 @@ form .signup-form-success.white, form .signup-form-error.white {
   align-items: flex-end;
   justify-content: center;
 }
+.card .card-footer.pull-text {
+  align-items: flex-start;
+}
 .card .card-footer p {
   margin: 0;
   color: #2a3052;
-  font-size: 13px;
+  font-size: 18px;
   font-weight: 100;
 }
 @media (max-width: 575px) {

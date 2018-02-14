@@ -98,6 +98,9 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0 0 20px;
   line-height: 1.5;
 }
+h1.color-white, h2.color-white, h3.color-white, h4.color-white, h5.color-white, h6.color-white {
+  color: #fff;
+}
 
 section {
   padding: 80px 0;
@@ -600,7 +603,7 @@ form .signup-form-success p, form .signup-form-error p {
   position: relative;
   padding: 15px 30px;
   text-align: center;
-  font-size: 48px;
+  font-size: 36px;
 }
 .section-title .bg-bubble:before {
   position: absolute;
@@ -697,17 +700,31 @@ form .signup-form-success p, form .signup-form-error p {
   margin: 0;
   color: #fff;
 }
+.card .card-body.fixed-height {
+  min-height: 581px;
+}
 .card .card-body .size-1, .card .card-footer .size-1 {
   font-size: 10px;
 }
 .card .card-body .size-2, .card .card-footer .size-2 {
   font-size: 12px;
 }
+.card .card-body .size-2.fixed-width, .card .card-footer .size-2.fixed-width {
+  padding: 0 17%;
+}
+.card .card-body .size-2.big-spacing, .card .card-footer .size-2.big-spacing {
+  line-height: 2.8em;
+}
 .card .card-body .size-3, .card .card-footer .size-3 {
   font-size: 14px;
 }
+.card .card-body .size-desc, .card .card-footer .size-desc {
+  font-size: 13px;
+}
 .card .card-body .color-gray, .card .card-footer .color-gray {
-  color: #ccc;
+  /* stylelint-disable color-no-hex */
+  color: #d2d3dd;
+  /* stylelint-enable color-no-hex */
 }
 .card .card-body .bg-gray, .card .card-footer .bg-gray {
   /* stylelint-disable color-no-hex */
@@ -730,10 +747,13 @@ form .signup-form-success p, form .signup-form-error p {
   align-items: flex-end;
   justify-content: center;
 }
+.card .card-footer.pull-text {
+  align-items: flex-start;
+}
 .card .card-footer p {
   margin: 0;
   color: #2a3052;
-  font-size: 13px;
+  font-size: 18px;
   font-weight: 100;
 }
 @media (max-width: 575px) {
@@ -859,17 +879,31 @@ form .signup-form-success p, form .signup-form-error p {
   margin: 0;
   color: #fff;
 }
+.card--light .card-body.fixed-height {
+  min-height: 581px;
+}
 .card--light .card-body .size-1, .card--light .card-footer .size-1 {
   font-size: 10px;
 }
 .card--light .card-body .size-2, .card--light .card-footer .size-2 {
   font-size: 12px;
 }
+.card--light .card-body .size-2.fixed-width, .card--light .card-footer .size-2.fixed-width {
+  padding: 0 17%;
+}
+.card--light .card-body .size-2.big-spacing, .card--light .card-footer .size-2.big-spacing {
+  line-height: 2.8em;
+}
 .card--light .card-body .size-3, .card--light .card-footer .size-3 {
   font-size: 14px;
 }
+.card--light .card-body .size-desc, .card--light .card-footer .size-desc {
+  font-size: 13px;
+}
 .card--light .card-body .color-gray, .card--light .card-footer .color-gray {
-  color: #ccc;
+  /* stylelint-disable color-no-hex */
+  color: #d2d3dd;
+  /* stylelint-enable color-no-hex */
 }
 .card--light .card-body .bg-gray, .card--light .card-footer .bg-gray {
   /* stylelint-disable color-no-hex */
@@ -892,10 +926,13 @@ form .signup-form-success p, form .signup-form-error p {
   align-items: flex-end;
   justify-content: center;
 }
+.card--light .card-footer.pull-text {
+  align-items: flex-start;
+}
 .card--light .card-footer p {
   margin: 0;
   color: #2a3052;
-  font-size: 13px;
+  font-size: 18px;
   font-weight: 100;
 }
 @media (max-width: 575px) {
@@ -1070,7 +1107,7 @@ form .signup-form-success p, form .signup-form-error p {
 }
 .bubble-outline p {
   margin: 0;
-  font-size: 16px;
+  font-size: 18px;
 }
 
 .box-o, .box {
