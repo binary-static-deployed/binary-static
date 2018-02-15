@@ -82,6 +82,15 @@ table {
   text-align: center;
 }
 
+.buorg {
+  color: #000;
+}
+
+@media screen and (max-width: 1199px) {
+  body .buorg {
+    font-size: 0.8695652174rem;
+  }
+}
 body {
   overflow-x: hidden;
   width: 100%;
@@ -1004,7 +1013,7 @@ form .signup-form-success.white, form .signup-form-error.white {
 }
 .card .card-body .color-gray, .card .card-footer .color-gray {
   /* stylelint-disable color-no-hex */
-  color: #d2d3dd;
+  color: #6e7287;
   /* stylelint-enable color-no-hex */
 }
 .card .card-body .bg-gray, .card .card-footer .bg-gray {

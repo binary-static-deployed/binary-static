@@ -637,7 +637,9 @@ div.kineticjs-content {
 }
 
 .home-content #banner, .home-old-content #banner {
-  background: url("../images/pages/home/banner-background_1.png") 0 0/100% 108% no-repeat;
+  background: url("../images/pages/home/banner-background_1.png") no-repeat;
+  background-position: left top;
+  background-size: 100% 70%;
 }
 .home-content .xlist1, .home-old-content .xlist1 {
   background: url("../images/pages/home/xicon-1.png") no-repeat;
@@ -796,6 +798,11 @@ div.kineticjs-content {
   .home-jp-content .box {
     margin-top: auto;
   }
+
+  .home-content #banner, .home-old-color #banner {
+    background-position: right top;
+    background-size: 125% 75%;
+  }
 }
 @media screen and (max-width: 480px) {
   .home-content .small-image, .home-old-content .small-image {
@@ -803,6 +810,10 @@ div.kineticjs-content {
   }
   .home-content .mena, .home-old-content .mena {
     width: 32%;
+  }
+  .home-content #banner, .home-old-content #banner {
+    background-position: right top;
+    background-size: 300% 75%;
   }
 
   #content.home-content .border-right {

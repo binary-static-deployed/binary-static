@@ -82,6 +82,15 @@ table {
   text-align: center;
 }
 
+.buorg {
+  color: #000;
+}
+
+@media screen and (max-width: 1199px) {
+  body .buorg {
+    font-size: 0.8695652174rem;
+  }
+}
 body {
   overflow-x: hidden;
   width: 100%;
