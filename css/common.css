@@ -207,9 +207,15 @@ fieldset legend {
   font-weight: bold;
   text-transform: capitalize;
 }
+fieldset legend + .hint {
+  padding-left: 1em;
+}
 fieldset .text-display {
   /* TODO: replace all occurrences of id with the class */
   line-height: 25px;
+}
+fieldset #geocode_error {
+  margin: 5px 15px;
 }
 
 .error-msg {
@@ -513,9 +519,6 @@ button .barspinner.white {
   text-decoration: none;
 }
 
-.static_full {
-  margin-top: 40px;
-}
 .static_full .section:first-child {
   padding-bottom: 50px;
 }
@@ -591,6 +594,7 @@ ul.bullet.gr-row > li {
 }
 
 #content {
+  margin-top: 40px;
   margin-bottom: 20px;
 }
 #content .light .tab-menu-wrap {
@@ -889,6 +893,36 @@ body #topbar .upgrademessage a:hover, body #topbar .upgrademessage a:active, .la
   padding: 0 10px;
   word-wrap: break-word;
 }
+#header #menu-top.top-nav-menu {
+  display: block;
+}
+#header #menu-top.top-nav-menu .nav-caret {
+  margin-left: 5px;
+}
+#header #menu-top.top-nav-menu > li {
+  float: none;
+}
+#header #menu-top.top-nav-menu > li ul {
+  z-index: 2;
+}
+#header #menu-top.top-nav-menu > li ul li {
+  display: block;
+}
+#header #menu-top.top-nav-menu > li ul li a {
+  padding: 10px 30px;
+  display: block;
+  height: auto;
+  max-width: none;
+}
+#header #menu-top.top-nav-menu > li ul li a:hover {
+  opacity: 1;
+}
+#header #menu-top.top-nav-menu > li ul li.active a:hover {
+  color: #fff;
+}
+#header #menu-top .active-parent > a {
+  color: #e98024;
+}
 #header .topMenuBalance {
   visibility: hidden;
 }
@@ -910,16 +944,8 @@ body #topbar .upgrademessage a:hover, body #topbar .upgrademessage a:active, .la
 #header #main-logout #all-accounts .create_new_account li.topMenuAccounts:hover {
   background-color: initial;
 }
-
-#main-menu {
-  margin-bottom: 40px;
-  color: #dedede;
-}
-#main-menu .items li a {
-  white-space: nowrap;
-}
-#main-menu .tab-menu-wrap ul li.hover ul {
-  z-index: 1;
+#header .container {
+  max-width: 1200px;
 }
 
 /* mobile menu overrides */
@@ -1167,9 +1193,6 @@ body.JA #header #menu-top li {
 body.JA #profit-table .buy-price, body.JA #profit-table .sell-price, body.JA #profit-table .payout, body.JA #profit-table .pl.loss, body.JA #profit-table .act, body.JA #statement-table .buy-price, body.JA #statement-table .sell-price, body.JA #statement-table .payout, body.JA #statement-table .pl.loss, body.JA #statement-table .act {
   white-space: nowrap;
 }
-body.JA #main-menu {
-  margin-bottom: 30px;
-}
 body.JA #email_consent_label {
   font-size: 0.7561436673rem;
 }
@@ -1416,11 +1439,12 @@ body.ZH_TW .google-play-badge {
     font-size: 0.8695652174rem;
   }
 }
-@media screen and (max-width: 959px) {
+@media screen and (max-width: 1080px) {
   #header ul#menu-top.smaller-font a {
     font-size: 0.7561436673rem;
   }
-
+}
+@media screen and (max-width: 959px) {
   .home-jp-content #banner {
     background-position-x: 0;
   }

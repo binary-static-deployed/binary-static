@@ -629,6 +629,7 @@ a.previous-wrapper:hover {
 #mt_account_management #account_selector {
   position: relative;
   cursor: pointer;
+  margin-bottom: 10px;
 }
 #mt_account_management #account_selector #mt5_account, #mt_account_management #account_selector #accounts_list {
   border: 1px solid #394171;
@@ -696,6 +697,10 @@ a.previous-wrapper:hover {
 #mt_account_management #account_selector #accounts_list .acc-name .mt-icon {
   float: right;
 }
+#mt_account_management #account_selector #accounts_list .acc-name .mt-login {
+  padding-left: 3px;
+  font-size: 90%;
+}
 #mt_account_management #account_selector #accounts_list .separator {
   margin: 5px 0;
 }
@@ -730,23 +735,6 @@ a.previous-wrapper:hover {
       -ms-flex: 0;
           flex: 0;
 }
-#mt_account_management #account_details #acc_icon {
-  width: 90px;
-  height: 90px;
-  border: 2px solid #dedede;
-  border-radius: 50%;
-  background: no-repeat center;
-  background-size: 60px;
-}
-#mt_account_management #account_details #acc_icon.standard {
-  background-image: url("../images/pages/metatrader/icons/acc_standard.svg");
-}
-#mt_account_management #account_details #acc_icon.advanced {
-  background-image: url("../images/pages/metatrader/icons/acc_advanced.svg");
-}
-#mt_account_management #account_details #acc_icon.volatility {
-  background-image: url("../images/pages/metatrader/icons/acc_volatility_indices.svg");
-}
 #mt_account_management #account_details .acc-info {
   font-size: 0.8695652174rem;
 }
@@ -780,6 +768,9 @@ a.previous-wrapper:hover {
 #mt_account_management .acc-actions a.selected, #mt_account_management .acc-actions > span.selected {
   color: #fff;
   background: #394171;
+}
+#mt_account_management .acc-actions a:hover, #mt_account_management .acc-actions > span:hover {
+  text-decoration: none;
 }
 #mt_account_management .fst-container #fst_action {
   position: relative;
@@ -1356,6 +1347,9 @@ a.previous-wrapper:hover {
 #trading_socket_container #contract_container input[type=number] {
   -moz-appearance: textfield;
 }
+#trading_socket_container #contract_container .gr-gutter-left {
+  padding-left: 5px;
+}
 #trading_socket_container .contract_heading {
   text-transform: capitalize;
   font-weight: bold;
@@ -1426,6 +1420,18 @@ a.previous-wrapper:hover {
 #trading_socket_container .contract_heading.EXPIRYMISS {
   background: url("../images/pages/trade/ends-outside_1.png") no-repeat top center;
 }
+#trading_socket_container .contract_heading.LBFLOATPUT {
+  background: url("../images/pages/trade/low_icon.svg") no-repeat center top;
+  background-size: 50%;
+}
+#trading_socket_container .contract_heading.LBFLOATCALL {
+  background: url("../images/pages/trade/high_icon.svg") no-repeat center top;
+  background-size: 50%;
+}
+#trading_socket_container .contract_heading.LBHIGHLOW {
+  background: url("../images/pages/trade/high_low_icon.svg") no-repeat center top;
+  background-size: 50%;
+}
 #trading_socket_container #contract_prices_container {
   position: relative;
   margin-left: 1em;
@@ -1481,6 +1487,17 @@ a.previous-wrapper:hover {
 }
 #trading_socket_container #contract_prices_container .price_container#price_container_top {
   margin-bottom: 1rem;
+}
+#trading_socket_container #contract_prices_container .price_container#price_container_middle .price_wrapper {
+  margin: 25px 0 10px;
+  padding: 0 15px 5px;
+}
+#trading_socket_container #contract_prices_container .price_container#price_container_middle .payout_wrapper .contract_quantity {
+  font-weight: 700;
+}
+#trading_socket_container #contract_prices_container .price_container#price_container_middle .contract_longcode {
+  text-align: center;
+  margin: 10px 15px;
 }
 #trading_socket_container #contract_prices_container .price_comment, #trading_socket_container #contract_prices_container .contract_error, #trading_socket_container #contract_prices_container #contract_purchase_balance {
   background-color: #dedede;
@@ -1574,7 +1591,7 @@ a.previous-wrapper:hover {
       -ms-flex-pack: end;
           justify-content: flex-end;
 }
-#trading_socket_container #contract_prices_container .contract_amount, #trading_socket_container #contract_prices_container .contract_payout {
+#trading_socket_container #contract_prices_container .contract_amount, #trading_socket_container #contract_prices_container .contract_payout, #trading_socket_container #contract_prices_container .contract_multiplier {
   font-weight: bold;
   font-size: 1rem;
   border-radius: 5px;
@@ -2052,6 +2069,11 @@ a.previous-wrapper:hover {
   -webkit-box-flex: 0.8;
       -ms-flex: 0.8 1 35px;
           flex: 0.8 1 35px;
+}
+#statement-container #jump-to {
+  width: 100%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 @media screen and (max-width: 480px) {
