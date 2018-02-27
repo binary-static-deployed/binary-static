@@ -152,83 +152,15 @@
 }
 
 /* GET-STARTED PAGES RULES */
-.get-started .section, .get-started-jp .section {
-  min-height: 224px;
-  height: calc(100% - 20px);
-  margin: 0 10px 20px;
-}
-.get-started .section a, .get-started-jp .section a {
-  display: block;
-  color: #fff;
-  background: #000;
+.get-started a:hover {
   text-decoration: none;
 }
-.get-started .section a:hover .section-header, .get-started-jp .section a:hover .section-header {
-  background: #14602b;
-}
-.get-started .section .section-header, .get-started-jp .section .section-header {
-  padding: 10px;
-  font-weight: normal;
-}
-.get-started .section .section-info, .get-started-jp .section .section-info {
-  font-size: 1rem;
-}
-
-.get-started {
-  /* stylelint-disable selector-list-comma-newline-after, selector-list-comma-space-after */
-  /* stylelint-enable selector-list-comma-newline-after, selector-list-comma-space-after */
-}
-.get-started #what-is-binary-trading, .get-started #binary-options-basics, .get-started #how-to-trade-binaries, .get-started #types-of-trades,
-.get-started #why-trade-with-us, .get-started #beginners-faq, .get-started #glossary, .get-started #volidx-markets {
-  height: 80px;
-  background-repeat: no-repeat;
-  background-image: url("../images/pages/get-started/intro_2.png");
-}
-.get-started #what-is-binary-trading {
-  background-position: 0 0;
-}
-.get-started #binary-options-basics {
-  background-position: 100% 0;
-}
-.get-started #how-to-trade-binaries {
-  background-position: 100% 24%;
-}
-.get-started #types-of-trades {
-  background-position: 0 47%;
-}
-.get-started #why-trade-with-us {
-  background-position: 0 24%;
-}
-.get-started #beginners-faq {
-  background-position: 0 71%;
-}
-.get-started #glossary {
-  background-position: 100% 71%;
-}
-.get-started #volidx-markets {
-  background-position: 100% 93%;
-}
-.get-started #smart-indices, .get-started #partners {
-  height: 80px;
-  background-repeat: no-repeat;
-}
-.get-started #smart-indices {
-  background: url("../images/pages/get-started/smart-indices.svg") 50% 50%/20% #272825;
-  background-size: 20%;
-}
-.get-started #partners {
-  background: url("../images/pages/partners/partner.svg") 50% 50%/50% #272825;
-}
-
-.get-started-beta a:hover {
-  text-decoration: none;
-}
-.get-started-beta .circle-wrapper {
+.get-started .circle-wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
-.get-started-beta .circle-wrapper .orange-circle {
+.get-started .circle-wrapper .orange-circle {
   width: 20px;
   height: 20px;
   border-radius: 50%;
@@ -241,11 +173,11 @@
   color: #fff;
 }
 @media screen and (max-width: 480px) {
-  .get-started-beta .circle-wrapper .orange-circle {
+  .get-started .circle-wrapper .orange-circle {
     margin-left: 0;
   }
 }
-.get-started-beta .notice-circle {
+.get-started .notice-circle {
   width: 16px;
   height: 16px;
   border: 2px solid #c03;
@@ -260,6 +192,27 @@
 .get-started-jp {
   /* stylelint-disable selector-list-comma-newline-after, selector-list-comma-space-after */
   /* stylelint-enable selector-list-comma-newline-after, selector-list-comma-space-after */
+}
+.get-started-jp .section {
+  min-height: 224px;
+  height: calc(100% - 20px);
+  margin: 0 10px 20px;
+}
+.get-started-jp .section a {
+  display: block;
+  color: #fff;
+  background: #000;
+  text-decoration: none;
+}
+.get-started-jp .section a:hover .section-header {
+  background: #14602b;
+}
+.get-started-jp .section .section-header {
+  padding: 10px;
+  font-weight: normal;
+}
+.get-started-jp .section .section-info {
+  font-size: 1rem;
 }
 .get-started-jp .link-size-box {
   display: table-cell;
@@ -628,57 +581,39 @@ div.kineticjs-content {
   line-height: 33px;
 }
 
-.home-content .signup-box, .home-old-content .signup-box, .home-jp-content .signup-box {
+.home-content .signup-box, .home-jp-content .signup-box {
   border-radius: 3px;
 }
-.home-content .signup-box .error-msg, .home-old-content .signup-box .error-msg, .home-jp-content .signup-box .error-msg {
+.home-content .signup-box .error-msg, .home-jp-content .signup-box .error-msg {
   text-align: center;
   margin-top: 5px;
 }
-.home-content #frm_verify_email input, .home-old-content #frm_verify_email input, .home-jp-content #frm_verify_email input {
+.home-content #frm_verify_email input, .home-jp-content #frm_verify_email input {
   width: 100%;
   height: 3em;
   margin: 5px 0;
   font-size: 0.8695652174rem;
 }
-.home-content #frm_verify_email button, .home-old-content #frm_verify_email button, .home-jp-content #frm_verify_email button {
+.home-content #frm_verify_email button, .home-jp-content #frm_verify_email button {
   margin: 5px 0;
   height: 3rem;
   width: 100%;
 }
 
-.home-content #banner, .home-old-content #banner {
-  background: url("../images/pages/home/banner-background_1.png") no-repeat;
+.home-content #banner {
+  background: url("../images/pages/home/home-banner.png") no-repeat;
   background-position: left top;
   background-size: 100% 70%;
 }
-.home-content .xlist1, .home-old-content .xlist1 {
-  background: url("../images/pages/home/xicon-1.png") no-repeat;
-}
-.home-content .xlist2, .home-old-content .xlist2 {
-  background: url("../images/pages/home/xicon-2.png") no-repeat;
-}
-.home-content .xlist3, .home-old-content .xlist3 {
-  background: url("../images/pages/home/xicon-3.png") no-repeat;
-}
-.home-content .xlist1, .home-content .xlist2, .home-content .xlist3, .home-old-content .xlist1, .home-old-content .xlist2, .home-old-content .xlist3 {
-  padding-left: 40px;
-  min-height: 24px;
-  background-size: 30px;
-  margin-left: 50px !important;
-  padding-bottom: 1em;
-  text-align: left;
-  background-position: left top;
-}
-.home-content .small-image, .home-old-content .small-image {
+.home-content .small-image {
   width: 10%;
   margin: 0 1em;
 }
-.home-content .mena, .home-old-content .mena {
+.home-content .mena {
   width: 10%;
   margin: 0 1em;
 }
-.home-content .xbubble-right, .home-old-content .xbubble-right {
+.home-content .xbubble-right {
   content: '';
   width: 0;
   height: 0;
@@ -688,7 +623,7 @@ div.kineticjs-content {
   position: relative;
   left: 80%;
 }
-.home-content .xbubble-left, .home-old-content .xbubble-left {
+.home-content .xbubble-left {
   content: '';
   width: 0;
   height: 0;
@@ -698,13 +633,13 @@ div.kineticjs-content {
   position: relative;
   left: 10%;
 }
-.home-content .xquoter-left, .home-old-content .xquoter-left {
+.home-content .xquoter-left {
   text-align: left;
 }
-.home-content .xquoter-right, .home-old-content .xquoter-right {
+.home-content .xquoter-right {
   text-align: right;
 }
-.home-content .xquoter-left p span, .home-content .xquoter-right p span, .home-old-content .xquoter-left p span, .home-old-content .xquoter-right p span {
+.home-content .xquoter-left p span, .home-content .xquoter-right p span {
   font-size: 0.7561436673rem;
   font-style: italic;
 }
@@ -810,19 +745,19 @@ div.kineticjs-content {
     margin-top: auto;
   }
 
-  .home-content #banner, .home-old-color #banner {
+  .home-content #banner {
     background-position: right top;
     background-size: 125% 75%;
   }
 }
 @media screen and (max-width: 480px) {
-  .home-content .small-image, .home-old-content .small-image {
+  .home-content .small-image {
     width: 30%;
   }
-  .home-content .mena, .home-old-content .mena {
+  .home-content .mena {
     width: 32%;
   }
-  .home-content #banner, .home-old-content #banner {
+  .home-content #banner {
     background-position: right top;
     background-size: 300% 75%;
   }

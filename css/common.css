@@ -823,6 +823,9 @@ li strong.margin-right {
 body #topbar {
   text-align: right;
 }
+body #topbar .container {
+  max-width: 1200px;
+}
 body #topbar #virtual-text {
   font-weight: 700;
 }
@@ -843,6 +846,9 @@ body #topbar a {
 }
 body #topbar #select_language {
   top: -3px;
+}
+body #topbar .nav-caret {
+  margin-right: 0;
 }
 
 body #topbar .upgrademessage a, .landing_page-content .upgrademessage a {
