@@ -2072,7 +2072,8 @@ a.previous-wrapper:hover {
       -ms-flex: 0.8 1 35px;
           flex: 0.8 1 35px;
 }
-#statement-container #jump-to {
+
+#profit-table-container #date_to, #statement-container #date_to {
   width: 100%;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
