@@ -643,6 +643,9 @@ div.kineticjs-content {
   font-size: 0.7561436673rem;
   font-style: italic;
 }
+.home-content #market_tabs_container .tab-content {
+  min-height: 130px;
+}
 
 #content.home-content .go-left:hover, #content.home-content .go-right:hover {
   cursor: pointer;
@@ -749,6 +752,21 @@ div.kineticjs-content {
     background-position: right top;
     background-size: 125% 75%;
   }
+  .home-content #market_tabs_selector {
+    top: 24px;
+  }
+  .home-content .order-2-m {
+    -webkit-box-ordinal-group: 3;
+        -ms-flex-order: 2;
+            order: 2;
+    padding-top: 30px;
+  }
+  .home-content .center-text-m {
+    text-align: center;
+  }
+  .home-content .gr-centered-m {
+    margin: 0 auto;
+  }
 }
 @media screen and (max-width: 480px) {
   .home-content .small-image {
@@ -765,17 +783,11 @@ div.kineticjs-content {
   #content.home-content .border-right {
     border-right: none;
   }
-  #content.home-content #market_tabs_selector, #content.home-content #account_tabs_selector {
+  #content.home-content #account_tabs_selector {
     top: 24px;
   }
   #content.home-content #frm_verify_email input {
     width: calc(100% - 10px);
-  }
-  #content.home-content .order-2-m {
-    -webkit-box-ordinal-group: 3;
-        -ms-flex-order: 2;
-            order: 2;
-    padding-top: 30px;
   }
   #content.home-content .padding-top-20 {
     padding-top: 20px;
@@ -1059,53 +1071,6 @@ div.kineticjs-content {
 
 body #not_authenticated_financial ul.checked > li {
   list-style: none;
-}
-
-.ico-subscribe-content .border-radius {
-  border-radius: 3px;
-}
-.ico-subscribe-content .margin-top {
-  margin-top: 4px;
-}
-.ico-subscribe-content .no-padding {
-  padding: 0;
-}
-.ico-subscribe-content #frm_ico_bid input {
-  padding: 2px 3px;
-}
-.ico-subscribe-content #frm_ico_bid button, .ico-subscribe-content #frm_ico_bid input {
-  width: 100%;
-}
-.ico-subscribe-content #frm_ico_bid .inactive {
-  color: #dedede;
-  background: #f2f2f2;
-}
-.ico-subscribe-content #frm_ico_bid .inactive:hover {
-  cursor: auto;
-}
-.ico-subscribe-content #frm_ico_bid .error-msg {
-  padding-top: 5px;
-}
-.ico-subscribe-content #frm_ico_bid #minimum_bid {
-  padding-top: 5px;
-  font-size: 0.8695652174rem;
-}
-.ico-subscribe-content #frm_ico_bid .deposit {
-  font-size: 0.6575162324rem;
-}
-.ico-subscribe-content .timer .text {
-  font-size: 0.7561436673rem;
-  font-weight: bold;
-}
-.ico-subscribe-content #portfolio th.details {
-  width: auto;
-}
-.ico-subscribe-content #cancel_bid_confirmation {
-  left: 0;
-  top: 0;
-}
-.ico-subscribe-content .faded ol {
-  margin: 0 15px;
 }
 
 .liquidity-solutions-content .box {

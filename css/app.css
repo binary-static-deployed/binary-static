@@ -182,55 +182,16 @@ a.previous-wrapper:hover {
 #mb-trading-wrapper #mb_trading {
   font-size: 0.8695652174rem;
 }
-#mb-trading-wrapper #mb_trading #panel .selection_wrapper.less-margin-top .trade_form > div {
-  margin-top: -5px;
-}
-#mb-trading-wrapper #mb_trading #panel #payout {
-  height: auto;
-}
-#mb-trading-wrapper #mb_trading #panel #payout:focus {
-  outline: none;
-}
-#mb-trading-wrapper #mb_trading #panel .gr-row .gr-no-gutter-left {
-  padding-right: 5px;
-}
-#mb-trading-wrapper #mb_trading #panel .gr-row .gr-no-gutter-right {
-  padding-left: 5px;
-}
-#mb-trading-wrapper #mb_trading #panel #currency {
-  line-height: 40px;
-}
-#mb-trading-wrapper #mb_trading #panel #payout_amount {
-  line-height: 49px;
-  white-space: nowrap;
-}
-#mb-trading-wrapper #mb_trading #panel .trade_form > div .list {
-  background-color: #fff;
-  border: 1px solid #f2f2f2;
-  border-top: none;
-}
-#mb-trading-wrapper #mb_trading #panel .trade_form > div .list.invisible {
-  border: none;
-}
-#mb-trading-wrapper #mb_trading #panel .trade_form > div .list > div {
-  background-color: #fff;
-}
-#mb-trading-wrapper #mb_trading #panel .trade_form > div .list > div:hover {
-  background-color: #dedede !important;
-}
-#mb-trading-wrapper #mb_trading #panel .trade_form > div .list:hover {
-  background-color: #fff;
-}
-#mb-trading-wrapper #mb_trading #ja-panel #currency_wrapper, #mb-trading-wrapper #mb_trading #ja-panel #payout {
+#mb-trading-wrapper #mb_trading #panel #currency_wrapper, #mb-trading-wrapper #mb_trading #panel .ja-show #payout {
   height: 103px;
 }
-#mb-trading-wrapper #mb_trading #ja-panel #currency_wrapper .hint {
+#mb-trading-wrapper #mb_trading #panel #currency_wrapper .hint {
   font-weight: normal;
   font-size: 0.6575162324rem;
   width: 100%;
   background-color: transparent;
 }
-#mb-trading-wrapper #mb_trading #ja-panel #payout .current {
+#mb-trading-wrapper #mb_trading #panel .ja-show #payout .current {
   font-size: 1.520875rem;
   font-weight: bold;
   height: 62px;
@@ -238,57 +199,70 @@ a.previous-wrapper:hover {
   line-height: 32px;
   padding-top: 35px !important;
 }
-#mb-trading-wrapper #mb_trading #ja-panel #payout_list {
+#mb-trading-wrapper #mb_trading #panel #payout_amount {
+  line-height: 53px;
+  white-space: nowrap;
+}
+#mb-trading-wrapper #mb_trading #panel .ja-hide #payout {
+  height: 49px;
+}
+#mb-trading-wrapper #mb_trading #panel .ja-hide #payout:focus {
+  outline: 0;
+}
+#mb-trading-wrapper #mb_trading #panel #payout_list {
   height: 103px;
   background: #fff;
 }
-#mb-trading-wrapper #mb_trading #ja-panel #payout_list .list {
+#mb-trading-wrapper #mb_trading #panel #payout_list .list {
   background: #fff;
 }
-#mb-trading-wrapper #mb_trading #ja-panel #payout_list .list > div {
+#mb-trading-wrapper #mb_trading #panel #payout_list .list > div {
   padding: 19px 10px !important;
   height: 49px;
   border-right: 2px solid #fff;
   margin-bottom: 5px;
 }
-#mb-trading-wrapper #mb_trading #ja-panel #payout_list .list > div:nth-child(4n) {
+#mb-trading-wrapper #mb_trading #panel #payout_list .list > div:nth-child(4n) {
   border-right: none;
 }
-#mb-trading-wrapper #mb_trading #ja-panel #payout_list .list > div.plus {
+#mb-trading-wrapper #mb_trading #panel #payout_list .list > div.plus {
   color: #fff;
   background: #c03;
 }
-#mb-trading-wrapper #mb_trading #ja-panel #payout_list .list > div.minus {
+#mb-trading-wrapper #mb_trading #panel #payout_list .list > div.minus {
   color: #fff;
   background: #29abe2;
 }
-#mb-trading-wrapper #mb_trading #ja-panel #payout_list .list > div.green {
+#mb-trading-wrapper #mb_trading #panel #payout_list .list > div.green {
   color: #fff;
   background: #2e8836;
 }
-#mb-trading-wrapper #mb_trading #ja-panel #payout_list .list > div .hint {
+#mb-trading-wrapper #mb_trading #panel #payout_list .list > div .hint {
   font-size: 75%;
 }
-#mb-trading-wrapper #mb_trading #ja-panel #currency {
+#mb-trading-wrapper #mb_trading #panel .ja-show #currency {
   position: absolute;
   width: 100%;
   height: initial;
 }
-#mb-trading-wrapper #mb_trading #ja-panel #currency .current {
+#mb-trading-wrapper #mb_trading #panel .ja-show #currency .current {
   height: 15px;
   line-height: 15px;
   padding-top: 35px;
 }
-#mb-trading-wrapper #mb_trading #ja-panel #currency .list > div {
+#mb-trading-wrapper #mb_trading #panel .ja-show #currency .list > div {
   height: 15px;
 }
-#mb-trading-wrapper #mb_trading #ja-panel #currency .list > div:hover {
+#mb-trading-wrapper #mb_trading #panel .ja-show #currency .list > div:hover {
   height: 15px;
 }
-#mb-trading-wrapper #mb_trading #ja-panel .gr-row .gr-no-gutter-left {
+#mb-trading-wrapper #mb_trading #panel .ja-hide #currency .list > div {
+  line-height: 39px;
+}
+#mb-trading-wrapper #mb_trading #panel .gr-row .gr-no-gutter-left {
   padding-right: 0;
 }
-#mb-trading-wrapper #mb_trading #ja-panel .gr-row .gr-no-gutter-left:first-child {
+#mb-trading-wrapper #mb_trading #panel .gr-row .gr-no-gutter-left:first-child {
   padding-right: 5px;
 }
 #mb-trading-wrapper #mb_trading .trade_form {
@@ -577,7 +551,7 @@ a.previous-wrapper:hover {
   #mb-trading-wrapper #mb_trading .price-table .prices-wrapper .heading > div {
     padding: 5px 0;
   }
-  #mb-trading-wrapper #mb_trading #payout .hint {
+  #mb-trading-wrapper #mb_trading .ja-show #payout .hint {
     line-height: 15px;
   }
 }
@@ -2087,15 +2061,4 @@ a.previous-wrapper:hover {
     font-size: 0.7561436673rem;
     padding: 10px 15px;
   }
-}
-.ico-claim-form-content p {
-  font-size: 0.8695652174rem;
-}
-.ico-claim-form-content ol li {
-  font-size: 0.8695652174rem;
-}
-.ico-claim-form-content input[disabled='disabled'] {
-  background: #f2f2f2;
-  font-weight: 900;
-  width: 200px;
 }
