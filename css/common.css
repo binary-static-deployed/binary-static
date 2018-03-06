@@ -891,6 +891,10 @@ body #topbar .upgrademessage a:hover, body #topbar .upgrademessage a:active, .la
 #header #mobile-menu-icon img {
   max-width: 32px;
 }
+#header #menu-top, #header #menu-top * {
+  -webkit-transition: unset;
+  transition: unset;
+}
 #header #menu-top a:hover {
   opacity: 0.75;
 }
