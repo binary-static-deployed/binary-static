@@ -56,6 +56,11 @@
   animation: pulsing 3s infinite ease;
 }
 
+.blinker {
+  -webkit-animation: pulsing 1.5s infinite ease;
+  animation: pulsing 1.5s infinite ease;
+}
+
 #forex-specs table td, #volatility-specs table td, #cash-specs table td {
   font-size: 1rem;
   text-align: center;

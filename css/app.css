@@ -55,6 +55,11 @@
   animation: pulsing 3s infinite ease;
 }
 
+.blinker {
+  -webkit-animation: pulsing 1.5s infinite ease;
+  animation: pulsing 1.5s infinite ease;
+}
+
 .price_moved_up {
   background-color: #29abe2;
   color: #fff;
