@@ -967,7 +967,7 @@ a.previous-wrapper:hover {
 }
 
 #asset-index th {
-  width: 12%;
+  width: 16%;
 }
 #asset-index th:nth-child(2):nth-last-child(1) {
   width: 24%;
