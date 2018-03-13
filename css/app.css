@@ -187,16 +187,96 @@ a.previous-wrapper:hover {
 #mb-trading-wrapper #mb_trading {
   font-size: 0.8695652174rem;
 }
-#mb-trading-wrapper #mb_trading #panel #currency_wrapper, #mb-trading-wrapper #mb_trading #panel .ja-show #payout {
+#mb-trading-wrapper #mb_trading #panel {
+  margin-left: 10px;
+}
+#mb-trading-wrapper #mb_trading #panel .selection_wrapper.less-margin-top .trade_form > div {
+  margin-top: -10px;
+}
+#mb-trading-wrapper #mb_trading #panel #payout {
+  height: auto;
+  border-left: none;
+}
+#mb-trading-wrapper #mb_trading #panel #payout:focus {
+  outline: none;
+}
+#mb-trading-wrapper #mb_trading #panel #payout.error {
+  color: #c03;
+}
+#mb-trading-wrapper #mb_trading #panel #currency {
+  line-height: 25px;
+}
+#mb-trading-wrapper #mb_trading #panel #payout_amount {
+  line-height: 32px;
+  white-space: nowrap;
+  font-weight: bold;
+}
+#mb-trading-wrapper #mb_trading #panel .trade_form:not(.no-margin) {
+  margin-top: 10px;
+}
+#mb-trading-wrapper #mb_trading #panel .trade_form > div .list {
+  background-color: #fff;
+  border: 1px solid #f2f2f2;
+  border-top: none;
+}
+#mb-trading-wrapper #mb_trading #panel .trade_form > div .list.invisible {
+  border: none;
+}
+#mb-trading-wrapper #mb_trading #panel .trade_form > div .list > div {
+  background-color: #fff;
+}
+#mb-trading-wrapper #mb_trading #panel .trade_form > div .list > div:hover {
+  background-color: #dedede !important;
+}
+#mb-trading-wrapper #mb_trading #panel .trade_form > div .list:hover {
+  background-color: #fff;
+}
+#mb-trading-wrapper #mb_trading #panel .trade_form > div #currency .current {
+  height: 25px;
+  border: 1px solid #f2f2f2;
+  border-right: none;
+}
+#mb-trading-wrapper #mb_trading #panel .trade_form > div#category .current, #mb-trading-wrapper #mb_trading #panel .trade_form > div#category .list > div {
+  height: 59px;
+}
+#mb-trading-wrapper #mb_trading #panel .trade_form .contract-type {
+  padding-left: 0;
+  background-repeat: no-repeat;
+  background-position: center;
+  line-height: 18px;
+  height: 36px;
+  width: 100%;
+  margin-bottom: 5px;
+}
+#mb-trading-wrapper #mb_trading #panel #underlying .list {
+  width: auto;
+}
+#mb-trading-wrapper #mb_trading #panel #period .duration {
+  font-size: 0.8695652174rem;
+}
+#mb-trading-wrapper #mb_trading #panel #period .end {
+  font-weight: normal;
+}
+#mb-trading-wrapper #mb_trading #panel #period .current {
+  height: 45px;
+}
+#mb-trading-wrapper #mb_trading #panel #period .current div.head {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+#mb-trading-wrapper #mb_trading #panel .category-wrapper {
+  width: 50%;
+}
+#mb-trading-wrapper #mb_trading #ja-panel #currency_wrapper, #mb-trading-wrapper #mb_trading #ja-panel #payout {
   height: 103px;
 }
-#mb-trading-wrapper #mb_trading #panel #currency_wrapper .hint {
+#mb-trading-wrapper #mb_trading #ja-panel #currency_wrapper .hint {
   font-weight: normal;
   font-size: 0.6575162324rem;
   width: 100%;
   background-color: transparent;
 }
-#mb-trading-wrapper #mb_trading #panel .ja-show #payout .current {
+#mb-trading-wrapper #mb_trading #ja-panel #payout .current {
   font-size: 1.520875rem;
   font-weight: bold;
   height: 62px;
@@ -204,77 +284,61 @@ a.previous-wrapper:hover {
   line-height: 32px;
   padding-top: 35px !important;
 }
-#mb-trading-wrapper #mb_trading #panel #payout_amount {
-  line-height: 53px;
-  white-space: nowrap;
-}
-#mb-trading-wrapper #mb_trading #panel .ja-hide #payout {
-  height: 49px;
-}
-#mb-trading-wrapper #mb_trading #panel .ja-hide #payout:focus {
-  outline: 0;
-}
-#mb-trading-wrapper #mb_trading #panel #payout_list {
+#mb-trading-wrapper #mb_trading #ja-panel #payout_list {
   height: 103px;
   background: #fff;
 }
-#mb-trading-wrapper #mb_trading #panel #payout_list .list {
+#mb-trading-wrapper #mb_trading #ja-panel #payout_list .list {
   background: #fff;
 }
-#mb-trading-wrapper #mb_trading #panel #payout_list .list > div {
+#mb-trading-wrapper #mb_trading #ja-panel #payout_list .list > div {
   padding: 19px 10px !important;
   height: 49px;
   border-right: 2px solid #fff;
   margin-bottom: 5px;
 }
-#mb-trading-wrapper #mb_trading #panel #payout_list .list > div:nth-child(4n) {
+#mb-trading-wrapper #mb_trading #ja-panel #payout_list .list > div:nth-child(4n) {
   border-right: none;
 }
-#mb-trading-wrapper #mb_trading #panel #payout_list .list > div.plus {
+#mb-trading-wrapper #mb_trading #ja-panel #payout_list .list > div.plus {
   color: #fff;
   background: #c03;
 }
-#mb-trading-wrapper #mb_trading #panel #payout_list .list > div.minus {
+#mb-trading-wrapper #mb_trading #ja-panel #payout_list .list > div.minus {
   color: #fff;
   background: #29abe2;
 }
-#mb-trading-wrapper #mb_trading #panel #payout_list .list > div.green {
+#mb-trading-wrapper #mb_trading #ja-panel #payout_list .list > div.green {
   color: #fff;
   background: #2e8836;
 }
-#mb-trading-wrapper #mb_trading #panel #payout_list .list > div .hint {
+#mb-trading-wrapper #mb_trading #ja-panel #payout_list .list > div .hint {
   font-size: 75%;
 }
-#mb-trading-wrapper #mb_trading #panel .ja-show #currency {
+#mb-trading-wrapper #mb_trading #ja-panel #currency {
   position: absolute;
   width: 100%;
   height: initial;
 }
-#mb-trading-wrapper #mb_trading #panel .ja-show #currency .current {
+#mb-trading-wrapper #mb_trading #ja-panel #currency .current {
   height: 15px;
   line-height: 15px;
   padding-top: 35px;
 }
-#mb-trading-wrapper #mb_trading #panel .ja-show #currency .list > div {
+#mb-trading-wrapper #mb_trading #ja-panel #currency #currency .list > div {
   height: 15px;
 }
-#mb-trading-wrapper #mb_trading #panel .ja-show #currency .list > div:hover {
+#mb-trading-wrapper #mb_trading #ja-panel #currency #currency .list > div:hover {
   height: 15px;
 }
-#mb-trading-wrapper #mb_trading #panel .ja-hide #currency .list > div {
-  line-height: 39px;
-}
-#mb-trading-wrapper #mb_trading #panel .gr-row .gr-no-gutter-left {
+#mb-trading-wrapper #mb_trading #ja-panel .gr-row .gr-no-gutter-left {
   padding-right: 0;
 }
-#mb-trading-wrapper #mb_trading #panel .gr-row .gr-no-gutter-left:first-child {
+#mb-trading-wrapper #mb_trading #ja-panel .gr-row .gr-no-gutter-left:first-child {
   padding-right: 5px;
 }
-#mb-trading-wrapper #mb_trading .trade_form {
+#mb-trading-wrapper #mb_trading .trade_form:not(.no-margin) {
   margin-top: 5px;
-}
-#mb-trading-wrapper #mb_trading .trade_form.no-margin {
-  margin-top: 0;
 }
 #mb-trading-wrapper #mb_trading .trade_form > div {
   text-align: center;
@@ -364,6 +428,26 @@ a.previous-wrapper:hover {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+#mb-trading-wrapper #mb_trading .ja-hide + .price-table {
+  margin-top: 10px;
+  margin-left: 0;
+}
+#mb-trading-wrapper #mb_trading .ja-hide + .price-table .prices-wrapper .heading {
+  font-weight: bold;
+}
+#mb-trading-wrapper #mb_trading .ja-hide + .price-table .prices-wrapper .heading .hint {
+  font-weight: normal;
+}
+#mb-trading-wrapper #mb_trading .ja-hide + .price-table .prices-wrapper .heading, #mb-trading-wrapper #mb_trading .ja-hide + .price-table .prices-wrapper .price-row {
+  border: 1px solid #f2f2f2;
+  border-bottom: none;
+}
+#mb-trading-wrapper #mb_trading .ja-hide + .price-table .prices-wrapper .price-row:last-child {
+  border-bottom: 1px solid #f2f2f2;
+}
+#mb-trading-wrapper #mb_trading .ja-hide + .price-table .prices-wrapper .price-row:nth-child(odd) {
+  background-color: #fff;
 }
 #mb-trading-wrapper #mb_trading .price-table {
   position: relative;
@@ -525,6 +609,7 @@ a.previous-wrapper:hover {
 }
 #mb-trading-wrapper #mb_trading .remaining-time {
   color: #000;
+  line-height: 20px;
 }
 #mb-trading-wrapper #mb_trading .remaining-time.alert {
   color: #c03;
@@ -538,6 +623,12 @@ a.previous-wrapper:hover {
 @media screen and (max-width: 768px) {
   #mb-trading-wrapper #mb_trading .gr-12-p {
     padding-bottom: 10px;
+  }
+  #mb-trading-wrapper #mb_trading #panel {
+    margin-left: 0;
+  }
+  #mb-trading-wrapper #mb_trading .ja-hide + .price-table {
+    margin-left: -10px;
   }
 }
 @media screen and (max-width: 480px) {
@@ -556,7 +647,7 @@ a.previous-wrapper:hover {
   #mb-trading-wrapper #mb_trading .price-table .prices-wrapper .heading > div {
     padding: 5px 0;
   }
-  #mb-trading-wrapper #mb_trading .ja-show #payout .hint {
+  #mb-trading-wrapper #mb_trading #payout .hint {
     line-height: 15px;
   }
 }
