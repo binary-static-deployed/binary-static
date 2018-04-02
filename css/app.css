@@ -540,6 +540,23 @@ a.previous-wrapper {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex; }
+  #mt_account_management .get-started-link {
+    display: block;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+    border-radius: 3px;
+    color: #2a3052;
+    background: #f2f2f2;
+    font-weight: bold; }
+    #mt_account_management .get-started-link:before {
+      content: '';
+      background-image: url("../images/pages/metatrader/dashboard/get_started.svg");
+      background-size: 16px 16px;
+      height: 16px;
+      width: 16px;
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 10px; }
   #mt_account_management #account_selector {
     position: relative;
     cursor: pointer;
@@ -605,8 +622,7 @@ a.previous-wrapper {
         margin: 5px 0; }
   #mt_account_management #mt_right_panel {
     font-size: 0.8695652174rem; }
-    #mt_account_management #mt_right_panel .platforms li {
-      margin-bottom: 10px;
+    #mt_account_management #mt_right_panel .platforms {
       display: -webkit-box;
       display: -ms-flexbox;
       display: flex;
@@ -614,17 +630,34 @@ a.previous-wrapper {
       -webkit-box-direction: normal;
           -ms-flex-direction: row;
               flex-direction: row;
-      -webkit-box-align: center;
-          -ms-flex-align: center;
-              align-items: center; }
-      #mt_account_management #mt_right_panel .platforms li img {
-        width: 16px;
-        height: 16px;
-        margin-right: 10px; }
-    #mt_account_management #mt_right_panel .badges span {
-      width: 85px;
-      height: 25px;
-      background-size: contain; }
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap; }
+      @media (min-width: 992px) {
+        #mt_account_management #mt_right_panel .platforms {
+          margin-left: -10px;
+          margin-right: -10px; } }
+      #mt_account_management #mt_right_panel .platforms li {
+        width: 50%;
+        text-align: center;
+        margin-bottom: 20px;
+        padding: 0 5px;
+        -webkit-box-sizing: border-box;
+                box-sizing: border-box; }
+        #mt_account_management #mt_right_panel .platforms li img {
+          display: block;
+          height: 30px;
+          margin: 0 auto 10px; }
+    #mt_account_management #mt_right_panel .badges {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-pack: distribute;
+          justify-content: space-around;
+      width: 100%; }
+      #mt_account_management #mt_right_panel .badges span {
+        width: 85px;
+        height: 25px;
+        background-size: contain; }
   #mt_account_management #account_details {
     -webkit-box-flex: 0;
         -ms-flex: 0;

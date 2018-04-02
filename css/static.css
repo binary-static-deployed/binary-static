@@ -52,6 +52,48 @@
   -webkit-animation: pulsing 1.5s infinite ease;
   animation: pulsing 1.5s infinite ease; }
 
+.affiliates_faq h3 {
+  color: #e98024; }
+  .affiliates_faq h3:not(:first-of-type) {
+    margin-top: 3rem; }
+
+@media screen and (max-width: 480px) {
+  .affiliates_faq .sidebar-container {
+    margin-bottom: 2rem; }
+    .affiliates_faq .sidebar-container .sidebar a {
+      line-height: 2.5rem; } }
+
+.affiliates h2 {
+  margin-top: 30px; }
+
+.affiliates #commission_tabs {
+  margin-bottom: 0 !important; }
+
+.affiliates .margin-bottom-50 {
+  margin-bottom: 50px; }
+
+.affiliates .fixed-height-img {
+  height: 50px; }
+
+.affiliates .faq-box {
+  padding: 1rem; }
+
+.affiliates .box-row {
+  border-bottom: 1px solid #dedede; }
+  .affiliates .box-row .box {
+    padding: 2rem; }
+  .affiliates .box-row-top .box {
+    padding-top: 1rem; }
+  .affiliates .box-row-bottom {
+    border: none; }
+    .affiliates .box-row-bottom .box {
+      padding-bottom: 0; }
+  .affiliates .box-row .box:not(:last-child) {
+    border-right: 1px solid #dedede; }
+  @media screen and (max-width: 480px) {
+    .affiliates .box-row, .affiliates .box-row .box {
+      border: none; } }
+
 #forex-specs table td, #volatility-specs table td, #cash-specs table td {
   font-size: 1rem;
   text-align: center; }
@@ -740,6 +782,15 @@ div.kineticjs-content {
   .open-positions img.responsive {
     width: 40%; } }
 
+@media (max-width: 480px) {
+  .steps {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column; }
+    .steps .step:not(:first-child) {
+      margin-top: 2rem; } }
+
 .box-inlay-borders .border-right-top {
   min-height: 200px; }
 
@@ -1169,12 +1220,6 @@ body #not_authenticated_financial ul.checked > li {
       color: #fff;
       padding: 20px 0;
       text-align: center; }
-  @media (max-width: 480px) {
-    .careers-content .career .steps {
-      -webkit-box-orient: vertical;
-      -webkit-box-direction: normal;
-          -ms-flex-direction: column;
-              flex-direction: column; } }
 
 .timeline {
   margin: 0 auto;
