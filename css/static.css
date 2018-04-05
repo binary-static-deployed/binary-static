@@ -52,47 +52,41 @@
   -webkit-animation: pulsing 1.5s infinite ease;
   animation: pulsing 1.5s infinite ease; }
 
-.affiliates_faq h3 {
+.ib-signup-content {
+  margin-bottom: 0 !important; }
+
+.ib-signup-page__commission-table td:not(:last-child) {
+  font-weight: bold; }
+
+.affiliates-faq-page h3, .ib-faq-page h3 {
   color: #e98024; }
-  .affiliates_faq h3:not(:first-of-type) {
+  .affiliates-faq-page h3:not(:first-of-type), .ib-faq-page h3:not(:first-of-type) {
     margin-top: 3rem; }
 
 @media screen and (max-width: 480px) {
-  .affiliates_faq .sidebar-container {
+  .affiliates-faq-page .sidebar-container, .ib-faq-page .sidebar-container {
     margin-bottom: 2rem; }
-    .affiliates_faq .sidebar-container .sidebar a {
+    .affiliates-faq-page .sidebar-container .sidebar a, .ib-faq-page .sidebar-container .sidebar a {
       line-height: 2.5rem; } }
 
-.affiliates h2 {
+.affiliates-signup-page h2, .ib-signup-page h2 {
   margin-top: 30px; }
 
-.affiliates #commission_tabs {
+.affiliates-signup-page #commission_tabs, .ib-signup-page #commission_tabs {
   margin-bottom: 0 !important; }
 
-.affiliates .margin-bottom-50 {
+.affiliates-signup-page .margin-bottom-50, .ib-signup-page .margin-bottom-50 {
   margin-bottom: 50px; }
 
-.affiliates .fixed-height-img {
+.affiliates-signup-page .fixed-height-img, .ib-signup-page .fixed-height-img {
   height: 50px; }
 
-.affiliates .faq-box {
+.affiliates-signup-page .faq-box, .ib-signup-page .faq-box {
   padding: 1rem; }
 
-.affiliates .box-row {
-  border-bottom: 1px solid #dedede; }
-  .affiliates .box-row .box {
-    padding: 2rem; }
-  .affiliates .box-row-top .box {
-    padding-top: 1rem; }
-  .affiliates .box-row-bottom {
-    border: none; }
-    .affiliates .box-row-bottom .box {
-      padding-bottom: 0; }
-  .affiliates .box-row .box:not(:last-child) {
-    border-right: 1px solid #dedede; }
-  @media screen and (max-width: 480px) {
-    .affiliates .box-row, .affiliates .box-row .box {
-      border: none; } }
+@media screen and (max-width: 480px) {
+  .affiliates-signup-page table, .affiliates-signup-page .mobile-text-small, .ib-signup-page table, .ib-signup-page .mobile-text-small {
+    font-size: 0.9rem; } }
 
 #forex-specs table td, #volatility-specs table td, #cash-specs table td {
   font-size: 1rem;
@@ -782,6 +776,26 @@ div.kineticjs-content {
   .open-positions img.responsive {
     width: 40%; } }
 
+.box-row {
+  border-bottom: 1px solid #dedede; }
+  .box-row__box {
+    padding: 2rem; }
+  .box-row__box:not(:last-child) {
+    border-right: 1px solid #dedede; }
+  .box-row__img {
+    height: 50px; }
+  .box-row--top__box {
+    padding-top: 1rem; }
+  .box-row--bottom {
+    border: none; }
+    .box-row--bottom__box {
+      padding-bottom: 0; }
+  .box-row--no-border, .box-row--no-border .box-row__box {
+    border: none; }
+  @media screen and (max-width: 480px) {
+    .box-row, .box-row__box {
+      border: none; } }
+
 @media (max-width: 480px) {
   .steps {
     -webkit-box-orient: vertical;
@@ -1149,18 +1163,16 @@ body #not_authenticated_financial ul.checked > li {
       background-color: #2a3052;
       padding: 30px;
       position: absolute;
-      z-index: 1;
-      top: 50px; }
+      top: 50px;
+      width: 100%; }
       @media (max-width: 480px) {
         .careers-content .career .graduate-container .graduate-box h1 {
-          font-size: 1.520875rem;
-          text-align: center; } }
+          font-size: 1.520875rem; } }
       .careers-content .career .graduate-container .graduate-box p {
         color: #fff; }
         @media (max-width: 480px) {
           .careers-content .career .graduate-container .graduate-box p {
-            font-size: 0.8695652174rem;
-            text-align: center; } }
+            font-size: 0.8695652174rem; } }
       .careers-content .career .graduate-container .graduate-box a.button span {
         background-color: #fff;
         color: #2a3052;
@@ -1173,10 +1185,14 @@ body #not_authenticated_financial ul.checked > li {
           top: unset; } }
       @media (max-width: 768px) {
         .careers-content .career .graduate-container .graduate-box {
-          top: 0; } }
+          text-align: center;
+          background-color: transparent;
+          top: 50%;
+          left: 50%;
+          -webkit-transform: translate(-50%, -50%);
+                  transform: translate(-50%, -50%); } }
       @media (max-width: 480px) {
         .careers-content .career .graduate-container .graduate-box {
-          background-color: transparent;
           padding: 15px; } }
   .careers-content .career ul.role-section {
     display: -webkit-box;
