@@ -630,6 +630,19 @@ label + input {
     .max_30day_turnover input.hide::selection {
       color: transparent; }
 
+.question .no-underline {
+  display: inline-block;
+  width: 16px;
+  height: 16px; }
+
+@media (max-width: 768px) {
+  .show_mobile[data-balloon]:before, .show_mobile[data-balloon]:after {
+    display: block !important;
+    -webkit-transform: translate(-15%, 0) !important;
+            transform: translate(-15%, 0) !important; }
+  .show_mobile[data-balloon-length=medium]:before {
+    width: 120px; } }
+
 /* main style */
 #androidApp, #appstore {
   width: 100px;
