@@ -202,14 +202,32 @@ a.previous-wrapper {
         height: 36px;
         width: 100%;
         margin-bottom: 5px; }
+      #mb-trading-wrapper #mb_trading #panel .trade_form:hover .header-current .gr-row {
+        cursor: pointer;
+        background-color: #dedede; }
+      #mb-trading-wrapper #mb_trading #panel .trade_form:hover #period .current {
+        background-color: #dedede; }
       #mb-trading-wrapper #mb_trading #panel #underlying .list {
         width: auto; }
+      #mb-trading-wrapper #mb_trading #panel .header-current {
+        overflow: hidden;
+        width: 100%; }
+        #mb-trading-wrapper #mb_trading #panel .header-current .gr-row {
+          margin: 0; }
+        #mb-trading-wrapper #mb_trading #panel .header-current-text {
+          padding-top: 10px;
+          font-weight: 700; }
+          #mb-trading-wrapper #mb_trading #panel .header-current-text:first-child {
+            padding-right: 5px; }
+          #mb-trading-wrapper #mb_trading #panel .header-current-text:last-child {
+            padding-left: 5px; }
       #mb-trading-wrapper #mb_trading #panel #period .duration {
         font-size: 0.8695652174rem; }
       #mb-trading-wrapper #mb_trading #panel #period .end {
         font-weight: normal; }
       #mb-trading-wrapper #mb_trading #panel #period .current {
-        height: 45px; }
+        height: auto;
+        padding-bottom: 7px !important; }
         #mb-trading-wrapper #mb_trading #panel #period .current div.head {
           font-weight: bold;
           margin-bottom: 5px; }
@@ -706,6 +724,12 @@ a.previous-wrapper {
     #mt_account_management .fst-container #fst_action #frm_cashier .binary-balance, #mt_account_management .fst-container #fst_action #frm_cashier .mt5-balance {
       font-weight: bold;
       color: #c2c2c2; }
+    #mt_account_management .fst-container #fst_action #frm_manage_password #token_error {
+      margin-bottom: 10px; }
+    #mt_account_management .fst-container #fst_action #frm_manage_password select:focus {
+      outline: none; }
+    #mt_account_management .fst-container #fst_action #frm_manage_password button[type='submit'] {
+      line-height: 22px; }
     #mt_account_management .fst-container #fst_action .type-group .mt5_type_box {
       width: 88px;
       height: 88px;

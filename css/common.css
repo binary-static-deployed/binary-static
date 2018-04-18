@@ -227,7 +227,7 @@ label {
   text-align: left;
   margin-bottom: 5px; }
 
-.form-row.two-rows input {
+.form-row.two-rows input, .form-row.two-rows select {
   width: calc(100% - 6px); }
 
 .input {
