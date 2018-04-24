@@ -44,6 +44,26 @@
   100% {
     opacity: 1; } }
 
+@-webkit-keyframes moveInBottom {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(30px);
+            transform: translateY(30px); }
+  100% {
+    opacity: 1;
+    -webkit-transform: translate(0);
+            transform: translate(0); } }
+
+@keyframes moveInBottom {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(30px);
+            transform: translateY(30px); }
+  100% {
+    opacity: 1;
+    -webkit-transform: translate(0);
+            transform: translate(0); } }
+
 .pulser {
   -webkit-animation: pulsing 3s infinite ease;
   animation: pulsing 3s infinite ease; }
@@ -543,7 +563,7 @@ div.kineticjs-content {
   line-height: 33px; }
 
 .home-content .signup-box, .home-jp-content .signup-box {
-  border-radius: 3px; }
+  border-radius: 4px; }
   .home-content .signup-box .error-msg, .home-jp-content .signup-box .error-msg {
     text-align: center;
     margin-top: 5px; }
@@ -552,6 +572,7 @@ div.kineticjs-content {
   width: 100%;
   height: 3em;
   margin: 5px 0;
+  padding: 2px;
   font-size: 0.8695652174rem; }
 
 .home-content #frm_verify_email button, .home-jp-content #frm_verify_email button {
@@ -723,7 +744,7 @@ div.kineticjs-content {
   #content.home-content #account_tabs_selector {
     top: 24px; }
   #content.home-content #frm_verify_email input {
-    width: calc(100% - 10px); }
+    width: calc(100% - 6px); }
   #content.home-content .padding-top-20 {
     padding-top: 20px; }
   .home-jp-content .gr-padding-30 {
@@ -899,7 +920,8 @@ div.kineticjs-content {
       opacity: 1; }
 
 .contact-content #cs_telephone_number {
-  width: 100%; }
+  width: 100%;
+  min-width: 160px; }
 
 .contact-content #company_addresses .border-bottom {
   min-height: 200px; }
@@ -991,14 +1013,14 @@ body #not_authenticated_financial ul.checked > li {
 
 #mt5_types_of_accounts .box {
   border: 1px solid #dedede;
-  border-radius: 3px;
+  border-radius: 4px;
   padding: 20px; }
   #mt5_types_of_accounts .box img {
     width: 40px; }
 
 #how_to_trade_mt5 .border-box {
   border: 1px solid #2a3052;
-  border-radius: 3px;
+  border-radius: 4px;
   padding: 25px 50px;
   margin: 20px auto; }
 
@@ -1035,7 +1057,7 @@ body #not_authenticated_financial ul.checked > li {
   text-align: center;
   background: #f2f2f2;
   padding: 5px 0;
-  border-radius: 3px;
+  border-radius: 4px;
   width: 100%; }
   .authenticate-content .fields > .gr-row > div > .button > span {
     position: relative;
@@ -1236,6 +1258,32 @@ body #not_authenticated_financial ul.checked > li {
       color: #fff;
       padding: 20px 0;
       text-align: center; }
+
+.welcome-content .box-grid .box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  max-height: 100%;
+  min-height: 120px; }
+  .welcome-content .box-grid .box div > p {
+    margin: 1em 0 0.5em; }
+    .welcome-content .box-grid .box div > p.text-orange {
+      color: #e98024;
+      font-size: 1.520875rem;
+      font-weight: 300; }
+
+.welcome-content .account-created:before {
+  content: url("../images/pages/set_currency/congratulations.svg"); }
+
+.welcome-content .box > .box-item-end {
+  margin-top: auto; }
+  .welcome-content .box > .box-item-end p {
+    margin-top: 0;
+    margin-bottom: 10px; }
 
 .timeline {
   margin: 0 auto;
