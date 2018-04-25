@@ -1010,6 +1010,9 @@ body #not_authenticated_financial ul.checked > li {
 .platforms-content img.responsive {
   max-height: 150px;
   width: auto; }
+  @media (max-width: 350px) {
+    .platforms-content img.responsive {
+      max-width: 290px; } }
 
 #mt5_types_of_accounts .box {
   border: 1px solid #dedede;
