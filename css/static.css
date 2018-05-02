@@ -919,6 +919,15 @@ div.kineticjs-content {
       position: relative;
       opacity: 1; }
 
+.contact-content .contact-content {
+  padding: 0 100px; }
+  @media screen and (max-width: 1024px) {
+    .contact-content .contact-content {
+      padding: 0 10px; } }
+
+.contact-content .u-mar-bottom-small {
+  margin-bottom: 15px; }
+
 .contact-content #cs_telephone_number {
   width: 100%;
   min-width: 160px; }
@@ -929,6 +938,22 @@ div.kineticjs-content {
 @media screen and (max-width: 480px) {
   .contact-content #company_addresses .border-bottom {
     min-height: 130px; } }
+
+.contact-content .chat {
+  margin-top: 20px; }
+  @media screen and (max-width: 1024px) {
+    .contact-content .chat {
+      margin-bottom: 20px; } }
+  .contact-content .chat-container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex; }
+    .contact-content .chat-container .button-secondary {
+      margin: 0; }
+  .contact-content .chat-icon {
+    margin-right: 5px;
+    height: 38px;
+    width: 38px; }
 
 .regulation-content .gray-line {
   border: 1px solid #f2f2f2;

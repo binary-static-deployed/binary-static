@@ -184,7 +184,9 @@ a.previous-wrapper {
       #mb-trading-wrapper #mb_trading #panel #payout {
         height: auto;
         border-color: #dedede;
-        border-top-color: #f2f2f2; }
+        border-top: 0;
+        border-radius: 0;
+        border-left: 0; }
         #mb-trading-wrapper #mb_trading #panel #payout:focus {
           outline: none; }
         #mb-trading-wrapper #mb_trading #panel #payout.error {
@@ -194,7 +196,8 @@ a.previous-wrapper {
       #mb-trading-wrapper #mb_trading #panel #payout_amount {
         line-height: 32px;
         white-space: nowrap;
-        font-weight: bold; }
+        font-weight: bold;
+        border: 1px solid #dedede; }
       #mb-trading-wrapper #mb_trading #panel .trade_form:not(.no-margin) {
         margin-top: 10px; }
       #mb-trading-wrapper #mb_trading #panel .trade_form > div .list {
@@ -224,7 +227,7 @@ a.previous-wrapper {
       #mb-trading-wrapper #mb_trading #panel .trade_form > div #currency .current {
         height: 25px;
         border: 1px solid #dedede;
-        border-top-color: #f2f2f2; }
+        border-top: 0; }
         #mb-trading-wrapper #mb_trading #panel .trade_form > div #currency .current .nav-caret {
           right: 65%;
           bottom: 16px; }
@@ -276,7 +279,7 @@ a.previous-wrapper {
       #mb-trading-wrapper #mb_trading #panel #period .current {
         height: auto;
         border-top: none;
-        padding-bottom: 7px !important; }
+        padding-bottom: 9px !important; }
         #mb-trading-wrapper #mb_trading #panel #period .current div.head {
           font-weight: bold;
           margin-bottom: 5px; }
