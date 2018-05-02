@@ -1083,32 +1083,32 @@ body #not_authenticated_financial ul.checked > li {
 .authenticate-content .center-text .button .barspinner {
   margin: 0 auto; }
 
-.careers-content .career {
+#content.careers-content {
   margin-top: 0; }
-  .careers-content .career .top-banner {
+  #content.careers-content .career .top-banner {
     background: url("../images/pages/careers/careers-1_bg.jpg") no-repeat;
     background-size: cover;
     min-height: 300px;
     position: relative;
     background-position: center; }
-    .careers-content .career .top-banner .banner-caption {
+    #content.careers-content .career .top-banner .banner-caption {
       position: absolute;
       z-index: 1;
       width: 100%;
       bottom: -100px; }
-      .careers-content .career .top-banner .banner-caption .caption-text {
+      #content.careers-content .career .top-banner .banner-caption .caption-text {
         margin: 0 auto;
         max-width: 960px;
         background-color: #fff;
         text-align: center;
         padding: 40px 0px 20px; }
-        .careers-content .career .top-banner .banner-caption .caption-text p {
+        #content.careers-content .career .top-banner .banner-caption .caption-text p {
           margin: 1em auto;
           max-width: 80%; }
     @media (max-width: 768px) {
-      .careers-content .career .top-banner {
+      #content.careers-content .career .top-banner {
         background-position: 75% -30px; } }
-  .careers-content .career .center-banner {
+  #content.careers-content .career .center-banner {
     background: url("../images/pages/careers/careers-2_bg.jpg") no-repeat;
     background-size: cover;
     min-height: 300px;
@@ -1122,40 +1122,40 @@ body #not_authenticated_financial ul.checked > li {
         -ms-flex-pack: center;
             justify-content: center;
     background-position: center; }
-    .careers-content .career .center-banner .caption-text {
+    #content.careers-content .career .center-banner .caption-text {
       margin: 0 auto;
       max-width: 960px;
       text-align: center; }
-      .careers-content .career .center-banner .caption-text h1 {
+      #content.careers-content .career .center-banner .caption-text h1 {
         margin-top: 1em; }
-      .careers-content .career .center-banner .caption-text p {
+      #content.careers-content .career .center-banner .caption-text p {
         color: #fff;
         margin: 1em auto;
         max-width: 80%;
         font-weight: 300; }
-  .careers-content .career .margin-top-100 {
+  #content.careers-content .career .margin-top-100 {
     margin-top: 100px; }
-  .careers-content .career .btn-margin-top {
+  #content.careers-content .career .btn-margin-top {
     margin-top: 1.5em; }
-  .careers-content .career .column-margin {
+  #content.careers-content .career .column-margin {
     margin: 0 0 1em; }
-  .careers-content .career .header-line {
+  #content.careers-content .career .header-line {
     border-color: #e98024;
     border-width: 3px;
     width: 25%; }
-  .careers-content .career .fill-text {
+  #content.careers-content .career .fill-text {
     padding: 1em 0; }
-  .careers-content .career .box-container.padding {
+  #content.careers-content .career .box-container.padding {
     padding: 5px 15px; }
-  .careers-content .career .box-container > [class*='gr-padding'] {
+  #content.careers-content .career .box-container > [class*='gr-padding'] {
     padding-bottom: 0; }
     @media (max-width: 768px) {
-      .careers-content .career .box-container > [class*='gr-padding'] {
+      #content.careers-content .career .box-container > [class*='gr-padding'] {
         padding-bottom: unset; } }
-  .careers-content .career .box-container .box.bordered {
+  #content.careers-content .career .box-container .box.bordered {
     border: 1px solid #dedede;
     height: 100%; }
-  .careers-content .career .box-container .box .items {
+  #content.careers-content .career .box-container .box .items {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -1166,50 +1166,50 @@ body #not_authenticated_financial ul.checked > li {
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center; }
-    .careers-content .career .box-container .box .items img {
+    #content.careers-content .career .box-container .box .items img {
       padding-top: 20px;
       width: 50px; }
-    .careers-content .career .box-container .box .items p {
+    #content.careers-content .career .box-container .box .items p {
       font-weight: 600;
       color: #2a3052; }
-    .careers-content .career .box-container .box .items > .box-item-end {
+    #content.careers-content .career .box-container .box .items > .box-item-end {
       padding: 0 30px; }
     @media (max-width: 768px) {
-      .careers-content .career .box-container .box .items {
+      #content.careers-content .career .box-container .box .items {
         -webkit-box-pack: center;
             -ms-flex-pack: center;
                 justify-content: center; } }
-  .careers-content .career h4 {
+  #content.careers-content .career h4 {
     color: #2a3052; }
-  .careers-content .career .graduate-container {
+  #content.careers-content .career .graduate-container {
     position: relative;
     margin-top: 1em; }
-    .careers-content .career .graduate-container .graduate-box {
+    #content.careers-content .career .graduate-container .graduate-box {
       background-color: #2a3052;
       padding: 30px;
       position: absolute;
       top: 50px;
       width: 100%; }
       @media (max-width: 480px) {
-        .careers-content .career .graduate-container .graduate-box h1 {
+        #content.careers-content .career .graduate-container .graduate-box h1 {
           font-size: 1.520875rem; } }
-      .careers-content .career .graduate-container .graduate-box p {
+      #content.careers-content .career .graduate-container .graduate-box p {
         color: #fff; }
         @media (max-width: 480px) {
-          .careers-content .career .graduate-container .graduate-box p {
+          #content.careers-content .career .graduate-container .graduate-box p {
             font-size: 0.8695652174rem; } }
-      .careers-content .career .graduate-container .graduate-box a.button span {
+      #content.careers-content .career .graduate-container .graduate-box a.button span {
         background-color: #fff;
         color: #2a3052;
         border-radius: 0;
         font-weight: 600; }
       @media screen and (max-width: 1024px) and (min-width: 769px) {
-        .careers-content .career .graduate-container .graduate-box {
+        #content.careers-content .career .graduate-container .graduate-box {
           left: 16%;
           bottom: 24%;
           top: unset; } }
       @media (max-width: 768px) {
-        .careers-content .career .graduate-container .graduate-box {
+        #content.careers-content .career .graduate-container .graduate-box {
           text-align: center;
           background-color: transparent;
           top: 50%;
@@ -1217,9 +1217,9 @@ body #not_authenticated_financial ul.checked > li {
           -webkit-transform: translate(-50%, -50%);
                   transform: translate(-50%, -50%); } }
       @media (max-width: 480px) {
-        .careers-content .career .graduate-container .graduate-box {
+        #content.careers-content .career .graduate-container .graduate-box {
           padding: 15px; } }
-  .careers-content .career ul.role-section {
+  #content.careers-content .career ul.role-section {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -1231,33 +1231,33 @@ body #not_authenticated_financial ul.checked > li {
             justify-content: center;
     margin-bottom: 20px;
     border-bottom: 0; }
-    .careers-content .career ul.role-section li.role {
+    #content.careers-content .career ul.role-section li.role {
       margin: 0;
       border-radius: 0;
       padding: 0; }
-      .careers-content .career ul.role-section li.role a.role-btn {
+      #content.careers-content .career ul.role-section li.role a.role-btn {
         padding: 15px 20px !important; }
-        .careers-content .career ul.role-section li.role a.role-btn span {
+        #content.careers-content .career ul.role-section li.role a.role-btn span {
           color: #2a3052;
           font-weight: 600;
           font-size: 1.15rem;
           text-transform: none; }
           @media (max-width: 320px) {
-            .careers-content .career ul.role-section li.role a.role-btn span {
+            #content.careers-content .career ul.role-section li.role a.role-btn span {
               font-size: 0.8695652174rem; } }
-        .careers-content .career ul.role-section li.role a.role-btn:focus {
+        #content.careers-content .career ul.role-section li.role a.role-btn:focus {
           border: 0;
           outline: 0; }
-      .careers-content .career ul.role-section li.role.ui-tabs-active a span {
+      #content.careers-content .career ul.role-section li.role.ui-tabs-active a span {
         color: #fff; }
-      .careers-content .career ul.role-section li.role:focus {
+      #content.careers-content .career ul.role-section li.role:focus {
         border: 0;
         outline: 0; }
-  .careers-content .career .america-careers-link a {
+  #content.careers-content .career .america-careers-link a {
     text-transform: capitalize; }
-  .careers-content .career .footer-email {
+  #content.careers-content .career .footer-email {
     margin-bottom: -20px; }
-    .careers-content .career .footer-email p {
+    #content.careers-content .career .footer-email p {
       color: #fff;
       padding: 20px 0;
       text-align: center; }

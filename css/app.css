@@ -182,7 +182,9 @@ a.previous-wrapper {
       #mb-trading-wrapper #mb_trading #panel .selection_wrapper.less-margin-top .trade_form > div {
         margin-top: -10px; }
       #mb-trading-wrapper #mb_trading #panel #payout {
-        height: auto; }
+        height: auto;
+        border-color: #dedede;
+        border-top-color: #f2f2f2; }
         #mb-trading-wrapper #mb_trading #panel #payout:focus {
           outline: none; }
         #mb-trading-wrapper #mb_trading #panel #payout.error {
@@ -197,20 +199,37 @@ a.previous-wrapper {
         margin-top: 10px; }
       #mb-trading-wrapper #mb_trading #panel .trade_form > div .list {
         background-color: #fff;
-        border: 1px solid #f2f2f2;
+        border: 1px solid #dedede;
         border-top: none; }
         #mb-trading-wrapper #mb_trading #panel .trade_form > div .list.invisible {
           border: none; }
         #mb-trading-wrapper #mb_trading #panel .trade_form > div .list > div {
-          background-color: #fff; }
+          background-color: #fff;
+          border-color: #dedede; }
           #mb-trading-wrapper #mb_trading #panel .trade_form > div .list > div:hover {
             background-color: #dedede !important; }
         #mb-trading-wrapper #mb_trading #panel .trade_form > div .list:hover {
           background-color: #fff; }
+      #mb-trading-wrapper #mb_trading #panel .trade_form > div .current {
+        background-color: #fff;
+        border: 1px solid #dedede; }
+        #mb-trading-wrapper #mb_trading #panel .trade_form > div .current:hover, #mb-trading-wrapper #mb_trading #panel .trade_form > div .current.primary-border-color {
+          border-color: #2a3052; }
+        #mb-trading-wrapper #mb_trading #panel .trade_form > div .current .nav-caret {
+          position: absolute;
+          right: 0.6%;
+          bottom: 25px; }
+      #mb-trading-wrapper #mb_trading #panel .trade_form > div #currency .list > div {
+        height: 27px; }
       #mb-trading-wrapper #mb_trading #panel .trade_form > div #currency .current {
         height: 25px;
-        border: 1px solid #f2f2f2;
-        border-right: none; }
+        border: 1px solid #dedede;
+        border-top-color: #f2f2f2; }
+        #mb-trading-wrapper #mb_trading #panel .trade_form > div #currency .current .nav-caret {
+          right: 65%;
+          bottom: 16px; }
+          #mb-trading-wrapper #mb_trading #panel .trade_form > div #currency .current .nav-caret:not(.invisible) + .symbols:before {
+            margin-right: 10px; }
       #mb-trading-wrapper #mb_trading #panel .trade_form > div#category .current, #mb-trading-wrapper #mb_trading #panel .trade_form > div#category .list > div {
         height: 59px; }
       #mb-trading-wrapper #mb_trading #panel .trade_form .contract-type {
@@ -222,36 +241,45 @@ a.previous-wrapper {
         width: 100%;
         margin-bottom: 5px; }
       #mb-trading-wrapper #mb_trading #panel .trade_form:hover .header-current .gr-row {
-        cursor: pointer;
-        background-color: #dedede; }
-      #mb-trading-wrapper #mb_trading #panel .trade_form:hover #period .current {
-        background-color: #dedede; }
+        cursor: pointer; }
       #mb-trading-wrapper #mb_trading #panel #underlying .list {
         width: auto; }
       #mb-trading-wrapper #mb_trading #panel .header-current {
         overflow: hidden;
-        width: 100%; }
+        width: auto;
+        border: 1px solid #dedede;
+        border-bottom: none;
+        background-color: #fff; }
+        #mb-trading-wrapper #mb_trading #panel .header-current.primary-border-color {
+          border-color: #2a3052; }
         #mb-trading-wrapper #mb_trading #panel .header-current .gr-row {
           margin: 0; }
         #mb-trading-wrapper #mb_trading #panel .header-current-text {
-          padding-top: 10px;
+          padding: 10px 5px;
           font-weight: 700; }
           #mb-trading-wrapper #mb_trading #panel .header-current-text:first-child {
             padding-right: 5px; }
           #mb-trading-wrapper #mb_trading #panel .header-current-text:last-child {
             padding-left: 5px; }
+        #mb-trading-wrapper #mb_trading #panel .header-current > div {
+          background-color: #fff; }
+        #mb-trading-wrapper #mb_trading #panel .header-current:hover, #mb-trading-wrapper #mb_trading #panel .header-current:hover + #period .current {
+          border-color: #2a3052; }
+        #mb-trading-wrapper #mb_trading #panel .header-current .nav-caret {
+          position: absolute;
+          bottom: 15px;
+          right: 3%; }
       #mb-trading-wrapper #mb_trading #panel #period .duration {
         font-size: 0.8695652174rem; }
       #mb-trading-wrapper #mb_trading #panel #period .end {
         font-weight: normal; }
       #mb-trading-wrapper #mb_trading #panel #period .current {
         height: auto;
+        border-top: none;
         padding-bottom: 7px !important; }
         #mb-trading-wrapper #mb_trading #panel #period .current div.head {
           font-weight: bold;
           margin-bottom: 5px; }
-      #mb-trading-wrapper #mb_trading #panel .category-wrapper {
-        width: 50%; }
     #mb-trading-wrapper #mb_trading #ja-panel #currency_wrapper, #mb-trading-wrapper #mb_trading #ja-panel #payout {
       height: 103px; }
     #mb-trading-wrapper #mb_trading #ja-panel #currency_wrapper .hint {
@@ -343,7 +371,7 @@ a.previous-wrapper {
       line-height: 28px;
       height: 75px; }
       #mb-trading-wrapper #mb_trading .trade_form > div#underlying:first-child .list > div > img {
-        height: 40px; }
+        padding-top: 7px; }
     #mb-trading-wrapper #mb_trading .trade_form #underlying {
       margin-top: -5px; }
       #mb-trading-wrapper #mb_trading .trade_form #underlying div.current > div {
@@ -385,12 +413,27 @@ a.previous-wrapper {
         #mb-trading-wrapper #mb_trading .ja-hide + .price-table .prices-wrapper .heading .hint {
           font-weight: normal; }
       #mb-trading-wrapper #mb_trading .ja-hide + .price-table .prices-wrapper .heading, #mb-trading-wrapper #mb_trading .ja-hide + .price-table .prices-wrapper .price-row {
-        border: 1px solid #f2f2f2;
+        border: 1px solid #dedede;
         border-bottom: none; }
+      #mb-trading-wrapper #mb_trading .ja-hide + .price-table .prices-wrapper .contract-type {
+        padding-left: 0;
+        background-repeat: no-repeat;
+        background-position: center;
+        line-height: 18px;
+        height: 36px;
+        width: 100%;
+        margin-bottom: 5px; }
       #mb-trading-wrapper #mb_trading .ja-hide + .price-table .prices-wrapper .price-row:last-child {
-        border-bottom: 1px solid #f2f2f2; }
+        border-bottom: 1px solid #dedede; }
       #mb-trading-wrapper #mb_trading .ja-hide + .price-table .prices-wrapper .price-row:nth-child(odd) {
         background-color: #fff; }
+      #mb-trading-wrapper #mb_trading .ja-hide + .price-table .prices-wrapper .sell-price {
+        display: none; }
+      #mb-trading-wrapper #mb_trading .ja-hide + .price-table .prices-wrapper .buy-price {
+        margin-top: 5px; }
+      #mb-trading-wrapper #mb_trading .ja-hide + .price-table #disable-overlay {
+        top: 81px;
+        height: calc(100% - 81px); }
     #mb-trading-wrapper #mb_trading .price-table {
       position: relative;
       font-size: 1rem; }
@@ -543,6 +586,10 @@ a.previous-wrapper {
         line-height: 15px; } }
   #mb-trading-wrapper #trading_bottom_content #tab_portfolio-content {
     overflow-x: auto; }
+  #mb-trading-wrapper #trading_bottom_content #tab_explanation-content .hide-mb {
+    display: none; }
+  #mb-trading-wrapper #trading_bottom_content #tab_explanation-content .show-mb {
+    display: block; }
   #mb-trading-wrapper #trading_bottom_content #tab_explanation-content #winning_higherlower {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -1796,9 +1843,9 @@ a.previous-wrapper {
     #deposit_btn_trade span img, #upgrade_btn_trade span img {
       margin-right: 5px; }
 
-/*
- * DO NOT ADD ANY COMMON STYLING BELOW THIS. ALL OTHER STYLING GO ABOVE THIS
- */
+.show-mb {
+  display: none; }
+
 .api_token fieldset {
   margin: 20px 0; }
   .api_token fieldset label {
