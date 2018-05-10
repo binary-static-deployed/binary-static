@@ -622,10 +622,7 @@ a.previous-wrapper {
   #mt_account_management .mt-panel {
     border: 1px solid #dedede;
     border-radius: 4px;
-    margin-bottom: 20px;
-    -webkit-box-flex: 1;
-        -ms-flex: 1;
-            flex: 1; }
+    margin-bottom: 20px; }
   #mt_account_management .flex {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -792,7 +789,10 @@ a.previous-wrapper {
       margin: 3px; }
     #mt_account_management .fst-container #fst_action #frm_cashier .mt-panel {
       margin-bottom: 0;
-      padding: 15px; }
+      padding: 15px;
+      -webkit-box-flex: 1;
+          -ms-flex: 1;
+              flex: 1; }
     #mt_account_management .fst-container #fst_action #frm_cashier .binary-balance, #mt_account_management .fst-container #fst_action #frm_cashier .mt5-balance {
       font-weight: bold;
       color: #c2c2c2; }
@@ -802,6 +802,13 @@ a.previous-wrapper {
       outline: none; }
     #mt_account_management .fst-container #fst_action #frm_manage_password button[type='submit'] {
       line-height: 22px; }
+    #mt_account_management .fst-container #fst_action #frm_revoke_mam #msg_form {
+      text-align: center; }
+    #mt_account_management .fst-container #fst_action #frm_new_account_mam .margin-left-right-20 {
+      margin-left: -20px;
+      margin-right: -20px; }
+    #mt_account_management .fst-container #fst_action #frm_new_account_mam .fill-bg-color.margin-left-right-20 {
+      margin-bottom: -20px; }
     #mt_account_management .fst-container #fst_action .type-group .mt5_type_box {
       width: 88px;
       height: 88px;

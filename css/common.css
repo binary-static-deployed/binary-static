@@ -430,6 +430,8 @@ button .barspinner.white {
 .sidebar-collapsible-container {
   position: relative;
   height: 100%; }
+  .sidebar-collapsible-container .has-submenu.active ul {
+    height: auto; }
 
 .sidebar ul {
   font-size: 1rem; }
