@@ -1032,6 +1032,9 @@ body #not_authenticated_financial ul.checked > li {
     line-height: 22px;
     padding: 4px 0; }
 
+.set-currency-content .list-style-inside {
+  list-style-position: inside; }
+
 .platforms-content img.responsive {
   max-height: 150px;
   width: auto; }
