@@ -253,8 +253,11 @@ label {
 .input {
   width: 45%; }
 
-*, .no-margin, .errorfield {
+*, .errorfield {
   margin: 0; }
+
+.no-margin {
+  margin: 0 !important; }
 
 .errorfield {
   margin-top: 8px;
@@ -1387,6 +1390,8 @@ body.ZH_TW .google-play-badge {
     background-position-x: 0; } }
 
 @media screen and (max-width: 768px) {
+  .center-text-p {
+    text-align: center; }
   #sell_popup_container {
     padding: 0;
     width: 100%;

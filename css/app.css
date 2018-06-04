@@ -866,9 +866,8 @@ a.previous-wrapper {
           background: url("../images/pages/metatrader/dashboard/tick.svg");
           border: none; }
     #mt_account_management .fst-container #fst_action .type-group p {
-      width: 140px;
-      margin-left: auto;
-      margin-right: auto; }
+      max-width: 140px;
+      margin: 0 auto; }
     #mt_account_management .fst-container #fst_action #new_account_msg ul.bullet {
       margin-top: 0;
       margin-bottom: 0; }
@@ -2398,7 +2397,10 @@ a.previous-wrapper {
         position: absolute;
         left: 0;
         border-bottom: 1px solid #dedede;
-        background: #fff; } }
+        background: #fff;
+        pointer-events: auto; }
+        .contracts .contracts_dropdown .mobile_close.disabled {
+          pointer-events: none; } }
     .contracts .contracts_dropdown .mobile_close span {
       display: inline-block; }
     .contracts .contracts_dropdown .mobile_close .close {
