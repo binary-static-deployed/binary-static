@@ -963,15 +963,19 @@ a.previous-wrapper {
 #trading-times td.asset, #asset-index td.asset {
   font-weight: 700; }
 
-#asset-index th {
-  width: 16%; }
-  #asset-index th:nth-child(2):nth-last-child(1) {
-    width: 24%; }
-  #asset-index th:nth-child(2):nth-last-child(2), #asset-index th:nth-child(3):nth-last-child(1) {
-    width: 18%; }
+#trading-times .ui-tabs-anchor:focus, #asset-index .ui-tabs-anchor:focus {
+  outline: none; }
 
-#asset-index .asset {
-  width: 18%; }
+#asset_index_wrapper {
+  max-width: 1200px; }
+  #asset_index_wrapper #asset-index.has-tabs.ui-tabs .ui-tabs-panel {
+    padding: 0; }
+  #asset_index_wrapper #asset-index th {
+    width: calc(100% / 7); }
+    #asset_index_wrapper #asset-index th:nth-child(2):nth-last-child(1) {
+      width: 24%; }
+    #asset_index_wrapper #asset-index th:nth-child(2):nth-last-child(2), #asset_index_wrapper #asset-index th:nth-child(3):nth-last-child(1) {
+      width: 18%; }
 
 .popup_bet_desc {
   padding: 5px 0;
