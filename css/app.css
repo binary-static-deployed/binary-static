@@ -177,6 +177,8 @@ a.previous-wrapper {
         min-height: 600px; }
   #mb-trading-wrapper #mb_trading {
     font-size: 0.8695652174rem; }
+    #mb-trading-wrapper #mb_trading #notifications_wrapper {
+      margin-left: 0; }
     #mb-trading-wrapper #mb_trading #panel {
       margin-left: 10px; }
       #mb-trading-wrapper #mb_trading #panel .selection_wrapper.less-margin-top .trade_form > div {
@@ -568,6 +570,8 @@ a.previous-wrapper {
     #mb-trading-wrapper #mb_trading #spot.up {
       color: #c03; }
     @media screen and (max-width: 768px) {
+      #mb-trading-wrapper #mb_trading #notifications_wrapper {
+        margin-left: -10px; }
       #mb-trading-wrapper #mb_trading .gr-12-p {
         padding-bottom: 10px; }
       #mb-trading-wrapper #mb_trading #panel {
@@ -2160,7 +2164,7 @@ a.previous-wrapper {
               transition: background 0.2s 0.1s;
               cursor: pointer;
               padding: 0 5px 5px;
-              -webkit-tap-highlight-color: transparent;
+              -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
               -webkit-tap-highlight-color: transparent; }
               .markets .markets_dropdown .markets_view .markets_column .mobile ul li.active {
                 border-bottom: 2px solid #2a3052; }
