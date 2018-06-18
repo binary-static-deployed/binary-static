@@ -705,6 +705,12 @@ label + input {
   margin-bottom: 0.2em;
   color: #c03; }
 
+.chart-payout-range {
+  margin-left: 10px; }
+  .chart-payout-range:before {
+    content: url("../images/pages/trade/chart_payout_range.svg");
+    display: inline-block; }
+
 .lightbox {
   display: -webkit-box;
   display: -ms-flexbox;
