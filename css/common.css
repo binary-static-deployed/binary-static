@@ -1254,6 +1254,10 @@ body.IT h1, body.IT h2, body.IT h3, body.IT h4, body.IT h5, body.IT h6, body.DE 
 body.ES #trading_socket_container #contract_form_name_nav {
   font-size: 0.7561436673rem; }
 
+body.ES #header li.wordwrap a {
+  white-space: normal;
+  text-align: center; }
+
 body.RU #frm_verify_email button {
   font-size: 0.7561436673rem; }
 
@@ -3169,8 +3173,8 @@ body.ZH_TW .google-play-badge {
     left: 0;
     width: 100%;
     height: 99999px;
-    background: -webkit-gradient(linear, left top, right top, color-stop(50%, transparent), color-stop(50%, rgba(0, 0, 0, 0.02)));
-    background: linear-gradient(to right, transparent 50%, rgba(0, 0, 0, 0.02) 50%);
+    background: -webkit-gradient(linear, left top, right top, color-stop(50%, rgba(0, 0, 0, 0)), color-stop(50%, rgba(0, 0, 0, 0.02)));
+    background: linear-gradient(to right, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.02) 50%);
     background-size: 16.6666666667% 100%;
     z-index: 99999; }
 
@@ -3873,8 +3877,8 @@ body.ZH_TW .google-play-badge {
     left: 0;
     width: 100%;
     height: 99999px;
-    background: -webkit-gradient(linear, left top, right top, color-stop(50%, transparent), color-stop(50%, rgba(0, 0, 0, 0.02)));
-    background: linear-gradient(to right, transparent 50%, rgba(0, 0, 0, 0.02) 50%);
+    background: -webkit-gradient(linear, left top, right top, color-stop(50%, rgba(0, 0, 0, 0)), color-stop(50%, rgba(0, 0, 0, 0.02)));
+    background: linear-gradient(to right, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.02) 50%);
     background-size: 16.6666666667% 100%;
     z-index: 99999; }
 
@@ -4577,8 +4581,8 @@ body {
     left: 0;
     width: 100%;
     height: 99999px;
-    background: -webkit-gradient(linear, left top, right top, color-stop(50%, transparent), color-stop(50%, rgba(0, 0, 0, 0.02)));
-    background: linear-gradient(to right, transparent 50%, rgba(0, 0, 0, 0.02) 50%);
+    background: -webkit-gradient(linear, left top, right top, color-stop(50%, rgba(0, 0, 0, 0)), color-stop(50%, rgba(0, 0, 0, 0.02)));
+    background: linear-gradient(to right, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.02) 50%);
     background-size: 16.6666666667% 100%;
     z-index: 99999; }
 
@@ -5138,8 +5142,8 @@ body {
       left: 0;
       width: 100%;
       height: 99999px;
-      background: -webkit-gradient(linear, left top, right top, color-stop(50%, transparent), color-stop(50%, rgba(0, 0, 0, 0.02)));
-      background: linear-gradient(to right, transparent 50%, rgba(0, 0, 0, 0.02) 50%);
+      background: -webkit-gradient(linear, left top, right top, color-stop(50%, rgba(0, 0, 0, 0)), color-stop(50%, rgba(0, 0, 0, 0.02)));
+      background: linear-gradient(to right, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.02) 50%);
       background-size: 16.6666666667% 100%;
       z-index: 99999; }
   body {
@@ -5841,8 +5845,8 @@ body {
     left: 0;
     width: 100%;
     height: 99999px;
-    background: -webkit-gradient(linear, left top, right top, color-stop(50%, transparent), color-stop(50%, rgba(0, 0, 0, 0.02)));
-    background: linear-gradient(to right, transparent 50%, rgba(0, 0, 0, 0.02) 50%);
+    background: -webkit-gradient(linear, left top, right top, color-stop(50%, rgba(0, 0, 0, 0)), color-stop(50%, rgba(0, 0, 0, 0.02)));
+    background: linear-gradient(to right, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.02) 50%);
     background-size: 16.6666666667% 100%;
     z-index: 99999; }
 
@@ -6402,8 +6406,8 @@ body {
       left: 0;
       width: 100%;
       height: 99999px;
-      background: -webkit-gradient(linear, left top, right top, color-stop(50%, transparent), color-stop(50%, rgba(0, 0, 0, 0.02)));
-      background: linear-gradient(to right, transparent 50%, rgba(0, 0, 0, 0.02) 50%);
+      background: -webkit-gradient(linear, left top, right top, color-stop(50%, rgba(0, 0, 0, 0)), color-stop(50%, rgba(0, 0, 0, 0.02)));
+      background: linear-gradient(to right, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.02) 50%);
       background-size: 16.6666666667% 100%;
       z-index: 99999; }
   body {
@@ -7105,8 +7109,8 @@ body {
     left: 0;
     width: 100%;
     height: 99999px;
-    background: -webkit-gradient(linear, left top, right top, color-stop(50%, transparent), color-stop(50%, rgba(0, 0, 0, 0.02)));
-    background: linear-gradient(to right, transparent 50%, rgba(0, 0, 0, 0.02) 50%);
+    background: -webkit-gradient(linear, left top, right top, color-stop(50%, rgba(0, 0, 0, 0)), color-stop(50%, rgba(0, 0, 0, 0.02)));
+    background: linear-gradient(to right, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.02) 50%);
     background-size: 16.6666666667% 100%;
     z-index: 99999; }
 
@@ -7666,8 +7670,8 @@ body {
       left: 0;
       width: 100%;
       height: 99999px;
-      background: -webkit-gradient(linear, left top, right top, color-stop(50%, transparent), color-stop(50%, rgba(0, 0, 0, 0.02)));
-      background: linear-gradient(to right, transparent 50%, rgba(0, 0, 0, 0.02) 50%);
+      background: -webkit-gradient(linear, left top, right top, color-stop(50%, rgba(0, 0, 0, 0)), color-stop(50%, rgba(0, 0, 0, 0.02)));
+      background: linear-gradient(to right, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.02) 50%);
       background-size: 16.6666666667% 100%;
       z-index: 99999; }
   body {
@@ -8369,8 +8373,8 @@ body {
     left: 0;
     width: 100%;
     height: 99999px;
-    background: -webkit-gradient(linear, left top, right top, color-stop(50%, transparent), color-stop(50%, rgba(0, 0, 0, 0.02)));
-    background: linear-gradient(to right, transparent 50%, rgba(0, 0, 0, 0.02) 50%);
+    background: -webkit-gradient(linear, left top, right top, color-stop(50%, rgba(0, 0, 0, 0)), color-stop(50%, rgba(0, 0, 0, 0.02)));
+    background: linear-gradient(to right, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.02) 50%);
     background-size: 16.6666666667% 100%;
     z-index: 99999; }
 
@@ -8930,8 +8934,8 @@ body {
       left: 0;
       width: 100%;
       height: 99999px;
-      background: -webkit-gradient(linear, left top, right top, color-stop(50%, transparent), color-stop(50%, rgba(0, 0, 0, 0.02)));
-      background: linear-gradient(to right, transparent 50%, rgba(0, 0, 0, 0.02) 50%);
+      background: -webkit-gradient(linear, left top, right top, color-stop(50%, rgba(0, 0, 0, 0)), color-stop(50%, rgba(0, 0, 0, 0.02)));
+      background: linear-gradient(to right, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.02) 50%);
       background-size: 16.6666666667% 100%;
       z-index: 99999; }
   body {
@@ -9047,7 +9051,7 @@ html.mm-opened #mm-blocker {
   left: 0;
   top: 0;
   margin: 0;
-  border: 0 solid transparent; }
+  border: 0 solid rgba(0, 0, 0, 0); }
 
 html.mm-opening .mm-page,
 html.mm-opening #mm-blocker {

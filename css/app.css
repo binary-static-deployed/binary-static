@@ -1403,6 +1403,12 @@ a.previous-wrapper {
     #trading_socket_container .contract_heading.LBHIGHLOW {
       background: url("../images/pages/trade/high_low_icon.svg") no-repeat center top;
       background-size: 50%; }
+    #trading_socket_container .contract_heading.RESETCALL {
+      background: url("../images/pages/trade/reset_call.svg") no-repeat center top;
+      background-size: 50%; }
+    #trading_socket_container .contract_heading.RESETPUT {
+      background: url("../images/pages/trade/reset_put.svg") no-repeat center top;
+      background-size: 50%; }
     #trading_socket_container .contract_heading.CALLSPREAD {
       background: url("../images/pages/trade/call_spread.svg") no-repeat center top;
       background-size: 50%; }
@@ -2176,7 +2182,7 @@ a.previous-wrapper {
               transition: background 0.2s 0.1s;
               cursor: pointer;
               padding: 0 5px 5px;
-              -webkit-tap-highlight-color: transparent;
+              -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
               -webkit-tap-highlight-color: transparent; }
               .markets .markets_dropdown .markets_view .markets_column .mobile ul li.active {
                 border-bottom: 2px solid #2a3052; }
