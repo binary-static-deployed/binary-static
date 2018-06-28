@@ -1902,9 +1902,6 @@ a.previous-wrapper {
   #applications-container table td .button, #applications-container th .button, .api_token table td .button, .api_token th .button {
     margin: 3px 0; }
 
-.forwardws-content iframe {
-  height: 1500px; }
-
 .epg_forwardws-content iframe {
   height: 800px; }
 
@@ -2182,7 +2179,7 @@ a.previous-wrapper {
               transition: background 0.2s 0.1s;
               cursor: pointer;
               padding: 0 5px 5px;
-              -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+              -webkit-tap-highlight-color: transparent;
               -webkit-tap-highlight-color: transparent; }
               .markets .markets_dropdown .markets_view .markets_column .mobile ul li.active {
                 border-bottom: 2px solid #2a3052; }
