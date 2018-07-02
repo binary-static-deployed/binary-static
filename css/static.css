@@ -1346,6 +1346,19 @@ body #not_authenticated_financial ul.checked > li {
     max-height: 55px;
     padding-right: 15px; }
 
+#signup_form input {
+  width: 100%;
+  height: 3em;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  text-align: center;
+  font-size: 0.8695652174rem; }
+
+#signup_form button {
+  width: 100%;
+  height: 3rem;
+  margin: 5px 0; }
+
 .timeline {
   margin: 0 auto;
   overflow: hidden;
