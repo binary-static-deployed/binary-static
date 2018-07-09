@@ -104,6 +104,9 @@
 .affiliates-signup-page .faq-box, .ib-signup-page .faq-box {
   padding: 1rem; }
 
+.affiliates-signup-page .table-container.center-text th, .affiliates-signup-page .table-container.center-text td, .ib-signup-page .table-container.center-text th, .ib-signup-page .table-container.center-text td {
+  text-align: center; }
+
 @media screen and (max-width: 480px) {
   .affiliates-signup-page table, .affiliates-signup-page .mobile-text-small, .ib-signup-page table, .ib-signup-page .mobile-text-small {
     font-size: 0.9rem; } }
@@ -797,6 +800,23 @@ div.kineticjs-content {
   .open-positions img.responsive {
     width: 40%; } }
 
+.payment-methods__reference {
+  display: inline-block;
+  height: 30px;
+  width: 30px;
+  background-size: cover;
+  vertical-align: middle; }
+  .payment-methods__reference:not(:last-child) {
+    margin-right: 5px; }
+  .payment-methods__reference-pdf {
+    background-image: url("../images/common/reference/pdf.svg"); }
+    .payment-methods__reference-pdf.payment-methods__reference--disabled {
+      background-image: url("../images/common/reference/pdf_disabled.svg"); }
+  .payment-methods__reference-video {
+    background-image: url("../images/common/reference/youtube.svg"); }
+    .payment-methods__reference-video.payment-methods__reference--disabled {
+      background-image: url("../images/common/reference/youtube_disabled.svg"); }
+
 .box-row {
   border-bottom: 1px solid #dedede; }
   .box-row__box {
@@ -1358,6 +1378,9 @@ body #not_authenticated_financial ul.checked > li {
   width: 100%;
   height: 3rem;
   margin: 5px 0; }
+
+#contract-specification table td {
+  white-space: nowrap; }
 
 .timeline {
   margin: 0 auto;
