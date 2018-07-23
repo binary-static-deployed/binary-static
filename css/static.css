@@ -810,12 +810,8 @@ div.kineticjs-content {
     margin-right: 5px; }
   .payment-methods__reference-pdf {
     background-image: url("../images/common/reference/pdf.svg"); }
-    .payment-methods__reference-pdf.payment-methods__reference--disabled {
-      background-image: url("../images/common/reference/pdf_disabled.svg"); }
   .payment-methods__reference-video {
     background-image: url("../images/common/reference/youtube.svg"); }
-    .payment-methods__reference-video.payment-methods__reference--disabled {
-      background-image: url("../images/common/reference/youtube_disabled.svg"); }
 
 .box-row {
   border-bottom: 1px solid #dedede; }
@@ -1124,12 +1120,40 @@ body #not_authenticated_financial ul.checked > li {
       background: url("../images/pages/authenticate/add.svg") no-repeat; }
     .authenticate-content .fields > .gr-row > div > .button > span.remove {
       background: url("../images/pages/authenticate/remove.svg") no-repeat; }
+    .authenticate-content .fields > .gr-row > div > .button > span.checked {
+      width: 16px;
+      height: 12px; }
+    .authenticate-content .fields > .gr-row > div > .button > span:hover {
+      background-color: transparent; }
+  .authenticate-content .fields > .gr-row > div > .button.selected {
+    background-color: #fff; }
+  .authenticate-content .fields > .gr-row > div > .button.error {
+    color: #c03; }
+    .authenticate-content .fields > .gr-row > div > .button.error:before {
+      content: '*'; }
 
 .authenticate-content .fields > .gr-row > div > input[type=file] {
   display: none; }
 
 .authenticate-content .center-text .button .barspinner {
   margin: 0 auto; }
+
+.authenticate-content .submit-status table th:not(:last-child) {
+  width: 25%; }
+
+.authenticate-content .submit-status table .status.error-msg {
+  font-size: inherit;
+  font-style: normal; }
+
+.authenticate-content .checked {
+  background: url("../images/pages/authenticate/checked.svg") no-repeat;
+  width: 16px;
+  height: 12px;
+  display: inline-block;
+  margin-left: 5px; }
+
+.authenticate-content #resolve_error {
+  color: #c03; }
 
 #content.careers-content {
   margin-top: 0; }
