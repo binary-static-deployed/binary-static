@@ -982,6 +982,12 @@ div.kineticjs-content {
 .regulation-content .background-gray {
   margin-top: -30px; }
 
+.regulation-content .margin-right-0 {
+  margin-right: 0 !important; }
+
+.regulation-content .margin-left-0 {
+  margin-left: 0 !important; }
+
 .tour-content#content {
   margin-bottom: 0; }
 
