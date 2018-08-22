@@ -808,6 +808,10 @@ label + input {
   font-weight: 400;
   line-height: 110%; }
 
+#footer #footer-last .gambling.font-n, #footer #footer-last .gambling.font-n * {
+  font-size: 1rem;
+  line-height: 1.25; }
+
 #footer #end-note {
   line-height: 25px;
   background: #c03;
