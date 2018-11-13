@@ -928,6 +928,8 @@ a.previous-wrapper {
   max-width: 1200px; }
   #asset_index_wrapper #asset-index.has-tabs.ui-tabs .ui-tabs-panel {
     padding: 0; }
+  #asset_index_wrapper #asset-index .table-container {
+    overflow-x: auto; }
   #asset_index_wrapper #asset-index th {
     width: calc(100% / 7); }
     #asset_index_wrapper #asset-index th:nth-child(2):nth-last-child(1) {
@@ -2189,7 +2191,7 @@ a.previous-wrapper {
               transition: background 0.2s 0.1s;
               cursor: pointer;
               padding: 0 5px 5px;
-              -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+              -webkit-tap-highlight-color: transparent;
               -webkit-tap-highlight-color: transparent; }
               .markets .markets_dropdown .markets_view .markets_column .mobile ul li.active {
                 border-bottom: 2px solid #2a3052; }
