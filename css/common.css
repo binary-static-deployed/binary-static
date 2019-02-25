@@ -926,8 +926,8 @@ label + input {
     #interview_popup_container .popup__head {
       background-size: 120%; } }
 
-p.no-margin-top {
-  margin-top: 0; }
+.font-style-normal {
+  font-style: normal; }
 
 /* main style */
 #androidApp, #appstore {
