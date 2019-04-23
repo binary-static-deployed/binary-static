@@ -206,8 +206,7 @@ fieldset {
   fieldset legend {
     color: #44484c;
     padding: 0 0.8em;
-    font-weight: bold;
-    text-transform: capitalize; }
+    font-weight: bold; }
     fieldset legend + .hint {
       padding-left: 1em; }
   fieldset .text-display {
@@ -729,6 +728,8 @@ label + input {
   transition: none; }
   .max_30day_turnover input.hide {
     color: transparent; }
+    .max_30day_turnover input.hide::-moz-selection {
+      color: transparent; }
     .max_30day_turnover input.hide::selection {
       color: transparent; }
 
@@ -959,21 +960,21 @@ label + input {
     padding-bottom: 10px;
     float: none; } }
 
-.highcharts-container .highcharts-subtitle > div:not(.delay) {
-  display: inline-block; }
-
-.highcharts-container .highcharts-subtitle > div .chart-delay {
-  display: block;
-  text-align: center;
-  margin-bottom: 0.2em;
-  color: #c03; }
-
-.highcharts-container .highcharts-subtitle > div .chart-payout-range {
-  margin-left: 10px;
-  margin-right: 5px; }
-  .highcharts-container .highcharts-subtitle > div .chart-payout-range:before {
-    content: url("../images/pages/trade/chart_payout_range.svg");
+.highcharts-container .highcharts-subtitle {
+  white-space: normal !important; }
+  .highcharts-container .highcharts-subtitle > div:not(.delay) {
     display: inline-block; }
+  .highcharts-container .highcharts-subtitle > div .chart-delay {
+    display: block;
+    text-align: center;
+    margin-bottom: 0.2em;
+    color: #c03; }
+  .highcharts-container .highcharts-subtitle > div .chart-payout-range {
+    margin-left: 10px;
+    margin-right: 5px; }
+    .highcharts-container .highcharts-subtitle > div .chart-payout-range:before {
+      content: url("../images/pages/trade/chart_payout_range.svg");
+      display: inline-block; }
 
 .highcharts-container .highcharts-tooltip span {
   background-color: #fff; }
