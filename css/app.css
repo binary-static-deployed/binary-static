@@ -1851,8 +1851,6 @@ a.previous-wrapper {
         padding-left: 3px; }
     #trading_socket_container #contract_prices_container #confirmation_message {
       padding-bottom: 34px; }
-      #trading_socket_container #contract_prices_container #confirmation_message #contract_highlowtick {
-        margin-top: 10px; }
       #trading_socket_container #contract_prices_container #confirmation_message div.button {
         padding-top: 7px; }
       #trading_socket_container #contract_prices_container #confirmation_message #trade_tick_chart .highcharts-tooltip span {
@@ -1878,8 +1876,6 @@ a.previous-wrapper {
       -webkit-box-direction: normal;
           -ms-flex-direction: row;
               flex-direction: row; }
-      #trading_socket_container #contract_prices_container #contract_purchase_profit_list.winning-tick-row, #trading_socket_container #contract_prices_container #contract_purchase_spots .row.winning-tick-row {
-        font-weight: bold; }
     #trading_socket_container #contract_prices_container #contract_purchase_profit_list {
       margin: 10px 0; }
       #trading_socket_container #contract_prices_container #contract_purchase_profit_list > div {
@@ -2479,6 +2475,49 @@ a.previous-wrapper {
 @media screen and (max-width: 480px) {
   .realws-content {
     width: 280px !important; } }
+
+#paymentagent_withdrawal .wrapper-row-agent label {
+  padding-bottom: 10px; }
+
+#paymentagent_withdrawal .wrapper-row-agent .row-agent > div:not(:first-child) {
+  margin-top: 10px; }
+
+#paymentagent_withdrawal .wrapper-row-agent .row-agent > div:nth-child(2) {
+  text-align: center;
+  width: 260px; }
+
+#paymentagent_withdrawal .wrapper-row-agent .row-agent .hint {
+  width: 260px;
+  line-height: 1.4; }
+
+#paymentagent_withdrawal .select-dropdown, #paymentagent_withdrawal #txtAgents, #paymentagent_withdrawal #txtAmount, #paymentagent_withdrawal .row-agent .hint, #paymentagent_withdrawal .row-agent > div:nth-child(2) {
+  min-width: 260px; }
+
+#paymentagent_withdrawal .select-options {
+  min-width: 276px; }
+
+#paymentagent_withdrawal #txtDescription {
+  width: 260px; }
+
+#paymentagent_withdrawal .separator-line {
+  border-color: #f2f2f2; }
+
+@media screen and (max-width: 480px) {
+  #paymentagent_withdrawal .wrapper-row-agent .row-agent {
+    margin-left: auto;
+    margin-right: auto;
+    width: auto; }
+    #paymentagent_withdrawal .wrapper-row-agent .row-agent .hint, #paymentagent_withdrawal .wrapper-row-agent .row-agent > div:nth-child(2) {
+      margin-left: auto;
+      margin-right: auto; }
+  #paymentagent_withdrawal .select {
+    width: 302px; }
+  #paymentagent_withdrawal .row-agent > div:nth-child(2) {
+    width: 100%; }
+  #paymentagent_withdrawal #txtAgents, #paymentagent_withdrawal #txtAmount, #paymentagent_withdrawal #txtDescription, #paymentagent_withdrawal .row-agent .hint {
+    width: 284px; }
+  #paymentagent_withdrawal .select-options {
+    width: 290px; } }
 
 .markets {
   min-width: 120px;
