@@ -97,30 +97,16 @@ jobs:
       - npm_install_from_cache
       - npm_test
 
-  build_push_staging:
+  build_push:
     docker:
       - image: circleci/node:9.8.0-stretch
     steps:
       - git_checkout_from_cache
       - npm_install_from_cache
-      - grunt_release:
-         target: 'staging'
-      - grunt_release:
-          target: 'translations'
+      - grunt_release
       - docker_build
       - docker_push
       
-  build_push_production:
-    docker:
-      - image: circleci/node:9.8.0-stretch
-    steps:
-      - git_checkout_from_cache
-      - npm_install_from_cache
-      - grunt_release:
-          target: 'production'
-      - docker_build
-      - docker_push
-
   deploy_staging:
     docker:
       - image: circleci/node:9.8.0-stretch
@@ -138,13 +124,13 @@ workflows:
   build_and_push_master:
     jobs:
       - test
-      - build_push_staging:
+      - build_push:
           filters:
             branches:
               only: /^master/
   tagged_release_staging:
     jobs:
-      - build_push_staging:
+      - build_push:
           filters:
             branches:
               ignore: /.*/
@@ -152,7 +138,7 @@ workflows:
               only: /^staging.*/
       - deploy_staging:
           requires:
-            - build_push_staging
+            - build_push
           filters:
             branches:
               ignore: /.*/
@@ -160,7 +146,7 @@ workflows:
               only: /^staging.*/
   tagged_release_production:
     jobs:
-      - build_push_production:
+      - build_push:
           filters:
             branches:
               ignore: /.*/
@@ -168,7 +154,7 @@ workflows:
               only: /^production.*/
       - deploy_production:
           requires:
-            - build_push_production
+            - build_push
           filters:
             branches:
               ignore: /.*/

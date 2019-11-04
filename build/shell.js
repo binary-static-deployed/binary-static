@@ -124,7 +124,10 @@ module.exports = function (grunt) {
         release_translations: {
             command: [
                 prompt('Starting the release to \'translations\'\n'),
+                'git fetch origin translations:translations',
+                'git checkout translations',
                 'grunt release --translations --section=app --color',
+                'git checkout master',
             ].join(' && '),
             options: {
                 stdout: true

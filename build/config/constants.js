@@ -30,7 +30,7 @@ const release_config = {
         CNAME        : release_targets.staging.CNAME,
     },
     translations: {
-        branch       : 'master',
+        branch       : 'translations',
         target_folder: 'translations',
         origin       : release_targets.staging.repo,
         CNAME        : release_targets.staging.CNAME,
