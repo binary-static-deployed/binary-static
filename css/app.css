@@ -2408,13 +2408,13 @@ a.previous-wrapper {
             .markets .markets_dropdown .markets_view .markets_column .icon.commodities.active {
               background: url("../images/pages/trade/assets/ic-commodities-active.svg") no-repeat;
               background-size: contain; }
-          .markets .markets_dropdown .markets_view .markets_column .icon.volidx {
-            background: url("../images/pages/trade/assets/ic-volidx-normal.svg") no-repeat;
+          .markets .markets_dropdown .markets_view .markets_column .icon.synthetic_index {
+            background: url("../images/pages/trade/assets/ic-synthetic_index-normal.svg") no-repeat;
             background-size: contain;
             -webkit-transition: none;
             transition: none; }
-            .markets .markets_dropdown .markets_view .markets_column .icon.volidx.active {
-              background: url("../images/pages/trade/assets/ic-volidx-active.svg") no-repeat;
+            .markets .markets_dropdown .markets_view .markets_column .icon.synthetic_index.active {
+              background: url("../images/pages/trade/assets/ic-synthetic_index-active.svg") no-repeat;
               background-size: contain; }
         @media (min-width: 320px) and (max-width: 767px) {
           .markets .markets_dropdown .markets_view .markets_column .desktop {
