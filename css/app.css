@@ -377,13 +377,6 @@ a.previous-wrapper {
       outline: none; }
     #mt_account_management .fst-container #fst_action #frm_manage_password button[type='submit'] {
       line-height: 22px; }
-    #mt_account_management .fst-container #fst_action #frm_revoke_mam #msg_form {
-      text-align: center; }
-    #mt_account_management .fst-container #fst_action #frm_new_account_mam .margin-left-right-20 {
-      margin-left: -20px;
-      margin-right: -20px; }
-    #mt_account_management .fst-container #fst_action #frm_new_account_mam .fill-bg-color.margin-left-right-20 {
-      margin-bottom: -20px; }
     #mt_account_management .fst-container #fst_action .type-group .mt5_type_box {
       width: 88px;
       height: 88px;

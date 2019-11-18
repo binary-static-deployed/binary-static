@@ -640,7 +640,8 @@ ul.bullet.gr-row > li {
 
 .foot-note {
   font-size: 0.7561436673rem;
-  color: #c2c2c2; }
+  color: #c2c2c2;
+  display: inline-block; }
 
 .button + .button {
   margin-left: 10px; }
